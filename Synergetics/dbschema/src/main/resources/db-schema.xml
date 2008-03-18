@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<project name="DDL scriprts" basedir="." default="dist">
+
+    <target name="create-ddls"
+        description="Generates files sql scripts for creation of tables all databases.
+            Passed parameters:
+                param1 is table definitions xml file;
+                param2 is way to dirs with sql scripts;
+                param3 is full way to dirs with xslt scripts
+                param4 is name of calling product(lower case)"
+        depends="check-uptodate">
+
+        <antcall target="make-dirs">
+            <param name="generated.sql.dir" value="${param2}"/>
+        </antcall>
+
+        <antcall target="generate-oracle9i">
+            <param name="table" value="${param1}"/>
+            <param name="generated.sql.dir" value="${param2}"/>
+            <param name="synergetics.schema.dir" value="${param3}"/>
+            <param name="product.name" value="${param4}"/>
+        </antcall>
+        <antcall target="generate-pre-oracle9i">
+            <param name="table" value="${param1}"/>
+            <param name="generated.sql.dir" value="${param2}"/>
+            <param name="synergetics.schema.dir" value="${param3}"/>
+            <param name="product.name" value="${param4}"/>
+        </antcall>
+        <antcall target="generate-mysql">
+            <param name="table" value="${param1}"/>
+            <param name="generated.sql.dir" value="${param2}"/>
+            <param name="synergetics.schema.dir" value="${param3}"/>
+            <param name="product.name" value="${param4}"/>
+        </antcall>
+        <antcall target="generate-postgres">
+            <param name="table" value="${param1}"/>
+            <param name="generated.sql.dir" value="${param2}"/>
+            <param name="synergetics.schema.dir" value="${param3}"/>
+            <param name="product.name" value="${param4}"/>
+        </antcall>
+        <antcall target="generate-db2">
+            <param name="table" value="${param1}"/>
+            <param name="generated.sql.dir" value="${param2}"/>
+            <param name="synergetics.schema.dir" value="${param3}"/>
+            <param name="product.name" value="${param4}"/>
+        </antcall>
+        <antcall target="generate-db2-zos">
+            <param name="table" value="${param1}"/>
+            <param name="generated.sql.dir" value="${param2}"/>
+            <param name="synergetics.schema.dir" value="${param3}"/>
+            <param name="product.name" value="${param4}"/>
+        </antcall>
+        <antcall target="generate-mssql">
+            <param name="table" value="${param1}"/>
+            <param name="generated.sql.dir" value="${param2}"/>
+            <param name="synergetics.schema.dir" value="${param3}"/>
+            <param name="product.name" value="${param4}"/>
+        </antcall>
+        <antcall target="generate-sql92">
+            <param name="table" value="${param1}"/>
+            <param name="generated.sql.dir" value="${param2}"/>
+            <param name="synergetics.schema.dir" value="${param3}"/>
+            <param name="product.name" value="${param4}"/>
+        </antcall>
+        <antcall target="generate-sybase">
+            <param name="table" value="${param1}"/>
+            <param name="generated.sql.dir" value="${param2}"/>
+            <param name="synergetics.schema.dir" value="${param3}"/>
+            <param name="product.name" value="${param4}"/>
+        </antcall>
+    </target>
+
+    <target name="clean-ddls"
+        description="clean all generated script files">
+
+        <antcall target="drop-oracle9i">
+            <param name="generated.sql.dir" value="${param2}"/>
+        </antcall>
+        <antcall target="drop-pre-oracle9i">
+            <param name="generated.sql.dir" value="${param2}"/>
+        </antcall>
+        <antcall target="drop-mysql">
+            <param name="generated.sql.dir" value="${param2}"/>
+        </antcall>
+        <antcall target="drop-postgres">
+            <param name="generated.sql.dir" value="${param2}"/>
+        </antcall>
+        <antcall target="drop-db2">
+            <param name="generated.sql.dir" value="${param2}"/>
+        </antcall>
+        <antcall target="drop-db2-zos">
+            <param name="generated.sql.dir" value="${param2}"/>
+        </antcall>
+        <antcall target="drop-mssql">
+            <param name="generated.sql.dir" value="${param2}"/>
+        </antcall>
+        <antcall target="drop-sql92">
+            <param name="generated.sql.dir" value="${param2}"/>
+        </antcall>
+        <antcall target="drop-sybase">
+            <param name="generated.sql.dir" value="${param2}"/>
+        </antcall>
+
+    </target>
+
+    <target name="check-uptodate"
+        description="initializes all the skip properties"
+        depends="check-available,
+            check-uptodate-oracle9i,
+            check-uptodate-pre-oracle9i,
+            check-uptodate-mysql,
+            check-uptodate-postgres,
+            check-uptodate-db2,
+            check-uptodate-db2-zos,
+            check-uptodate-mssql,
+            check-uptodate-sql92,
+            check-uptodate-sybase"/>
+
+    <target name="check-available"
+        description="checked target by available of sql files, if one is existe">
+
+        <available file="${param2}/oracle9i/create_${param4}_tables.sql" property="oracle9i.available"/>
+        <available file="${param2}/pre-oracle9i/create_${param4}_tables.sql" property="pre-oracle9i.available"/>
+        <available file="${param2}/mysql/create_${param4}_tables.sql" property="mysql.available"/>
+        <available file="${param2}/postgres/create_${param4}_tables.sql" property="postgres.available"/>
+        <available file="${param2}/db2/create_${param4}_tables.sql" property="db2.available"/>
+        <available file="${param2}/db2/zosdb2_71/create_${param4}_tables.sql" property="db2-zos.available"/>
+        <available file="${param2}/mssql/create_${param4}_tables.sql" property="mssql.available"/>
+        <available file="${param2}/sql92/create_${param4}_tables.sql" property="sql92.available"/>
+        <available file="${param2}/sybase/create_${param4}_tables.sql" property="sybase.available"/>
+
+        <condition property="generate-oracle9i.must.build">
+            <not>
+                <isset property="oracle9i.available"/>
+            </not>
+        </condition>
+        <condition property="generate-pre-oracle9i.must.build">
+            <not>
+                <isset property="pre-oracle9i.available"/>
+            </not>
+        </condition>
+        <condition property="generate-mysql.must.build">
+            <not>
+                <isset property="mysql.available"/>
+            </not>
+        </condition>
+        <condition property="generate-postgres.must.build">
+            <not>
+                <isset property="postgres.available"/>
+            </not>
+        </condition>
+        <condition property="generate-db2.must.build">
+            <not>
+                <isset property="db2.available"/>
+            </not>
+        </condition>
+        <condition property="generate-db2-zos.must.build">
+            <not>
+                <isset property="db2-zos.available"/>
+            </not>
+        </condition>
+        <condition property="generate-mssql.must.build">
+            <not>
+                <isset property="mssql.available"/>
+            </not>
+        </condition>
+        <condition property="generate-sql92.must.build">
+            <not>
+                <isset property="sql92.available"/>
+            </not>
+        </condition>
+        <condition property="generate-sybase.must.build">
+            <not>
+                <isset property="sybase.available"/>
+            </not>
+        </condition>
+
+    </target>
+
+
+    <target name="check-uptodate-oracle9i"
+        description="initializes the skip properties"
+        if="oracle9i.available">
+
+        <uptodate property="generate-oracle9i.compare.create.xslt"
+            srcfile="${param2}/oracle9i/create_${param4}_tables.sql"
+            targetfile="${param3}/CreateTableOracle.xslt"/>
+
+        <uptodate property="generate-oracle9i.compare.xml"
+            srcfile="${param2}/oracle9i/create_${param4}_tables.sql"
+            targetfile="${param1}"/>
+
+        <uptodate property="generate-oracle9i.compare.drop.xslt"
+            srcfile="${param2}/oracle9i/drop_${param4}_tables.sql"
+            targetfile="${param3}/DropOracle.xslt"/>
+
+        <condition property="generate-oracle9i.must.build">
+            <or>
+                <isset property="generate-oracle9i.compare.create.xslt"/>
+                <isset property="generate-oracle9i.compare.xml"/>
+                <isset property="generate-oracle9i.compare.drop.xslt"/>
+            </or>
+        </condition>
+
+    </target>
+
+    <target name="check-uptodate-pre-oracle9i"
+        description="initializes the skip properties"
+        if="pre-oracle9i.available">
+
+        <uptodate property="generate-pre-oracle9i.compare.create.xslt"
+            srcfile="${param2}/pre-oracle9i/create_${param4}_tables.sql"
+            targetfile="${param3}/CreateTableOracle9i.xslt"/>
+
+        <uptodate property="generate-pre-oracle9i.compare.xml"
+            srcfile="${param2}/pre-oracle9i/create_${param4}_tables.sql"
+            targetfile="${param1}"/>
+
+        <uptodate property="generate-pre-oracle9i.compare.drop.xslt"
+            srcfile="${param2}/pre-oracle9i/drop_${param4}_tables.sql"
+            targetfile="${param3}/DropOracle.xslt"/>
+
+        <condition property="generate-pre-oracle9i.must.build">
+            <or>
+                <isset property="generate-pre-oracle9i.compare.create.xslt"/>
+                <isset property="generate-pre-oracle9i.compare.xml"/>
+                <isset property="generate-pre-oracle9i.compare.drop.xslt"/>
+            </or>
+        </condition>
+
+    </target>
+
+    <target name="check-uptodate-mysql"
+        description="initializes the skip properties"
+        if="mysql.available">
+
+        <uptodate property="generate-mysql.compare.create.xslt"
+            srcfile="${param2}/mysql/create_${param4}_tables.sql"
+            targetfile="${param3}/CreateTableMySql.xslt"/>
+
+        <uptodate property="generate-mysql.compare.xml"
+            srcfile="${param2}/mysql/create_${param4}_tables.sql"
+            targetfile="${param1}"/>
+
+        <uptodate property="generate-mysql.compare.drop.xslt"
+            srcfile="${param2}/mysql/drop_${param4}_tables.sql"
+            targetfile="${param3}/DropMySql.xslt"/>
+
+        <condition property="generate-mysql.must.build">
+            <or>
+                <isset property="generate-mysql.compare.create.xslt"/>
+                <isset property="generate-mysql.compare.xml"/>
+                <isset property="generate-mysql.compare.drop.xslt"/>
+            </or>
+        </condition>
+
+    </target>
+
+    <target name="check-uptodate-postgres"
+        description="initializes the skip properties"
+        if="postgres.available">
+
+        <uptodate property="generate-postgres.compare.create.xslt"
+            srcfile="${param2}/postgres/create_${param4}_tables.sql"
+            targetfile="${param3}/CreateTablePostgres.xslt"/>
+
+        <uptodate property="generate-postgres.compare.xml"
+            srcfile="${param2}/postgres/create_${param4}_tables.sql"
+            targetfile="${param1}"/>
+
+        <uptodate property="generate-postgres.compare.drop.xslt"
+            srcfile="${param2}/postgres/drop_${param4}_tables.sql"
+            targetfile="${param3}/DropPostgres.xslt"/>
+
+        <condition property="generate-postgres.must.build">
+            <or>
+                <isset property="generate-postgres.compare.create.xslt"/>
+                <isset property="generate-postgres.compare.xml"/>
+                <isset property="generate-postgres.compare.drop.xslt"/>
+            </or>
+        </condition>
+
+    </target>
+
+    <target name="check-uptodate-db2"
+        description="initializes the skip properties"
+        if="db2.available">
+
+        <uptodate property="generate-db2.compare.create.xslt"
+            srcfile="${param2}/db2/create_${param4}_tables.sql"
+            targetfile="${param3}/CreateTableDB2.xslt"/>
+
+        <uptodate property="generate-db2.compare.xml"
+            srcfile="${param2}/db2/create_${param4}_tables.sql"
+            targetfile="${param1}"/>
+
+        <uptodate property="generate-db2.compare.drop.xslt"
+            srcfile="${param2}/db2/drop_${param4}_tables.sql"
+            targetfile="${param3}/DropDB2.xslt"/>
+
+        <condition property="generate-db2.must.build">
+            <or>
+                <isset property="generate-db2.compare.create.xslt"/>
+                <isset property="generate-db2.compare.xml"/>
+                <isset property="generate-db2.compare.drop.xslt"/>
+            </or>
+        </condition>
+
+    </target>
+
+    <target name="check-uptodate-db2-zos"
+        description="initializes the skip properties"
+        if="db2-zos.available">
+
+        <uptodate property="generate-db2-zos.compare.create.xslt"
+            srcfile="${param2}/db2/zosdb2_71/create_${param4}_tables.sql"
+            targetfile="${param3}/CreateTableDB2ZOS.xslt"/>
+
+        <uptodate property="generate-db2-zos.compare.xml"
+            srcfile="${param2}/db2/zosdb2_71/create_${param4}_tables.sql"
+            targetfile="${param1}"/>
+
+        <uptodate property="generate-db2-zos.compare.drop.xslt"
+            srcfile="${param2}/db2/zosdb2_71/drop_${param4}_tables.sql"
+            targetfile="${param3}/DropDB2ZOS.xslt"/>
+
+        <condition property="generate-db2-zos.must.build">
+            <or>
+                <isset property="generate-db2-zos.compare.create.xslt"/>
+                <isset property="generate-db2-zos.compare.xml"/>
+                <isset property="generate-db2-zos.compare.drop.xslt"/>
+            </or>
+        </condition>
+
+    </target>
+
+    <target name="check-uptodate-mssql"
+        description="initializes the skip properties"
+        if="mssql.available">
+
+        <uptodate property="generate-mssql.compare.create.xslt"
+            srcfile="${param2}/mssql/create_${param4}_tables.sql"
+            targetfile="${param3}/CreateTableMSSQL.xslt"/>
+
+        <uptodate property="generate-mssql.compare.xml"
+            srcfile="${param2}/mssql/create_${param4}_tables.sql"
+            targetfile="${param1}"/>
+
+        <uptodate property="generate-mssql.compare.drop.xslt"
+            srcfile="${param2}/mssql/drop_${param4}_tables.sql"
+            targetfile="${param3}/DropMSSQL.xslt"/>
+
+        <condition property="generate-mssql.must.build">
+            <or>
+                <isset property="generate-mssql.compare.create.xslt"/>
+                <isset property="generate-mssql.compare.xml"/>
+                <isset property="generate-mssql.compare.drop.xslt"/>
+            </or>
+        </condition>
+
+    </target>
+
+    <target name="check-uptodate-sql92"
+        description="initializes the skip properties"
+        if="sql92.available">
+
+        <uptodate property="generate-sql92.compare.create.xslt"
+            srcfile="${param2}/sql92/create_${param4}_tables.sql"
+            targetfile="${param3}/CreateTableSQL92.xslt"/>
+
+        <uptodate property="generate-sql92.compare.xml"
+            srcfile="${param2}/sql92/create_${param4}_tables.sql"
+            targetfile="${param1}"/>
+
+        <uptodate property="generate-sql92.compare.drop.xslt"
+            srcfile="${param2}/sql92/drop_${param4}_tables.sql"
+            targetfile="${param3}/DropSQL92.xslt"/>
+
+        <condition property="generate-sql92.must.build">
+            <or>
+                <isset property="generate-sql92.compare.create.xslt"/>
+                <isset property="generate-sql92.compare.xml"/>
+                <isset property="generate-sql92.compare.drop.xslt"/>
+            </or>
+        </condition>
+
+    </target>
+
+    <target name="check-uptodate-sybase"
+        description="initializes the skip properties"
+        if="sybase.available">
+
+        <uptodate property="generate-sybase.compare.create.xslt"
+            srcfile="${param2}/sybase/create_${param4}_tables.sql"
+            targetfile="${param3}/CreateTableSybase.xslt"/>
+
+        <uptodate property="generate-sybase.compare.xml"
+            srcfile="${param2}/sybase/create_${param4}_tables.sql"
+            targetfile="${param1}"/>
+
+        <uptodate property="generate-sybase.compare.drop.xslt"
+            srcfile="${param2}/sybase/drop_${param4}_tables.sql"
+            targetfile="${param3}/DropSybase.xslt"/>
+
+        <condition property="generate-sybase.must.build">
+            <or>
+                <isset property="generate-sybase.compare.create.xslt"/>
+                <isset property="generate-sybase.compare.xml"/>
+                <isset property="generate-sybase.compare.drop.xslt"/>
+            </or>
+        </condition>
+
+    </target>
+
+
+    <target name="make-dirs">
+        <mkdir dir="${generated.sql.dir}"/>
+        <mkdir dir="${generated.sql.dir}/db2"/>
+        <mkdir dir="${generated.sql.dir}/db2/zosdb2_71"/>
+        <mkdir dir="${generated.sql.dir}/mssql"/>
+        <mkdir dir="${generated.sql.dir}/mysql"/>
+        <mkdir dir="${generated.sql.dir}/oracle9i"/>
+        <mkdir dir="${generated.sql.dir}/pre-oracle9i"/>
+        <mkdir dir="${generated.sql.dir}/sql92"/>
+        <mkdir dir="${generated.sql.dir}/sybase"/>
+        <mkdir dir="${generated.sql.dir}/postgres"/>
+    </target>
+
+    <target name="generate-oracle9i"
+        description="Generate the Oracle SQL"
+        if="generate-oracle9i.must.build">
+
+        <delete>
+            <fileset dir="${generated.sql.dir}/oracle9i" includes="*"/>
+        </delete>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/oracle9i/create_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/CreateTableOracle.xslt">
+            <param name="comments" expression="true"/>
+            <param name="version" expression="true"/>
+        </xslt>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/oracle9i/drop_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/DropOracle.xslt">
+            <param name="comments" expression="true"/>
+        </xslt>
+
+    </target>
+
+    <target name="generate-pre-oracle9i"
+        description="Generate the Oracle SQL"
+        if="generate-pre-oracle9i.must.build">
+
+        <delete>
+            <fileset dir="${generated.sql.dir}/pre-oracle9i" includes="*"/>
+        </delete>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/pre-oracle9i/create_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/CreateTableOracle.xslt">
+            <param name="version" expression="false"/>
+            <param name="comments" expression="true"/>
+        </xslt>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/pre-oracle9i/drop_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/DropOracle.xslt">
+            <param name="comments" expression="true"/>
+        </xslt>
+
+    </target>
+
+    <target name="generate-mysql"
+        description="Generate the MySql SQL"
+        if="generate-mysql.must.build">
+
+        <delete>
+            <fileset dir="${generated.sql.dir}/mysql" includes="*"/>
+        </delete>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/mysql/create_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/CreateTableMySql.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/mysql/drop_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/DropMySql.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+    </target>
+
+    <target name="generate-postgres"
+        description="Generate the Postgres SQL"
+        if="generate-postgres.must.build">
+
+        <delete>
+            <fileset dir="${generated.sql.dir}/postgres" includes="*"/>
+        </delete>
+        <xslt in="${table}"
+            out="${generated.sql.dir}/postgres/create_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/CreateTablePostgres.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/postgres/drop_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/DropPostgres.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+    </target>
+
+    <target name="generate-db2"
+        description="Generate the DB2 SQL"
+        if="generate-db2.must.build">
+
+        <delete>
+            <fileset dir="${generated.sql.dir}/db2" includes="*"/>
+        </delete>
+        
+        <!-- Generate the non Themes SQL -->
+        <xslt in="${table}"
+            out="${generated.sql.dir}/db2/create_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/CreateTableDB2.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/db2/drop_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/DropDB2.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+    </target>
+
+    <target name="generate-db2-zos"
+        description="Generate the DB2 for ZOS SQL"
+        if="generate-db2-zos.must.build">
+
+        <delete>
+            <fileset dir="${generated.sql.dir}/db2/zosdb2_71" includes="*"/>
+        </delete>
+        
+        <!-- Generate the non Themes SQL -->
+        <xslt in="${table}"
+            out="${generated.sql.dir}/db2/zosdb2_71/create_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/CreateTableDB2ZOS.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/db2/zosdb2_71/drop_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/DropDB2ZOS.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+    </target>
+
+    <target name="generate-mssql"
+        description="Generate the MSSQL SQL"
+        if="generate-mssql.must.build">
+
+        <delete>
+            <fileset dir="${generated.sql.dir}/mssql" includes="*"/>
+        </delete>
+        
+        <!-- Generate the non Themes SQL -->
+        <xslt in="${table}"
+            out="${generated.sql.dir}/mssql/create_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/CreateTableMSSQL.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/mssql/drop_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/DropMSSQL.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+    </target>
+
+    <target name="generate-sql92"
+        description="Generate the SQL92 SQL"
+        if="generate-sql92.must.build">
+
+        <delete>
+            <fileset dir="${generated.sql.dir}/sql92" includes="*"/>
+        </delete>
+        
+        <!-- Generate the non Themes SQL -->
+        <xslt in="${table}"
+            out="${generated.sql.dir}/sql92/create_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/CreateTableSQL92.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/sql92/drop_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/DropSQL92.xslt">
+
+            <param name="comments" expression="true"/>
+        </xslt>
+
+    </target>
+
+    <target name="generate-sybase"
+        description="Generate the Sybase SQL"
+        if="generate-sybase.must.build">
+
+        <delete>
+            <fileset dir="${generated.sql.dir}/sybase" includes="*"/>
+        </delete>
+        
+        <!-- Generate the non Themes SQL -->
+        <xslt in="${table}"
+            out="${generated.sql.dir}/sybase/create_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/CreateTableSybase.xslt">
+            <param name="comments" expression="true"/>
+        </xslt>
+
+        <xslt in="${table}"
+            out="${generated.sql.dir}/sybase/drop_${product.name}_tables.sql"
+            style="${synergetics.schema.dir}/DropSybase.xslt">
+            <param name="comments" expression="true"/>
+        </xslt>
+    </target>
+
+
+
+    <target name="drop-oracle9i"
+        description="Generate the Oracle SQL">
+         <delete>
+            <fileset dir="${generated.sql.dir}/oracle9i" includes="*"/>
+         </delete>
+    </target>
+
+    <target name="drop-pre-oracle9i"
+        description="Generate the Oracle SQL">
+        <delete>
+            <fileset dir="${generated.sql.dir}/pre-oracle9i" includes="*"/>
+        </delete>
+    </target>
+
+    <target name="drop-mysql"
+        description="Generate the MySql SQL">
+        <delete>
+            <fileset dir="${generated.sql.dir}/mysql" includes="*"/>
+        </delete>
+    </target>
+
+    <target name="drop-postgres"
+        description="Generate the Postgres SQL">
+        <delete>
+            <fileset dir="${generated.sql.dir}/postgres" includes="*"/>
+        </delete>
+    </target>
+
+    <target name="drop-db2-zos"
+        description="Generate the DB2 for ZOS SQL">
+        <delete>
+            <fileset dir="${generated.sql.dir}/db2/zosdb2_71" includes="*"/>
+        </delete>
+    </target>
+
+    <target name="drop-db2"
+        description="Generate the DB2 SQL">
+        <delete>
+            <fileset dir="${generated.sql.dir}/db2" includes="*"/>
+        </delete>
+    </target>
+
+    <target name="drop-mssql"
+        description="Generate the MSSQL SQL">
+        <delete>
+            <fileset dir="${generated.sql.dir}/mssql" includes="*"/>
+        </delete>
+    </target>
+
+    <target name="drop-sql92"
+        description="Generate the SQL92 SQL">
+        <delete>
+            <fileset dir="${generated.sql.dir}/sql92" includes="*"/>
+        </delete>
+    </target>
+
+    <target name="drop-sybase"
+        description="Generate the Sybase SQL">
+        <delete>
+            <fileset dir="${generated.sql.dir}/sybase" includes="*"/>
+        </delete>
+    </target>
+
+</project>
