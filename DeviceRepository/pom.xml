@@ -22,7 +22,7 @@ along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.volantis</groupId>
     <artifactId>device-repository</artifactId>
-    <version>5.0-SNAPSHOT</version>
+    <version>5.0</version>
     <name>${pom.groupId}:${pom.artifactId}</name>
     <packaging>pom</packaging>
 
@@ -37,7 +37,7 @@ along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/
     </modules>
 
     <properties>
-        <build.version.synergetics>5.0-SNAPSHOT</build.version.synergetics>
+        <build.version.synergetics>5.0</build.version.synergetics>
     </properties>
 
     <dependencies>

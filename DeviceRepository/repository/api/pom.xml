@@ -22,7 +22,7 @@ along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/
     <parent>
         <groupId>com.volantis</groupId>
         <artifactId>device-repository</artifactId>
-        <version>5.0-SNAPSHOT</version>
+        <version>5.0</version>
 	<relativePath>../..</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>

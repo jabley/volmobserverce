@@ -58,7 +58,7 @@ along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/
     </modules>
 
     <properties>
-        <build.version.synergetics>5.0-vbm2007081524</build.version.synergetics>
+        <build.version.synergetics>5.0</build.version.synergetics>
         <build.version.mavenbuild>1.0-SNAPSHOT</build.version.mavenbuild>
     </properties>
 
