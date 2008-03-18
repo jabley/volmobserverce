@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<binding add-constructors="true" force-classes="true" name="parameters">
+
+    <mapping name="transcodingServer" class="com.volantis.map.ics.configuration.impl.DefaultConfiguration">
+        <structure name="image" usage="optional" ordered="false">
+            <value name="jpegFormat" field="jpegMode" style="attribute" usage="optional"
+                serializer="com.volantis.map.ics.configuration.ConfigurationUtilities.serializeJpegMode"
+                deserializer="com.volantis.map.ics.configuration.ConfigurationUtilities.deserializeJpegMode"/>
+            <value name="gifSupport" field="gifEnabled" style="attribute" usage="optional"/>
+
+            <structure name="environment" usage="optional" ordered="false">
+                <value name="serverMode" field="nativeMode" style="attribute" usage="optional"
+                    serializer="com.volantis.map.ics.configuration.ConfigurationUtilities.serializeServerMode"
+                    deserializer="com.volantis.map.ics.configuration.ConfigurationUtilities.deserializeServerMode"/>
+                <value name="imgHost" field="host" style="attribute" usage="optional"
+                    serializer="com.volantis.map.ics.configuration.ConfigurationUtilities.serializeString"
+                    deserializer="com.volantis.map.ics.configuration.ConfigurationUtilities.deserializeString"/>
+                <value name="imgPort" field="hostPort" style="attribute" usage="optional" default="80"/>
+                <value name="imgProtocol" field="hostProtocol" style="attribute" usage="optional" default="http"/>
+                <value name="maxRedirects" field="maxRedirects" style="attribute" usage="optional"/>
+                <value name="proxyHost" field="proxy" style="attribute" usage="optional"
+                    serializer="com.volantis.map.ics.configuration.ConfigurationUtilities.serializeString"
+                    deserializer="com.volantis.map.ics.configuration.ConfigurationUtilities.deserializeString"/>
+                <value name="proxyPort" field="proxyPort" style="attribute" usage="optional"/>
+                <value name="useInMemoryIOCache" field="useInMemoryIOCache" style="attribute" usage="optional" default="true"/>
+                <value name="repositoryURL" field="repositoryURL" style="attribute" usage="optional"/>
+            </structure>
+
+            <structure name="scaling" usage="optional" ordered="false">
+                <value name="scaleMode" field="scaleMode" style="attribute" usage="optional" default="bilinear"
+                    serializer="com.volantis.map.ics.configuration.ConfigurationUtilities.serializeScaleMode"
+                    deserializer="com.volantis.map.ics.configuration.ConfigurationUtilities.deserializeScaleMode"/>
+                <value name="scaleLarger" field="scaleLarger" style="attribute" usage="optional" default="false"/>
+            </structure>
+
+            <structure name="compression" usage="optional" ordered="false">
+                <value name="qualityMin" field="minimumJPEGQuality" style="attribute" usage="optional" default="30"/>
+                <value name="paletteMin" field="minimumBitDepth" style="attribute" usage="optional" default="8"/>
+            </structure>
+
+            <structure name="watermarking" usage="optional" ordered="false">
+                <value name="watermarkURL" field="watermarkURL" style="attribute"
+                    serializer="com.volantis.map.ics.configuration.ConfigurationUtilities.serializeString"
+                    deserializer="com.volantis.map.ics.configuration.ConfigurationUtilities.deserializeString"/>
+            </structure>
+
+            <structure name="dithering" usage="optional" ordered="false">
+                <collection field="ditheringModes" usage="optional">
+                    <structure name="dither" type="com.volantis.map.ics.configuration.impl.Dither" usage="optional" ordered="false">
+                        <value name="bitDepth" field="bitDepth" style="attribute" usage="required"/>
+                        <value name="mode" field="mode" style="attribute" usage="required"
+                            serializer="com.volantis.map.ics.configuration.DitherMode.serialize"
+                            deserializer="com.volantis.map.ics.configuration.DitherMode.deserialize"/>
+                    </structure>
+                </collection>
+            </structure>
+
+        </structure>
+    </mapping>
+</binding>
