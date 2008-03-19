@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.volantis.com/xmlns/device-repository/policy-definitions" xsi:schemaLocation="http://www.volantis.com/xmlns/device-repository/policy-definitions ../../../xml-schema/device-policy-definitions.xsd">
+    <types>
+        <type name="EmulateEmphasisTag">
+            <structure>
+                <field name="enable">
+                    <type>
+                        <boolean/>
+                    </type>
+                </field>
+                <field name="prefix">
+                    <type>
+                        <text/>
+                    </type>
+                </field>
+                <field name="suffix">
+                    <type>
+                        <text/>
+                    </type>
+                </field>
+                <field name="altTag">
+                    <type>
+                        <text/>
+                    </type>
+                </field>
+            </structure>
+        </type>
+    </types>
+    <category name="browser">
+        <policy name="UAProf.CcppAccept" ccppVocabulary="UAProf">
+            <type>
+                <unorderedSet>
+                    <text/>
+                </unorderedSet>
+            </type>
+            <UAProf attribute="CcppAccept"/>
+        </policy>
+        <policy name="UAProf.TablesCapable" ccppVocabulary="UAProf">
+            <type>
+                <boolean/>
+            </type>
+            <UAProf attribute="TablesCapable"/>
+        </policy>
+        <policy name="UAProf.WapPushMsgSize" ccppVocabulary="UAProf">
+            <type>
+                <int/>
+            </type>
+            <UAProf attribute="WapPushMsgSize"/>
+        </policy>
+    </category>
+    <category name="identification">
+        <policy name="basicDevice">
+            <type>
+                <boolean/>
+            </type>
+        </policy>
+        <policy name="dateintr">
+            <type>
+                <text/>
+            </type>
+        </policy>
+        <policy name="entrytype">
+            <type>
+                <selection>
+                    <keyword>real_device_variant</keyword>
+                    <keyword>real_device</keyword>
+                    <keyword>abstract_device</keyword>
+                    <keyword>placeholder</keyword>
+                </selection>
+            </type>
+        </policy>
+        <policy name="firmversion">
+            <type>
+                <text/>
+            </type>
+        </policy>
+        <policy name="modelnum">
+            <type>
+                <text/>
+            </type>
+        </policy>
+        <policy name="prodname">
+            <type>
+                <text/>
+            </type>
+        </policy>
+        <policy name="revision">
+            <type>
+                <text/>
+            </type>
+        </policy>
+    </category>
+    <category name="input">
+        <policy name="UAProf.AcceptDownloadableSoftware" ccppVocabulary="UAProf">
+            <type>
+                <boolean/>
+            </type>
+            <UAProf attribute="AcceptDownloadableSoftware"/>
+        </policy>
+    </category>
+    <category name="output">
+        <policy name="rendermode">
+            <type>
+                <selection>
+                    <keyword>palette</keyword>
+                    <keyword>rgb</keyword>
+                    <keyword>greyscale</keyword>
+                    <keyword>none</keyword>
+                </selection>
+            </type>
+        </policy>
+    </category>
+    <category name="protocol" prefix="protocol">
+        <policy name="protocol.wml.emulate.bigTag">
+            <type ref="EmulateEmphasisTag"/>
+        </policy>
+    </category>
+    <category name="security">
+        <policy name="localsec">
+            <type>
+                <range minInclusive="-1" maxInclusive="100"/>
+            </type>
+        </policy>
+        <policy name="ssl">
+            <type>
+                <boolean/>
+            </type>
+        </policy>
+        <policy name="sslkeystrng">
+            <type>
+                <selection>
+                    <keyword>0</keyword>
+                    <keyword>40</keyword>
+                    <keyword>56</keyword>
+                    <keyword>128</keyword>
+                    <keyword>168</keyword>
+                </selection>
+            </type>
+        </policy>
+        <policy name="sslvers">
+            <type>
+                <text/>
+            </type>
+        </policy>
+        <policy name="wtlsclass">
+            <type>
+                <selection>
+                    <keyword>none</keyword>
+                    <keyword>1</keyword>
+                    <keyword>2</keyword>
+                    <keyword>3</keyword>
+                </selection>
+            </type>
+        </policy>
+        <policy name="wtlskeystrng">
+            <type>
+                <selection>
+                    <keyword>0</keyword>
+                    <keyword>40</keyword>
+                    <keyword>56</keyword>
+                    <keyword>128</keyword>
+                    <keyword>168</keyword>
+                </selection>
+            </type>
+        </policy>
+    </category>
+</definitions>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 24-Nov-05	10404/1	geoff	VBM:2005112301 Implement meta data for JiBX device repository accessor
+
+ ===========================================================================
+-->
