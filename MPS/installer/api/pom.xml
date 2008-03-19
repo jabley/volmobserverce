@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.volantis</groupId>
+        <artifactId>mps</artifactId>
+        <version>5.0</version>
+        <relativePath>../..</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>mps.installer-api</artifactId>
+    <name>${pom.groupId}:${pom.artifactId}</name>
+        
+    <packaging>izpack</packaging>
+	
+    <dependencies>
+	<dependency>
+		<groupId>com.volantis</groupId>
+		<artifactId>mps.architecture-api</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.volantis</groupId>
+		<artifactId>mps.bms-api</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.volantis</groupId>
+		<artifactId>mps.bms-impl</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.volantis</groupId>
+		<artifactId>mps.localization-api</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.volantis</groupId>
+		<artifactId>mps.runtime-api</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.volantis</groupId>
+		<artifactId>mps.runtime-impl</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.volantis</groupId>
+		<artifactId>mps.version-api</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.volantis</groupId>
+		<artifactId>mps.sample-api</artifactId>
+	</dependency>
+    </dependencies>
+			
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>${project.artifactId}-plugin-description</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <property name="build.dir" value="${project.build.outputDirectory}"/>
+                                <property name="build.generated.dir" value="${project.build.directory}/mdprs"/>
+                                <property name="source.dir" value="${project.build.sourceDirectory}"/>
+                                <property name="compile.classpath" refid="maven.compile.classpath"/>
+				<delete dir="target/documentation" />
+				<copy todir="target/documentation">
+                                  <fileset dir="../../docs/redist/manuals">
+                                    <include name="**/*"/>
+                                  </fileset>
+                                </copy>
+				<delete dir="target/samples" />
+				<copy todir="target/samples">
+                                  <fileset dir="../../webapps/mps">
+                                    <include name="**/*.html"/>
+                                  </fileset>
+                                </copy>
+				<delete dir="target/WEB-INF" />
+				<copy todir="target/WEB-INF">
+                                  <fileset dir="../../webapps/mps/WEB-INF">
+                                    <include name="**/*"/>
+                                  </fileset>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                              <includeScope>runtime</includeScope>  
+			      <outputAbsoluteArtifactFilename>true</outputAbsoluteArtifactFilename>
+                        </configuration>
+                    </execution>
+               </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.volantis.maven.plugins</groupId>
+                <artifactId>izpack-maven-plugin</artifactId>
+                <version>3.11.0-beta2</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <installerFile>${project.build.directory}/mps_installer-${project.version}.jar</installerFile>
+                    <basedir>${project.basedir}/src/izpack/</basedir>
+                </configuration>
+            </plugin>
+
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-install-plugin</artifactId>
+               <version>2.0</version>
+               <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>install</goal>
+                        </goals>
+                    </execution>
+               </executions>
+            </plugin>
+ 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-jar</argument>
+                        <argument>${project.build.directory}/mps_installer-${project.version}.jar</argument>
+                        <argument>${project.basedir}/src/izpack/install-config.xml</argument>
+                   </arguments>
+                </configuration>
+             </plugin>
+        </plugins>
+    </build>
+</project>
