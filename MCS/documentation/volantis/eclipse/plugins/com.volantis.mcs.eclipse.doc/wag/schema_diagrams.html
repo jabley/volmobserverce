@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8" /><title>Understanding schema diagrams</title><link rel="stylesheet" href="../volantis.css" /></head><body><h1>Understanding schema diagrams</h1>
+
+<p>Content model is a term used to describe the set of elements 
+  and attributes contained inside another XML element. Although the XML Schema 
+  specification is explicit about how schemas should be presented in XML, there 
+  is no commonly agreed-upon format for symbols representing information in schema 
+  diagrams. Schema editors and viewers have different approaches to diagramming. For 
+  the examples in MCS documentation the diagrams use the following conventions.</p>
+<p>The diagrams show the structure and cardinality of the elements used 
+  in these structures. Attributes are not shown.</p>
+<h2>xs:sequence</h2>
+<p>In the first figure, the symbol in the center, with the horizontal dotted 
+  line, indicates a sequence. This diagram says the <span class="code">select</span> element consists of 
+  the sequence of <span class="code">when</span> and <span class="code">otherwise</span> elements. The boxes with a plus (+) at the right indicates that there is hidden content not shown in the diagram. An arrow at the bottom left of an element indicates that it refers to a declaration elsewhere in the schema. 
+  The dotted line around the elements indicates they are optional.</p>
+
+<p class="caption"><img src="../graphics/sequence_cm.png" alt="xs:sequence content model" title="xs:sequence content model" /></p>
+
+<h2>xs:choice or xs:all</h2>
+<p>The switchlike symbol in the next figure indicates a choice; in this case, 
+  a choice between one or more <span class="code">th</span> or <span class="code">td</span> elements. The solid line around the elements shows that one or other is required.</p>
+
+<p class="caption"><img src="../graphics/choice_cm.png" alt="xs:choice content model" title="xs:choice content model" /></p>
+<p>Another way of providing a choice is to use the following structure. The symbol is for the xs:all element that allows the contained 
+  elements to occur in any order, either once only or not at all. </p>
+
+<p class="caption"><img src="../graphics/all_cm.png" alt="xs:all content model" title="xs:all content model" /></p>
+
+<h2>Cardinality</h2>
+
+<p>Cardinality expresses constraints about the minimum and maximum 
+  occurrences of elements. The number of times it may appear is given by the text below it. In the final figure 1..∞ means the <span class="code">minOccurs</span> attribute has a value of 1 and <span class="code">maxOccurs</span> 
+  is unbounded (infinity). If there is no such text, the diagram is showing that 
+  it can occur only once.</p>
+<p>The diagram shows some additional information. The row of bars at the 
+  top left of the <span class="code">td</span> and <span class="code">th</span> elements indicates that only text content is allowed.</p>
+
+<p class="caption"><img src="../graphics/cardinality_cm.png" alt="Cardinality" title="Cardinality" /></p>
+
+
+            <p><span class="ri">Related topics</span><br /><a href="wag_about_ce.html">Web author's guide</a></p>
+        
+</body></html>

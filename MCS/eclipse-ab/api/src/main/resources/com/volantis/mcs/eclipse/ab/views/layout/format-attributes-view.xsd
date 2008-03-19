@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:simpleType name="Key">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Za-z0-9_\-]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AttributeName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-z][A-Za-z0-9_\-]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AttributeNames">
+        <xs:list itemType="AttributeName"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="AttributeType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z][A-Za-z0-9_\-]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="formatAttributesView">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="section"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="section">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="attribute"/>
+            </xs:sequence>
+            <xs:attribute name="titleKey" type="Key" use="optional"/>
+        </xs:complexType>
+
+        <xs:unique name="unique-attribute-name">
+            <xs:selector xpath="attribute"/>
+            <xs:field xpath="@name"/>
+        </xs:unique>
+    </xs:element>
+
+    <xs:element name="attribute">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="selection"/>
+            </xs:sequence>
+
+            <xs:attribute name="name" type="AttributeName" use="required"/>
+            <xs:attribute name="type" type="AttributeType" use="required"/>
+            <xs:attribute name="attributeType" type="xs:string" use="optional"/>
+            <xs:attribute name="supplementary" type="AttributeNames" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="selection">
+        <xs:annotation>
+            <xs:documentation>
+                Only for use in a combo type attribute.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 13-Jan-04	2483/3	byron	VBM:2003121504 Corrected javadoc and updated xml and xsd file (unique validation and removed namespace declaration) and test cases
+
+ 13-Jan-04	2483/1	byron	VBM:2003121504 Eclipse PM Layout Editor: Format Attributes View: XML Config
+
+ ===========================================================================
+-->

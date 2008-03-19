@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>Directing web servers</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Directing web servers</h1>
+      
+      <p>You can use server side includes (SSI) in XDIME to direct a
+         web server to do some basic processing. Some site
+         configurations include web servers in addition to application
+         servers. They deliver static content, and can supply some
+         additional processing, which is controlled by directives
+         embedded in the response to a request.</p>
+      
+      <p>For example, you can include content directly in the
+         generated response without requiring the browser to request
+         it independently. Individual content components can be cached
+         when originally generated, and then replaced in the response
+         from the application server by SSI directives that cause
+         their inclusion directly from the cache.</p>
+      
+      <p class="note">
+         <strong>Note</strong>: 
+			The included material is not processed in any way by the
+         web server. The XDIME inclusion mechanism enables support for
+         caching systems, but is not intended as a replacement for
+         other types of inclusion.</p>
+      
+         
+      <h2>The SSI directives</h2>
+         
+      <p>You use the <span class="code">ssiconfig</span> to included
+            additional material.Two mutually exclusive attributes
+            specify the added content. The <span class="code">virtual</span>
+            attribute defines a URL on the web server. This form of
+            include is useful when the material is remote from the
+            directory containing the page with the directive. The
+               <span class="code">file</span> attribute defines a relative file
+            path. It is probably most useful when the include is in
+            the same directory that contains the page, or is close to
+            it.</p>
+         
+      <p>The <span class="code">ssiconfig</span> element can contain an
+            error message to be written in the event of a failure. It
+            takes a single <span class="code">errmsg</span> attribute.</p>
+         
+      <pre class="code">&lt;wsdirectives&gt;
+   &lt;ssiconfig errmsg="The file 'Q4report.html'is not available."/&gt;
+   &lt;ssiinclude virtual="/mycorp/sales 2004/Q4report.html"/&gt;
+&lt;/wsdirectives&gt;</pre>
+      
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../wag/wag_xdime_about.html">Working with XDIME</a>
+         <br/>
+         <a href="../xdime/xdime_wsdirectives.html">wsdirectives</a>
+      </p>
+      
+   
+   </body>
+</html>

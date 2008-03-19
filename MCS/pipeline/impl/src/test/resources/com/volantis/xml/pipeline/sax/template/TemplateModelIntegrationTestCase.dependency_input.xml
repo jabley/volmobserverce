@@ -1,0 +1,80 @@
+<?xml version='1.0'?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ ! (c) Volantis Systems Ltd 2003. 
+ ! ======================================================================== -->
+<root xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+    xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+    xmlns:dependency="http://www.volantis.com/test/dependency"
+    xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline">
+    <dependency:aggregator>
+        <apply>
+            <template:apply>
+                <template:bindings>
+                    <template:binding name="stale"
+                        value="%{dependency:dependency('stale', 'stale', 'false', '5')}"/>
+                    <template:binding name="revalidate"
+                        value="%{dependency:dependency('revalidate', 'fresh', 'true', '1')}"/>
+                    <template:binding name="fresh">
+                        <template:complexValue>
+                            <p><dependency:dependency/></p>
+                        </template:complexValue>
+                    </template:binding>
+                </template:bindings>
+                <template:definition>
+                    <template:declarations>
+                        <template:parameter name="stale" type="simple" expressionVariable="stale"/>
+                        <template:parameter name="revalidate" type="simple" expressionVariable="revalidate"/>
+                        <template:parameter name="fresh" type="complex" expressionVariable="fresh"/>
+                    </template:declarations>
+                    <template:body>
+                        <stale>
+                            <dependency:aggregator>
+                                <template:value ref="stale"/>
+                            </dependency:aggregator>
+                            <dependency:aggregator>
+                                <pipeline:value-of expr="$stale"/>
+                            </dependency:aggregator>
+                        </stale>
+                        <revalidate>
+                            <dependency:aggregator>
+                                <template:value ref="revalidate"/>
+                            </dependency:aggregator>
+                            <dependency:aggregator>
+                                <pipeline:value-of expr="$revalidate"/>
+                            </dependency:aggregator>
+                        </revalidate>
+                        <fresh>
+                            <dependency:aggregator>
+                                <template:value ref="fresh"/>
+                            </dependency:aggregator>
+                            <dependency:aggregator>
+                                <pipeline:value-of expr="$fresh"/>
+                            </dependency:aggregator>
+                        </fresh>
+                        <content>
+                            <template:value ref="revalidate"/>
+                            <template:value ref="fresh"/>
+                        </content>
+                    </template:body>
+                </template:definition>
+            </template:apply>
+        </apply>
+    </dependency:aggregator>
+</root>

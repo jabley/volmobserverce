@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>pipeline:cache</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>pipeline:cache</h1><h2>Purpose</h2>
+         <p>The root element for a pipeline cache process. Once executed, the named 
+            cache is held until the application server is stopped or restarted, flushed manually, or until the expiry time set by the contained <span class="code">cache-control</span> element is reached.
+            The cache stores objects based on the <span class="code">key</span> attribute.
+            The key is then counted and used as a reference against the cache
+            size. The cache uses the least-recently-used strategy for handling
+            its content. Cache configuration parameters are contained in the
+               <span class="filepath">mcs-config.xml</span> file.</p>
+         
+      <h2>Contains</h2><p><a href="../xdime/pipeline_cache.html">pipeline:cache</a>, <a href="../xdime/pipeline_cachebody.html">pipeline:cacheBody</a>, <a href="../xdime/pipeline_cacheinfo.html">pipeline:cacheInfo</a>, <a href="../xdime/pipeline_content.html">pipeline:content</a>, <a href="../xdime/pipeline_convert_case.html">pipeline:convertElementCase</a>, <a href="../xdime/pipeline_convert_ics.html">pipeline:convertImageURLToTranscoder</a>, <a href="../xdime/pipeline_convert_url.html">pipeline:convertAbsoluteToRelativeURL</a>, <a href="../xdime/pipeline_evaluate.html">pipeline:evaluate</a>, <a href="../xdime/pipeline_for_each.html">pipeline:for-each</a>, <a href="../xdime/pipeline_serialize.html">pipeline:serialize</a>, <a href="../xdime/pipeline_transform.html">pipeline:transform</a>, <a href="../xdime/pipeline_try.html">pipeline:try</a></p><h2>Contained by</h2><p/><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">expiry-mode</th><td>Determines whether dependencies will be taken into
+               account when working out when the cache expires. A value of
+               'fixed-age' will not track dependencies. A value of 'auto' will
+               turn tracking on. Overrides the cache-operation element setting
+               in the mcs-config.xml file.</td><td>xs:string</td><td>none </td><td>fixed-age, auto </td><td>optional </td></tr><tr><th class="firstcell" scope="row">key</th><td>Key used to access the cache. If the attribute is
+               specified it is given to the caching process. If no key is
+               defined, the element must contain a pipeline:cacheInfo element
+               followed by operation markup elements.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcellrequired" scope="row">name</th><td>Name associated with the cache. The attribute is passed
+               directly to the caching process.</td><td>xs:string</td><td>none </td><td> </td><td>required </td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;pipeline:cache name="xmlcache"&gt;
+   &lt;pipeline:cacheInfo&gt;
+      &lt;pipeline:cacheKey value="men"/&gt;
+      &lt;pipeline:cacheKey value="women"/&gt;
+      &lt;pipeline:cacheControl timeToLive="600"/&gt;
+   &lt;/pipeline:cacheInfo&gt;
+   &lt;pipeline:cacheBody&gt;
+    ...
+   &lt;/pipeline:cacheBody&gt;
+   &lt;pipeline:transform&gt;
+      &lt;pipeline:transformations&gt;
+         &lt;pipeline:transformation href="filter_men.xslt"/&gt;
+         &lt;pipeline:transformation href="filter_women.xslt"/&gt;
+         &lt;pipeline:transformation href="sort_by_surname.xslt"/&gt;
+      &lt;/pipeline:transformations&gt;
+   &lt;/pipeline:transform&gt;
+&lt;/pipeline:cache&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/pipeline_er.html">Pipeline elements</a><br/><a href="../dci/dci_caching.html">Pipeline caching</a><br/><a href="../admin/mcs_server_manager.html">Clearing caches manually</a></p>
+      </body></html>

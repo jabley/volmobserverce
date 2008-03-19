@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><link href="../volantis.css" rel="stylesheet" type="text/css"/><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>device-name-by-tac</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">device-name-by-tac</h1><h2>Purpose</h2>
+         <p>Identifies the device from the six digit Type Allocation Code (TAC).</p>
+         <p>If the number is missing or invalid, '404 Not Found' is returned.</p>
+      <h2>Method</h2><p><span class="code">GET</span></p><h2>Signature</h2><p><span class="code">/device/name-by-tac/[number]</span></p><h2>Parameter</h2><table cellspacing="0" summary="The table contains the&#xA;            parameters of the function. It lists the name, the purpose&#xA;            or use, and the XML schema datatype."><tr><th class="firsthdr" scope="col">Name</th><th scope="col">Description</th><th scope="col">Type</th></tr><tr><th class="firstcell" scope="row">number</th><td><p>The TAC number</p></td><td>xs:string</td></tr></table><h2>Examples</h2>
+         <p>Input</p>
+         <pre class="code">/device/name-by-tac/352099</pre>
+         <p>Returns</p>
+         <pre class="code">&lt;device-name
+   xmlns="http://www.volantis.com/xmlns/2006/01/device-ws"&gt;Alcatel-OT-332&lt;/device-name&gt;</pre>
+      
+         <p><span class="ri">Related topics</span><br/><a href="../dws/dws_rest_api.html">DWS API reference</a><br/><a href="../dws/dws_php_s4.html">example4.php</a><br/><a href="../dws/dws_ruby_s4.html">example4.rb</a></p>
+      </body></html>

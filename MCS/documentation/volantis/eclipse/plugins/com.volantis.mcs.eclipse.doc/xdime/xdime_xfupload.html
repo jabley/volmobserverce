@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>xfupload</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>xfupload</h1><h2>Purpose</h2>
+         <p>Enables the uploading of binary data in a form. The processing of the file upload is the responsibility of the calling application. The element only
+            results in markup on HTML based protocols.</p>
+         <div class="note"><strong>Note</strong>: WML does support file upload. Using this element may
+            cause some WML browsers to show an error when the page is
+         processed.</div>
+      <h2>Contained by</h2><p><a href="../xdime/xdime_xfform.html">xfform</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">initial</th><td>The initial value of the control</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">maxLength</th><td>The maximum number of characters in the content</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcellrequired" scope="row">name</th><td>The name of the control and the form variable returned to
+               the server</td><td>xs:string</td><td>none </td><td> </td><td>required </td></tr></table><h2>Attribute groups</h2><p><a href="../xdime/event_attr.html">Event attributes</a>, <a href="../xdime/field_attr.html">Form attributes</a>, <a href="../xdime/focus_attr.html">Focus attributes</a>, <a href="../xdime/nav_attr.html">Navigation attributes</a>, <a href="../xdime/xdime_attr.html">Core attributes</a></p><h2>Example</h2>
+         <pre class="code">&lt;xfform name="addimage"
+   method="post" action="addimage.xml"&gt; 
+   &lt;xf:content&gt;
+      &lt;p&gt;To upload an image click &lt;strong&gt;Browse&lt;/strong&gt;, choose it from the file 
+      system and then click &lt;strong&gt;Upload&lt;/strong&gt;.&lt;/p&gt;
+   &lt;/xf:content&gt;
+   &lt;xfupload name="uploadimage maxlength="80"/&gt;   
+   ...
+&lt;/xfform&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime/xdime_pr_er.html">XDIME presentation elements</a></p>
+      </body></html>

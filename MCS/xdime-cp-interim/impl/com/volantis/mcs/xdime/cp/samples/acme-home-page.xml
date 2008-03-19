@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<mcs:unit
+    xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:mcs="http://www.volantis.com/xmlns/2004/06/xdimecp/mcs"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:sel="http://www.w3.org/2004/06/diselect"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.volantis.com/xmlns/2004/06/xdimecp/mcs ../schemata/xdime-cp-mcs.xsd">
+    <html>
+        <head>
+            <title>My Page Title</title>
+            <xf:model>
+                <xf:submission id="do-search" action="doSearch.jsp" method="get"/>
+            </xf:model>
+        </head>
+        <body>
+            <h1 class="introduction">Introduction</h1>
+            <p>
+                This is the page's
+                <strong>introductory</strong> text. There is not
+                <em>that</em> much to say really.
+                Have fun.
+            </p>
+
+            <!--
+             ! some comments........
+            -->
+            <h2 class="search-area">Search Area</h2>
+
+            <!-- input and submit. -->
+            <xf:input class="search-area" ref="your-name">
+                <xf:label>Your name:</xf:label>
+            </xf:input>
+            <xf:input class="search-area" ref="your-age">
+                <xf:label>Your age:</xf:label>
+            </xf:input>
+            <xf:input class="search-area" ref="your-country-of-birth">
+                <xf:label>Country of birth:</xf:label>
+            </xf:input>
+
+            <xf:submit submission="do-search">
+                <xf:label>Submit choice</xf:label>
+            </xf:submit>
+
+            <!--
+             ! Some more comments
+             -->
+            <h3 class="ordinarylist-section">This is an ordinary list section</h3>
+            <ol class="ordinary-list">
+                <li>item #1</li>
+                <li>
+                    <ul>
+                        <li>bullet 1</li>
+                        <li sel:expr="device:getPolicyValue('custom.OrangeRenderType')!='full'">bullet 2</li>
+                        <li>bullet 3</li>
+                        <li>bullet 4</li>
+                        <li>
+                            <code>bullet 5</code>
+                        </li>
+                        <li>bullet 6</li>
+                    </ul>
+                </li>
+                <li>item #2</li>
+                <li>item #3</li>
+                <li>last item</li>
+            </ol>
+
+
+            <!--
+             ! and
+             !      some
+             !                   more
+             !                                         comments
+             -->
+            <h4 class="navlist-section">This is a navigational list section</h4>
+            <p>My navigational list example follows:</p>
+            <nl class="navlist">
+                <label>Navigation List</label>
+                <li href="item1.xml">navigation
+                     <em>list</em>
+                    item <sup>TM</sup>
+                    1</li>
+                <li class="mynavlistitem" href="somewhere-else.xml">nav list item
+                    <sup>2</sup>
+
+                    </li>
+                <li href="item3.xml">navigation
+                list item 3</li>
+                <li href="final.xml">Finally, the last item.</li>
+            </nl>
+
+        </body>
+    </html>
+</mcs:unit>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 17-Jun-04	4630/2	pduffin	VBM:2004060306 Integrated and produced distribution
+
+ 16-Jun-04	4645/1	pcameron	VBM:2004060306 Committed for integration
+
+ ===========================================================================
+-->

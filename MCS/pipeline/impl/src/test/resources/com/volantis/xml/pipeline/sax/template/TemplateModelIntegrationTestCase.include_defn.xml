@@ -1,0 +1,95 @@
+<?xml version='1.0'?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ ! (c) Volantis Systems Ltd 2003. 
+ ! ======================================================================== -->
+<template:definition xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+    xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver">
+    <template:documentation>
+        <strong>Documentation</strong> can contain any markup you like.
+        <p>
+            It can <em>even</em> be nested!
+        </p>
+    </template:documentation>
+    <template:declarations>
+        <template:parameter name="header"
+            type="complex"
+            use="optional"
+            default="Welcome to Guildford">
+            <template:documentation>
+                Introductory text
+            </template:documentation>
+        </template:parameter>
+        <template:parameter name="name" type="simple" use="required">
+            <template:documentation>
+                Name of person who is the target of this message
+            </template:documentation>
+        </template:parameter>
+        <template:parameter name="message" type="complex" use="required"/>
+        <template:parameter name="footer" type="complex" use="optional">
+            <template:documentation>
+                Some text to appear at the <em>bottom</em> of the page
+            </template:documentation>
+            <template:complexValue evaluationMode="repeated">
+                <urid:fetch href="./complex_include.xml"/>
+                <p>
+                    <strong>End</strong>
+                </p>
+            </template:complexValue>
+        </template:parameter>
+    </template:declarations>
+    <template:body>
+        <h1>
+            <template:value ref="header"/>
+        </h1>
+        <p>
+            <template:value ref="name"/>, Welcome!
+        </p>
+        <p>
+            Fun for all is our recommendation.
+        </p>
+        <template:value ref="message"></template:value>
+        <p>
+            Some text between the template <value/>
+            elements for the message output.
+        </p>
+        <template:value ref="message"/>
+        <p/>
+        <template:value ref="footer"/>
+    </template:body>
+</template:definition>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 20-Oct-04	5438/1	philws	VBM:2004082706 Transfer Pipeline source into MCS
+
+ 30-Jan-04	531/1	adrian	VBM:2004011905 added context updating and context annotation support to pipeline processes
+
+ 24-Jun-03	109/1	philws	VBM:2003061913 Change pipeline:includeURI to urid:fetch and add new TLD for it
+
+ 16-Jun-03	78/1	philws	VBM:2003061205 Add JSP test cases and debug some issues
+
+ 10-Jun-03	13/2	philws	VBM:2003030610 Integrate with Template Model Expression facilities
+
+ ===========================================================================
+-->

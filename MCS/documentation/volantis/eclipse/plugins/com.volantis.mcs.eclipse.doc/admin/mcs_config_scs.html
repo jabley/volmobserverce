@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <title>Configuring SCS</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Configuring SCS</h1>
+   
+      
+      <p>The configuration of the Secure Connection
+         Server (SCS) host for MCS is set in the
+               <span class="filepath">mcs-config.xml</span> file.</p>
+         
+      <p>The optional <span class="code">http-proxy</span> element defines the proxy settings for a secure connection server, and sets the system wide Java properties controlling proxies. If it is not specified, then MCS will not attempt to configure the system properties.</p>
+         
+      <pre class="code">&lt;http-proxy
+   host="scs_proxy"
+   port="8000"/&gt;
+   </pre>
+         
+      <p>The ports on which the proxy listens for incoming proxy
+            and connection requests, the authentication provider, and logging configuration are defined in the
+            <span class="filepath">scs-config.xml</span> file.</p>
+         
+      <p>The <span class="code">proxy-configuration</span> element defines
+            the characteristics of the HTTP/HTTPS proxy. The <span class="code">port</span>
+            attribute defines the port on which SCS listens for requests, and will match the port from
+            the <span class="code">http-proxy</span> element in the
+               <span class="filepath">mcs-config.xml</span> file. The
+            <span class="code">gateway-timeout</span> attribute defines the length of time in seconds that a request
+            will remain outstanding while a response is awaited from the publishing servers
+             . The
+               <span class="code">secure-connection-configuration</span>
+            element defines the characteristics of the SCS/SPS
+            connection. The <span class="code">port</span> attribute defines the port on which
+            the SCS listens for SPS requests. The
+            <span class="code">keep-alive</span> attribute defines the maximum length of time in
+            seconds between SCS sending a
+            keep alive request to its publishing servers. The
+               <span class="code">authentication-provider</span> element
+            <span class="code">class</span> attribute defines the class that implements the
+            <span class="code">AuthenticationProvider</span> interface. The
+            <span class="code">log4j</span> element points to a
+               <span class="filepath">log4j.xml</span> file defining the
+            logging appenders.</p>
+         
+      <pre class="code">&lt;scs-config&gt;
+   &lt;proxy-configuration
+      port="8000"
+      gateway-timeout="30"/&gt;
+    &lt;secure-connection-configuration
+      port="1067"
+      keep-alive="120"/&gt;
+    &lt;authentication-provider
+      class="com.volantis.vdp.authentication.SampleAuthenticationProvider"/&gt;
+    &lt;log4j
+      xml-configuration-file="/[path_to_scs]/config/scs-log4j.xml"/&gt;
+&lt;/scs-config&gt;</pre>
+      
+      
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../admin/mcs_config_secure.html">Configuring a secure connection</a>
+         <br/>
+         <a href="../admin/mcs_config_sps.html">Configuring a publishing server</a>
+         <br/>
+         <a href="../mcs_config/config_http_proxy.html"/>
+      </p>
+      
+   
+   </body>
+</html>

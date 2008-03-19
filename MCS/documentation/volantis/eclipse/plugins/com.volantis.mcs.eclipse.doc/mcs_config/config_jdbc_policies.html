@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>jdbc-policies</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>jdbc-policies</h1>
+      <h2>Purpose</h2>
+			
+      <p>Indicates that the project's policies are stored in a JDBC database.</p>
+		
+      <h2>Contains</h2>
+      <p>
+         <a href="../admin/config_asset_elements.html">Assets elements</a>
+      </p>
+      <h2>Contained by</h2>
+      <p>
+         <a href="../admin/config_default.html">default</a>, <a href="../admin/config_project.html">project</a>
+      </p>
+      <h2>Attribute</h2>
+      <table cellspacing="0" summary="The table contains the attributes of the element or elements. It lists the name, the purpose or use, the XML schema datatype, the default value if there is one, value options if they are defined, and indicates if the attribute is required, optional, deprecated or obsolete.">
+         <tr>
+            <th class="firsthdr" scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Type</th>
+            <th scope="col">Default</th>
+            <th scope="col">Options</th>
+            <th scope="col">Use</th>
+         </tr>
+         <tr>
+            <th class="firstcell" scope="row">
+               <span class="requiredattr">name</span>
+            </th>
+            <td>The name of the project in the JDBC repository</td>
+            <td>xs:string</td>
+            <td>none</td>
+            <td/>
+            <td>required</td>
+         </tr>
+      </table>
+      <h2>Example</h2>
+			
+      <pre class="code">&lt;projects&gt;
+   &lt;default preload="true"&gt;
+      &lt;jdbc-policies name="myproject"/&gt;
+      &lt;assets base-url="/[context_root]/"&gt;
+         &lt;audio-assets prefix-url="/audio/"/&gt;
+         &lt;dynamic-visual-assets prefix-url="/dynvis/"/&gt;
+         &lt;image-assets prefix-url="/images/"/&gt;
+         &lt;script-assets prefix-url="/scripts/"/&gt;
+         &lt;text-assets prefix-url="/text/"/&gt;
+      &lt;/assets&gt;
+      &lt;generated-resources base-dir="myproject"/&gt;
+   &lt;/default&gt;
+   ...
+&lt;/projects&gt;</pre>
+		
+			
+      <p>
+         <span class="ri">Related topic</span>
+         <br/>
+         <a href="../admin/mcs_config_er.html">MCS configuration elements</a>
+      </p>
+		
+   </body>
+</html>

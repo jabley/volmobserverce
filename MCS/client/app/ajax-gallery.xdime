@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:gallery="http://www.volantis.com/xmlns/2006/10/gallery-widget"
+  xmlns:event="http://www.w3.org/2001/xml-events">
+
+<head>
+  <title>Gallery Widget with AJAX</title>
+  <style type="text/css">
+
+.item-display {
+  width:50px;
+  height:50px;
+  border:1px solid #c5c5c5;
+  margin:5px 5px 5px 5px;
+}
+
+.detail-item-display {
+  width:170px;
+  height:240px;
+  border:1px solid #c5c5c5;
+}
+
+.gallery-info, .slideshow-info {
+  border: 1px solid #c5c5c5;
+  text-align: center;
+  color: black;
+}
+
+.popup {
+  position:static;
+  height:100%;
+}
+
+.gallery-popup{
+  mcs-effect-style: slide-top;
+  height: 100%;
+  position: static;
+}
+
+.item-detail{
+  mcs-effect-style: slide-right;
+  mcs-effect-duration: 1s;
+  mcs-transition-interval: 1s;
+}
+
+.item-detail:mcs-concealed{
+  mcs-effect-style: slide-right;
+  mcs-effect-duration: 1s;
+}
+  </style>
+  <link rel="mcs:theme" href="/themes/main.mthm"/>
+  <link rel="mcs:layout" href="/layouts/main.mlyt"/>
+</head>
+
+<body>
+  <template:apply href="templates/demo-main.xdtpl">
+    <template:binding name="title" value="Gallery w/AJAX"/>
+    <template:binding name="content">
+      <template:complexValue>
+
+      <gallery:items>
+          <widget:load src="service/itemgallery"  when="defer"/>
+      </gallery:items>
+
+      <table><tr><td>
+      <gallery:gallery class="widget" slideshow="slideshow" slideshow-popup="gallery-popup">
+        <div style="width:100%;overflow: auto">
+          <table>
+            <tr>
+              <td><widget:previous class="button">&lt;&lt;</widget:previous></td>
+              <td><gallery:item-display class="item-display"/></td>
+              <td><gallery:item-display class="item-display"/></td>
+              <td><gallery:item-display class="item-display"/></td>
+              <td><widget:next class="button">&gt;&gt;</widget:next></td>
+            </tr>
+          </table>
+        </div>
+        <div class="gallery-info">Displaying items from <gallery:start-item-number/> to <gallery:end-item-number/> of <gallery:items-count/></div>
+      </gallery:gallery>
+      </td></tr><tr><td style="text-align:center;">
+      <widget:popup id="gallery-popup" class="popup" >
+        <gallery:slideshow id="slideshow" class="widget">
+          <gallery:item-display class="detail-item-display" style="margin: auto"/>
+          <div style="text-align: center">
+            <table>
+              <tr>
+                <td><widget:previous class="button">&lt;&lt;</widget:previous></td>
+                <td><widget:pause class="button">Pause</widget:pause></td>
+                <td><widget:play class="button">Play</widget:play></td>
+                <td><widget:next class="button">&gt;&gt;</widget:next></td>
+                <td><widget:dismiss class="button">Close</widget:dismiss></td>
+              </tr>
+            </table>
+          </div>
+          <div class="slideshow-info">Displaying item <gallery:item-number/> of <gallery:items-count/></div>
+        </gallery:slideshow>
+      </widget:popup>
+      </td></tr></table>
+      </template:complexValue>
+    </template:binding>
+  </template:apply>
+</body>
+
+</html>

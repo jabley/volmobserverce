@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><link href="../volantis.css" rel="stylesheet" type="text/css"/><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>policy-names</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">policy-names</h1><h2>Purpose</h2>
+         <p>Lists the names of all the device policies.</p>
+         <p>If the repository contains no policies, a document with an
+            empty <span class="code">policy-names</span> element is
+         returned.</p>
+      <h2>Method</h2><p><span class="code">GET</span></p><h2>Signature</h2><p><span class="code">/policy/names</span></p><h2>Examples</h2>
+         <p>Input</p>
+         <pre class="code">/policy/names</pre>
+         <p>Returns</p>
+         <pre class="code">&lt;policy-names xmlns="http://www.volantis.com/xmlns/2006/01/device-ws"&gt;
+   &lt;policy-name&gt;pjpeginpage&lt;/policy-name&gt;
+   &lt;policy-name&gt;aggregation&lt;/policy-name&gt;
+   &lt;policy-name&gt;rmfinpage&lt;/policy-name&gt;
+   &lt;policy-name&gt;ggif2rule&lt;/policy-name&gt;
+&lt;/policy-names&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../dws/dws_rest_api.html">DWS API reference</a></p>
+      </body></html>

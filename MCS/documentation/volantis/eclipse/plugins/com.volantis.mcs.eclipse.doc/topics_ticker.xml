@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="">
+	
+	
+	
+	<topic label="BuzzCast widget library" href="ticker/wag_ticker.html">
+		<topic label="Feed polling" href="ticker/wag_widgets_feed_poller.html"/>
+		<topic label="Displaying a feed" href="ticker/wag_widgets_feed_presenting.html"/>
+		<topic label="Displaying items" href="ticker/wag_widgets_item_display.html"/>
+		<topic label="Update status" href="ticker/wag_widgets_update_status.html"/>
+		
+	</topic>
+	
+	
+</toc>

@@ -1,0 +1,137 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<unit>
+    <pane name="{layout:getPaneInstance('pane1',0)}" class="y">
+        Pane 1.0
+    </pane>
+    <pane name="{layout:getPaneInstance('pane2',0)}" class="y">
+        Pane 2.0
+    </pane>
+    <pane name="{layout:getPaneInstance('pane3',0)}" class="y">
+        Pane 3.0
+    </pane>
+    <pane name="{layout:getPaneInstance('pane4',0)}" class="y">
+        Pane 4.0
+    </pane>
+    <pane name="{layout:getPaneInstance('pane5',0)}" class="y">
+        Pane 5.0
+    </pane>
+    <pane name="{layout:getPaneInstance('pane6',0)}" class="y">
+        Pane 6.0 (Contains a lot of text that can cause line
+        wrapping and can mess up the alignment of different cells. This
+        helps illustrate the difference between aligned and unaligned
+        spatial iterators.)
+    </pane>
+
+    <pane name="{layout:getPaneInstance('pane1',1)}" class="y">
+        Pane 1.1
+    </pane>
+    <pane name="{layout:getPaneInstance('pane2',1)}" class="y">
+        Pane 2.1
+    </pane>
+    <pane name="{layout:getPaneInstance('pane3',1)}" class="y">
+        Pane 3.1
+    </pane>
+    <pane name="{layout:getPaneInstance('pane4',1)}" class="y">
+        Pane 4.1
+    </pane>
+    <pane name="{layout:getPaneInstance('pane5',1)}" class="y">
+        Pane 5.1
+    </pane>
+    <pane name="{layout:getPaneInstance('pane6',1)}" class="y">
+        Pane 6.1
+    </pane>
+
+    <pane name="{layout:getPaneInstance('pane1',2)}" class="y">
+        Pane 1.2
+    </pane>
+    <pane name="{layout:getPaneInstance('pane2',2)}" class="y">
+        Pane 2.2
+    </pane>
+    <pane name="{layout:getPaneInstance('pane3',2)}" class="y">
+        Pane 3.2
+    </pane>
+    <pane name="{layout:getPaneInstance('pane4',2)}" class="y">
+        Pane 4.2
+    </pane>
+    <pane name="{layout:getPaneInstance('pane5',2)}" class="y">
+        Pane 5.2
+    </pane>
+    <pane name="{layout:getPaneInstance('pane6',2)}" class="y">
+        Pane 6.2
+    </pane>
+
+    <pane name="{layout:getPaneInstance('pane1',3)}" class="y">
+        Pane 1.3
+    </pane>
+    <pane name="{layout:getPaneInstance('pane2',3)}" class="y">
+        Pane 2.3 (Contains a lot of text that can cause line
+        wrapping and can mess up the alignment of different cells. This
+        helps illustrate the difference between aligned and unaligned
+        spatial iterators.)
+    </pane>
+    <pane name="{layout:getPaneInstance('pane3',3)}" class="y">
+        Pane 3.3
+    </pane>
+    <pane name="{layout:getPaneInstance('pane4',3)}" class="y">
+        Pane 4.3
+    </pane>
+    <pane name="{layout:getPaneInstance('pane5',3)}" class="y">
+        Pane 5.3
+    </pane>
+    <pane name="{layout:getPaneInstance('pane6',3)}" class="y">
+        Pane 6.3
+    </pane>
+
+    <pane name="{layout:getPaneInstance('pane1',4)}" class="y">
+        Pane 1.4
+    </pane>
+    <pane name="{layout:getPaneInstance('pane2',4)}" class="y">
+        Pane 2.4
+    </pane>
+    <pane name="{layout:getPaneInstance('pane3',4)}" class="y">
+        Pane 3.4
+    </pane>
+    <pane name="{layout:getPaneInstance('pane4',4)}" class="y">
+        Pane 4.4
+    </pane>
+    <pane name="{layout:getPaneInstance('pane5',4)}" class="y">
+        Pane 5.4
+    </pane>
+    <pane name="{layout:getPaneInstance('pane6',4)}" class="y">
+        Pane 6.4
+    </pane>
+
+    <pane name="{layout:getPaneInstance('pane1',5)}" class="y">
+        Pane 1.5
+    </pane>
+    <pane name="{layout:getPaneInstance('pane2',5)}" class="y">
+        Pane 2.5
+    </pane>
+    <pane name="{layout:getPaneInstance('pane3',5)}" class="y">
+        Pane 3.5
+    </pane>
+    <pane name="{layout:getPaneInstance('pane4',5)}" class="y">
+        Pane 4.5
+    </pane>
+    <pane name="{layout:getPaneInstance('pane5',5)}" class="y">
+        Pane 5.5
+    </pane>
+    <pane name="{layout:getPaneInstance('pane6',5)}" class="y">
+        Pane 6.5
+    </pane>
+</unit>

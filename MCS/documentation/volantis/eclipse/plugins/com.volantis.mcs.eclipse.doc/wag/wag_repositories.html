@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <meta name="taskref" content="033"/>
+      <title>MCS repositories</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>MCS repositories</h1>
+      
+      <p>MCS policies are contained in repositories. <strong>Local
+            repositories</strong> take two forms.</p>
+      
+      <ul>
+         
+         <li>
+            
+            <p>The <strong>XML repository</strong> contains design time policy
+               information. You'll use this repository to design and
+               test policies.</p>
+            
+            <p>Layout, component, theme and device policies are
+               automatically implemented as a set of individual XML
+               files in a project's contents directory. When you work
+               with policies in the Eclipse interface, you
+               use wizards or policy editors create or edit XML files
+               in the background.</p>
+            
+            <p>The single-file <strong>device repository</strong> is largely
+               maintained from an online device update service. It
+               also has an interface for adding any new devices or
+               custom device policies required by your
+            application.</p>
+         
+         </li>
+         
+         <li>For design time collaborative working, or better runtime performance you can use a <strong>JDBC repository</strong>. Collaborative working uses a database so that team members can manage locks on individual poicies or policy variants.  If the database is used only a runtime,
+            your system administrator will import all the XML policy
+            data for the application into a database when policy development is complete.</li>
+      
+      </ul>
+      
+      <p>You can also make use of policy information in a <strong>remote
+            repository</strong>. A remote repository contains policy
+         information served from a remote server. It can include policies created and maintained in the Eclipse workbench and exported to a remote locatiion, or content from external systems. MCS can be configured to
+         access the remote server, and you can use URLs on this server
+         in your policies. At runtime, the remote server will retrieve
+         the policy information from the URL.</p>
+         
+      
+      <p>A single local repository can contain multiple projects. In
+         an XML repository a project is the root directory that
+         contains the policies. In a database repository the project
+         is part of the primary key to each table. So to retrieve a
+         policy from a given project you need to specify the project
+         as part of the policy identity.</p>
+      
+      <p class="note">
+         <strong>Note</strong>: MCS has a default project. Policy references that do not
+         specify a project will be assumed to belong to it.</p>
+      
+         
+      <p>
+         <span class="ri">Related topic</span>
+         <br/>
+         <a href="../wag/wag_develop_policies.html">Developing MCS policies</a>
+         <br/>
+         <a href="../mcs/mcs_lock_enable.html">Enabling collaboration</a>
+         <br/>
+         <a href="../admin/mcs_import_export.html">Importing and exporting repositories</a>
+         <br/>
+         <a href="../wag/wag_remote.html">Using remote variants</a>
+      </p>
+      
+   
+   </body>
+</html>

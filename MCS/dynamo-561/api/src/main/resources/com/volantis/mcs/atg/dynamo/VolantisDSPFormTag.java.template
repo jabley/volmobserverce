@@ -1,0 +1,501 @@
+/* ----------------------------------------------------------------------------
+ * $Header: /src/voyager/com/volantis/mcs/atg/dynamo561/Attic/VolantisDSPFormTag.java,v 1.1.2.4 2002/10/09 17:43:25 chrisw Exp $
+ * ----------------------------------------------------------------------------
+ * (c) Volantis Systems Ltd 2001. 
+ * ----------------------------------------------------------------------------
+ * Change History:
+ *
+ * Date         Who             Description
+ * ---------    --------------- -----------------------------------------------
+ *              Steve           VBM 2001090306 - Initial Release
+ * 31/10/01     Steve           Changed Layout to DeviceLayout
+ * 02-Jan-02    Paul            VBM:2002010201 - Use log4j for logging.
+ * 31-Jan-02    Paul            VBM:2001122105 - Fixed compile error in
+ *                              logging.
+ * 15-Aug-02    Chris W         VBM:2002081511 - Copied existing class to
+ *                              separate package for Dynamo5.6.1 We want to be
+ *                              able to support the older Dynamo5.1.1 (?) version
+ *                              as well. Added method to get the servlet context
+ *                              for ATG Portal server 5.6.1 which is different
+ *                              to other web apps.
+ * 13-Sep-02    Chris W         VBM:2002082709 - Implements new TagRender interface.
+ *                              This interface returns the standard JSP responce
+ *                              codes from renderTagStart and renderTagEnd i.e
+ *                              EVAL_BODY_INCLUDE, EVAL_BODY, SKIP_BODY,
+ *                              EVAL_PAGE and SKIP_PAGE.
+ * 24-Sep-02    Chris W         VBM:2002081511 - Moved getATGButtons from
+ *                              VolantisProtocol to a more sensible location in
+ *                              this class. Plus, instead of storing the form's
+ *                              hidden fields directly in the session, we use the
+ *                              HiddenFieldsSessionMap class. This makes it easier
+ *                              to deal with multiple forms on a page. However
+ *                              renderTagStart also has to write vformname hidden
+ *                              field into the form's output for this to work.
+ * 09-Oct-02    Chris W         VBM:2002100904 - Backed out new TagRender interface
+ *                              as ATG aren't going to deliver the official version
+ *                              for some time. This would allow amg.net to upgrade
+ *                              to 2.5.4 without causing any problems.
+ * ----------------------------------------------------------------------------
+ */
+
+package com.volantis.mcs.atg.dynamo;
+
+import com.volantis.mcs.context.ContextInternals;
+import com.volantis.mcs.papi.XFFormAttributes;
+import com.volantis.mcs.papi.XFImplicitAttributes;
+import com.volantis.mcs.papi.XFTextInputAttributes;
+import com.volantis.mcs.papi.XMLWriter;
+import com.volantis.mcs.protocols.forms.FormDataManager;
+import com.volantis.mcs.servlet.MarinerServletRequestContext;
+import com.volantis.synergetics.localization.ExceptionLocalizer;
+import com.volantis.synergetics.log.LogDispatcher;
+import com.volantis.mcs.localization.LocalizationFactory;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Enumeration;
+import java.util.Map;
+import java.util.Properties;
+/**
+ *
+ * @author  mat
+ */
+public class VolantisDSPFormTag extends atg.taglib.dspjsp.DSPFormTag {
+
+    private static String mark = "(c) Volantis Systems Ltd 2000.";
+
+    /**
+     * Used for logging
+     */
+    private static final LogDispatcher logger =
+            LocalizationFactory.createLogger(VolantisDSPFormTag.class);
+
+    /**
+     * Used as the key when storing the form name in the session context
+     */
+    public static final String VOLANTIS_FORM_NAME_KEY = "VOLANTIS_ATG_FORM_NAME";
+
+    /**
+     * Used to retrieve localized exception messages
+     */
+    private static final ExceptionLocalizer exceptionLocalizer =
+                LocalizationFactory.createExceptionLocalizer(VolantisDSPFormTag.class);
+
+    private XFFormAttributes formAttributes = null;
+
+    private MarinerServletRequestContext requestContext;
+    private String formName = null;
+    protected PageContext pageContext;
+
+    /** Creates new VolantisDSPFormTag */
+    public VolantisDSPFormTag()
+    {
+        super();
+        formAttributes = new XFFormAttributes();
+    }
+
+    public void setPageContext( PageContext context )
+    {
+        super.setPageContext( context );
+        requestContext = null;
+
+        // Store Page Context in subclass as superclass version is private
+        pageContext = context;
+    }
+
+    public PageContext getPageContext()
+    {
+        return pageContext;
+    }
+
+    private MarinerServletRequestContext getMarinerServletRequestContext() {
+        if( requestContext == null) {
+            ServletRequest request = getPageContext().getRequest();
+            requestContext = (MarinerServletRequestContext)
+                    MarinerServletRequestContext.getCurrent(request);
+        }
+        return requestContext;
+    }
+
+    public void release()
+    {
+        if (logger.isDebugEnabled()) {
+            logger.debug ( "Releasing VolantisDSPFormTag" );
+        }
+        // remove the form name that we stored in the session
+        pageContext.getSession().removeAttribute(VOLANTIS_FORM_NAME_KEY);
+        formAttributes.reset();
+        super.release();
+    }
+
+    public void callSetter( String attribute, String value )
+    {
+        String method = "setInherited" + attribute.substring(0,1).toUpperCase() +
+        attribute.substring(1, attribute.length());
+        if (logger.isDebugEnabled()) {
+            logger.debug ("calling VolantisDSPFormTag."
+                      + method + "( " + value + " )" );
+        }
+
+        Class params[] = new Class[1];
+        params[0] = value.getClass();
+        try {
+            Method m = this.getClass().getMethod(method, params);
+            Object args[] = new Object[1];
+            args[0] = value;
+            m.invoke(this, args);
+        }
+        catch (NoSuchMethodException nsm) {
+            logger.warn("method-not-found", method);
+        }
+        catch (IllegalAccessException ia) {
+            logger.warn("unexpected-illegal-access-exception",ia);
+        }
+        catch (InvocationTargetException it) {
+            logger.warn("unexpected-invocation-target-exception",it);
+        }
+    }
+
+    public void renderTag(java.lang.String pTagName,Properties pAttributes) throws IOException
+    {
+        if (logger.isDebugEnabled()) {
+            logger.debug ("VolantisDSPFormTag.renderTag( " + pTagName + " )" );
+        }
+        // The form always has a hidden input _DARGS field
+        if( pTagName.equals("input") )
+        {
+            XFTextInputAttributes inputAttributes = new XFTextInputAttributes();
+
+            try {
+                inputAttributes.setName( pAttributes.getProperty( "name", "_DARGS" ) );
+                inputAttributes.setType( pAttributes.getProperty( "type", "hidden" ) );
+                inputAttributes.setInitial( pAttributes.getProperty( "value" ) );
+                VolantisInputTagRenderer.renderTag( getMarinerServletRequestContext(), getPageContext(), pTagName, "_DARGS", inputAttributes );
+            }
+            catch (Exception ex)
+            {
+                // Had a problem so log it and throw a JspTagException to report it
+                logger.error("unexpected-exception", ex);
+                throw new IOException("unexpected-exception-error-logged");
+            }
+        }
+    }
+
+    public void renderTagStart( String pTagName, Properties pAttributes) throws IOException
+    {
+        if (logger.isDebugEnabled()) {
+            logger.debug ("VolantisDSPFormTag.renderTagStart( "
+                      + pTagName + " )" );
+        }
+
+        if( pTagName.equals( "form" ) )
+        {
+            Enumeration e = pAttributes.propertyNames();
+            while(e.hasMoreElements())
+            {
+                String property = (String)e.nextElement();
+                String value = pAttributes.getProperty(property);
+                callSetter(property, value);
+            }
+
+            try
+            {
+                HttpSession session = getPageContext().getSession();
+                HttpServletResponse response = (HttpServletResponse)getPageContext().getResponse();
+                HttpServletRequest request = (HttpServletRequest)getPageContext().getRequest();
+                HiddenFieldsSessionMap sessionMap = getHiddenFieldsSessionMap(session);
+                sessionMap.setAttribute(formName, "_URL", formAttributes.getAction().toString());
+
+                String contextPath = getContextPath(request, session);
+
+                formAttributes.setAction( response.encodeURL( contextPath + "/MarinerATGRemap" ) );
+                formAttributes.setName( formName );
+
+                // Need to put a hidden field in the form called vformname
+                // that contains the name of the form. This allows the Remap servlet
+                // to retrieve the HiddenFieldsSessionMap
+                XFImplicitAttributes ia = new XFImplicitAttributes();
+                ia.setName( "vformname" );
+                ia.setValue( formName );
+
+                XMLWriter writer = new XMLWriter(pageContext.getOut());
+                writer.closeElement(ia);
+            }
+            catch (Exception ex)  {
+                // Had a problem so log it and throw a JspTagException to report it
+                logger.error("unexpected-exception", ex);
+                throw new IOException(exceptionLocalizer.format(
+                            "unexpected-exception-error-logged"));
+            }
+        }
+
+        //return EVAL_BODY_INCLUDE;
+    }
+
+    /**
+     * Private helper to get HiddenFieldsSessionMap
+     */
+    private HiddenFieldsSessionMap getHiddenFieldsSessionMap(HttpSession session)
+    {
+        HiddenFieldsSessionMap sessionMap = (HiddenFieldsSessionMap)session.getAttribute("_HIDDENATGFIELDS");
+        if (sessionMap == null)
+        {
+            sessionMap = new HiddenFieldsSessionMap();
+            session.setAttribute("_HIDDENATGFIELDS", sessionMap);
+        }
+
+        return sessionMap;
+    }
+
+    /**
+     * Private helper to get the {@link FormDataManager}, which is responsible
+     * for keeping track of the form data that has been received for fragmented
+     * forms in this session context.
+     */
+    private FormDataManager getFormDataManager()
+    {
+        FormDataManager formDataManager = ContextInternals.
+                getMarinerPageContext(requestContext).getFormDataManager();
+
+        /*Iterator formSpecifiers = formDataManager.getFormSpecifiers();
+        logger.debug("Got formSpecifiers:" + formSpecifiers);
+
+        if (formSpecifiers != null) {
+            logger.debug("formSpecifiers!=null");
+
+            while (formSpecifiers.hasNext()) {
+                String formSpecifier = (String)formSpecifiers.next();
+                FragmentedFormData formData =
+                        formDataManager.getFormData(formSpecifier);
+                logger.debug("formSpecifier=" + formSpecifier);
+                Enumeration names = formData.getFormFields();
+
+                if (names != null) {
+                    while( names.hasMoreElements() ) {
+                        String fieldName = (String)names.nextElement();
+
+                        String [] values = formData.getFieldValues(fieldName);
+                        for (int i=0; i<values.length; i++) {
+                            logger.debug(fieldName+"="+values[i]);
+                        }
+                    }
+                } else {
+                    logger.debug(formSpecifier+" has no elements");
+                }
+            }
+        } else {
+            logger.debug("The form data manager is not managing any form data");
+        }*/
+
+        return formDataManager;
+    }
+
+    /**
+     * Private helper to get the context path. The context path is different in
+     * for gears running in ATG Portal compared to other web applications.
+     * As the context is difficult to obtain in ATG Portal we get the jsps using
+     * vtdsp:xfform tags to store the gear servlet context in the session.
+     * @param request The HttpServletRequest object
+     * @param session The user's HttpSession
+     * @return String containing the relevant context path.
+     */
+    private String getContextPath(HttpServletRequest request, HttpSession session)
+    {
+        String gearServletContext = (String)session.getAttribute("ATGGearServletContext");
+
+        if (gearServletContext != null)
+        {
+            return gearServletContext;
+        }
+        else
+        {
+            return request.getContextPath();
+        }
+    }
+
+    @DYNAMO-7.0-TEMPLATE-START@
+    public int renderTagEnd(java.lang.String pTagName) throws IOException
+    @DYNAMO-7.0-TEMPLATE-END@
+    @DYNAMO-5.6.1-TEMPLATE-START@
+    public void renderTagEnd(java.lang.String pTagName) throws IOException
+    @DYNAMO-5.6.1-TEMPLATE-END@
+    {
+        if (logger.isDebugEnabled()) {
+            logger.debug ("VolantisDSPFormTag.renderTagEnd( " + pTagName + " )" );
+        }
+
+        if ("form".equals(pTagName)) {
+
+            try {
+                if (logger.isDebugEnabled()) {
+                    logger.debug ("Form tag end output starts");
+                }
+
+                XMLWriter writer = new XMLWriter(pageContext.getOut());
+                writer.closeElement(formAttributes);
+                // Get an array containing the names of the buttons
+                // used to submit this form. This appears to be the only way to
+                // get round the problem that each ATG Portal gear is a separate
+                // web application. We store the array in the session context so
+                // it can be accessed from the MarinerFFP servlet.
+                String[] buttons = getATGButtons();
+                if(buttons != null) {
+                    HttpSession session = getPageContext().getSession();
+                    session.setAttribute(formName + ":_ATGBUTTONS",
+                                         buttons);
+                }
+
+            } catch (Exception ex) {
+                // Had a problem so log it and throw a JspTagException to report it
+                logger.error ("unexpected-exception", ex);
+                throw(new IOException("Exception caused by previously logged error"));
+            }
+        }
+        @DYNAMO-7.0-TEMPLATE-START@
+        return EVAL_PAGE;
+        @DYNAMO-7.0-TEMPLATE-END@
+    }
+
+    /**
+     * Returns an array containing the names of an ATG Dynamo form's buttons.
+     * This is needed for ATG integration with fragmented forms.
+     * @return String[]
+     */
+    private String[] getATGButtons()
+    {
+        if (logger.isDebugEnabled()) {
+            logger.debug("formName="+formName);
+        }
+
+        HttpSession session = requestContext.getHttpRequest().getSession(false);
+        HiddenFieldsSessionMap sessionMap = (HiddenFieldsSessionMap)session.getAttribute("_HIDDENATGFIELDS");
+        if (sessionMap!=null)
+        {
+            Map buttons = sessionMap.getButtons(formName);
+            if (buttons != null)
+            {
+                String[] buttonsArray = (String[])buttons.keySet().toArray(new String[0]);
+                for (int i=0; i<buttonsArray.length;i++)
+                {
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("buttons array="+buttonsArray[i]);
+                    }
+                }
+                return buttonsArray;
+            }
+        }
+        return null;
+    }
+
+
+    public void setStyleClass(String styleClass)
+    {
+        if (logger.isDebugEnabled()) {
+            logger.debug ("VolantisDSPFormTag.setStyleClass( " + styleClass + " )" );
+        }
+        formAttributes.setStyleClass(styleClass);
+    }
+
+    public String getStyleClass()
+    {
+       return formAttributes.getStyleClass();
+    }
+
+    public void setInheritedId(String s)
+    {
+       formAttributes.setId( s );
+    }
+
+    public void setInheritedAction(String s)
+    {
+        formAttributes.setAction( s );
+    }
+
+    public void setInheritedMethod( String s )
+    {
+        formAttributes.setMethod(s);
+    }
+
+    public void setFormName(String s)
+    {
+        if (logger.isDebugEnabled()) {
+            logger.debug ("VolantisDSPFormTag.setFormName( " + s + " )" );
+        }
+        formName = s;
+        // store this away in the session
+        pageContext.getSession().setAttribute(VOLANTIS_FORM_NAME_KEY,
+                                              formName);
+    }
+
+    public String getFormName()
+    {
+        return formName;
+    }
+
+
+    public void setHelp( String s )
+    {
+        if (logger.isDebugEnabled()) {
+            logger.debug ("VolantisDSPFormTag.setHelp( " + s + " )" );
+        }
+        formAttributes.setHelp( s );
+    }
+
+    public String getHelp()
+    {
+        return formAttributes.getHelp().toString();
+    }
+
+    public void setSegment( String s )
+    {
+        if (logger.isDebugEnabled()) {
+            logger.debug ("VolantisDSPFormTag.setSegment( " + s + " )" );
+        }
+        formAttributes.setSegment( s );
+    }
+
+    public String getSegment()
+    {
+        return formAttributes.getSegment().toString();
+    }
+    public void setPrompt( String s )
+    {
+        if (logger.isDebugEnabled()) {
+            logger.debug ("VolantisDSPFormTag.setPrompt( " + s + " )" );
+        }
+        formAttributes.setPrompt( s );
+    }
+
+    public String getPrompt()
+    {
+        return formAttributes.getPrompt().toString();
+    }
+
+}
+
+/*
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 09-Dec-04	6417/1	philws	VBM:2004120703 Committing tidy up
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6232/4	doug	VBM:2004111702 refactored logging framework
+
+ 29-Nov-04	6332/1	doug	VBM:2004112913 Refactored logging framework
+
+ 29-Nov-04	6232/2	doug	VBM:2004111702 Refactored Logging framework
+
+ 27-Apr-04	3843/2	ianw	VBM:2004041408 Port forward ATG 5.6.1 integration
+
+ ===========================================================================
+*/

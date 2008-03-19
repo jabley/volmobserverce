@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<installation version="1.0" xmlns:xi="http://www.izforge.com/izpack/include">
+    <info>
+        <appname>MCS</appname>
+        <appversion>5.0</appversion>
+        <authors>
+            <author name="Volantis Systems Ltd." email="info@volantis.com"/>
+        </authors>
+        <url>http://www.volantis.com/</url>
+    </info>
+    
+    <!-- 
+        The gui preferences indication.
+        Sets the installer window to 640x480. It will not be able to change the size.
+    -->
+    <guiprefs width="640" height="480" resizable="no">
+    </guiprefs>
+    
+    <!-- 
+        The locale section.
+        Asks here to include the English and French langpacks.
+    -->
+    <locale>
+        <langpack iso3="eng"/>
+    </locale>
+    
+    <!-- 
+        The resources section.
+        The ids must be these ones if you want to use the LicencePanel and/or the InfoPanel.
+    -->
+    <resources>
+        <res id="HTMLLicencePanel.licence" src="license.htm"/>
+        <res id="HTMLInfoPanel.info" src="Readme.htm"/>
+        <res id="userInputSpec.xml" src="userInputSpec.xml"/>
+	<res id="packsLang.xml_eng" src="packsLang.xml_eng" />
+	<res id="userInputLang.xml_eng" src="userInputLang.xml_eng" />
+     </resources>
+   
+     <variables>
+        <variable name="mcsMAPUseCache" value="off"/> 
+    </variables> 
+
+<!-- Variables defined by user input 
+    mcsRepositoryVendor - derby, db2, datad, jsql, ms, mysql, odbc, oracle, postgres, xml
+    mcsRepositoryHost - text
+    mcsRepositoryPort - number
+    mcsRepositorySource - text
+    mcsRepositoryUser - text
+    mcsRepositoryPassword - text
+    mcsWebServer - tomcat, weblogic7, weblogic8, resin, websphere50, websphere51, jboss, oracle, sun, other
+    mcsWebServerJspType - jsp11, jsp12
+    mcsWebServerHost - text
+    mcsWebServerPort - number
+    mcsMAPHost - text
+    mcsMAPPort - number
+    mcsMAPUseCache - on, off
+    mcsMAPCacheHost - text
+    mcsMAPCachePort - number
+-->
+
+     <dynamicvariables>
+        <!-- web.xml -->
+        <variable name="mcs.config.file" value="${INSTALL_PATH}/webapps/WEB-INF/mcs-config.xml"/> 
+        <variable name="mcs.log4j.config.file" value="${INSTALL_PATH}/webapps/WEB-INF/mcs-log4j.xml"/>
+	<variable name="mcsagent.enabled" value="false" />
+	<variable name="mcsagent.host" value="localhost" />
+	<variable name="mcsagent.port" value="8089" />
+	<variable name="mcsagent.password" value="secret-password" />
+        <!-- mcs-log4j.xml -->
+        <variable name="mcs.log.fileappend" value="false"/>
+        <variable name="mcs.default.log" value="${INSTALL_PATH}/webapps/logs/mcs.log"/>
+        <variable name="mcs.log.conversionpattern" value="%d{dd MMM HH:mm:ss} [%t] %-5p %c %x - %m%n"/>
+        <variable name="mcs.log.locationinfo" value="false"/>
+        <variable name="mcs.log.level" value="error"/>
+	<!-- mcs-config.xml -->
+        <xinclude href="./mcs-config-production.txt" />
+    </dynamicvariables> 
+
+    <conditions>
+      <condition type="variable" id="RepositoryIsXML">
+        <name>mcsRepositoryVendor</name>
+        <value>xml</value>
+      </condition>
+    </conditions>
+
+    <!-- 
+        The panels section.
+        We indicate here which panels we want to use. The order will be respected.
+    -->
+    <panels>
+        <panel classname="HelloPanel"/>
+        <panel classname="HTMLInfoPanel"/>
+        <panel classname="HTMLLicencePanel"/>
+        <panel classname="PacksPanel"/> 
+        <panel classname="UserInputPanel"/>  <!-- Select repository vendor -->
+        <panel classname="UserInputPanel" condition="!RepositoryIsXML" />  <!-- Repository configuration -->
+        <panel classname="UserInputPanel"/>  <!-- Choose App server -->
+        <panel classname="UserInputPanel"/>  <!-- Choose MAP Host -->
+        <panel classname="TargetPanel"/> 
+    	<panel classname="DataCheckPanel" />  
+        <panel classname="InstallPanel"/>
+        <panel classname="FinishPanel"/> 
+    </panels>
+    
+    <packs>  
+	<pack name="MCS" required="yes" id="base">  
+	    <description>Volantis Mobility Server</description>
+            <fileset dir="../../target/classes/mcs" targetdir="${INSTALL_PATH}/webapps/mcs"> 
+                <include name="**/*"/>
+            </fileset>
+            <fileset dir="../../target/dependency" targetdir="${INSTALL_PATH}/webapps/mcs/WEB-INF/lib/">
+                <include name="**/*"/>
+		<exclude name="**/JDBCDriver*.jar" />
+		<exclude name="**/ant*.jar" />
+		<exclude name="**/ccpp*.jar" />
+		<exclude name="**/cli-api*.jar" />
+		<exclude name="**/cli-impl*.jar" />
+		<exclude name="**/codec*.jar" />
+		<exclude name="**/collections*.jar" />
+		<exclude name="**/commons-cli*.jar" />
+		<exclude name="**/commons-codec*.jar" />
+		<exclude name="**/commons-collections*.jar" />
+		<exclude name="**/commons-io*.jar" />
+		<exclude name="**/das-server*.jar" />
+		<exclude name="**/digester*.jar" />
+		<exclude name="**/dps-server*.jar" />
+		<exclude name="**/dspjsp*.jar" />
+		<exclude name="**/eclipse*.jar" />
+		<exclude name="**/geronimo-spec-jta*.jar" />
+		<exclude name="**/hsqldb*.jar" />
+		<exclude name="**/httpclient*.jar" />
+		<exclude name="**/javacc*.jar" />
+		<exclude name="**/jaxen*.jar" />
+		<exclude name="**/jface*.jar" />
+		<exclude name="**/jtidy*.jar" />
+		<exclude name="**/jxpath*.jar" />
+		<exclude name="**/knex*.jar" />
+		<exclude name="**/logging*.jar" />
+		<exclude name="**/medialib*.jar" />
+		<exclude name="**/migrate*.jar" />
+		<exclude name="**/migration*.jar" />
+		<exclude name="**/oldtests*.jar" />
+		<exclude name="**/portal-api*.jar" />
+		<exclude name="**/portal-netuix*.jar" />
+		<exclude name="**/portal-server*.jar" />
+		<exclude name="**/product-tests*.jar" />
+		<exclude name="**/prof-pipeline*.jar" />
+		<exclude name="**/regexp*.jar" />
+		<exclude name="**/repository-cli*.jar" />
+		<exclude name="**/samples*.jar" />
+		<exclude name="**/search*.jar" />
+		<exclude name="**/swt*.jar" />
+		<exclude name="**/*tests*.jar" />
+		<exclude name="**/ui-*.jar" />
+		<exclude name="**/update-cli*.jar" />
+		<exclude name="**/webcontainer*.jar" />
+		<exclude name="**/workshop*.jar" />
+            </fileset>
+            <fileset dir="../../target/classes/webapps" targetdir="${INSTALL_PATH}/webapps/mcs">
+                <include name="**/*"/>
+            </fileset>
+            <parsable targetfile="${INSTALL_PATH}/webapps/mcs/WEB-INF/web.xml" type="xml"/>
+            <parsable targetfile="${INSTALL_PATH}/webapps/mcs/WEB-INF/mcs-log4j.xml" type="xml"/>
+            <parsable targetfile="${INSTALL_PATH}/webapps/mcs/WEB-INF/mcs-jlog.xml" type="xml"/>
+            <parsable targetfile="${INSTALL_PATH}/webapps/mcs/WEB-INF/mcs-config.xml" type="xml"/>
+	</pack>
+
+	<pack name="XDIMEPlayer" required="no" id="xdime">
+	    <description>XDIME Player</description>
+	</pack>
+
+	<pack name="Plugins" required="no" id="plugins">
+	    <description>Eclipse Plugins</description>
+	</pack>
+ 
+	<pack name="Samples" required="no" id="plugins">
+	    <description>Code Samples</description>
+            <fileset dir="../../target/classes/samples" targetdir="${INSTALL_PATH}/samples">
+              <include name="**/*" />
+            </fileset>
+	</pack>
+ 
+	<pack name="Repository" required="no" id="repository">
+	    <description>XML Repository</description>
+            <fileset dir="../../target/classes/repository/xml-repository" targetdir="${INSTALL_PATH}/repository/xml-repository">
+              <include name="**/*" />
+            </fileset>
+            <fileset dir="../../target/classes/repository/jdbc-repository" targetdir="${INSTALL_PATH}/repository/jdbc-repository">
+              <include name="**/*" />
+            </fileset>
+            <fileset dir="../../target/classes/repository/devicerepository" targetdir="${INSTALL_PATH}/repository/devicerepository">
+              <include name="**/*" />
+            </fileset>
+	</pack>
+
+	<pack name="Documentation" required="no" id="docs">
+	    <description>Documentation</description>
+	</pack>
+    </packs>
+</installation>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+
+<!-- This is a no-namespace schema for no-namespace xml -->
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+
+    <xs:complexType name="stylePropertyType">
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="styleCategoryType">
+        <xs:sequence>
+            <xs:element name="styleProperty" type="stylePropertyType"
+                        minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="styleCategory" type="styleCategoryType"
+                        minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="isSynchronizable" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+
+    <xs:complexType name="styleCategoriesType">
+        <xs:sequence>
+            <xs:element name="styleCategory" type="styleCategoryType"
+                        minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="styleCategories" type="styleCategoriesType"/>
+
+</xs:schema>
+

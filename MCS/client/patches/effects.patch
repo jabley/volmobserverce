@@ -1,0 +1,422 @@
+--- effects.js	2006-10-09 14:11:24.000000000 +0200
++++ scriptaculous.js	2006-11-21 09:33:49.000000000 +0100
+@@ -1,8 +1,13 @@
++var Scriptaculous = {
++  Version: '1.6.2'
++}
++
+ // Copyright (c) 2005 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
+ // Contributors:
+ //  Justin Palmer (http://encytemedia.com/)
+ //  Mark Pilgrim (http://diveintomark.org/)
+ //  Martin Bialasinki
++//  Volantis Systems Ltd
+ // 
+ // See scriptaculous.js for full license.  
+ 
+@@ -13,6 +18,10 @@
+   if(this.slice(0,4) == 'rgb(') {  
+     var cols = this.slice(4,this.length-1).split(',');  
+     var i=0; do { color += parseInt(cols[i]).toColorPart() } while (++i<3);  
++  } else if(this.slice(0,4) == 'rgba(') {  
++    // for Nokia OSS where rgba is used  
++    var cols = this.slice(5,this.length-1).split(',');  
++    var i=0; do { color += parseInt(cols[i]).toColorPart() } while (++i<3);  
+   } else {  
+     if(this.slice(0,1) == '#') {  
+       if(this.length==4) for(var i=1;i<4;i++) color += (this.charAt(i) + this.charAt(i)).toLowerCase();  
+@@ -46,6 +55,12 @@
+ }
+ 
+ Element.getOpacity = function(element){  
++  element = $(element);
++  // Faked opacity
++  if (Prototype.useEmulatedOpacity()){ 
++    return element._fakedOpacity;
++  }
++  
+   var opacity;
+   if (opacity = Element.getStyle(element, 'opacity'))  
+     return parseFloat(opacity);  
+@@ -56,13 +71,28 @@
+ 
+ Element.setOpacity = function(element, value){  
+   element= $(element);  
++  
++  if (typeof element.initialOpacity == 'undefined')
++     element.initialOpacity = element.style["opacity"] || 1.0;
++
++  // Faked opacity
++  if (Prototype.useEmulatedOpacity())
++  {
++    element._fakedOpacity = value;
++    element.style["opacity"] = value.toString();
++    Element.fakeOpacity(element, value);
++    return;
++  }
++
+   if (value == 1){
+-    Element.setStyle(element, { opacity: 
+-      (/Gecko/.test(navigator.userAgent) && !/Konqueror|Safari|KHTML/.test(navigator.userAgent)) ? 
+-      0.999999 : null });
+-    if(/MSIE/.test(navigator.userAgent))  
++    if((/Gecko/.test(navigator.userAgent) && !/Konqueror|Safari|KHTML/.test(navigator.userAgent))){
++      Element.setStyle(element, { opacity: 0.999999 });        
++    } else  if(/MSIE/.test(navigator.userAgent)) { 
+       Element.setStyle(element, {filter: Element.getStyle(element,'filter').replace(/alpha\([^\)]*\)/gi,'')});  
+   } else {  
++      Element.setStyle(element, { opacity: 1 });                
++    }
++  } else {  
+     if(value < 0.00001) value = 0;  
+     Element.setStyle(element, {opacity: value});
+     if(/MSIE/.test(navigator.userAgent))  
+@@ -72,6 +102,10 @@
+   }
+ }  
+  
++Element.getInlineFilter = function(element){
++  return $(element).style.filter || '';
++}
++ 
+ Element.getInlineOpacity = function(element){  
+   return $(element).style.opacity || '';
+ }  
+@@ -167,20 +201,20 @@
+ Effect.Transitions.linear = Prototype.K;
+ 
+ Effect.Transitions.sinoidal = function(pos) {
+-  return (-Math.cos(pos*Math.PI)/2) + 0.5;
++  return (((-1000.0*Math.cos(pos*Math.PI)/2.0) + 500.0)/1000.0);
+ }
+ Effect.Transitions.reverse  = function(pos) {
+-  return 1-pos;
++  return (1-pos);
+ }
+ Effect.Transitions.flicker = function(pos) {
+-  return ((-Math.cos(pos*Math.PI)/4) + 0.75) + Math.random()/4;
++  return ((((-1000.0*Math.cos(pos*Math.PI)/4.0) + 750.0) + 1000.0*Math.random()/4.0)/1000.0);
+ }
+ Effect.Transitions.wobble = function(pos) {
+-  return (-Math.cos(pos*Math.PI*(9*pos))/2) + 0.5;
++  return (((-1000.0*Math.cos(pos*Math.PI*(9*pos))/2.0) + 500.0)/1000.0);
+ }
+ Effect.Transitions.pulse = function(pos) {
+-  return (Math.floor(pos*10) % 2 == 0 ? 
+-    (pos*10-Math.floor(pos*10)) : 1-(pos*10-Math.floor(pos*10)));
++  return ((Math.floor(pos*10) % 2 == 0 ? 
++    (pos*10-Math.floor(pos*10)) : (1-(pos*10-Math.floor(pos*10)))));
+ }
+ Effect.Transitions.none = function(pos) {
+   return 0;
+@@ -355,7 +389,7 @@
+   initialize: function(element) {
+     this.element = $(element);
+     // make this work on IE on elements without 'layout'
+-    if(/MSIE/.test(navigator.userAgent) && (!this.element.currentStyle.hasLayout))
++    if(this.element.currentStyle && (!this.element.currentStyle.hasLayout))
+       this.element.setStyle({zoom: 1});
+     var options = Object.extend({
+       from: this.element.getOpacity() || 0.0,
+@@ -423,6 +457,12 @@
+     this.start(options);
+   },
+   setup: function() {
++
++    var divHeight = this.element.vfcGetDimensions().height;
++    var divWidth = this.element.vfcGetDimensions().width;
++
++    this.vfcSetup();
++
+     this.restoreAfterFinish = this.options.restoreAfterFinish || false;
+     this.elementPositioning = this.element.getStyle('position');
+     
+@@ -431,8 +471,23 @@
+       this.originalStyle[k] = this.element.style[k];
+     }.bind(this));
+       
++    if(this.elementPositioning == 'fixed') {
++      this.originalTop  = Position.cumulativeOffset(this.element)[1] - document.body.offsetTop;
++      this.originalLeft = Position.cumulativeOffset(this.element)[0] - document.body.offsetLeft;
++    } else {
+     this.originalTop  = this.element.offsetTop;
+     this.originalLeft = this.element.offsetLeft;
++    }
++
++    if (Prototype.netFront()) {
++      if(this.element.offsetParent != document.body && this.element.parentNode.getStyle('position') == 'static') {
++        this.originalTop  = 0;
++        this.originalLeft = 0;
++      } else {
++        this.originalTop  += document.body.offsetLeft;
++        this.originalLeft += document.body.offsetTop;
++      }
++    }
+     
+     var fontSize = this.element.getStyle('font-size') || '100%';
+     ['em','px','%','pt'].each( function(fontSizeType) {
+@@ -442,34 +497,61 @@
+       }
+     }.bind(this));
+     
++    // Fix for NetFront 3.4 pre-release [Volantis]
++    if(!this.fontSize) {
++       this.fontSize = 100;
++       this.fontSizeType='%';
++    }
++
+     this.factor = (this.options.scaleTo - this.options.scaleFrom)/100;
+     
+     this.dims = null;
+     if(this.options.scaleMode=='box')
+-      this.dims = [this.element.offsetHeight, this.element.offsetWidth];
++      this.dims = [this.contentHeight < divHeight ? this.contentHeight : divHeight, this.contentWidth < divWidth ? this.contentWidth : divWidth];
+     if(/^content/.test(this.options.scaleMode))
+-      this.dims = [this.element.scrollHeight, this.element.scrollWidth];
++      this.dims = [this.contentHeight, this.contentWidth];
+     if(!this.dims)
+-      this.dims = [this.options.scaleMode.originalHeight,
+-                   this.options.scaleMode.originalWidth];
++      this.dims = [this.options.scaleMode.originalHeight - (this.bordersHeight + this.paddingsHeight) , this.options.scaleMode.originalWidth - (this.bordersWidth + this.paddingsWidth)];
++
++    if(Prototype.operaMobile() && this.element.hasChildNodes()) {
++      this.recursiveCollectOriginalStyle(this.element.childNodes)  
++    }
++
++    if (Prototype.netFront()) {
++      var netFrontBadBehaveElementsList = ['area','button','input', 'select','textarea'];
++      var nodes;
++      for(var i = 0;i<netFrontBadBehaveElementsList.length;i++){
++        nodes = this.element.getElementsByTagName(netFrontBadBehaveElementsList[i]);
++        for (var j=0;j<nodes.length;j++) {
++          nodes[j].style.visibility = 'hidden';
++        }
++      }
++    }
+   },
++  
+   update: function(position) {
+     var currentScale = (this.options.scaleFrom/100.0) + (this.factor * position);
+     if(this.options.scaleContent && this.fontSize)
+       this.element.setStyle({fontSize: this.fontSize * currentScale + this.fontSizeType });
++
++    if(Prototype.operaMobile() && this.element.hasChildNodes()){
++      this.recursiveSetSize(this.element.childNodes,currentScale);
++    }
++
+     this.setDimensions(this.dims[0] * currentScale, this.dims[1] * currentScale);
+   },
++  
+   finish: function(position) {
+-    if (this.restoreAfterFinish) this.element.setStyle(this.originalStyle);
++    this.vfcFinish(position);
+   },
++  
+   setDimensions: function(height, width) {
+-    var d = {};
+-    if(this.options.scaleX) d.width = Math.round(width) + 'px';
+-    if(this.options.scaleY) d.height = Math.round(height) + 'px';
++    var d = this.vfcSetDimensions(height, width);
++
+     if(this.options.scaleFromCenter) {
+-      var topd  = (height - this.dims[0])/2;
+-      var leftd = (width  - this.dims[1])/2;
+-      if(this.elementPositioning == 'absolute') {
++        var topd  = parseInt((height - this.dims[0])/2);
++        var leftd = parseInt((width  - this.dims[1])/2);      
++      if(this.elementPositioning == 'absolute' || this.elementPositioning == 'fixed') {
+         if(this.options.scaleY) d.top = this.originalTop-topd + 'px';
+         if(this.options.scaleX) d.left = this.originalLeft-leftd + 'px';
+       } else {
+@@ -573,17 +655,35 @@
+ 
+ Effect.Puff = function(element) {
+   element = $(element);
+-  var oldStyle = { opacity: element.getInlineOpacity(), position: element.getStyle('position') };
++  var oldStyle = { 
++    opacity: element.getInlineOpacity(), 
++    filter: element.getInlineFilter(), 
++    position: element.getStyle('position'),
++    left: element.getStyle('left'),
++    top: element.getStyle('top')
++  };
++
+   return new Effect.Parallel(
+    [ new Effect.Scale(element, 200, 
+       { sync: true, scaleFromCenter: true, scaleContent: true, restoreAfterFinish: true }), 
+-     new Effect.Opacity(element, { sync: true, to: 0.0 } ) ], 
++      new Effect.Opacity(element, { sync: true,from: 1.0, to: 0.0})], 
+      Object.extend({ duration: 1.0, 
+       beforeSetupInternal: function(effect) {
+-        effect.effects[0].element.setStyle({position: 'absolute'}); },
++
++        if(oldStyle.position == 'static') {
++          effect.effects[0].element.setStyle({left: Position.positionedOffset(effect.effects[0].element)[0] + 'px'}); 
++          effect.effects[0].element.setStyle({top: Position.positionedOffset(effect.effects[0].element)[1] + 'px'}); 
++        }
++
++        if(oldStyle.position == 'static' || oldStyle.position == 'relative') {
++          effect.effects[0].element.setStyle({position: 'absolute'}); 
++        }
++      },
+       afterFinishInternal: function(effect) {
+          effect.effects[0].element.hide();
+-         effect.effects[0].element.setStyle(oldStyle); }
++         effect.effects[0].element.setStyle(oldStyle); 
++         Element.restoreStylesFakeOpacity(effect.effects[0].element)
++      }
+      }, arguments[1] || {})
+    );
+ }
+@@ -642,7 +742,7 @@
+           effect.element.hide();
+           effect.element.undoClipping();
+           effect.element.undoPositioned();
+-          effect.element.setStyle({opacity: oldOpacity});
++          effect.element.setOpacity(oldOpacity); //effect.element.setStyle({opacity: oldOpacity});
+         }
+       })
+     }
+@@ -652,12 +752,13 @@
+ Effect.DropOut = function(element) {
+   element = $(element);
+   var oldStyle = {
+-    top: element.getStyle('top'),
+-    left: element.getStyle('left'),
+-    opacity: element.getInlineOpacity() };
++    top: element.getStyle('top') || 'auto',
++    left: element.getStyle('left') || 'auto',
++    opacity: element.getInlineOpacity(),
++    filter: element.getInlineFilter() };
+   return new Effect.Parallel(
+     [ new Effect.Move(element, {x: 0, y: 100, sync: true }), 
+-      new Effect.Opacity(element, { sync: true, to: 0.0 }) ],
++      new Effect.Opacity(element, { sync: true, from: 1.0, to: 0.0 }) ],
+     Object.extend(
+       { duration: 0.5,
+         beforeSetup: function(effect) {
+@@ -667,6 +768,7 @@
+           effect.effects[0].element.hide();
+           effect.effects[0].element.undoPositioned();
+           effect.effects[0].element.setStyle(oldStyle);
++          Element.restoreStylesFakeOpacity(effect.effects[0].element)
+         } 
+       }, arguments[1] || {}));
+ }
+@@ -674,8 +776,8 @@
+ Effect.Shake = function(element) {
+   element = $(element);
+   var oldStyle = {
+-    top: element.getStyle('top'),
+-    left: element.getStyle('left') };
++    top: element.getStyle('top') || 'auto',
++    left: element.getStyle('left') || 'auto' };
+     return new Effect.Move(element, 
+       { x:  20, y: 0, duration: 0.05, afterFinishInternal: function(effect) {
+     new Effect.Move(effect.element,
+@@ -697,7 +799,7 @@
+   element = $(element);
+   element.cleanWhitespace();
+   // SlideDown need to have the content of the element wrapped in a container element with fixed height!
+-  var oldInnerBottom = $(element.firstChild).getStyle('bottom');
++  var oldInnerBottom = $(element.firstChild).getStyle('bottom') || 'auto';
+   var elementDimensions = element.getDimensions();
+   return new Effect.Scale(element, 100, Object.extend({ 
+     scaleContent: false, 
+@@ -708,7 +810,6 @@
+     afterSetup: function(effect) {
+       effect.element.makePositioned();
+       effect.element.firstChild.makePositioned();
+-      if(window.opera) effect.element.setStyle({top: ''});
+       effect.element.makeClipping();
+       effect.element.setStyle({height: '0px'});
+       effect.element.show(); },
+@@ -734,7 +835,7 @@
+ Effect.SlideUp = function(element) {
+   element = $(element);
+   element.cleanWhitespace();
+-  var oldInnerBottom = $(element.firstChild).getStyle('bottom');
++  var oldInnerBottom = $(element.firstChild).getStyle('bottom') || 'auto';
+   return new Effect.Scale(element, window.opera ? 0 : 1,
+    Object.extend({ scaleContent: false, 
+     scaleX: false, 
+@@ -744,7 +845,6 @@
+     beforeStartInternal: function(effect) {
+       effect.element.makePositioned();
+       effect.element.firstChild.makePositioned();
+-      if(window.opera) effect.element.setStyle({top: ''});
+       effect.element.makeClipping();
+       effect.element.show(); },  
+     afterUpdateInternal: function(effect) {
+@@ -787,7 +887,12 @@
+     width: element.style.width,
+     opacity: element.getInlineOpacity() };
+ 
++  element.style.display='block';
++  element.style.visibility = 'hidden';
+   var dims = element.getDimensions();    
++  element.style.display='none';
++  element.style.visibility = 'visible';
++
+   var initialMoveX, initialMoveY;
+   var moveX, moveY;
+   
+@@ -834,16 +939,25 @@
+           new Effect.Move(effect.element, { x: moveX, y: moveY, sync: true, transition: options.moveTransition }),
+           new Effect.Scale(effect.element, 100, {
+             scaleMode: { originalHeight: dims.height, originalWidth: dims.width }, 
+-            sync: true, scaleFrom: window.opera ? 1 : 0, transition: options.scaleTransition, restoreAfterFinish: true})
++             sync: true, scaleFrom: window.opera ? 1 : 0, transition: options.scaleTransition, restoreAfterFinish: true,
++             afterUpdate: function(effect) {
++                  effect.element.show();
++             }
++           })
+         ], Object.extend({
+              beforeSetup: function(effect) {
++	       if(! Prototype.msieBrowser()) {	    
+                effect.effects[0].element.setStyle({height: '0px'});
++	       }	 
++               if(! Prototype.operaMobile()) {
+                effect.effects[0].element.show(); 
++               }
+              },
+              afterFinishInternal: function(effect) {
+                effect.effects[0].element.undoClipping();
+                effect.effects[0].element.undoPositioned();
+                effect.effects[0].element.setStyle(oldStyle); 
++               Element.restoreStylesFakeOpacity(effect.effects[0].element)
+              }
+            }, options)
+       )
+@@ -903,7 +1017,9 @@
+            effect.effects[0].element.hide();
+            effect.effects[0].element.undoClipping();
+            effect.effects[0].element.undoPositioned();
+-           effect.effects[0].element.setStyle(oldStyle); }
++           effect.effects[0].element.setStyle(oldStyle); 
++           Element.restoreStylesFakeOpacity(effect.effects[0].element)
++         }
+        }, options)
+   );
+ }
+@@ -917,7 +1033,10 @@
+   reverser.bind(transition);
+   return new Effect.Opacity(element, 
+     Object.extend(Object.extend({  duration: 3.0, from: 0,
+-      afterFinishInternal: function(effect) { effect.element.setStyle({opacity: oldOpacity}); }
++      afterFinishInternal: function(effect) { 
++        effect.element.setStyle({opacity: oldOpacity}); 
++        Element.restoreStylesFakeOpacity(effect.element)
++      }
+     }, options), {transition: reverser}));
+ }
+ 
+@@ -944,7 +1063,7 @@
+   }}, arguments[1] || {}));
+ };
+ 
+-['setOpacity','getOpacity','getInlineOpacity','forceRerendering','setContentZoom',
++['setOpacity','getOpacity','getInlineOpacity','getInlineFilter','forceRerendering','setContentZoom',
+  'collectTextNodes','collectTextNodesIgnoreClass','childrenWithClassName'].each( 
+   function(f) { Element.Methods[f] = Element[f]; }
+ );

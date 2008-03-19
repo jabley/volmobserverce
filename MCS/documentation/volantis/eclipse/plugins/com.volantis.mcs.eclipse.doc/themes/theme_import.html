@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <title>Importing themes</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Importing themes</h1>
+      
+      <p>On the Overview page in the Theme editor you can specify that
+         a device theme can import its theme values from its parent in
+         the device hierarchy. You do this by checking the
+            <span class="uicontrol">Import parent device theme</span> option,
+         which is unchecked by default.</p>
+      
+      <p>If immediate ancestor device themes are also set to import,
+         the values will cascade down the device tree from the highest
+         device that has the option checked to the lowest.</p>
+      
+      <p>In this way you can build up complex themes, which share core
+         branding styles specified at one level and modify these at
+         lower device family or specific device levels.</p>
+      
+      <p>To work out the theme values for a specific device, MCS
+         searches up the tree until it finds an import value set to
+         false, after which it stops. The values from higher up the
+         tree are <em>added</em> to, not merged with, any that you
+         have set for the lowest device.</p>
+      
+      <p>The table shows three device settings. The import value for
+         Handset is false so it is the highest value set that MCS
+         reads.</p>
+      
+      <table cellspacing="0" summary="">
+         <thead>
+            
+            <tr>
+               
+               <th class="firsthdr"> Devices</th>
+               
+               <th> Import</th>
+               
+               <th>Class</th>
+               
+               <th>CSS values</th>
+            
+            </tr>
+         
+         </thead>
+         <tbody>
+            <tr>
+               <td class="firstcell"> Handset</td>
+               <td>false</td>
+               <td>main</td>
+               <td>bgcolor: red</td>
+            </tr>
+            <tr>
+               <td class="firstcell"> XHTML-Handset</td>
+               <td>true</td>
+               <td>child</td>
+               <td>bgcolor:red; text-align:right</td>
+            </tr>
+            <tr>
+               <td class="firstcell"> Nokia-XHTML</td>
+               <td> true</td>
+               <td>child</td>
+               <td>bgcolor: blue</td>
+            </tr>
+         </tbody>
+      </table>
+      
+      <p>MCS combines all the values in the generated stylesheet,
+         leaving the browser to handle the result of merging two
+         identical <span class="code">child</span> class selectors.</p>
+      
+      <pre class="code">.main {bgcolor:red; text-align:center}.child
+         {bgcolor:red; text-align:right}.child {bgcolor:blue}</pre>
+      
+      <p>The display outcome under normal CSS inheritance and
+         specificity rules are shown in the next example, but it is
+         possible that a browser may not provide the desired result.</p>
+      
+      <pre class="code">.child {bgcolor:blue; text-align:right}</pre>
+      
+      <p class="note">
+         <strong>Note</strong>: You can determine if a device or set of devices
+         supports multiple classes by opening the Device editor and
+         selecting the Browser category on the Policies page. If the
+         value of <span class="uicontrol">Multiple style class support</span>
+         is 'none', you should avoid using layout style attributes,
+         and use theme properties where possible.</p>
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../themes/theme_editor.html">Theme editor</a>
+         <br/>
+         <a href="../themes/theme_add.html">Adding a theme</a>
+      </p>
+      
+   
+   </body>
+</html>

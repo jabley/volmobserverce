@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><meta name="taskref" content="024"/><title>Adding a component</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">Adding a component</h1>
+      <p>In MCS, you can use a Component wizard to create project components.
+         The wizard allows you to define:</p>
+      <ul>
+         <li>A component name and its location in your project folders</li>
+         <li>Related variants in the case of Image components</li>
+         <li>Device targets for variants, except in the case of Chart components</li>
+      </ul>
+      
+         <h2>Locating and naming a component</h2>
+         <p>On the first page of the wizard, you can locate and name the
+            component. Each component is a uniquely named file in your project.
+            The policy tree view will be synchronized with your current project
+            folder selection. After this page is complete, you can click
+               <span class="command">Finish</span> and complete the information in the
+            editor at a later time.</p>
+         <ol>
+            <li>Choose <span class="command">File</span> | <span class="command">New</span> and
+               choose a component type</li>
+            <li>Choose the policy source directory in the tree view</li>
+            <li>Enter the <span class="uicontrol">Component name</span>. MCS will
+               automatically append the file extension when the file is created.</li>
+
+            <li>Click <span class="command">Next</span>
+            </li>
+         </ol>
+      
+
+      
+         <h2>Specifying image variants</h2>
+         <p>This wizard page applies only to selecting image variants from the
+            file system. Refer to <em>Adding a variant</em> and follow the
+            suggested steps. You should choose no more than one variant if you
+            want to enable the <span class="command">Next</span> button and target any
+            devices at this time.</p>
+      
+      
+         <h2>Selection criteria</h2>
+         <p>The next wizard page applies to components other than charts. You
+            can choose from 'Targeted', 'Default', 'Generic' and 'Encoding',
+            depending on the policy type.</p>
+         <ol>
+            <li>Select a value of 'Targeted' in the <span class="uicontrol">Selection
+                  criteria</span> dropdown to enable the
+               <span class="command">Next</span> button and refer to <em>Choosing a device</em> for information on
+               targeting devices</li>
+            <li>Otherwise make another selection and click
+               <span class="command">Finish</span></li>
+         </ol>
+      
+      
+         <h2>Defining component attributes</h2>
+         <p>Once the component is created, you can enter values for the
+            component attributes in the Attributes section on the Overview page
+            of the editor.</p>
+         <p>You use the <span class="uicontrol">Device category policy</span> control to
+            choose a set of policy values to use with components other than
+            charts. Once you have selected a category, the policy options will
+            appear in Category tab in the New Variant wizard.</p>
+
+         <p> The remaining attributes are references to other components. The
+            number of references will vary with the type of component you have
+            created. For example, an image component has two fallback references
+            for image and text, while a chart component has three.</p>
+         <ol>
+            <li><span class="command">Browse</span> the available custom device policy
+               names to select a policy for this component.</li>
+            <li>You can also <span class="command">Browse</span> to select fallback
+               components in the Component Selection dialog. This view is
+               filtered for the component type you need to select.</li>
+            <li>Click <span class="command">Next</span></li>
+         </ol>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../components/component_working.html">Working with components</a><br/><a href="../mcs/mcs_choose_wizard.html">Choosing a Wizard</a><br/><a href="../wag/wag_fallback.html">About fallback</a><br/><a href="../components/asset_add.html">Adding a variant</a><br/><a href="../devices/device_choose.html">Choosing a device</a></p>
+      
+   </body></html>

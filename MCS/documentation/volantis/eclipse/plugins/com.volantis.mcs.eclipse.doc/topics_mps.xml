@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><?NLS TYPE="org.eclipse.help.toc"?><toc label="Message Preparation Server (MPS)">
+   
+ 
+   
+   <topic label="Installing MPS" href="mps/mps_install.html"/>
+   
+   <topic label="Creating a message" href="mps/message_create.html"/>
+   
+   <topic label="Using XDIME in messages" href="mps/mps_xdime.html"/>
+   
+   <topic label="Configuring MPS" href="mps/mps_config.html"/>
+   
+   <topic label="Messaging with WAP push" href="mps/mps_wap_push.html"/>
+   
+   <topic label="Using MPS interfaces" href="mps/mps_interfaces.html"/>
+   
+   <topic label="Programming MPS" href="mps/mps_program.html"/>
+   <topic label="MPS example servlet" href="mps/mps_example.html"/>
+
+</toc>

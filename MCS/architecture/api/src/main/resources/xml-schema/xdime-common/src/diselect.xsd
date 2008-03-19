@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Paul Duffin (Volantis) -->
+<xs:schema targetNamespace="http://www.w3.org/2004/06/diselect" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2004/06/diselect" xmlns:sel="http://www.w3.org/2004/06/diselect" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:element name="DISelectContentSet" abstract="true">
+        <xs:annotation>
+            <xs:documentation>The base for all elements that can belong within the DISelect content set</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:group name="DISelectContentSet">
+        <xs:annotation>
+            <xs:documentation>A group that represents the DISelect content set.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element ref="DISelectContentSet"/>
+        </xs:choice>
+    </xs:group>
+    <!--Internal Components-->
+    <xs:simpleType name="ContentSelectionExpression">
+        <xs:annotation>
+            <xs:documentation>A content selection expression.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:complexType name="SelectableContent" mixed="true">
+        <xs:annotation>
+            <xs:documentation>Content that can be selected.</xs:documentation>
+        </xs:annotation>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="DISelectContentSet"/>
+            <xs:any namespace="##other"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="ExpressionSelectableContent" mixed="true">
+        <xs:annotation>
+            <xs:documentation>Content that is selected based on the result of evaluating an expression.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="true">
+            <xs:extension base="SelectableContent">
+                <xs:attribute name="expr" type="ContentSelectionExpression" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--External Components-->
+    <xs:attribute name="expr" type="ContentSelectionExpression">
+        <xs:annotation>
+            <xs:documentation>Controls whether an element will be processed or not.</xs:documentation>
+        </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="selid" type="xs:NCName">
+        <xs:annotation>
+            <xs:documentation>The selection id, this is mapped to an id by the content selection processor.</xs:documentation>
+        </xs:annotation>
+    </xs:attribute>
+    <xs:element name="if" type="ExpressionSelectableContent" substitutionGroup="DISelectContentSet">
+        <xs:annotation>
+            <xs:documentation>Controls whether a group of elements and text will be processed or not.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="select" substitutionGroup="DISelectContentSet">
+        <xs:annotation>
+            <xs:documentation>Selects between a number of possible matches.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="when" type="ExpressionSelectableContent" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>One of a number of possible matches that could be selected.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="otherwise" type="SelectableContent" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>The default content to use in the event that none of the when elements resulted in a match.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="expr" type="ContentSelectionExpression" use="optional"/>
+            <xs:attribute name="precept" use="optional" default="matchfirst">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="matchfirst"/>
+                        <xs:enumeration value="matchevery"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

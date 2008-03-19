@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD       XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Fallback styling</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">Fallback styling</h1>
+      <p>If a device does not support the Client Framework, the server-side processing of the XDIME
+         2 widget provides a static rendering that assures the basic widget functions.</p>
+      <p>In XDIME 2 you can specify the styling that should be applied in cases when a widget is
+         using fallback behavior. There are two possible methods. Both make use of
+            <span class="uicontrol">Supports client framework</span> attribute defined in the System
+         category of the device repository.</p>
+      <p>You create two themes, one used by Client Framework supported devices, and a second to be
+         used as a fallback.</p>
+      
+         <h2>Using a device category policy</h2>
+         <p>In the MCS Theme editor, you specify both themes to use the <span class="uicontrol">Device category
+               policy</span> value of 'Supports client framework'. Then you set the values or
+            'true' and 'false' respectively in each of the <span class="uicontrol">Targets</span> lists.</p>
+      
+      
+         <h2>Using selection markup</h2>
+         <p>The second approach makes use of selection markup. In the example the
+            <span class="code">sel:expr</span> attribute on the <span class="code">link</span> element selects the
+            theme.</p>
+         <pre class="code">
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+   xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+   xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+   xmlns:sel="http://www.w3.org/2004/06/diselect"
+   xmlns:device="http://www.volantis.com/xmlns/mariner/device"&gt;
+   &lt;head&gt;
+      &lt;link rel="mcs:theme" href="/fallback.mthm"
+         sel:expr="device:getPolicyValue('supports.client.framework')='false'"/&gt;
+      &lt;link rel="mcs:theme" href="/CFsupported.mthm"
+         sel:expr="device:getPolicyValue('supports.client.framework')='true'"/&gt;
+   &lt;/head&gt;</pre>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../client/wag_widgets_style.html">Styling widgets</a></p>
+      
+   </body></html>

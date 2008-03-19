@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><link href="../volantis.css" rel="stylesheet" type="text/css"/><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Content properties</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Content properties</h1><h2>Purpose</h2>
+         <p>Defines generated content
+            values.</p>
+      <table cellspacing="0" summary="The table contains the tab&#xA;            attributes. It lists the label, the purpose or use and any&#xA;            selection options."><tr><th class="firsthdr" scope="col">Control</th><th scope="col">Description</th><th scope="col">Options</th></tr><tr><th class="firstcell" scope="row">Content</th><td><p>The text string to be generated as content for an element qualified with 
+               a pseudo-element such as <span class="code">:before</span> or <span class="code">:element</span>.</p></td><td>  </td></tr><tr><th class="firstcell" scope="row">Increment Counter</th><td><p>The name of the element used to increment the counter. An optional integer defines the amount to increment for every occurrence of the element (default 1). Zero and negative integers are allowed.</p></td><td>  </td></tr><tr><th class="firstcell" scope="row">Reset Counter</th><td><p>One or more names of counters, each one optionally followed by an integer, which gives the value that the counter is set to (default 0)</p></td><td>  </td></tr></table><h2>Example</h2>
+      
+<p>The example adds the text 'Chapter' to each h1 and increments the count from 
+  1, sets the section counter to 0 at each h1 and increments section numbers at 
+  each h2.</p>
+      <pre class="code">h1:before {
+   content: "Chapter " counter(chapter) ". ";
+   counter-increment: chapter;
+}
+
+h1 {
+   counter-reset: section;
+}
+
+h2:before {
+   content: counter(chapter) "." counter(section) " ";
+   counter-increment: section;
+}
+      </pre>
+         <p><span class="ri">Related topics</span><br/><a href="../themes/theme_style_categories.html">Style property categories</a></p>
+      </body></html>

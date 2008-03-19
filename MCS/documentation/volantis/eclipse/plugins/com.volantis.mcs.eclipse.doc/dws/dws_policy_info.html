@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><link href="../volantis.css" rel="stylesheet" type="text/css"/><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>policy-info</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">policy-info</h1><h2>Purpose</h2>
+         <p>Returns a policy name and description in a natural language. A <em>single</em> language may be specified in the Accept-Language header.</p>
+         
+         <p>If the policy name is missing or invalid, '404 Not Found' is returned. If the repository contains no policies, a document with an empty <span class="code">policy-info</span> element is returned.</p>
+         <div class="note"><strong>Note</strong>: If the Accept-Language header is not present, the default locale of the web service will be used. If the device repository does not contain category names in the requested language, the repository default language will be used. The <span class="code">language</span> attribute returned contains the required language and may differ from the response.</div>
+      <h2>Method</h2><p><span class="code">GET</span></p><h2>Signature</h2><p><span class="code">/policy/info/[policy-name]</span></p><h2>Parameter</h2><table cellspacing="0" summary="The table contains the&#xA;            parameters of the function. It lists the name, the purpose&#xA;            or use, and the XML schema datatype."><tr><th class="firsthdr" scope="col">Name</th><th scope="col">Description</th><th scope="col">Type</th></tr><tr><th class="firstcell" scope="row">policy-name</th><td><p>The category name</p></td><td>xs:string</td></tr></table><h2>Examples</h2>
+         <p>Input with Accept-Language header 'de'</p>
+         <pre class="code">/policy/info/partno</pre>
+         <p>Returns</p>
+         <pre class="code">&lt;policy-info
+   xmlns="http://www.volantis.com/xmlns/2006/01/device-ws"
+   language="de"&gt;
+   &lt;descriptive-name&gt;Teilenummer&lt;/descriptive-name&gt;
+   &lt;description&gt;Die vom Hersteller festgelegte Teilenummer, die dieser
+    Einheit zugeordnet ist, falls bekannt.&lt;/description&gt;
+&lt;/policy-info&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../dws/dws_rest_api.html">DWS API reference</a><br/><a href="../dws/dws_php_s9.html">example9.php</a><br/><a href="../dws/dws_ruby_s9.html">example9.rb</a></p>
+      </body></html>

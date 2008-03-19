@@ -1,0 +1,57 @@
+<?xml-stylesheet href="../../pseudo-xdime-html.xml" type="text/xsl"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html>
+    <head>
+        <title/>
+    </head>
+    <body>
+        <spatial cols="3" style="width:100%">
+            <spatial-row cols="3">
+                <grid-cell cols="3">
+                    <pane>Pane 1.0</pane>
+                </grid-cell>
+                <grid-cell cols="3"/>
+                <grid-cell cols="3">
+                    <pane>Pane 3.1</pane>
+                </grid-cell>
+            </spatial-row>
+            <spatial-row cols="3">
+                <grid-cell cols="3">
+                    <pane>Pane 1.2</pane>
+                </grid-cell>
+                <grid-cell cols="3"/>
+                <grid-cell cols="3"/>
+            </spatial-row>
+            <spatial-row cols="3">
+                <grid-cell cols="3">
+                    <pane>Pane 4.2</pane>
+                </grid-cell>
+                <grid-cell cols="3"/>
+                <grid-cell cols="3"/>
+            </spatial-row>
+            <spatial-row cols="3">
+                <grid-cell cols="3"/>
+                <grid-cell cols="3">
+                    <pane>Pane 6.4</pane>
+                </grid-cell>
+                <grid-cell cols="3"/>
+            </spatial-row>
+        </spatial>
+    </body>
+</html>

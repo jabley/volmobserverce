@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <!-- ======================================================================
+     !           Types
+     ! ==================================================================== -->
+    <xs:simpleType name="AngleUnitsEnumeration">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="deg"/>
+            <xs:enumeration value="grad"/>
+            <xs:enumeration value="rad"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ColorNames">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="aqua"/>
+            <xs:enumeration value="black"/>
+            <xs:enumeration value="blue"/>
+            <xs:enumeration value="fuchsia"/>
+            <xs:enumeration value="gray"/>
+            <xs:enumeration value="green"/>
+            <xs:enumeration value="lime"/>
+            <xs:enumeration value="maroon"/>
+            <xs:enumeration value="navy"/>
+            <xs:enumeration value="olive"/>
+            <xs:enumeration value="purple"/>
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="silver"/>
+            <xs:enumeration value="teal"/>
+            <xs:enumeration value="white"/>
+            <xs:enumeration value="yellow"/>
+            <xs:enumeration value="ActiveBorder"/>
+            <xs:enumeration value="ActiveCaption"/>
+            <xs:enumeration value="AppWorkspace"/>
+            <xs:enumeration value="Background"/>
+            <xs:enumeration value="ButtonFace"/>
+            <xs:enumeration value="ButtonHighlight"/>
+            <xs:enumeration value="ButtonShadow"/>
+            <xs:enumeration value="ButtonText"/>
+            <xs:enumeration value="CaptionText"/>
+            <xs:enumeration value="GrayText"/>
+            <xs:enumeration value="Highlight"/>
+            <xs:enumeration value="HighlightText"/>
+            <xs:enumeration value="InactiveBorder"/>
+            <xs:enumeration value="InactiveCaption"/>
+            <xs:enumeration value="InactiveCaptionText"/>
+            <xs:enumeration value="InfoBackground"/>
+            <xs:enumeration value="InfoText"/>
+            <xs:enumeration value="Menu"/>
+            <xs:enumeration value="MenuText"/>
+            <xs:enumeration value="Scrollbar"/>
+            <xs:enumeration value="ThreeDDarkShadow"/>
+            <xs:enumeration value="ThreeDFace"/>
+            <xs:enumeration value="ThreeDHighlight"/>
+            <xs:enumeration value="ThreeDLightShadow"/>
+            <xs:enumeration value="ThreeDShadow"/>
+            <xs:enumeration value="Window"/>
+            <xs:enumeration value="WindowFrame"/>
+            <xs:enumeration value="WindowText"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LengthUnitsEnumeration">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="mm"/>
+            <xs:enumeration value="cm"/>
+            <xs:enumeration value="in"/>
+            <xs:enumeration value="px"/>
+            <xs:enumeration value="pc"/>
+            <xs:enumeration value="em"/>
+            <xs:enumeration value="ex"/>
+            <xs:enumeration value="pt"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="RGBColorType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="#([0123456789abcdefABCDEF]{3}){1,2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TimeUnitsEnumeration">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ms"/>
+            <xs:enumeration value="s"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

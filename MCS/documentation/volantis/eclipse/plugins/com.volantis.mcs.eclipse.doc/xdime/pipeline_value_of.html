@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>pipeline:value-of</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>pipeline:value-of</h1><h2>Purpose</h2>
+         <p>Permits the value of an expression to be inserted into the content.
+            It can handle the results of any expressions, including the values
+            of complex template variables.</p>
+      <h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">expr</th><td>The expression to insert</td><td>xs:string</td><td> </td><td> </td><td>required </td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;template:definition&gt;
+   &lt;template:declarations&gt;
+      &lt;template:parameter
+         name="simple" type="simple" use="required"
+         expressionVariable="simple"/&gt;
+      &lt;template:parameter
+         name="complex" type="complex" use="required"
+         expressionVariable="complex"/&gt;
+   &lt;/template:declarations&gt;
+   &lt;template:body&gt;
+      &lt;div&gt;Simple is
+         &lt;pipeline:value-of expr="$simple"/&gt;
+      &lt;/div&gt;
+      &lt;div&gt;Complex is
+      &lt;pipeline:value-of expr="$complex"/&gt;&lt;/div&gt;
+   &lt;/template:body&gt;
+&lt;/template:definition&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/pipeline_er.html">Pipeline elements</a></p>
+      </body></html>

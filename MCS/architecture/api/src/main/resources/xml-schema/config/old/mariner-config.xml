@@ -1,0 +1,862 @@
+<?xml version="1.0" standalone="no"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!--(c) Volantis Systems Ltd 2000. -->
+<!DOCTYPE mariner-config SYSTEM "mariner-config.dtd" >
+
+<!-- For further information on configuring values contained within this
+     file please refer to the XML Schema for Mariner Config.
+  -->
+
+<mariner-config>
+
+  <!-- The local repository can be either odbc or xml.
+    -->
+  <local-repository type="odbc">
+    <odbc-db-definition
+      vendor="db2"
+      host="ODBC-HOST"
+      port="97"
+      source="ODBC-SOURCE"
+      user="ODBC-USER"
+      password="ODBC-PASSWORD"
+      dbpoolmax="20"
+      keep-connections-alive="false"
+      connection-poll-interval="3600000"
+    />
+    <xml-definition
+      file-name="/path/to/xml-repository/mariner.xml"
+    />
+  </local-repository>
+
+  <!-- The secondary repository can also be used to store components
+       and assets at runtime
+  -->
+  <secondary-repository>
+	<inline-metadata enabled="false"/>
+  </secondary-repository>
+
+
+  <!-- This message is written as a comment to each generated page.
+    -->
+  <page-messages
+    heading="This configurable message originated from the file
+    mariner-config.xml"
+  />
+
+  <!-- On a production server it is recommended that you set all policy caches
+       to true, on a development server you may wish to switch off some
+       of the policy caches so changes are effective immediately.
+    -->
+  <policy-cache>
+    <asset-group-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <audio-component-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <audio-asset-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <button-image-component-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <chart-component-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <chart-asset-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <device-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <dynamic-visual-component-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <dynamic-visual-asset-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <external-repository-plugin-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <image-component-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <image-asset-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <layout-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <link-component-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <link-asset-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <plugin-attribute-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <policy-preference-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <rollover-image-component-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <script-component-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <script-asset-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <text-component-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <text-asset-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <!-- Theme caching must be enabled in order for externally generated style
+         sheets to be cached.
+      -->
+    <theme-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+    <url-cache
+      enabled="true"
+      strategy="leastUsed"
+      max-entries="25"
+      timeout="3600"
+    />
+  </policy-cache>
+
+  <!-- The user-repositories element enables additional plugins to the
+       repository. This element is commented out by default.
+    -->
+       <user-repositories>
+         <internal-preferences-repository/>
+       </user-repositories>
+
+  <!-- Configuration relating to JSPs
+
+       support-required (true | false)
+           Controls whether support for jsp pages is required. It should be set
+           to false if the web application does not contain any Marlin JSP pages
+           and true otherwise. Its primary use is to allow web applications that
+           do not use JSPs to prevent unnecessary work being done during
+           initialisation.
+
+       write-direct (true | false)
+           Control whether JSP tags should write device dependent content direct
+           to the output, or whether they should write device independent
+           content to Mariner. This should only be set to true for older web
+           applications that rely on being able to write direct to the output.
+           New web applications should just use the default value of false.
+
+       resolve-character-references (true | false)
+           Controls whether JSP tags attempt to resolve character references
+           within their attributes and content before passing them onto PAPI.
+           Web applications that do not use character references within JSPs
+           should set this to false as it will improve performance slightly.
+
+       evaluate-page-after-canvas (true | false)
+           Control whether JSPs should evaluate page content after the canvas
+           tag. This should only be set to true for older web applications that
+           rely having JSP content after the canvas tag. New web applications
+           should just use the default value of false. If this is set to true
+           it may have adverse affects for web applications which generate
+           binary content such as WBXML/WMLC or packaged output.
+ -->
+ <jsp
+   support-required="true"
+   write-direct="false"
+   resolve-character-references="true"
+   evaluate-page-after-canvas="false"
+ />
+
+  <!-- If inline style declarations are required (as opposed to external style
+       sheets,) the external generation element below should be commented out.
+       To generate external style sheets, the base-directory must exist and
+       must contain a subdirectory named 'cssFileCache'.
+       To cache external style sheets the external-generation cache must be
+       enabled, and the policy-cache theme-cache (above) must be set to true.
+    -->
+  <style-sheets>
+    <external-generation
+      cache="enabled"
+      flush-on-restart="true"
+      base-directory="/path/to/volantis/css"
+      base-url="/volantis/MarinerCSS"
+    />
+  </style-sheets>
+
+  <!-- The page cache is for static pages and is only used if specified on
+       the canvas tag of the jsp page.
+    -->
+  <page-cache
+    enabled="true"
+    max-age="86400"
+    base-directory="/path/to/appserver/cache"
+    base-url="http://YOURHOST:YOURPORT/cache"
+  />
+
+  <!-- The directories to which generated chart images, WAP TV modesets, and
+       scripts will be written. These directories are either within the web
+       application or within the temporary directory made available by the
+       application server.
+    -->
+  <chartimages base="chartimages"/>
+  <modesets base="modesets"/>
+  <scripts base="scripts"/>
+
+  <!-- The prefix applied to the default of any assets when there is no other
+       more specific prefix, for example, from associated asset groups.
+    -->
+  <assets>
+    <audio-assets prefix-url="/volantis/audio/"/>
+    <dynamic-visual-assets prefix-url="/volantis/dynvis/"/>
+    <image-assets prefix-url="/volantis/images/"/>
+    <script-assets prefix-url="/volantis/scripts/"/>
+    <text-assets prefix-url="/volantis/text/"/>
+  </assets>
+
+  <!-- The path to the file containing the configuration for Mariner's log4j
+       based logging.
+    -->
+  <log4j xml-configuration-file="/path/to/volantis/WEB-INF/mariner-log4j.xml"/>
+
+  <!-- The name of the classes that will provide the functions of a URL
+       rewriter plugin, an asset URL rewriter plugin and an asset transcoder
+       plugin. These are initially commented out.
+       <plugins url-rewriter="URL_REWRITER_CLASS"
+                asset-url-rewriter="ASSET_URL_REWRITER_CLASS"
+                asset-transcoder="ASSET_TRANSCODER_CLASS"/>
+    -->
+
+  <!-- The mariner-agent allows the remote flushing of policy caches and
+       provides the ability to change the level of logging online.
+    -->
+  <mariner-agent
+    enabled="false"
+    port="8888"
+    password="password"
+  />
+
+  <remote-policies>
+    <remote-policy-caches
+      cachePolicies="true"
+      defaultTimeToLive="3600"
+      defaultRetryFailedRetrieval="true"
+      defaultRetryInterval="600"
+      defaultRetryMaxCount="5"
+      defaultRetainDuringRetry="true"
+      maxCacheSize="1000"
+      maxTimeToLive="0"
+      allowRetryFailedRetrieval="true"
+      minRetryInterval="0"
+      maxRetryMaxCount="10"
+      allowRetainDuringRetry="true"
+      usePersistentCache="false"
+      minimumTimeToLiveForSharing="600"
+    >
+      <remote-asset-group-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-audio-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-button-image-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-chart-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-dynamic-visual-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-image-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-layout-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-link-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-rollover-image-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-script-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-text-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+      <remote-theme-policy-cache
+        cachePolicies="true"
+        defaultTimeToLive="3600"
+        defaultRetryFailedRetrieval="true"
+        defaultRetryInterval="600"
+        defaultRetryMaxCount="5"
+        defaultRetainDuringRetry="true"
+        maxCacheSize="1000"
+        maxTimeToLive="0"
+        allowRetryFailedRetrieval="true"
+        minRetryInterval="0"
+        maxRetryMaxCount="10"
+        allowRetainDuringRetry="true"
+        usePersistentCache="false"
+        minimumTimeToLiveForSharing="600"
+      />
+    </remote-policy-caches>
+    <remote-policy-quotas>
+<!--      <remote-all-policies-quotas/>
+      <remote-asset-group-quotas/>
+      <remote-audio-policy-quotas/>
+      <remote-button-image-policy-quotas/>
+      <remote-chart-policy-quotas/>
+      <remote-dynamic-visual-policy-quotas/>
+      <remote-image-policy-quotas/>
+      <remote-layout-policy-quotas/>
+      <remote-link-policy-quotas/>
+      <remote-rollover-image-policy-quotas/>
+      <remote-script-policy-quotas/>
+      <remote-text-policy-quotas/>
+      <remote-theme-policy-quotas/>-->
+    </remote-policy-quotas>
+  </remote-policies>
+
+  
+  <mcs-plugins>
+      <!--
+      Markup Plugins are java classes whose methods can be invoked directly
+      from Marlin markup using the invoke element.  These classes must conform
+      to the interface com.volantis.mcs.integration.MarkupPlugin.
+      
+      name  - The name by which the marlin markup will refer to the plugin.
+      class - The class implementing MarkupPlugin which you wish to invoke.
+      scope - MarkupPlugins can be defined to have the following scopes...
+              o application - The plugin is initialized when the web app
+                starts and terminates when the web application ends.
+              o session - The plugin is initialized when a new session starts
+                and terminates when the session ends.
+              o canvas - The plugin is initializes when a canvas element is
+                invoked and terminates when the canvas generation ends.
+                
+      The initialization arguments are specified as name-value pairs which
+      are passed as a java.util.Map to the initialize method of the
+      MarkupPlugin.
+      -->
+      <markup-plugin name="YOUR-PLUGIN-NAME"
+                     class="your.class.Name"
+                     scope="application">
+          <initialize>
+              <argument name="NAME1" value="VALUE1"/>
+              <argument name="NAME2" value="VALUE2"/>
+          </initialize>
+      </markup-plugin>
+  </mcs-plugins>
+    
+  <application-plugins>
+    <!-- The MPS application plugin defines the Mariner MPS configuration
+       internal-base-url       - Defines the url to use for MPS asset
+                                 resolution from internal requests.
+       message-recipient-info  - Defines the user supplied class used to
+                                 resolve recipient devices and channels.
+     -->
+    <mps
+        internal-base-url="http://YOURHOST:YOURPORT/volantis"
+        message-recipient-info="com.volantis.mps.recipient.DefaultRecipientResolver" >
+      <!-- The channel definitions for MPS transports must be configured
+        -->
+      <channels>
+        <!-- The SMTP channel adapter for MHTML messages
+          class     - The class implementing the ChannelAdapter interface for
+                      this channel.
+          host      - The SMTP relay through which all messages are sent.
+          auth      - Detrmines if sending requests require SMTP authentication.
+          user      - User for SMTP Authentication.
+          password  - Password for SMTP Authentication.
+          -->
+	<channel name="smtp"
+          class="com.volantis.mps.channels.SMTPChannelAdapter"
+          host="SMTP-HOST"
+          auth="false"
+          user="SMTP-USERNAME"
+          password="SMTP-PASSWORD"
+        />
+        <!-- The SMSC channel adapter for SMS messages
+          class              - The class implementing the ChannelAdapter
+                               interface for this channel.
+          smsc-ip            - The IP Address of the SMSC.
+          smsc-port          - The port on which the SMSC is listening.
+          smsc-user          - User for SMTP Authentication.
+          smsc-password      - Password for SMTP Authentication.
+          smsc-bindtype      - value can be "async" or "sync"
+          smsc-svctype       - Optional service type
+                               (see 5.2.11 of SMPP protocol spec ver 3.4)
+          smsc-svcaddr       - Optional sender address
+          smsc-supportsmulti - if the smsc supports SUBMIT_MULTI
+          -->
+        <channel name="smsc"
+          class="com.volantis.mps.channels.LogicaSMSChannelAdapter"
+          smsc-ip="SMSC-IP"
+          smsc-port="SMSC-PORT"
+          smsc-user="SMSC-USERNAME"
+          smsc-password="SMSC-PASSWORD"
+          smsc-bindtype="async"
+          smsc-supportsmulti="no"
+        />
+        <!-- The MMSC channel adapter for MMS messages
+          class               - The class implementing the ChannelAdapter
+                                interface for this channel.
+          url                 - The url of the MMSC.
+          default-contry-code - The default country code prefix for recipients
+                                without fully qualified msISDN numbers.
+          -->
+        <!-- Uncomment this section to enable the Nokia MMSC channel adapter
+        <channel name="mmsc"
+          class="com.volantis.mps.channels.NokiaMMSChannelAdapter"
+          url="http://MMSC-HOST:MMSC-PORT"
+          default-country-code="+44"
+        />-->
+      </channels>
+    </mps>
+  </application-plugins>
+
+  <!-- The web-application element configures Mariner with your web application
+       server.
+       The base-url defines the effective URL of the server seen from a client,
+       and is used only when there is some URL mapping in use.
+       The internal-url defines the absolute URL of the server as seen from the
+       web application, and is used only when there is no other more specific
+       prefix, for example, from associated asset groups, for the absolute part
+       of their URL.
+       The page-base is used when generating resources. For example the URL
+       to generated chart images is prefixed by the web-application base-url,
+       the web-application page-base, and the chartimages base attributes
+       concatenated together with any additional path delimeters required.
+       The app-server-name indicates the application server in use.
+       The use-server-connection-pool controls whether the application server's
+       connection pool should be used, if available. If the connection pool is
+       used, the datasource-vendor, datasource, user and password  attributes
+       need to be set, and if a BEA Weblogic connection pool is used the
+       jndi-provider attribute also needs to be set.
+    -->
+  <web-application
+    base-url="/"
+    internal-url="http://YOURHOST:YOURPORT/"
+    page-base="volantis"
+    app-server-name="APPSERVER"
+    use-server-connection-pool="false"
+    jndi-provider="t3://JNDI-HOST:JNDI-PORT/"
+    datasource-vendor="JNDI-DATASOURCE-VENDOR"
+    datasource="JNDI-DATASOURCE"
+    user="JNDI-USER"
+    password="JNDI-PASSWORD"
+  />
+
+  <!-- The page packaging options. Currently the only option is for mime
+       packaging. This is turned off by default (ie. set enabled to false).
+       If this node is missing, mime packaging is disabled.
+   -->
+  <page-packaging>
+      <mime-packaging enabled="false"/>
+  </page-packaging>
+
+  <!-- The debug attributes control whether comments are written to the
+       generated page, and whether the markup for the generated page is also
+       written to the Mariner log.
+    -->
+  <debug
+    comments="false"
+    logPageOutput="false"
+  />
+
+    <!-- The pipeline configuration options control the caching operation,
+         the sql-driver and web services configuration.
+    -->
+    <pipeline-configuration>
+        <!-- The caching operation configuration.
+        -->
+        <caching-operation>
+            <cache name="cacheName" strategy="least-recently-used" maxEntries="10"/>
+            <cache name="cacheName2" strategy="least-recently-used" maxEntries="10"/>
+        </caching-operation>
+
+
+        <!-- The sql-driver configuration.
+        -->
+        <sql-driver>
+            <!-- JNDI configuration
+            -->
+            <jndi-configuration>
+                <initial-context name="initialContext">
+                    <parameter name="name1" value="value1"/>
+                    <parameter name="name2" value="value2"/>
+                </initial-context>
+            </jndi-configuration>
+
+            <!-- JNDI data source. Note that the initial-context name should
+                 exist in the jndi-configuration (in sql-driver/jndi-configuration.
+            -->
+            <named-data-source name="JNDI">
+                <jndi-data-source name="JNDI name" initial-context="initialContext"/>
+            </named-data-source>
+
+            <!-- Named data source for JDBC data source.
+            -->
+            <named-data-source name="JDBC">
+                <jdbc-driver
+                    database-url="jdbc:oracle:thin:@HOST_NAME:1526:DBNAME"
+                    driver-class="oracle.jdbc.driver.OracleDriver"
+                    password="pwd"
+                    user="user">
+                    <parameter name="name" value="value"/>
+                </jdbc-driver>
+            </named-data-source>
+
+            <!-- Named data source for Mariner data source.
+            -->
+            <named-data-source name="Mariner">
+                <!-- Allows access to a database type that is known to Mariner.
+                -->
+                <mariner-database
+                    host="HOST_NAME"
+                    port="1526"
+                    source="DBNAME"
+                    vendor="oracle"
+                    password="pwd"
+                    user="user" />
+            </named-data-source>
+
+            <!-- Pooled JDBC connection
+            -->
+            <named-data-source name="JDBC Pooled">
+                <connection-pool>
+                    <jdbc-driver
+                        database-url="jdbc:oracle:thin:@HOST_NAME:1526:DBNAME"
+                        driver-class="oracle.jdbc.driver.OracleDriver"
+                        password="pwd"
+                        user="user">                        
+                        <parameter name="name" value="value"/>
+                    </jdbc-driver>
+                </connection-pool>
+            </named-data-source>
+
+            <!-- Pooled mariner connection
+            -->
+            <named-data-source name="Mariner Pooled">
+                <connection-pool>
+                    <!-- Allows access to a database type that is known to Mariner.
+                         (for pooled connections).
+                    -->
+                    <mariner-database
+                        host="HOST_NAME"
+                        port="1526"
+                        source="DBNAME"
+                        vendor="oracle"
+                        password="pwd"
+                        user="user" />
+                </connection-pool>
+            </named-data-source>
+        </sql-driver>
+
+        <!-- The web services driver configuration.
+        -->
+        <web-services-driver>
+            <!-- The web services data language catalog configuration.
+            -->
+            <wsdl-catalog>
+                <!-- The web services data language entry configuration.
+                -->
+                <wsdl-entry uri="uri/for/wsdl/entry">
+                    <class-resource path="/class/resource/path"/>
+                    <servlet-resource path="/servlet/resource/path"/>
+                    <uri-resource uri="uri/resource"/>
+                </wsdl-entry>
+            </wsdl-catalog>
+        </web-services-driver>
+
+        <!-- The web driver configuration.
+        -->
+        <web-driver>
+
+            <!-- The proxy configuration.
+            -->
+<!--            <proxy id="id" port="8080" host="localhost"/>-->
+
+            <!-- The script configuration.
+            -->
+<!--
+            <script>
+                <module id="id">
+                    <filter content-type="contentType1" class="com.test.ClassName1"/>
+                    <filter content-type="contentType2" class="com.test.ClassName2"/>
+                </module>
+            </script>
+-->
+
+        </web-driver>
+
+        <!-- Transform element definition. If compile is set to true, we compile
+             transform and transformation elements whose compilable attribute is
+             set to true. If compile is set to false, no attempt is made to
+             compile transform and transformation elements irrespective of the
+             value of their compilable attributes. -->
+        <transform compile="false"/>
+
+    </pipeline-configuration>
+</mariner-config>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log: mariner-config.xml,v $
+ Revision 1.3  2003/12/05 14:56:53  pduffin
+ Fixed some inconsistencies
+
+ Revision 1.2  2003/12/01 13:40:20  pduffin
+ Corrected some validation errors
+
+ Revision 1.1  2003/11/28 12:13:08  pduffin
+ Added configuration schema
+
+
+ 25-Jun-03	492/3	byron	VBM:2003061808 Allow MCS to configure the pipeline WebService Connector
+
+ 25-Jun-03	544/3	geoff	VBM:2003061007 Allow JSPs to create binary output
+
+ 25-Jun-03	540/1	geoff	VBM:2003061709 remove mariner config debug enabled attribute
+
+ 24-Jun-03	497/1	byron	VBM:2003062302 Issues with Database configuring and sql connector
+
+ ===========================================================================
+-->

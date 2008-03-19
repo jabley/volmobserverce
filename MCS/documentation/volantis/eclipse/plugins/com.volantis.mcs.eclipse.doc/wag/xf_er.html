@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>XForms elements</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>XForms elements</h1>
+      <p>XDIME 2 makes use of elements from the XForms vocabulary, but not all
+         XForms elements and attributes are included. The namespace prefix used
+         for elements that originate in XForms is <span class="code">xf:</span> and the
+         namespace declaration is <span class="code">http://www.w3.org/2002/xforms</span>.</p>
+      <p>Two elements specific to forms are defined using the <span class="code">si:</span>
+         prefix, and are used as a simple way of providing instance data to
+         initialize a form. The namespace declaration is
+            <span class="code">http://www.volantis.com/xmlns/2006/01/xdime2/si</span>.</p>
+      <p>There are single node binding attributes that are common to some form
+         elements.</p>
+      <div class="note"><strong>Note</strong>: The namespaces <span class="code">http://www.volantis.com/xmlns/2004/06/xdimecp/interim/si</span> and <span class="code">http://www.volantis.com/xmlns/2004/06/xdimecp/si</span> are deprecated.</div>
+      <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xf_group.html">xf:group</a></th><td><p>Combines a set of form controls into a user interface component. By applying theme properties on this element, you can control where form
+            fragmentation occurs, and define or override at runtime the link
+            texts specified on form fragment layouts.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_input.html">xf:input</a></th><td><p>A form control for text input.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_instance.html">xf:instance</a></th><td><p>Optional element that contains instance data associated
+            with the <span class="code">model</span> element. It is used to
+            supply initial values for forms controls, or to provide
+            additional data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_item.html">xf:item</a></th><td><p>Container for the option values in <span class="code">xf:select</span> and <span class="code">xf:select1</span> elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_label.html">xf:label</a></th><td><p>Provides a descriptive label for forms controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_model.html">xf:model</a></th><td><p>Represents a form definition, used as a container for
+            elements associated with its submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_secret.html">xf:secret</a></th><td><p>Used for input of confidential or sensitive information
+            such as passwords.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_select.html">xf:select</a></th><td><p>A form control that provides for selection of one or more
+            choices from a list of options.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_select1.html">xf:select1</a></th><td><p>A form control that provides for selection of a single
+            choice from an available list of options; for example, a
+            group of radio buttons.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_setvalue.html">xf:setvalue</a></th><td><p>Associates a specific <span class="code">xf:submit</span> control with the
+            value to be submitted when there are multiple submit buttons on a
+            form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_submission.html">xf:submission</a></th><td><p>Defines the information to submit, where it should be sent, and how
+            to send it.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_submit.html">xf:submit</a></th><td><p>A form control that initiates submission of the form data
+            for processing.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_textarea.html">xf:textarea</a></th><td><p>A form control for larger amounts of text. Multi-line
+            input, such as the body of an message, is an example.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_value.html">xf:value</a></th><td><p>Provides the option values associated with select controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/si_instance.html">si:instance</a></th><td><p>Container for data items used to supply initial values
+            for forms controls, or to provide additional data to be
+            submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/si_item.html">si:item</a></th><td><p>Defines an item of instance data that is required if a
+            form control needs to be initialized, or when data not
+            associated with a form control needs to be provided during
+            form submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_attr_cp.html">Form attributes</a></th><td><p>Binding expressions provide the mapping between the data
+            associated with a particular control and the data provided
+            for processing when the form is submitted. The expression
+            is the name of the parameter associated with the control's
+            data when the form is submitted. These parameters appear
+            on the submission URL if the form is submitted using the
+            HTTP <span class="code">GET</span> method and are hidden if the
+               <span class="code">POST</span> method is used. The methods are
+            specified as attributes on the
+            <span class="code">xf:submission</span> element.</p></td></tr></tbody></table>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/xdime_cp_er.html">XDIME 2 elements</a></p>
+      
+   </body></html>

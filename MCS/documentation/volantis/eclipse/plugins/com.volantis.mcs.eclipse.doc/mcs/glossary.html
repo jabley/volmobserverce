@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="eng">
+<head>
+<link href="../volantis.css" rel="stylesheet" type="text/css" />
+  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>MCS glossary</title>
+  </head>
+
+  <body>
+<h1>Glossary</h1>
+<p>This glossary defines some common terms used in MCS and web applications. It 
+  shows MCS icons for objects like components and layout formats, and contains 
+  links to other terms.</p>
+<dl>
+  <dt id="asset">Asset</dt>
+  <dd>See <a href="#variant" title="Variant">Variant</a>.</dd>
+  <dt>Asset group <img src="../images/icons/asset_group.gif" width="16" height="16" alt="Asset group icon" /></dt>
+  <dd>Part of the <a href="#url" title="URL">URL</a> of a group of component variants 
+    on a server or a device.</dd>
+  <dt>Audio <img src="../images/icons/audio.gif" width="16" height="16" alt="Audio icon" /></dt>
+  <dd>MCS component containing references to audio variants.</dd>
+  <dt>Canvas</dt>
+  <dd>A layout area where you can position formatting objects and associate them 
+    with elements in your web content. On a PC, MCS delivers a canvas as a single 
+    web page. On smaller devices MCS sends complex canvasses as sets of pages.</dd>
+  <dt>Cascading Style Sheet (CSS)</dt>
+  <dd>A mechanism for adding style properties such as fonts, colors, spacing to 
+    Web documents. See the Cascading Style Sheet specification for further details.</dd>
+  <dt id="collaborative">Collaborative project</dt>
+  <dd>An MCS database project where users can independently lock policy attributes 
+    for editing, while permitting other users to work on other policy values.</dd>
+  <dt>Component</dt>
+  <dd>Component names identify sets of variants, such as images or dynamic visuals, 
+    which are available for a range of devices. MCS chooses an appropriate variant 
+    for the requesting device.</dd>
+  <dt>Composite Capabilities/Preferences Profiles (CC/PP)</dt>
+  <dd>A CC/PP profile is a description of device capabilities and user preferences 
+    using RDF/XML syntax.</dd>
+  <dt>Content</dt>
+  <dd>Basic information delivered to users by a web site. It may be static information, 
+    or dynamic data retrieved in response to a query.</dd>
+  <dt id="convertible">Convertible variant</dt>
+  <dd>An image variant that can be transcoded by <a href="#ics">ICS</a> to other 
+    formats.</dd>
+  <dt>Chart <img src="../images/icons/chart.gif" width="16" height="16" alt="Chart icon" /></dt>
+  <dd>An MCS component type that displays data contained in XDIME content.</dd>
+  <dt>Device <img src="../images/icons/device.gif" width="16" height="16" alt="Device icon" /></dt>
+  <dd>A hardware device such as a PC or a mobile phone. MCS stores device attributes 
+    in a <a href="#device_repository">repository</a>, and uses this information 
+    to match content presentation to the device.</dd>
+  <dt>Device category policy </dt>
+  <dd>Categories of device policies such as audio, identification and protocol 
+    that group device characteristics together. You can also defined device policies 
+    in a custom category.</dd>
+  <dt id="device_repository">Device repository <img src="../images/icons/dev_repository_16px.gif" width="16" height="16" alt="Device repository icon" /> 
+  </dt>
+  <dd>A compressed XML file defining a set of devices. MCS comes with a pre-defined 
+    repository containing a large number of standard devices that is frequently 
+    updated. You can also defined custom devices.</dd>
+  <dt>DWS (Device Repository Web Service)</dt>
+  <dd>A language independent REST interface over HTTPS that allows developers 
+    to access repository information.</dd>
+  <dt>Device layout</dt>
+  <dd>See <a href="#variant">Variant</a>.</dd>
+  <dt>Device theme</dt>
+  <dd>See </dd>
+  <dt id="dissectingpane">Dissecting pane <img src="../images/icons/dissecting_pane_format.gif" width="16" height="16"  alt="Dissecting Pane icon" /></dt>
+  <dd>A <a href="../layouts/layout_dissecting_panes.html" title="pane">pane</a> 
+    that MCS can automatically split up and send to a small-screen device as one 
+    or more linked <a href="#shard" title="shards">shards</a>.</dd>
+  <dt>Dynamic visual image <img src="../images/icons/dynamic_visual.gif" width="16" height="16" alt="Dynamic visual icon" /></dt>
+  <dd>An MCS component type for defining variants such as video and animation.</dd>
+  <dt>Fallback</dt>
+  <dd>A resource that can be used if MCS fails to match the capability of device 
+    with a preferred resource, such as a monochrome image replacing a high-resolution 
+    color image. Fallback relationships are represented in MCS as component attributes. 
+    Device layouts and themes also belong to fallback hierarchy.</dd>
+  <dt>Form fragment <img src="../images/icons/form_fragment_on.gif" width="16" height="16"  alt="Form Fragment icon" /></dt>
+  <dd>A layout format used to divide a form into fragments on small-screen devices.</dd>
+  <dt>Format</dt>
+  <dd>A layout object, such as a grid, pane or form, that will contain either 
+    other formats or specified content on a web page.</dd>
+  <dt>Format attributes view <img src="../images/icons/att_view.png" width="16" height="16"  alt="Form Fragment icon" /></dt>
+  <dd>A view in the MCS perspective that you use to edit the attributes of layout 
+    formats. </dd>
+  <dt>Fragment <img src="../images/icons/fragment_format.gif" width="16" height="16"  alt="Fragment icon" /></dt>
+  <dd>A layout format used to divide the content of a canvas into fragments that 
+    can be displayed on small screens such as PDAs and mobile phones.</dd>
+  <dt>Generic variant</dt>
+  <dd>A <a href="#variant" title="variant">variant</a> such as an image that will 
+    display successfully on a wide range of devices without requiring complex 
+    device analysis.</dd>
+  <dt>Grid <img src="../images/icons/grid_format.gif" width="16" height="16"  alt="N by M Grid icon" /></dt>
+  <dd>A layout format used to position content in a row/column structure in a 
+    web page.</dd>
+  <dt id="ics">ICS (Image Conversion Service)</dt>
+  <dd>An image transcoding service used by MCS to convert suitable <a href="#convertible"> 
+    image variants</a> from one format to another.</dd>
+  <dt>Image <img src="../images/icons/image.gif" width="16" height="16" alt="Mmage icon" /></dt>
+  <dd>An MCS component type containing references to image assets.</dd>
+  <dt id="iterator">Iterator pane <img src="../images/icons/column_iterator_format.gif" width="16" height="16" alt="Column Iterator Pane icon" /></dt>
+  <dd>A pane that will generate row or column cells to display a data series. 
+    The display can be <a href="#spatial" title="spatial">spatial</a> or <a href="#temporal" title="time">time</a> 
+    based.</dd>
+  <dt>Identification pattern</dt>
+  <dd>MCS uses identification patterns at runtime to identify an unknown device. 
+    The patterns are regular expressions that are matched against the device headers.</dd>
+  <dt>Layout <img src="../images/icons/layout.gif" width="16" height="16" alt="Layout icon" /></dt>
+  <dd> <a href="../layouts/layout_about.html" title="Layouts">Layouts</a> specify 
+    the physical placement of content on the display of a user's device.</dd>
+  <dt>Link <img src="../images/icons/link.gif" width="16" height="16"  alt="Link icon" /></dt>
+  <dd>MCS component type containing references to hyperlink assets.</dd>
+  <dt>Multi-channel Server (MCS)</dt>
+  <dd><a href="mcs_about.html" title="MCS">MCS</a> enables the integration of 
+    input from a variety of sources, and delivery of output to multiple target 
+    devices.</dd>
+  <dt>Montage</dt>
+  <dd>A <a href="../layouts/layout_montage.html" title="montage">montage</a> is 
+    a collection of canvasses that can be rendered together on some kinds of device. 
+    On smaller devices, it is rendered as a set of individual pages.</dd>
+  <dt>Null variant</dt>
+  <dd>Using a null variant value means that MCS will not search for variants matching 
+    other devices in the device hierarchy. It behaves as if no variant exists 
+    for this device.</dd>
+  <dt>Pane <img src="../images/icons/pane_format.gif" width="16" height="16" alt="Pane icon" /></dt>
+  <dd>An area in a <a href="../layouts/layout_canvas_panes.html" title="canvas">canvas</a> 
+    layout for displaying content. </dd>
+  <dt>Policy</dt>
+  <dd>Information that defines how MCS responds to particular devices. There are 
+    four policy editors in the within MCS Eclipse interface covering components, 
+    devices, layouts, and themes.</dd>
+  <dt>Portal</dt>
+  <dd>Web site that combines material from a variety of sources into a single 
+    presentation.</dd>
+  <dt>Portlet</dt>
+  <dd>The content that occupies a region in a portal.</dd>
+  <dt>Property</dt>
+  <dd>A single value in a style sheet rule, for example a font-weight.</dd>
+  <dt>Project <img src="../images/icons/mcs_project.gif" width="16" height="16" alt="MCS project icon" /></dt>
+  <dd>A <a href="mcs_project_create.html" title="project">project</a> is a set 
+    of resources that you define for a particular web application. Resources that 
+    make up a project could include XML files, assets, layout, theme, component 
+    and device policies. <a href="#collaborative">Collaborative projects</a> must 
+    be run on a database repository.</dd>
+  <dt>Replica <img src="../images/icons/replica_format.gif" width="16" height="16" alt="Replica icon" /></dt>
+  <dd>A <a href="../layouts/layout_replica.html" title="replica">replica</a> format 
+    can use content from another format in another part of a layout.</dd>
+  <dt>Region <img src="../images/icons/region_format.gif" width="16" height="16" alt="Region icon" /></dt>
+  <dd>A <a href="../layouts/layout_region.html" title="region">region</a> format 
+    is one of a set of areas in a portal.</dd>
+  <dt>Rollover image <img src="../images/icons/image_over.gif" width="16" height="16"  alt="Rollover icon" /></dt>
+  <dd>MCS component type that contains references to the images assets that highlight 
+    a rollover image.(normal, over).</dd>
+  <dt>Script <img src="../images/icons/script.gif" width="16" height="16" alt="Script icon" /></dt>
+  <dd>MCS component type that contains references scripts that are contained in 
+    a web page.</dd>
+  <dt>Segment <img src="../images/icons/segment_format.gif" width="16" height="16" alt="Segment icon" /></dt>
+  <dd>A <a href="../layouts/layout_montage.html" title="segment">segment</a> is 
+    an area in a montage layout that specifies which canvas or montage will be 
+    displayed in it.</dd>
+  <dt>Selector </dt>
+  <dd>One or more element names, class names or identifiers that are used to associate 
+    style properties with some content.</dd>
+  <dt id="shard">Shard</dt>
+  <dd>A section of content with navigation links that MCS creates automatically 
+    when a <a href="#dissectingpane" title="dissecting pane">dissecting pane</a> 
+    generates page content for a device with limited page capacity.</dd>
+  <dt id="spatial">Spatial iterator <img src="../images/icons/spatial_iterator_format.gif" width="16" height="16" alt="Spatial Iterator icon" /></dt>
+  <dd>An <a href="#iterator" title="iterator">iterator pane</a> that displays 
+    a data set in a tabular layout.</dd>
+  <dt id="stem">Stem</dt>
+  <dd>Part of an identifier (the <span class="code">pane</span> attribute) used 
+    to map XDIME content on to a cell in an iterated row or column. It is inherited 
+    from the name of the iterator pane that generates the cell. The other part 
+    of the identifier is the <a href="#tail" title="tail">tail</a>.</dd>
+  <dt>Style rule</dt>
+  <dd>A set of style properties for a selector applied to a device.</dd>
+  <dt id="tail">Tail</dt>
+  <dd>Part of an identifier (the <span class="code">pane</span> attribute) used 
+    to map XDIME content on to a cell in an iterated row or column. It is a zero-based 
+    numeric index that is appended to the name or <a href="#stem" title="stem">stem</a> 
+    inherited from the iterator pane in the form <em>name.index</em>.</dd>
+  <dt>Targeted variant</dt>
+  <dd>A <a href="#variant" title="Variant">variant</a> that is associated with 
+    one or more specific devices.</dd>
+  <dt id="temporal">Temporal iterator <img src="../images/icons/temporal_iterator_format.gif" width="16" height="16"  alt="Temporal Iterator icon" /></dt>
+  <dd>An <a href="#iterator" title="iterator">iterator pane</a> that displays 
+    a data set over time.</dd>
+  <dt>Text <img src="../images/icons/text.gif" width="16" height="16"  alt="Text icon" /></dt>
+  <dd>MCS component type that contains references to the text variants for a web 
+    page.</dd>
+  <dt>Theme <img src="../images/icons/theme.gif" width="16" height="16" alt="Theme icon" /></dt>
+  <dd>All the information that governs the stylistic aspects of a web site. So, 
+    for example, a corporate brand would be a theme, composed of styles on each 
+    device.</dd>
+  <dt>TAC (Type Allocation Code)</dt>
+  <dd>A TAC forms the initial characters of the International Mobile Equipment 
+    Identity (IMEI) number. TACs may be used to access device information using 
+    the Device Repository API.</dd>
+  <dt id="url">URL (Uniform Resource Locator)</dt>
+  <dd>A URI that identifies a resource using a network location rather than identifying 
+    the resource by name or some other attribute(s). </dd>
+  <dt>URI (Uniform Resource Identifier</dt>
+  <dd>The name of resource. The resource does not need to have a network location, 
+    so a URI can represent a physical or abstract entity.</dd>
+  <dt id="variant">Variant</dt>
+  <dd>A file containing partial content for a component, layout or theme, and 
+    associated with one or more devices. Component variants were formerly known 
+    as assets, and layout and theme variants were known as device layouts and 
+    device themes.</dd>
+  <dt>World Wide Web Consortium (W3C)</dt>
+  <dd>W3C develops interoperable technologies (specifications, guidelines, software, 
+    and tools) for the Web.</dd>
+  <dt>XDIME (XML Device Independent Mark-up Extensions )</dt>
+  <dd>An XML vocabulary based on HTML and WML that is used to describe MCS content.</dd>
+  <dt>XDIME 2</dt>
+  <dd>A version of XDIME conforming to current or proposed W3C standards (XHTML 
+    2.0, XForms 1.0, DISelect 1.0 and CSS 2.1).</dd>
+  <dt>XDIME-CP</dt>
+  <dd>A subset of the XDIME 2 vocabulary, intended for use by content providers, 
+    that may be used with either XDIME and XDIME 2 containers.</dd>
+</dl>
+<p><span class="ri">Related information</span><br />
+<a href="mcs_about.html" title="About MCS">About MCS</a></p>
+</body>
+</html>

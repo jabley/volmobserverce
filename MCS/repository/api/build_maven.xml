@@ -1,0 +1,110 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<!-- ==========================================================================
+ ! (c) Volantis Systems Ltd 2007. 
+ ! ======================================================================= -->
+<project name="repository" basedir="." default="-generate-code">
+
+    <target name="-init">
+        <!-- Properties -->
+        <tstamp>
+            <format property="build.date" pattern="d-MMMM-yyyy hh:mm:ss aa" locale="en"/>
+        </tstamp>
+
+        <property name="generated.code.dir" value="${build.generated.dir}"/>
+        <property name="src.mcs.dir" value="com/volantis/mcs"/>
+
+        <path id="generate-classpath">
+            <pathelement path="${compile.classpath}"/>
+            <pathelement path="${build.generated.dir}" />
+        </path>
+
+        <!-- Timestamps -->
+        <property name="theme.schema.generated.code.timestamp.file"
+            value="${generated.code.dir}/theme.generated.timestamp"/>
+
+    </target>
+
+    <!-- Create the necessary directories -->
+    <target name="-make-dirs"
+        depends="-init">
+        <mkdir dir="${generated.code.dir}"/>
+    </target>
+
+    <!--
+     ! Check to see whether the code generated from the theme schema is correct
+     ! or not.
+     !-->
+    <target name="-check-theme-schema-generated-code">
+        <!--
+         ! Need to ensure the schema is available from the architecture
+         ! subsystem...
+         !-->
+
+        <!--
+         ! Set the theme schema.generated.code.uptodate property only if all of
+         ! the files which are used to generate the schema code are up to date.
+         !-->
+        <condition property="theme.schema.generated.code.uptodate">
+            <uptodate targetfile="${theme.schema.generated.code.timestamp.file}">
+                <srcfiles dir="${basedir}/../../generator/api/target/classes/com/volantis/mcs/build/themes">
+                    <include name="ParseThemeSchema.class"/>
+                </srcfiles>
+                <srcfiles dir="${basedir}/../../architecture/api/target/classes/themes">
+                    <include name="Mariner-Theme.xsd"/>
+                    <include name="themePropertyDefinitions.xml"/>
+                </srcfiles>
+            </uptodate>
+        </condition>
+    </target>
+
+    <!--
+     ! Run the theme code generator, unless the generated code is up to date.
+     !-->
+    <target name="-run-theme-schema-code-generator"
+        depends="-check-theme-schema-generated-code,-make-dirs"
+        unless="theme.schema.generated.code.uptodate">
+        <!-- The schemas used for this come from the architecture subsystem -->
+        <java classpathref="generate-classpath"
+            classname="com.volantis.mcs.build.themes.ParseThemeSchema"
+            failonerror="true">
+            <arg value="themes/Mariner-Theme.xsd"/>
+            <arg value="themes/themePropertyDefinitions.xml"/>
+            <arg value="${generated.code.dir}"/>
+        </java>
+
+        <touch file="${theme.schema.generated.code.timestamp.file}"/>
+    </target>
+
+    <!--
+        Copy LPDM schema from architecture
+    -->
+
+    <target name="-copy-lpdm-schema"
+        depends="-init,-make-dirs">
+
+        <copy todir="${build.dir}/com/volantis/mcs/themes" overwrite="true">
+            <fileset dir="${build.dir}/../../../../architecture/api/target/classes/themes">
+                <include name="ThemeStructure.xml"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+    <target name="-generate-code"
+        depends="-init,-make-dirs,-copy-lpdm-schema,-run-theme-schema-code-generator"/>
+</project>

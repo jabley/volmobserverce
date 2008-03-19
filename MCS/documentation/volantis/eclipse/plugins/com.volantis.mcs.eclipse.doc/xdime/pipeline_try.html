@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>pipeline:try</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>pipeline:try</h1><h2>Purpose</h2>
+				<p>Provides both preferred and alternative content if there are errors in the pipeline.</p>
+				<p>The content is processed in sequence starting with the preferred and moving on to the alternatives. If the content is processed successfully, the rest of the content is ignored; otherwise MCS recovers from the errors and carries on. If none of the content can be processed successfully, the operation fails.</p>
+		<h2>Contains</h2><p><a href="../xdime/pipeline_alternative.html">pipeline:alternative</a>, <a href="../xdime/pipeline_preferred.html">pipeline:preferred</a></p><h2>Example</h2>
+		
+			<pre class="code">&lt;pipeline:try&gt; 
+   &lt;pipeline:preferred&gt; 
+      &lt;pipeline:transform href="title.xsl" compilable="true"&gt;
+         &lt;urid:fetch href="title.xml" /&gt;
+      &lt;/pipeline:transform&gt;  
+  &lt;/pipeline:preferred&gt; 
+  &lt;pipeline:alternative&gt; 
+      &lt;pipeline:content&gt;
+         &lt;p&gt;There was a problem retrieving the information requested.&lt;/p&gt;
+      &lt;/pipeline:content&gt; 
+  &lt;/pipeline:alternative&gt; 
+&lt;/pipeline:try&gt;</pre>
+
+		
+			<p><span class="ri">Related topic</span><br/><a href="../wag/pipeline_er.html">Pipeline elements</a></p>
+		</body></html>

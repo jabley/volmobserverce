@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>mdc:parseAsXML</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>mdc:parseAsXML</h1><h2>Purpose</h2>
+         <p>Contains the information needed by the SQL driver to parse the
+            values in a column as XML.</p>
+      <h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">defaultNsPrefix</th><td>The prefix of namespace that should be used as the
+               default for the parsed content.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">defaultNsURI</th><td>The URI of namespace that should be used as the default
+               for the parsed content.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">parse</th><td>Parse as a complete XML document or a document
+               fragment. If set to 'fragment', each value in the column is
+               parsed as an external parsed entity.</td><td>xs:string</td><td>document </td><td> </td><td>optional </td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;sqld:query
+   datasource="PressReleases" 
+   sql="select TITLE,ABSTRACT 
+      from PRESS_RELEASES 
+      where STORY = ?"&gt;
+   &lt;sqld:string value="%{request:getParameter('STORY')}"/&gt;
+   &lt;sqld:column name="ABSTRACT"&gt;
+      &lt;mdc:parseAsXML
+         defaultNsPrefix="pr"
+         defaultNsURI="http://mycorp.com/schemas/pr"/&gt; 
+   &lt;/sqld:column&gt;
+    ...
+&lt;/sqld:query&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/mdc_er.html">Driver conditioner elements</a></p>
+      </body></html>

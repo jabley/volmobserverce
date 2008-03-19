@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:carousel</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:carousel</h1><h2>Purpose</h2>
+         <p>Defines a Carousel widget that displays a subset of a list of items. The contained
+               <span class="code">li</span> elements have a restricted content model, when used in a
+            carousel. The <span class="code">li</span> does not need to be enclosed in the
+            <span class="code">nl</span>, <span class="code">ol</span>, or <span class="code">ul</span> elements.</p>
+         <div class="note"><strong>Note</strong>: The Carousel widget must be bound to a layout policy to separate its
+            content from its container. If no layout is specified, then it will behave in the same
+            way as the body element, with an implicit layout containing a single region.</div>
+      <h2>Contains</h2><p><a href="../xdime_cp/ticker_feed.html">ticker:feed</a>, <a href="../xdime_cp/widget_refresh.html">widget:refresh</a>, <a href="../xdime_cp/xdime_cp_li.html">li</a></p><h2>Contained by</h2><p><a href="../xdime_cp/xdime_cp_body.html">body</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+         <pre class="code">
+&lt;widget:carousel&gt;
+   &lt;li&gt;&lt;a href="http://www.wien.gv.at/"&gt;Vienna&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href="http://www.vilnius.lt"&gt;Vilnius&lt;/a&gt;&lt;/li&gt;
+&lt;/widget:carousel&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/widget_er.html">Widget elements</a><br/><a href="../xdime_cp/response_carousel.html">response:carousel</a></p>
+      </body></html>

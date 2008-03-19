@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<device xmlns="http://www.volantis.com/xmlns/device-repository/device" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/device-repository/device http://www.volantis.com/schema/device-repository/v3.0/device.xsd">
+    <policies>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="portability" value="30" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="width" value="267" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="msvid" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pjpeginpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="preferredmessageprotocol" value="MHTML" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="vscroll" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="aggregation" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="rendermode" value="rgb" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cookies" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="viewinbright" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="onehanded" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="microphone" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="preferredimagetype" value="JPEG" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pageup" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="flashinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pixeldepth" value="24" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="realvidinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="sec.id.header" value="accept" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pnginpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="baudioinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="exclusivity" value="group" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="sound" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="jscriptversion" value="1.1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="realaudioinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="qtimeinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="swinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="jpeginpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pixelsx" value="750" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="sslkeystrng" value="56" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol">
+            <device:value>-XDIME-Protocol-</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="download" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="css.inline.import" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mhtmlprotocol">
+            <device:value>HTMLVersion3_2</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="fullpixelsx" value="800" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="transparent" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="numpalette" value="0" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="agifinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="javaapplets" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="height" value="200" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="ssversion">
+            <device:value>CSS2</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="adcpm32inpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="sslvers" value="3" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pixelsy" value="550" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pagedown" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="bookmarks" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="msmainpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="javascript" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="viewindark" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="stylesheets" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gifinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wavinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="java" value="J2SE" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="activesky" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="kbusability" value="80" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="kbdtype" value="full" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="fullpixelsy" value="600" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="ssl" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="viewdist" value="400" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.CcppAccept">
+            <device:value>text/html</device:value>
+            <device:value>image/jpeg</device:value>
+            <device:value>image/png</device:value>
+            <device:value>image/gif</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="msvidinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="supports.client.framework" value="false">
+            <device:standard />
+        </device:policy>
+        <policy name="x-css.default.rules" value="
+        spatial{display:table}
+        spatial-row{display:table-row}
+        spatial-cell{display:table-cell}
+        grid{display:table}
+        grid-row{display:table-row}
+        grid-cell{display:table-cell}
+        pane{display:block}
+        inclusion{display:block}"/>
+        <policy name="x-css.properties.background-attachment.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.background-color.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.background-image.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.background-position.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.background-repeat.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.color.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-bottom-color.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-bottom-style.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-bottom-width.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-collapse.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-left-color.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-left-style.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-left-width.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-right-color.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-right-style.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-right-width.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-spacing.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-top-color.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-top-style.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.border-top-width.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.bottom.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.caption-side.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.clear.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.content.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.counter-increment.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.counter-reset.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.direction.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.display.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.float.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.font-family.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.font-size.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.font-size-adjust.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.font-stretch.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.font-style.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.font-variant.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.font-weight.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.height.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.left.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.letter-spacing.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.line-height.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.list-style-image.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.list-style-position.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.list-style-type.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.margin-bottom.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.margin-left.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.margin-right.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.margin-top.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.overflow.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.padding-bottom.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.padding-left.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.padding-right.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.padding-top.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.position.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.right.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.text-align.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.text-indent.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.text-transform.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.top.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.vertical-align.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.visibility.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.white-space.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.width.initial-value" value="&lt;standard&gt;"/>
+        <policy name="x-css.properties.word-spacing.initial-value" value="&lt;standard&gt;"/>
+    </policies>
+</device>
+

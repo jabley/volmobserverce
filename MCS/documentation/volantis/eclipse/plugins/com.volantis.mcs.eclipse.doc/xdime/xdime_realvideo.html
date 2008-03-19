@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>realvideo</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>realvideo</h1>
+      <h2>Purpose</h2>
+			
+      <p>Used to specify a subset of Real Video parameters in an embedded clip. Refer to the Real Player documentation for further information on parameter options.</p>
+		
+      <h2>Contained by</h2>
+      <p>
+         <a href="../xdime/xdime_pane.html">pane</a>
+      </p>
+      <h2>Attributes</h2>
+      <table cellspacing="0" summary="The table contains the attributes of the element or elements. It lists the name, the purpose or use, the XML schema datatype, the default value if there is one, value options if they are defined, and indicates if the attribute is required, optional, deprecated or obsolete.">
+         <tr>
+            <th class="firsthdr" scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Type</th>
+            <th scope="col">Default</th>
+            <th scope="col">Options</th>
+            <th scope="col">Use</th>
+         </tr>
+         <tr>
+            <th class="firstcell" scope="row">numloop</th>
+            <td>The number of times the clip should loop</td>
+            <td>xs:positiveInteger</td>
+            <td>none</td>
+            <td/>
+            <td>optional</td>
+         </tr>
+         <tr>
+            <th class="firstcell" scope="row">shuffle</th>
+            <td>Applies to multiple clips in a RAM or SMIL file. If set to 'true', clips will be played in a random order.</td>
+            <td>xs:boolean</td>
+            <td>none</td>
+            <td/>
+            <td>optional</td>
+         </tr>
+         <tr>
+            <th class="firstcell" scope="row">startJVM</th>
+            <td>If 'true', starts the JVM to run the clip. Otherwise prevents it from running if it has not already started.</td>
+            <td>xs:boolean</td>
+            <td>none</td>
+            <td/>
+            <td>optional</td>
+         </tr>
+      </table>
+      <h2>Attribute groups</h2>
+      <p>
+         <a href="../xdime/block_attr.html" title="">Block attributes</a>,
+                        <a href="../xdime/clip_attr.html" title="">Clip attributes</a>,
+                        <a href="../xdime/event_attr.html" title="">Event attributes</a>,
+                        <a href="../xdime/hypertext_attr.html" title="">Hypertext attributes</a>,
+                        <a href="../xdime/xdime_attr.html" title="">Core attributes</a>
+      </p>
+      <h2>Example</h2>
+			
+      <pre class="code">
+&lt;realvideo name="cheetahruns"
+   loop="true"
+   numloop="4"
+   altText="Running Cheetah"/&gt;</pre>
+		
+			
+      <p>
+         <span class="ri">Related topic</span>
+         <br/>
+         <a href="../xdime/xdime_pr_er.html">XDIME element reference</a>
+      </p>
+		
+   </body>
+</html>

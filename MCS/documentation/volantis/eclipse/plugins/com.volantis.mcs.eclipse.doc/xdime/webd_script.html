@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>webd:script</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>webd:script</h1><h2>Purpose</h2>
+         <p>Specifies a script module to handle web page scripts, with a
+            reference to a <span class="filepath">mcs-config.xml</span> file.</p>
+      <h2>Contained by</h2><p><a href="../xdime/webd_get.html">webd:get</a>, <a href="../xdime/webd_post.html">webd:post</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">ref</th><td>A reference to a module element in the mcs-config.xml
+               file.</td><td>xs:string</td><td>none </td><td> </td><td>required </td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;webd:get
+   url="http://newsline.net/2004-12-18/index.xml"&gt;
+   ...
+   &lt;webd:script ref="js_module"/&gt;
+   ...
+&lt;/webd:get&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/webd_er.html">Web driver elements</a></p>
+      </body></html>

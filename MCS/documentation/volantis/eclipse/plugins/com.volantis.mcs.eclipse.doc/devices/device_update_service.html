@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Device Repository update service</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">Device Repository update service</h1>
+      <p>Because new devices are always being added by manufacturers,
+         and over 300 attributes are recorded for many devices, the
+         MCS repository is continually reviewed and updated.</p>
+      <p>You can obtain updates to a standard device repository from
+         the update service over the Web, or update one or more
+         projects from an recent download to your file system. You can
+         also use the alternative <span class="code">mcsClientUpdate</span> command
+         line utility to download the latest version from the update
+         service.</p>
+      <p>The update service requires a login; there is also an option
+         to define the URL address and port of a proxy server,
+         together with a username and password.</p>
+
+
+      <p class="caption">The first page of the Import Repository wizard</p><p><img src="../graphics/device_update.png" alt="The first page of the Import Repository wizard" title="The first page of the Import Repository wizard"/></p>
+
+      
+         <h2>Repository versions</h2>
+      
+      <p>When you use the update service, you can choose the location
+         of a repository to update, and you can optionally pick a
+         specific revision of the standard repository. The revision
+         identifier will usually consist of a date and version in the
+         form yyyymmddvv. A description gives a brief overview of the
+         changes.</p>
+      
+         <h2>Update methods</h2>
+      
+      <p>You can also specify whether the update should be merged with
+         the existing repository, overwrite it, or saved to another
+         file.</p>
+      <dl>
+         <dt>Merge</dt>
+         <dd>Merge is the default setting. The update adds new device
+            information to standard policies in the repository. Any
+            changes you have made to identification patterns or policy
+            values are not overwritten. No policies are removed, and
+            existing devices retain their position in the hierarchy.
+            If you select Merge, MCS creates a report listing the
+            changes to the repository in the same directory as the
+            existing repository. The report file is named in the form
+               <span class="filepath">[existingfile
+               revision]-[updatefile-revision].xml</span>. For
+            more details see <em>Device repository update CLI</em>
+            <div class="note"><strong>Note</strong>: Merge does not affect any custom
+               devices, custom policies or TACs that you have
+            defined.</div>
+         </dd>
+         <dt>Overwrite</dt>
+         <dd>The new repository replaces the current one entirely. Any
+            changes you have made are overwritten.</dd>
+         <dt>Save to file</dt>
+         <dd>The new repository is saved to a different file location.
+            The existing repository is unchanged.</dd>
+      </dl>
+      
+         <p><span class="ri">Related topics</span><br/><a href="../devices/device_about.html">About devices</a><br/><a href="../admin/mcs_device_load_cli.html">Device repository update CLI</a></p>
+      
+   </body></html>

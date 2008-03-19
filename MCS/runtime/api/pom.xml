@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.volantis</groupId>
+        <artifactId>mcs</artifactId>
+        <version>5.0</version>
+        <relativePath>../..</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>mcs.runtime-api</artifactId>
+    <name>${pom.groupId}:${pom.artifactId}</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.architecture-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.charset-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.common-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.configuration-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.dom-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.dom2theme-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.generator-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.localization-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.migrate-api-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.pipeline-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.project-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.repository-api</artifactId>
+            <version>${pom.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.repository-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.runtime-css-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.service-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.styling-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>map.media-agent-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>synergetics.cache-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>synergetics.cornerstone-api</artifactId>
+            <version>${build.version.synergetics}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>synergetics.localization-api</artifactId>
+            <version>${build.version.synergetics}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis.testtools</groupId>
+            <artifactId>mock-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis.testtools</groupId>
+            <artifactId>mock-impl</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis.testtools</groupId>
+            <artifactId>mock-library</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>davisor-chart</groupId>
+            <artifactId>davisor-chart</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>${project.artifactId}-plugin-description</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <property name="build.dir" value="${project.build.outputDirectory}"/>
+                                <property name="build.generated.dir" value="${project.build.directory}/generated-sources/antrun"/>
+                                <property name="source.dir" value="${project.build.sourceDirectory}"/>
+
+                                <copy file="${project.build.sourceDirectory}/../resources/com/volantis/mcs/logging/mcs-log4j-predefined.xml.template"
+                                        tofile="${project.build.outputDirectory}/com/volantis/mcs/logging/mcs-log4j-predefined.xml"
+                                        overwrite="true">
+                                    <filterset>
+                                        <filter token="mcs.log.conversionpattern" value="${mcs.log.conversionpattern}"/>
+                                    </filterset>
+                                </copy>
+<echo message="${project.build.directory}/../../../architecture/api/source/main/resources/xml-schema/marlin/src/marlin-cdm-internal.xsd"/>
+                                <java classpathref="maven.compile.classpath"
+                                        classname="com.volantis.mcs.build.marlin.RuntimeParseMarinerSchema" failonerror="true">
+                                    <arg file="${project.build.directory}/../../../architecture/api/src/main/resources/xml-schema/marlin/src/marlin-cdm-internal.xsd"/>
+                                    <arg value="${build.generated.dir}"/>
+                                </java>
+                                <java classpathref="maven.compile.classpath"
+                                        classname="com.volantis.mcs.build.marlin.ParseIMDAPISchema" failonerror="true">
+                                    <arg value="imdapi/Mariner-imdapi.xsd"/>
+                                    <arg value="${build.generated.dir}"/>
+                                </java>
+                            </tasks>
+                            <sourceRoot>${project.build.directory}/generated-sources/antrun</sourceRoot>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

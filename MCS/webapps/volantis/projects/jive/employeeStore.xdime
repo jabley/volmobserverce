@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html xmlns="http://www.w3.org/2002/06/xhtml2" 
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs">
+  <head>
+    <title>Employee Store</title>
+    
+    <!-- Links to the layout and theme for this page -->
+    <link rel="mcs:layout" href="/jivearticle.mlyt"/>
+    <link rel="mcs:theme" href="/jive.mthm"/>
+    
+    <!-- XForms model for availability check form -->
+    <xf:model>
+      <xf:submission id="avail" action="checkAvail.jsp"/>
+    </xf:model>
+  </head>
+  
+  <!-- Page body -->
+  <body>
+    <!-- The common material for the page header -->
+    <urid:fetch href="jiveheader.xdinc"/>
+    
+    <!-- Page Heading -->
+    <h2 id="title">Employee Store</h2>
+    
+    <!-- The main content -->
+    <div id="article">
+      <p> Various items of Jive sportswear are available to employees at discounted prices. Style
+        has never been such good value! </p>
+      <p> Get more information and purchase items by clicking on items in the lists. </p>
+      <div class="company_item">
+        <h3 class="company_header">Availability</h3>
+        
+        <!-- The item -->
+        <p>
+          <xf:select1 ref="item">
+            <xf:label>Item</xf:label>
+            <xf:item>
+              <xf:label>Storm Jacket</xf:label>
+              <xf:value>storm jacket</xf:value>
+            </xf:item>
+            <xf:item>
+              <xf:label>Long Sleeve Sport</xf:label>
+              <xf:value>long sleeve sports shirt</xf:value>
+            </xf:item>
+            <xf:item>
+              <xf:label>Twill Shirt</xf:label>
+              <xf:value>twill shirt</xf:value>
+            </xf:item>
+            <xf:item>
+              <xf:label>Jersey Sport Shirt</xf:label>
+              <xf:value>jersey sports shirt</xf:value>
+            </xf:item>
+            <xf:item>
+              <xf:label>Cotton Sport Shirt</xf:label>
+              <xf:value>cotton sports shirt</xf:value>
+            </xf:item>
+          </xf:select1>
+        </p>
+        
+        <!-- The size -->
+        <p>
+          <xf:select1 ref="size">
+            <xf:label>Size</xf:label>
+            <xf:item>
+              <xf:label>XS</xf:label>
+              <xf:value>extra small</xf:value>
+            </xf:item>
+            <xf:item>
+              <xf:label>S</xf:label>
+              <xf:value>small</xf:value>
+            </xf:item>
+            <xf:item>
+              <xf:label>R</xf:label>
+              <xf:value>regular</xf:value>
+            </xf:item>
+            <xf:item>
+              <xf:label>L</xf:label>
+              <xf:value>large</xf:value>
+            </xf:item>
+            <xf:item>
+              <xf:label>XL</xf:label>
+              <xf:value>extra Large</xf:value>
+            </xf:item>
+            <xf:item>
+              <xf:label>XXL</xf:label>
+              <xf:value>huge</xf:value>
+            </xf:item>
+          </xf:select1>
+        </p>
+        
+        <!-- The button that initiaties the check --> 
+        <p>
+          <xf:submit submission="avail">
+            <xf:label>Check</xf:label>
+          </xf:submit>
+        </p>
+      </div>
+      
+      <div class="company_item">
+        <h3 class="company_header">Most Popular Items</h3>
+        <dl>
+          <dt>
+            <a href="#">Storm Jacket</a>
+          </dt>
+          <dd>Jive-Tek Nylon shell Storm Jacket is water repellent, wind resistant, has a front
+            zipper and elastic waistband. <strong>$19.98</strong></dd>
+          <dt>
+            <a href="#">Long Sleeve Sport Shirt</a>
+          </dt>
+          <dd>Cotton, long-sleeve pique knit sport shirt. Designed with a full cut and soft,
+            comfortable look to please anyone. <strong>$15.98</strong></dd>
+          <dt>
+            <a href="#">Short Sleeve Twill Shirt</a>
+          </dt>
+          <dd>This classic 100% cotton, twill short sleeve shirt has a patch pocket and a
+            button-down collar. <strong>$15.98</strong></dd>
+          <dt>
+            <a href="#">Jersey Knit Sport Shirt</a>
+          </dt>
+          <dd>This cotton jersey knit sport shirt is unique and upscale, perfect for the office or
+            out on the putting green. <strong>$14.98</strong></dd>
+          <dt>
+            <a href="#">Cotton Sport Shirt</a>
+          </dt>
+          <dd class="article">This 100% cotton shirt pays has horn tone buttons, welt collar and
+            cuffs, side vents, and locker patch. <strong>$11.98</strong></dd>
+        </dl>
+      </div>
+      <div class="company_item">
+        <h3 class="company_header">Special Offers</h3>
+        <dl>
+          <dt>
+            <a href="#">Long Sleeve Twill Shirt</a>
+          </dt>
+          <dd>This classic 100% cotton, twill long sleeve shirt has a patch pocket and a button-down
+            collar. <strong>$15.98</strong></dd>
+          <dt>
+            <a href="#">Short Sleeve Denim Shirt</a>
+          </dt>
+          <dd>This classic cotton, 6.5-ounce stonewashed denim shirt is perfect for a corporate or
+            casual situation. <strong>$15.98</strong></dd>
+        </dl>
+      </div>
+    </div>
+    <!-- 
+            The common material for the page footer
+        -->
+    <urid:fetch href="jivefooter.xdinc"/>
+  </body>
+</html>

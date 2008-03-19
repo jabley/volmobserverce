@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget">
+
+<head>
+  <title>Map Location Markers Widget</title>
+</head>
+
+<body>
+  <widget:map-location-markers id="noga1">
+    <widget:map-location-marker 
+      id="loc_1" 
+      longitude="20.32" 
+      latitude="49.73" 
+      src="/volantis/projects/client/assets/update-status-failed.gif" 
+      min-zoom="2" 
+      max-zoom="15"/>
+
+    <widget:map-location-marker 
+      id="loc_2" 
+      longitude="22" 
+      latitude="52" 
+      src="/volantis/projects/client/assets/update-status-failed.gif" 
+      min-zoom="2" 
+      max-zoom="15"/>
+      
+    <widget:map-location-marker 
+      id="loc_3" 
+      longitude="20.42" 
+      latitude="49.62" 
+      src="/volantis/projects/client/assets/update-status-suspended.gif" 
+      min-zoom="2" 
+      max-zoom="15"/>
+  </widget:map-location-markers>
+</body>
+</html>

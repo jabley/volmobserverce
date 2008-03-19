@@ -1,0 +1,108 @@
+<?xml version="1.0" standalone="no"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!DOCTYPE script SYSTEM "script.dtd">
+
+<script title="Reset supported attributes set and re-select with data">
+
+<detailsGetters name="topA"
+  expected="Restore to original set">
+  <attributeNames n1="top2" n2="top1">
+  </attributeNames>
+</detailsGetters>
+
+<detailsGetters name="middleA"
+  expected="Restore to original set">
+  <attributeNames n1="middle1" n2="middle2">
+  </attributeNames>
+</detailsGetters>
+
+<detailsGetters name="bottomA"
+  expected="Restore to original set">
+  <attributeNames n1="bottom2" n2="bottom1">
+  </attributeNames>
+</detailsGetters>
+
+<applySelection
+  expected="Selection with supp/unsupp attributes">
+  <topA top3="notSupported" top2="supported">
+    <middleA middle1="supported" middle3="notSupported">
+      <bottomA bottom6="notSupported" bottom2="supported">
+      </bottomA>
+    </middleA>
+  </topA>
+</applySelection>
+
+<checkProxieds name="topA" recurse="n"
+  expected="as selection">
+  <topA top3="notSupported" top2="supported">
+  </topA>
+</checkProxieds>
+
+<checkProxy name="topA" recurse="n"
+  expected="one empty, one non-empty">
+  <topA top2="supported" top1="">
+  </topA>
+</checkProxy>
+
+<checkProxieds name="middleA" recurse="n"
+  expected="as selection">
+  <middleA middle1="supported" middle3="notSupported">
+  </middleA>
+</checkProxieds>
+
+<checkProxy name="middleA" recurse="n"
+  expected="one empty, one non-empty">
+  <middleA middle2="" middle1="supported">
+  </middleA>
+</checkProxy>
+
+<checkProxieds name="bottomA" recurse="n"
+  expected="as selection">
+  <bottomA bottom6="notSupported" bottom2="supported">
+  </bottomA>
+</checkProxieds>
+
+<checkProxy name="bottomA" recurse="n"
+  expected="one empty, one non-empty">
+  <bottomA bottom1="" bottom2="supported">
+  </bottomA>
+</checkProxy>
+
+
+<!-- End script -->
+</script>
+
+
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6416/1	ianw	VBM:2004120703 New Build
+
+ 18-Dec-03	2137/4	richardc	VBM:2003120402 Extra tests for event non-generation
+
+ 17-Dec-03	2137/2	richardc	VBM:2003120402 Version for initial review (code and test harness)
+
+ ===========================================================================
+-->

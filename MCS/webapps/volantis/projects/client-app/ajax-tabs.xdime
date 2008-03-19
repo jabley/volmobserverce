@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget" >
+
+<head>
+  <title>Tabs Widget</title>
+  <link rel="mcs:theme" href="/themes/main.mthm"/>
+  <link rel="mcs:layout" href="/layouts/main.mlyt"/>
+  <style type="text/css" media="handheld,all">
+    #myTabs{
+      width: 20%;
+    }
+    #firstTab{
+      height: 50px;
+      background-color: #fff;
+      border: 2px solid #000000;
+    }
+    #firstTab::mcs-label{
+      content: 'Tabs';
+      font-family: sans-serif;
+      font-size: 10pt;
+      padding: 5px;
+      text-align: center;
+      background-color: #fff;
+      border-bottom: 2px solid #000000;
+    }
+    #firstTab::mcs-label:active{
+      font-weight: bold;
+      border-top: 2px solid #000000;
+      border-right: 2px solid #000000;
+      border-left: 2px solid #000000;
+    }
+    #secondTab{
+      height: 50px;
+      background-color: #fff;
+      border: 2px solid #000000;
+    }
+    #secondTab::mcs-label{
+      content: 'No AJAX';
+      font-family: sans-serif;
+      font-size: 10pt;
+      padding: 5px;
+      background-color: #fff;
+      border-bottom: 2px solid #000000;
+    }
+    #secondTab::mcs-label:active{
+      font-weight: bold;
+      border-top: 2px solid #000000;
+      border-right: 2px solid #000000;
+      background-color: #fff;
+      border-left: 2px solid #000000;
+    } 
+    #thirdTab{
+      height: 50px;
+      background-color: #fff;
+      border: 2px solid #000000;
+    }
+    #thirdTab::mcs-label{
+      content: 'AJAX';
+      font-family: sans-serif;
+      font-size: 10pt;
+      padding: 5px;
+      background-color: #fff;
+      border-bottom: 2px solid #000000;
+    }
+    #thirdTab::mcs-label:active{
+      font-weight: bold;
+      background-color: #fff;
+      border-top: 2px solid #000000;
+      border-right: 2px solid #000000;
+      border-left: 2px solid #000000;
+    } 
+  </style>
+</head>
+
+<body>
+  <template:apply href="templates/demo-main.xdtpl">
+    <template:binding name="title" value="Tabs"/>
+    <template:binding name="content">
+      <template:complexValue>
+
+        <widget:tabs style="color: #000; padding: 10px;">
+
+            <widget:tab id="firstTab">
+              <p> The <strong>Tabs Widget</strong> enables a "page" or an area of a page to contain multiple views which are selected using a tab-style strip across the top of the page or page area.</p>
+            </widget:tab>
+
+            <widget:tab id="secondTab">
+                <p>Some content not updated by Ajax</p>
+            </widget:tab>
+
+            <widget:tab id="thirdTab" >
+              <widget:load src="ajax-tab-response.xdime"/>
+                <p>This content will be changed by content downloaded by AJAX request</p>
+            </widget:tab>
+
+        </widget:tabs>
+
+      </template:complexValue>
+    </template:binding>
+  </template:apply>
+</body>
+</html>

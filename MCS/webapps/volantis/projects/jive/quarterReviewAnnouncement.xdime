@@ -1,0 +1,67 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<html xmlns="http://www.w3.org/2002/06/xhtml2" xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+    xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+    xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+    xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+    xmlns:sel="http://www.w3.org/2004/06/diselect">
+    <head>
+        <title>Quarter Review</title>
+        <!--
+            Links to the layout and theme for this page
+        -->
+        <link rel="mcs:layout" href="/jivearticle.mlyt"/>
+        <link rel="mcs:theme" href="/jive.mthm"/>
+    </head>
+    <!-- 
+        Page body
+    -->
+    <body>
+        <!-- 
+            The common material for the page header
+        -->
+        <urid:fetch href="jiveheader.xdinc"/>
+        <!-- 
+            Page Title 
+        -->
+        <h2 id="title">The Quarter in Review</h2>
+        <!-- 
+            The article 
+        -->
+        <div id="article">
+            <h3>Review of the Quarter: A note from our CEO</h3>
+            <p> We have
+                seen great success so far this year, as our sales are increasing and we continue to
+                diversify our product lines. So many have repeatedly gone above and beyond the call
+                of duty to ensure success of our company. I would like to thank everyone for playing
+                a pivotal role in the success of this great organization. Jive is a place where
+                everyone has a voice. So I encourage everyone to continue to take initiative and
+                express your ideas. We have a very exciting year ahead of us. </p>
+            <p> Sales for the quarter exceeded all expectations. Although our new line
+                of retractable tennis shoe laces did not prove to be as profitable as imagined, our
+                new ThermalWear soccer apparel range and existing lines of both soccer and basketball
+                shoes have lifted our revenues higher than expected. </p>
+            <p>Well done everyone. Our success at Jive Sports depends entirely on the quality of our employees. 
+                You have done a fantastic job. Keep up the good work.</p>
+        </div>
+        <!-- 
+            The common material for the page footer
+        -->
+        <urid:fetch href="jivefooter.xdinc"/>
+    </body>
+</html>

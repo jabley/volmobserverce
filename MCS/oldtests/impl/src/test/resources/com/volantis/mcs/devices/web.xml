@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ ! (c) Volantis Systems Ltd 2005. 
+ ! ======================================================================= -->
+
+<web-app>
+    <!-- _iid: location:/web-app/display-name -->
+    <!-- _fid: location:/web-app/mcs-display-name -->
+    <display-name>MCS</display-name>
+
+    <description>
+        This is the Multi-Channel Server web application deployment descriptor.
+    </description>
+    <!-- _fid: location:/web-app/mcs-display-name -->
+
+    <context-param>
+      <param-name>config.file</param-name>
+      <param-value>/tmp/mcs-config.xml</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>MCSFilter</filter-name>
+        <filter-class>com.volantis.mcs.servlet.MCSFilter</filter-class>
+    </filter>
+
+    <!-- _iid: location:/web-app/filter -->
+
+    <filter-mapping>
+        <filter-name>MCSFilter</filter-name>
+        <url-pattern>*.xdime</url-pattern>
+    </filter-mapping>
+
+    <!-- _iid: location:/web-app/filter-mapping -->
+
+    <servlet>
+      <servlet-name>MarinerFFP</servlet-name>
+      <servlet-class>com.volantis.mcs.servlet.FormFragmentationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+      <servlet-name>MCSCSS</servlet-name>
+      <servlet-class>com.volantis.mcs.servlet.CSSServlet</servlet-class>
+    </servlet>
+
+    <!-- _iid: location:/web-app/servlet -->
+
+    <servlet-mapping>
+      <servlet-name>MarinerFFP</servlet-name>
+      <url-pattern>/MarinerFFP</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+      <servlet-name>MCSCSS</servlet-name>
+      <url-pattern>/MCSCSS/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- _iid: location:/web-app/servlet-mapping -->
+
+    <mime-mapping>
+        <extension>
+            txt
+        </extension>
+        <mime-type>
+            text/plain
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            html
+        </extension>
+        <mime-type>
+            text/html
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            htm
+        </extension>
+        <mime-type>
+            text/html
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            gif
+        </extension>
+        <mime-type>
+            image/gif
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            jpg
+        </extension>
+        <mime-type>
+            image/jpeg
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            jpe
+        </extension>
+        <mime-type>
+            image/jpeg
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            jpeg
+        </extension>
+        <mime-type>
+            image/jpeg
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            png
+        </extension>
+        <mime-type>
+            image/png
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+      <extension>
+        bmp
+      </extension>
+      <mime-type>
+        image/bmp
+      </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            wbmp
+        </extension>
+        <mime-type>
+            image/vnd.wap.wbmp
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            ief
+        </extension>
+        <mime-type>
+            image/ief
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            tiff
+        </extension>
+        <mime-type>
+            image/tiff
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            tif
+        </extension>
+        <mime-type>
+            image/tiff
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            ras
+        </extension>
+        <mime-type>
+            image/x-cmu-raster
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            pnm
+        </extension>
+        <mime-type>
+            image/x-portable-anymap
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            pbm
+        </extension>
+        <mime-type>
+            image/x-portable-bitmap
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            pgm
+        </extension>
+        <mime-type>
+            image/x-portable-graymap
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            ppm
+        </extension>
+        <mime-type>
+            image/x-portable-pixmap
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            rgb
+        </extension>
+        <mime-type>
+            image/x-rgb
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            xbm
+        </extension>
+        <mime-type>
+            image/x-xbitmap
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            xpm
+        </extension>
+        <mime-type>
+            image/x-xpixmap
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            xwd
+        </extension>
+        <mime-type>
+            image/x-xwindowdump
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            726
+        </extension>
+        <mime-type>
+            audio/kadpcm32
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            amr
+        </extension>
+        <mime-type>
+            audio/amr
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            au
+        </extension>
+        <mime-type>
+            audio/basic
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            snd
+        </extension>
+        <mime-type>
+            audio/basic
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            aif
+        </extension>
+        <mime-type>
+            audio/x-aiff
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            aiff
+        </extension>
+        <mime-type>
+            audio/x-aiff
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            aifc
+        </extension>
+        <mime-type>
+            audio/x-aiff
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            gsm
+        </extension>
+        <mime-type>
+            audio/gsm
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            mid
+        </extension>
+        <mime-type>
+            audio/sp-midi
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            mp3
+        </extension>
+        <mime-type>
+            audio/mp3
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            rmf
+        </extension>
+        <mime-type>
+            audio/x-rmf
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            imy
+        </extension>
+        <mime-type>
+            audio/imelody
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            rng
+        </extension>
+        <mime-type>
+            application/vnd.nokia.ringing-tone
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            ra
+        </extension>
+        <mime-type>
+            audio/x-realaudio
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            rmm
+        </extension>
+        <mime-type>
+            audio/x-realaudio
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            ram
+        </extension>
+        <mime-type>
+            audio/x-pn-realaudio
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            rm
+        </extension>
+        <mime-type>
+            audio/x-pn-realaudio
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            mmf
+        </extension>
+        <mime-type>
+            application/vnd.smaf
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            wav
+        </extension>
+        <mime-type>
+            audio/x-wav
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            mpeg
+        </extension>
+        <mime-type>
+            video/mpeg
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            mpg
+        </extension>
+        <mime-type>
+            video/mpeg
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            mpe
+        </extension>
+        <mime-type>
+            video/mpeg
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            qt
+        </extension>
+        <mime-type>
+            video/quicktime
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            mov
+        </extension>
+        <mime-type>
+            video/quicktime
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            avi
+        </extension>
+        <mime-type>
+            video/x-msvideo
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            movie
+        </extension>
+        <mime-type>
+            video/x-sgi-movie
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            avx
+        </extension>
+        <mime-type>
+            video/x-rad-screenplay
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            wrl
+        </extension>
+        <mime-type>
+            x-world/x-vrml
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            mpv2
+        </extension>
+        <mime-type>
+            video/mpeg2
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            cept
+        </extension>
+        <mime-type>
+            image/vnd.videotex
+        </mime-type>
+    </mime-mapping>
+
+
+    <mime-mapping>
+        <extension>
+            vtx
+        </extension>
+        <mime-type>
+            image/vnd.videotex
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            wml
+        </extension>
+        <mime-type>
+            text/vnd.wap.wml
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            js
+        </extension>
+        <mime-type>
+            text/javascript
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            xdime
+        </extension>
+        <mime-type>
+            x-application/vnd.xdime+xml
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            xdinc
+        </extension>
+        <mime-type>
+            x-application/vnd.xdime+xml;use=include
+        </mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>
+            xdtpl
+        </extension>
+        <mime-type>
+            x-application/vnd.xdime+xml;use=template
+        </mime-type>
+    </mime-mapping>
+
+    <welcome-file-list>
+	<welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>welcome.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- _iid: location:/web-app/taglibs -->
+    <!-- _fid: location:/web-app/taglibs -->
+    <taglib>
+      <taglib-uri>/WEB-INF/taglibs/volantis-mcs.tld</taglib-uri>
+      <!--
+        NOTE: Tomcat 4.1 expects taglib-location to start with a "/"
+        Other older servers may not work with this; the definiton is split
+        across the Servlet and JSP specs, and is not at all clear.
+      -->
+      <taglib-location>/WEB-INF/taglibs/volantis-mcs.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/taglibs/volantis-mcs-integration.tld</taglib-uri>
+        <taglib-location>/WEB-INF/taglibs/volantis-mcs-integration.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+      <taglib-uri>/WEB-INF/taglibs/volantis-pipeline.tld</taglib-uri>
+      <taglib-location>/WEB-INF/taglibs/volantis-pipeline.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+      <taglib-uri>/WEB-INF/taglibs/volantis-template.tld</taglib-uri>
+      <taglib-location>/WEB-INF/taglibs/volantis-template.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/taglibs/volantis-urid.tld</taglib-uri>
+        <taglib-location>/WEB-INF/taglibs/volantis-urid.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/taglibs/volantis-wsd.tld</taglib-uri>
+        <taglib-location>/WEB-INF/taglibs/volantis-wsd.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/taglibs/volantis-sqld.tld</taglib-uri>
+        <taglib-location>/WEB-INF/taglibs/volantis-sqld.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+        <taglib-uri>/WEB-INF/taglibs/volantis-servlet.tld</taglib-uri>
+        <taglib-location>/WEB-INF/taglibs/volantis-servlet.tld</taglib-location>
+    </taglib>
+
+    <taglib>
+      <taglib-uri>/WEB-INF/taglibs/volantis-conditioners.tld</taglib-uri>
+      <taglib-location>/WEB-INF/taglibs/volantis-conditioners.tld</taglib-location>
+    </taglib>
+    <!-- _fid: location:/web-app/taglibs -->
+</web-app>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 16-Nov-05	10333/1	geoff	VBM:2005110120 MCS35: WML not rendering mode and align in dissecting panes
+
+ 04-Aug-05	9151/1	pduffin	VBM:2005080205 Removing a lot of unnecessary styling code
+
+ 03-May-05	7963/1	pduffin	VBM:2005042906 Removed DDM components, e.g. ApplicationProperties, URLMappers, DDMProxy, etc
+
+ 13-Mar-05	6842/1	emma	VBM:2005020302 Make all file/resource references in config files relative to that file
+
+ ===========================================================================
+-->

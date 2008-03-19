@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><link href="../volantis.css" rel="stylesheet" type="text/css"/><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>device-relationships</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">device-relationships</h1><h2>Purpose</h2>
+         <p>Returns the relationships between a named device and its
+            immediate surrounding devices in the standard device
+            hierarchy.</p>
+         <p>The returned <span class="code">relationships</span> element
+            contains a <span class="code">fallback</span> with at most a
+            single <span class="code">device-name</span> element. The
+               <span class="code">children</span> may contain zero or more
+               <span class="code">device-name</span> elements. The
+               <span class="code">device-name</span> attribute on the
+               <span class="code">relationships</span> element contains the
+            device-name parameter value.</p>
+         <p>If there are no fallback or child devices, the associated
+            elements are empty.</p>
+      <h2>Method</h2><p><span class="code">GET</span></p><h2>Signature</h2><p><span class="code">/device/relationships/[device-name]</span></p><h2>Parameter</h2><table cellspacing="0" summary="The table contains the&#xA;            parameters of the function. It lists the name, the purpose&#xA;            or use, and the XML schema datatype."><tr><th class="firsthdr" scope="col">Name</th><th scope="col">Description</th><th scope="col">Type</th></tr><tr><th class="firstcell" scope="row">device-name</th><td><p>The name of the device</p></td><td>xs:string</td></tr></table><h2>Examples</h2>
+         <p>Input</p>
+         <pre class="code">/device/relationships/Nokia-9110i</pre>
+         <p>Returns</p>
+         <pre class="code">&lt;relationships
+   xmlns="http://www.volantis.com/xmlns/2006/01/device-ws"
+   device-name="Nokia-9110i"&gt;
+   &lt;fallback&gt;
+      &lt;device-name&gt;Nokia-Communicator&lt;/device-name&gt;
+   &lt;/fallback&gt;
+   &lt;children&gt;
+      &lt;device-name&gt;Nokia-9110i-WAP&lt;/device-name&gt;
+      &lt;device-name&gt;Nokia-9110i-WWW&lt;/device-name&gt;
+   &lt;/children&gt;
+&lt;/relationships&gt;</pre>
+        
+      
+         <p><span class="ri">Related topic</span><br/><a href="../dws/dws_rest_api.html">DWS API reference</a><br/><a href="../dws/dws_php_s1.html">example1.php</a><br/><a href="../dws/dws_ruby_s1.html">example1.rb</a></p>
+         
+      </body></html>

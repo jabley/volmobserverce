@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Using form fragments</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Using form fragments</h1>
+      <p>You can use form fragments to manage the display of forms
+         that are too large to present on devices with small screens.
+         MCS combines the results from each of the form fragments
+         before the entire form data is submitted.</p>
+      <p>You create form fragments by inserting fragments into the
+         content of a form (rows or columns).</p>
+      <div class="note"><strong>Note</strong>: Form fragments should only be used inside
+         forms and not inside other form fragments.</div>
+      <p><img src="../graphics/layout_form_fragment_outline.png" alt="Outline view of a form fragment layout" title="Outline view of a form fragment layout"/></p>
+      
+         <h2>Format attributes</h2>
+         <p>MCS automatically orders form fragments in the grid from
+            left to right, and from top to bottom. You use the
+            fragment format attributes to define the text, position
+            and style of the links to the previous and next fragments
+            in the sequence. You can also choose whether or not to
+            display a reset button on the fragment.</p>
+         <p><img src="../graphics/layout_form_fragment_attr.png" alt="Format attribute view of a form fragment layout" title="Format attribute view of a form fragment layout"/></p>
+         <div class="note"><strong>Note</strong>: You can override fragment link text values using <span class="code">xf:group</span>
+            element with a theme. See <em>Form fragments links in XDIME 2</em> for more
+            information.</div>
+      
+      
+         <h2>Form processing</h2>
+         <p>The simple processing sequence for this form example is:</p>
+         <ol>
+            <li>In response to the initial request MCS generates
+               fragment f0. This fragment includes navigation to
+               fragment f1, using the <span class="uicontrol">Link Text</span>
+               in the format attributes.</li>
+            <li>When the user clicks the link, the fragment data is
+               submitted to MCS</li>
+            <li>MCS saves this data, and then generates fragment f1
+               with next and previous links</li>
+            <li>MCS processes f1 and generates f2 in the same way</li>
+            <li>When the data from f2 is returned, MCS aggregates the
+               values and submits them to the URL defined in the
+                  <span class="code">action</span> on the <span class="code">xfform</span>
+               element.</li>
+         </ol>
+         <p> If the user navigates backward or resets the fragment
+            content, the next forward link action is saved again.</p>
+      
+      
+         <p><span class="ri">Related topic</span><br/><a class="link" target="" href="../wag/xdime_cp_formdata.html">Form instance data</a><br/><a class="link" target="" href="../layouts/layout_fragment_attr.html">Fragment attributes</a><br/><a class="link" target="" href="../wag/wag_xf_fragment.html">Form fragments links in XDIME 2</a><br/></p>
+      
+   </body></html>

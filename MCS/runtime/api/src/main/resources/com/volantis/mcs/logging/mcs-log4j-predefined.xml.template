@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ! ==========================================================================
+ | Default log4j configuration file for MCS.
+ ! ==========================================================================
+ -->
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="@mcs.log.conversionpattern@"/>
+        </layout>
+    </appender>
+
+    <!--
+     ! The list of categories corresponding to the top-level packages used
+     ! by MCS. These categories should be chosen so that they are unique
+     ! across products at runtime.
+     !-->
+    <category name="com.volantis.charset">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="com.volantis.jsp">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="com.volantis.mcs">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="com.volantis.mps">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="com.volantis.shared">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="com.volantis.styling">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="com.volantis.synergetics">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="com.volantis.wsif">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="com.volantis.xml">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="our">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+</log4j:configuration>

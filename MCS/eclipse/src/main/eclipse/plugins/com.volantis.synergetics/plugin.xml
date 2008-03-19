@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<?eclipse version="${build.version.eclipse}"?>
+<plugin
+   id="com.volantis.synergetics"
+   name="%pluginName"
+   version="${version.plugins.mcs}"
+   provider-name="%providerName">
+
+   <runtime>
+      <library name="synergetics.runtime-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.runtime-impl-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.cornerstone-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.cornerstone-impl-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.localization-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.metadata-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.metadata-impl-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.old-cache-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.old-cache-impl-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.net-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.net-impl-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.performance-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.performance-arm-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.reporting-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.reporting-impl-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.repository-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.repository-impl-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.xml-utils-api-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+      <library name="synergetics.xml-utils-impl-${build.version.mcs}.jar">
+          <export name="*"/>
+      </library>
+   </runtime>
+
+    <requires>
+        <import plugin="org.eclipse.core.runtime.compatibility"/>
+        <import plugin="org.jakarta.log4j" version="${version.plugins.log4j}"/>
+        <import plugin="org.jdom" version="${version.plugins.jdom}"/>
+        <import plugin="org.jibx" version="${version.plugins.jibx}"/>
+        <import plugin="javax.jdo" version="${version.plugins.jdo}"/>
+        <import plugin="com.volantis.xml.xerces" version="${version.plugins.xml}"/>
+    </requires>
+
+</plugin>

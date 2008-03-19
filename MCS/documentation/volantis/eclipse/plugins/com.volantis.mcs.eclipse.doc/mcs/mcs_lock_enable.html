@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><meta name="taskref" content="033"/><title>Enabling collaboration</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">Enabling collaboration</h1>
+      <p>You can configure a new MCS project on your machine to enable
+         you to collaborate with other users on editing components,
+         layouts and themes. In a project configured this way, MCS uses a
+         JDBC repository to refresh XML project files on local machines, and allows team members to hold locks on policy and variants attributes.</p>
+      <p>You specify a connection to a database repository, and
+         provide a display name that can be used to view your own
+         locks, and so that other users can contact you if they need
+         you to unlock a resource. MCS downloads the project policies,
+         and updates the policies at regular intervals.</p>
+      <p>You should contact your administrator for information on
+         database access, and for the conventions on display names.</p>
+      <div class="note"><strong>Note</strong>: The display name that identifies users must be
+         unique in order to sensibly identify locks on resources. MCS
+         associates this name with a specific project on a single
+         user's machine. It is not bound to any other system of user
+         naming.</div>
+      <ol>
+         <li>In the Project Settings page of the New Project wizard,
+            check the <span class="uicontrol">Enable collaborative
+            working</span> option to enable the remaining
+            controls. The <span class="uicontrol">Database project name</span>
+            contains the project name</li>
+         <li>Enter the required name of the policy repository
+               <span class="uicontrol">Database</span>
+         </li>
+         <li>Fill in the <span class="uicontrol">Host</span>,
+            <span class="uicontrol">Port</span>,
+            <span class="uicontrol">Username</span>, and
+            <span class="uicontrol">Password</span> for the database, based on
+            the information you received from the administrator</li>
+         <li>Enter an identifier in <span class="uicontrol">My display
+            name</span>. Usually this will be an e-mail or
+            instant messenger address that uniquely identifies you.</li>
+         <li>Click <span class="command">Finish</span>. MCS displays a dialog
+            while it copies the project files to the XML repository on
+            your machine. </li>
+      </ol>
+      <p>The new project icon appears in the Navigator pane. Any
+         existing project resources will be displayed in folders under
+         it.</p>
+      
+      
+         <h2>Changing project settings</h2>
+         <p>Once you have created a collaborative project there is no
+            way to change either the database, or the policy source directory.
+            You can change to another device repository using the
+            project Properties dialog, though it is advisable that
+            everyone collaborating on a project use the same device
+            policies. Other controls will be read only.</p>
+         <p>If you no longer want the policy files to be part of a
+            collaborative project, you must create a new project, and
+            either copy the XML policy folders to it, or export them
+            from the database.</p>
+            <div class="note"><strong>Note</strong>: You should not change the names of any project folders. If you do so it is possible that the policy files will not be recognized as part of the project.</div>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../mcs/mcs_project_create.html">Creating a project</a><br/><a href="../mcs/mcs_project_attr.html">Project attributes</a><br/><a href="../admin/mcs_import_export.html">Importing and exporting repositories</a></p>
+      
+   </body></html>

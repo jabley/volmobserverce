@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><link href="../volantis.css" rel="stylesheet" type="text/css"/><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Menu properties</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Menu properties</h1><h2>Purpose</h2>
+         <p>Specifies the style, order, orientation, and use of text an images of menus and menuitems.</p>
+         <p class="note"><strong>Note</strong>: The Menu Item Iterator Allocation property
+            is not supported for the deprecated row and column
+            iterator formats.</p>
+      <table cellspacing="0" summary="The table contains the tab&#xA;            attributes. It lists the label, the purpose or use and any&#xA;            selection options."><tr><th class="firsthdr" scope="col">Control</th><th scope="col">Description</th><th scope="col">Options</th></tr><tr><th class="firstcell" scope="row">DTMF Allocation</th><td><p>How MCS assigns DTMF access keys to
+                  menuitems. Automatic overrides any specified key;
+                  manual allows its use.</p></td><td>automatic, manual </td></tr><tr><th class="firstcell" scope="row">Scope</th><td><p>Whether menu content applies for the
+                  duration of this menu or during processing of the
+                  whole page. If this is the root page the menu
+                  applies the whole session.</p></td><td>dialog, document </td></tr><tr><th class="firstcell" scope="row">Style</th><td><p>The style of the menu</p></td><td>static, dynamic </td></tr><tr><th class="firstcell" scope="row">Link Style</th><td><p>Specifies 
+        the style of menu to use. If the value is set to numeric-shortcut, MCS 
+        renders the menu with numeric identifiers for each menuitem. If the device 
+        does not support this feature. Otherwise the default style for the device 
+        applies.</p></td><td>default, numeric-shortcut </td></tr><tr><th class="firstcell" scope="row">Image Style</th><td><p>How images are used in menuitems</p></td><td>none, plain, rollover </td></tr><tr><th class="firstcell" scope="row">Text Style</th><td><p>How text is used in menuitems</p></td><td>none, plain </td></tr><tr><th class="firstcell" scope="row">Orientation</th><td><p>Orientation of menuitems and shard links.
+                  Horizontal allows optional separators between items.</p></td><td>vertical, horizontal </td></tr><tr><th class="firstcell" scope="row">Menu Item Iterator Allocation</th><td><p>How the menuitems will be bound to
+                  instances of a pane in a spatial iterator. Automatic
+                  writes a menuitem to each instance of pane; none
+                  writes only to the first instance of the pane.</p></td><td>automatic, none </td></tr><tr><th class="firstcell" scope="row">Menu Item Order</th><td><p>Order in which image and text menuitems
+                  are used when both are present</p></td><td>image-first, text-first </td></tr><tr><th class="firstcell" scope="row">Menu Item Orientation</th><td><p>Orientation of the contents of a menuitem
+                  when more than one item is present. Some
+                  combinations of menu orientation and this property
+                  may not be supported on every protocol.</p></td><td>horizontal, vertical </td></tr><tr><th class="firstcell" scope="row">Menu Item Active Area</th><td><p>Whether image, text or both are active
+                  when both are present. Only one image style and one
+                  text style can be shown in a single menuitem.</p></td><td>text-only, image-only, both </td></tr><tr><th class="firstcell" scope="row">Menu Item Shortcut Active</th><td><p>Whether or not shortcuts are active for
+                  the menuitems in a menu</p></td><td>active, inactive </td></tr></table>
+         <p><span class="ri">Related topics</span><br/><a href="../themes/theme_style_categories.html">Style property categories</a><br/><a href="../wag/wag_menu_style.html">Styling menus</a></p>
+      </body></html>

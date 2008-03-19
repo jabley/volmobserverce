@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><link href="../volantis.css" rel="stylesheet" type="text/css"/><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>category-names</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">category-names</h1><h2>Purpose</h2>
+         <p>Lists the names of the device policy categories.</p>
+         <p>If the repository contains no categories, a document with
+            an empty <span class="code">category-names</span> element is
+            returned.</p>
+      <h2>Method</h2><p><span class="code">GET</span></p><h2>Signature</h2><p><span class="code">/category/names</span></p><h2>Examples</h2>
+         <p>Input</p>
+         <pre class="code">/category/names</pre>
+         <p>Returns</p>
+         <pre class="code">&lt;category-names
+   xmlns="http://www.volantis.com/xmlns/2006/01/device-ws"&gt;
+   &lt;category-name&gt;protocol&lt;/category-name&gt;
+   &lt;category-name&gt;dynvis&lt;/category-name&gt;
+   &lt;category-name&gt;input&lt;/category-name&gt;
+   &lt;category-name&gt;output&lt;/category-name&gt;
+   &lt;category-name&gt;rules&lt;/category-name&gt;
+   &lt;category-name&gt;message&lt;/category-name&gt;
+&lt;/category-names&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../dws/dws_rest_api.html">DWS API reference</a></p>
+      </body></html>

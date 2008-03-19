@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>webd:content</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>webd:content</h1><h2>Purpose</h2>
+         <p>Used to handle different types of content resulting from a
+         request.</p>
+      <h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">action</th><td>Specifies whether or not the data returned from the
+               request is processed by the pipeline.</td><td>xs:string</td><td> </td><td>consume, ignore </td><td>required </td></tr><tr><th class="firstcellrequired" scope="row">type</th><td>The content type, such as text/html or image/gif. This
+               should allow the same content specification defined in the HTTP
+               Accept header.</td><td>xs:string</td><td>none </td><td> </td><td>required </td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;webd:content
+   type="image/gif"
+   action="ignore"/&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/webd_er.html">Web driver elements</a></p>
+      </body></html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8" /><title>Application server issues</title><link rel="stylesheet" href="../volantis.css" /></head><body><h1>Application server issues</h1>
+      
+         <p>The following points detail specific integration issues
+            with individual application servers.</p>
+            
+         <h2>Tomcat 3.2</h2>
+         <p> Tomcat 3.2 on Windows 2000 running Sun JDK 1.3 will
+            randomly fail to create pages with the following error
+            being reported:</p>
+         
+            <pre class="code">java.lang.OutOfMemoryErroranonymous-data-sourceanonymous-data-source
+               &lt;&lt;no stack trace
+               available&gt;&gt;</pre>
+         
+         <p>You will notice that the size of the JVM (java.exe) for
+            tomcat is large ( &gt;70MB is possible).</p>
+         <p>This is a tomcat/JDK compatibility issue, and is a known
+            and reported problem. Please review the following for
+            further information:</p>
+         
+            <pre class="code">http://w4.metronet.com/~wjm/
+               tomcat/2000/Dec/msg00346.html</pre>
+         
+      
+      
+         <h2>Tomcat 3.x and WebSphere 4 and Portals</h2>
+         <p>Neither Tomcat 3.x nor WebSphere 4 support jsp:include
+            fully. This means that they cannot be used for Portals
+            with MCS.</p>
+         <p>For Tomcat, Tomcat 4.0 is required for portal
+         inclusions.</p>
+      
+      
+         <h2>Tomcat Reported Problem</h2>
+         <p>A problem has been found with Tomcat which has been
+            reported to Apache and can be found under the following
+            reference.</p>
+         
+            <pre class="code">http://nagoya.apache.org/bugzilla/show_bug.cgi?id=4542</pre>
+         
+         <p>This is not a serious problem as it only arises when a
+            problem has already occurred. It can be worked around by
+            ensuring that any included page does not have an error
+            page.</p>
+      
+       
+         <p><span class="ri">Related topics</span><br /><a href="../release/mcs33_release.html">MCS 3.3 release notes</a></p>
+      
+   </body></html>

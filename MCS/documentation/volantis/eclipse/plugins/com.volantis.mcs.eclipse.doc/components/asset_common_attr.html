@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+<meta name="taskref" content="024"/>
+<title>Common variant attributes</title>
+<link rel="stylesheet" href="../volantis.css"/>
+</head>
+<body>
+<h1>Common variant attributes</h1>
+<h2>Purpose</h2>
+<p>This topic provides information on the common attributes of all kinds of variant 
+  in Variant Selection Criteria and Variant Content sections of component editors.</p>
+<p>For details of additional attributes of each variant type, refer to <em>Related 
+  topics</em>.</p>
+<table cellspacing="0">
+  <tr>
+    <th class="firsthdr" scope="col">Control</th>
+    <th scope="col">Description</th>
+    <th scope="col">Options</th>
+  </tr>
+  <tr>
+    <th class="firstcell" scope="row">Criteria</th>
+    <td><p>Type of selection. If you select 'Targeted' the <span class="uicontrol">Targets</span> 
+        list is enabled.</p></td>
+    <td>Default, Generic, Targeted </td>
+  </tr>
+  <tr>
+    <th class="firstcell" scope="row">Targets</th>
+    <td><p>The name of the targeted device or devices. Required if <span class="uicontrol">Criteria</span> 
+        is 'Targeted'. <span class="command">Browse</span> opens the Target Selection 
+        dialog. You can select items in the list, and right click to use edit 
+        commands in the context menu.</p></td>
+    <td>  </td>
+  </tr>
+  <tr>
+    <th class="firstcell" scope="row">Null variant</th>
+    <td><p>If you set this control MCS behaves as if no policy could be found 
+        for the current device. Any values in the Variant Metadata section will 
+        be cleared and the controls will be disabled.</p></td>
+    <td>  </td>
+  </tr>
+  <tr>
+    <th class="firstcell" scope="row">Base location</th>
+    <td><p>Specifies whether the variant is located on a server or on the device. 
+        If you set the location to 'Default' MCS will use the settings for the 
+        associated asset group</p></td>
+    <td>Server, Device, Default </td>
+  </tr>
+  <tr>
+    <th class="firstcell" scope="row">URL</th>
+    <td><p>URL fragment for the variant filepath. Required for all variants.
+    
+    <p>If it is a filename or a root path, MCS treats it as relative to the 
+        <span class="uicontrol">Base URL</span> value set in the referenced <span class="uicontrol">Asset 
+        group</span>. Alternatively, you can specify an absolute URL. If you specify 
+        a relative URL, MCS creates an absolute URL based on the name of the server 
+        that received the request. </p></p>
+    </td>
+    <td>  </td>
+  </tr>
+  <tr>
+    <th class="firstcell" scope="row">Asset group</th>
+    <td><p>The name of the asset group. Prepends the asset group <span class="uicontrol">Base 
+        URL</span> to the variant <span class="uicontrol">URL</span>.</p></td>
+    <td>  </td>
+  </tr>
+</table>
+<p><span class="ri">Related topics</span><br/>
+  <a href="../components/asset_add.html">Adding a variant</a><br/>
+  <a href="../components/asset_selection_criteria.html">Variant selection criteria</a><br/>
+  <a href="../components/asset_audio_attr.html">Audio attributes</a><br/>
+  <a href="../components/asset_chart_attr.html">Chart attributes</a><br/>
+  <!--<a href="../components/asset_dynvis_attr.html">Dynamic visual attributes</a><br/>-->
+  <a href="../components/asset_image_attr.html">Image attributes</a><br/>
+ 
+  <a href="../components/asset_script_attr.html">Script attributes</a><br/>
+  <a href="../components/asset_text_attr.html">Text attributes</a></p>
+</body>
+</html>

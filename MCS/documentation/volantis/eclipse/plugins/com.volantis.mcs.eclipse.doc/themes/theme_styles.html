@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <title>Style rules</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Style rules</h1>
+      
+      <p>You use the New Style Rule wizard in the Theme editor to
+         manage style information. Each theme in MCS corresponds to a
+         Cascading Style Sheet (CSS). Each style rule is identified by
+         a selector, or a group of selectors, and has a set of
+         properties.</p>
+      
+         
+      <h2>Selectors</h2>
+         
+      <p>A selector refers to one or more XML elements in the
+            content of your web pages. So you might have a rule for
+            each level of heading, another for paragraphs, another for
+            tables, and so on. You can use multiple selectors to apply
+            a set of style properties to several elements. For
+            example, you could assign the Arial font family to all
+            your headings.</p>
+         
+      <p>In addition you can create more specific selectors for
+            classes of element, or elements with individual
+            identifiers, using the <span class="code">class</span> or
+            <span class="code">id</span> attributes on web pages. An example is
+            giving a paragraph a 'note' class that adds a colored
+            background and a border.</p>
+         
+      <p>The CSS specification also provides for pseudo-elements
+            and pseudo-classes like hyperlinks, with different states
+            for 'hover' and 'visited', and you can specify these along
+            with attribute selectors for the full range of XDIME
+            attributes.</p>
+         
+      <h2>Namespaces in selectors</h2>
+         
+      <p>You can qualify a selector with an XML namespace. This
+            approach is not needed in XDIME since no namespace
+            prefixes are used for presentation elements. But, suppose
+            that in XDIME-CP you wanted to distinguish the
+               <span class="code">label</span> in the XForms namespace from
+            the element with the same name in the default namespace.
+            To do so you would enter the <span class="code">xf</span> prefix
+            (without the following colon) in the
+            <span class="uicontrol">Namespace</span> control in the wizard,
+            resulting in a selector like this.</p>
+         
+      <pre class="code">xf|label {font-family: Helvetica;}</pre>
+      
+      
+      
+         
+      <h2>Combining selectors</h2>
+         
+      <p>You can group simple selectors by adding or appending them
+            to a group. When you append a selector, you can choose
+            between child, descendent, direct adjacent sibling or
+            indirect adjacent sibling.</p>
+         
+      <table cellspacing="0" summary="">
+         <thead>
+               
+            <tr scope="col">
+                  
+               <th class="firsthdr">Append as</th>
+                  
+               <th scope="col">Description</th>
+                  
+               <th scope="col">Example</th>
+               
+            </tr>
+            
+         </thead>
+         <tbody>
+            <tr>
+               <th class="firstcell" scope="row">Child</th>
+               <td>The <span class="code">a</span> element with the ID
+                     'myid' that is an immediate child of
+                        <span class="code">p.note</span>  </td>
+               <td>
+                     
+                  <span class="code">p.note &gt; a#myid {color: red;}</span>
+                    </td>
+            </tr>
+            <tr>
+               <th class="firstcell" scope="row">Descendent</th>
+               <td>All <span class="code">em</span> elements anywhwere
+                     inside a <span class="code">table</span>  </td>
+               <td>
+                     
+                  <span class="code">table em {font-weight: bold;}</span>
+                    </td>
+            </tr>
+            <tr>
+               <th class="firstcell" scope="row">Direct adjacent
+                     sibling</th>
+               <td>A <span class="code">p</span> element that immediately
+                     follows an <span class="code">h2</span> and if both
+                     elements share the same parent  </td>
+               <td>
+                     
+                  <span class="code">h2 + p {margin-top: 6px;}</span>
+                    </td>
+            </tr>
+            <tr>
+               <th class="firstcell" scope="row">Indirect adjacent
+                     sibling</th>
+               <td>A <span class="code">pre</span> element that follows an
+                        <span class="code">h3</span> but not necessarily
+                     immediately. Both elements share the same parent.  </td>
+               <td>
+                     
+                  <span class="code">h3.example ~ pre {font-size: 9pt;}</span>
+                    </td>
+            </tr>
+         </tbody>
+      </table>
+      
+      
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../themes/theme_editor.html">Theme editor</a>
+         <br/>
+         <a href="../themes/theme_selector_add.html">Adding a selector</a>
+         <br/>
+         <a href="../themes/theme_style_edit.html">Setting style properties</a>
+         <br/>
+         <a href="../themes/theme_style_categories.html">Style property categories</a>
+         <br/>
+         <a href="../themes/theme_attr_selector.html">Attribute selectors</a>
+         <br/>
+         <a href="../themes/theme_pseudo_class_selector.html">Pseudo-class selectors</a>
+         <br/>
+         <a href="../themes/theme_pseudo_element_selector.html">Pseudo-element selectors</a>
+      </p>
+      
+   
+   </body>
+</html>

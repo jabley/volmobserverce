@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<xs:schema targetNamespace="http://www.w3.org/2002/xforms" xmlns="http://www.w3.org/2002/xforms" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="xforms-common-base.xsd"/>
+    <xs:include schemaLocation="xforms-controls-base.xsd"/>
+    <xs:element name="group">
+        <xs:annotation>
+            <xs:documentation>Used to indicate how form controls should be displayed.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="label"/>
+                <xs:choice minOccurs="0">
+                    <xs:group ref="xf:FormControlsContentSet"/>
+                    <xs:element name="group"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attributeGroup ref="Common"/>
+            <xs:attributeGroup ref="SingleNodeUIBinding"/>
+            <xs:attributeGroup ref="UICommon"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

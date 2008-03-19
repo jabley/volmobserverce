@@ -1,0 +1,15 @@
+.testCaptionClass {
+  font-size: large;
+  font-weight: bold;
+  font-style: italic;
+}
+/*
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 25-Aug-05	9370/1	gkoch	VBM:2005070507 xform select option to store caption styles instead of caption (style) class
+
+ ===========================================================================
+*/

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>template:simpleValue</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>template:simpleValue</h1><h2>Purpose</h2>
+         <p>Defines a simple parameter value containing character data. See
+            <em>Using template parameters</em> for more information on the
+            possible values for the <span class="code">evaluationMode</span> attribute.</p>
+      <h2>Contained by</h2><p><a href="../xdime/template_binding.html">template:binding</a>, <a href="../xdime/template_parameter.html">template:parameter</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">evaluationMode</th><td>The method of evaluating the value.</td><td>xs:NCName</td><td>immediate </td><td>immediate, deferred, repeated </td><td>optional </td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;template:simpleValue&gt;
+   &lt;a href="%{$varName}"&gt;Link text here&lt;/a&gt;	
+&lt;/template:simpleValue&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/template_er.html">Template elements</a><br/><a href="../dci/dci_template_param.html">Using template parameters</a></p>
+      </body></html>

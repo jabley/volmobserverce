@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/2002/06/xhtml2">
+  <!-- The banner -->
+  <div id="logo">
+    <a class="homelogo" href="#">
+      <object class="homelogo" src="/images/jive_logo.mimg"/>
+    </a>
+  </div>
+  <div id="photos">
+    <object src="/images/photos.mimg"/>
+  </div>
+  <!-- The main menu -->
+  <div id="menu_company_news" class="main_menu">
+    <a class="pnav" href="#">
+      <object src="/images/menu_company_news.mimg"/>
+    </a>
+  </div>
+  <div id="menu_human_resources" class="main_menu">
+    <a class="pnav" href="#">
+      <object src="/images/menu_human_resources.mimg"/>
+    </a>
+  </div>
+  <div id="menu_employee_store" class="main_menu">
+    <a class="pnav" href="#">
+      <object src="/images/menu_employee_store.mimg"/>
+    </a>
+  </div>
+  <!-- The current stock price -->
+  <div id="stockprice"> Latest from NYSE for Jive (VBE): 21.50 (+ 2.25) </div>
+</div>

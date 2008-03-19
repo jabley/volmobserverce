@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Installing MCS">
+	<topic label="Required software" href="install/mcs_install_prereq.html"/>
+	
+	<topic label="Running the installer" href="install/mcs_install_config.html"/>
+	<topic label="Setting up the MCS runtime" href="install/mcs_setup_runtime.html"/>
+	<topic label="Setting up your web server" href="install/mcs_setup_webapp.html">
+		<topic label="Installing on Apache Tomcat" href="install/mcs_install_tomcat.html"/>
+		<topic label="Installing on IBM WebSphere" href="install/mcs_install_websphere.html"/>
+		<topic label="Installing on BEA WebLogic" href="install/mcs_install_weblogic.html"/>
+		<topic label="Installing on Caucho Resin" href="install/mcs_install_resin.html"/>
+	</topic>
+	<topic label="Completing the installation" href="install/mcs_install_complete.html"/>
+	<topic label="Verifying the installation" href="install/mcs_install_verify.html"/>
+</toc>

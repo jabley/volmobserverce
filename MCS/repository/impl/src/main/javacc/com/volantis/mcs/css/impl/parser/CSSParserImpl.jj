@@ -1,0 +1,1294 @@
+
+options {
+    IGNORE_CASE = false;
+    STATIC = false;
+}
+
+PARSER_BEGIN(CSSParserImpl)
+
+package com.volantis.mcs.css.impl.parser;
+
+import com.volantis.mcs.css.impl.parser.properties.PropertyParser;
+import com.volantis.mcs.css.parser.DiagnosticListener;
+import com.volantis.mcs.css.parser.ExtensionHandler;
+import com.volantis.mcs.model.validation.SourceLocation;
+import com.volantis.mcs.themes.AttributeSelector;
+import com.volantis.mcs.themes.AttributeSelectorActionEnum;
+import com.volantis.mcs.themes.ClassSelector;
+import com.volantis.mcs.themes.CombinatorEnum;
+import com.volantis.mcs.themes.CombinedSelector;
+import com.volantis.mcs.themes.ElementSelector;
+import com.volantis.mcs.themes.IdSelector;
+import com.volantis.mcs.themes.Priority;
+import com.volantis.mcs.themes.Selector;
+import com.volantis.mcs.themes.StyleSheetFactory;
+import com.volantis.mcs.themes.StyleValue;
+import com.volantis.mcs.themes.Subject;
+import com.volantis.mcs.themes.impl.DefaultInvalidSelector;
+import com.volantis.shared.io.CachingReader;
+
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ * Automatically generated parser for CSS.
+ */
+public class CSSParserImpl
+    extends BaseCSSParser {
+
+    /**
+     * A dummy reader that is only used to ensure that the parser is correctly
+     * initialised.
+     */
+    private static Reader DUMMY = new StringReader("");
+
+    private static final BitSet DECLARATIONS_TERMINATORS;
+    static {
+        BitSet terminators = new BitSet();
+        terminators.set(EOF);
+        terminators.set(SEMICOLON);
+        terminators.set(RIGHT_BRACE);
+        DECLARATIONS_TERMINATORS = terminators;
+    }
+
+    public CSSParserImpl(StyleSheetFactory factory,
+                         DiagnosticListener listener,
+                         ExtensionHandler extensionHandler) {
+        this(DUMMY);
+        initialise(factory, listener, extensionHandler);
+    }
+
+    // Javadoc inherited.
+    protected void doParseStyleSheet(Reader reader) {
+        if (reader == null) {
+            throw new IllegalArgumentException("No reader specified");
+        }
+
+        ReInit(reader);
+
+        try {
+            styleSheetUnit();
+        } catch (ParseException e) {
+            addParseExceptionDiagnostic(e);
+        } catch (TokenMgrError e) {
+            addTokenMgrErrorDiagnostic(e);
+        }
+
+    }
+
+    //Javadoc inherited.
+    protected void doParseInlineStyleSheet(String styleAttribute,
+                                           Selector inlineStyleSelector) {
+        if (styleAttribute == null) {
+            throw new IllegalArgumentException("No attribute value specified");
+        }
+
+        ReInit(new StringReader(styleAttribute));
+
+        try {
+            styleAttributeUnit(inlineStyleSelector);
+        } catch (ParseException e) {
+            addParseExceptionDiagnostic(e);
+        } catch (TokenMgrError e) {
+            addTokenMgrErrorDiagnostic(e);
+        }
+    }
+
+    // Javadoc inherited.
+    protected void doParseDeclarations(Reader reader) {
+        if (reader == null) {
+            throw new IllegalArgumentException("No reader specified");
+        }
+
+        ReInit(reader);
+
+        try {
+            declarationsUnit();
+        } catch (ParseException e) {
+            addParseExceptionDiagnostic(e);
+        } catch (TokenMgrError e) {
+            addTokenMgrErrorDiagnostic(e);
+        }
+    }
+
+    // Javadoc inherited.
+    protected List doParseSelectorGroup(Reader reader) {
+        if (reader == null) {
+            throw new IllegalArgumentException("No reader specified");
+        }
+        // Create a buffer that will let us read the content twice.
+        CachingReader cachingReader = new CachingReader(reader);
+
+        ReInit(cachingReader);
+
+        try {
+            return selectorGroupUnit();
+        } catch (ParseException e) {
+            addParseExceptionDiagnostic(e);
+        } catch (TokenMgrError e) {
+            addTokenMgrErrorDiagnostic(e);
+        }
+        String text = new String(cachingReader.toCharArray());
+        List list = new ArrayList();
+        list.add(new DefaultInvalidSelector(text));
+        return list;
+    }
+
+
+    // Javadoc inherited.
+    protected Selector doParseSelector(Reader reader) {
+        if (reader == null) {
+            throw new IllegalArgumentException("No reader specified");
+        }
+        // Create a buffer that will let us read the content twice.
+        CachingReader cachingReader = new CachingReader(reader);
+
+        ReInit(reader);
+
+        try {
+            return selectorUnit();
+        } catch (ParseException e) {
+            addParseExceptionDiagnostic(e);
+        } catch (TokenMgrError e) {
+            addTokenMgrErrorDiagnostic(e);
+        }
+        String text = new String(cachingReader.toCharArray());
+        return new DefaultInvalidSelector(text);
+    }
+
+    /**
+     * Check to see whether the specified token is the beginning of the subject
+     * part of a descendant selector.
+     */
+    private boolean isDescendantSelectorSubject(List selectors, Token token) {
+
+        // If the token has a special token before it and it just
+        // consists of a single white space and the selector list is not empty
+        // then it means that the parser has just seen a contextual selector
+        // sequence and the token is part of the next selector sequence.
+        //
+        // In this case create a contextual selector sequence and populate it
+        // from the list of selectors and return it. Otherwise return null.
+        Token special = token.specialToken;
+        return (!selectors.isEmpty() &&
+                special != null && " ".equals(special.image));
+    }
+
+    /**
+     * Process a simple selector.
+     *
+     * @param selectors The list of selectors that have been collected.
+     * @param token     The first token in the sequence that represents the
+     *                  simple selector sequence.
+     * @param combined  The current combined selector.
+     * @param simple    The simple selector that has just been created.
+     * @return The possibly new current combined selector.
+     */
+    private CombinedSelector processSimpleSelector(
+            List selectors, Token token, CombinedSelector combined,
+            Selector simple, boolean allowDescendantSelector) {
+
+        // Check to see whether this selector starts the subject sequence
+        // associated with a descendant selector. If it is then create a
+        // contextual sequence from the current list of selectors and use it
+        // as the context of a combined selector.
+        if (isDescendantSelectorSubject(selectors, token)) {
+            if (allowDescendantSelector) {
+                combined = createCombinedSelector(
+                        combined, CombinatorEnum.DESCENDANT,
+                        factory.createSelectorSequence(selectors));
+
+                // Clear the array of selectors.
+                selectors.clear();
+            } else {
+                throw new IllegalStateException("Descendant Selectors Invalid");
+            }
+        }
+
+        // Add the selector to the sequence.
+        selectors.add(simple);
+
+        return combined;
+    }
+
+    /**
+     * A temporary field to store the namespace as a result of splitting a
+     * possibly qualified string.
+     */
+    protected String prefix;
+
+    /**
+     * A temporary field to store the type as a result of splitting a
+     * possibly qualified string.
+     */
+    protected String type;
+
+    /**
+     * Split the specified possibly qualified identifier into a prefix and
+     * a type.
+     *
+     * <p>To save creating a new object this will set two fields in the object
+     * which can then be accessed directly by the code that invoked this.</p>
+     */
+    protected void splitQualified(String qualified) {
+        int bar = qualified.indexOf("|");
+        if (bar == -1) {
+            prefix = null;
+            type = qualified;
+        } else {
+            prefix = qualified.substring(0, bar);
+            type = qualified.substring(bar + 1);
+        }
+    }
+
+    private SourceLocation getLocation(Token token) {
+        return modelFactory.createSourceLocation(
+                sourceURL, token.beginLine, token.beginColumn);
+    }
+
+    private void addParseExceptionDiagnostic(ParseException e) {
+        addDiagnostic(getLocation(e.currentToken.next),
+                CSSParserMessages.SYNTAX_ERROR, e.getMessage());
+    }
+
+    private void addTokenMgrErrorDiagnostic(TokenMgrError e) {
+        addDiagnostic(null, CSSParserMessages.SYNTAX_ERROR, e.getMessage());
+    }
+
+    private Object getTokenDescription(String[] tokenTypes, Token token) {
+        String type = tokenTypes[token.kind];
+        if (type.startsWith("<")) {
+            return type.toLowerCase() + " \"" + token.image + "\"";
+        } else {
+            return type;
+        }
+    }
+
+    /**
+     * An invalid priority was found so throw an exception describing the
+     * problem.
+     *
+     * @param token The separator token before the priority.
+     * @throws ParseException Always thrown.
+     */
+    private void invalidExtensionPriority(Token token) throws ParseException {
+
+        Collection priorities = extensionHandler.getCustomPriorities();
+        Collection tokens;
+        if (priorities == null) {
+            tokens = Collections.singletonList("\"important\"");
+        } else {
+            tokens = new ArrayList();
+            tokens.add("\"important\"");
+            tokens.addAll(priorities);
+        }
+
+        throwParseException(token, tokens);
+    }
+
+
+    /**
+     * An invalid extension value was found so throw an exception describing
+     * the problem.
+     *
+     * @param token The separator token before the priority.
+     * @throws ParseException Always thrown.
+     */
+    private void invalidExtensionValue(Token token) throws ParseException {
+
+        Collection values = extensionHandler.getCustomValues();
+        Collection tokens;
+        if (values == null) {
+            tokens = Collections.singletonList("<VALUE>");
+        } else {
+            tokens = new ArrayList(values);
+            tokens.add("<VALUE>");
+        }
+
+        Token previous = new Token();
+        previous.next = token;
+
+        throwParseException(previous, tokens);
+    }
+
+    /**
+     * Create and throw a parse exception based on the supplied parameters.
+     *
+     * @param previous The token preceding the one in error.
+     * @param tokens   The collection of expected tokens.
+     * @throws ParseException The exception that was generated.
+     */
+    private void throwParseException(Token previous, Collection tokens)
+            throws ParseException {
+
+        int count = tokens.size();
+        int[][] expectedTokens = new int[count][];
+
+        // Create an array of token images, token 0 is always treated as EOF.
+        String[] tokenImages = new String[count + 1];
+        tokenImages[0] = "<EOF>";
+
+        int tokenKind = 1;
+        int expectedIndex = 0;
+        for (Iterator i = tokens.iterator(); i.hasNext();
+             tokenKind += 1, expectedIndex += 1) {
+
+            String image = (String) i.next();
+            expectedTokens[expectedIndex] = new int[]{tokenKind};
+            tokenImages[tokenKind] = image;
+        }
+
+        throw new ParseException(previous, expectedTokens, tokenImages);
+    }
+}
+
+PARSER_END(CSSParserImpl)
+
+/* ============================================================================
+ *          Comments
+ * ========================================================================== */
+
+<DEFAULT>
+MORE : /* Comments */
+{
+    < "/*" > {boolean inside = true;} : IN_COMMENT
+}
+
+<IN_COMMENT>
+SKIP :
+{
+    < "*/" > {boolean inside = false;} : DEFAULT
+}
+
+<IN_COMMENT>
+MORE :
+{
+    < ~[] > {inside = true;} : IN_COMMENT
+ }
+
+/* ============================================================================
+ *          Tokenizer
+ * ========================================================================== */
+
+<DEFAULT>
+SPECIAL_TOKEN :
+{
+    // Treat any amount of white space as a single space.
+    < S : ( [ " ", "\t", "\n", "\r", "\f" ] )+ >
+        { /*image = CssParser.SPACE;*/ }
+}
+
+<DEFAULT>
+TOKEN : /* basic tokens */
+{
+    < NONASCII    : ["\200"-"\377"] >
+  | < #HEX_DIGIT  : ["0"-"9", "a"-"f", "A"-"F"] >
+  | < #UNICODE    : "\\" (<HEX_DIGIT>){1,6}
+                    ( [ " ", "\t" , "\n" , "\r", "\f" ] )? >
+  | < #ESCAPE     : <UNICODE> | ( "\\" [ " "-"~","\200"-"\377" ] ) >
+  | < #NMSTART    : [ "a"-"z", "A"-"Z" ] | <NONASCII> | <ESCAPE> >
+  | < #NMCHAR	  : ["a"-"z", "A"-"Z", "0"-"9", "-", "_"] | <NONASCII> | <ESCAPE> >
+  | < #STRINGCHAR : [ "\t"," ","!","#","$","%","&","("-"~" ]
+                    | "\\\n" | "\\\r\n" | <NONASCII> | <ESCAPE> >
+  | < #DIGIT      : ["0"-"9"] >
+  | < #NAME       : ( <NMCHAR> )+ >
+}
+
+<DEFAULT>
+TOKEN :
+{
+    < IDENTIFIER  : ("-")? <NMSTART> ( <NMCHAR> )* > {
+        matchedToken.image = BaseCSSParser.cssIdentifierToJavaString(
+            matchedToken.image);
+    }
+  | < QUALIFIED_ID
+                  : ((<IDENTIFIER> | "*")? "|" <IDENTIFIER>) >
+  | < WILDCARD    : "*" >
+  | < QUALIFIED_WILDCARD
+                  : ((<IDENTIFIER> | "*")? "|" "*") >
+  | < URL_FUNCTION: ("url(" | "mcs-component-url(") > : IN_URL_FUNCTION
+  | < FUNCTION    : <IDENTIFIER> "(" >
+
+  | < #UNSIGNED	  : ( <DIGIT> )+ | ( <DIGIT> )* "." ( <DIGIT> )+ >
+  | < NUMBER	  : ("+" | "-")? <UNSIGNED> >
+
+  | < #UNSIGNED_INT
+                  : ( <DIGIT> )+ >
+  | < INT         : ("+" | "-")? <UNSIGNED_INT> >
+
+  | < NTH_CHILD_ARG :   ((("+"|"-")? (<UNSIGNED_INT>)? "n") |
+                        ( ("+"|"-")? (<UNSIGNED_INT>)? "n" ("+"|"-") <UNSIGNED_INT>)) >
+
+  | < DIMENSION   : <NUMBER> <IDENTIFIER> >
+  | < PERCENTAGE  : <NUMBER> "%" >
+  | < COLOR_TRIPLE
+                  : "#" (<HEX_DIGIT>){3} >
+  | < COLOR_HEX   : "#" (<HEX_DIGIT>){6} >
+
+  | < SEMICOLON   : ";" >
+  | < COLON       : ":" >
+  | < LEFT_BRACE  : "{" >
+  | < RIGHT_BRACE : "}" >
+  | < PRIORITY_SEPARATOR : "!" >
+
+  // A special token used for extensions to the syntax of values.
+  | < EXTENSION_VALUE   : "<" (~[ " ", "\t", "\n", "\r", "\f", ">" ])+ ">" >
+}
+
+<IN_URL_FUNCTION>
+TOKEN :
+{
+    < URL     : ( [ "!","#","$","%","&","*"-"~" ] | <NONASCII> | <ESCAPE> )+ >
+}
+
+<IN_URL_FUNCTION,DEFAULT>
+TOKEN :
+{
+    < STRING      : ( "\"" ( <STRINGCHAR> | "'" )* "\"" ) |
+                    ( "'" ( <STRINGCHAR> | "\"" )* "'" ) > {
+
+        matchedToken.image = BaseCSSParser.cssStringToJavaString(
+            matchedToken.image);
+    }
+
+  | < CLOSE_PAREN
+              : ")" > : DEFAULT
+}
+
+/* ============================================================================
+ *          Lexical Rules
+ * ========================================================================== */
+
+String lexicalString() :
+{}
+{
+    <STRING> {
+        return token.image;
+    }
+}
+
+/* ============================================================================
+ *          Parser
+ * ========================================================================== */
+
+/**
+ * The main entry for parsing style sheets.
+ *
+ * @exception ParseException exception during the parse
+ */
+void styleSheetUnit() :
+{}
+{
+    styleSheet()
+    <EOF>
+}
+
+void styleSheet() :
+{}
+{
+    // Allow any number of rules.
+    (rule())*
+}
+
+/**
+ * The main entry for parsing style attributes. 
+ *
+ * @exception ParseException exception during the parse
+ */
+void styleAttributeUnit(Selector inlineStyleSelector) :
+{
+    List selectors = null;
+    mutableStyleProperties = createMutableStyleProperties();
+}
+{
+    (
+        (
+            declarationsBlock() {
+                selectors = new ArrayList();
+                processInlineSelector(null, inlineStyleSelector, selectors);
+                addRule(selectors, mutableStyleProperties);
+                mutableStyleProperties = null;
+            }
+
+            (pseudoRule(inlineStyleSelector))*
+
+        )
+
+    |
+        (
+            declarations()
+            {
+                selectors = new ArrayList();
+                processInlineSelector(null, inlineStyleSelector, selectors);
+                addRule(selectors, mutableStyleProperties);
+                mutableStyleProperties = null;
+            }
+        )?
+    )
+
+    <EOF>
+
+    {
+        mutableStyleProperties = null;
+    }
+
+}
+
+/**
+ * A CSS rule consists of a comma separated list of selectors followed by an
+ * optionally empty set of declarations.
+ */
+void rule() :
+{
+    List selectors;
+    mutableStyleProperties = createMutableStyleProperties();
+}
+{
+    selectors = selectorGroup()
+    declarationsBlock() {
+        addRule(selectors, mutableStyleProperties);
+        mutableStyleProperties = null;
+    }
+}
+
+void pseudoRule(Selector inlineStyleSelector) :
+{
+    List selectors;
+    mutableStyleProperties = createMutableStyleProperties();
+}
+{
+    selectors = pseudoSelectorGroup(inlineStyleSelector)
+    declarationsBlock() {
+        addRule(selectors, mutableStyleProperties);
+        mutableStyleProperties = null;
+    }
+}
+
+List selectorGroupUnit() :
+{
+    List selectors;
+}
+{
+    selectors = selectorGroup() {
+        return selectors;
+    }
+    <EOF>
+}
+
+List selectorGroup() :
+{
+    List selectorGroup = new ArrayList();
+    Selector selector;
+}
+{
+    selector = selector() {
+        selectorGroup.add(selector);
+    }
+    ("," selector = selector() {
+        selectorGroup.add(selector);
+    })* {
+        return selectorGroup;
+    }
+}
+
+List pseudoSelectorGroup(Selector inlineStyleSelector) :
+{
+    List selectorGroup = new ArrayList();
+    Selector selector;
+}
+{
+    selector = pseudoSelector() {
+        processInlineSelector(selector, inlineStyleSelector, selectorGroup);
+    }
+    ("," selector = pseudoSelector() {
+        processInlineSelector(selector, inlineStyleSelector, selectorGroup);
+    })* {
+        return selectorGroup;
+    }
+}
+
+Selector selectorUnit() :
+{
+    Selector selector;
+}
+{
+    selector = selector() {
+        return selector;
+    }
+    <EOF>
+}
+
+Selector selector() :
+{
+    List selectors = new ArrayList();
+    Selector selector = null;
+    CombinedSelector combined = null;
+    CombinedSelector next;
+    CombinatorEnum combinator = null;
+}
+{
+    next = simpleSelector(combined, selectors) {
+
+        // The first selector in the group cannot be the subject part of a
+        // descendant selector as it is not preceded by the context part.
+        if (next != null) {
+            throw new IllegalStateException(
+            "First selector in group cannot be subject part of descendant selector");
+        }
+    }
+    (
+        combinator = combinator() {
+
+            if (combinator != null) {
+                combined = createCombinedSelector(
+                        combined, combinator,
+                        factory.createSelectorSequence(selectors));
+
+                // Clear the list of selectors.
+                selectors.clear();
+
+                if (selector == null) {
+                    selector = combined;
+                }
+            }
+        }
+
+        next = simpleSelector(combined, selectors) {
+
+            if (next != null) {
+                combined = next;
+                if (selector == null) {
+                    selector = combined;
+                }
+            }
+        }
+    )* {
+
+        int selectorCount = selectors.size();
+        if (selectorCount == 0) {
+            throw new IllegalStateException(
+            "Subject must contain at least one selector");
+        } else {
+            Subject subject;
+            subject = factory.createSelectorSequence(selectors);
+            if (combined != null) {
+                combined.setSubject(subject);
+            }
+
+            if (selector == null) {
+                selector = subject;
+            }
+
+            // Clear the list of selectors.
+            selectors.clear();
+        }
+
+        return selector;
+    }
+}
+
+Selector pseudoSelector() :
+{
+    List selectors = new ArrayList();
+    Selector selector = null;
+}
+{
+
+    (
+        simplePseudoSelector(null, selectors)
+    )* {
+
+        int selectorCount = selectors.size();
+        if (selectorCount == 0) {
+            throw new IllegalStateException(
+            "Subject must contain at least one selector");
+        } else {
+            selector = factory.createSelectorSequence(selectors);
+
+            // Clear the list of selectors.
+            selectors.clear();
+        }
+
+        return selector;
+    }
+}
+
+CombinatorEnum combinator() :
+{}
+{
+    (
+        ">" {
+            return CombinatorEnum.CHILD;
+        }
+      | "+" {
+            return CombinatorEnum.DIRECT_ADJACENT;
+        }
+      | "~" {
+            return CombinatorEnum.INDIRECT_ADJACENT;
+        }
+    )? {
+        return null;
+    }
+}
+
+CombinedSelector simpleSelector(CombinedSelector combined, List selectors) :
+{
+    CombinedSelector selector;
+}
+{
+    (
+        selector = elementSelector(combined, selectors)
+      | selector = classSelector(combined, selectors)
+      | selector = idSelector(combined, selectors)
+      | selector = attributeSelector(combined, selectors)
+      | selector = simplePseudoSelector(combined, selectors)
+    ) {
+        return selector;
+    }
+}
+
+CombinedSelector simplePseudoSelector(CombinedSelector combined, List selectors) :
+{
+    CombinedSelector selector;
+}
+{
+    (
+        selector = pseudoClassSelector(combined, selectors)
+      | selector = pseudoElementSelector(combined, selectors)
+    ) {
+        return selector;
+    }
+}
+
+CombinedSelector elementSelector(CombinedSelector combined, List selectors) :
+{
+    Token first;
+}
+{
+    (
+        first = <QUALIFIED_ID> | first = <IDENTIFIER>
+      | first = <QUALIFIED_WILDCARD> | first = <WILDCARD>
+    ) {
+        splitQualified(first.image);
+
+        ElementSelector selector;
+        if (this.type.equals("*")) {
+            selector = factory.createUniversalSelector(this.prefix);
+        } else {
+            selector = factory.createTypeSelector(this.prefix, this.type);
+        }
+
+        return processSimpleSelector(selectors, first, combined, selector, true);
+    }
+}
+
+CombinedSelector classSelector(CombinedSelector combined, List selectors) :
+{
+    Token first;
+}
+{
+    first = "." <IDENTIFIER> {
+        ClassSelector selector = factory.createClassSelector(token.image);
+
+        return processSimpleSelector(selectors, first, combined, selector, true);
+    }
+}
+
+CombinedSelector idSelector(CombinedSelector combined, List selectors) :
+{
+    Token first;
+}
+{
+    first = "#" <IDENTIFIER> {
+        IdSelector selector = factory.createIdSelector(token.image);
+
+        return processSimpleSelector(selectors, first, combined, selector, true);
+    }
+}
+
+CombinedSelector attributeSelector(CombinedSelector combined, List selectors) :
+{
+    AttributeSelectorActionEnum action = AttributeSelectorActionEnum.SET;
+    AttributeSelector selector = factory.createAttributeSelector();
+    String attributeName;
+    String prefix;
+    String value = null;
+    Token first;
+}
+{
+    first = "[" (<QUALIFIED_ID> | <IDENTIFIER>) {
+            splitQualified(token.image);
+            prefix = this.prefix;
+            attributeName = this.type;
+        }
+
+        (action = attributeConstraint() value = lexicalString())? "]" {
+
+        selector.setNamespacePrefix(prefix);
+        selector.setName(attributeName);
+        selector.setConstraint(action, value);
+
+        return processSimpleSelector(selectors, first, combined, selector, true);
+    }
+}
+
+AttributeSelectorActionEnum attributeConstraint() :
+{}
+{
+      "="  {return AttributeSelectorActionEnum.EQUALS;}
+    | "~=" {return AttributeSelectorActionEnum.CONTAINS_WORD;}
+    | "^=" {return AttributeSelectorActionEnum.STARTS_WITH;}
+    | "$=" {return AttributeSelectorActionEnum.ENDS_WITH;}
+    | "*=" {return AttributeSelectorActionEnum.CONTAINS;}
+    | "|=" {return AttributeSelectorActionEnum.LANGUAGE_MATCH;}
+}
+
+CombinedSelector pseudoClassSelector(CombinedSelector combined, List selectors) :
+{
+    Selector selector = null;
+    String expression;
+    Token function;
+    Token first;
+}
+{
+    first = ":" (
+        <IDENTIFIER> {
+            String identifier = token.image;
+
+            // Pseudo classes and pseudo elements used the same syntax in older
+            // versions of CSS so check for the old pseudo elements.
+            if (identifier.equals("first-line")
+                || identifier.equals("first-letter")) {
+                selector = createPseudoElementSelector(identifier);
+            } else {
+                selector = createPseudoClassSelector(identifier);
+            }
+        }
+
+      | <FUNCTION> {function = token;}
+        (<NTH_CHILD_ARG> | <IDENTIFIER> | <NUMBER>) {expression = token.image;}
+        <CLOSE_PAREN> {
+
+            if (!function.image.equals("nth-child(")) {
+                addDiagnostic(getLocation(function),
+                              CSSParserMessages.UNKNOWN_FUNCTION,
+                              function.image);
+                throw new ParseException("Selector error");
+            } else {
+                selector = factory.createNthChildSelector(expression);
+            }
+        }
+    ) {
+        return processSimpleSelector(selectors, first, combined, selector, false);
+    }
+}
+
+CombinedSelector pseudoElementSelector(CombinedSelector combined, List selectors) :
+{
+    Selector selector;
+    Token first;
+}
+{
+    first = "::" <IDENTIFIER> {
+        String identifier = token.image;
+        selector = createPseudoElementSelector(identifier);
+
+        return processSimpleSelector(selectors, first, combined, selector, true);
+    }
+}
+
+void declarationsBlock() :
+{}
+{
+    "{" (declarations())? "}"
+}
+
+void declarations() :
+{}
+{
+    try {
+        (declaration() (<SEMICOLON> (declaration())? )*)
+    } catch(ParseException e) {
+        addParseExceptionDiagnostic(e);
+
+        errorSkipTo(DECLARATIONS_TERMINATORS);
+    }
+}
+
+void declarationsUnit() :
+{}
+{
+    (declarations())?
+    <EOF>
+}
+
+void declaration() :
+{
+    PropertyParser parser = null;
+    String propertyName = null;
+    List values = new ArrayList();
+    Priority priority = Priority.NORMAL;
+    boolean seenColon = false;
+    Token separator;
+}
+{
+    try {
+        <IDENTIFIER> {
+            propertyName = token.image;
+            parser = propertyParserFactory.getPropertyParser( propertyName);
+            if (parser == null) {
+                addDiagnostic(getLocation(token),
+                              CSSParserMessages.UNKNOWN_PROPERTY,
+                              new Object[]{
+                                  propertyName
+                              });
+                errorSkipTo(DECLARATIONS_TERMINATORS);
+                return;
+            }
+        }
+
+        ":" {
+            seenColon = true;
+        }
+
+        (
+            (valueSequence(values)
+                (
+                    <PRIORITY_SEPARATOR> {separator = token;}
+                    <IDENTIFIER> {
+                        priority = processPriority(token.image);
+                        if (priority == null) {
+                            invalidExtensionPriority(separator);
+                        }
+                    }
+                )?
+            ) {
+                // Only parse the property if there are some values.
+                if (!values.isEmpty()) {
+                    parseProperty(parser, propertyName, values, priority);
+                }
+            }
+            | {
+                Token errorToken = getToken(1);
+                addDiagnostic(getLocation(errorToken),
+                        CSSParserMessages.EXPECTED_TOKEN, new Object[] {
+                    "<value>",
+                    getTokenDescription(tokenImage, errorToken)
+                });
+            }
+        )
+    } catch(ParseException e) {
+        Token currentToken = e.currentToken;
+        Token errorToken = currentToken.next;
+        if (!seenColon) {
+            // Report the missing colon.
+            addDiagnostic(getLocation(errorToken),
+                    CSSParserMessages.EXPECTED_TOKEN, new Object[] {
+                e.tokenImage[COLON],
+                getTokenDescription(e.tokenImage, errorToken)
+            });
+        } else {
+            addParseExceptionDiagnostic(e);
+        }
+        errorSkipTo(DECLARATIONS_TERMINATORS);
+    }
+}
+
+void valueSequence(List values) :
+{
+    StyleValue value;
+    Separator separator = null;
+}
+{
+    value = styleValue() {
+        if (value != null) {
+            values.add(value);
+        }
+    }
+    (
+        (
+            (
+                "," {separator = Separator.COMMA;}
+              | "/" {separator = Separator.SLASH;}
+            ) {
+                values.add(separator);
+            }
+        )?
+        value = styleValue() {
+            values.add(value);
+        }
+    )*
+}
+
+StyleValue styleValue() :
+{
+    StyleValue value;
+}
+{
+    (
+        value = dimension()
+      | value = identifier()
+      | value = function()
+      | value = percentage()
+      | value = number()
+      | value = string()
+      | value = color()
+      | value = extensionValue()
+    ) {
+        return value;
+    }
+}
+
+StyleValue color() :
+{
+    int red;
+    int green;
+    int blue;
+}
+{
+    (
+        <COLOR_TRIPLE> {
+            red = Integer.parseInt(token.image.substring(1, 2), 16) * 0x11;
+            green = Integer.parseInt(token.image.substring(2, 3), 16) * 0x11;
+            blue = Integer.parseInt(token.image.substring(3, 4), 16) * 0x11;
+        }
+      | <COLOR_HEX> {
+            red = Integer.parseInt(token.image.substring(1, 3), 16);
+            green = Integer.parseInt(token.image.substring(3, 5), 16);
+            blue = Integer.parseInt(token.image.substring(5, 7), 16);
+        }
+    ) {
+        return styleValueFactory.getColorByRGB(
+                getLocation(token),
+                (red << 16) + (green << 8) + blue);
+    }
+}
+
+StyleValue identifier() :
+{
+}
+{
+    <IDENTIFIER> {
+        return styleValueFactory.getIdentifier(
+                getLocation(token), token.image);
+    }
+}
+
+StyleValue function() :
+{
+    List arguments = new ArrayList();
+    StyleValue value;
+    String name;
+}
+{
+    (
+        <FUNCTION> {
+            name = token.image.substring(0, token.image.length() - 1);
+        }
+
+        arguments(arguments) <CLOSE_PAREN> {
+            return processFunction(getLocation(token), name, arguments);
+        }
+    )
+  | (
+        <URL_FUNCTION> {
+            name = token.image.substring(0, token.image.length() - 1);
+        }
+
+        (value = string() | value = url()) <CLOSE_PAREN> {
+            arguments.add(value);
+            return processFunction(getLocation(token), name, arguments);
+        }
+    )
+}
+
+void arguments(List arguments) :
+{
+    StyleValue value;
+}
+{
+    (
+        value = expression() {
+            arguments.add(value);
+        }
+        (
+            "," value = expression() {
+                arguments.add(value);
+            }
+        )*
+    )?
+}
+
+StyleValue expression() :
+{
+    StyleValue value;
+}
+{
+    (
+        value = identifier()
+      | value = function()
+      | value = number()
+      | value = percentage()
+      | value = string()
+    ) {
+        return value;
+    }
+}
+
+StyleValue number() :
+{}
+{
+    <NUMBER> {
+        double number = Double.parseDouble(token.image);
+        return styleValueFactory.getNumber(getLocation(token), number);
+    }
+}
+
+StyleValue percentage() :
+{}
+{
+    <PERCENTAGE> {
+        String text = token.image;
+        String numberString = text.substring(0, text.length() - 1);
+        double number = Double.parseDouble(numberString);
+        return styleValueFactory.getPercentage(getLocation(token), number);
+    }
+}
+
+StyleValue string() :
+{
+    String string;
+}
+{
+    string = lexicalString() {
+        return styleValueFactory.getString(getLocation(token), string);
+    }
+}
+
+StyleValue url() :
+{
+}
+{
+    <URL> {
+        String string = cssURLToJavaString(token.image);
+        return styleValueFactory.getString(getLocation(token), string);
+    }
+}
+
+StyleValue dimension() :
+{
+}
+{
+    <DIMENSION> {
+        // Search backwards from the end looking for non identifier characters.
+        String dimension = token.image;
+        int index;
+        for (index = dimension.length() - 1; index >= 0; index -= 1) {
+            char c = dimension.charAt(index);
+            if (Character.isDigit(c)) {
+                break;
+            }
+        }
+
+        String numberString = dimension.substring(0, index + 1);
+        String unitString = dimension.substring(index + 1);
+
+        return processDimension(getLocation(token), numberString, unitString);
+    }
+}
+
+StyleValue extensionValue() :
+{
+}
+{
+    <EXTENSION_VALUE> {
+        StyleValue value = extensionHandler.customValue(token.image);
+        if (value == null) {
+            invalidExtensionValue(token);
+        }
+        return value;
+    }
+}
+
+/* ============================================================================
+ *          Error Recovery
+ * ========================================================================== */
+JAVACODE
+void errorSkipTo(BitSet terminators)
+        throws ParseException {
+
+    int braceDepth = 0;
+    int kind;
+    while (!terminators.get((kind = jj_ntk())) || braceDepth > 0) {
+        if (kind == LEFT_BRACE) {
+            braceDepth += 1;
+        } else if (kind == RIGHT_BRACE) {
+            braceDepth -= 1;
+        }
+
+        //String description = tokenImage[kind];
+        //System.err.println("Discarding " + description);
+        jj_consume_token(kind);
+    }
+}
+
+/*
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 12-Dec-05	10374/2	emma	VBM:2005111705 Interim commit
+
+ 09-Dec-05	10756/2	geoff	VBM:2005120813 JiBX is reading XML using system default encoding
+
+ 09-Dec-05	10738/1	geoff	VBM:2005120813 JiBX is reading XML using system default encoding
+
+ 07-Dec-05	10632/3	pduffin	VBM:2005120504 Porting forward changes from MCS 3.5
+
+ 06-Dec-05	10612/1	pduffin	VBM:2005120504 Fixed counter parsing issue and some counter test cases
+
+ 01-Dec-05	10447/3	emma	VBM:2005112308 Many bug fixes: xforms, GUI and pane styling
+
+ 02-Dec-05	10542/1	emma	VBM:2005112308 Forward port: Many bug fixes: xforms, GUI and pane styling
+
+ 01-Dec-05	10447/3	emma	VBM:2005112308 Many bug fixes: xforms, GUI and pane styling
+
+ 29-Nov-05	10505/3	pduffin	VBM:2005111405 Committing transactions from MCS 3.5.0 (7)
+
+ 29-Nov-05	10347/2	pduffin	VBM:2005111405 Massive changes for performance
+
+ 31-Oct-05	9961/1	pduffin	VBM:2005101811 Committing restructuring
+
+ 31-Oct-05	9965/6	ianw	VBM:2005101811 Fixed up invalid selectors
+
+ 28-Oct-05	9965/4	ianw	VBM:2005101811 stabalise InvalidSelector code
+
+ 28-Oct-05	9965/1	ianw	VBM:2005101811 fix bindings
+
+ 01-Nov-05	9888/1	pduffin	VBM:2005101811 Committing new user interface changes that have been ported forward from 3.5
+
+ 31-Oct-05	9961/1	pduffin	VBM:2005101811 Committing restructuring
+
+ 31-Oct-05	9965/6	ianw	VBM:2005101811 Fixed up invalid selectors
+
+ 28-Oct-05	9965/4	ianw	VBM:2005101811 stabalise InvalidSelector code
+
+ 28-Oct-05	9965/1	ianw	VBM:2005101811 fix bindings
+
+ 13-Oct-05	9732/1	adrianj	VBM:2005100509 Fixes to Eclipse GUI
+
+ 29-Sep-05	9654/1	pduffin	VBM:2005092817 Added support for expressions and functions in styles
+
+ 28-Sep-05	9487/3	pduffin	VBM:2005091203 Updated JavaDoc for CSS parser and refactored
+
+ 27-Sep-05	9487/1	pduffin	VBM:2005091203 Committing new CSS Parser
+
+ ===========================================================================
+*/

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:handler</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:handler</h1><h2>Purpose</h2>
+         <p>Associates an event with an action; that is when a widget sends the event, the associated
+            action is invoked.</p>
+      <h2>Contained by</h2><p><a href="../xdime_cp/xh2_head.html">head</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">action</th><td>Specifies an action that will be invoked when the defined event occurs</td><td>xs:string</td><td> </td><td>enable, disable, invoke </td><td>required </td></tr><tr><th class="firstcellrequired" scope="row">event</th><td>Specifies an event on which an action should be invoked</td><td>xs:string</td><td> </td><td>pressed, completed </td><td>required </td></tr><tr><th class="firstcell" scope="row">is-enabled</th><td>Specifies if the selected handler is enabled. A disabled handler does not
+               invoke an action when an event arrives.</td><td>xs:boolean</td><td> </td><td> </td><td>optional </td></tr></table><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Property</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Property</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Access</th></tr><tr><th class="firstcell" scope="row">is-enabled</th><td>Specifies whether or not the handler is enabled. A disabled handler does not
+               invoke an action when an event arrives.</td><td>xs:boolean</td><td>read/write </td></tr></table><h2>Example</h2>
+         <p>The Forms Wizard widget is launched by <span class="code">widget:handler</span> when the
+            corresponding button is pressed.</p>
+         <pre class="code">
+&lt;widget:button id="show-button"&gt;Show wizard&lt;/widget:button&gt;
+&lt;widget:handler event="show-button#pressed" action="myWizard#launch"/&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/widget_er.html">Widget elements</a></p>
+      </body></html>

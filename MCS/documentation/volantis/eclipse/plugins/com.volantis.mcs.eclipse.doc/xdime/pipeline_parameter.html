@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>pipeline:parameter</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>pipeline:parameter</h1><h2>Purpose</h2>
+         <p>A parameter passed to the XSL transformation referenced in the
+               <span class="code">href</span> attribute on the
+               <span class="code">pipeline:transformation</span> element.</p>
+      <h2>Contained by</h2><p><a href="../xdime/pipeline_parameter.html">pipeline:parameter</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">name</th><td>The name of the parameter.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">value</th><td>The parameter value.</td><td>xs:string</td><td>false </td><td> </td><td>optional </td></tr></table><h2>Example</h2>
+         <p>The example passes two parameters that match equivalent <span class="code">xsl:param</span> elements in the transform. <em>Passing parameters in transforms</em> contains more information.</p>
+         <pre class="code">&lt;pipeline:transform compilable="false"&gt;
+   &lt;pipeline:parameters&gt;
+      &lt;pipeline:parameter name="title-param" value="Title"/&gt;
+      &lt;pipeline:parameter name="artist-param" value="Artist"/&gt;
+   &lt;pipeline:parameters&gt;
+   &lt;pipeline:transformation href='simple-params.xsl'/&gt;
+      ...
+   &lt;pipeline:transformation&gt;
+&lt;/pipeline:transform&gt;</pre>
+         
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/pipeline_er.html">Pipeline elements</a><br/><a href="../dci/dci_transform_params.html">Passing parameters in transforms</a></p>
+      </body></html>

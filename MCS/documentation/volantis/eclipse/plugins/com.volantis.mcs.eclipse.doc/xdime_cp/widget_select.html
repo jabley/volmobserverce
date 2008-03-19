@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:select</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:select</h1><h2>Purpose</h2>
+         <p>Defines a single or multiple selection control, for example a dropdown list.</p>
+         <p>It may be associated with any writable property. In such case, selected item is sent to
+            the corresponding property, and vice versa, i.e. when the value of the associated
+            property changes, it is displayed on the list. If the <span class="code">mode</span> attribute is set
+            to 'mulitple', selected values appear separated by a comma.</p>
+         <p>The <span class="uicontrol">Rows</span> property set on <span class="code">widget:select</span> allows
+            to specify the size of the control.</p>
+      <h2>Contains</h2><p><a href="../xdime_cp/widget_option.html">widget:option</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">mode</th><td>Specifies single or multiple selection control</td><td>xs:string</td><td>single </td><td>multiple, single </td><td>optional </td></tr></table><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Action</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Action</th><th scope="col">Description</th></tr><tr><th class="firstcell" scope="row">clear-value</th><td>Clears selected value</td></tr></table><h2>Property</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Property</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Access</th></tr><tr><th class="firstcell" scope="row">value</th><td>Contains the value of the selected item. If it is associated with a
+               property, the value of this property is a mirror of the corresponding property value.
+               When the <span class="code">mode</span> attribute is set to 'mulitple', selected values appear
+               separated by comma.</td><td>xs:string</td><td>read/write </td></tr></table><h2>Example</h2>
+         <pre class="code">
+&lt;widget:select id="myselect" mode="single"&gt;
+   &lt;widget:option value="1" selected="selected"&gt;first&lt;/widget:option&gt;
+   &lt;widget:option value="2"&gt;second&lt;/widget:option&gt;
+   &lt;widget:option value="3"&gt;third&lt;/widget:option&gt;					
+&lt;/widget:select&gt;
+&lt;p&gt;Selected Value: &lt;widget:input property="myselect#value"/&gt;&lt;/p&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/widget_er.html">Widget elements</a></p>
+      </body></html>

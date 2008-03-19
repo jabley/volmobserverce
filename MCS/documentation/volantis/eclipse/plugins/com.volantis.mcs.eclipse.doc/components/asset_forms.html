@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="../help.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Forms of asset assets</title>
+  </head>
+
+  <body>
+<h1>Forms of asset</h1>
+<p>Most assets are targeted at specific devices or device families. The major 
+  exceptions are image and audio assets. These assets occur in two or three forms.</p>
+<h2>Targeted assets</h2>
+<p>Targeted assets are associated with a specific device. Text assets are an example of a targeted asset. Finding the most appropriate asset when the assets are targeted is relatively straightforward.</p>
+<p>MCS searches the repository for an asset which is targeted at the device currently 
+  in use. If no asset exists, MCS searches the parent of the current device. This 
+  search up the hierarchy continues until either an asset, or the root of the 
+  device tree, is found.</p>
+<p>With image components, a second search for generic image assets is carried 
+  out before fallback rules are applied.</p>
+<p>If no asset has been found and the component supports fallback, the search 
+  continues to try and find an asset that satisfies the fallback component. Some 
+  components support multiple fallbacks, and in this case, each fallback is searched 
+  in turn to attempt to find a suitable asset. </p>
+<p>Finally, all assets can support an alternate text fallback. Once again, the 
+  same process is followed in order to try and find a suitable asset.</p>
+<h2>Generic assets</h2>
+<p>Generic assets cater for assets that are not targeted, and are appropriate 
+  in situations where (for example) the task of identifying images for particular 
+  devices ahead of time is very time consuming. The approach is to find the asset 
+  that is the best fit at run time</p>
+<h2>Untargeted assets</h2>
+<p>Untargeted assets are not associated with a specific device, so finding the 
+  most appropriate asset can be quite complex.</p>
+<p>MCS searches for an asset with properties that make it suitable. For audio assets, for example, the decision is based on how the audio data is encoded. With images, encoding, pixel depth, rendering and image size are all used.</p>
+<p><span class="ri">Related information</span><br />
+  <a href="component_and_assets.html" title="Component editors">Components and 
+  assets</a></p>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<!--
+ ! Simplest possible config to set up UCP for our test case.
+ ! Derived from the example seen in ProfileMgr.jar
+ !-->
+<ucp-config>
+  <!-- UCP schema is mandatory -->
+  <schema class="com.ibm.ucp.schema.XMLSchema">
+    <parameters>
+      <param name="namespaces" value="/com/volantis/mcs/ibm/ucp/namespace-list.xml"/>
+    </parameters>
+  </schema>
+  <engine>
+    <!-- test the creation of the provider with a non existant xml repository -->
+    <adapter class="com.volantis.mcs.ibm.ucp.MCSDeviceRepositoryProvider"
+        name="Volantis UCP">
+      <parameters>
+        <param name="repository-type" value="xml"/>
+        <param name="file" value="non-existent.mdpr"/>
+      </parameters>
+    </adapter>
+  </engine>
+</ucp-config>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6416/1	ianw	VBM:2004120703 New Build
+
+ 25-Feb-04	3136/1	philws	VBM:2004021908 Remove accessor manager singletons and make MCSDeviceRepositoryProvider and its test case use the runtime device accessor correctly
+
+ 30-Jan-04	2807/1	geoff	VBM:2003121709 Import/Export: JDBC Accessors: Add support for the default jdbc project
+
+ 23-Dec-03	2252/1	andy	VBM:2003121703 change to default name for non existant repository in test suite
+
+ 14-Oct-03	1529/3	geoff	VBM:2003100904 Implement IBM UCP Adaptor/IProvider to read MCS devices for Eclipse (finished apart from test case infrastructure)
+
+ ===========================================================================
+-->

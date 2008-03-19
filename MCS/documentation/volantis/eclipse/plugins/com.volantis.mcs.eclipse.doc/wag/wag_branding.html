@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <meta name="taskref" content="014"/>
+      <title>About branding</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>About branding</h1>
+		
+      <p>In MCS you can associate different brands with specific sets of thematic information, layouts and components. Then you can change the look and feel of an entire site without changing the content of your XDIME pages.</p>
+		
+      <p>White labelling is closely related to branding. In this case you develop a site or an application without reffering to a particular brand.</p>
+		
+      <p>For example you could develop a single application for online retail banking, and offer the same application to a number of different retail banks with different branding to match their corporate image.</p>
+		
+      <h2>Using the folder structure</h2>
+		
+      <p>You apply branding with the policy folder structure.</p>
+		
+      <p class="caption">
+         In the figure, the 'myBank' folder contains a 'main'
+            folder, and within it two layouts.
+      </p>
+      <p>
+         <img src="../graphics/brand_layout.png" alt="Brand layouts" title="Brand layouts"/>
+      </p>
+		
+		
+      <p>In MCS paths are always relative by default, each path being relative to a project root. But you can also refer to policies with a relative path value to distinguish different policy folders. For example, the 'first' layout could be referenced in the <span class="code">layoutName</span> attribute on the <span class="code">canvas</span> element:</p>
+		
+			
+      <pre class="code">&lt;canvas layoutName="/myBank/main/first.mylt"&gt;...</pre>
+		
+		
+      <p>You refer to components in the same way. Under the logos folder you can reference 'color_large' as:</p>
+		
+			
+      <pre class="code">&lt;logo src="/myBank/logos/color_large.mimg"&gt;...</pre>
+		
+		
+		
+		
+      <h2>Specifying a brand in XDIME</h2>
+		
+      <p>You use the path to a folder in the <span class="code">brand</span> attribute on the <span class="code">canvas</span> element in your markup.</p>
+		
+			
+      <pre class="code">&lt;canvas brand="myBank" layoutName="/main/first.mylt" theme="/standard.mthm"/&gt;...
+   &lt;logo src="/logos/color_large.mimg"&gt;
+   ...
+&lt;/canvas&gt;</pre>
+		
+		
+      <p>This example tells MCS to use the 'myBank' folder to resolve all references to policies for the canvas. So in this case it prefixes the logo path to get <span class="code">/myBank/logos/color_large.mimg</span>
+      </p>
+		
+      <p>You may want to work out a set of naming conventions or guidelines to help implement branding in this way. This can make it easier to ensure that designers and developers are aware of any policy structures that would have an impact on the XDIME markup that uses them.</p>
+		
+      <p class="note">
+         <strong>Note</strong>: Branding does not work for fallback values that refer from one policy to another. Fallback components are always specified with a full path.</p>
+		
+		
+		
+      <h2>Overriding branding</h2>
+		
+      
+<p>Sometimes it is convenient to access a policy that lies outside a brand folder 
+  structure along with those inside the brand. To override the brand structure 
+  you use the function call, <span class="code">branding:getUnbrandedPolicy([policyName])</span> 
+  to provide a different context, relative to the project root. The example references 
+  the 'banner' component the 'special' folder structure.</p> 
+
+
+      <pre class="code">&lt;canvas brand="myBank" layoutName="/main/first.mylt" theme="/standard.mthm"/&gt;...
+   &lt;img src="branding:getUnbrandedPolicy('special/images/banner.mimg')"/&gt;
+   ...
+&lt;/canvas&gt;</pre>
+		
+      <p class="note">
+         <strong>Note</strong>: MCS no longer supports the use of the caret (^) character in XDIME canvas element attribute values to override branding. </p>
+		
+		
+		
+      <h2>Portal and portlet brands</h2>
+      <p>
+You can also associate portal and portlet canvases with a brand. Where an included canvas has no brand specified, it inherits its brand from its parent canvas. Portlets therefore inherit their brand from the enclosing portal if no brand is specified explicitly on their <span class="code">canvas</span> tag.</p>
+		
+			
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../wag/wag_develop_policies.html">Developing MCS policies</a>
+         <br/>
+         <a href="../wag/branding_getunbrandedpolicy.html">branding:getUnbrandedPolicy </a>
+      </p>
+		
+	
+   </body>
+</html>

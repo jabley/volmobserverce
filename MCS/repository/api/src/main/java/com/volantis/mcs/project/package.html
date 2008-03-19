@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--===========================================================================
+ ! (c) Volantis Systems Ltd 2006. 
+ ! ======================================================================== -->
+</head>
+<body bgcolor="white">
+
+<!--
+ ! This file forms part of the public API.
+ !
+ ! @volantis-api-include-in PublicAPI
+ ! @volantis-api-include-in ProfessionalServicesAPI
+ ! @volantis-api-include-in InternalAPI
+ !-->
+
+Provides interfaces and classes for representing and managing projects within
+MCS.
+
+<p>See <a href="#compatibility">compatibility</a> for information about how the
+classes in this and sub packages relate back to the old component / asset
+objects.</p>
+
+<h2>Overview</h2>
+
+<p>A {@link com.volantis.mcs.project.Project project} is an single entity that
+encompasses all the information needed by MCS that is not specific to an
+instance of MCS, i.e.</p>
+<ul>
+    <li>Project specific configuration.</li>
+    <li>Policies.</li>
+    <li>Pages.</li>
+    <li>Resources.</li>
+</ul>
+
+<p>At the moment the main focus for projects are the policies but this will
+expand in future to include the other aspects.</p>
+
+<p>{@link com.volantis.mcs.project.Project} instances can be constructed using
+the {@link com.volantis.mcs.project.ProjectFactory}.</p>
+
+<h2><a name="compatibility">Compatibility</a></h2>
+
+<p>In addition to some new functionality this package contains replacements for
+the following now deprecated classes:</p>
+<ul>
+<li>{@link com.volantis.mcs.repository.RepositoryManager}</li>
+<li>{@link com.volantis.mcs.repository.AssetGroupRepositoryManager}</li>
+<li>{@link com.volantis.mcs.repository.AudioRepositoryManager}</li>
+<li>{@link com.volantis.mcs.repository.ChartRepositoryManager}</li>
+<li>{@link com.volantis.mcs.repository.DynamicVisualRepositoryManager}</li>
+<li>{@link com.volantis.mcs.repository.ImageRepositoryManager}</li>
+<li>{@link com.volantis.mcs.repository.LayoutRepositoryManager}</li>
+<li>{@link com.volantis.mcs.repository.LinkRepositoryManager}</li>
+<li>{@link com.volantis.mcs.repository.ScriptRepositoryManager}</li>
+<li>{@link com.volantis.mcs.repository.TextRepositoryManager}</li>
+</ul>
+
+<p>All of the classes above that extend
+{@link com.volantis.mcs.repository.RepositoryManager} have been replaced by
+a single class {@com.volantis.mcs.project.PolicyManager}. It has many
+advantages over the previous classes:</p>
+<ul>
+    <li>It is a single consistent interface to managing policies. The
+    <code>...RepositoryManager</code> classes each have their own special
+    interfaces for managing different component and policy types.</li>
+
+    <li>It frees the user code from having to manage
+    {@link com.volantis.mcs.repository.RepositoryConnection RepositoryConnections},
+    in particular it does not have to clean them up.</li>
+
+    <li>The {@link com.volantis.mcs.project.BatchOperation} also means that
+    user code does not have to do any clean up when performing a number of
+    operations together, although it can if necessary.</li>
+
+</ul>
+
+<p>Previously, the {@link com.volantis.mcs.repository.Repository} was the main
+focus for managing policies but this has gradually been changing to the point
+where now the {@link com.volantis.mcs.project.Project} is the focus and the
+{@link com.volantis.mcs.repository.Repository} is a supporting class for the
+project.</p>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Markup in Java Server Pages</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Markup in Java Server Pages</h1>
+      <p>To configure MCS to render JSPs correctly, the following steps are
+         required.</p>
+      <ul>
+         <li>Configure MCS so that the MCSFilter is applied to the output of JSP
+            pages</li>
+         <li>Modify the JSP to set the content type so that it will be treated
+            as XDIME by the MCSFilter</li>
+         <li>Ensure that the contents of the JSP conform to XDIME 2 syntax</li>
+      </ul>
+      
+         <h2>Configuring MCS</h2>
+
+         <p>The <span class="filepath">web.xml</span> file provided with MCS ensures that
+            the MCSFilter applies to the JSPs. To set the filter in your own
+               <span class="filepath">web.xml</span> file, add the following entry.</p>
+         <pre class="code">&lt;filter-mapping&gt;
+   &lt;filter-name&gt;MCSFilter&lt;/filter-name&gt;
+&lt;/filter-mapping&gt;
+         </pre>
+         <p>Error processing is now done after a JSP has finished execution, so
+            that errors specified on the @page directive will not cause that
+            error page to be used. Instead, MCS will use the an error pages
+            specified for JSPs in the <span class="filepath">web.xml</span> deployment
+            descriptor.</p>
+         <pre class="code">&lt;error-page&gt;
+   &lt;exception-type&gt;java.lang.Throwable&lt;/exception-type&gt;
+   &lt;location&gt;[path_to]/exception.jsp&lt;/location&gt;
+&lt;/error-page&gt;
+         </pre>
+      
+      
+         <h2>Setting the content type</h2>
+         <p>You should insert the a type declaration as follows.</p>
+         <pre class="code">&lt;%@ page contentType="x-application/vnd.xdime+xml" %&gt;</pre>
+      
+      
+         <h2>XDIME 2 syntax</h2>
+         <p>Two examples of the use of JSPs and XDIME 2 follow. The full context for
+            both examples can be found in tutorial samples which are part of the MCS
+            installation.</p>
+         <p>The first example is from the tutorial <em>Getting started with
+            MCS</em>, and illustrates how to return a response to values
+            submitted in a stock check form. Item and size parameters values
+            are passed by the form, and a random stock quantity is calculated.</p>
+         <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;%@ page import="java.lang.Math.*"%&gt;
+&lt;%
+    String result = null;
+    response.setContentType("x-application/vnd.xdime+xml");
+    String size = request.getParameter("size");
+    String item = request.getParameter("item");
+    double dstock = Math.random() * 100.0;
+    long stock = Math.round(dstock);
+%&gt;
+
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+    xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+    &lt;head&gt;
+        &lt;title&gt;Availability&lt;/title&gt;
+
+&lt;!--Links to the layout and theme for this page --&gt;
+        &lt;link rel="mcs:layout" href="/jivearticle.mlyt"/&gt;
+        &lt;link rel="mcs:theme" href="/jive.mthm"/&gt;
+    &lt;/head&gt;
+    
+&lt;!-- Page body --&gt;
+    &lt;body&gt;
+		
+&lt;!-- The common material for the page header --&gt;
+        &lt;div&gt;
+&lt;!-- The banner --&gt;
+            &lt;div id="logo"&gt;
+                &lt;a class="homelogo" href="jivehome.xdime"&gt;
+                    &lt;object class="homelogo" src="/images/jive_logo.mimg"/&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div id="photos"&gt;
+                &lt;object src="/images/photos.mimg"/&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+&lt;!-- The main menu --&gt;
+        &lt;div id="menu_company_news" class="main_menu"&gt;
+            &lt;a class="pnav" href="companyNews.xdime"&gt;
+                &lt;object src="/images/menu_company_news.mimg"/&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id="menu_human_resources" class="main_menu"&gt;
+            &lt;a class="pnav" href="humanResources.xdime"&gt;
+                &lt;object src="/images/menu_human_resources.mimg"/&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id="menu_employee_store" class="main_menu"&gt;
+            &lt;a class="pnav" href="employeeStore.xdime"&gt;
+                &lt;object src="/images/menu_employee_store.mimg"/&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;
+	    	
+&lt;!--The current stock price--&gt;
+        &lt;div id="stockprice"&gt; Latest from NYSE for Jive (VBE): 21.50 (+ 2.25) &lt;/div&gt;
+        
+&lt;!-- Page Title --&gt;
+        &lt;h2 id="title"&gt;Availability&lt;/h2&gt;
+
+&lt;!-- The article --&gt;
+        &lt;div id="article"&gt;
+        &lt;% if (stock &gt; 0) { %&gt;
+           We currently have &lt;%=stock%&gt; units
+           of the &lt;%=item%&gt; in &lt;%=size%&gt; size in stock.
+        &lt;% } else { %&gt; 
+            Unfortunately, the &lt;%=item%&gt; in &lt;%=size%&gt; size
+            is temporarily out of stock.
+            &lt;% } %&gt;            
+        &lt;/div&gt;
+        
+&lt;!-- The common material for the page footer --&gt;
+        &lt;div id="footer"&gt;
+            &lt;p&gt;Copyright &lt;a href="jivehome.xdime"&gt;Jive Sports&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        
+    &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+         <p>A more complex example is from the tutorial <em>Using the widget
+               library</em>. It binds the JSP to a standard page
+            template. The script processes a user submitted form, passing a
+            title and a table of entered values as parameters to
+            the template.</p>
+         <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;%@ page
+  contentType="x-application/vnd.xdime+xml"
+  import="java.util.*" %&gt;
+&lt;html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Received form&lt;/title&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+    &lt;style type="text/css"&gt;
+      table {
+        border-collapse: collapse;
+        margin: 0.25em;
+      }
+      td, th {
+        border: 1px solid black;
+        padding: 0.25em;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Received form"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+&lt;%
+      Map params = request.getParameterMap();
+      if (!params.isEmpty()) {
+%&gt;
+          &lt;div class="widget"&gt;
+            &lt;table&gt;
+              &lt;tr&gt;
+                &lt;th&gt;Name&lt;/th&gt;
+                &lt;th&gt;Value&lt;/th&gt;
+              &lt;/tr&gt;
+&lt;%
+          Iterator i = params.keySet().iterator();
+          while(i.hasNext()) {
+            String paramName = (String)i.next();
+            String[] values = (String[])params.get(paramName);
+            StringBuffer buffer = new StringBuffer();
+            for (int j = 0; j &lt; values.length; j++) {
+              if (j &gt; 0) {
+                buffer.append(", ");
+              }
+              buffer.append(values[j]);
+            }
+            String value = buffer.toString();
+%&gt;
+              &lt;tr&gt;
+                &lt;td&gt;&lt;%=paramName%&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;%=value%&gt;&lt;/td&gt;
+              &lt;/tr&gt;
+&lt;%
+          }
+%&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+&lt;%
+      } else {
+%&gt;
+        Empty form received
+&lt;%
+      }
+%&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      
+      
+      
+         <p><span class="ri">Related topics</span><br/><a class="link" target="" href="../wag/xdime2_about.html">Working with XDIME 2</a><br/></p>
+      
+   </body></html>

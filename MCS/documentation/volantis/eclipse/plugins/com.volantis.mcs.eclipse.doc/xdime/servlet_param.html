@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>servlet:param</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>servlet:param</h1><h2>Purpose</h2>
+         <p>Used for passing parameters to a server resource. They may be passed
+            either by adding them to the query string in the <span class="code">path</span>
+            attribute on the including element, or by using nested
+               <span class="code">servlet:param</span> elements, or a combination of
+            both. The parameters specified in nested elements take precedence
+            over those specified in the <span class="code">path</span>. An advantage of
+            nested parameters, is that you can specify their values as
+            expressions, such as templating expressions.</p>
+      <h2>Contained by</h2><p><a href="../xdime/servlet_include_jsp.html">servlet:includeJSP</a>, <a href="../xdime/servlet_include_servlet.html">servlet:includeServlet</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">name</th><td>Name of the parameter.</td><td>xs:string</td><td>none </td><td> </td><td>required </td></tr><tr><th class="firstcellrequired" scope="row">value</th><td>Value associated with the parameter.</td><td>xs:string</td><td>none </td><td> </td><td>required </td></tr></table><h2>Example</h2>
+         <p>The examples show the alternative methods of passing parameter
+            values.</p>
+         <pre class="code">&lt;servlet:includeJSP href="header.jsp"&gt;
+   &lt;servlet:param name="a" value="1"/&gt;
+   &lt;servlet:param name="b" value="2"/&gt;
+&lt;/servlet:includeJSP&gt; </pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/servlet_er.html">Servlet elements</a></p>
+      </body></html>

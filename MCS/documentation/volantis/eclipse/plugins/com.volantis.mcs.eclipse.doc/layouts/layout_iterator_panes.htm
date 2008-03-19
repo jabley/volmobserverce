@@ -1,0 +1,116 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head><link href="../volantis.css" rel="stylesheet" type="text/css"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Iterator panes</title>
+  </head>
+  <body>
+<h1>Iterator panes</h1>
+<p>If you need to present sets of results from a dynamic data source, or a layout 
+  in which the content changes over time, you can use a format iterator.</p>
+<p>Spatial iterators handle tables with both fixed and variable numbers of rows 
+  from a database query or a web search engine.</p>
+<p class="note"><strong>Note</strong>: Using column and row iterators is deprecated 
+  from MCS 3.2. They will be removed in a later release of MCS. Nested menus are 
+  not supported in column and row iterator panes.</p>
+<p> A temporal iterator allows you to create a time-based, multimedia sequence 
+  with Synchronized Multimedia Integration Language (SMIL) markup, for use with 
+  the Message Preparation Sever (MPS).</p>
+<h2>Spatial iteration</h2>
+<p>A spatial iterator defines both rows and columns in a single format. You can 
+  specify either an exact number of iterations or an upper limit, and also define 
+  the order of indexing the generated panes - rows or columns first. A single 
+  pane defines the content.</p>
+<p>The figure shows how a spatial iterator and its content appear in a Layout 
+  editor Design page. The grid contains a row of five panes. Named isbn, title, 
+  author, date and price, they act as column definitions for information about 
+  books.</p>
+  
+<p><img src="../images/layout_spatial.png" width="598" height="224"></p>
+
+<p>The table illustrates the results that are output by the format iterator, and 
+  how the generated pane instances are identified in relation to the unique names 
+  in the layout definition. The name of the pane, for example, isbn, is combined 
+  with a sequential index number starting at zero for the first row.</p>
+<table width="95%" border="1" cellspacing="0" cellpadding="0">
+  <tr align="left" valign="top"> 
+    <td>isbn.0</td>
+    <td>author.0</td>
+    <td>title.0</td>
+    <td>date.0</td>
+    <td>price.0</td>
+  </tr>
+  <tr> 
+    <td>isbn.1</td>
+    <td>author.1</td>
+    <td>title.1</td>
+    <td>date.1</td>
+    <td>price.1</td>
+  </tr>
+  <tr> 
+    <td>isbn.2</td>
+    <td>author.2</td>
+    <td>title.2</td>
+    <td>date.2</td>
+    <td>price.2</td>
+  </tr>
+</table>
+<p>The XDIME example populates the layout with simple content using the expression 
+  function <span class="code">layout:getPaneInstance()</span> to refer to the 
+  instances of the panes within the spatial iterator. This function returns a 
+  reference to one instance of a pane within an iterating format.</p>
+<p class="code">
+  &lt;!-- First book --&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('isbn',0)}&quot;1-56592-622-6&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('author',0)}&quot;&gt;Cascading style 
+  sheets&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance(title,0)}&quot;&gt;Eric A Mayer&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('date',0)}&quot;&gt;2000&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('price',0)}&quot;&gt;$34.95&lt;/p&gt;<br>
+  <br>
+  &lt;!-- Second book --&gt; <br>
+  &lt;p pane=&quot;{layout:getPaneInstance('isbn',1)}&quot;&gt;0-7645-4336&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('author',1)}&quot;&gt;Professional 
+  WebSphere 5.0 Applications&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance(title,1)}&quot;&gt;Tim Francis and 
+  others&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('date',1)}&quot;&gt;2003&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('price',1)}&quot;&gt;$79.99&lt;/p&gt;<br>
+  <br>
+  &lt;!-- Third book --&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('isbn',2)}&quot;&gt;0-07-882396-X&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('author',2)}&quot;&gt;The XML handbook&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance(title,2)}&quot;&gt;Charles Goldfarb, 
+  Paul Prescod&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('date',2)}&quot;&gt;2001&lt;/p&gt;<br>
+  &lt;p pane=&quot;{layout:getPaneInstance('price',2)}&quot;&gt;$49.99&lt;/p&gt;</p>
+<h2>Temporal iteration</h2>
+<p>Temporal iterators work in a similar way to spatial iterators. The associated 
+  attributes define the transition between presentation of one set of content 
+  and the next.</p>
+<p>In the preceding example the booklist index values 0-2 for the output pane 
+  instances could be associated with time intervals. This might not be effective 
+  in a text-only presentation, but it would make sense if the content was a series 
+  of book cover images.</p>
+<p><span class="ri">Related information</span><br>
+  <a href="layout_canvas_panes.htm" author="Canvas layouts and panes">Canvas layouts 
+  and panes</a><br>
+</p>
+<p class="copyright">&copy; Copyright 2004 Volantis Systems Ltd</p></body>
+</html>
