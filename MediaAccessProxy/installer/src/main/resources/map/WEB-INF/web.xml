@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ ! (c) Volantis Systems Ltd 2005. 
+ ! ======================================================================= -->
+
+<!DOCTYPE web-app
+PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+"http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+    <display-name>OSGi</display-name>
+    
+    <description>
+        This is the OSGi development deployment descriptor.
+    </description>
+    
+    <!-- _iid: location:/web-app/context-params -->
+    
+    <context-param>
+        <param-name>system.packages.javax.swing</param-name>
+        <param-value>javax.swing; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>system.packages.javax.swing.border</param-name>
+        <param-value>javax.swing.border; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>system.packages.javax.swing.event</param-name>
+        <param-value>javax.swing.event; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>system.packages.javax.swing.text</param-name>
+        <param-value>javax.swing.text; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>system.packages.javax.swing.filechooser</param-name>
+        <param-value>javax.swing.filechooser; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>system.packages.javax.swing.plaf</param-name>
+        <param-value>javax.swing.plaf; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>system.packages.javax.swing.plaf.basic</param-name>
+        <param-value>javax.swing.plaf.basic; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>system.packages.javax.swing.table</param-name>
+        <param-value>javax.swing.table; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>system.packages.javax.swing.tree</param-name>
+        <param-value>javax.swing.tree; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+        <param-name>system.packages.javax.xml.namespace</param-name>
+        <param-value> javax.xml.namespace; version=1.5.0</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>map.log4j.config.file</param-name>
+        <param-value>${INSTALL_PATH}/webapps/map/WEB-INF/map-log4j.xml</param-value>
+    </context-param>
+        
+    <listener>
+        <listener-class>
+            com.volantis.synergetics.osgi.j2ee.boot.OSGiBootListener
+        </listener-class>
+    </listener>
+
+      
+    <servlet>
+        <servlet-name>Bridge</servlet-name>
+        <servlet-class>com.volantis.synergetics.osgi.j2ee.bridge.http.servlet.OSGiHttpBridgeServlet</servlet-class>
+    </servlet>      
+    
+    <servlet-mapping>	
+        <servlet-name>Bridge</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    
+</web-app>
