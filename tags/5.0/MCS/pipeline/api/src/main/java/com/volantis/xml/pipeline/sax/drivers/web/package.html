@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+  (c) Volantis Systems Ltd 2003. 
+
+-->
+</head>
+<body bgcolor="white">
+
+Provides classes and interfaces for managing and using the web driver.
+
+<h2>Using Web Driver</h2>
+
+<p>The web driver can make use of and generate additional out of band data, i.e.
+information that is not passed through the pipeline. This section explains how
+to do this.</p>
+
+<p>The out of band input to the web driver consists of the following HTTP
+information which is supplied to the web driver in a
+{@link com.volantis.xml.pipeline.sax.drivers.web.WebDriverRequest} object.</p>
+<ul>
+<li>Cookies</li>
+<li>Headers</li>
+<li>Request parameters</li>
+</ul>
+
+<p>The out of band output from the web driver consists of the following HTTP
+information which is returned by the web driver in a
+{@link com.volantis.xml.pipeline.sax.drivers.web.WebDriverResponse} object.</p>
+<ul>
+<li>Cookies</li>
+<li>Headers</li>
+<li>Status code</li>
+<li>Content type</li>
+<li>Ignored content</li>
+</ul>
+
+<p>The web driver retrieves both the above objects from the
+{@link com.volantis.xml.pipeline.sax.drivers.web.WebDriverFactory} that it is
+configured with. The web driver will work if it cannot access any
+{@link com.volantis.xml.pipeline.sax.drivers.web.WebDriverRequest} or
+{@link com.volantis.xml.pipeline.sax.drivers.web.WebDriverResponse} objects
+either because their is no factory, or a factory method returns null.
+</p>
+<p>If a {@link com.volantis.xml.pipeline.sax.drivers.web.WebDriverRequest} could
+not be retrieved then the web driver simply behaves as if it was given one which
+was empty. If a
+{@link com.volantis.xml.pipeline.sax.drivers.web.WebDriverResponse} could not be
+retrieved then the web driver does not return any information from the server.
+In an analagous way if the objects do exist but some of the referenced
+objects do not then they are treated as if they are empty.</p>
+<p>{@link com.volantis.xml.pipeline.sax.drivers.web.WebDriverRequest} and
+{@link com.volantis.xml.pipeline.sax.drivers.   web.WebDriverResponse} objects
+can be created using methods in the
+{@link com.volantis.xml.pipeline.sax.drivers.web.WebDriverFactory} class.</p>
+<p>There can be multiple web driver usages within the lifetime of a single
+pipeline and in order to distinguish between them they each have an id. This is
+used by the web driver when it is retrieving the response objects from
+the factory.</p>
+<p>The request and response objects can either be created before the pipeline
+starts and stored in the pipeline context, or be created on demand. The exact
+behaviour is determined by the implementor of the
+{@link com.volantis.xml.pipeline.sax.drivers.web.WebDriverFactory}.</p>
+<!-- Put @see and @since tags down here. -->
+
+</body>
+</html>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 20-Oct-04	5438/1	philws	VBM:2004082706 Transfer Pipeline source into MCS
+
+ 06-Aug-03	301/3	doug	VBM:2003080503 Refactored URLToURLCConverter process to use DynamicElementRules
+
+ 06-Aug-03	301/1	doug	VBM:2003080503 Refactored Pipeline to use DynamicElementRules
+
+ 16-Jul-03	208/1	doug	VBM:2003071603 Added as part of Pipeline public API
+
+ ===========================================================================
+-->

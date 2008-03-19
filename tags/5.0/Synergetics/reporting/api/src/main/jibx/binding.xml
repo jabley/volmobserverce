@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<binding>
+    <mapping name="reporting-config" class="com.volantis.synergetics.reporting.config.ReportingConfig">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <collection field="datasourceConfigs" type="java.util.ArrayList" ordered="false">
+            <structure usage="optional" map-as="com.volantis.synergetics.reporting.config.JDBCDatasource"></structure>
+            <structure usage="optional" map-as="com.volantis.synergetics.reporting.config.InternalPoolDatasource"></structure>
+            <structure usage="optional" map-as="com.volantis.synergetics.reporting.config.JNDIDatasource"></structure>
+        </collection>
+        <collection field="reportList" type="java.util.ArrayList" ordered="false">
+            <structure usage="optional" map-as="com.volantis.synergetics.reporting.config.ReportElement"></structure>
+        </collection>
+    </mapping>
+    <mapping name="report" class="com.volantis.synergetics.reporting.config.ReportElement">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <structure field="reportExclusion" usage="optional" map-as="com.volantis.synergetics.reporting.config.ReportExclusion"></structure>
+        <structure field="sqlHandler" usage="optional" map-as="com.volantis.synergetics.reporting.config.SqlHandler"></structure>
+        <structure field="genericHandler" usage="optional" map-as="com.volantis.synergetics.reporting.config.GenericHandler"></structure>
+        <value name="enabled" field="enabled" usage="optional" style="attribute"/>
+        <value name="binding" field="binding" usage="required" style="attribute"/>
+    </mapping>
+    <mapping name="exclusions" class="com.volantis.synergetics.reporting.config.ReportExclusion">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <collection field="eventTypeExclusions" type="java.util.ArrayList">
+            <structure usage="optional" map-as="com.volantis.synergetics.reporting.config.EventTypeExclusion"></structure>
+        </collection>
+        <collection field="metricExclusions" type="java.util.ArrayList">
+            <structure usage="optional" map-as="com.volantis.synergetics.reporting.config.MetricExclusion"></structure>
+        </collection>
+    </mapping>
+    <mapping name="generic-handler" class="com.volantis.synergetics.reporting.config.GenericHandler">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <collection field="paramList">
+            <structure map-as="com.volantis.synergetics.reporting.config.GenericHandlerParam"></structure>
+        </collection>
+        <value name="class" field="className" usage="required" style="attribute"/>
+    </mapping>
+    <mapping name="param" class="com.volantis.synergetics.reporting.config.GenericHandlerParam">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <value name="name" field="name" usage="required"/>
+        <value name="value" field="value" usage="required"/>
+    </mapping>
+    <mapping name="sql-handler" class="com.volantis.synergetics.reporting.config.SqlHandler">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <value name="table-name" field="tableName" usage="required"/>
+        <collection field="columnMappingList">
+            <structure map-as="com.volantis.synergetics.reporting.config.ColumnMapping"></structure>
+        </collection>
+        <value name="datasource-name" field="datasourceName" usage="required"/>
+    </mapping>
+    <mapping name="column-mapping" class="com.volantis.synergetics.reporting.config.ColumnMapping">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <value name="metric" field="metric" usage="required"/>
+        <value name="column" field="column" usage="required"/>
+    </mapping>
+    <mapping name="jdbc-datasource" class="com.volantis.synergetics.reporting.config.JDBCDatasource">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <value name="name" field="name" usage="required"/>
+        <value name="driver-class" field="driverClass" usage="required"/>
+        <value name="connection-string" field="connectionString" usage="required"/>
+    </mapping>
+    <mapping name="internal-pool-datasource" class="com.volantis.synergetics.reporting.config.InternalPoolDatasource">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <value name="name" field="name" usage="required"/>
+        <value name="driver-class" field="driverClass" usage="required"/>
+        <value name="url" field="url" usage="required"/>
+        <value name="username" field="username" usage="required"/>
+        <value name="password" field="password" usage="required"/>
+        <value name="max-active" field="maxActive" usage="required"/>
+        <value name="max-idle" field="maxIdle" usage="required"/>
+        <value name="max-wait" field="maxWait" usage="required"/>
+    </mapping>
+    <mapping name="jndi-datasource" class="com.volantis.synergetics.reporting.config.JNDIDatasource">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <value name="name" field="name" usage="required"/>
+        <value name="jndi-name" field="jndiName" usage="required"/>
+    </mapping>
+    <mapping name="event" class="com.volantis.synergetics.reporting.config.EventTypeExclusion">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <value name="type" field="eventType" usage="required" style="attribute"/>
+    </mapping>
+    <mapping name="metric" class="com.volantis.synergetics.reporting.config.MetricExclusion">
+        <namespace uri="http://www.volantis.com/xmlns/2005/10/storefront/reporting-configuration" default="elements"/>
+        <value name="name" field="metricName" usage="required" style="attribute"/>
+        <value name="operation" field="operation" usage="required" style="attribute"/>
+        <value name="value" field="value" usage="required" style="attribute"/>
+        <value name="ignore-case" field="ignoreCase" usage="optional" style="attribute"/>
+    </mapping>
+</binding>

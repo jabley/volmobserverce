@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD       XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Specifying a dynamic menu</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Specifying a dynamic menu</h1>
+      <p>You can use the Dynamic Menu widget to include navigation menus on the page, without making
+         them fully visible initially. This allows pages that contain a lot of information to be
+         less cluttered. Sub menus are displayed when the user selects a menuitem. If you use
+         transitions to show and hide sub menus, you can make the display more appealing.</p>
+      <p>This widget does not use any additional XDIME 2 markup. Rather you use the
+         <span class="code">nl</span> element that defines a navigation list. If the
+         <span class="uicontrol">Menu Style</span> property is set to 'dynamic', then the <span class="code">nl</span> is
+         rendered as dynamic menu otherwise as normal unordered list.</p>
+      
+         <h2>Visual appearance</h2>
+         <p>Initially, the top-level of the menu, optionally with a marker which indicates that
+            menus can be opened, is visible. The top-level menu may have either horizontal or
+            vertical orientation. Each sub menu may have either horizontal or vertical orientation,
+            independently of its parent menu.</p>
+         <div class="note"><strong>Note</strong>: When a sub menu is unfolded, it overlays over the existing page content.
+            It does not cause the existing page content to move.</div>
+      
+      
+         <h2>User interactions</h2>
+         <p>You can specify if menu and sub menu should unfold when the user moves the focus to a
+            menu item which has a sub menu, or when she clicks on a menu item which has a sub menu.</p>
+         <p>Menu and sub menu can be folded when the user moves the focus from the menu item or one of
+            its sub menus, or by clicking on the menu item in its unfolded state. In addition, a
+            menu can be folded when the user clicks on a menu that performs some navigation action
+            rather than containing a sub menu.</p>
+      
+      
+         <h2>Styling a menu</h2>
+         <p>If you set the <span class="uicontrol">Style</span> property on the <span class="code">nl</span>
+            element to 'dynamic' the menu will be rendered as dynamic menu rather than as a normal
+            unordered list. This style is inherited. The <span class="uicontrol">Toggle event</span>
+            property describes the event that unfolds a sub menu, with values 'focus' or 'click'.</p>
+         <p>The <span class="uicontrol">Orientation</span> property controls the orientation of the menu and
+            sub menu with values of either 'vertical' or 'horizontal'.</p>
+         <p>The <span class="code">:mcs-unfolded</span> pseudo-class, and the <span class="code">::marker</span>
+            pseudo-element sets the style for unfolded sub menu labels and markers.</p>
+         <p>Setting the <span class="uicontrol">Position</span> property to 'fixed' locks dynamic menu in
+            place and makes it visible even on pages longer than device screen.</p>
+         <pre class="code">
+&lt;nl style="mcs-menu-style: dynamic; mcs-menu-orientation: vertical; mcs-toggle-event: click;"&gt;
+   &lt;label&gt;My menu&lt;/label&gt;
+   &lt;li&gt;
+      &lt;nl&gt;
+         &lt;label&gt;A - P&lt;/label&gt;
+         &lt;li&gt;&lt;a href="http://www.beograd.org.yu"&gt;Beograd&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href="http://www.berlin.de"&gt;Berlin&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href="http://www.prague-city.cz"&gt;Prague&lt;/a&gt;&lt;/li&gt;
+      &lt;/nl&gt;
+   &lt;/li&gt;
+   &lt;li&gt;
+      &lt;nl&gt;
+         &lt;label&gt;R - Z&lt;/label&gt;
+         &lt;li&gt;&lt;a href="http://www.rcc.lv"&gt;Riga&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href="http://www.wien.gv.at/"&gt;Vienna&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href="http://www.vilnius.lt"&gt;Vilnius&lt;/a&gt;&lt;/li&gt;
+      &lt;/nl&gt;
+   &lt;/li&gt;
+&lt;/nl&gt;</pre>
+      
+      
+         <h2>Non-client fallback</h2>
+         <p>If a device does not support dynamic menus, then all menus, sub menu and their items
+            will be shown vertically in main menu container.</p>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../client/widget_library.html">Widget library</a><br/><a href="../xdime_cp/xdime_cp_nl.html">nl</a><br/><a href="../client/wag_widgets_style.html">Styling widgets</a></p>
+      
+   </body></html>

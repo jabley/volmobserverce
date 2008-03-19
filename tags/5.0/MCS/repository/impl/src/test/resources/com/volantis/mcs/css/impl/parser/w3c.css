@@ -1,0 +1,40 @@
+/*
+ * The parser will treat this as if the style sheet had been
+ *
+ *    a { color: red }
+ */
+a { color: red; rotation: 70minutes }
+
+/*
+ * Illegal values. Parsers must ignore a declaration with an illegal value.
+ * For example, a CSS 2.1 parser would honor the first rule and ignore the
+ * rest, as if the style sheet had been:
+ *
+ *    b { float: left }
+ *    c { }
+ *    d { }
+ *    e { }
+ *
+ * A parser conforming to a future CSS specification may accept one or more of
+ * the other rules as well.
+ */
+b { float: left }       /* correct CSS 2.1 */
+c { float: left here }  /* "here" is not a value of 'float' */
+d { background: "red" } /* keywords cannot be quoted */
+e { border-width: 3 }   /* a unit must be specified for length values */
+
+/**
+ * Malformed declarations. Parsers must handle unexpected tokens encountered
+ * while parsing a declaration by reading until the end of the declaration,
+ * while observing the rules for matching pairs of (), [], {}, "", and '', and
+ * correctly handling escapes. For example, a malformed declaration may be
+ * missing a property, colon (:) or value. The following are all equivalent:
+ */
+f { color:green }
+g { color:green; color }  /* malformed declaration missing ':', value */
+h { color:red;   color; color:green }  /* same with expected recovery */
+i { color:green; color: } /* malformed declaration missing value */
+j { color:red;   color:; color:green } /* same with expected recovery */
+k { color:green; color{;color:maroon} } /* unexpected tokens { } */
+l { color:red;   color{;color:maroon}; color:green } /* same with recovery */
+

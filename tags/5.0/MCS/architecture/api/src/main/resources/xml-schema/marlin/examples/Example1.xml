@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ ! $Header: /cvs/architecture/architecture/xml-schema/marlin/examples/Example1.xml,v 1.1 2003/11/21 10:34:13 pduffin Exp $
+ ! ============================================================================
+ ! (c) Volantis Systems Ltd 2001. 
+ ! ============================================================================
+ ! Change History:
+ !
+ ! Date         Who             Description
+ ! =========    =============== ===============================================
+ ! 14-Apr-04    Paul            Updated namespace and schema attributes and
+ !                              added this change history.
+ ! ======================================================================== -->
+<!--
+ ! ****************************************************************************************************************************
+ ! Notice the namespace definitions in the canvas statement for this markup. The default (no prefix) namespace
+ ! is that for the cdm elements themselves. The prefix vtim (in this example, though it can be anything you like)
+ ! is used for the integration module statements, in this case the invoke element and its children
+ ! ****************************************************************************************************************************
+ !-->
+<canvas xmlns="http://www.volantis.com/xmlns/marlin-cdm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:vtim="http://www.volantis.com/xmlns/marlin-im"
+        xsi:schemaLocation="http://www.volantis.com/xmlns/marlin-cdm
+http://www.volantis.com/schema/latest/marlin-cdm-internal.xsd"
+        layoutName="mylayout">
+    <pane name="a1">
+        <p>This is some text in a paragraph.</p>
+        <p>This is some more text <b> within an in-line element to
+            <vtim:invoke plugin-name="billing" method-name="process">
+                <vtim:arguments>
+                    <vtim:argument name="billvalue" value="1.35"/>
+                </vtim:arguments>
+            </vtim:invoke>
+            illustrate that an invokation can be placed pretty much anywhere.</b> We can also add invocations 
+            <vtim:invoke plugin-name="this" method-name="process">
+                <vtim:arguments>
+                    <vtim:argument name="elephant" value="trunk"/>
+                </vtim:arguments>
+            </vtim:invoke> inside block elements.
+        </p>
+    </pane>
+    <table cols="2">
+        <tbody>
+            <tr>
+                <td>This table cell has no invocation</td>
+                <td>but 
+                <vtim:invoke plugin-name="billing" method-name="process">
+                        <vtim:arguments>
+                            <vtim:argument name="billvalue" value="2.7"/>
+                        </vtim:arguments>
+                    </vtim:invoke>
+                this one has!</td>
+            </tr>
+        </tbody>
+    </table>
+</canvas>

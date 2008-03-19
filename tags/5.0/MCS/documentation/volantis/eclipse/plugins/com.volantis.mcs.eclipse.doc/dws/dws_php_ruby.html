@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <title/>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1/>
+   
+      <p>When you install DWS, there is an option to install PHP and Ruby
+      code samples that illustrate the use of the REST API. The samples do not verify the SSL cerificate of the DWS server.</p>
+   
+      
+         
+      <h2>PHP</h2>
+         
+      <p>The PHP samples require PHP 5 and the <span class="code">HTTP_Request</span> 
+         <span class="code">Net_URL</span> modules from
+            PHP Extension and Application Repository (PEAR)</p>
+         
+      <p>You can download PHP from
+            </p>
+         
+      <pre class="code">http://www.php.net/downloads.php</pre>
+         
+      <p>PHP 5 is configured to install and use the PEAR Package Manager by default, so you can use the Manager's CLI installer with the the following commands.</p>
+         
+      <pre class="code">$ pear install HTTP_Request
+$ pear install Net_URL </pre>
+         
+         
+      <p>You should now be ready to execute the PHP examples.
+         Note that the sample <span class="code">drws-config.php</span> is also required.</p>
+         
+      <p>If you want to add certificate verification, use the <span class="code">HTTP_Request</span> constructor, and specify a <span class="code">socketOptions</span> array to set the following parameters.</p>
+         
+      <ul>
+            
+         <li>'verify_peer' to true</li>
+            
+         <li>Either 'cafile' to the path to the PEM-encoded
+               cerificate, or 'capath' to a directory to be searched for a
+               suitable certificate</li>
+         
+      </ul>
+         
+      <p>Refer to the documentation on <span class="code">HTTP_Request</span> for details.</p>
+         
+      <pre class="code">http://pear.php.net/manual/en/package.http.http-request.php</pre>
+      
+      
+         
+      <h2>Ruby</h2>
+         
+      <p>The Ruby samples require Ruby 1.8.2 and the <span class="code">net/https</span> module. 
+            Note that the sample <span class="code">drws-config.rb</span> is also required to supply server configuraton values.</p>
+         
+      <p>You can download Ruby from</p>
+         
+      <pre class="code">http://www.ruby-lang.org/en/</pre> 
+         
+         
+      <p>To add certificate verification, use the <span class="code">cert_store</span> method on the HTTP request object to set the store to the one containing the server's certificate, or
+           the certificate of the CA. Then turn on verification by calling</p>
+            
+            
+      <pre class="code">http.verify_mode = OpenSSL::SSL::VERIFY_PEER</pre>
+         
+      <p>See the documentation for <span class="code">net/https</span> for further information.</p>
+            
+      <pre class="code">http://www.ruby-doc.org/stdlib/libdoc/net/http/rdoc/index.html</pre>
+            
+      
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../dws/dws_rest_api.html">DWS API reference</a>
+      </p>
+      
+   
+   </body>
+</html>

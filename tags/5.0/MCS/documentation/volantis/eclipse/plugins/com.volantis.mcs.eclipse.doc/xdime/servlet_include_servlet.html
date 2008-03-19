@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>servlet:includeServlet</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>servlet:includeServlet</h1><h2>Purpose</h2>
+         <p>Used to include XML and JSP servlets. If the servlet is not found,
+            an error will be generated.</p>
+      <h2>Contains</h2><p><a href="../xdime/servlet_param.html">servlet:param</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">href</th><td>The relative path to the resource to include. If it
+               starts with a '/' then it is context relative; otherwise it is
+               page relative and is resolved relative to the base path, which is
+               itself context relative.</td><td>xs:string</td><td>none </td><td> </td><td>required </td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;servlet:includeServlet href="header.jsp"&gt;
+   &lt;servlet:param name="a" value="1"/&gt;
+   &lt;servlet:param name="b" value="2"/&gt;
+&lt;/servlet:includeServlet&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/servlet_er.html">Servlet elements</a></p>
+      </body></html>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>Using XDIME in messages</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Using XDIME in messages</h1>
+      
+      <p>Only simple XDIME elements are supported in MHTML, so you
+         cannot use structural elements such as
+         <span class="code">table</span> or <span class="code">div</span>.</p>
+      
+      <p>In MMS and SMS, whitespace is significant, so MPS renders
+         element body content using whitespace to layout the message.</p>
+      
+      <ol>
+         
+         <li>All line feeds and unnecessary spaces are trimmed from
+            element contents, apart from the <span class="code">pre</span>
+            element </li>
+         
+         <li>A line break is placed in the output text before and
+            after most block level elements </li>
+         
+         <li>Whitespace is added around text for
+            <span class="code">td</span>, <span class="code">th</span> and
+               <span class="code">dt</span> elements to approximate columns </li>
+         
+         <li>The <span class="code">ol</span> and <span class="code">ul</span>
+            elements are also emulated, but only in the most simple
+            cases, and any attributes are ignored </li>
+      
+      </ol>
+      
+      <p>Other issues and features:</p>
+      
+      <ul>
+         
+         <li>Nested elements in table cells such as
+            <span class="code">p</span> may break the emulated formatting </li>
+         
+         <li>All form content is ignored </li>
+         
+         <li>Character encodings not supported in MMS/SMS will produce
+            undefined results </li>
+         
+         <li>No support is provided for inclusion </li>
+         
+         <li>Any HTML entities are ignored and passed through </li>
+         
+         <li>All theme and style information is ignored </li>
+      
+      </ul>
+      
+      <p>Several limitations in the use of layouts, themes and
+         components in MPS messages are given in the table.</p>
+      
+      <table cellspacing="0" summary="Limitations in the use of layouts, themes and components in MPS messages">
+         <caption>Layouts, themes and components</caption>
+         <thead>
+            
+            <tr>
+               
+               <th class="firsthdr" scope="col">Type</th>
+               
+               <th scope="col">Layout</th>
+               
+               <th scope="col">Themes</th>
+               
+               <th scope="col">Components</th>
+            
+            </tr>
+         
+         </thead>
+         <tbody>
+            <tr scope="row">
+               <th class="firstcell">MHTML</th>
+               <td>Layouts should be simple</td>
+               <td>HTML 3.2 does not support CSS. MCS emulates some CSS properties for HTML 3.2 family protocols by mapping theme policies to individual element attributes.</td>
+               <td>No differences</td>
+            </tr>
+            <tr scope="row">
+               <th class="firstcell">MMS</th>
+               <td>A maximum of two panes, with separate panes for
+                  text and images if both are used.
+                     <span class="uicontrol">Destination Area</span> format
+                  attribute for the pane must contain the case
+                  sensitive literal 'Text' or 'Image'.</td>
+               <td rowspan="2">All theme information is ignored.</td>
+               <td rowspan="2">Text fallbacks are used for unsupported
+                  non-text components if available</td>
+            </tr>
+            <tr scope="row">
+               <th class="firstcell">SMS</th>
+               <td>A single pane only is allowed</td>
+            </tr>
+         </tbody>
+      </table>
+      
+         
+      <h2>Additional features over MCS</h2>
+         
+      <p>Where a device natively supports the AMR audio format
+            (audio/amr and audio/x-amr), you can use device specific audio
+            assets with the XDIME <span class="code">audio</span> element.</p>
+            
+      <p>On MMS/SMIL devices, it is possible to associate an individual audio component with each slide in an MMS slide presentation. For example, in a message canvas containing several slides timed by a temporal iterator, if there are two panes in the iterator layout (one text, one image) above one another, and an audio component is bound to <em>either</em> pane, the audio will be played when the layout is displayed as a single slide. Under MHTML/SMS any alternative text is output.</p>
+            
+      <pre class="code">&lt;canvas layoutName="iter8" theme="beaches.mthm"&gt;
+   &lt;!--slide 1--&gt;
+   &lt;p pane="text1"&gt;Waikiki beach, Oahu&lt;/p&gt;
+   &lt;audio pane="text1" src="/sounds/uke1.mauc"/&gt;
+   &lt;p pane="image1"&gt;
+      &lt;img src="/graphics/waikiki.mimg"/&gt;
+   &lt;/p&gt;
+   &lt;!--more slides--&gt;
+&lt;/canvas&gt;</pre>
+          
+      
+      
+         
+      <h2>MCS features not available with MPS</h2>
+         
+      <p>Fragmentation, which is available with MCS, is not
+            supported within MPS messages. Page generation will fail
+            for layouts that are fragmented.</p>
+         
+      <p>Dissection, which is available with MCS, is not supported
+            within MPS messages. During page generation, dissecting
+            panes are treated as normal panes and dissection is
+            suppressed.</p>
+      
+      
+         
+      <h2>Error detection</h2>
+         
+      <p>The error detection features that are available in MPS are
+            channel dependent. If a protocol supports a particular
+            error condition, then the error values will be returned by
+            the appropriate adapter.</p>
+      
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../mps/mps_about.html">About MPS</a>
+      </p>
+      
+   
+   </body>
+</html>

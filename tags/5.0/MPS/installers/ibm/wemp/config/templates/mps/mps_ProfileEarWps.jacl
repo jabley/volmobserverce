@@ -1,0 +1,20 @@
+source [subst {[lindex $argv 0]/config/was/GetProperties.jacl}]
+source [subst {[lindex $argv 0]/config/work/was/msglog.jacl}]
+set logger [getLogger]
+
+set UpdateEarSrc [$fileprop getProperty WpsInstallLocation]/config/work/wps.ear
+set UpdateEarName [$fileprop getProperty WpsAppName]
+
+puts "UpdateEarSrc : $UpdateEarSrc"
+puts "UpdateEarName : $UpdateEarName"
+
+set Attrs [subst {-update -appname $UpdateEarName}]
+
+# check if WAS EE is installed via is Scheduler a valid config type
+if {[catch {$AdminConfig list SchedulerProvider} TmpSchedulerProviderList]} {
+    puts stdout "It appers that 'IBM WebSphere Application Server Enterprise' (PME) is not installed."
+    puts stdout "Do not deploy EJBs"
+    append Attrs { -nodeployejb}
+} else {
+    append Attrs { -deployejb}
+}

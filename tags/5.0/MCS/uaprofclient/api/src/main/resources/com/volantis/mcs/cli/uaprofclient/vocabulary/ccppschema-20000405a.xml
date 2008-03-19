@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<profile-desc id="http://www.wapforum.org/UAPROF/ccppschema-20000405#">
+  <component-desc id="BrowserUA">
+    <attribute-desc name="BrowserName" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="BrowserVersion" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="DownloadableBrowserApps" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="FramesCapable" base-type="boolean" composition="simple" resolution-policy="override"/>
+    <attribute-desc name="HtmlVersion" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="JavaAppletEnabled" base-type="boolean" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="JavaScriptEnabled" base-type="boolean" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="JavaScriptVersion" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="PreferenceForFrames" base-type="boolean" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="TablesCapable" base-type="boolean" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="XhtmlModules" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="XhtmlVersion" base-type="literal" composition="simple" resolution-policy="locked"/>
+  </component-desc>
+  <component-desc id="HardwarePlatform">
+    <attribute-desc name="BitsPerPixel" base-type="integer" composition="simple" resolution-policy="override"/>
+    <attribute-desc name="ColorCapable" base-type="boolean" composition="simple" resolution-policy="override"/>
+    <attribute-desc name="CPU" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="ImageCapable" base-type="boolean" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="InputCharSet" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="Keyboard" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="Model" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="NumberOfSoftKeys" base-type="integer" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="OutputCharSet" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="PixelAspectRatio" base-type="dimension" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="PointingResolution" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="ScreenSize" base-type="dimension" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="ScreenSizeChar" base-type="dimension" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="SoundOutputCapable" base-type="boolean" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="StandardFontProportional" base-type="boolean" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="TextInputCapable" base-type="boolean" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="Vendor" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="VoiceInputCapable" base-type="boolean" composition="simple" resolution-policy="locked"/>
+  </component-desc>
+  <component-desc id="NetworkCharacteristics">
+    <attribute-desc name="CurrentBearerService" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="SecuritySupport" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="SupportedBearers" base-type="literal" composition="simple" resolution-policy="locked"/>
+  </component-desc>
+  <component-desc id="SoftwarePlatform">
+    <attribute-desc name="AcceptDownloadableSoftware" base-type="boolean" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="AudioInputEncoder" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="CcppAccept" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="CcppAccept-Charset" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="CcppAccept-Encoding" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="CcppAccept-Language" base-type="literal" composition="sequence" resolution-policy="append"/>
+    <attribute-desc name="DownloadableSoftwareSupport" base-type="literal" composition="set" resolution-policy="locked"/>
+    <attribute-desc name="JavaEnabled" base-type="boolean" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="JVMVersion" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="MexeClassmark" base-type="integer" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="MexeSpec" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="OSName" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="OSVendor" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="OSVersion" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="RecipientAppAgent" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="SoftwareNumber" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="VideoInputEncoder" base-type="literal" composition="set" resolution-policy="append"/>
+  </component-desc>
+  <component-desc id="WapCharacteristics">
+    <attribute-desc name="WapDeviceClass" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="WapPushMsgPriority" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="WapPushMsgSize" base-type="integer" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="WapSupportedApplications" base-type="literal" composition="set" resolution-policy="locked"/>
+    <attribute-desc name="WapVersion" base-type="literal" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="WmlDeckSize" base-type="integer" composition="simple" resolution-policy="locked"/>
+    <attribute-desc name="WmlScriptLibraries" base-type="literal" composition="set" resolution-policy="locked"/>
+    <attribute-desc name="WmlScriptVersion" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="WmlVersion" base-type="literal" composition="set" resolution-policy="append"/>
+    <attribute-desc name="WtaiLibraries" base-type="literal" composition="set" resolution-policy="locked"/>
+    <attribute-desc name="WtaVersion" base-type="literal" composition="simple" resolution-policy="locked"/>
+  </component-desc>
+</profile-desc>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 08-Oct-03	1461/4	geoff	VBM:2003092501 Create CLI tool to translate UAProf data files into MCS xml import file (final version)
+
+ 06-Oct-03	1461/1	geoff	VBM:2003092501 Create CLI tool to translate UAProf data files into MCS xml import file (can dump text out only - for testing)
+
+ ===========================================================================
+-->

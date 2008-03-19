@@ -1,0 +1,59 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head><link href="../volantis.css" rel="stylesheet" type="text/css"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Setting iterator attributes</title>
+  </head>
+<h1>Setting iterator attributes</h1>
+<p>Spatial and temporal iterators have specific values that are not used in other 
+  format attributes.</p>
+<h2>Spatial iterators</h2>
+<p>Because spatial iterators can display data series in both rows and columns, 
+  you may need to specify the way that MCS should index the generated cells. MCS 
+  can number cells either left to right first, or top to bottom first. You may 
+  also want to set limits to the number of data sets that a user can display.</p>
+<ol>
+  <li>In the <span class="uicontrol">2D Indexing Direction</span> control choose 
+    Across Down to number from left to right (columns first). Down Across numbers 
+    top to bottom (rows first)</li>
+  <li>In <span class="uicontrol">Row Iterations</span> or <span class="uicontrol">Column Iterations</span>, specify either Up To or Exactly and enter a number</li>
+</ol>
+<h2>Temporal iterators</h2>
+<p>When you set the attributes of a temporal iterator, you can choose time values 
+  for the iterator cells.</p>
+<ol>
+  <li>In the Time Values control click <span class="command">Browse</span> to 
+    open the Time Selection dialog</li>
+  <li>Set values for <span class="uicontrol">Hours</span> <span class="uicontrol">Minutes</span> 
+    and <span class="uicontrol">Seconds</span> of a time value</li>
+  <li>Click <span class="command">Add</span> to add a time to the list</li>
+  <li>Select a value in the list and click <span class="command">Up</span> or 
+    <span class="command">Down</span> to change the order to match the sequence 
+    of cells.</li>
+</ol>
+<p>The values are added to the control in the sequence you chose.</p>
+<p><img src="../images/dialog_time.png" width="338" height="271" alt="Time selection dialog"></p>
+<p>To remove a value from the list, open the dialog, select a list item, and click 
+  <span class="command">Remove</span>.</p>
+<p><span class="ri">Related information</span><br>
+  <a href="layout_iterator_panes.htm" title="Iterator panes">Iterator panes</a><br>
+  <a href="layout_add_pane.htm" title="Adding iterator panes">Adding iterator panes</a><br>
+  <a href="layout_iterator_attributes.htm" title="Iterator attributes">Iterator attributes</a></p>
+</body>
+</html>

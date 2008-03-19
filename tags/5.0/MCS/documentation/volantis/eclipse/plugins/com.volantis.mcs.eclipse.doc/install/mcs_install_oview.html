@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Installing MCS</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Installing MCS</h1>
+      <p>Installing and configuring Multi-Channel Server (MCS) involves a number
+         of steps, outlined here, and detailed in related topics.</p>
+      <div class="note"><strong>Note</strong>: If you have an existing MCS repository, you should
+         ensure that it is fully backed up prior to any maintenance work.</div>
+      
+         <h2>Required software</h2>
+         <p>MCS operates as an application within a web application server. The
+            web application server you choose must be installed and working
+            successfully before MCS can be used.</p>
+         <p>At design time, you define policies for devices, layouts, components
+            and themes in an XML repository. The policy editors operate within
+            the Eclipse Framework as a set of
+            integrated plugins. The Eclipse
+            Framework needs to be downloaded and installed before the policy
+            editors can be used.</p>
+         <p>At runtime, the XML policy repository may also be deployed as a set
+            of tables within a SQL database. If you wish to use a database as a
+            repository you should have the client installed and working before
+            you install MCS.</p>
+      
+      
+         <h2>Migrating a repository</h2>
+         <p>Policy migration is not always required. If you have an existing MCS
+            installation you should check the current version number, and the
+               <em>MCS Migration Guide</em> which specifies the versions that
+            require migration because of schema changes. If required you should
+            migrate the MCS repository to a new version, before developing or
+            modifying any existing policies.</p>
+      
+      
+         <h2>Running the installer</h2>
+         <p>The installation wizard steps you through a series of pages
+            containing settings that correspond to the entries in the
+               <span class="filepath">mcs-config.xml</span> file.</p>
+      
+      
+         <h2>Setting up your runtime repository</h2>
+         <p>The MCS installation will create a <span class="filepath">devices.mdpr</span>
+            file that contains the MCS device repository information. You can
+            access the repository with the Device Repository editor.
+            Additionally, individual XML files are created as policies, and are
+            constructed and modified in a default project.</p>
+         <p>If the policy repository needs to be deployed within a SQL database
+            at runtime; appropriate users and tables will need to be created in
+            the database management system, and any required XML policies will
+            need to be imported into the database.</p>
+      
+      
+         <h2>Completing the setup</h2>
+         <p>The MCS configuration file is used to control the operation of MCS.
+            However, the initial settings created by the installation process
+            will normally be adequate.</p>
+         <p>This section deals with any other tasks required.</p>
+      
+      
+         <h2>Verifying the MCS installation</h2>
+         <p>Finally, you will want to be reassured that everything works. A
+            sample 'welcome' JSP page is available to test your MCS
+            installation.</p>
+      
+      <div class="note"><strong>Note</strong>: Because file locations are set during installation, the
+         configuration examples shown in related topics use placeholders for
+         parts of the directory structure. You should substitute
+            <span class="filepath">[path]</span> with the path preceeding the location
+         described, and <span class="filepath">[context_root]</span> with the application
+         root context.</div>
+      
+         <p><span class="ri">Related topics</span><br/><a href="../install/mcs_install_prereq.html">Required software</a><br/><a href="../install/mcs_install_config.html">Running the installer</a><br/><a href="../install/mcs_setup_runtime.html">Setting up the MCS runtime</a><br/><a href="../install/mcs_setup_webapp.html">Setting up your web server</a><br/><a href="../install/mcs_install_complete.html">Completing the installation</a><br/><a href="../install/mcs_install_verify.html">Verifying the installation</a></p>
+      
+   </body></html>

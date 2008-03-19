@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<structure xmlns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+	<field name="address">
+        <structure>
+            <field name="postal">
+                <structure>
+                    <field name="house-number">
+                        <number>
+                            <numberSubTypeConstraint subType="int"/>
+                            <minimumValueConstraint inclusive="false">
+                                <int xmlns="http://www.volantis.com/xmlns/2004/12/meta-data-values">0</int>
+                            </minimumValueConstraint>
+                        </number>
+                    </field>
+                    <field name="street-name"><string/></field>
+                    <field name="street-type">
+                        <string>
+                            <enumeratedConstraint>
+                                <string xmlns="http://www.volantis.com/xmlns/2004/12/meta-data-values">Road</string>
+                                <string xmlns="http://www.volantis.com/xmlns/2004/12/meta-data-values">Street</string>
+                                <string xmlns="http://www.volantis.com/xmlns/2004/12/meta-data-values">Avenue</string>
+                            </enumeratedConstraint>
+                        </string>
+                    </field>
+                    <field name="city"><string/></field>
+                </structure>
+            </field>
+            <field name="email"><string/></field>
+        </structure>
+    </field>
+</structure>

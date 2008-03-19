@@ -1,0 +1,108 @@
+--- built/internal/jslint/jslint.js	2007-03-29 15:38:32.000000000 +0200
++++ client/jslint.js	2007-03-29 15:46:45.000000000 +0200
+@@ -429,7 +429,9 @@
+             if (value || type === '(string)') {
+                 if (value.charAt(10) === ':' &&
+                         value.substring(0, 10).toLowerCase() === 'javascript') {
++/*
+                     warning("JavaScript URL.");
++*/
+                 }
+                 t.value = value;
+             }
+@@ -2087,9 +2089,11 @@
+                 case 'Object':
+                     warning('Use the object literal notation {}.', token);
+                     break;
++/*
+                 case 'Array':
+                     warning('Use the array literal notation [].', token);
+                     break;
++*/
+                 case 'Number':
+                 case 'String':
+                 case 'Boolean':
+@@ -2324,9 +2328,11 @@
+ // cleared when we enter a function.
+ 
+         var c, i, n, v;
++/*
+         if (inblock) {
+             warning("Variable '" + nexttoken.value + "' declared in a block.");
+         }
++*/
+         for (;;) {
+             nonadjacent(token, nexttoken);
+             n = identifier();
+@@ -2376,11 +2382,11 @@
+ 
+ 
+     stmt('var', varstatement);
+-
++/*
+     stmt('new', function () {
+         error("'new' should not be used as a statement.");
+     });
+-
++*/
+ 
+     function functionparams() {
+         var t = nexttoken;
+@@ -2512,6 +2518,7 @@
+         for (;;) {
+             switch (nexttoken.id) {
+             case 'case':
++/*
+                 switch (verb) {
+                 case 'break':
+                 case 'case':
+@@ -2525,6 +2532,7 @@
+                         "Expected a 'break' statement before 'case'.",
+                         token);
+                 }
++*/
+                 indentation(-4);
+                 advance('case');
+                 this.cases.push(parse(20));
+@@ -2953,3 +2961,40 @@
+     return itself;
+ 
+ }();
+\ No newline at end of file
++
++(function(args) {
++  var foundErrors = false;
++
++  for (var argIndex = 0; argIndex < args.length; argIndex++) {
++
++    (function(fileToCheck) {
++      var input = readFile(fileToCheck);
++      if (!input) {
++        print("jslint: Couldn't open file '" + fileToCheck + "'.");
++        quit(1);
++      }
++      if (!JSLINT(input, { evil: true })) {
++
++        print("jslint: Problems detected in " + fileToCheck);
++
++        for (var i = 0; i < JSLINT.errors.length; i += 1) {
++          var e = JSLINT.errors[i];
++          if (e) {
++            print('Lint at line ' + (e.line + 1) + ' character ' + (e.character + 1) + ': ' + e.reason);
++            print((e.evidence||'').replace(/^\s*(\S*(\s+\S+)*)\s*$/,"$1"));
++            print('');
++          }
++        }
++        foundErrors = true;
++      } else {
++        print("jslint: No problems found in " + fileToCheck);
++      }
++    })(args[argIndex]);
++
++  }
++
++  if (foundErrors) {
++    quit(1);
++  }
++
++})(arguments);

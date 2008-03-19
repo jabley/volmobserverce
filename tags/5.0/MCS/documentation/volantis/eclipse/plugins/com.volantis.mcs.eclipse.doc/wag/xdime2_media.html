@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>References to media</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>References to media</h1>
+      <p>In XDIME 2 you can use a the <span class="code">object</span> element to
+         support audio, flash and video media types, in addition to the image
+         type.</p>
+      <p>You can use device independent policies, file types
+         <span class="filepath">.mauc</span>, and <span class="filepath">.mdyv</span>, where the
+         selection is based on device or category targeting. However,
+         transcoding is not supported in these cases. You can also process
+         external resources, where transcoding is based on device policies.</p>
+      
+         <h2>Parameters used with media</h2>
+         <dl>
+            
+            <dt>mcs-aspect-ratio-height</dt>
+            <dd>Defines the height part of the aspect ratio of the image</dd>
+            <dt>mcs-aspect-ratio-width</dt>
+            <dd>Specifies the width part of the aspect ratio of the image</dd>
+            <dt>mcs-external-label</dt>
+            <dd>Provides the content for a link that will activate the display
+               of an external resource</dd>
+            <dt>mcs-transcode</dt>
+            <dd>Whether or not an image is transcoded. It takes the values
+               'true' (default) or false'. If the reference in the
+               <span class="code">src</span> attribute is to an image file then the image
+               will be transcoded. If it is to an MCS image component, the
+               attribute is ignored, since in MCS it will already be typed as a
+               convertible image.</dd>
+         </dl>
+          
+         <div class="note"><strong>Note</strong>: Flash objects are not transcoded, since they will scale automatically on the client. The <span class="code">mcs-transcode</span> parameter <em>must</em> therefore be set to false. Otherwise an error will occur.</div>
+      
+      
+         <h2>Using the parameters</h2>
+         <p> The parameter values are provided in the <span class="code">name</span> and
+               <span class="code">value</span> attributes of the contained
+            <span class="code">param</span> element.</p>
+         <p>One way to use the parameters is to supply the actual size of the
+            source image that will be used for transcoding. If the source image
+            is 320 pixels wide and 180 pixels high, the following markup could
+            be used.</p>
+         <pre class="code">&lt;object src="someURI"&gt;
+   &lt;param name="mcs-aspect-ratio-width" value="320"/&gt;
+   &lt;param name="mcs-aspect-ratio-height" value="180"/&gt;
+&lt;/object&gt; </pre>
+         <p>However, it is not actually necessary to know the exact size of the
+            source image. For example, the alternative markup yields the same
+            result in most cases.</p>
+         <pre class="code">&lt;object src="someURI"&gt;
+   &lt;param name="mcs-aspect-ratio-width" value="16"/&gt;
+   &lt;param name="mcs-aspect-ratio-height" value="9"/&gt;
+&lt;/object&gt; </pre>
+         <p>It is the relative values of width and height that are important.
+            These allow the XDIME 2 to calculate the final size of the image in
+            a way most appropriate for the device.</p>
+         <p class="note"><strong>Tip</strong>: If possible you should provide values for the true
+            image size, because this will improve accuracy in cases where an
+            image might not be scaled to a whole number of pixels.</p>
+         <p>Authors can specify the <span class="code">mcs-external-label</span> parameter,
+            which defines the content used for a link to an external resource,
+            without having to know the exact media type type.</p>
+         
+         <pre class="code">&lt;object
+   src="http://example.com/sports/goal.png"
+   mcs-media-style="external"&gt;
+   &lt;param name="mcs-external-label" value="Last night's winning goal"/&gt;
+&lt;/object&gt; </pre>
+      
+      
+         <h2>Styling</h2>
+         <p>You use the <span class="code">mcs-media-style</span> property to determine
+            whether an <span class="code">object</span> element should be treated as
+            part of a page or an external resource that a user will explicitly
+            retrieve.</p>
+         <p>The property has two possible values; 'integral' means that the
+            media should be displayed automatically, and 'external' means that a
+            user action is required.</p>
+         <p>Any value that is not supported by the device is ignored, and the
+            first remaining value, if any, determines the markup to generate. If
+            there are no remaining values then the <span class="code">object</span>
+            element is ignored and its body is processed instead.</p>
+      
+      
+         <h2>Specifying the source type</h2>
+         <p>If you use the <span class="code">srctype</span> attribute on the
+            <span class="code">object</span> element, then you must refer to an MCS
+            policy variant, and all the variants must be of the same type.</p>
+         <p>If the <span class="code">srctype</span> attribute is not specified, MCS will attempt to work our the type based on the file extension using values in the <span class="filepath">web.xml</span> file.</p>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a class="link" target="" href="../wag/xdime2_about.html">Working with XDIME 2</a><br/><a class="link" target="" href="../xdime_cp/xdime_cp_object.html">object</a><br/><a class="link" target="" href="../xdime_cp/xdime_cp_param.html">param</a><br/></p>
+      
+   </body></html>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget">
+
+<head>
+  <title>Select widget</title>
+  <link rel="mcs:theme" href="/themes/main.mthm"/>
+  <link rel="mcs:layout" href="/layouts/main.mlyt"/>
+</head>
+
+<body>
+  <template:apply href="templates/demo-main.xdtpl">
+    <template:binding name="title" value="Select widget"/>
+    <template:binding name="content">
+      <template:complexValue>
+
+      <div  style="mcs-layout: 'layouts/2x2.mlyt'">
+        <span style="mcs-container: 'top-left'">Choose:</span>
+        <widget:select style="mcs-container: 'top-right'" id="chooser">
+          <widget:option value="Ankara">Ankara</widget:option>
+          <widget:option value="Beograd">Beograd</widget:option>
+          <widget:option value="Berlin">Berlin</widget:option>
+          <widget:option value="Bratislava">Bratislava</widget:option>
+          <widget:option value="Budapest">Budapest</widget:option>
+          <widget:option value="Bucharest">Bucharest</widget:option>
+          <widget:option value="Cracow">Cracow</widget:option>
+          <widget:option value="Ljubljana">Ljubljana</widget:option>
+          <widget:option value="Nicosia">Nicosia</widget:option>
+          <widget:option value="Podgorica">Podgorica</widget:option>
+          <widget:option value="Prague">Prague</widget:option>
+          <widget:option value="Riga">Riga</widget:option>
+          <widget:option value="Sofia">Sofia</widget:option>
+          <widget:option value="Tallinn">Tallinn</widget:option>
+          <widget:option value="Tirana">Tirana</widget:option>
+          <widget:option value="Valletta">Valletta</widget:option>
+          <widget:option value="Vienna">Vienna</widget:option>
+          <widget:option value="Vilnius">Vilnius</widget:option>
+          <widget:option value="Zagreb">Zagreb</widget:option>
+        </widget:select>
+        <!-- Uncomment when implemented
+        <span style="mcs-container: 'bottom-left'">Chosen:</span>
+        <widget:display style="mcs-container: 'bottom-right'" property="chooser#value"/>
+        -->
+      </div>
+      <!-- Uncomment when implemented
+      <div class="buttons">
+          <widget:button action="chooser#clear-value">clear</widget:button>
+      </div>
+      -->
+      </template:complexValue>
+    </template:binding>
+  </template:apply>
+</body>
+</html>

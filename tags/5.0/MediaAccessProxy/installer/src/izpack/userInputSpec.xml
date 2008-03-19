@@ -1,0 +1,76 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<userInput>
+    <panel order="0" layout="left">
+
+        <createForPack name="Image Conversion Service"/>
+        <field type="staticText" align="left" txt="Image Conversion Service Plugin" id="com.volantis.map.ics.panel.title" size="4" bold="true"/>
+        <field type="space"/>
+
+        <field type="text" variable="com.volantis.map.image.host">
+            <description align="left" txt="An optional url for a remote image server" id="com.volantis.map.image.host.desc"/>
+            <spec txt="Remote Server URL:" id="com.volantis.map.image.host.spec" set="" size="20"/>
+        </field>
+
+        <field type="text" variable="com.volantis.map.image.port">
+            <description align="left" txt="An optional port number to be used for a remote image server" id="com.volantis.map.image.port.desc"/>
+            <spec txt="Remote Server Port:" id="com.volantis.map.image.port.spec" set="80" size="5"/>
+        </field>
+
+        <field type="text" variable="com.volantis.map.proxy.host">
+            <description align="left" txt="An optional url for a proxy for the remote image server" id="com.volantis.map.proxy.host.desc"/>
+            <spec txt="Remote Server Proxy URL:" id="com.volantis.map.proxy.host.spec" set="localhost" size="20"/>
+        </field>
+
+        <field type="text" variable="com.volantis.map.proxy.port">
+            <description align="left" txt="An optional port number for the proxy to be used for the remote image server" id="com.volantis.map.proxy.port.desc"/>
+            <spec txt="Remote Server Proxy URL:" id="com.volantis.map.proxy.port.spec" set="80" size="5"/>
+        </field>
+
+        <field type="text" variable="com.volantis.map.watermark.url">
+            <spec txt="Watermark URL:" id="com.volantis.map.watermark.url.spec" set="" size="35"/>
+            <description align="left" txt="An optional url to an image that will be used to watermark all images produced by the Image Conversion Service plugin" id="com.volantis.map.watermark.url.desc"/>
+        </field>
+
+        <field type="check" variable="com.volantis.map.in.memory.cache">
+            <description align="left" txt="Checked will give higher performance. Uncheck and file based IO buffering will be used which can reduce memory usage if you process very large images." id="com.volantis.map.in.memory.cache.desc"/>
+            <spec txt="In Memory IO Buffering" id="com.volantis.map.in.memory.chache" true="true" false="false" set="true"/>
+        </field>
+
+        <field type="check" variable="com.volantis.map.server.mode">
+            <description align="left" txt="Select to switch the ICS compatibility servlet into native mode. Deselect for 'transforce' mode." id="com.volantis.map.ics.server.mode.desc"/>
+            <spec txt="ICS servlet in native mode" id="com.volantis.map.ics.server.mode" true="native" false="transforce" set="true"/>
+        </field>
+    </panel>
+
+    <panel order="1" layout="left">
+        <createForPack name="Standard Transcoder Interface"/>
+         <field type="staticText" align="left" txt="Image Conversion Service Plugin" id="com.volantis.map.sti.panel.title" size="4" bold="true"/>
+
+        <field type="space"/>
+
+        <field type="text" variable="com.volantis.map.sti.originator.id">
+            <description align="left" txt="An identifier for your application. This is often provided by the STI service supplier" id="com.volantis.map.sti.originator.id.desc"/>
+            <spec txt="Originator ID:" id="com.volantis.map.sti.originator.id.spec" set="defaultOriginator" size="10"/>
+        </field>
+        <field type="text" variable="com.volantis.map.sti.service.url">
+            <description align="left" txt="The URL of your STI service supplier" id="com.volantis.map.sti.service.url.desc"/>
+            <spec txt="STI Service URL:" id="com.volantis.map.sti.service.url.spec" set="http://host:port/StiService" size="40"/>
+        </field>
+    </panel>
+
+</userInput>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!--
+! ============================================================================
+! (c) Volantis Systems Ltd 2003. 
+! ============================================================================
+ -->
+<pipeline:convertElementCase mode="lower"
+    xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline">
+    <TABLE cellpadding="2" cellspacing="2" border="1"
+        style="text-align: left; width: 100%;">
+        <TBODY>
+            <TR>
+                <TD style="vertical-align: top;">(1,1)
+                    <BR/>
+                </TD>
+                <TD style="vertical-align: top;">(1,2)
+                    <BR/>
+                </TD>
+            </TR>
+            <TR>
+                <TD style="vertical-align: top;">
+                    <a href="#">(2,1)</a>
+                </TD>
+                <TD style="vertical-align: top;">(2,2)</TD>
+            </TR>
+        </TBODY>
+    </TABLE>
+    <BR/>
+</pipeline:convertElementCase>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 12-Aug-03	1035/1	byron	VBM:2003080802 Provide ConvertElementCase pipeline process
+
+ ===========================================================================
+-->

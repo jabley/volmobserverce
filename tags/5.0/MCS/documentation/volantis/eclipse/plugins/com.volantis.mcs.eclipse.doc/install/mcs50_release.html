@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+<title>MCS release notes</title>
+<link rel="stylesheet" href="../volantis.css"/>
+</head>
+<body>
+<h1>MCS release notes</h1>
+<p>The following is a summary of the changes to features and functionality
+  in Multi-Channel Server (MCS) 5.0 for the Volantis Mobility Server
+  Community Edition. Further information and details about existing functionality
+  and features may be found in previous release notes and documentation.</p>
+<p>You should also refer to the notes in <em>MCS Supported platforms</em>.</p>
+<h2>Media Access Proxy</h2>
+<p>The Media Access Proxy (MAP) is a web application that is used to
+  perform transcoding and transformation operations on media files
+  referenced by XDIME 2.Images are handled internally by the ICS
+  servlet component and an image processor plugin.</p>
+<p>As well as images, the proxy supports XDIME 2 references to external
+  Standard Transcoding Interface (STI) services for audio and video
+  MIME types.</p>
+<h2>Configuring MCS</h2>
+<p>The <span class="code">media-access-proxy</span> element in the <span class="filepath">mcs-config.xml</span> file contains the path to the
+  Media Access Proxy (MAP) web application. The method of configuring
+  of the path to the ICS servlet component is unchanged.</p>
+<h2>Media support in XDIME 2</h2>
+<p>Support is added for the <span class="code">srctype</span> attribute on the XDIME
+  2 <span class="code">object</span> element. If it contains device
+  independent types, then the <span class="code">src</span> attribute must be an
+  MCS policy name with the extensions <span class="filepath">.mauc</span>, <span class="filepath">.mdyv</span> or <span class="filepath">.mimg</span>. They
+  must also all be of the same family, that is all video, all audio,
+  all image, or all application/x-shockwave-flash.</p>
+<p>Authors can specify the <span class="code">mcs-external-label</span> parameter in <span class="code">object</span> elements, which defines the content
+  used for a link to an external resource, without having to know the
+  exact media type type.</p>
+<p>The <span class="code">mcs-media-style</span> style property determines whether
+  an <span class="code">object</span> element should be treated as part of a
+  page or an external resource that a user will explicitly
+  retrieve.</p>
+<div class="note"><strong>Note</strong>: You should always specify values for the <span class="code">width</span> and <span class="code">height</span> attributes to ensure that the <span class="code">object</span> element will work for all devices.</div>
+<h2>Multiple submissions in XDIME 2 forms</h2>
+<p>The <span class="code">xf:setvalue</span> element can be used to associate
+  a specific <span class="code">xf:submit</span> control with the value to be
+  submitted when there are multiple submit buttons on a form. The <span class="code">value</span> attribute contains the value to be submitted.
+  If it is not present then the content of the element is used as the
+  value.</p>
+<h2>Documentation</h2>
+<p>In addition to these release notes, the following documents are
+  published. Online documentation is also available on the Community edition website.</p>
+<ul>
+  <li><em>Volantis Mobility Server Installation</em> (PDF)</li>
+  <li><em>MCS Help</em> (XHTML) is packaged with the Eclipse plugins.
+    Related installation and administration documentation, is also
+    included for convenience.</li>
+  <li><em>Device Repository Web Service API</em> (PDF)</li>
+</ul>
+<h2>Known MCS issues</h2>
+<p>Customer support ticket references are given where applicable.</p>
+<table cellspacing="0">
+  <thead>
+    <tr>
+      <th class="firsthdr">Volantis ID</th>
+      <th>Description</th>
+      <th class="firsthdr">Ticket</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="firstcell"/>
+      <td>Starting up under BEA WebLogic causes a ClassCastException trying to initialize the StAX parser. This is a known WebLogic issue, which can be fixed by upgrading to the latest patch version.</td>
+      <td/>
+    </tr>
+	<tr>
+                  <th class="firstcell"/>            
+                  <td>To resolve issues with WebLogic and JNDI, you should add the following to the web.xml file at the end of the <span class="code">webapps</span> section.
+			      <pre class="code">&lt;resource-ref&gt;
+   &lt;description&gt;DB Connection&lt;/description&gt;
+   &lt;res-ref-name&gt;jdbc/descriptorstore&lt;/res-ref-name&gt;
+   &lt;res-type&gt;javax.sql.DataSource&lt;/res-type&gt;
+   &lt;res-auth&gt;Container&lt;/res-auth&gt;
+&lt;/resource-ref&gt; </pre></td>
+                  <td/>            
+                </tr>
+    <tr>
+      <th class="firstcell">2004122002</th>
+      <td>In an <span class="code">xfform</span> element, if
+        neither the <span class="code">captionPane</span> nor <span class="code">entryPane</span> attributes are set, instead of the element being output in the
+        default pane, nothing is rendered.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2005011303</th>
+      <td>In the Type Allocation Codes section of
+        device editor, you may encounter display problems when expanding
+        or contracting the section.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2005020108</th>
+      <td>Remote asset groups will not work when
+        referenced from image components, and the asset group is always
+        assumed to be local to the project.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2005052505</th>
+      <td>On WebSphere Everyplace Mobile Portal 5.1,
+        when the ICS is configured to access a remote image server, or
+        when v.imgHost and v.imgPort are used in the URL, and a requested
+        image is PNG then ICS returns a 404 error.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2005110713</th>
+      <td>mcsImport -merge option is fails with a
+        PostgreSQL database. You should therefore not merge databases -
+        instead export the database, edit it and import into an new or
+        cleared database.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2005120710</th>
+      <td>The WML protocol does not render whitespace
+        correctly in the following cases:
+        <ul>
+          <li>A page that contains a <span class="code">dividehint</span> element and does not require dissection causes a <span class="code">p</span> element with an empty space to be
+            rendered</li>
+          <li>A <span class="code">p</span> element with a <span class="code">pane</span> attribute and a preceding <span class="code">p</span> element will
+            not be merged even though their styles would allow it.</li>
+          <li>The mode is not being correctly set when a page is
+            rendered as multiple cards due to dissecting panes. It
+            should be explicitly set to the default value if the last
+            paragraph of the previous card specified the non default
+            value.</li>
+        </ul></td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2005122010</th>
+      <td>In some environments, a SQLException may
+        thrown when connecting to DB2 when requesting a JSP page for the
+        first time after a restart. Subsequent requests are processed
+        correctly. It may be possible to resolve the problem by changing
+        the DB2 driver.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2005121208</th>
+      <td>MCS currently supports the jconn2 database
+        driver for Sybase, which cannot fetch values of columns &gt;256
+        characters. As a result values in wider columns may be cut.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2006081436</th>
+      <td>CSS table rendering issues.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2006081443</th>
+      <td>Class selector does not work with XDIME 2
+        on some devices.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2006092626</th>
+      <td><span class="code">div</span> element omitted when using i-mode devices.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2006110210</th>
+      <td>Further issues with whitespace rendering.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2006110214</th>
+      <td><span class="code">div</span> element not emulated
+        in HTML-iMode.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2006110218</th>
+      <td>XForms label issues.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2006111013</th>
+      <td>Exception rather than error message when
+        working with collaborative project.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2006112108</th>
+      <td>Unnecessary align-left attribute in table
+        element.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2006121128</th>
+      <td>Form fragments rendered incorrectly.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2007022217</th>
+      <td>Exception when pasting from collaborative
+        project to local file system. Paste should be disabled.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2007061515</th>
+      <td><span class="code">pre</span> element removed on
+        WML devices.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2008022819</th>
+      <td>Class loader issue on Tomcat.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2008030319</th>
+      <td>Animated GIFs show only first image after transcoding.</td>
+      <td/>
+    </tr>
+    <tr>
+      <th class="firstcell">2008031208</th>
+      <td>Some parameters are omitted when object tag for flash is generated.</td>
+      <td/>
+    </tr>
+  </tbody>
+</table>
+<h2>Resolved MCS issues</h2>
+<p>This section contains known issues that were listed in earlier
+  release notes, and have since been resolved. Issues that were
+  reported and resolved since the preceding release are not covered
+  here. Refer to the file <span class="filepath">changes.lst</span> for more
+  detailed information.</p>
+<p>There are no issues in this category.</p>
+<h2>Known Client Framework issues</h2>
+<p>The following is a summary of known issues in Volantis MCF Client
+  1.3. Details about existing features may be found in the
+  documentation.</p>
+<p>Client Framework functionality is limited by the browser
+  capabilities.</p>
+<p>Opera Mobile 8.6 limitations:</p>
+<ul>
+  <li>The wipe-top, grow and shrink effects are replaced by the
+    slide-top effect</li>
+  <li>The puff effect is replaced by the instant effect</li>
+  <li>Effects which require scaling of content do not work smoothly
+    for content other than inline/text</li>
+  <li>Selected page element is marked by Opera browser with blue
+    background. This feature can not be controlled by XDIME 2 author.</li>
+  <li>The <span class="code">focus()</span> does not have an effect if the element
+    to be focused is outside the visible part of the page</li>
+  <li>If a displayed forms wizard step is bigger than the viewport
+    size, but smaller then the rest of page content, the wizard does
+    not cover all the page content and some of the content is visible
+    if the user scrolls down the page.</li>
+  <li>If position of Dynamic Menu is set to fixed, submenus disappear
+    from the menu after scrolling document below the height of the
+    viewport.</li>
+  <li>It is impossible to cancel Wizard widget if Popup's dismiss
+    buttons appear just above the input field</li>
+  <li>The Field Expander widget does not support 'unfold on click'</li>
+  <li>The slide transition works incorrectly with the Wizard
+    widget</li>
+</ul>
+<p>Access NetFront 3.4 limitations:</p>
+<ul>
+  <li>The wipe-top effect is replaced with slide-top</li>
+  <li>In the NF 3.4 emulator scrollbars appear during the shrink/grow
+    effects in Popup</li>
+  <li>In the NF 3.4 emulator form controls appear always on top of
+    everything. As a consequence, when a Popup widget appears over
+    some form controls, they are still visible.</li>
+  <li>When the puff or pulsate effects are used, the controls and
+    links remain static.</li>
+</ul>
+<p>The following is a list of the <span class="uicontrol">Rounded
+  corners</span> property limitations:</p>
+<ul>
+  <li>Only the solid border style is supported</li>
+  <li>It is ignored if applied to the body, table or form field
+    elements</li>
+  <li>Attempt to apply this property to inline element containing
+    block elements leads to unspecified results</li>
+  <li>On Gecko based browsers, for example Firefox and Mozilla, the
+    shape of the corner will always be a quarter of circle, with
+    curvature equal to the first value of the property.</li>
+</ul>
+<h2>Resolved Client Framework issues</h2>
+<p>This section contains known issues that were listed in earlier
+  release notes, and have since been resolved. Issues that were
+  reported and resolved since the preceding release are not covered
+  here.</p>
+<p>There are no issues in this category.</p>
+<p><span class="ri">Related topics</span><br/>
+  <a class="link" target="" href="../install/mcs35_platforms.html">MCS Supported platforms</a><br/>
+  <a class="link" target="" href="../install/mcs_install_oview.html">Installing MCS</a><br/>
+</p>
+</body>
+</html>

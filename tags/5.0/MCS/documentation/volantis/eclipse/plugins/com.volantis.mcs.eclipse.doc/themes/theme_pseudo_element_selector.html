@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD       XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><meta name="taskref" content="011"/><title>Pseudo-element selectors</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Pseudo-element selectors</h1>
+      <p>In the New Style Rule wizard you can click the <span class="command">Browse</span> button next to the
+            <span class="uicontrol">Pseudo-element</span> control, and and choose one or more selectors. You
+         can also order the selectors and remove them.</p>
+      <table cellspacing="0" summary=""><thead>
+            <tr scope="col">
+               <th class="firsthdr">Pseudo-element</th>
+               <th scope="col">Description</th>
+               <th scope="col">Example</th>
+            </tr>
+         </thead><tbody><tr><th class="firstcell" scope="row">first-line  </th><td>The first line of the first paragraph that is a child of <span class="code">h1</span>
+                  element  </td><td>
+                  <span class="code">h1 &gt; p::first-line {font-variant: small-caps;}</span>
+                 </td></tr><tr><th class="firstcell" scope="row">first-letter  </th><td>The initial drop-cap letter of a paragraph   </td><td>
+                  <span class="code">h1 &gt; p::first-letter {font-weight: bold; font-size: 32pt;}</span>
+                 </td></tr><tr><th class="firstcell" scope="row">mcs-next  </th><td>An XForms <span class="code">group</span> element that generates a link to the following
+                  form fragment, with the text of the group label  </td><td>
+                  <span class="code">xf|group::after::mcs-next {content:normal}</span>
+                 </td></tr><tr><th class="firstcell" scope="row">mcs-previous  </th><td>An XForms <span class="code">group</span> element that generates a link to the
+                  preceeding form fragment, with the text 'Back'  </td><td>
+                  <span class="code">xf|group::before::mcs-previous {content:"Back"}</span>
+                 </td></tr><tr><th class="firstcell" scope="row">mcs-reset  </th><td>An XForms <span class="code">group</span> element that generates a reset link on a form
+                  fragment, with the text 'Clear'  </td><td>
+                  <span class="code">xf|group::after::mcs-reset {content:"Clear"}</span>
+                 </td></tr><tr><th class="firstcell" scope="row">mcs-shortcut  </th><td>A <span class="code">menu</span> element followed by the shortcut 'Alt + E'  </td><td>
+                  <span class="code">menu::mcs-shortcut {content: 'Alt + E'}</span>
+                 </td></tr><tr><th class="firstcell" scope="row">after  </th><td>An XDIME-CP <span class="code">label</span> followed by ': '  </td><td>
+                  <span class="code">label::after {content: ": "}</span>
+                 </td></tr><tr><th class="firstcell" scope="row">before  </th><td>The text 'Note' before the content of a paragraph  </td><td>
+                  <span class="code">p.note::before {content: "Note: "}</span>
+                 </td></tr><tr><th class="firstcell" scope="row">marker  </th><td>Allows styling on the marker of <span class="code">li</span> elements of a list, so the
+                  style of the list item content can be separated from the style of the marker  </td><td>
+                  <span class="code">li::marker {color: green;}</span>
+                 </td></tr><tr><th class="firstcell">mcs-cancel  </th><td>An XForms <span class="code">group</span> element that generates a cancel link on a form
+                  fragment, with the text 'Cancel'  </td><td>
+                  <span class="code">xf|group::after::mcs-cancel {content:"Cancel"}</span>
+                 </td></tr><tr><th class="firstcell">mcs-complete  </th><td>An XForms <span class="code">group</span> element that generates a 'Complete' button
+                  instead of the 'Next' button in the last step of the form wizard  </td><td>
+                  <span class="code">xf|group::after::mcs-complete {content:"Complete"}</span>
+                 </td></tr><tr><th class="firstcell">mcs-label  </th><td>A bold label on the active tab of a Tabs widget  </td><td>
+                  <span class="code">widget:tab::mcs-label:active {font-weight: bold;}</span>
+                 </td></tr><tr><th class="firstcell">mcs-item  </th><td>A separator between items in a BuzzCast feed. The <span class="code">content</span> property
+                  provides the separator.  </td><td>
+                  <span class="code">ticker:feed::mcs-item::mcs-between {content: " *** ";}</span>
+                 </td></tr><tr><th class="firstcell">mcs-between  </th><td>Combined with <span class="code">mcs-item</span> this pseudo-element inserts a separator
+                  between feed items.  </td><td>
+                  <span class="code">ticker:feed::mcs-item::mcs-between {content: " *** ";}</span>
+                 </td></tr></tbody></table>
+      
+         <p><span class="ri">Related topics</span><br/><a href="../themes/theme_selector_add.html">Adding a selector</a><br/><a href="../themes/theme_styles.html">Style rules</a></p>
+      
+   </body></html>

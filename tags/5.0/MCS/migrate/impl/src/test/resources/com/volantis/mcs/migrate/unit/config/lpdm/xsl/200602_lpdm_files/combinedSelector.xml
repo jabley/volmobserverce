@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<variable-policy xmlns="http://www.volantis.com/xmlns/2006/02/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/2006/02/marlin-lpdm http://www.volantis.com/schema/2006/02/marlin-lpdm.xsd">
+    <type>theme</type>
+    <variants>
+        <variant>
+            <type>theme</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Master</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <theme>
+                    <style-sheet>
+                        <rules>
+                            <rule>
+                                <combined-selector>
+                                    <context>
+                                        <selector-sequence>
+                                            <class>raphael</class>
+                                        </selector-sequence>
+                                    </context>
+                                    <combinator>child</combinator>
+                                    <subject>
+                                        <selector-sequence>
+                                            <class>donatello</class>
+                                        </selector-sequence>
+                                    </subject>
+                                </combined-selector>
+                                <combined-selector>
+                                    <context>
+                                        <selector-sequence>
+                                            <class>raphael</class>
+                                        </selector-sequence>
+                                    </context>
+                                    <combinator>child</combinator>
+                                    <subject>
+                                        <combined-selector>
+                                            <context>
+                                                <selector-sequence>
+                                                    <class>donatello</class>
+                                                </selector-sequence>
+                                            </context>
+                                            <combinator>descendant</combinator>
+                                            <subject>
+                                                <selector-sequence>
+                                                    <class>leonardo</class>
+                                                </selector-sequence>
+                                            </subject>
+                                        </combined-selector>
+                                    </subject>
+                                </combined-selector>
+                                <properties>
+                                    <property name="background-color">
+                                        <colorRGB>#DEFACE</colorRGB>
+                                    </property>
+                                </properties>
+                            </rule>
+                        </rules>
+                    </style-sheet>
+                </theme>
+            </content>
+        </variant>
+    </variants>
+</variable-policy>

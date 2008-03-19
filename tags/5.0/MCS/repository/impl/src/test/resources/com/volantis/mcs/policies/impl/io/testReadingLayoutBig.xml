@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<variable-policy xmlns="http://www.volantis.com/xmlns/2006/02/marlin-lpdm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mdv="http://www.volantis.com/xmlns/2004/12/meta-data-values"
+    xmlns:rpdm="http://www.volantis.com/xmlns/2006/02/marlin-rpdm"
+    xmlns:struct="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+    xsi:schemaLocation="http://www.volantis.com/xmlns/2006/02/marlin-lpdm http://www.volantis.com/schema/2006/02/marlin-lpdm.xsd">
+    <type>layout</type>
+    <variants>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Clamshell</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat rows="3" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="2">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="logo" borderWidth="0" backgroundComponentType="image" widthUnits="percent" horizontalAlignment="center" cellSpacing="0" cellPadding="5" optimizationLevel="never" width="100"/>
+                                <paneFormat filterOnKeyboardUsability="0" name="background" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="5" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="congratulations" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="5" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="competition" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="5" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                                <gridFormat rows="3" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="links" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="5" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" height="10" name="blank" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="copyright" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="5" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="smallprint" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="5" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                                <paneFormat filterOnKeyboardUsability="0" name="agility" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" horizontalAlignment="center" cellSpacing="0" cellPadding="5" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Handset</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout defaultFragment="parent">
+                        <fragmentFormat name="parent" linkText="Welcome Page" showPeerLinks="false" fragmentLinkOrder="peers-first">
+                            <gridFormat rows="5" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                <gridFormatColumns>
+                                    <gridFormatColumn widthUnits="percent"/>
+                                </gridFormatColumns>
+                                <gridFormatRow>
+                                    <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                        <gridFormatColumns>
+                                            <gridFormatColumn widthUnits="percent"/>
+                                        </gridFormatColumns>
+                                        <gridFormatRow>
+                                            <paneFormat filterOnKeyboardUsability="0" name="logo" borderWidth="0" backgroundComponentType="image" widthUnits="percent" horizontalAlignment="center" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        </gridFormatRow>
+                                        <gridFormatRow>
+                                            <paneFormat filterOnKeyboardUsability="0" name="congratulations" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        </gridFormatRow>
+                                    </gridFormat>
+                                </gridFormatRow>
+                                <gridFormatRow>
+                                    <fragmentFormat name="background" linkText="Volantis" showPeerLinks="false" fragmentLinkOrder="peers-first">
+                                        <gridFormat rows="1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                            <gridFormatColumns>
+                                                <gridFormatColumn widthUnits="percent"/>
+                                            </gridFormatColumns>
+                                            <gridFormatRow>
+                                                <paneFormat filterOnKeyboardUsability="0" name="background" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                            </gridFormatRow>
+                                        </gridFormat>
+                                    </fragmentFormat>
+                                </gridFormatRow>
+                                <gridFormatRow>
+                                    <fragmentFormat name="competition" linkText="Competition" showPeerLinks="false" fragmentLinkOrder="peers-first">
+                                        <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                            <gridFormatColumns>
+                                                <gridFormatColumn widthUnits="percent"/>
+                                            </gridFormatColumns>
+                                            <gridFormatRow>
+                                                <paneFormat filterOnKeyboardUsability="0" name="competition" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                            </gridFormatRow>
+                                            <gridFormatRow>
+                                                <paneFormat filterOnKeyboardUsability="0" name="smallprint" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                            </gridFormatRow>
+                                        </gridFormat>
+                                    </fragmentFormat>
+                                </gridFormatRow>
+                                <gridFormatRow>
+                                    <fragmentFormat name="links" linkText="Links" showPeerLinks="false" fragmentLinkOrder="peers-first">
+                                        <gridFormat rows="1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                            <gridFormatColumns>
+                                                <gridFormatColumn widthUnits="percent"/>
+                                            </gridFormatColumns>
+                                            <gridFormatRow>
+                                                <paneFormat filterOnKeyboardUsability="0" name="links" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                            </gridFormatRow>
+                                        </gridFormat>
+                                    </fragmentFormat>
+                                </gridFormatRow>
+                                <gridFormatRow>
+                                    <fragmentFormat name="copyright" linkText="Copyright" showPeerLinks="false" fragmentLinkOrder="peers-first">
+                                        <paneFormat filterOnKeyboardUsability="0" name="copyright" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </fragmentFormat>
+                                </gridFormatRow>
+                            </gridFormat>
+                        </fragmentFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Master</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat rows="3" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="715" columns="2">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="logo" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                <paneFormat filterOnKeyboardUsability="0" name="background" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="15" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="congratulations" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="15" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="competition" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="15" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                                <gridFormat rows="3" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="links" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="15" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" height="75" name="blank" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="copyright" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="15" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="smallprint" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                                <paneFormat filterOnKeyboardUsability="0" height="55" name="agility" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" horizontalAlignment="center" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Mobile</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat backgroundComponent="stars_bg" rows="8" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="logo" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="blank2" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="background" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="congratulations" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="competition" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" height="30" name="blank" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="smallprint" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="10" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="links" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="10" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="copyright" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="10" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" height="55" name="agility" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" horizontalAlignment="center" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>PC</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat rows="3" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="715" columns="2">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="logo" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                <paneFormat filterOnKeyboardUsability="0" name="background" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="15" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="congratulations" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="15" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="competition" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="15" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                                <gridFormat rows="3" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="links" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="15" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" height="75" name="blank" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="copyright" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="15" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="smallprint" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                                <paneFormat filterOnKeyboardUsability="0" height="55" name="agility" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" horizontalAlignment="center" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>WAP-Handset</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout defaultFragment="parent">
+                        <fragmentFormat name="parent" linkText="  Welcome Page" showPeerLinks="false" fragmentLinkOrder="peers-first">
+                            <gridFormat rows="1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="10" optimizationLevel="never" columns="1">
+                                <gridFormatColumns>
+                                    <gridFormatColumn widthUnits="pixels"/>
+                                </gridFormatColumns>
+                                <gridFormatRow>
+                                    <gridFormat rows="1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="2">
+                                        <gridFormatColumns>
+                                            <gridFormatColumn widthUnits="percent"/>
+                                            <gridFormatColumn widthUnits="percent"/>
+                                        </gridFormatColumns>
+                                        <gridFormatRow>
+                                            <gridFormat rows="5" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                                <gridFormatColumns>
+                                                    <gridFormatColumn widthUnits="percent"/>
+                                                </gridFormatColumns>
+                                                <gridFormatRow>
+                                                    <paneFormat filterOnKeyboardUsability="0" name="logo" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" horizontalAlignment="center" cellSpacing="0" cellPadding="10" optimizationLevel="never" width="100"/>
+                                                </gridFormatRow>
+                                                <gridFormatRow>
+                                                    <paneFormat filterOnKeyboardUsability="0" name="congratulations" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="5" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                                                </gridFormatRow>
+                                                <gridFormatRow>
+                                                    <fragmentFormat name="competition" linkText="Win a compaq iPAQ !" showPeerLinks="false" fragmentLinkOrder="peers-first">
+                                                        <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="10" optimizationLevel="never" columns="1">
+                                                            <gridFormatColumns>
+                                                                <gridFormatColumn widthUnits="percent"/>
+                                                            </gridFormatColumns>
+                                                            <gridFormatRow>
+                                                                <paneFormat filterOnKeyboardUsability="0" name="competition" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="5" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                                                            </gridFormatRow>
+                                                            <gridFormatRow>
+                                                                <fragmentFormat name="smallprint" linkText="Terms and Conditions" showPeerLinks="false" fragmentLinkOrder="peers-first">
+                                                                    <paneFormat filterOnKeyboardUsability="0" name="smallprint" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="20" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                                                                </fragmentFormat>
+                                                            </gridFormatRow>
+                                                        </gridFormat>
+                                                    </fragmentFormat>
+                                                </gridFormatRow>
+                                                <gridFormatRow>
+                                                    <paneFormat filterOnKeyboardUsability="0" name="blank" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="10" optimizationLevel="never" width="100"/>
+                                                </gridFormatRow>
+                                                <gridFormatRow>
+                                                    <paneFormat filterOnKeyboardUsability="0" name="copyright" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="5" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                                                </gridFormatRow>
+                                            </gridFormat>
+                                            <gridFormat rows="3" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1">
+                                                <gridFormatColumns>
+                                                    <gridFormatColumn widthUnits="percent"/>
+                                                </gridFormatColumns>
+                                                <gridFormatRow>
+                                                    <paneFormat filterOnKeyboardUsability="0" name="background" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="10" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                                                </gridFormatRow>
+                                                <gridFormatRow>
+                                                    <paneFormat filterOnKeyboardUsability="0" name="links" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="10" optimizationLevel="never" width="100"/>
+                                                </gridFormatRow>
+                                                <gridFormatRow>
+                                                    <paneFormat filterOnKeyboardUsability="0" name="agility" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="10" optimizationLevel="never" width="100"/>
+                                                </gridFormatRow>
+                                            </gridFormat>
+                                        </gridFormatRow>
+                                    </gridFormat>
+                                </gridFormatRow>
+                            </gridFormat>
+                        </fragmentFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+    </variants>
+</variable-policy>

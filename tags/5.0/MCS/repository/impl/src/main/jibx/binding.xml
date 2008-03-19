@@ -1,0 +1,1483 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<binding track-source="true">
+
+    <namespace uri="http://www.volantis.com/xmlns/2006/02/marlin-lpdm" default="elements"/>
+
+    <namespace prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
+
+    <namespace prefix="rpdm" uri="http://www.volantis.com/xmlns/2006/02/marlin-rpdm"/>
+
+    <namespace prefix="struct" uri="http://www.volantis.com/xmlns/2005/10/ThemeStruct"/>
+
+    <!--
+        TODO: move all serialisation to standalone serialisation classes which
+        are not part of the model.
+      -->
+
+    <!--
+     ! Change the default formatting for double to remove the decimal point
+     ! if there are only 0s after it.
+     !-->
+    <format type="double"
+        serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertDoubleToText"/>
+
+    <!--
+     ! Set the default format for PolicyType.
+     !-->
+    <format type="com.volantis.mcs.policies.PolicyType"
+        serializer="com.volantis.mcs.policies.impl.io.DeSerializer.policyTypeToString"
+        deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToPolicyType"/>
+
+    <!--
+     ! Set the default format for VariablePolicyType.
+     !-->
+    <format type="com.volantis.mcs.policies.VariablePolicyType"
+        serializer="com.volantis.mcs.policies.impl.io.DeSerializer.variablePolicyTypeToString"
+        deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToVariablePolicyType"/>
+
+    <!--
+     ! Set the default format for BaseLocation.
+     !-->
+    <format type="com.volantis.mcs.policies.variants.content.BaseLocation"
+        serializer="com.volantis.mcs.policies.impl.io.DeSerializer.baseLocationToString"
+        deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToBaseLocation"/>
+
+    <!--
+     ! Set the default format for CSSParserMode.
+     !-->
+    <format type="com.volantis.mcs.themes.CSSParserMode"
+        serializer="com.volantis.mcs.policies.impl.io.DeSerializer.parserModeToString"
+        deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToParserMode"/>
+
+    <mapping name="rule" class="com.volantis.mcs.themes.impl.RuleImpl">
+        <collection get-method="getSelectors" set-method="setSelectors" type="java.util.ArrayList"
+            item-type="com.volantis.mcs.themes.Subject" usage="optional"/>
+
+        <structure field="properties" usage="optional"
+            type="com.volantis.mcs.themes.impl.MutableStylePropertiesImpl"/>
+    </mapping>
+
+    <!--
+      - Style Properties
+      -
+      -->
+    <mapping name="properties" class="com.volantis.mcs.themes.impl.MutableStylePropertiesImpl" post-set="jibxPostSet">
+        <collection item-type="com.volantis.mcs.themes.impl.PropertyValueImpl"
+            add-method="setPropertyValue" iter-method="propertyValueIterator"/>
+    </mapping>
+
+    <mapping name="property" class="com.volantis.mcs.themes.impl.PropertyValueImpl">
+        <value name="name" field="property" style="attribute"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertStylePropertyToText"
+            deserializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertStylePropertyFromText"/>
+
+        <value name="priority" field="priority" style="attribute" usage="optional" test-method="jibxHasPriority"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertPriorityToText"
+            deserializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertPriorityFromText"/>
+
+        <structure field="value"/>
+
+    </mapping>
+
+    <!--
+      - Abstract Mapping to collect SubjectSelectorSequence & CombinedSelector
+      - under a single mapping.
+      -->
+    <mapping class="com.volantis.mcs.themes.Subject" abstract="true"/>
+
+    <mapping class="com.volantis.mcs.themes.Selector" abstract="true"/>
+
+    <!--
+      - Selector Sequence mappings
+      -->
+
+    <mapping name="invalid-selector"
+        class="com.volantis.mcs.themes.impl.DefaultInvalidSelector"
+        extends="com.volantis.mcs.themes.Subject">
+        <structure map-as="com.volantis.mcs.themes.Subject"/>
+        <value usage="optional" style="text"
+            get-method="getText" set-method="setText"/>
+    </mapping>
+
+    <mapping class="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"
+        abstract="true"/>
+
+    <mapping name="first-child" class="com.volantis.mcs.themes.impl.DefaultFirstChildSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="link" class="com.volantis.mcs.themes.impl.DefaultLinkSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="visited" class="com.volantis.mcs.themes.impl.DefaultVisitedSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="active" class="com.volantis.mcs.themes.impl.DefaultActiveSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="focus" class="com.volantis.mcs.themes.impl.DefaultFocusSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="hover" class="com.volantis.mcs.themes.impl.DefaultHoverSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="mcs-concealed" class="com.volantis.mcs.themes.impl.DefaultMCSConcealedSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="mcs-unfolded" class="com.volantis.mcs.themes.impl.DefaultMCSUnfoldedSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="mcs-invalid" class="com.volantis.mcs.themes.impl.DefaultMCSInvalidSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="mcs-normal" class="com.volantis.mcs.themes.impl.DefaultMCSNormalSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="mcs-busy" class="com.volantis.mcs.themes.impl.DefaultMCSBusySelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="mcs-failed" class="com.volantis.mcs.themes.impl.DefaultMCSFailedSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="mcs-suspended" class="com.volantis.mcs.themes.impl.DefaultMCSSuspendedSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="mcs-disabled" class="com.volantis.mcs.themes.impl.DefaultMCSDisabledSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+    </mapping>
+
+    <mapping name="nth-child" class="com.volantis.mcs.themes.impl.DefaultNthChildSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoClassSelector"/>
+        <value field="expression" style="text"/>
+    </mapping>
+
+    <mapping class="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"
+        abstract="true"/>
+
+    <mapping name="first-line" class="com.volantis.mcs.themes.impl.DefaultFirstLineSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="first-letter" class="com.volantis.mcs.themes.impl.DefaultFirstLetterSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="mcs-shortcut" class="com.volantis.mcs.themes.impl.DefaultMCSShortcutSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="after" class="com.volantis.mcs.themes.impl.DefaultAfterSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="before" class="com.volantis.mcs.themes.impl.DefaultBeforeSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="marker" class="com.volantis.mcs.themes.impl.DefaultMarkerSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="mcs-next" class="com.volantis.mcs.themes.impl.DefaultMCSNextSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="mcs-previous" class="com.volantis.mcs.themes.impl.DefaultMCSPreviousSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="mcs-reset" class="com.volantis.mcs.themes.impl.DefaultMCSResetSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="mcs-cancel" class="com.volantis.mcs.themes.impl.DefaultMCSCancelSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="mcs-complete" class="com.volantis.mcs.themes.impl.DefaultMCSCompleteSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="mcs-label" class="com.volantis.mcs.themes.impl.DefaultMCSLabelSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+    
+    <mapping name="mcs-item" class="com.volantis.mcs.themes.impl.DefaultMCSItemSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <mapping name="mcs-between" class="com.volantis.mcs.themes.impl.DefaultMCSBetweenSelector">
+        <structure map-as="com.volantis.mcs.themes.impl.DefaultPseudoElementSelector"/>
+    </mapping>
+
+    <!--
+      - Mappings for constraints used by attribute selectors.
+      -->
+    <mapping class="com.volantis.mcs.themes.impl.constraints.ConstraintImpl"
+        abstract="true" post-set="jibxPostSet">
+
+        <value field="value" style="text" usage="optional"/>
+    </mapping>
+
+    <mapping name="exists" class="com.volantis.mcs.themes.impl.constraints.SetImpl"
+        extends="com.volantis.mcs.themes.impl.constraints.ConstraintImpl">
+        <structure map-as="com.volantis.mcs.themes.impl.constraints.ConstraintImpl"/>
+    </mapping>
+
+    <mapping name="contains"
+        class="com.volantis.mcs.themes.impl.constraints.ContainsImpl"
+        extends="com.volantis.mcs.themes.impl.constraints.ConstraintImpl">
+        <structure map-as="com.volantis.mcs.themes.impl.constraints.ConstraintImpl"/>
+    </mapping>
+
+    <mapping name="starts-with"
+        class="com.volantis.mcs.themes.impl.constraints.StartsWithImpl"
+        extends="com.volantis.mcs.themes.impl.constraints.ConstraintImpl">
+        <structure map-as="com.volantis.mcs.themes.impl.constraints.ConstraintImpl"/>
+    </mapping>
+
+    <mapping name="contains-word"
+        class="com.volantis.mcs.themes.impl.constraints.ContainsWordImpl"
+        extends="com.volantis.mcs.themes.impl.constraints.ConstraintImpl">
+        <structure map-as="com.volantis.mcs.themes.impl.constraints.ConstraintImpl"/>
+    </mapping>
+
+    <mapping name="ends-with"
+        class="com.volantis.mcs.themes.impl.constraints.EndsWithImpl"
+        extends="com.volantis.mcs.themes.impl.constraints.ConstraintImpl">
+        <structure map-as="com.volantis.mcs.themes.impl.constraints.ConstraintImpl"/>
+    </mapping>
+
+    <mapping name="equals"
+        class="com.volantis.mcs.themes.impl.constraints.EqualsImpl"
+        extends="com.volantis.mcs.themes.impl.constraints.ConstraintImpl">
+        <structure map-as="com.volantis.mcs.themes.impl.constraints.ConstraintImpl"/>
+    </mapping>
+
+    <mapping name="language-match"
+        class="com.volantis.mcs.themes.impl.constraints.MatchesLanguageImpl"
+        extends="com.volantis.mcs.themes.impl.constraints.ConstraintImpl">
+        <structure map-as="com.volantis.mcs.themes.impl.constraints.ConstraintImpl"/>
+    </mapping>
+
+    <mapping name="type"
+        class="com.volantis.mcs.themes.impl.DefaultTypeSelector">
+        <value field="type" style="text"/>
+
+        <!--
+         ! Add this as an attribute as otherwise the schema would need to
+         ! be changed in an incompatible way and require additional migration.
+         ! This must be fixed the next time the schema is changed in such a
+         ! way as to require remigration.
+         !-->
+        <value name="namespace" field="namespacePrefix" usage="optional" style="attribute"/>
+    </mapping>
+
+    <mapping name="universal"
+        class="com.volantis.mcs.themes.impl.DefaultUniversalSelector">
+        <value name="namespace" field="namespacePrefix" usage="optional"/>
+    </mapping>
+
+    <mapping name="class"
+        class="com.volantis.mcs.themes.impl.DefaultClassSelector">
+        <value field="cssClass" style="text" usage="required"/>
+    </mapping>
+
+    <mapping name="id"
+        class="com.volantis.mcs.themes.impl.DefaultIdSelector">
+        <value field="id" style="text"/>
+    </mapping>
+
+    <!--
+      - SelectorSequence
+      -->
+    <mapping name="selector-sequence"
+        class="com.volantis.mcs.themes.impl.DefaultSelectorSequence"
+        extends="com.volantis.mcs.themes.Subject">
+
+        <structure map-as="com.volantis.mcs.themes.Subject"/>
+
+        <collection field="selectors" type="java.util.ArrayList" ordered="false">
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultTypeSelector" usage="optional"/>
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultUniversalSelector" usage="optional"/>
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultClassSelector" usage="optional"/>
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultIdSelector" usage="optional"/>
+
+            <structure name="attribute"
+                type="com.volantis.mcs.themes.impl.DefaultAttributeSelector"
+                usage="optional">
+                <value name="namespace" field="namespacePrefix" usage="optional"/>
+                <value name="local-name" field="name"/>
+                <structure field="constraint"
+                    map-as="com.volantis.mcs.themes.impl.constraints.ConstraintImpl"/>
+            </structure>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultFirstChildSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultNthChildSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultLinkSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultVisitedSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultActiveSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultFocusSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultHoverSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSConcealedSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSUnfoldedSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSInvalidSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSNormalSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSBusySelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSFailedSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSSuspendedSelector" usage="optional"/>
+            
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSDisabledSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultFirstLineSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultFirstLetterSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSShortcutSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultAfterSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultBeforeSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMarkerSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSNextSelector" usage="optional"/>
+            
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSPreviousSelector" usage="optional"/>
+            
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSResetSelector" usage="optional"/>
+            
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSCancelSelector" usage="optional"/>
+            
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSCompleteSelector" usage="optional"/>
+            
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSLabelSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultInvalidSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSItemSelector" usage="optional"/>
+
+            <structure map-as="com.volantis.mcs.themes.impl.DefaultMCSBetweenSelector" usage="optional"/>
+
+        </collection>
+    </mapping>
+
+    <!--
+      - Combined selector sequence
+      -->
+    <mapping name="combined-selector" class="com.volantis.mcs.themes.impl.DefaultCombinedSelector"
+        extends="com.volantis.mcs.themes.Subject">
+
+        <structure name="context">
+            <structure field="context" type="com.volantis.mcs.themes.impl.DefaultSelectorSequence"/>
+        </structure>
+
+        <value name="combinator"
+            field="combinator"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeCombinedSelector.combinatorEnumToText"
+            deserializer="com.volantis.mcs.accessors.xml.jibx.SerializeCombinedSelector.combinatorTextToEnum">
+        </value>
+
+        <!--
+          - Map the subject attribute, this refers to the abstract Subject mapping above
+          -->
+        <structure name="subject">
+            <structure field="subject"/>
+            <!-- This may map to either a combined selector or a selector sequence -->
+        </structure>
+    </mapping>
+
+    <!--
+      - Abstract Mapping to collect StyleValue implementations under a single
+      - mapping.
+      -->
+    <mapping class="com.volantis.mcs.themes.impl.StyleValueImpl" abstract="true"/>
+
+    <!-- Angle -->
+    <mapping name="angle" class="com.volantis.mcs.themes.impl.StyleAngleImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <format type="double"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertDoubleToText"/>
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="number" usage="required" style="text"/>
+
+        <value name="units" field="unit" usage="required"
+            style="attribute"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertAngleUnitToText"
+            deserializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertAngleUnitFromText"/>
+
+    </mapping>
+
+    <!-- Color -->
+    <!-- Only one level of abstractness is supported at the moment.
+    <mapping class="com.volantis.mcs.themes.impl.StyleColorImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl"
+        abstract="true"/>
+        -->
+
+    <!-- Color as RGB -->
+    <mapping name="colorRGB" class="com.volantis.mcs.themes.impl.StyleColorRGBImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <format label="ColorRGB" type="int"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertColorRGBToText"
+            deserializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertColorRGBFromText"/>
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="rgb" usage="required" style="text" format="ColorRGB"/>
+
+    </mapping>
+
+    <!-- Color as name -->
+    <mapping name="colorName" class="com.volantis.mcs.themes.impl.StyleColorNameImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="name" usage="required" style="text"/>
+
+    </mapping>
+
+    <!-- Color as percentages -->
+    <mapping name="colorPercentages" class="com.volantis.mcs.themes.impl.StyleColorPercentagesImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value name="red" field="red" usage="required" style="attribute"/>
+        <value name="green" field="green" usage="required" style="attribute"/>
+        <value name="blue" field="blue" usage="required" style="attribute"/>
+
+    </mapping>
+
+    <!-- Function Call -->
+    <mapping name="functionCall" class="com.volantis.mcs.themes.impl.StyleFunctionCallImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value name="name" field="name" usage="required" style="attribute"/>
+
+        <collection field="arguments" type="java.util.ArrayList"
+            item-type="com.volantis.mcs.themes.impl.StyleValueImpl" ordered="true"
+            usage="required"/>
+
+    </mapping>
+
+    <!-- Inherit -->
+    <mapping name="inherit" class="com.volantis.mcs.themes.impl.StyleInheritImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+    </mapping>
+
+    <!-- Integer -->
+    <mapping name="integer" class="com.volantis.mcs.themes.impl.StyleIntegerImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="integer" usage="required" style="text"/>
+
+    </mapping>
+
+    <!-- Identifier -->
+    <mapping name="identifier" class="com.volantis.mcs.themes.impl.StyleIdentifierImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="name" usage="required" style="text"/>
+
+    </mapping>
+
+    <!-- Invalid -->
+    <mapping name="invalidStyle" class="com.volantis.mcs.themes.impl.StyleInvalidImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="value" usage="required" style="text"/>
+
+    </mapping>
+
+    <!-- Keyword -->
+    <mapping name="keyword" class="com.volantis.mcs.themes.impl.StyleKeywordImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="name" usage="required" style="text"/>
+
+    </mapping>
+
+    <!-- Length -->
+    <mapping name="length" class="com.volantis.mcs.themes.impl.StyleLengthImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="number" usage="required" style="text"/>
+
+        <value name="units" field="unit" usage="required"
+            style="attribute"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertLengthUnitToText"
+            deserializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertLengthUnitFromText"/>
+
+    </mapping>
+
+    <!-- List -->
+    <mapping name="list" class="com.volantis.mcs.themes.impl.StyleListImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl"
+        post-set="jibxPostSet">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <collection field="list" type="java.util.ArrayList"
+            item-type="com.volantis.mcs.themes.impl.StyleValueImpl" ordered="true"
+            usage="required"/>
+
+        <value name="unique" field="unique" usage="required" style="attribute"/>
+
+    </mapping>
+
+    <!-- MCS Component URI -->
+    <mapping name="mcs-policy-reference"
+        class="com.volantis.mcs.themes.impl.StyleComponentURIImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <structure field="expression" type="com.volantis.mcs.expression.impl.PolicyExpressionString">
+            <value name="expression" field="expression" usage="optional"/>
+        </structure>
+
+    </mapping>
+
+    <!-- MCS Transcodable URI -->
+    <mapping name="mcs-transcodable-uri"
+        class="com.volantis.mcs.themes.impl.StyleTranscodableURIImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="uri" usage="required" style="text"/>
+
+    </mapping>
+
+    <!-- Number -->
+    <mapping name="number" class="com.volantis.mcs.themes.impl.StyleNumberImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="number" usage="required" style="text"/>
+
+    </mapping>
+
+    <!-- Pair -->
+    <mapping name="pair" class="com.volantis.mcs.themes.impl.StylePairImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <structure name="first" usage="required">
+            <structure field="first"/>
+        </structure>
+
+        <structure name="second" usage="optional" test-method="jibxHasSecond">
+            <structure field="second" usage="optional"/>
+        </structure>
+
+    </mapping>
+
+    <!-- Percentage -->
+    <mapping name="percentage" class="com.volantis.mcs.themes.impl.StylePercentageImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="percentage" usage="required" style="text"/>
+
+    </mapping>
+
+    <!-- String -->
+    <mapping name="string" class="com.volantis.mcs.themes.impl.StyleStringImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="string" usage="required" style="text"/>
+
+    </mapping>
+
+    <!-- Time -->
+    <mapping name="time" class="com.volantis.mcs.themes.impl.StyleTimeImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <format type="double"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertDoubleToText"/>
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="number" usage="required" style="text"/>
+
+        <value name="units" field="unit" usage="required"
+            style="attribute"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertTimeUnitToText"
+            deserializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertTimeUnitFromText"/>
+
+    </mapping>
+
+    <!-- URI -->
+    <mapping name="uri" class="com.volantis.mcs.themes.impl.StyleURIImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="uri" usage="required" style="text"/>
+
+    </mapping>
+
+    <!-- Time -->
+    <mapping name="frequency" class="com.volantis.mcs.themes.impl.StyleFrequencyImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <format type="double"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertDoubleToText"/>
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <value field="number" usage="required" style="text"/>
+
+        <value name="units" field="unit" usage="required"
+            style="attribute"
+            serializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertFrequencyUnitToText"
+            deserializer="com.volantis.mcs.accessors.xml.jibx.SerializeStyleValues.convertFrequencyUnitFromText"/>
+
+    </mapping>
+
+    <!-- Fraction -->
+    <mapping name="fraction" class="com.volantis.mcs.themes.impl.StyleFractionImpl"
+        extends="com.volantis.mcs.themes.impl.StyleValueImpl">
+
+        <structure map-as="com.volantis.mcs.themes.impl.StyleValueImpl"/>
+
+        <structure name="numerator" usage="required">
+            <structure field="numerator"/>
+        </structure>
+
+        <structure name="denominator" usage="optional">
+            <structure field="denominator"/>
+        </structure>
+
+    </mapping>
+
+    <!--
+      - RPDM policies containing a list of policyContainers.
+      -->
+    <mapping name="policies" ns="http://www.volantis.com/xmlns/2006/02/marlin-rpdm"
+        class="com.volantis.mcs.remote.impl.PolicyBuildersImpl">
+
+        <value style="attribute" name="schemaLocation"
+            ns="http://www.w3.org/2001/XMLSchema-instance"
+            get-method="getXSISchemaLocation" set-method="setXSISchemaLocation"
+            usage="optional"/>
+
+        <collection field="containers" type="java.util.ArrayList"
+            item-type="com.volantis.mcs.remote.impl.BuilderContainer" ordered="true"
+            usage="required"/>
+    </mapping>
+
+    <mapping name="policyContainer" ns="http://www.volantis.com/xmlns/2006/02/marlin-rpdm"
+        class="com.volantis.mcs.remote.impl.BuilderContainer">
+        <value name="url" field="url" usage="required" style="attribute"/>
+        <structure field="policyBuilder" type="com.volantis.mcs.policies.impl.AbstractPolicyBuilder"/>
+    </mapping>
+
+    <!--
+      - Theme Structure definitions
+      -->
+    <mapping name="themeStructureDefinition" ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct" class="com.volantis.mcs.themes.impl.ThemeStructureDefinition">
+        <collection field="properties" type="java.util.ArrayList"
+            item-type="com.volantis.mcs.themes.impl.ThemeProperty" ordered="true"
+            usage="required"/>
+    </mapping>
+
+    <mapping name="property" ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct" class="com.volantis.mcs.themes.impl.ThemeProperty">
+        <value name="name" field="name" usage="required" style="attribute"/>
+        <structure field="styleType" type="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping class="com.volantis.mcs.themes.types.StyleType" abstract="true"/>
+
+    <mapping name="angleType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleAngleTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="choiceType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleChoiceTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType"
+        post-set="jibxPostSet">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+        <collection field="types" type="java.util.ArrayList"
+            item-type="com.volantis.mcs.themes.types.StyleType" ordered="true"
+            usage="required"/>
+    </mapping>
+
+    <mapping name="colorType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleColorTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="componentURIType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleComponentURITypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="transcodableURIType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleTranscodableURITypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="functionCallType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleFunctionCallTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="identifierType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleIdentifierTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="inheritType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleInheritTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="integerType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleIntegerTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="keywordsType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleKeywordsTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType"
+        post-set="jibxPostSet">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+        <collection field="keywords" type="java.util.HashSet"
+            item-type="java.lang.String" usage="required">
+            <value ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+                name="keyword"/>
+        </collection>
+    </mapping>
+
+    <mapping name="lengthType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleLengthTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="listType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleListTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure field="styleType"
+            type="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="numberType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleNumberTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="orderedSetType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleOrderedSetTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure field="styleType"
+            type="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="pairType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StylePairTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+        <structure name="first"
+            ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+            usage="required">
+            <structure field="firstType"/>
+        </structure>
+
+        <structure name="second"
+            ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+            usage="optional">
+            <structure field="secondType"/>
+        </structure>
+    </mapping>
+
+    <mapping name="percentageType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StylePercentageTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="stringType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleStringTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+    <mapping name="timeType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleTimeTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="uriType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleURITypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+
+    <mapping name="frequencyType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleFrequencyTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+    </mapping>
+    <mapping name="fractionType"
+        ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+        class="com.volantis.mcs.themes.impl.types.StyleFractionTypeImpl"
+        extends="com.volantis.mcs.themes.types.StyleType">
+        <structure map-as="com.volantis.mcs.themes.types.StyleType"/>
+        <structure name="numerator"
+            ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+            usage="required">
+            <structure field="numeratorType"/>
+        </structure>
+
+        <structure name="denominator"
+            ns="http://www.volantis.com/xmlns/2005/10/ThemeStruct"
+            usage="optional">
+            <structure field="denominatorType"/>
+        </structure>
+    </mapping>
+
+    <mapping name="cache-control"
+        class="com.volantis.mcs.policies.impl.CacheControlBuilderImpl"
+        ordered="false">
+
+        <value name="cache-this-policy" field="cacheThisPolicy"
+            test-method="cacheThisPolicyWasSet"
+            usage="optional"/>
+        <value name="retain-during-retry" field="retainDuringRetry"
+            test-method="retainDuringRetryWasSet"
+            usage="optional"/>
+        <value name="retry-failed-retrieval" field="retryFailedRetrieval"
+            test-method="retryFailedRetrievalWasSet"
+            usage="optional"/>
+        <value name="retry-interval" field="retryInterval"
+            test-method="retryIntervalWasSet"
+            usage="optional"/>
+        <value name="retry-max-count" field="retryMaxCount"
+            test-method="retryMaxCountWasSet"
+            usage="optional"/>
+        <value name="time-to-live" field="timeToLive"
+            test-method="timeToLiveWasSet"
+            usage="optional"/>
+    </mapping>
+
+    <!-- New policy mappings. -->
+    <mapping abstract="true" class="com.volantis.mcs.policies.impl.AbstractPolicyBuilder"
+        pre-get="jibxPreGet">
+        <value style="attribute" name="schemaLocation"
+            ns="http://www.w3.org/2001/XMLSchema-instance"
+            get-method="getXSISchemaLocation" set-method="setXSISchemaLocation"
+            usage="optional"/>
+        <structure field="cacheControlBuilder"
+            type="com.volantis.mcs.policies.impl.CacheControlBuilderImpl"
+            usage="optional"/>
+    </mapping>
+
+    <mapping abstract="true" class="com.volantis.mcs.policies.impl.AbstractConcretePolicyBuilder"
+        post-set="jibxPostSet">
+
+        <collection name="alternates" field="alternatePolicies"
+            type="java.util.ArrayList" usage="optional" test-method="jibxHasAlternatePolicies">
+            <structure name="alternate" type="com.volantis.mcs.policies.impl.PolicyReferenceImpl">
+                <structure name="policy-reference">
+                    <value name="name" field="name" usage="optional"/>
+                    <value name="type" field="expectedPolicyType" usage="optional"/>
+                </structure>
+            </structure>
+        </collection>
+    </mapping>
+
+    <mapping name="variable-policy"
+        class="com.volantis.mcs.policies.impl.VariablePolicyBuilderImpl"
+        extends="com.volantis.mcs.policies.impl.AbstractPolicyBuilder">
+
+        <value name="type" field="variablePolicyType"
+            usage="optional"/>
+
+        <structure map-as="com.volantis.mcs.policies.impl.AbstractPolicyBuilder"/>
+
+        <value name="categorization-scheme"
+            field="categorizationScheme" usage="optional"/>
+
+        <structure map-as="com.volantis.mcs.policies.impl.AbstractConcretePolicyBuilder"/>
+
+        <collection name="variants" add-method="addVariantBuilder" iter-method="variantBuilderIterator"
+            item-type="com.volantis.mcs.policies.impl.variants.VariantBuilderImpl"/>
+    </mapping>
+
+    <mapping name="variant" class="com.volantis.mcs.policies.impl.variants.VariantBuilderImpl">
+
+        <value name="type" field="variantType"
+            usage="optional"
+            serializer="com.volantis.mcs.policies.impl.io.DeSerializer.variantTypeToString"
+            deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToVariantType"/>
+
+        <value name="identifier" field="variantIdentifier" usage="optional"/>
+
+        <structure name="selection" usage="optional" test-method="jibxHasSelection">
+            <structure field="selectionBuilder" usage="optional"
+                type="com.volantis.mcs.policies.variants.selection.InternalSelectionBuilder"/>
+        </structure>
+
+        <structure name="meta-data" usage="optional" test-method="jibxHasMetaData">
+            <structure field="metaDataBuilder" usage="optional"
+                type="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder"/>
+        </structure>
+
+        <structure name="content" usage="optional" test-method="jibxHasContent">
+            <structure field="contentBuilder" usage="optional"
+                type="com.volantis.mcs.policies.variants.content.InternalContentBuilder"/>
+        </structure>
+    </mapping>
+
+    <!-- Selection related mappings. -->
+    <mapping abstract="true" class="com.volantis.mcs.policies.variants.selection.InternalSelectionBuilder"/>
+
+    <mapping name="targeted"
+        class="com.volantis.mcs.policies.impl.variants.selection.TargetedSelectionBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.selection.InternalSelectionBuilder">
+
+        <structure map-as="com.volantis.mcs.policies.variants.selection.InternalSelectionBuilder"/>
+
+        <collection name="devices" field="deviceReferences"
+            type="java.util.ArrayList" usage="optional"
+            test-method="jibxHasDevices">
+
+            <structure type="com.volantis.mcs.policies.impl.variants.selection.DeviceReferenceImpl">
+                <value name="device" field="deviceName"/>
+            </structure>
+        </collection>
+
+        <collection name="categories" field="categoryReferences"
+            type="java.util.ArrayList" usage="optional"
+            test-method="jibxHasCategories">
+
+            <structure type="com.volantis.mcs.policies.impl.variants.selection.CategoryReferenceImpl">
+                <value name="category" field="categoryName"/>
+            </structure>
+        </collection>
+    </mapping>
+
+    <mapping class="com.volantis.mcs.policies.variants.selection.InternalTarget"
+        abstract="true"/>
+
+    <mapping name="device-reference" class="com.volantis.mcs.policies.impl.variants.selection.DeviceReferenceImpl"
+        extends="com.volantis.mcs.policies.variants.selection.InternalTarget">
+
+        <structure map-as="com.volantis.mcs.policies.variants.selection.InternalTarget"/>
+
+        <value name="device" field="deviceName" style="element"/>
+    </mapping>
+
+    <mapping name="category-reference" class="com.volantis.mcs.policies.impl.variants.selection.CategoryReferenceImpl"
+        extends="com.volantis.mcs.policies.variants.selection.InternalTarget">
+
+        <structure map-as="com.volantis.mcs.policies.variants.selection.InternalTarget"/>
+
+        <value name="category" field="categoryName" style="element"/>
+    </mapping>
+
+    <mapping name="default"
+        class="com.volantis.mcs.policies.impl.variants.selection.DefaultSelectionImpl"
+        extends="com.volantis.mcs.policies.variants.selection.InternalSelectionBuilder">
+        <structure map-as="com.volantis.mcs.policies.variants.selection.InternalSelectionBuilder"/>
+    </mapping>
+
+    <mapping name="encoding"
+        class="com.volantis.mcs.policies.impl.variants.selection.EncodingSelectionImpl"
+        extends="com.volantis.mcs.policies.variants.selection.InternalSelectionBuilder">
+        <structure map-as="com.volantis.mcs.policies.variants.selection.InternalSelectionBuilder"/>
+    </mapping>
+
+    <mapping name="generic-image"
+        class="com.volantis.mcs.policies.impl.variants.image.GenericImageSelectionBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.selection.InternalSelectionBuilder">
+        <structure map-as="com.volantis.mcs.policies.variants.selection.InternalSelectionBuilder"/>
+
+        <value name="width-hint" field="widthHint" usage="optional"/>
+    </mapping>
+
+    <!-- Meta data related mappings. -->
+    <mapping abstract="true" class="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder"/>
+
+    <mapping name="audio"
+        class="com.volantis.mcs.policies.impl.variants.audio.AudioMetaDataBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder"
+        ordered="false">
+
+        <structure map-as="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder" usage="optional"/>
+
+        <value name="encoding" field="audioEncoding" usage="optional"
+            serializer="com.volantis.mcs.policies.impl.io.DeSerializer.audioEncodingToString"
+            deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToAudioEncoding"/>
+
+    </mapping>
+
+    <mapping name="chart"
+        class="com.volantis.mcs.policies.impl.variants.chart.ChartMetaDataBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder"
+        ordered="false">
+
+        <structure map-as="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder" usage="optional"/>
+
+        <value name="type" field="chartType" usage="optional"
+            serializer="com.volantis.mcs.policies.impl.io.DeSerializer.chartTypeToString"
+            deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToChartType"/>
+
+        <value name="height-hint" field="heightHint" usage="optional"/>
+        <value name="width-hint" field="widthHint" usage="optional"/>
+        <structure name="x-axis" field="xAxisBuilder" usage="optional" test-method="jibxHasXAxis"
+            type="com.volantis.mcs.policies.impl.variants.chart.AxisMetaDataBuilderImpl"
+            ordered="false">
+
+            <value name="title" field="title" usage="optional"/>
+            <value name="interval" field="interval" usage="optional"/>
+        </structure>
+        <structure name="y-axis" field="yAxisBuilder" usage="optional" test-method="jibxHasYAxis"
+            type="com.volantis.mcs.policies.impl.variants.chart.AxisMetaDataBuilderImpl"
+            ordered="false">
+
+            <value name="title" field="title" usage="optional"/>
+            <value name="interval" field="interval" usage="optional"/>
+        </structure>
+
+    </mapping>
+
+    <mapping name="image"
+        class="com.volantis.mcs.policies.impl.variants.image.ImageMetaDataBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder"
+        post-set="jibxPostSet"
+        ordered="false">
+
+        <structure map-as="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder" usage="optional"/>
+
+        <!--
+         ! The default value does not seem to work as jibx cannot load the
+         ! serializer to map the default value. It is probably a class path
+         ! issue because it does work in IDEA.
+         !-->
+        <value name="conversion-mode" field="conversionMode" usage="optional"
+            test-method="jibxHasConversionMode"
+            serializer="com.volantis.mcs.policies.impl.io.DeSerializer.imageConversionModeToString"
+            deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToImageConversionMode"/>
+
+        <value name="encoding" field="imageEncoding" usage="optional"
+            serializer="com.volantis.mcs.policies.impl.io.DeSerializer.imageEncodingToString"
+            deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToImageEncoding"/>
+
+        <value name="height" set-method="setHeight" get-method="getHeight" usage="optional"/>
+        <value name="pixel-depth" field="pixelDepth" usage="optional"/>
+        <value name="rendering" field="rendering" usage="optional"
+            serializer="com.volantis.mcs.policies.impl.io.DeSerializer.imageRenderingToString"
+            deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToImageRendering"/>
+        <value name="width" set-method="setWidth" get-method="getWidth" usage="optional"/>
+        <value name="preserve-left" field="preserveLeft" usage="optional" default="-1"/>
+        <value name="preserve-right" field="preserveRight" usage="optional" default="-1"/>
+
+    </mapping>
+
+    <mapping name="script"
+        class="com.volantis.mcs.policies.impl.variants.script.ScriptMetaDataBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder"
+        ordered="false">
+
+        <structure map-as="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder" usage="optional"/>
+
+        <value name="encoding" field="scriptEncoding" usage="optional"
+            serializer="com.volantis.mcs.policies.impl.io.DeSerializer.scriptEncodingToString"
+            deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToScriptEncoding"/>
+
+        <value name="character-set" field="characterSet" usage="optional"/>
+
+    </mapping>
+
+    <mapping name="text"
+        class="com.volantis.mcs.policies.impl.variants.text.TextMetaDataBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder"
+        ordered="false">
+
+        <structure map-as="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder" usage="optional"/>
+
+        <value name="encoding" field="textEncoding" usage="optional"
+            serializer="com.volantis.mcs.policies.impl.io.DeSerializer.textEncodingToString"
+            deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToTextEncoding"/>
+
+        <value name="language" field="language" usage="optional"/>
+
+    </mapping>
+
+    <mapping name="video"
+        class="com.volantis.mcs.policies.impl.variants.video.VideoMetaDataBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder"
+        ordered="false">
+
+        <structure map-as="com.volantis.mcs.policies.variants.metadata.InternalMetaDataBuilder" usage="optional"/>
+
+        <value name="encoding" field="videoEncoding" usage="optional"
+            serializer="com.volantis.mcs.policies.impl.io.DeSerializer.videoEncodingToString"
+            deserializer="com.volantis.mcs.policies.impl.io.DeSerializer.stringToVideoEncoding"/>
+
+        <value name="height" set-method="setHeight" get-method="getHeight" usage="optional"/>
+        <value name="width" set-method="setWidth" get-method="getWidth" usage="optional"/>
+
+    </mapping>
+
+    <!-- Content related mappings. -->
+    <mapping abstract="true" class="com.volantis.mcs.policies.variants.content.InternalContentBuilder"/>
+
+    <mapping name="auto-url-sequence"
+        class="com.volantis.mcs.policies.impl.variants.content.AutoURLSequenceBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.content.InternalContentBuilder"
+        ordered="false" post-set="jibxPostSet">
+
+        <structure map-as="com.volantis.mcs.policies.variants.content.InternalContentBuilder" usage="optional"/>
+
+        <structure name="base" usage="optional" test-method="jibxHasBase">
+            <structure set-method="setBaseURLPolicyReference" get-method="getBaseURLPolicyReference" usage="optional"/>
+            <value name="location" set-method="setBaseLocation" get-method="getBaseLocation" usage="optional"
+                test-method="jibxHasBaseLocation"/>
+        </structure>
+
+        <value name="template" field="urlTemplate" usage="optional"/>
+        <value name="size" field="sequenceSize" usage="optional"/>
+    </mapping>
+
+    <mapping name="embedded"
+        class="com.volantis.mcs.policies.impl.variants.content.EmbeddedContentBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.content.InternalContentBuilder"
+        ordered="false" >
+
+        <structure map-as="com.volantis.mcs.policies.variants.content.InternalContentBuilder" usage="optional"/>
+
+        <value name="data" field="data" usage="optional"/>
+    </mapping>
+
+    <mapping name="layout"
+        class="com.volantis.mcs.policies.impl.variants.layout.LayoutContentBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.content.InternalContentBuilder">
+
+        <structure map-as="com.volantis.mcs.policies.variants.content.InternalContentBuilder" usage="optional"/>
+
+        <structure field="layout"
+            marshaller="com.volantis.mcs.accessors.xml.jibx.MarshallLayoutFormat"
+            unmarshaller="com.volantis.mcs.accessors.xml.jibx.MarshallLayoutFormat"/>
+
+    </mapping>
+
+    <mapping name="url"
+        class="com.volantis.mcs.policies.impl.variants.content.URLContentBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.content.InternalContentBuilder"
+        ordered="false" post-set="jibxPostSet">
+
+        <structure map-as="com.volantis.mcs.policies.variants.content.InternalContentBuilder" usage="optional"/>
+
+        <structure name="base" usage="optional" test-method="jibxHasBase">
+            <structure set-method="setBaseURLPolicyReference" get-method="getBaseURLPolicyReference" usage="optional"/>
+            <value name="location" set-method="setBaseLocation" get-method="getBaseLocation" usage="optional"
+                test-method="jibxHasBaseLocation"/>
+        </structure>
+
+        <value name="relative" field="url" usage="optional"/>
+    </mapping>
+
+    <mapping name="theme"
+        class="com.volantis.mcs.policies.impl.variants.theme.ThemeContentBuilderImpl"
+        extends="com.volantis.mcs.policies.variants.content.InternalContentBuilder"
+        ordered="false">
+
+        <structure map-as="com.volantis.mcs.policies.variants.content.InternalContentBuilder" usage="optional"/>
+
+        <value name="import-parent" field="importParent" usage="optional" default="false"/>
+        <structure name="style-sheet" usage="optional" test-method="jibxHasStyleSheet">
+            <structure field="styleSheet" usage="optional"/>
+        </structure>
+
+    </mapping>
+
+    <mapping abstract="true" class="com.volantis.mcs.themes.BaseStyleSheet"/>
+
+    <mapping name="rules" class="com.volantis.mcs.themes.impl.StyleSheetImpl"
+        extends="com.volantis.mcs.themes.BaseStyleSheet">
+
+        <structure map-as="com.volantis.mcs.themes.BaseStyleSheet"/>
+
+        <collection field="rules" type="java.util.ArrayList"
+            item-type="com.volantis.mcs.themes.impl.RuleImpl"/>
+
+    </mapping>
+
+    <mapping name="css" class="com.volantis.mcs.themes.impl.CSSStyleSheetImpl"
+        extends="com.volantis.mcs.themes.BaseStyleSheet">
+
+        <structure map-as="com.volantis.mcs.themes.BaseStyleSheet"/>
+
+        <value name="parser" field="parserMode" usage="optional"
+            style="attribute"/>
+        <value field="css" usage="optional" style="text"/>
+
+    </mapping>
+
+    <!-- Policy reference mappings. -->
+    <mapping abstract="true" class="com.volantis.mcs.policies.PolicyReference"/>
+
+    <mapping name="policy-reference"
+        class="com.volantis.mcs.policies.impl.PolicyReferenceImpl"
+        extends="com.volantis.mcs.policies.PolicyReference">
+
+        <structure map-as="com.volantis.mcs.policies.PolicyReference"/>
+
+        <value name="name" field="name" usage="optional"/>
+        <value name="type" field="expectedPolicyType" usage="optional"/>
+
+    </mapping>
+
+    <!-- Button Policy -->
+    <mapping name="button-image-policy"
+        class="com.volantis.mcs.policies.impl.ButtonImagePolicyBuilderImpl"
+        extends="com.volantis.mcs.policies.impl.AbstractConcretePolicyBuilder">
+
+        <structure map-as="com.volantis.mcs.policies.impl.AbstractPolicyBuilder"/>
+        <structure map-as="com.volantis.mcs.policies.impl.AbstractConcretePolicyBuilder"/>
+
+        <structure name="up" usage="optional" test-method="jibxHasUp">
+            <structure field="upPolicy" usage="optional"/>
+        </structure>
+        <structure name="down" usage="optional" test-method="jibxHasDown">
+            <structure field="downPolicy" usage="optional"/>
+        </structure>
+        <structure name="over" usage="optional" test-method="jibxHasOver">
+            <structure field="overPolicy"/>
+        </structure>
+    </mapping>
+
+    <!-- Rollover Policy -->
+    <mapping name="rollover-image-policy"
+        class="com.volantis.mcs.policies.impl.RolloverImagePolicyBuilderImpl"
+        extends="com.volantis.mcs.policies.impl.AbstractConcretePolicyBuilder">
+
+        <structure map-as="com.volantis.mcs.policies.impl.AbstractPolicyBuilder"/>
+        <structure map-as="com.volantis.mcs.policies.impl.AbstractConcretePolicyBuilder"/>
+
+        <structure name="normal" usage="optional" test-method="jibxHasNormal">
+            <structure field="normalPolicy" usage="optional"/>
+        </structure>
+        <structure name="over" usage="optional" test-method="jibxHasOver">
+            <structure field="overPolicy" usage="optional"/>
+        </structure>
+    </mapping>
+
+    <!-- Base URL Policy -->
+    <mapping name="base-url-policy"
+        class="com.volantis.mcs.policies.impl.BaseURLPolicyBuilderImpl"
+        extends="com.volantis.mcs.policies.impl.AbstractPolicyBuilder"
+        post-set="jibxPostSet">
+
+        <structure map-as="com.volantis.mcs.policies.impl.AbstractPolicyBuilder"/>
+
+        <value name="url" field="baseURL" usage="optional"/>
+        <value name="location" set-method="setBaseLocation" get-method="getBaseLocation" usage="optional"
+            test-method="jibxHasBaseLocation"/>
+    </mapping>
+
+    <!-- Layout Policy -->
+
+</binding>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 12-Dec-05	10374/2	emma	VBM:2005111705 Interim commit
+
+ 15-Dec-05	9990/6	ibush	VBM:2005102516 Enable Local and Remote Project Loading
+
+ 08-Nov-05	9990/3	ibush	VBM:2005102516 Enable Local and Remote Project Loading
+
+ 29-Nov-05	10505/3	pduffin	VBM:2005111405 Committing transactions from MCS 3.5.0 (7)
+
+ 29-Nov-05	10347/1	pduffin	VBM:2005111405 Massive changes for performance
+
+ 16-Nov-05	10315/2	pduffin	VBM:2005111410 Added support for copying model objects
+
+ 16-Nov-05	10341/1	pduffin	VBM:2005111410 Ported changes forward from MCS 3.5
+
+ 16-Nov-05	10315/2	pduffin	VBM:2005111410 Added support for copying model objects
+
+ 14-Nov-05	10287/1	pduffin	VBM:2005110413 Fixed issues mapping diagnostic messages from model to proxies. Also added document, line and column numbers into the messages created when validating models when loading them at runtime.
+
+ 11-Nov-05	10199/2	pduffin	VBM:2005110413 Fixed issues mapping diagnostic messages from model to proxies. Also added document, line and column numbers into the messages created when validating models when loading them at runtime.
+
+ 09-Nov-05	10225/1	geoff	VBM:2005110805 MCS35: Export Unable to export assetgroups with sub-directories
+
+ 09-Nov-05	10217/1	geoff	VBM:2005110805 MCS35: Export Unable to export assetgroups with sub-directories
+
+ 01-Nov-05	9888/1	pduffin	VBM:2005101811 Committing new user interface changes that have been ported forward from 3.5
+
+ 31-Oct-05	9961/1	pduffin	VBM:2005101811 Committing restructuring
+
+ 31-Oct-05	9965/18	ianw	VBM:2005101811 Add invalidStyle
+
+ 31-Oct-05	9965/15	ianw	VBM:2005101811 Fixed up invalid selectors
+
+ 28-Oct-05	9965/13	ianw	VBM:2005101811 update JIBX bindings
+
+ 28-Oct-05	9965/11	ianw	VBM:2005101811 stabalise InvalidSelector code
+
+ 28-Oct-05	9965/9	ianw	VBM:2005101811 fix bindings
+
+ 28-Oct-05	9965/7	ianw	VBM:2005101811 fix bindings
+
+ 27-Oct-05	9965/5	ianw	VBM:2005101811 interim commit
+
+ 26-Oct-05	9965/1	ianw	VBM:2005101811 Interim commit
+
+ 27-Oct-05	10007/1	geoff	VBM:2005102512 MCS35: Investigate and fix any JDBC repository import/export problems
+
+ 27-Oct-05	9986/1	geoff	VBM:2005102512 MCS35: Investigate and fix any JDBC repository import/export problems
+
+ 11-Oct-05	9729/1	geoff	VBM:2005100507 Mariner Export fails with NPE
+
+ 03-Oct-05	9500/8	ianw	VBM:2005091308 Rationalise RPDM and LPDM
+
+ 03-Oct-05	9590/8	schaloner	VBM:2005092204 Updated formatCount in each format in DeviceLayout
+
+ 02-Oct-05	9652/5	gkoch	VBM:2005092204 completely custom marshalling/unmarshalling of layoutFormat
+
+ 02-Oct-05	9652/3	gkoch	VBM:2005092204 Tests for layoutFormat marshaller/unmarshaller
+
+ 30-Sep-05	9590/6	schaloner	VBM:2005092204 finished regular JiBX bindings
+
+ 29-Sep-05	9590/2	schaloner	VBM:2005092204 Updating layouts for JiBX. Removed interface constants antipattern
+
+ 30-Sep-05	9500/5	ianw	VBM:2005091308 Interim commit for George
+
+ 29-Sep-05	9500/2	ianw	VBM:2005091308 Interim commit for Ian B
+
+ 29-Sep-05	9654/1	pduffin	VBM:2005092817 Added support for expressions and functions in styles
+
+ 28-Sep-05	9487/4	pduffin	VBM:2005091203 Updated JavaDoc for CSS parser and refactored
+
+ 27-Sep-05	9487/1	pduffin	VBM:2005091203 Committing new CSS Parser
+
+ 28-Sep-05	9445/17	gkoch	VBM:2005090603 Introduced ComponentContainers to bring components and their assets together
+
+ 16-Sep-05	9512/4	pduffin	VBM:2005091408 Added support for invalid style values
+
+ 15-Sep-05	9512/2	pduffin	VBM:2005091408 Committing changes to JIBX to use new schema
+
+ 12-Sep-05	9372/1	ianw	VBM:2005082221 Allow only one instance of MarinerPageContext for a page
+
+ 09-Sep-05	9479/1	ianw	VBM:2005090816 implement new JIBX bindings
+
+ 05-Sep-05	9407/1	pduffin	VBM:2005083007 Removed old themes model
+
+ 02-Sep-05	9408/4	pabbott	VBM:2005083007 Move over to using JiBX accessor
+
+ 14-Jul-05	9031/1	adrianj	VBM:2005071305 Modifying CSS parser to use new model
+
+ 29-Jun-05	8552/9	pabbott	VBM:2005051902 JIBX Theme accessors
+
+ 09-Jun-05	8552/1	pabbott	VBM:2005051902 Version 1 of JIBX implementation
+
+ ===========================================================================
+-->

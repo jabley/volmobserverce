@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>exclude-device</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>exclude-device</h1>
+      <h2>Purpose</h2>
+			
+      <p>Prevents MCS from handling responses to requests from one or more devices defined in the <span class="code">servlet-filter</span> section of the <span class="filepath">mcs-config.xml</span> file. If the device has children in the device tree, all the children are excluded as well as the named device. Excluded requests are passed through.</p>
+		
+      <h2>Contained by</h2>
+      <p>
+         <a href="../admin/config_servlet_filter.html">servlet-filter</a>
+      </p>
+      <h2>Attribute</h2>
+      <table cellspacing="0" summary="The table contains the attributes of the element or elements. It lists the name, the purpose or use, the XML schema datatype, the default value if there is one, value options if they are defined, and indicates if the attribute is required, optional, deprecated or obsolete.">
+         <tr>
+            <th class="firsthdr" scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Type</th>
+            <th scope="col">Default</th>
+            <th scope="col">Options</th>
+            <th scope="col">Use</th>
+         </tr>
+         <tr>
+            <th class="firstcell" scope="row">
+               <span class="requiredattr">name</span>
+            </th>
+            <td>The device name. The value must uniquely identify a device in the device repository.</td>
+            <td>xs:string</td>
+            <td/>
+            <td/>
+            <td>required</td>
+         </tr>
+      </table>
+      <h2>Example</h2>
+
+      <pre class="code">&lt;servlet-filter&gt;
+   &lt;exclude-device name="PC"/&gt;
+   &lt;mime-type value="x-application/vnd.xdime+xml"/&gt;
+   &lt;mime-type value="x-application/vnd.volantis.xdime+xml"/&gt;
+&lt;/servlet-filter&gt;</pre>
+		
+			
+      <p>
+         <span class="ri">Related topic</span>
+         <br/>
+         <a href="../admin/mcs_config_er.html">MCS configuration elements</a>
+      </p>
+		
+   </body>
+</html>

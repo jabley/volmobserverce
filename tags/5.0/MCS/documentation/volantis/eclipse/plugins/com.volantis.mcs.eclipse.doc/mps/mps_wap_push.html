@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>Messaging with WAP push</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Messaging with WAP push</h1>
+      
+      <p>MPS ships with a message store servlet (MSS) that uses the WAP Push
+         channel adapter (WAPPushChannelAdapter). The servlet caches XML
+         messages using an identifier and later retrieves them using the
+         identifier as a parameter to the request. MSS demonstrates the use of
+         the Custom Channel Adapter API, and is described here. For specific WAP
+         push server applications, you will need to adapt the code.</p>
+         
+      <p class="note">
+         <strong>Note</strong>: 
+			To enable WAP push, you must uncomment the WAP push channel in
+               the <span class="filepath">mcs-config.xml</span> file.</p>
+        
+      
+      <p>WAP Push does not send content in the message, but instead sends the
+         URL of the page containing the message to the device in the subject of
+         an SMS message. The user of the device can then pull the content down
+         at a convenient time.</p>
+      
+      <p>MPS handles WAP Push messages according to their type.</p>
+      
+      <p>Because a JSP message is already in the form of a URL, this URL is
+         used as the subject of the SMS message.</p>
+        
+      
+      
+<p>XML Messages have no associated URL, so MSS stores the message and builds a 
+  URL that is sent to the device using the WAP push adapter. The URL consists 
+  of the fully qualified path to the servlet, and an appended identifier that 
+  is unique in this instance of the servlet context. To retrieve a message, MSS 
+  uses the identifier in the HTTP request from the device.</p>
+      
+      
+<p>One XML message is stored for each device type until the client pulls the message 
+  from the message storage servlet. </p>
+      
+      <p>If you need to push a message to the device using Service Load, you can override a Service Indication by using the <span class="code">addHeader</span> method of the <span class="code">MultiChannelMessage</span> class to add a special header 'X-WAP-Push-Type' that may have a value of 'SL' or 'SI'. If the header value is invalid then 'SI' is assumed.</p>
+      
+      <pre class="code">addHeader(ALL,"X-WAP-Push-Type","SL")</pre>
+       
+      <p class="note">
+         <strong>Note</strong>: 
+			Service Indications are alerts with a click-able link. Service Loads are alerts that also automatically deliver the content to the device.</p>
+      
+         
+      <h2>Storing and retrieving messages</h2>
+         
+      <p>To store an XML message, MPS sends an HTTP POST request to the MSS servlet with the single parameter 'xml' containing the XDIME XML to execute.</p>
+         
+      <p>The MSS servlet generates a page identifier in a secure manner, and returns the page identified in the response header 'xmlid'.</p>
+         
+      <p>To retrieve a stored message a simple HTTP GET request is made to
+            the MSS servlet with a 'pageId' parameter containing the previously-generated page
+            identifier, for example:</p>
+         
+      <pre class="code">http://myhost:8080/[context_root]/mss?pageid=xmlid</pre>
+        
+      
+      
+         
+      <h2>Configuring the message store</h2>
+          
+      <p>The MSS servlet can be configured on either the same host as the MPS installation or on a different machine.</p>
+          
+         
+      <p>Because WAP Push messages need to be persisted on a web server
+            until users can retrieve them, MPS provides configurable message
+            caching. All messages will persist in the storage servlet for the
+            period you specify. Messages are stored in the message store
+            directory specified in the configuration of the servlet, and persist
+            over a restart of the servlet until they are expired.</p>
+         
+      <p>The message store, which MPS uses to cache WAP push messages
+            until they are retrieved by users, is configured in the
+            <span class="filepath">mss-config.xml</span> file. This file, and the related
+            XML schema and log4j files (also prefixed 'mss') will be in the
+            locations you specified when you installed MPS. The default
+            directory is <span class="filepath">WEB-INF</span>.</p>
+          
+      <p>Two <span class="code">init-param</span> elements in the <span class="filepath">web.xml</span> file give the paths to the MSS configuration file and the log4j file. The <span class="code">param-name</span> attribute names the file and the <span class="code">param-value</span> attribute gives the path information.</p> 
+         
+      <p>The <span class="code">messageStoreServer</span> element
+            contains the configuration definition.</p>
+               
+         
+      <pre class="code">&lt;messageStoreServer&gt;
+   &lt;message-store
+      location="[path]\webapps\[context_root]\mss_store"
+      timeout="unlimited"
+      id-size="12"
+      validate="false"/&gt;
+&lt;/messageStoreServer&gt;</pre>
+         
+         
+      <p>The <span class="code">message-store</span> element
+            contains the cache settings. The <span class="code">location</span> attribute contains the absolute path
+            to the directory used by the message store server. The <span class="code">timeout</span> attribute sets the period in seconds
+            that a cache entry will be retained, or the text value 'unlimited'.
+            The <span class="code">id-size</span> attribute is the length
+            in characters (minimum 10) of the generated message identifier. The
+               <span class="code">validate</span> attribute determines
+            whether the XML message should be validated before storage.</p>
+         
+      <p class="note">
+         <strong>Note</strong>: 
+			You will probably want to set the <span class="code">timeout</span> attribute to a high value, giving
+               users plenty of time to retrieve a message. The message store
+               server checks this value at five-minute intervals, so you should
+               set it as a multiple of 300 seconds.
+         </p>
+         
+      <p class="note">
+         <strong>Note</strong>: 
+			From MPS 3.3, the <span class="code">environment</span> element is obsolete; it will be removed in a later version of the <span class="filepath">mss-config.xml</span> file. If the location is specified here, a warning message will be logged and the location will not be used.
+         </p>
+      
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../mps/mps_about.html">About MPS</a>
+      </p>
+      
+   
+   </body>
+</html>

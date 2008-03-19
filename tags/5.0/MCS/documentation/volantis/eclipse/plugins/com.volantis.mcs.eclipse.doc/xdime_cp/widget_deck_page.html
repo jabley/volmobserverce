@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:deck-page</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:deck-page</h1><h2>Purpose</h2>
+         <p>Defines a single page in a Deck widget.</p>
+      <h2>Contained by</h2><p><a href="../xdime_cp/response_deck.html">response:deck</a>, <a href="../xdime_cp/widget_deck.html">widget:deck</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+         <pre class="code">
+&lt;widget:deck id="deck" style="mcs-deck-mode:switch"&gt;
+   &lt;widget:deck-page&gt;Page 1&lt;/widget:deck-page&gt;
+   &lt;widget:deck-page&gt;Page 2&lt;/widget:deck-page&gt;
+   &lt;widget:deck-page&gt;Page 3&lt;/widget:deck-page&gt;
+&lt;/widget:deck&gt;
+
+&lt;widget:display property="deck#displayed-page-number"/&gt;
+            of &lt;widget:display property="deck#pages-count"/&gt;
+
+&lt;widget:button action="deck#first-page"&gt;&amp;lt;&amp;lt;&lt;/widget:button&gt;
+&lt;widget:button action="deck#previous-page"&gt;&amp;lt;&lt;/widget:button&gt;
+&lt;widget:button action="deck#next-page"&gt;&amp;gt;&lt;/widget:button&gt;
+&lt;widget:button action="deck#last-page"&gt;&amp;gt;&amp;gt;&lt;/widget:button&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/widget_er.html">Widget elements</a></p>
+      </body></html>

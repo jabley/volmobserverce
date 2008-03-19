@@ -1,0 +1,277 @@
+--- prototype.js	2007-03-13 10:20:43.000000000 +0100
++++ prototype.new	2007-03-13 11:37:23.000000000 +0100
+@@ -11,7 +11,29 @@
+   ScriptFragment: '(?:<script.*?>)((\n|\r|.)*?)(?:<\/script>)',
+ 
+   emptyFunction: function() {},
+-  K: function(x) {return x}
++  K: function(x) {return x},
++
++  // test if userAgent is operaMobile
++  operaMobile: function() {
++    if(/Opera 8.6/.test(navigator.userAgent)) {
++      return true;
++    }
++    return false;
++  },
++
++  msieBrowser: function() {
++    // temporary solution - in the future we will
++    // use server side for user agent detection
++    if(document['onactivate'] !== undefined){
++      return true;
++    }
++    return false;
++  },
++
++  disableCache : function(){
++    // for Opera Mobile Browser cache should be disabled
++    return this.operaMobile();
++  }
+ }
+ 
+ var Class = {
+@@ -164,15 +186,61 @@
+   },
+ 
+   stripScripts: function() {
++    if (Prototype.nokiaOSSBrowser()) {
++      return this.stripScriptsWithSubstring()
++    } else {
+     return this.replace(new RegExp(Prototype.ScriptFragment, 'img'), '');
++    }
++  },
++
++  /*
++   * Returns string without scripts.
++   * It works like stripScripts, but it does NOT uses RegExp, which in some cases can crash NokiaOSSBrowser
++   */
++  stripScriptsWithSubstring: function() {
++    var tmp = this
++    var ret = ''
++    var index
++    while ((index = tmp.indexOf('<script')) != -1) {
++      ret += tmp.substring(0, index)
++      var index = tmp.indexOf('</script>')
++      tmp = tmp.substring(index+9)
++    }
++    ret += tmp
++    return ret;
+   },
+ 
+   extractScripts: function() {
++    if (Prototype.nokiaOSSBrowser()) {
++      return this.extractScriptsWithSubstring()
++    } else {
+     var matchAll = new RegExp(Prototype.ScriptFragment, 'img');
+     var matchOne = new RegExp(Prototype.ScriptFragment, 'im');
+     return (this.match(matchAll) || []).map(function(scriptTag) {
+       return (scriptTag.match(matchOne) || ['', ''])[1];
+     });
++    }
++  },
++
++  /*
++   * Returns array of scripts.
++   * It works like extractScripts, but it does NOT uses RegExp, which in some cases can crash NokiaOSSBrowser
++   */
++  extractScriptsWithSubstring: function() {
++    var tmp = this
++    var ret = new Array();
++    var indexBeg
++    var indexEnd
++    while ((indexBeg = tmp.indexOf('<script')) != -1) {
++      tmp = tmp.substring(indexBeg)
++      indexBeg = tmp.indexOf('>');
++      indexEnd = tmp.indexOf('</script>')
++      if (indexBeg != -1 && indexEnd != -1) {
++        ret.push(tmp.substring(indexBeg+1, indexEnd))
++      }
++      tmp = tmp.substring(indexEnd+9)
++    }
++    return ret;
+   },
+ 
+   evalScripts: function() {
+@@ -189,7 +257,12 @@
+   unescapeHTML: function() {
+     var div = document.createElement('div');
+     div.innerHTML = this.stripTags();
+-    return div.childNodes[0] ? div.childNodes[0].nodeValue : '';
++    var nodes = div.childNodes;
++    var result = "";
++    for(i=0; i<nodes.length; i++) {
++      result = result + nodes[i].nodeValue;
++    }
++    return result;
+   },
+ 
+   toQueryParams: function() {
+@@ -681,8 +754,12 @@
+ 
+       if (this.options.asynchronous) {
+         this.transport.onreadystatechange = this.onStateChange.bind(this);
++        if (Prototype.nokiaOSSBrowser()) {
++          setTimeout((function() {this.respondToReadyState(1)}).bind(this), 300);
++        } else {
+         setTimeout((function() {this.respondToReadyState(1)}).bind(this), 10);
+       }
++      }
+ 
+       this.setRequestHeaders();
+ 
+@@ -904,17 +981,25 @@
+     }
+   }
+ 
++  if (!Prototype.msieBrowser()) {
+   element._extended = true;
++  }
+   return element;
+ }
+ 
+ Element.extend.cache = {
+   findOrStore: function(value) {
++    if(Prototype.disableCache()){
++      return function() {
++        return value.apply(null, [this].concat($A(arguments)));
++      }
++    } else {
+     return this[value] = this[value] || function() {
+       return value.apply(null, [this].concat($A(arguments)));
+     }
+   }
+ }
++}
+ 
+ Element.Methods = {
+   visible: function(element) {
+@@ -938,7 +1023,13 @@
+   show: function() {
+     for (var i = 0; i < arguments.length; i++) {
+       var element = $(arguments[i]);
+-      element.style.display = '';
++      if (element.vfcDefaultStyle == null) {
++        // Original code goes here.
++        element.style.display = ''
++      } else {
++        // Patched code goes here.
++        element.style.display = element.vfcDefaultStyle
++      }
+     }
+   },
+ 
+@@ -1020,6 +1111,56 @@
+   getStyle: function(element, style) {
+     element = $(element);
+     var value = element.style[style.camelize()];
++
++    // when style is 'display' or 'visibility'  must be returned withot modify
++    // otherwise when display==none then getStyle('visibility') returns 'hidden'
++    if((style == 'visibility') || (style == 'display')){
++      // code must be repeated
++      if(!value){
++        if (document.defaultView && document.defaultView.getComputedStyle) {
++          var css = document.defaultView.getComputedStyle(element, null);
++          value = css ? css.getPropertyValue(style) : null;
++        } else if (element.currentStyle) {
++          value = element.currentStyle[style.camelize()];
++        }
++      }
++      return value == 'auto' ? null : value;
++    }
++
++    var isStyleChanged = false;
++    if((Prototype.nokiaOSSBrowser() || Prototype.firefoxBrowser() || Prototype.konquerorBrowser() || Prototype.operaPC()) && element.style.display=='none') {
++      element.style.visibility='hidden';
++      element.style.display='block';
++      
++      // this workaround for opera PC older than 9.02 version.
++      // The issue is if element change display:none to display:block
++      // it is required some time of delay for getting property value which are computed 
++      // after putting element into DOM (by set display:block)
++      // The problem is only with computed values like height, width. It seems that these browsers
++      // needs some time about 200 miliseconds to resize document's layout ade refresh its computed style object.
++      // There is additional condition with time because getComputedStyle always return 0px 
++      // in case of really value of property is 0px, before and after time for refresh (about 200ms) in that case it is 
++      // not possible to recognize whether returned value is correct  
++                  
++      if(/Opera\/9.00|Opera\/9.01|Opera\/9.02/.test(navigator.userAgent)) {                        
++        if (!value) {
++          var now = new Date();
++          var exitTime = now.getTime() + 300;                  
++          if (document.defaultView && document.defaultView.getComputedStyle) {
++            var css = document.defaultView.getComputedStyle(element, null);
++            while(true) {
++              value = css ? css.getPropertyValue(style) : null;
++              now = new Date();
++              if(value != '0px' || now.getTime() > exitTime) {                                   
++                  break;
++              }  
++            }
++          }
++        }
++      }              
++      isStyleChanged = true;
++    }
++
+     if (!value) {
+       if (document.defaultView && document.defaultView.getComputedStyle) {
+         var css = document.defaultView.getComputedStyle(element, null);
+@@ -1032,6 +1173,11 @@
+     if (window.opera && ['left', 'top', 'right', 'bottom'].include(style))
+       if (Element.getStyle(element, 'position') == 'static') value = 'auto';
+ 
++    if(isStyleChanged) {
++      element.style.visibility='visible';
++      element.style.display='none';
++    }
++
+     return value == 'auto' ? null : value;
+   },
+ 
+@@ -1070,10 +1216,6 @@
+       element.style.position = 'relative';
+       // Opera returns the offset relative to the positioning context, when an
+       // element is position relative but top and left have not been defined
+-      if (window.opera) {
+-        element.style.top = 0;
+-        element.style.left = 0;
+-      }
+     }
+   },
+ 
+@@ -1091,16 +1233,28 @@
+ 
+   makeClipping: function(element) {
+     element = $(element);
+-    if (element._overflow) return;
++    if (element._overflow && !Prototype.msieBrowser()) return;
++    if (Prototype.msieBrowser()) {
++      element._overflow = 'visible';
++    } else {
+     element._overflow = element.style.overflow;
+-    if ((Element.getStyle(element, 'overflow') || 'visible') != 'hidden')
+-      element.style.overflow = 'hidden';
++    }
++
++    if ((Element.getStyle(element, 'overflow') || 'visible') != 'hidden') {
++      Element.setStyle(element, {overflow:'hidden'})
++    }
+   },
+ 
+   undoClipping: function(element) {
+     element = $(element);
+-    if (element._overflow) return;
+-    element.style.overflow = element._overflow;
++    if (element._overflow && !Prototype.msieBrowser()) {
++      return;
++    } 
++    if(Prototype.msieBrowser()) {      
++      element.style.overflow = 'visible';
++    } else {
++      element.style.overflow = '';
++    }      
+     element._overflow = undefined;
+   }
+ }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Layouts">
+	<topic label="Canvas layouts and panes" href="layouts/layout_canvas_panes.html"/>
+	<topic label="Fragments" href="layouts/layout_fragments.html"/>
+	<topic label="Form fragments" href="layouts/layout_form_fragments.html"/>
+	<topic label="Replicas" href="layouts/layout_replica.html"/>
+	<topic label="Iterator panes" href="layouts/layout_iterator_panes.html"/>
+	<topic label="Dissecting panes" href="layouts/layout_dissecting_panes.html"/>
+	<topic label="Montages and segments" href="layouts/layout_montage.html"/>
+	<topic label="Regions" href="layouts/layout_region.html"/>
+	<topic label="Layout editor" href="layouts/layout_editor.html"/>
+	<topic label="Outline view" href="layouts/layout_outline_view.html"/>
+	<topic label="Format Attributes view" href="layouts/layout_attribute_view.html"/>
+	<topic label="Working with layouts" href="layouts/layout_working.html" type="Task">
+		<topic label="Adding a layout" href="layouts/layout_add.html"/>
+		<topic label="Choosing a device" href="devices/device_choose.html"/>
+		<topic label="Adding a format" href="layouts/layout_add_format.html">
+			<topic label="Using grids" href="layouts/layout_add_grid.html"/>
+			<topic label="Adding iterators" href="layouts/layout_add_pane.html"/>
+			<topic label="Styling formats" href="layouts/layout_style_format.html"/>
+			<topic label="Setting iterator attributes" href="layouts/layout_time_choose.html"/>
+			<topic label="Wrapping a format" href="layouts/layout_format_wrap.html"/>
+			<topic label="Adding montage formats" href="layouts/layout_add_montage.html"/>
+		</topic>
+	</topic>
+	<topic label="Layout attributes" href="layouts/layout_attribute_tables.html">
+		<topic label="Layout overview attributes" href="layouts/layout_oview_attr.html"/>
+		<topic label="Common format attributes" href="layouts/layout_common_format_attr.html"/>
+		<topic label="Fragment attributes" href="layouts/layout_fragment_attr.html"/>
+		<topic label="Form fragment attributes" href="layouts/layout_formfragment_attr.html"/>
+		<topic label="Dissecting attributes" href="layouts/layout_dissecting_attr.html"/>
+		<topic label="Spatial iterator attributes" href="layouts/layout_spatial_attr.html"/>
+		<topic label="Temporal iterator attributes" href="layouts/layout_temporal_attr.html"/>
+		<topic label="Replica attributes" href="layouts/layout_replica_attr.html"/>
+		<topic label="Montage and segment attributes" href="layouts/layout_montage_attr.html"/>
+	</topic>
+</toc>

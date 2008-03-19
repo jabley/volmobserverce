@@ -1,0 +1,478 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--===========================================================================
+ ! (c) Volantis Systems Ltd 2006. 
+ ! ======================================================================== -->
+</head>
+<body bgcolor="white">
+
+<!--
+ ! This file forms part of the public API.
+ !
+ ! @volantis-api-include-in PublicAPI
+ ! @volantis-api-include-in ProfessionalServicesAPI
+ ! @volantis-api-include-in InternalAPI
+ !-->
+
+Provides interfaces and classes for representing policies within MCS.
+
+<p>See <a href="#compatibility">compatibility</a> for information about how the
+classes in this and sub packages relate back to the old component / asset
+objects.</p>
+
+<h2>Overview</h2>
+
+<p>A {@link com.volantis.mcs.policies.Policy policy} forms part of the MCS
+content adaptation strategy. They can be grouped into three main groups:</p>
+
+<dl>
+    <dt>supporting policies</dt>
+    <dd>These are referenced by other policies but not used from within a page
+    directly, e.g. {@link com.volantis.mcs.policies.BaseURLPolicy}.</dd>
+
+    <dt>variable policies</dt>
+    <dd>These are the core of the content adaptation as they contain a number
+    of different {@link com.volantis.mcs.policies.variants.Variant variants},
+    with differing characteristics and the 'best' one is chosen for the device
+    for which the content is being adapted.</dd>
+
+    <dt>composite policies</dt>
+    <dd>These are higher level policies containing references to other,
+    normally variable, policies, e.g.
+    {@link com.volantis.mcs.policies.RolloverImagePolicy} contains references
+    to two image policies, one of which is displayed normally and the other is
+    only displayed when the mouse is over the image.</dd>
+</dl>
+
+<h3>Building</h3>
+
+<p>Policy and related objects are defined as interfaces rather than classes
+to provide an abstraction layer between the API and the implementation. They
+are also immutable, i.e. once created they cannot be modified. This is to
+ensure that they are not modified at runtime when they are cached as that may
+lead to corruption and undefined behaviour. Instances can be constructed
+using builder objects that allow the properties to be set individually and
+then will create an object on demand. The builder objects can be constructed
+using the {@link com.volantis.mcs.policies.PolicyFactory}.</p>
+
+<p>Policy and related objects can very easily be copied by constructing a
+builder from the policy, modifying the builder and then constructing a new
+policy. If the builder is not modified then it will return a reference to the
+policy from which it was constructed.</p>
+
+<h3>References</h3>
+
+<p>Policy references consist of two parts, the name of the policy and the
+expected policy type. The latter may be null if any policy type is acceptable
+but in most cases it must be set to a specific type.</p>
+
+<h2><a name="compatibility">Compatibility</a></h2>
+
+<p>This package replaces the following packages:</p>
+<ul>
+<li>{@link com.volantis.mcs.assets}</li>
+<li>{@link com.volantis.mcs.objects}</li>
+<li>{@link com.volantis.mcs.components}</li>
+</ul>
+
+<p>The following table describes the mapping from old objects to new
+objects.</p>
+
+<table border="1" cellpadding="2" cellspacing="0">
+    <thead>
+        <tr>
+            <td/>
+            <th align="left">Old Name</th>
+            <th align="left">New Name</th>
+            <th align="left">Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th align="left" rowspan="9" valign="top">Components</th>
+            <td valign="top"><code>Audio&nbsp;Component</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.VariablePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#AUDIO}.</td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Button&nbsp;Component</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.ButtonImagePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#BUTTON_IMAGE}.</td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Chart&nbsp;Component</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.VariablePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#CHART}.</td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Dynamic&nbsp;Visual&nbsp;Component</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.VariablePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#VIDEO}.</td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Image&nbsp;Component</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.VariablePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#IMAGE}.</td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Link&nbsp;Component</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.VariablePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#LINK}.</td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Rollover&nbsp;Component</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.RolloverImagePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#ROLLOVER_IMAGE}.</td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Script&nbsp;Component</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.VariablePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#SCRIPT}.</td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Text&nbsp;Component</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.VariablePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#TEXT}.</td>
+        </tr>
+
+        <tr>
+            <td colspan="4">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <th align="left" rowspan="10" valign="top">Assets</th>
+            <td valign="top"><code>Audio&nbsp;Asset</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.variants.Variant}</td>
+            <td valign="top"><table>
+                <tr>
+                    <td valign="top"><code><b>Variant&nbsp;type</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.VariantType#AUDIO}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Selection&nbsp;Criteria</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.selection.EncodingSelection}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Meta&nbsp;Data</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.audio.AudioMetaData}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Content</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.content.URLContent}</td>
+                </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Chart&nbsp;Asset</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.variants.Variant}</td>
+            <td valign="top"><table>
+                <tr>
+                    <td valign="top"><code><b>Variant&nbsp;type</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.VariantType#CHART}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Selection&nbsp;Criteria</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.selection.DefaultSelection}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Meta&nbsp;Data</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.chart.ChartMetaData}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Content</b></code></td>
+                    <td valign="top"><code>none</code></td>
+                </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td valign="top">Convertible Image Asset</td>
+            <td valign="top">{@link com.volantis.mcs.policies.variants.Variant}</td>
+            <td valign="top"><table>
+                <tr>
+                    <td valign="top"><code><b>Variant&nbsp;type</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.VariantType#IMAGE}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Selection&nbsp;Criteria</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.selection.DefaultSelection}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Meta&nbsp;Data</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.image.ImageMetaData}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Content</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.content.URLContent}</td>
+                </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td valign="top">Device Audio Asset</td>
+            <td valign="top">{@link com.volantis.mcs.policies.variants.Variant}</td>
+            <td valign="top"><table>
+                <tr>
+                    <td valign="top"><code><b>Variant&nbsp;type</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.VariantType#AUDIO}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Selection&nbsp;Criteria</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.selection.TargetedSelection}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Meta&nbsp;Data</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.audio.AudioMetaData}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Content</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.content.URLContent}</td>
+                </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td valign="top">Device Image Asset</td>
+            <td valign="top">{@link com.volantis.mcs.policies.variants.Variant}</td>
+            <td valign="top"><table>
+                <tr>
+                    <td valign="top"><code><b>Variant&nbsp;type</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.VariantType#IMAGE}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Selection&nbsp;Criteria</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.selection.TargetedSelection}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Meta&nbsp;Data</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.image.ImageMetaData}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Content</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.content.URLContent}</td>
+                </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Dynamic&nbsp;Visual&nbsp;Asset</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.variants.Variant}</td>
+            <td valign="top"><table>
+                <tr>
+                    <td valign="top"><code><b>Variant&nbsp;type</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.VariantType#VIDEO}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Selection&nbsp;Criteria</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.selection.EncodingSelection}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Meta&nbsp;Data</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.video.VideoMetaData}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Content</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.content.URLContent}</td>
+                </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td valign="top">Generic Image Asset</td>
+            <td valign="top">{@link com.volantis.mcs.policies.variants.Variant}</td>
+            <td valign="top"><table>
+                <tr>
+                    <td valign="top"><code><b>Variant&nbsp;type</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.VariantType#IMAGE}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Selection&nbsp;Criteria</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.image.GenericImageSelection}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Meta&nbsp;Data</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.image.ImageMetaData}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Content</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.content.URLContent}</td>
+                </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Link&nbsp;Asset</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.variants.Variant}</td>
+            <td valign="top"><table>
+                <tr>
+                    <td valign="top"><code><b>Variant&nbsp;type</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.VariantType#LINK}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Selection&nbsp;Criteria</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.selection.TargetedSelection}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Meta&nbsp;Data</b></code></td>
+                    <td valign="top"><code>none</code></td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Content</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.content.URLContent}</td>
+                </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Script&nbsp;Asset</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.variants.Variant}</td>
+            <td valign="top"><table>
+                <tr>
+                    <td valign="top"><code><b>Variant&nbsp;type</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.VariantType#SCRIPT}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Selection&nbsp;Criteria</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.selection.TargetedSelection}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Meta&nbsp;Data</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.script.ScriptMetaData}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Content</b></code></td>
+                    <td valign="top">The content depends on the setting of the
+                    {@link com.volantis.mcs.assets.ScriptAsset#getValueType() value type}.
+                    If it is set to {@link com.volantis.mcs.assets.ScriptAsset#URL}
+                    then the equivalent content is {@link com.volantis.mcs.policies.variants.content.URLContent},
+                    otherwise it is {@link com.volantis.mcs.policies.variants.content.EmbeddedContent}.</td>
+                </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td valign="top"><code>Text&nbsp;Asset</code></td>
+            <td valign="top">{@link com.volantis.mcs.policies.variants.Variant}</td>
+            <td valign="top"><table>
+                <tr>
+                    <td valign="top"><code><b>Variant&nbsp;type</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.VariantType#TEXT}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Selection&nbsp;Criteria</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.selection.TargetedSelection}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Meta&nbsp;Data</b></code></td>
+                    <td valign="top">{@link com.volantis.mcs.policies.variants.text.TextMetaData}</td>
+                </tr>
+                <tr>
+                    <td valign="top"><code><b>Content</b></code></td>
+                    <td valign="top">The content depends on the setting of the
+                    {@link com.volantis.mcs.assets.TextAsset#getValueType() value type}.
+                    If it is set to {@link com.volantis.mcs.assets.TextAsset#URL}
+                    then the equivalent content is {@link com.volantis.mcs.policies.variants.content.URLContent},
+                    otherwise it is {@link com.volantis.mcs.policies.variants.content.EmbeddedContent}.</td>
+                </tr>
+            </table></td>
+        </tr>
+
+        <tr>
+            <td colspan="4">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <th align="left" rowspan="3" valign="top">Other</th>
+            <td valign="top">Asset Group</td>
+            <td valign="top">{@link com.volantis.mcs.policies.BaseURLPolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#BASE_URL}.</td>
+        </tr>
+
+        <tr>
+            <td valign="top">Layout</td>
+            <td valign="top">{@link com.volantis.mcs.policies.VariablePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#LAYOUT}.</td>
+        </tr>
+
+        <tr>
+            <td valign="top">Theme</td>
+            <td valign="top">{@link com.volantis.mcs.policies.VariablePolicy}</td>
+            <td valign="top"><code>Policy type</code> {@link com.volantis.mcs.policies.PolicyType#LAYOUT}.</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>There were a number of issues with the previous component / asset model that
+needed to be addressed, these were:</p>
+<ul>
+
+<li><p>A component owned its assets but this relationship was not explicit in the
+model, rather it was implicit by name, i.e. an asset that had the same name
+as a component was owned by that component. This was the source of a lot of
+inconsistencies, complexities and performance issues within MCS. e.g.</p>
+<ul>
+<li>It was possible to have an asset with no component in a JDBC repository but
+not in an XML repository.</li>
+<li>Each asset was accessed separately which meant a large number of accesses
+to a JDBC repository.</li>
+<li>The XML repository had to cache an internal representation of the policy
+file in order to allow individual assets to be accessed quickly.</li>
+<li>There were separate caches for components and their assets so they could
+become out of step and inconsistent.</li>
+<li>It was very difficult to determine what size the asset caches should be
+because they depended greatly on the number of devices and assets actually
+used.</li>
+</ul>
+</li>
+
+<li><p>Most assets contained three separate pieces of information, how
+it was selected, information (or meta data) about the resource, and either
+the content, or location of the resource. e.g. a
+{@link com.volantis.mcs.assets.DeviceImageAsset} was selected
+by targeting at a device, had information about the image, e.g. size, encoding,
+etc. and had a URL to the resource. This meant that there was a lot of
+inconsistency between the different assets and how they could be represented,
+e.g. it was not possible to target a
+{@link com.volantis.mcs.assets.DynamicVisualAsset} at a
+specific device.</p>
+
+<p>As MCS was being enhanced to support the targeting of all assets at user
+specified categories of devices, rather than at individual devices this
+structure had to be changed as otherwise there would have been an explosion in
+the number of assets with a new category version of every asset (and layout and
+theme) being created.</p>
+
+<p>Extracting the selection criteria, meta data and content from being embedded
+within the asset to being referenced from the asset allows much greater
+flexibility and consistency.</p></li>
+
+<li><p>Layouts and themes were treated differently to components even though
+they were essentially very similar, i.e. having a selection mechanism, and some
+content. The only difference is that layouts and themes do not as yet have any
+meta data, and they do not appear as distinct items in the generated document
+unlike most of the other assets.</p></li>
+
+<li><p>The assets and components in the old model had no protection against
+being modified once they had been cached, or shared. This meant that it was
+possible for the caches to become corrupted if an asset or component was
+changed.</p></li>
+
+<li><p>There was no abstraction between the interface and implementation of the
+model classes. This means that either the user is exposed to implementation
+details that they do not need to know, or the implementation is not optimal
+because it does not want to expose the user to implementation details.</p></li>
+
+</ul>
+
+</body>
+</html>

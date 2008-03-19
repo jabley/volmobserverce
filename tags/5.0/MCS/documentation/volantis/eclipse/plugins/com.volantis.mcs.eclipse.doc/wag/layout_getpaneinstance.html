@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><meta name="taskref" content="014"/><title>layout:getPaneInstance</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>layout:getPaneInstance</h1><h2>Purpose</h2>
+         <p>Returns a reference to one instance of a pane inside an
+            iterating format. The reference can be used wherever a
+            pane name can be used.</p>
+            <p class="note"><strong>Note</strong>: The special type <span class="code">layout:paneReference</span> may be used only with functions that return it for use in attributes that reference panes</p>
+      <h2>Signature</h2><p><span class="code">layout:getPaneInstance($paneStem as xs:string, $index as
+         xs:integer, ...) as layout:paneReference</span></p><h2>Parameters</h2><table cellspacing="0" summary="The table contains the&#xA;            parameters of the function. It lists the name, the purpose&#xA;            or use, and the XML schema datatype."><tr><th class="firsthdr" scope="col">Name</th><th scope="col">Description</th><th scope="col">Type</th></tr><tr><th class="firstcell" scope="row">index</th><td><p>The index of the instance of the pane
+                  required. There must be at least one of these
+                  values. There may be more if the reference requires
+                  it.</p></td><td>xs:integer</td></tr><tr><th class="firstcell" scope="row">paneStem</th><td><p>The name of the pane as it appears in the
+                  layout without any index dependent information</p></td><td>xs:string</td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;pane name="{layout:getPaneInstance('title',2)}"&gt;                    
+    &lt;p&gt;Practical Digital Image Processing&lt;/p&gt;
+&lt;/pane&gt; </pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/wag_function_expr.html">MCS function expressions</a><br/><a href="../layouts/layout_iterator_panes.html">Iterator panes</a></p>
+      </body></html>

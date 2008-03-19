@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Application response measurement</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Application response measurement</h1>
+      <p>This topic outlines the procedure for installing and
+         configure profiling for pipeline operations in MCS using the
+         OpenArm (Application Response Measurement) libraries. Two MCS
+         processes; <span class="code">webd:get</span> and <span class="code">urid:fetch</span>
+         are timed and logged using log4j.</p>
+      
+         <h2>Notes on logged values</h2>
+
+         <p>The meaning of transaction identifiers are dependent on
+            the ARM collection agent being used. For information on the collector, refer to the documentation on the Open ARM implementation used for MCS at <span class="code">open-arm.sourceforge.net</span>.</p>
+         <p>The time recorded is the overall time to retrieve a
+            resource, including the time to allocate and open the
+            outbound socket, retrieve the resource and close the
+            socket.</p>
+         <p>A status code of 0 indicates success. A non-zero code
+            indicates failure.</p>
+      
+      
+         <h2>Installing and configuring the libraries</h2>
+
+         <p>The following libraries and configuration file are
+            designed to work in the context of the MCS distribution.</p>
+         <ul>
+            <li>arm40.jar</li>
+            <li>openarm_resources.jar</li>
+            <li>open-arm.cfg</li>
+            <li>open_arm.jar</li>
+         </ul>
+         <p>The <span class="filepath">commons-pool-1.2.jar</span> is required,
+            and is not supplied with some web application servers.</p>
+         <p>Copy all the <span class="filepath">.jar</span> files into the
+               <span class="filepath">lib</span> directory in your web application path, and copy
+            the <span class="filepath">open-arm.cfg</span> file to a convenient
+            location. Add the following entries to the
+               <span class="filepath">mcs-log4j.xml</span> file.</p>
+         <pre class="code">&lt;appender name="ARM-LOG" class="org.apache.log4j.FileAppender"&gt;
+   &lt;param name="Append" value="false"/&gt;
+   &lt;param name="File" value="/tmp/arm.log"/&gt;
+   &lt;layout class="org.apache.log4j.PatternLayout"&gt;
+      &lt;param name="ConversionPattern" value="%d{dd MMM HH:mm:ss} - %m%n"/&gt;
+   &lt;/layout&gt;
+&lt;/appender&gt;
+
+&lt;category name="net.m2technologies.open_arm"&gt;
+  &lt;priority value="info"/&gt;
+  &lt;appender-ref ref="ARM-LOG"/&gt;
+&lt;/category&gt;</pre>
+         <p>Then set the system property
+               <span class="code">Arm40.ArmTransactionFactory</span> of your JVM to
+            the class of your ARM provider, and define the location of
+            the configuration file.</p>
+         <pre class="code"> -DArm40.ArmTransactionFactory=com.volantis.synergetics.performance.arm.openarm.OpenArmTransactionFactory
+         -Dopenarm.config.file=/[config_file_location]/open-arm.cfg </pre>
+
+         <div class="note"><strong>Note</strong>: On MCS startup, an error is thrown if
+            profiling is not correctly configured.</div>
+      
+
+      
+         <p><span class="ri">Related topic</span><br/><a href="../admin/mcs_admin.html">Administering MCS</a></p>
+      
+   </body></html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Zoe Jones (private) -->
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/device-repository/device-tac-identification" xmlns:dti="http://www.volantis.com/xmlns/device-repository/device-tac-identification" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.volantis.com/xmlns/device-repository/device-tac-identification" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="device-core.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Device TAC Identification Section</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="TacContainer">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="number"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="tacIdentification">
+		<xs:annotation>
+			<xs:documentation>Contains information need to identify the device by TAC</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="device"/>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="tac">
+			<xs:selector xpath="dti:device/dti:number"/>
+			<xs:field xpath="."/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="device">
+		<xs:annotation>
+			<xs:documentation>Identifies a device</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="dti:TacContainer">
+					<xs:sequence>
+						<xs:element name="standard" minOccurs="0">
+							<xs:complexType>
+								<xs:choice>
+									<xs:element ref="device" minOccurs="0"/>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="name" type="DeviceNameType" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="number">
+		<xs:annotation>
+			<xs:documentation>The TAC for the device</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:long">
+				<xs:pattern value="[0-9]{6}"/>
+				<xs:pattern value="[0-9]{8}"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!DOCTYPE remotePolicySetResponse PUBLIC "-//VOLANTIS/DTD MARLIN-RPDM 2-7-1//EN" "http://www.volantis.com/dtd/2-7-1/marlin-rpdm.dtd">
+<remotePolicySetResponse rootURL="http://localhost:8090/europa/Remote/layouts/" version="1.0" errorCode="0">
+    <imageComponents>
+        <imageComponentFolder name="/foo">
+            <imageComponentFolder name="/bar">
+                <imageComponent name="image1.xml"
+                    fallbackImageComponentName="http://skate:8080/remote/RemoteRepository/imageComponents/volantis.xml"
+                    timeToLive="3000" cacheThisPolicy="true"
+                    retryFailedRetrieval="true" retryInterval="3000"
+                    retryMaxCount="3" retainDuringRetry="true">
+                    <deviceImageAsset value="image1.jpeg" pixelsX="20" pixelsY="15" pixelDepth="1"
+                        rendering="monochrome" encoding="jpeg" deviceName="PC"/>
+                </imageComponent>
+                <imageComponent name="image2.xml"
+                    fallbackImageComponentName="http://skate:8080/remote/RemoteRepository/imageComponents/volantis.xml"
+                    timeToLive="3000" cacheThisPolicy="true"
+                    retryFailedRetrieval="true" retryInterval="3000"
+                    retryMaxCount="3" retainDuringRetry="true">
+                    <deviceImageAsset value="image2.jpeg" pixelsX="20" pixelsY="15" pixelDepth="1"
+                        rendering="monochrome" encoding="jpeg" deviceName="PC"/>
+                </imageComponent>
+            </imageComponentFolder>
+        </imageComponentFolder>
+        <imageComponent name="image3.xml"
+            fallbackImageComponentName="http://skate:8080/remote/RemoteRepository/imageComponents/volantis.xml"
+            timeToLive="3000" cacheThisPolicy="true"
+            retryFailedRetrieval="true" retryInterval="3000"
+            retryMaxCount="3" retainDuringRetry="true">
+            <deviceImageAsset value="image3.jpeg" pixelsX="20" pixelsY="15" pixelDepth="1"
+                rendering="monochrome" encoding="jpeg" deviceName="PC"/>
+        </imageComponent>
+    </imageComponents>
+    <textComponents>
+        <!-- test default values of a text component -->
+        <textComponent name="text1.xml">
+          <textAsset value="/blah" deviceName="Master"/>
+        </textComponent>
+    </textComponents>
+</remotePolicySetResponse>

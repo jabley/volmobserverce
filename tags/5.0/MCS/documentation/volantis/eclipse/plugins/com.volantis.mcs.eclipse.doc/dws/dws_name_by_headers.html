@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><link href="../volantis.css" rel="stylesheet" type="text/css"/><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>device-name-by-headers</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">device-name-by-headers</h1><h2>Purpose</h2>
+         <p>Identifies the device from the headers.</p>
+         <p>Because there is a number of different headers, the calling application should send them all in the body of the message, after removing any that should not be passed on to the web service.</p>
+         <p>If the body of the message is empty, 'PC' is returned as device name.</p>
+      <h2>Method</h2><p><span class="code">POST</span></p><h2>Signature</h2><p><span class="code">/device/name-by-headers</span></p><h2>Examples</h2>
+         <p>Input</p>
+         <pre class="code">/device/name-by-headers/User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)</pre>
+         <p>Returns</p>
+         <pre class="code">&lt;device-name
+   xmlns="http://www.volantis.com/xmlns/2006/01/device-ws"&gt;PC&lt;/device-name&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../dws/dws_rest_api.html">DWS API reference</a><br/><a href="../dws/dws_php_s2.html">example2.php</a><br/><a href="../dws/dws_ruby_s2.html">example2.rb</a></p>
+      </body></html>

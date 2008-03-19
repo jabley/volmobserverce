@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>pipeline:parameters</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>pipeline:parameters</h1><h2>Purpose</h2>
+         <p>A container for a set of parameters passed to an XSL transform.</p>
+      <h2>Contains</h2><p><a href="../xdime/pipeline_parameter.html">pipeline:parameter</a></p><h2>Example</h2>
+         <pre class="code">&lt;pipeline:transform compilable="false"&gt;
+   &lt;pipeline:parameters&gt;
+      &lt;pipeline:parameter name="title-param" value="Title"/&gt;
+      &lt;pipeline:parameter name="artist-param" value="Artist"/&gt;
+   &lt;pipeline:parameters&gt;
+   &lt;pipeline:transformation href='simple-params.xsl'/&gt;
+      ...
+   &lt;pipeline:transformation&gt;
+&lt;/pipeline:transform&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/pipeline_er.html">Pipeline elements</a></p>
+      </body></html>

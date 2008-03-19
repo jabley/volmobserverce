@@ -1,0 +1,58 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<AutomatedInstallation langpack="eng">
+    <com.izforge.izpack.panels.HelloPanel/>
+    <com.izforge.izpack.panels.HTMLInfoPanel/>
+    <com.izforge.izpack.panels.HTMLLicencePanel/>
+    <com.izforge.izpack.panels.PacksPanel>
+        <pack name="MCS" index="0" selected="true"/>
+        <pack name="Plugins" index="1" selected="true"/>
+        <pack name="Samples" index="2" selected="true"/>
+        <pack name="Repository" index="3" selected="true"/>
+        <pack name="Documentation" index="4" selected="true"/>
+    </com.izforge.izpack.panels.PacksPanel>
+    <com.izforge.izpack.panels.UserInputPanel>
+        <userInput>
+            <entry key="mcsRepositoryVendor" value="xml"/>
+        </userInput>
+    </com.izforge.izpack.panels.UserInputPanel>
+    <com.izforge.izpack.panels.UserInputPanel>
+        <userInput/>
+    </com.izforge.izpack.panels.UserInputPanel>
+    <com.izforge.izpack.panels.UserInputPanel>
+        <userInput>
+            <entry key="mcsWebServerHost" value="localhost"/>
+            <entry key="mcsWebServer" value="Tomcat41"/>
+            <entry key="mcsWebServerPort" value="8080"/>
+            <entry key="mcsWebServerJspType" value="jsp12"/>
+        </userInput>
+    </com.izforge.izpack.panels.UserInputPanel>
+    <com.izforge.izpack.panels.UserInputPanel>
+        <userInput>
+            <entry key="mcsMAPCachePort" value="80"/>
+            <entry key="mcsMAPCacheHost" value="localhost"/>
+            <entry key="mcsMAPUseCache" value="off"/>
+            <entry key="mcsMAPPort" value="8080"/>
+            <entry key="mcsMAPHost" value="localhost"/>
+        </userInput>
+    </com.izforge.izpack.panels.UserInputPanel>
+    <com.izforge.izpack.panels.TargetPanel>
+        <installpath>/tmp/MCS</installpath>
+    </com.izforge.izpack.panels.TargetPanel>
+    <com.izforge.izpack.panels.InstallPanel/>
+    <com.izforge.izpack.panels.FinishPanel/>
+</AutomatedInstallation>

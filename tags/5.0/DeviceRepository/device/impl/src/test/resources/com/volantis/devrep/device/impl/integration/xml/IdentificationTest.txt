@@ -1,0 +1,49 @@
+Identification Entry: Samsung-SprintPCS
+  UserAgentPattern:
+    regexp=AU-MIC2\.0 MMP/2\.0.*
+Identification Entry: Semsung-SPH-A500
+  HeaderPattern:
+    name=X-WAP-PROFILE
+    baseDevice=blah
+    regexp=http://device\.sprintpcs\.com/Samsung/SPH-A500/.*
+Identification Entry: Semsung-SPH-A600
+  HeaderPattern:
+    name=X-WAP-PROFILE
+    baseDevice=null
+    regexp=http://device\.sprintpcs\.com/Samsung/SPH-A600/.*
+Identification Entry: TestDevice
+  HeaderPattern:
+    name=.*
+    baseDevice=null
+    regexp=.*MAGIC.*
+  HeaderPattern:
+    name=Accept.*
+    baseDevice=null
+    regexp=.*text/.*
+Identification Entry: Samsung-SGH-V205
+  UserAgentPattern:
+    regexp=SEC-SGHV205/.*
+  UserAgentPattern:
+    regexp=SAMSUNG-SGH-V205/.*
+Identification Entry: Nokia-6210
+  UserAgentPattern:
+    regexp=Nokia 6210.*
+  UserAgentPattern:
+    regexp=YourWap Nokia 6210/.*
+  UserAgentPattern:
+    regexp=Nokia6210/.*
+  HeaderPattern:
+    name=Profile
+    baseDevice=null
+    regexp=http://nds\.nokia\.com/uaprof/N6210.*
+Identification Entry: Blackberry-7250-4_1
+  UserAgentPattern:
+    regexp=BlackBerry7250/4\.1.*
+  HeaderPattern:
+    name=Profile
+    baseDevice=null
+    regexp=http://www\.blackberry\.net/go/mobile/profiles/uaprof/7250/4\.1\..*
+  HeaderPattern:
+    name=Profile
+    baseDevice=null
+    regexp=http://device\.sprintpcs\.com/RIM/BlackBerry7250/4.1.*

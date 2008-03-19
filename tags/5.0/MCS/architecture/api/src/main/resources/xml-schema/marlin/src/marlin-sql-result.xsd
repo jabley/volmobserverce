@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ ! $Header: /cvs/architecture/architecture/xml-schema/marlin/src/marlin-sql-result.xsd,v 1.1 2003/11/21 10:34:13 pduffin Exp $
+ ! ============================================================================
+ ! (c) Volantis Systems Ltd 2003. 
+ ! ============================================================================
+ ! Change History:
+ !
+ ! Date         Who             Description
+ ! =========    =============== ===============================================
+ ! 23-Jun-03    Paul            R752 Created. Defines the structure of the
+ !                              SQL driver result XML info set.
+ ! 24-Jun-03    Paul            R758 Added column to exml element.
+ ! ======================================================================== -->
+<!--
+ !
+ ! ****************************************************************************
+ ! This file is owned by Architecture and can only be changed by a member of
+ ! that group.
+ ! ****************************************************************************
+ !
+ !-->
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/marlin-sql-result" xmlns="http://www.volantis.com/xmlns/marlin-sql-result" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>Contains schema definitions for representing the result of querying a database.</xs:documentation>
+    </xs:annotation>
+    <xs:element name="result">
+        <xs:complexType>
+            <xs:choice>
+                <xs:annotation>
+                    <xs:documentation>Choice of content model is dependent on the operation being performed.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>This content model is produced for queries.</xs:documentation>
+                    </xs:annotation>
+                    <xs:element ref="row"/>
+                </xs:sequence>
+                <xs:sequence minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>This content model is valid for modifications, updates, inserts, deletions.</xs:documentation>
+                    </xs:annotation>
+                    <xs:element name="updateCount" type="xs:int">
+                        <xs:annotation>
+                            <xs:documentation>Contains the number of rows that were affected by the modification.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <!--Row-->
+    <xs:element name="row">
+        <xs:annotation>
+            <xs:documentation>Represents a database row. Every row element in the result has the same number of child elements.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="Values"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:group name="Values">
+        <xs:annotation>
+            <xs:documentation>A choice of values.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element ref="boolean"/>
+            <xs:element ref="date"/>
+            <xs:element ref="decimal"/>
+            <xs:element ref="double"/>
+            <xs:element ref="exml"/>
+            <xs:element ref="float"/>
+            <xs:element ref="int"/>
+            <xs:element ref="long"/>
+            <xs:element ref="string"/>
+            <xs:element ref="time"/>
+            <xs:element ref="timestamp"/>
+        </xs:choice>
+    </xs:group>
+    <xs:attributeGroup name="ValueAttributes">
+        <xs:annotation>
+            <xs:documentation>Attributes common across all value elements.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="column" type="xs:string" use="required"/>
+    </xs:attributeGroup>
+    <!--Value types-->
+    <xs:element name="boolean" nillable="true">
+        <xs:annotation>
+            <xs:documentation>A boolean value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:boolean">
+                    <xs:attributeGroup ref="ValueAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="date" nillable="true">
+        <xs:annotation>
+            <xs:documentation>A date value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:date">
+                    <xs:attributeGroup ref="ValueAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="decimal" nillable="true">
+        <xs:annotation>
+            <xs:documentation>A decimal value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:decimal">
+                    <xs:attributeGroup ref="ValueAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="double" nillable="true">
+        <xs:annotation>
+            <xs:documentation>A double value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:double">
+                    <xs:attributeGroup ref="ValueAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="exml">
+        <xs:annotation>
+            <xs:documentation>Encapsulates arbitrary XML content.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:any namespace="##other"/>
+            </xs:choice>
+            <xs:attributeGroup ref="ValueAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="float" nillable="true">
+        <xs:annotation>
+            <xs:documentation>A float value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:float">
+                    <xs:attributeGroup ref="ValueAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="int" nillable="true">
+        <xs:annotation>
+            <xs:documentation>An int value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:int">
+                    <xs:attributeGroup ref="ValueAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="long" nillable="true">
+        <xs:annotation>
+            <xs:documentation>A long value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:long">
+                    <xs:attributeGroup ref="ValueAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="string" nillable="true">
+        <xs:annotation>
+            <xs:documentation>A string value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attributeGroup ref="ValueAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="time" nillable="true">
+        <xs:annotation>
+            <xs:documentation>A time value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:time">
+                    <xs:attributeGroup ref="ValueAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="timestamp" nillable="true">
+        <xs:annotation>
+            <xs:documentation>A timestamp value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:dateTime">
+                    <xs:attributeGroup ref="ValueAttributes"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

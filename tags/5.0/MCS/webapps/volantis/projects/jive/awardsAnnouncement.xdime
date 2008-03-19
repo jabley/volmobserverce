@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html xmlns="http://www.w3.org/2002/06/xhtml2" xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs">
+  <head>
+    <title>Award Announcements</title>
+    <!--
+	        Links to the layout and theme for this page
+	    -->
+    <link rel="mcs:layout" href="/jivearticle.mlyt"/>
+    <link rel="mcs:theme" href="/jive.mthm"/>
+  </head>
+  <!--
+        Page body
+    -->
+  <body>
+    <!-- 
+            The common material for the page header
+        -->
+    <urid:fetch href="jiveheader.xdinc"/>
+    <!-- 
+            Page Title 
+        -->
+    <h2 id="title">5-Star Excellence Awards</h2>
+    <!-- 
+            The article 
+        -->
+    <div id="article">
+      <p> Jive awarded four employees for outstanding performance during the most recent quarter.
+        5-Star Excellence Award is given to those employees who go above and beyond the call of duty
+        to ensure the success of the company by ensuring the success of several projects. All who
+        have been awarded have exhibited an immense passion for their work and concern for Jive's
+        progress as an organization. Here at Jive, we believe such dedication should be recognized
+        and would like to thank the winners for their hard work and commitment to excellence. </p>
+      <div class="company_item">
+        <h3 class="company_header">Jonah Martinez</h3>
+        <p> Jonah is in charge of the brand new Jive swimsuit line of clothing. Being a brand new
+          clothing product line for Jive, there has been much uncertainty as to the success of Jive
+          swimwear. Jonah took this challenge and ran with it, ensuring that four out of the top
+          five swimwear retailers in the country carried this new line from day 1. His ability to
+          create alliances has yielded in swimwear revenue twice as high as originally planned. </p>
+      </div>
+      <div class="company_item">
+        <h3 class="company_header"> Fay Johnson </h3>
+        <p> Fay is the architect of our online shopping store on <a href="#">www.jive.com</a>. She
+          has lead her team to develop a thoroughly secure site that is not only comprehensive but
+          is a joy to use. Fay has set new standards for the quality of our online applications and
+          even worked through scheduled vacation to ensure that new features were added to the site
+          on schedule. Such dedication to the company will guarantee Jive's future success. </p>
+      </div>
+      <div class="company_item">
+        <h3 class="company_header"> Lou Reesons </h3>
+        <p> Lou is in charge of the Jive soccer shoe line development. This year he and his team
+          have delivered on time for each new product introduced. When faced with adversity during
+          problems in manufacturing, Lou spent three consecutive weekends on site at the
+          manufacturing plant to make up for lost time and help in any way possible. This is his
+          third 5-Star award, and this will assuredly not be his last. </p>
+      </div>
+      <div class="company_item">
+        <h3 class="company_header"> Zack Harrison </h3>
+        <p> Zack is the head of our basketball operations, our highest grossing division for the
+          past 4 years. He is in charge of the manufacturing and sales of our basketball shoe line,
+          as well as our basketball apparel clothing line. He has brought in the highest revenue of
+          any product line and continues to play a crucial role in Jive's advancement in the
+          marketplace. This is his fourth 5-Star award in his five years here. </p>
+      </div>
+    </div>
+    <!-- 
+            The common material for the page footer
+        -->
+    <urid:fetch href="jivefooter.xdinc"/>
+  </body>
+</html>

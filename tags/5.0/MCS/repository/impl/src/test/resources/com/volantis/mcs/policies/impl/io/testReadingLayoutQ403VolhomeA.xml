@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<variable-policy xmlns="http://www.volantis.com/xmlns/2006/02/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdv="http://www.volantis.com/xmlns/2004/12/meta-data-values" xmlns:rpdm="http://www.volantis.com/xmlns/2006/02/marlin-rpdm" xmlns:struct="http://www.volantis.com/xmlns/2005/10/ThemeStruct">
+    <type>layout</type>
+    <variants>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Mobile</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat rows="5" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100" columns="1">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <paneFormat backgroundComponent="/Components/logo_v4.mimg" filterOnKeyboardUsability="0" name="logo" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat rows="6" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" width="100" columns="2">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="about_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="about_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="news_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="news_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="solutions_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="solutions_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="products_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="products_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="customers_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="customers_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="partners_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="partners_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="primary_nav_mob_handsets_small" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="global_nav_mob_handset1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" horizontalAlignment="center" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="copyright_mob_handsets" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>PC</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat backgroundColor="white" rows="5" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="800" columns="1">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <gridFormat rows="1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="always" columns="1" width="100">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <gridFormat rows="1" columns="2" width="800" widthUnits="pixels" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" optimizationLevel="never">
+                                            <gridFormatColumns>
+                                                <gridFormatColumn widthUnits="percent"/>
+                                                <gridFormatColumn widthUnits="percent"/>
+                                            </gridFormatColumns>
+                                            <gridFormatRow>
+                                                <paneFormat filterOnKeyboardUsability="0" name="logo" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" width="400"/>
+                                                <paneFormat name="language" horizontalAlignment="right" width="400" widthUnits="pixels" verticalAlignment="center" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                                            </gridFormatRow>
+                                        </gridFormat>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat backgroundComponent="/Components/pnav_dark.mimg" rows="1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100" columns="1">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat cellSpacing="0" backgroundComponent="/Components/pnav_dark.mimg" filterOnKeyboardUsability="0" height="28" name="primary_nav" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellPadding="2" optimizationLevel="never" width="0"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="homepage_spacer1" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="800"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" widthUnits="percent" optimizationLevel="never" rows="1" columns="5">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <gridFormat backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" widthUnits="percent" optimizationLevel="never" rows="5" columns="1" verticalAlignment="top">
+                                            <gridFormatColumns>
+                                                <gridFormatColumn widthUnits="percent"/>
+                                            </gridFormatColumns>
+                                            <gridFormatRow>
+                                                <paneFormat width="100" filterOnKeyboardUsability="0" name="tagline_image" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                                            </gridFormatRow>
+                                            <gridFormatRow>
+                                                <paneFormat width="100" filterOnKeyboardUsability="0" name="homepage_spacer2" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                                            </gridFormatRow>
+                                            <gridFormatRow>
+                                                <paneFormat width="100" filterOnKeyboardUsability="0" name="tagline_image2" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                                            </gridFormatRow>
+                                            <gridFormatRow>
+                                                <paneFormat width="100" filterOnKeyboardUsability="0" name="homepage_spacer5" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                                            </gridFormatRow>
+                                            <gridFormatRow>
+                                                <paneFormat width="100" filterOnKeyboardUsability="0" name="tagline_image3" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                                            </gridFormatRow>
+                                        </gridFormat>
+                                        <paneFormat name="homepage_spacer8a" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                                        <paneFormat name="homepage_spacer8b" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                                        <emptyFormat/>
+                                        <gridFormat backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" widthUnits="percent" optimizationLevel="never" rows="4" columns="1">
+                                            <gridFormatColumns>
+                                                <gridFormatColumn widthUnits="percent"/>
+                                            </gridFormatColumns>
+                                            <gridFormatRow>
+                                                <gridFormat backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" widthUnits="percent" optimizationLevel="never" rows="4" columns="1">
+                                                    <gridFormatColumns>
+                                                        <gridFormatColumn widthUnits="percent"/>
+                                                    </gridFormatColumns>
+                                                    <gridFormatRow>
+                                                        <paneFormat width="100" filterOnKeyboardUsability="0" name="solutions_header" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top"/>
+                                                    </gridFormatRow>
+                                                    <gridFormatRow>
+                                                        <paneFormat width="100" filterOnKeyboardUsability="0" name="solutions" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                                                    </gridFormatRow>
+                                                    <gridFormatRow>
+                                                        <paneFormat width="100" filterOnKeyboardUsability="0" name="homepage_spacer6" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                                                    </gridFormatRow>
+                                                    <gridFormatRow>
+                                                        <gridFormat backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" widthUnits="percent" optimizationLevel="never" rows="1" columns="3">
+                                                            <gridFormatColumns>
+                                                                <gridFormatColumn widthUnits="percent"/>
+                                                                <gridFormatColumn widthUnits="percent"/>
+                                                                <gridFormatColumn widthUnits="percent"/>
+                                                            </gridFormatColumns>
+                                                            <gridFormatRow>
+                                                                <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" columns="1" width="200">
+                                                                    <gridFormatColumns>
+                                                                        <gridFormatColumn widthUnits="percent"/>
+                                                                    </gridFormatColumns>
+                                                                    <gridFormatRow>
+                                                                        <paneFormat width="100" filterOnKeyboardUsability="0" name="news_header" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="bottom"/>
+                                                                    </gridFormatRow>
+                                                                    <gridFormatRow>
+                                                                        <paneFormat width="100" filterOnKeyboardUsability="0" name="news" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="always"/>
+                                                                    </gridFormatRow>
+                                                                </gridFormat>
+                                                                <paneFormat name="homepage_spacer9" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                                                                <gridFormat rows="5" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" columns="1">
+                                                                    <gridFormatColumns>
+                                                                        <gridFormatColumn widthUnits="percent"/>
+                                                                    </gridFormatColumns>
+                                                                    <gridFormatRow>
+                                                                        <paneFormat width="100" filterOnKeyboardUsability="0" name="customers_header" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top"/>
+                                                                    </gridFormatRow>
+                                                                    <gridFormatRow>
+                                                                        <paneFormat width="100" filterOnKeyboardUsability="0" name="customers" borderWidth="0" backgroundComponentType="image" widthUnits="percent" horizontalAlignment="center" cellSpacing="0" cellPadding="0" optimizationLevel="always"/>
+                                                                    </gridFormatRow>
+                                                                    <gridFormatRow>
+                                                                        <paneFormat width="100" filterOnKeyboardUsability="0" name="homepage_spacer3" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                                                                    </gridFormatRow>
+                                                                    <gridFormatRow>
+                                                                        <paneFormat width="100" filterOnKeyboardUsability="0" name="events_header1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                                                                    </gridFormatRow>
+                                                                    <gridFormatRow>
+                                                                        <paneFormat width="100" filterOnKeyboardUsability="0" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" name="events1"/>
+                                                                    </gridFormatRow>
+                                                                </gridFormat>
+                                                            </gridFormatRow>
+                                                        </gridFormat>
+                                                    </gridFormatRow>
+                                                </gridFormat>
+                                            </gridFormatRow>
+                                            <gridFormatRow>
+                                                <paneFormat name="homepage_spacer6ax" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                                            </gridFormatRow>
+                                            <gridFormatRow>
+                                                <paneFormat name="events_header" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                                            </gridFormatRow>
+                                            <gridFormatRow>
+                                                <paneFormat name="whatshot" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                                            </gridFormatRow>
+                                        </gridFormat>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="800" columns="1">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="homepage_spacer4" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="800"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <gridFormat rows="1" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="800" columns="2">
+                                            <gridFormatColumns>
+                                                <gridFormatColumn widthUnits="percent"/>
+                                                <gridFormatColumn widthUnits="percent"/>
+                                            </gridFormatColumns>
+                                            <gridFormatRow>
+                                                <paneFormat filterOnKeyboardUsability="0" name="copyright" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="400"/>
+                                                <paneFormat filterOnKeyboardUsability="0" name="global_nav" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" horizontalAlignment="right" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="400"/>
+                                            </gridFormatRow>
+                                        </gridFormat>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Smartphone</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat rows="6" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100" columns="1">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <paneFormat borderWidth="0" width="100" filterOnKeyboardUsability="0" name="logo" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat name="tagline_imagex" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat width="100" filterOnKeyboardUsability="0" name="primary_nav_mob3" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat rows="2" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="3">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="about" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="33"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="news1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="33"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="solutions1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="33"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="products1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="33"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="customers1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="33"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="partners1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="33"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="global_nav_mob_handset1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" horizontalAlignment="center" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="copyright" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>SonyEricsson-T610</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat rows="5" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100" columns="1">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <paneFormat backgroundComponent="/Components/logo_v4.mimg" filterOnKeyboardUsability="0" name="logo" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat rows="6" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" width="100" columns="2">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="about_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="about_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="top" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="news_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="news_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="solutions_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="solutions_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="products_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="products_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="customers_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="customers_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="partners_gfx" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="partners_text" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="primary_nav_mob_handsets_small" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" verticalAlignment="bottom" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="global_nav_mob_handset1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" horizontalAlignment="center" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="copyright_mob_handsets" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Tablet</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat rows="8" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="800" columns="1">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="homepage_spacer1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="always" verticalAlignment="bottom" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat borderWidth="0" width="100" cellSpacing="0" cellPadding="0" filterOnKeyboardUsability="0" name="logo" backgroundComponentType="image" widthUnits="percent" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat width="100" filterOnKeyboardUsability="0" name="homepage_spacer2x" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat width="100" filterOnKeyboardUsability="0" name="tagline_image" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat width="100" filterOnKeyboardUsability="0" name="homepage_spacer3" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat cellSpacing="0" columns="3" rows="2" optimizationLevel="never" borderWidth="0" widthUnits="percent" cellPadding="0" backgroundComponentType="image">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="about" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="news1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="solutions1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="products1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="customers1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="partners1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="global_nav_mob_handset" borderWidth="0" backgroundComponentType="image" widthUnits="pixels" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="218"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="copyright" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Blazer-3_0</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat rows="8" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" columns="1" width="100">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="homepage_spacer1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="always" verticalAlignment="bottom" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat borderWidth="0" width="100" cellSpacing="0" cellPadding="0" filterOnKeyboardUsability="0" name="logo" backgroundComponentType="image" widthUnits="percent" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat width="100" filterOnKeyboardUsability="0" name="homepage_spacer2x" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat width="100" filterOnKeyboardUsability="0" name="tagline_image" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat width="100" filterOnKeyboardUsability="0" name="homepage_spacer3" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <gridFormat cellSpacing="0" columns="3" rows="2" optimizationLevel="never" borderWidth="0" widthUnits="percent" cellPadding="0" backgroundComponentType="image">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="about" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="news1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="solutions1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                    <gridFormatRow>
+                                        <paneFormat filterOnKeyboardUsability="0" name="products1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="customers1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                        <paneFormat filterOnKeyboardUsability="0" name="partners1" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="global_nav_mob_handset" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat filterOnKeyboardUsability="0" name="copyright" borderWidth="0" backgroundComponentType="image" widthUnits="percent" cellSpacing="0" cellPadding="0" optimizationLevel="never" width="100"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+    </variants>
+</variable-policy>

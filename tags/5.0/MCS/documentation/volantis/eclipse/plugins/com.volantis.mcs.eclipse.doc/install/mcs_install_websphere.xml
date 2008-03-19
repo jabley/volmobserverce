@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<?xml-stylesheet href="../xsl/dita_topic2html.xsl" type="text/xsl"?>
+<topic id="mcs_install_websphere">
+   <body>
+      <p>It is assumed that WebSphere is already installed, for
+         example at <filepath>/opt/WebSphere/AppServer</filepath>.</p>
+      <p>You need to create a <filepath>.war</filepath> file to
+         contain the contents of the
+            <filepath>[path]/MCS/webapps/[context_root]</filepath>
+         directory, and install a new WebSphere application that
+         references the <filepath>.war</filepath> file.</p>
+      <ol>
+         <li>In the directory above
+               <filepath>[path]/MCS/webapps/[context_root]</filepath>,
+            create a <filepath>.war</filepath> file with the command
+               <command>jar -cvf ../[filename].war .</command>
+            <note type="note">The space and the full stop after the
+               filename at the end of the jar command will ensure that
+               you capture the contents of the current
+            directory.</note>
+         </li>
+         <li>Log in to the WebSphere Administration Console at
+               <code>http://localhost:9090/admin</code>
+         </li>
+         <li>Expand the <uicontrol>Applications</uicontrol> option</li>
+         <li>Choose the <uicontrol>Install Applications</uicontrol>
+            option </li>
+         <li>Select local path and click <command>Browse</command> to
+            locate the <filepath>.war</filepath> file you created</li>
+         <li>Set the context root to <filepath>[install</filepath>
+            directory and click <command>Next</command>.</li>
+         <li>Accept the default settings of 'do not override existing
+            bindings' and 'default_host'. Click
+            <command>Next</command>. </li>
+         <li>Accept the default settings of 'distribute applications'
+            and 'create Mbeans for resources'. Your
+            <filepath>.war</filepath> file now has '_war' at the end
+            instead of a '.war' extension. Click
+            <command>Next</command>
+         </li>
+         <li>Choose the <uicontrol>MCS</uicontrol> web module option
+            and click <command>Next</command>
+         </li>
+         <li>Choose the <uicontrol>MCS</uicontrol> web module again.
+            Click <command>Next</command> to display the installation
+            summary. </li>
+         <li> Click <command>Finish</command> if you are satisfied
+            with the entries. When the installation has successfully
+            completed you will need to save your Master configuration
+            changes.</li>
+         <li>Choose the <uicontrol>Enterprise Applications</uicontrol>
+            option, click on the <filepath>.war</filepath> file you just installed and
+            choose the Configuration tab</li>
+         <li>Change ClassLoader Mode to PARENT_LAST</li>
+         <li>Change WAR ClassLoader Policy to Application</li>
+         <li>Apply your changes, save the configuration and restart
+            the server</li>
+      </ol>
+      <related-links>
+         <linklist>
+            <title>Related topics</title>
+            <link href="mcs_setup_webapp"/>
+         </linklist>
+      </related-links>
+   </body>
+</topic>

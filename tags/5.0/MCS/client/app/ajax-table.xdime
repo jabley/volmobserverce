@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget">
+
+<head>
+  <title>Table widget</title>
+  <link rel="mcs:theme" href="/themes/main.mthm"/>
+  <link rel="mcs:layout" href="/layouts/main.mlyt"/>
+
+
+  <widget:handler event="query#partial-value#value-changed" action="load-script#invoke"/> 
+
+  <style type="text/css">
+    table {
+      border: 2px solid #553;
+      border-collapse: collapse;
+    }
+    th {
+      border: 1px solid #553;
+    }
+  </style>
+
+  <widget:script id="load-script">
+      $W('tbody').getLoad().setSrc('service/table?mcs-query='+$W('query').getPartialValue())
+      $W('tbody').getLoad().execute()
+  </widget:script>
+</head>
+
+<body>
+  <template:apply href="templates/demo-main.xdtpl">
+    <template:binding name="title" value="Table widget"/>
+    <template:binding name="content">
+      <template:complexValue>
+
+      <div>
+        <p>Country search: <widget:input id="query"/></p>
+
+        <widget:display style="color:red; font-weight:bold" property="tbody#load-error-message"/>
+
+        <widget:table style="width:32em">
+            <thead>
+		<tr style="background-color:#030">
+			<th style="width:4em">Code</th>
+			<th>Country name</th>
+		</tr>
+            </thead>
+            <widget:tbody id="tbody" cached-pages-count="10" style="mcs-table-rows-per-page:10">
+		<widget:load src="service/table" when="onload"/>
+		<tr>
+			<td>--</td>
+			<td>Loading, please wait...</td>
+		</tr>
+            </widget:tbody>
+        </widget:table>
+
+        <p>
+            <widget:button action="tbody#first-page">&lt;&lt;&lt;</widget:button>
+            <widget:button action="tbody#previous-page">&lt;&lt;</widget:button>
+            <widget:button action="tbody#previous-row">&lt;</widget:button>
+            From <widget:display property="tbody#start-row-number"/>
+            to <widget:display property="tbody#end-row-number"/>
+            of <widget:display property="tbody#rows-count"/>
+            <widget:button action="tbody#next-row">&gt;</widget:button>
+            <widget:button action="tbody#next-page">&gt;&gt;</widget:button>
+            <widget:button action="tbody#last-page">&gt;&gt;&gt;</widget:button>
+        </p>
+      </div>
+
+      </template:complexValue>
+    </template:binding>
+  </template:apply>
+</body>
+</html>
+
+
+
+
+

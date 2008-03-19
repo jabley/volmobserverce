@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<xs:schema
+    targetNamespace="http://www.volantis.com/xmlns/2006/09/ticker"
+    xmlns="http://www.volantis.com/xmlns/2006/09/ticker"
+    xmlns:widget="http://www.volantis.com/xmlns/2006/09/ticker"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xh2="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://www.w3.org/2002/06/xhtml2"
+        schemaLocation="xhtml2.xsd" />
+
+    <!-- ======================================================================
+        !         Element definitions
+        ! ==================================================================== -->
+
+    <xs:attributeGroup name="CommonWidgetAttributes">
+        <xs:attribute name="id" type="xs:ID" use="optional" />
+        <xs:attribute name="class" type="xs:NMTOKEN" use="optional" />
+        <xs:attribute name="style" type="xs:string" use="optional" />
+    </xs:attributeGroup>
+
+    <xs:element name="feed-poller">
+        <xs:annotation>
+            <xs:documentation>Feed Poller</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="url" type="xs:anyURI" use="required"/>
+            <xs:attribute name="min-polling-interval" type="xs:nonNegativeInteger" use="optional" />
+            <xs:attribute name="max-polling-interval" type="xs:nonNegativeInteger" use="optional" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="update-status">
+    	<xs:annotation>
+    		<xs:documentation>The widget displaying current status of the Feed Poller.</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    		<xs:attributeGroup ref="CommonAttributes"/>
+    	</xs:complexType>
+    </xs:element>
+
+    <xs:element name="items-count">
+    	<xs:annotation>
+    		<xs:documentation>The widget displaying number of items currently held in the Feed Poller.</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    		<xs:attributeGroup ref="CommonAttributes"/>
+    		<xs:attribute name="channel" type="ChannelName" use="optional"/>
+    		<xs:attribute name="read" type="ReadType" use="optional"/>
+    		<xs:attribute name="followed" type="FollowedType" use="optional"/>
+    	</xs:complexType>
+    </xs:element>
+
+    <xs:element name="channels-count">
+    	<xs:annotation>
+    		<xs:documentation>The widget displaying number of channels currently held in the Feed Poller.</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    		<xs:attributeGroup ref="CommonAttributes"/>
+    		<xs:attribute name="read" type="ReadType" use="optional"/>
+    		<xs:attribute name="unread" type="FollowedType" use="optional"/>
+    	</xs:complexType>
+    </xs:element>
+
+    <xs:element name="feed">
+    	<xs:annotation>
+    		<xs:documentation>The widget using to update content of other widget with items.</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    		<xs:attributeGroup ref="CommonAttributes"/>
+    		<xs:attribute name="channel" type="ChannelName" use="optional"/>
+    		<xs:attribute name="item-display" type="xs:ID" use="optional"/>
+    	</xs:complexType>
+    </xs:element>
+
+    <xs:element name="item-display">
+    	<xs:annotation>
+    		<xs:documentation>The widget using to dispaly content on a single item.</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    	    <xs:sequence>
+    	    	<xs:choice>
+    	    		<xs:group ref="xh2:FlowContentSet"/>
+    	    	</xs:choice>
+    	    </xs:sequence>
+    		<xs:attributeGroup ref="CommonAttributes"/>
+    	</xs:complexType>
+    </xs:element>
+
+    <xs:element name="item-channel">
+    	<xs:annotation>
+    		<xs:documentation>The widget using to display item's channel.</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    		<xs:attributeGroup ref="CommonAttributes"/>
+    	</xs:complexType>
+    </xs:element>
+
+    <xs:element name="item-title">
+    	<xs:annotation>
+    		<xs:documentation>The widget using to display item's title.</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    		<xs:attributeGroup ref="CommonAttributes"/>
+    	</xs:complexType>
+    </xs:element>
+
+    <xs:element name="item-icon">
+    	<xs:annotation>
+    		<xs:documentation>The widget using to display item's icon.</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    		<xs:attributeGroup ref="CommonAttributes"/>
+    	</xs:complexType>
+    </xs:element>
+
+    <xs:element name="item-description">
+    	<xs:annotation>
+    		<xs:documentation>The widget using to display item's description.</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    		<xs:attributeGroup ref="CommonAttributes"/>
+    	</xs:complexType>
+    </xs:element>
+
+    <!-- ======================================================================
+        !         Supporting definitions
+        ! ==================================================================== -->
+    <xs:simpleType name="ChannelName">
+        <xs:restriction>
+	        <xs:enumeration value="yes"/>
+	        <xs:enumeration value="no"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ReadType">
+        <xs:restriction>
+	        <xs:enumeration value="yes"/>
+	        <xs:enumeration value="no"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="FollowedType">
+        <xs:restriction>
+	        <xs:enumeration value="yes"/>
+	        <xs:enumeration value="no"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

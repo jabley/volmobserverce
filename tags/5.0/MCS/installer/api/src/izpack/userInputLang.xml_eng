@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<!-- The English langpack -->
+
+<langpack>
+	<str id="repository.title" txt="Choose Repository Vendor" />
+	<str id="repository.vendor.prompt" txt="Select Initial Repository Vendor" />
+        <str id="repository.vendor.derby" txt="Derby or Cloudscape" />
+        <str id="repository.vendor.db2" txt="IBM DB2" />
+        <str id="repository.vendor.datad" txt="Microsoft SQL Server (DataD)" />
+        <str id="repository.vendor.jsql" txt="Microsoft SQL Server (JSQL)" />
+        <str id="repository.vendor.ms" txt="Microsoft SQL Server (MS)" />
+        <str id="repository.vendor.ms2005" txt="Microsoft SQL Server 2005 (MS)" />
+        <str id="repository.vendor.mysql" txt="MySQL" />
+        <str id="repository.vendor.odbc" txt="ODBC" />
+        <str id="repository.vendor.oracle" txt="Oracle" />
+        <str id="repository.vendor.postgres" txt="Postgres" />
+        <str id="repository.vendor.xml" txt="XML" />
+
+    	<str txt="Configure repository connection" id="repository.connection.title"/>
+      	<str txt="Database Server Host:" id="repository.host.label" />
+      	<str txt="Database Server Port:" id="repository.port.label" />
+      	<str txt="Database:" id="repository.source.label" />
+      	<str txt="Username:" id="repository.user.label" />
+      	<str txt="Password:" id="repository.password.label" />
+      	<str txt="Project:" id="repository.projectname.label"/>
+
+    	<str txt="Choose Web Application Server" id="webserver.title"/>
+        <str id="webserver.server.type" txt="Select your application server"/>
+        <str id="webserver.server.tomcat4" txt="Apache Tomcat 4.1 or later"/>
+        <str id="webserver.server.weblogic92" txt="BEA Weblogic Server 9.2 or later" />
+        <str id="webserver.server.resin3" txt="Caucho Resin Server 3.0 or later" />
+        <str id="webserver.server.websphere60" txt="IBM Websphere Server 6.0 or later" />
+        <str id="webserver.server.jboss3" txt="JBoss Server 3.0 or later" />
+        <str id="webserver.server.oracle9" txt="Oracle Application Server 9i" />
+        <str id="webserver.server.sun7" txt="Sun Java System Application Server 7 or later" />
+        <str id="webserver.server.other" txt="Other" />
+        <str txt="Select server type" id="webserver.server.jspcompatibility"/>
+        <str id="webserver.server.jsp11" txt="JSP 1.1 Compatible" />
+        <str id="webserver.server.jsp12" txt="JSP 1.2 Compatible" />
+      	<str txt="The host name of your application server" id="webserver.host.description"/>
+      	<str txt="Host:" id="webserver.host.label"/>
+      	<str txt="The request port of your application server" id="webserver.port.description"/>
+      	<str txt="Port:" id="webserver.port.label"/>
+
+	<str txt="Configure Media Access Proxy (MAP) Host" id="maphost.title"/>
+	<str txt="The URL of the MAP web application" id="maphost.host.description"/>
+	<str txt="MAP URL:" id="maphost.host.label"/>
+</langpack>

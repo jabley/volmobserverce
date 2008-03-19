@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>Calling custom classes</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Calling custom classes</h1>
+	
+      <p>If you need to call specific code in external applications from XDIME content, you can invoke a custom class with elements from the <span class="code">vtim</span> namespace and pass any necessary parameters to it.</p>
+			
+      <p>These custom classes, also known as markup plugins, can be specified in the <span class="code">markup-plugins</span> element in the <span class="filepath">mcs-config.xml</span> file. Refer to <em>Defining markup plugins</em> for configuration details.</p>
+			
+
+      <p>You use the <span class="code">vtim:invoke</span> element to call methods on these classes from XDIME markup. The <span class="code">pluginName</span> attribute contains the name the plugin defined in the configuration file, and <span class="code">methodName</span> contains the name of the method to be invoked. Both attributes are required.</p>
+
+      <p>Possible values for <span class="code">methodName</span> attribute correspond to the methods specified in the class interface definition.</p>
+					
+						
+      <ul>
+							
+         <li>
+            <span class="code">initialize</span> performs any necessary initialization on the class. Note that it is possible to cause initialization to occur before pages are processed using facilities in the XDIME configuration.</li>
+							
+         <li>
+            <span class="code">process</span> processes any data</li>
+							
+         <li>
+            <span class="code">release</span> is called automatically by MCS when the class is about to be removed. You can also call <span class="code">release</span> explicitly.
+							</li>
+						
+      </ul>
+
+					
+      <p>The <span class="code">vtim:arguments</span> element contains an <span class="code">vtim:argument</span> element for each argument to the method called. The paired <span class="code">name</span> and <span class="code">value</span> attributes match the arguments specified in the equivalent element in the configuration file.</p>
+	
+			
+      <p>
+         <span class="ri">Related topic</span>
+         <br/>
+         <a href="../wag/wag_xdime_about.html">Working with XDIME</a>
+         <br/>
+         <a href="../admin/mcs_config_markup.html">Defining markup plugins</a>
+         <br/>
+         <a href="../xdime/vtim_invoke.html">vtim:invoke</a>
+      </p>
+						
+				
+	
+   </body>
+</html>

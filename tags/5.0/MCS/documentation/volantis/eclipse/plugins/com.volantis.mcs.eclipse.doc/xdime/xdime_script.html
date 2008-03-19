@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>script</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>script</h1><h2>Purpose</h2>
+         <p>Used to contain or refer to a script.</p>
+         <div class="note"><strong>Note</strong>: Contained scripts are deprecated, but are supported
+            for backward compatibility. You should use the <span class="code">src</span>
+            attribute to refer to a script component or file.</div>
+      <h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row"/><td/><td/><td> </td><td> </td><td> </td></tr><tr><th class="firstcell" scope="row">charSet</th><td>Character encoding of the script if a script file</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">defer</th><td>A hint that the script will not generate output. If set
+               to 'true', execution can be deferred.</td><td>xs:boolean</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcelldeprecated" scope="row">language</th><td>The language of the script if a script file</td><td>xs:string</td><td>none </td><td> </td><td>deprecated </td></tr><tr><th class="firstcell" scope="row">src</th><td>Name of script component or location of an external
+               script file</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">type</th><td>The content type of the script if a script file</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Attribute group</h2><p><a href="../xdime/xdime_attr.html">Core attributes</a></p><h2>Examples</h2>
+         <p>The first example refers to a script file and uses the
+            <span class="code">type</span> attribute. The second example refers to a script
+            component.</p>
+         <pre class="code">&lt;script src="../scripts/release.js" type="text/javascript"/&gt; </pre>
+         <pre class="code">&lt;script
+   id="ro1"
+   src="{/ReleaseOpts.mscr}"
+   defer="true"/&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime/xdime_pr_er.html">XDIME presentation elements</a></p>
+      </body></html>

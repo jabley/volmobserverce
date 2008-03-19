@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Core attributes</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Core attributes</h1><h2>Purpose</h2>
+         <p>The <span class="code">class</span> and <span class="code">id</span> attributes can be used as
+            style sheet selectors, allowing you to assign style information to a
+            set of elements. The <span class="code">id</span> attribute can also be used to
+            indicate a link target.</p>
+         <p>All XDIME elements with the exception of
+            <span class="code">otherwise</span> may have an <span class="code">expr</span>
+            attribute. Its use on the <span class="code">select</span> and
+               <span class="code">when</span> elements is described separately in those
+            contexts.</p>
+      <h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">class</th><td>Assigns a class name to an element.</td><td>xs:NMTOKEN</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">expr</th><td>Contains an MCS expression. If it evaluates to 'true'
+               the element is processed, otherwise the element and its children
+               are skipped and processing continues at the next element.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">id</th><td>Assigns an identifier to an element.</td><td>xs:ID</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">title</th><td>Information about the element. Visual browsers usually
+               display the title on the mouseover event.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr></table>
+         <p><span class="ri">Related topic</span><br/><a href="../xdime/xdime_common_attr.html">Common XDIME attributes</a></p>
+      </body></html>

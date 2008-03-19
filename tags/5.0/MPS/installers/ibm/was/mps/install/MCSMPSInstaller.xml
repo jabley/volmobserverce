@@ -1,0 +1,1044 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<project name="MPSInstall" default="mps-deploy-mps" basedir=".">
+
+    <property name="ContextRoot" value="/mcs"/>
+
+    <property name="MMSCLog" value="error"/>
+    <property name="MMSCTimeout" value="unlimited"/>
+    <property name="MMSCIdsize" value="12"/>
+    <property name="MMSCValidate" value="false"/>
+
+    <property name="SMSCBind" value="async"/>
+    <property name="SMSCMulti" value="no"/>
+
+    <path id="WasHome.raw">
+        <pathelement location="${was.install.root}"/>
+    </path>
+
+    <taskdef name="wsadmin" classname="com.ibm.websphere.ant.tasks.WsAdmin"/>
+
+    <target name="init">
+        <pathconvert targetos="unix" property="WasHome" refid="WasHome.raw"/>
+        <condition property="over-webapp">
+            <and>
+                <isset property="WebApp"/>
+            </and>
+        </condition>
+    </target>
+
+    <target name="mps-check-managed-node">
+        <condition property="MpsConnType" value="SOAP">
+            <istrue value="${ManagedNode}"/>
+        </condition>
+    </target>
+
+    <target name="mps-set-conntype" depends="mps-check-managed-node">
+        <condition property="MpsConnType" value="NONE">
+            <isfalse value="${ManagedNode}"/>
+        </condition>
+        <echo message="=== MpsConnType=${MpsConnType} ==="/>
+    </target>
+
+    <target name="mps-deploy-mps" depends="init,-mps-check-args,-check-db-args,mps-complete-config,mps-deploy-ear-file,mps-redeploy-webapp">
+        <echo message="=== Deployed MCS/MPS/MSS to mcs.ear ==="/>
+    </target>
+
+    <target name="mps-deploy-mss" depends="init,-mps-check-args,-check-db-args,mps-basic-config,mps-deploy-ear-file,mps-redeploy-webapp">
+        <echo message="=== Deployed MCS/MSS to mcs.ear ==="/>
+    </target>
+
+    <target name="-mps-check-args">
+        <condition property="hostname-ok">
+            <and>
+                <isset property="HostName"/>
+            </and>
+        </condition>
+        <condition property="hostport-ok">
+            <and>
+                <isset property="HostPort"/>
+            </and>
+        </condition>
+        <condition property="servername-ok">
+            <and>
+                <isset property="ServerName"/>
+            </and>
+        </condition>
+
+        <fail unless="servername-ok"
+            message="You must supply a ServerName."/>
+        <fail unless="hostname-ok"
+            message="You must supply a HostName."/>
+        <fail unless="hostport-ok"
+            message="You must supply a HostPort."/>
+    </target>
+
+
+
+    <target name="-check-db-args">
+        <condition property="db-specified">
+            <or>
+                <isset property="DBHost"/>
+                <isset property="DBPort"/>
+                <isset property="DBInstance"/>
+                <isset property="DBVendor"/>
+                <isset property="DBUser"/>
+                <isset property="DBPass"/>
+            </or>
+        </condition>
+        <condition property="db-ok">
+            <and>
+                <isset property="DBHost"/>
+                <isset property="DBPort"/>
+                <isset property="DBInstance"/>
+                <isset property="DBVendor"/>
+                <isset property="DBUser"/>
+                <isset property="DBPass"/>
+            </and>
+        </condition>
+        <condition property="db-incorrect">
+            <and>
+                <isset property="db-specified"/>
+                <not>
+                    <isset property="db-ok"/>
+                </not>
+            </and>
+        </condition>
+        <fail if="db-incorrect"
+            message="If you are using a database repository, you must specify -DDBVendor, -DDBHost, -DDBPort, -DDBInstance, -DDBUser and -DDBPass"/>
+    </target>
+
+    <target name="mps-determine-channels">
+        <condition property="using-smtp">
+            <and>
+                <isset property="SMTPHost"/>
+                <isset property="SMTPAuth"/>
+                <isset property="SMTPUser"/>
+                <isset property="SMTPPass"/>
+            </and>
+        </condition>
+
+        <condition property="smtp-specified">
+            <or>
+                <isset property="SMTPHost"/>
+                <isset property="SMTPAuth"/>
+                <isset property="SMTPUser"/>
+                <isset property="SMTPPass"/>
+            </or>
+        </condition>
+
+        <condition property="smtp-incorrect">
+            <and>
+                <isset property="smtp-specified"/>
+                <not>
+                    <isset property="using-smtp"/>
+                </not>
+            </and>
+        </condition>
+        <fail if="smtp-incorrect"
+            message="If configuring the SMTP channel, you must specify -DSMTPHost, -DSMTPAuth, -DSMTPUser and -DSMTPPass"/>
+
+        <condition property="using-smsc">
+            <and>
+                <isset property="SMSCIp"/>
+                <isset property="SMSCPort"/>
+                <isset property="SMSCUser"/>
+                <isset property="SMSCPass"/>
+                <isset property="SMSCBind"/>
+                <isset property="SMSCMulti"/>
+            </and>
+        </condition>
+
+        <condition property="smsc-specified">
+            <or>
+                <isset property="SMSCIp"/>
+                <isset property="SMSCPort"/>
+                <isset property="SMSCUser"/>
+                <isset property="SMSCPass"/>
+            </or>
+        </condition>
+        <condition property="smsc-incorrect">
+            <and>
+                <isset property="smsc-specified"/>
+                <not>
+                    <isset property="using-smsc"/>
+                </not>
+            </and>
+        </condition>
+        <fail if="smsc-incorrect"
+            message="If configuring the SMSC channel you must specify -DSMSCIp, -DSMSCPort, -DSMSCUser, -DSMSCPass, -DSMSCBind and -DSMSCMulti"/>
+
+        <condition property="using-mmsc">
+            <and>
+                <isset property="MMSCUrl"/>
+                <isset property="MMSCCode"/>
+            </and>
+        </condition>
+
+        <condition property="mmsc-specified">
+            <or>
+                <isset property="MMSCUrl"/>
+                <isset property="MMSCCode"/>
+            </or>
+        </condition>
+        <condition property="mmsc-incorrect">
+            <and>
+                <isset property="mmsc-specified"/>
+                <not>
+                    <isset property="using-mmsc"/>
+                </not>
+            </and>
+        </condition>
+        <fail if="mmsc-incorrect"
+            message="If configuring the MMSC channel, you must specify -DMMSCUrl and -DMMSCCode"/>
+
+        <condition property="using-wapp">
+            <and>
+                <isset property="WAPPUrl"/>
+                <isset property="WAPPCode"/>
+                <isset property="WAPPStoreUrl"/>
+            </and>
+        </condition>
+
+        <condition property="wapp-specified">
+            <or>
+                <isset property="WAPPUrl"/>
+                <isset property="WAPPCode"/>
+                <isset property="WAPPStoreUrl"/>
+            </or>
+        </condition>
+        <condition property="wapp-incorrect">
+            <and>
+                <isset property="wapp-specified"/>
+                <not>
+                    <isset property="using-wapp"/>
+                </not>
+            </and>
+        </condition>
+        <fail if="wapp-incorrect"
+            message="If configuring the WAP Push channel, you must specify -DWAPPUrl, -DWAPPCode and -DWAPPStoreUrl"/>
+    </target>
+
+    <target name="mps-config-channels" depends="mps-determine-channels,mps-config-smtp,mps-config-smsc,mps-config-mmsc,mps-config-wapp">
+        <echo message="=== Configuring channels ==="/>
+    </target>
+
+
+    <!--
+     ! SMTP channel configuration.
+     !-->
+    <target name="mps-config-smtp" if="using-smtp">
+        <echo message="=== Configuring SMTP ==="/>
+        <replace dir="${was.install.root}/mps/mcs" includes="mcs-config.xml">
+            <replacetoken><![CDATA[<channels>]]></replacetoken>
+            <replacevalue><![CDATA[<channels>
+                <!-- Start SMTP channel definition -->
+                <channel name="smtp"
+                class="com.volantis.mps.channels.SMTPChannelAdapter">
+                <argument name="host" value="__smtphost__"/>
+                <argument name="auth" value="__smtpauth__"/>
+                <argument name="user" value="__smtpuser__"/>
+                <argument name="password" value="__smtppass__"/>
+                </channel>
+                <!-- End SMTP channel definition -->]]>
+            </replacevalue>
+        </replace>
+        <replace dir="${was.install.root}/mps/mcs" includes="mcs-config.xml">
+            <replacefilter token="__smtphost__" value="${SMTPHost}"/>
+            <replacefilter token="__smtpauth__" value="${SMTPAuth}"/>
+            <replacefilter token="__smtpuser__" value="${SMTPUser}"/>
+            <replacefilter token="__smtppass__" value="${SMTPPass}"/>
+        </replace>
+    </target>
+
+    <!--
+     ! SMSC channel configuration.
+     !-->
+    <target name="mps-config-smsc" if="using-smsc">
+        <echo message="=== Configuring SMSC ==="/>
+        <replace dir="${was.install.root}/mps/mcs" includes="mcs-config.xml">
+            <replacetoken><![CDATA[<channels>]]></replacetoken>
+            <replacevalue><![CDATA[<channels>
+                <!-- Start SMSC channel definition -->
+                <channel name="smsc"
+                class="com.volantis.mps.channels.LogicaSMSChannelAdapter">
+                <argument name="smsc-ip" value="__smscip__"/>
+                <argument name="smsc-port" value="__smscport__"/>
+                <argument name="smsc-user" value="__smscuser__"/>
+                <argument name="smsc-password" value="__smscpass__"/>
+                <argument name="smsc-bindtype" value="__smscbind__"/>
+                <argument name="smsc-supportsmulti" value="__smscmulti__"/>
+                </channel>
+                <!-- End SMSC channel definition -->]]>
+            </replacevalue>
+        </replace>
+        <replace dir="${was.install.root}/mps/mcs" includes="mcs-config.xml">
+            <replacefilter token="__smscip__" value="${SMSCIp}"/>
+            <replacefilter token="__smscport__" value="${SMSCPort}"/>
+            <replacefilter token="__smscuser__" value="${SMSCUser}"/>
+            <replacefilter token="__smscpass__" value="${SMSCPass}"/>
+            <replacefilter token="__smscbind__" value="${SMSCBind}"/>
+            <replacefilter token="__smscmulti__" value="${SMSCMulti}"/>
+        </replace>
+    </target>
+
+    <!--
+     ! MMSC two-pass configuration.
+     !-->
+    <target name="mps-config-mmsc" if="using-mmsc">
+        <echo message="=== Configuring MMSC ==="/>
+        <replace dir="${was.install.root}/mps/mcs" includes="mcs-config.xml">
+            <replacetoken><![CDATA[<channels>]]></replacetoken>
+            <replacevalue>&lt;channels>
+                &lt;!-- Start MMSC channel definition -->
+                &lt;channel name="mmsc"
+                class="com.volantis.mps.channels.NokiaMMSChannelAdapter">
+                &lt;argument name="url" value="__mmscurl__"/>
+                &lt;argument name="default-country-code" value="__mmsccode__"/>
+                &lt;/channel>
+                &lt;!-- End MMSC channel definition -->
+            </replacevalue>
+        </replace>
+        <replace dir="${was.install.root}/mps/mcs" includes="mcs-config.xml">
+            <replacefilter token="__mmscurl__" value="${MMSCUrl}"/>
+            <replacefilter token="__mmsccode__" value="${MMSCCode}"/>
+        </replace>
+    </target>
+
+
+    <!--
+     ! WAP-Push channel configuration.
+     !-->
+    <target name="mps-config-wapp" if="using-wapp">
+        <echo message="=== Configuring WAP Push ==="/>
+
+        <replace dir="${was.install.root}/mps/mcs" includes="mcs-config.xml">
+            <replacetoken><![CDATA[<channels>]]></replacetoken>
+            <replacevalue>&lt;channels>
+                &lt;!-- Start WAPP channel definition -->
+                &lt;channel name="wappush"
+                class="com.volantis.mps.channels.NowSMSWAPPushChannelAdapter">
+                &lt;argument name="url" value="__wappurl__"/>
+                &lt;argument name="default-country-code" value="__wappcode__"/>
+                &lt;argument name="message-store-url" value="__wappstoreurl__"/>
+                &lt;/channel>
+                &lt;!-- End WAPP channel definition -->
+            </replacevalue>
+        </replace>
+
+        <replace dir="${was.install.root}/mps/mcs" includes="mcs-config.xml">
+            <replacefilter token="__wappurl__" value="${WAPPUrl}"/>
+            <replacefilter token="__wappcode__" value="${WAPPCode}"/>
+            <replacefilter token="__wappstoreurl__" value="${WAPPStoreUrl}"/>
+        </replace>
+
+    </target>
+
+
+    <target name="mps-config-mss">
+        <mkdir dir="${was.install.root}/mps/mss/mss_store"/>
+
+        <replace dir="${was.install.root}/mps/mss">
+            <replacefilter token="@mss.log4j.config.file@" value="${WasHome}/mps/mss/mss-log4j.xml"/>
+            <replacefilter token="@mss.message.store.path@" value="${WasHome}/mps/mss/mss_store"/>
+            <replacefilter token="@mss.message.store.log@" value="${WasHome}/logs/${ServerName}/SystemOut.log"/>
+            <replacefilter token="@mss.message.store.info.log@" value="${WasHome}/logs/${ServerName}/mss-info.log"/>
+
+            <!-- Defaults to error -->
+            <replacefilter token="@mss.log.level@" value="${MMSCLog}"/>
+            <!-- Defaults to unlimited -->
+            <replacefilter token="@mss.message.store.timeout@" value="${MMSCTimeout}"/>
+            <!-- Defaults to 12 -->
+            <replacefilter token="@mss.message.store.id.size@" value="${MMSCIdsize}"/>
+            <!-- Defaults to false -->
+            <replacefilter token="@mss.message.store.validate@" value="${MMSCValidate}"/>
+
+            <include name="mss-config.xml"/>
+            <include name="mss-log4j.xml"/>
+        </replace>
+
+        <!-- Insert the MSS servlet, if it is not already in the web.xml -->
+        <copy file="${was.install.root}/mps/templates/addToXML.xsl"
+            tofile="${was.install.root}/mps/work/addToXML.xsl"
+            overwrite="true">
+            <filterset>
+                <filter token="markup-exists" value="servlet[servlet-name/text() = 'MSS']"/>
+                <filter token="insert-point" value="//servlet[position() = last()]"/>
+                <filter token="insert-before-markup" value=""/>
+                <filter token="insert-after-markup" value="&lt;servlet>
+                &lt;servlet-name>MSS&lt;/servlet-name>
+                &lt;servlet-class>com.volantis.mps.servlet.MessageStoreServlet&lt;/servlet-class>
+                &lt;init-param>
+                &lt;param-name>config.file&lt;/param-name>
+                &lt;param-value>${WasHome}/mps/mss/mss-config.xml&lt;/param-value>
+                &lt;/init-param>
+                &lt;init-param>
+                &lt;param-name>mss.log4j.config.file&lt;/param-name>
+                &lt;param-value>${WasHome}/mps/mss/mss-log4j.xml&lt;/param-value>
+                &lt;/init-param>
+                &lt;/servlet>"/>
+            </filterset>
+        </copy>
+
+        <style style="${was.install.root}/mps/work/addToXML.xsl"
+               in="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml"
+               out="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml.new" processor="trax">
+            <xmlcatalog>
+                <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${was.install.root}/mps/install/web-app_2_3.dtd"/>
+            </xmlcatalog>
+        </style>
+
+        <move file="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml.new"
+            tofile="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml"/>
+
+        <!-- Insert the MSS servlet filter, if it is not already in the web.xml -->
+        <copy file="${was.install.root}/mps/templates/addToXML.xsl"
+            tofile="${was.install.root}/mps/work/addToXML.xsl"
+            overwrite="true">
+            <filterset>
+                <filter token="markup-exists" value="servlet-mapping[servlet-name/text() = 'MSS']"/>
+                <filter token="insert-point" value="//servlet-mapping[position() = last()]"/>
+                <filter token="insert-before-markup" value=""/>
+                <filter token="insert-after-markup" value="&lt;servlet-mapping>
+                &lt;servlet-name>MSS&lt;/servlet-name>
+                &lt;url-pattern>/mss/*&lt;/url-pattern>
+                &lt;/servlet-mapping>"/>
+            </filterset>
+        </copy>
+
+        <style style="${was.install.root}/mps/work/addToXML.xsl"
+               in="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml"
+               out="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml.new" processor="trax">
+            <xmlcatalog>
+                <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${was.install.root}/mps/install/web-app_2_3.dtd"/>
+            </xmlcatalog>
+        </style>
+
+        <move file="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml.new"
+            tofile="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml"/>
+    </target>
+
+    <target name="mps-copy-core-jar">
+        <echo message="=== Copying jars ==="/>
+        <copy todir="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/lib" overwrite="true">
+            <fileset dir="${was.install.root}/mps/lib">
+                <include name="volantis-mps-core.jar"/>
+                <include name="jaxen-core.jar"/>
+                <include name="jaxen-jdom.jar"/>
+                <include name="saxpath.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="mps-copy-sample-jar">
+        <echo message="=== Copying jars ==="/>
+        <copy todir="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/lib" overwrite="true">
+            <fileset dir="${was.install.root}/mps/lib">
+                <include name="volantis-mps-sample.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="mps-config-runmps">
+        <echo message="=== Configuring RunMps servlet ==="/>
+
+        <!-- Insert the RunMPS servlet, if it is not already in the web.xml -->
+        <copy file="${was.install.root}/mps/templates/addToXML.xsl"
+            tofile="${was.install.root}/mps/work/addToXML.xsl"
+            overwrite="true">
+            <filterset>
+                <filter token="markup-exists" value="servlet[servlet-name/text() = 'RunMps']"/>
+                <filter token="insert-point" value="//servlet[position() = last()]"/>
+                <filter token="insert-before-markup" value=""/>
+                <filter token="insert-after-markup" value="&lt;servlet>
+                &lt;servlet-name>RunMps&lt;/servlet-name>
+                &lt;servlet-class>com.volantis.mps.servlet.RunMps&lt;/servlet-class>
+                &lt;/servlet>"/>
+            </filterset>
+        </copy>
+
+        <style style="${was.install.root}/mps/work/addToXML.xsl"
+               in="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml"
+               out="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml.new" processor="trax">
+            <xmlcatalog>
+                <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${was.install.root}/mps/install/web-app_2_3.dtd"/>
+            </xmlcatalog>
+        </style>
+
+        <!-- Insert the RunMPS servlet filter, if it is not already in the web.xml -->
+        <copy file="${was.install.root}/mps/templates/addToXML.xsl"
+            tofile="${was.install.root}/mps/work/addToXML.xsl"
+            overwrite="true">
+            <filterset>
+                <filter token="markup-exists" value="servlet-mapping[servlet-name/text() = 'RunMps']"/>
+                <filter token="insert-point" value="//servlet-mapping[position() = last()]"/>
+                <filter token="insert-before-markup" value=""/>
+                <filter token="insert-after-markup" value="&lt;servlet-mapping>
+                &lt;servlet-name>RunMps&lt;/servlet-name>
+                &lt;url-pattern>/RunMps&lt;/url-pattern>
+                &lt;/servlet-mapping>"/>
+            </filterset>
+        </copy>
+
+        <style style="${was.install.root}/mps/work/addToXML.xsl"
+               in="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml.new"
+               out="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml" processor="trax">
+            <xmlcatalog>
+                <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${was.install.root}/mps/install/web-app_2_3.dtd"/>
+            </xmlcatalog>
+        </style>
+
+    </target>
+
+    <target name="mps-update-config" depends="init,mps-extract-ear-file">
+        <echo message="=== Updating Live MCS/MPS Configuration ==="/>
+        <copy todir="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF" overwrite="true">
+            <fileset dir="${was.install.root}/mps/mcs">
+                <include name="mcs-config.xml"/>
+                <include name="mcs-config.xsd"/>
+            </fileset>
+        </copy>
+        <antcall target="mps-redeploy-ear"/>
+    </target>
+
+    <target name="mps-complete-config" depends="mps-extract-ear-file,mps-config-mss,mps-config-runmps,mps-copy-core-jar,mps-copy-sample-jar,mps-remove-conflicting-jars51,-mps-basic-config-mcs,-mps-basic-config-webapp,-add-context-param-log4j-config-file,-mcs-config-mariner-agent,configure-database,configure-local-xml,mps-config-channels,mps-basic-cli-config">
+        <copy todir="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF" overwrite="true">
+            <fileset dir="${was.install.root}/mps/mcs">
+                <include name="mcs-config.xml"/>
+                <include name="mcs-config.xsd"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="mps-basic-config" depends="mps-extract-ear-file,mps-config-mss,mps-copy-core-jar,mps-remove-conflicting-jars51,-mps-basic-config-mcs,-mps-basic-config-webapp,-add-context-param-log4j-config-file,-mcs-config-mariner-agent,configure-database,configure-local-xml,mps-basic-cli-config">
+        <copy todir="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF" overwrite="true">
+            <fileset dir="${was.install.root}/mps/mcs">
+                <include name="mcs-config.xml"/>
+                <include name="mcs-config.xsd"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="-mps-basic-config-mcs"  unless="over-webapp">
+        <echo message="=== Updating MCS Configuration ==="/>
+        <copy todir="${was.install.root}/mps/mcs" overwrite="true">
+            <fileset dir="${was.install.root}/mps/templates">
+                <include name="mcs-config.xml"/>
+                <include name="mcs-config.xsd"/>
+                <include name="mcs-log4j.xml"/>
+            </fileset>
+        </copy>
+
+        <replace dir="${was.install.root}/mps/mcs">
+            <replacefilter token="YOURHOST" value="${HostName}"/>
+            <replacefilter token="YOURPORT" value="${HostPort}"/>
+            <replacefilter token="APPSERVER" value="Websphere50"/>
+            <replacefilter token="/path/to/volantis/css" value="${WasHome}/mps/mcs/css"/>
+            <replacefilter token="/path/to/volantis" value="${WasHome}/installedApps/${NodeName}/mcs.ear/mcs.war"/>
+            <replacefilter token="/volantis" value="/mcs"/>
+
+            <replacefilter token="page-base=&quot;volantis&quot;" value="page-base=&quot;mcs&quot;"/>
+            <replacefilter token="&lt;mime-type value=&quot;x-application/vnd.volantis.xdime+xml&quot;/&gt;" value=""/>
+
+
+            <include name="mcs-config.xml"/>
+        </replace>
+
+        <!-- Remove leading / from page-base -->
+        <replace dir="${was.install.root}/mps/mcs">
+            <replacefilter token="page-base=&quot;/" value="page-base=&quot;"/>
+
+            <include name="mcs-config.xml"/>
+        </replace>
+
+
+        <replace dir="${WasHome}/mps/mcs">
+            <replacefilter token="/path/to/volantis.log" value="${WasHome}/logs/${ServerName}/SystemOut.log"/>
+            <replacefilter token="/path/to/volantis-info.log" value="${WasHome}/logs/${ServerName}/mcs-info.log"/>
+            <include name="mcs-log4j.xml"/>
+        </replace>
+    </target>
+
+    <target name="-mps-basic-config-webapp"  if="over-webapp">
+        <echo message="=== Updating MCS Configuration in existing web app ==="/>
+        <copy todir="${was.install.root}/mps/mcs" overwrite="true">
+            <fileset dir="${was.install.root}/mps/templates">
+                <include name="mcs-config.xml"/>
+                <include name="mcs-config.xsd"/>
+                <include name="mcs-log4j.xml"/>
+            </fileset>
+        </copy>
+
+        <replace dir="${was.install.root}/mps/mcs">
+            <replacefilter token="http://YOURHOST:YOURPORT/volantis" value="http://YOURHOST:YOURPORT${ContextRoot}"/>
+            <replacefilter token="YOURHOST" value="${HostName}"/>
+            <replacefilter token="YOURPORT" value="${HostPort}"/>
+            <replacefilter token="APPSERVER" value="Websphere50"/>
+            <replacefilter token="/path/to/volantis/css" value="${WasHome}/mps/mcs/css"/>
+            <replacefilter token="/path/to/volantis" value="${WasHome}/installedApps/${NodeName}/${WebApp}.ear/mcs.war"/>
+
+            <replacefilter token="&lt;assets base-url=&quot;/volantis/&quot;>"
+                value="&lt;assets base-url=&quot;${ContextRoot}/&quot;>"/>
+
+            <replacefilter token="/volantis/MCSCSS"
+                value="${ContextRoot}/MCSCSS"/>
+
+            <replacefilter token="page-base=&quot;volantis&quot;" value="page-base=&quot;${ContextRoot}&quot;"/>
+
+            <include name="mcs-config.xml"/>
+        </replace>
+
+
+        <!-- Remove leading / from page-base -->
+        <replace dir="${was.install.root}/mps/mcs">
+            <replacefilter token="page-base=&quot;/" value="page-base=&quot;"/>
+
+            <include name="mcs-config.xml"/>
+        </replace>
+
+        <replace dir="${was.install.root}/mps/mcs">
+            <replacefilter token="/path/to/volantis.log" value="${WasHome}/logs/${ServerName}/SystemOut.log"/>
+            <replacefilter token="/path/to/volantis-info.log" value="${WasHome}/logs/${ServerName}/mcs-info.log"/>
+            <include name="mcs-log4j.xml"/>
+        </replace>
+
+        <delete file="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/mcs-log4j.xml"/>
+        <delete file="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/mcs-jlog.xml"/>
+    </target>
+
+    <!-- Adds the context parameter for the location of the log4j configuration file -->
+    <target name="-add-context-param-log4j-config-file">
+        <echo message="=== Adding context parameter for log4j config file ==="/>
+        <copy file="${was.install.root}/mps/templates/addToXML.xsl"
+            tofile="${was.install.root}/mps/work/addToXML.xsl"
+            overwrite="true">
+            <filterset>
+                <filter token="markup-exists" value="context-param[param-name/text() = 'mcs.log4j.config.file']"/>
+                <filter token="insert-point" value="//filter[position() = 1]"/>
+                <filter token="insert-before-markup" value="&lt;context-param>
+                &lt;param-name>mcs.log4j.config.file&lt;/param-name>
+                &lt;param-value>@mcs.log4j.config.file@&lt;/param-value>
+                &lt;/context-param>"/>
+                <filter token="insert-after-markup" value=""/>
+            </filterset>
+        </copy>
+
+        <xslt in="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml"
+            out="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml.new"
+            style="${was.install.root}/mps/work/addToXML.xsl"
+            force="true">
+            <xmlcatalog>
+                <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${was.install.root}/mps/install/web-app_2_3.dtd"/>
+            </xmlcatalog>
+        </xslt>
+
+        <move file="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml.new"
+            tofile="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml">
+            <filterset>
+                <filter token="mcs.log4j.config.file" value="${WasHome}/mps/mcs/mcs-log4j.xml"/>
+            </filterset>
+        </move>
+
+    </target>
+
+    <!-- Adds the Mariner Agent servlet definition (if not present) and
+    replaces any tokenised values -->
+    <target name="-mcs-config-mariner-agent">
+        <echo message="=== Adding Mariner Agent servlet definition to web.xml ==="/>
+        <copy file="${was.install.root}/mps/templates/addToXML.xsl"
+            tofile="${was.install.root}/mps/work/addToXML.xsl"
+            overwrite="true">
+            <filterset>
+                <filter token="markup-exists" value="servlet[servlet-name/text() = 'AgentServlet']"/>
+                <filter token="insert-point" value="//servlet[position() = last()]"/>
+                <filter token="insert-before-markup" value=""/>
+                <filter token="insert-after-markup" value="&lt;servlet>
+                &lt;servlet-name>AgentServlet&lt;/servlet-name>
+                &lt;servlet-class>com.volantis.mcs.management.agent.servlet.AgentServlet&lt;/servlet-class>
+                &lt;init-param>
+                &lt;param-name>enabled&lt;/param-name>
+                &lt;param-value>@mcsagent.enabled@&lt;/param-value>
+                &lt;/init-param>
+                &lt;init-param>
+                &lt;param-name>host&lt;/param-name>
+                &lt;param-value>@mcsagent.host@&lt;/param-value>
+                &lt;/init-param>
+                &lt;init-param>
+                &lt;param-name>port&lt;/param-name>
+                &lt;param-value>@mcsagent.port@&lt;/param-value>
+                &lt;/init-param>
+                &lt;init-param>
+                &lt;param-name>password&lt;/param-name>
+                &lt;param-value>@mcsagent.password@&lt;/param-value>
+                &lt;/init-param>
+                &lt;load-on-startup>1&lt;/load-on-startup>
+                &lt;/servlet>"/>
+            </filterset>
+        </copy>
+
+        <xslt in="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml"
+            out="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml.new"
+            style="${was.install.root}/mps/work/addToXML.xsl"
+            force="true">
+            <xmlcatalog>
+                <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${was.install.root}/mps/install/web-app_2_3.dtd"/>
+            </xmlcatalog>
+        </xslt>
+
+        <move file="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml.new"
+            tofile="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/web.xml">
+            <filterset>
+                <filter token="mcsagent.enabled" value="false"/>
+                <filter token="mcsagent.host" value="localhost"/>
+                <filter token="mcsagent.port" value="8888"/>
+                <filter token="mcsagent.password" value="password"/>
+            </filterset>
+        </move>
+
+    </target>
+
+    <target name="configure-database" depends="-check-db-args" if="db-ok">
+        <echo message="=== Configuring database ==="/>
+        <replace dir="${was.install.root}/mps/mcs">
+            <replacefilter token="ODBC-VENDOR" value="${DBVendor}"/>
+            <replacefilter token="ODBC-HOST" value="${DBHost}"/>
+            <replacefilter token="ODBC-PORT" value="${DBPort}"/>
+            <replacefilter token="ODBC-SOURCE" value="${DBInstance}"/>
+            <replacefilter token="ODBC-USER" value="${DBUser}"/>
+            <replacefilter token="ODBC-PASSWORD" value="${DBPass}"/>
+
+            <replacefilter token="#DefaultProject" value="${DBProject}"/>
+            <replacefilter token="&lt;file-repository location=&quot;/absolute/path/to/runtime.mdpr&quot;/&gt;"
+                value="&lt;jdbc-repository project=&quot;${DBProject}&quot;/&gt;"/>
+
+            <include name="mcs-config.xml"/>
+        </replace>
+    </target>
+
+
+    <target name="configure-local-xml" depends="-check-db-args" unless="db-ok">
+        <echo message="=== Configuring local XML repository ==="/>
+        <replace dir="${was.install.root}/mps/mcs">
+            <replacefilter token="        &lt;jdbc-repository>" value="&lt;!--        &lt;jdbc-repository>"/>
+            <replacefilter token="        &lt;/jdbc-repository>" value="        &lt;/jdbc-repository> -->"/>
+
+            <replacetoken><![CDATA[</local-repository>]]></replacetoken>
+            <replacevalue><![CDATA[    <xml-repository/>
+    </local-repository>]]>
+            </replacevalue>
+
+	    <replacefilter token="&lt;jdbc-policies name=&quot;#DefaultProject&quot;"
+                value="&lt;xml-policies directory=&quot;${WasHome}/mps/mcs/repository/xml-repository/examples/policy&quot;"/>
+
+            <replacefilter token="/absolute/path/to/runtime.mdpr" value="${WasHome}/mps/mcs/repository/xml-repository/devices.mdpr"/>
+
+            <include name="mcs-config.xml"/>
+        </replace>
+
+    </target>
+
+
+    <target name="mps-remove-conflicting-jars51" depends="check-version" if="version-is-5.1">
+        <echo message="=== Removing Conflicting Jars from MCS for WebSphere5.1 ==="/>
+        <delete file="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/lib/volantis-xml-apis.jar"/>
+        <delete file="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war/WEB-INF/lib/volantis-xmlParserAPIs.jar"/>
+    </target>
+
+
+    <target name="check-version">
+        <copy todir="${was.install.root}/mps/install/" overwrite="true">
+            <fileset dir="${was.install.root}/properties/version/dtd">
+                <include name="websphere.dtd"/>
+            </fileset>
+        </copy>
+        <xmlproperty file="${was.install.root}/properties/version/platform.websphere"/>
+        <delete file="${was.install.root}/mps/install/websphere.dtd"/>
+
+        <condition property="version-is-5.1">
+            <equals arg1="${websphere(version)}" arg2="5.1"/>
+        </condition>
+    </target>
+
+
+    <target name="mps-extract-ear-file" depends="init,mps-extract-ear-file-mcs,mps-extract-ear-file-webapp"/>
+
+    <target name="mps-extract-ear-file-mcs" unless="over-webapp">
+        <echo message="=== Expanding MCS/MPS Ear file ==="/>
+        <delete dir="${WasHome}/mps/work"/>
+        <mkdir dir="${WasHome}/mps/work"/>
+        <exec executable="${was.install.root}/bin/EARExpander${was.platform.script.ext}" failonerror="true">
+            <arg line="-ear &quot;${WasHome}/mps/mcs/installableApps/mcs.ear&quot; -operationDir &quot;${WasHome}/mps/work/mcs_tmp_ear&quot; -operation expand -expansionFlags war"/>
+        </exec>
+    </target>
+
+    <target name="mps-extract-ear-file-webapp" if="over-webapp" depends="mps-set-conntype">
+        <echo message="=== Expanding MCS/MPS Ear file ==="/>
+        <delete dir="${WasHome}/mps/work"/>
+        <mkdir dir="${WasHome}/mps/work"/>
+        <wsadmin
+            command="$AdminApp export ${WebApp} &quot;${WasHome}/mps/work/${WebApp}.ear&quot;"
+	    conntype="${MpsConnType}"
+            user="${WasUserid}"
+            password="${WasPassword}"
+            failonerror="yes"/>
+        <exec executable="${was.install.root}/bin/EARExpander${was.platform.script.ext}" failonerror="true">
+            <arg line="-ear &quot;${WasHome}/mps/mcs/installableApps/mcs.ear&quot; -operationDir &quot;${WasHome}/mps/work/mcs_tmp_ear&quot; -operation expand -expansionFlags war"/>
+        </exec>
+        <exec executable="${was.install.root}/bin/EARExpander${was.platform.script.ext}" failonerror="true">
+            <arg line="-ear &quot;${WasHome}/mps/work/${WebApp}.ear&quot; -operationDir &quot;${WasHome}/mps/work/mcs_tmp_ear&quot; -operation expand -expansionFlags war"/>
+        </exec>
+    </target>
+
+
+    <target name="mps-deploy-ear-file" unless="over-webapp" depends="mps-set-conntype">
+        <delete file="${was.install.root}/mps/work/mcs.ear"/>
+        <echo message="=== Packaging MCS/MPS Ear file ==="/>
+        <exec executable="${was.install.root}/bin/EARExpander${was.platform.script.ext}" failonerror="true">
+            <arg line="-ear &quot;${WasHome}/mps/work/mcs.ear&quot; -operationDir &quot;${WasHome}/mps/work/mcs_tmp_ear&quot; -operation collapse"/>
+        </exec>
+
+        <echo message="=== Deploying MCS/MPS Ear file ==="/>
+        <wsadmin
+            properties="${was.install.root}/mps/install/jacl.properties"
+            script="${was.install.root}/mps/templates/createMcsEar.jacl"
+			conntype="${MpsConnType}"
+            user="${WasUserid}"
+            password="${WasPassword}"
+            failonerror="yes">
+            <arg value="${WasHome}"/>
+            <arg value="${NodeName}"/>
+            <arg value="${ServerName}"/>
+            <arg value="${Clustered}"/>
+            <arg value="${ClusterName}"/>
+        </wsadmin>
+    </target>
+
+
+    <target name="mps-uninstall-mcsmps" depends="init">
+        <condition property="over-webapp">
+            <and>
+                <isset property="WebApp"/>
+            </and>
+        </condition>
+        <antcall target="mps-remove-mcsmps-ear-file"/>
+        <antcall target="mps-remove-mcsmps-from-existing-webapp"/>
+        <echo message="=== Removed MPS ==="/>
+    </target>
+
+
+    <target name="mps-remove-mcsmps-ear-file" unless="over-webapp" depends="mps-set-conntype">
+        <wsadmin
+            properties="${was.install.root}/mps/install/jacl.properties"
+            script="${was.install.root}/mps/templates/removeMcsEar.jacl"
+			conntype="${MpsConnType}"
+            user="${WasUserid}"
+            password="${WasPassword}"
+            failonerror="yes">
+        </wsadmin>
+    </target>
+
+    <target name="mps-remove-mcsmps-from-existing-webapp" if="over-webapp" depends="mps-set-conntype">
+        <delete file="${was.install.root}/mps/work/${WebApp}.ear"/>
+        <delete dir="${was.install.root}/mps/work/${WebApp}_tmp_ear"/>
+        <echo message="=== Removing MCS/MPS from ${WebApp} ==="/>
+
+        <echo message="=== Copying current ${WebApp} ==="/>
+        <mkdir dir="${was.install.root}/mps/work/${WebApp}_tmp_ear"/>
+        <copy todir="${was.install.root}/mps/work/${WebApp}_tmp_ear" overwrite="true">
+            <fileset dir="${was.install.root}/installedApps/${NodeName}/${WebApp}.ear"/>
+        </copy>
+        <delete dir="${was.install.root}/mps/work/${WebApp}_tmp_ear/mcs.war"/>
+
+        <move file="${was.install.root}/mps/work/${WebApp}_tmp_ear/META-INF/application.bak"
+            tofile="${was.install.root}/mps/work/${WebApp}_tmp_ear/META-INF/application.xml"/>
+
+        <echo message="=== Creating new ${WebApp} EAR file ==="/>
+        <exec executable="${was.install.root}/bin/EARExpander${was.platform.script.ext}" failonerror="true">
+            <arg line="-ear &quot;${was.install.root}/mps/work/${WebApp}.ear&quot; -operationDir &quot;${was.install.root}/mps/work/${WebApp}_tmp_ear&quot; -operation collapse"/>
+        </exec>
+
+        <echo message="=== Redeploying ${WebApp} Ear file ==="/>
+        <wsadmin
+            properties="${was.install.root}/mps/install/jacl.properties"
+            script="${was.install.root}/mps/templates/removeFromExistingApp.jacl"
+			conntype="${MpsConnType}"
+            user="${WasUserid}"
+            password="${WasPassword}"
+            failonerror="yes">
+            <arg value="${WasHome}"/>
+            <arg value="${NodeName}"/>
+            <arg value="${ServerName}"/>
+            <arg value="${WebApp}"/>
+        </wsadmin>
+    </target>
+
+    <target name="mps-redeploy-ear" depends="mps-redeploy-mcs,mps-redeploy-webapp"/>
+
+    <target name="mps-redeploy-mcs" unless="over-webapp" depends="mps-set-conntype">
+        <echo message="=== Redeploying MCS/MPS Ear file ==="/>
+
+        <delete file="${was.install.root}/mps/work/mcs.ear"/>
+        <echo message="=== Packaging MCS Ear file ==="/>
+        <exec executable="${was.install.root}/bin/EARExpander${was.platform.script.ext}" failonerror="true">
+            <arg line="-ear &quot;${WasHome}/mps/work/mcs.ear&quot; -operationDir &quot;${WasHome}/mps/work/mcs_tmp_ear&quot; -operation collapse"/>
+        </exec>
+
+        <wsadmin
+            properties="${WasHome}/mps/install/jacl.properties"
+            script="${WasHome}/mps/templates/updateMcsEar.jacl"
+			conntype="${MpsConnType}"
+            user="${WasUserid}"
+            password="${WasPassword}"
+            failonerror="yes">
+            <arg value="${WasHome}"/>
+            <arg value="${NodeName}"/>
+            <arg value="${ServerName}"/>
+            <arg value="${Clustered}"/>
+            <arg value="${ClusterName}"/>
+        </wsadmin>
+    </target>
+
+
+    <target name="mps-redeploy-webapp" if="over-webapp" depends="mps-set-conntype">
+        <delete file="${was.install.root}/mps/work/${WebApp}.ear"/>
+        <echo message="=== Deploying MCS/MPS into the existing ${WebApp} ==="/>
+
+        <echo message="=== Copying current ${WebApp} ==="/>
+        <mkdir dir="${was.install.root}/mps/work/${WebApp}_tmp_ear"/>
+        <copy todir="${was.install.root}/mps/work/${WebApp}_tmp_ear" overwrite="true">
+            <fileset dir="${was.install.root}/installedApps/${NodeName}/${WebApp}.ear"/>
+        </copy>
+
+        <antcall target="mps-copy-mcsmps-war"/>
+        <antcall target="mps-modify-existing-application-xml"/>
+
+        <echo message="=== Creating new ${WebApp} EAR file ==="/>
+        <exec executable="${was.install.root}/bin/EARExpander${was.platform.script.ext}" failonerror="true">
+            <arg line="-ear &quot;${WasHome}/mps/work/${WebApp}.ear&quot; -operationDir &quot;${WasHome}/mps/work/${WebApp}_tmp_ear&quot; -operation collapse"/>
+        </exec>
+
+        <echo message="=== ReDeploying ${WebApp} Ear file ==="/>
+        <wsadmin
+            properties="${was.install.root}/mps/install/jacl.properties"
+            script="${was.install.root}/mps/templates/addToExistingApp.jacl"
+			conntype="${MpsConnType}"
+            user="${WasUserid}"
+            password="${WasPassword}"
+            failonerror="yes">
+            <arg value="${WasHome}"/>
+            <arg value="${NodeName}"/>
+            <arg value="${ServerName}"/>
+            <arg value="${WebApp}"/>
+        </wsadmin>
+    </target>
+
+
+    <target name="mps-copy-mcsmps-war" if="over-webapp">
+        <echo message="=== Copying MCS/MPS into ${WebApp} ==="/>
+        <mkdir dir="${was.install.root}/mps/work/${WebApp}_tmp_ear/mcs.war"/>
+        <copy todir="${was.install.root}/mps/work/${WebApp}_tmp_ear/mcs.war" overwrite="true">
+            <fileset dir="${was.install.root}/mps/work/mcs_tmp_ear/mcs.war"/>
+        </copy>
+        <copy todir="${was.install.root}/mps/work/${WebApp}_tmp_ear/mcs.war/WEB-INF" overwrite="true">
+            <fileset dir="${was.install.root}/mps/mcs">
+                <include name="mcs-config.xml"/>
+                <include name="mcs-config.xsd"/>
+            </fileset>
+        </copy>
+    </target>
+
+
+    <target name="mps-modify-existing-application-xml">
+        <echo message="=== Updating application.xml of ${WebApp} with MCS/MPS ==="/>
+        <copy todir="${was.install.root}/mps/work/${WebApp}_tmp_ear/META-INF" includeemptydirs="false" overwrite="false">
+            <fileset dir="${was.install.root}/mps/work/${WebApp}_tmp_ear/META-INF" includes="application.xml"/>
+            <mapper type="glob" from="*.xml" to="*.bak"/>
+        </copy>
+
+        <replace dir="${was.install.root}/mps/work/${WebApp}_tmp_ear/META-INF">
+            <replacetoken>&lt;/display-name></replacetoken>
+            <replacevalue><![CDATA[</display-name>
+            <!-- Start of MCS config -->
+            <module>
+            <web>
+            <web-uri>mcs.war</web-uri>
+            <context-root>@context.root@</context-root>
+            </web>
+            </module>
+             <!-- End of MCS config -->
+            ]]>
+            </replacevalue>
+            <include name="application.xml"/>
+        </replace>
+
+        <replace dir="${was.install.root}/mps/work/${WebApp}_tmp_ear/META-INF">
+            <replacefilter token="@context.root@" value="${ContextRoot}"/>
+            <include name="application.xml"/>
+        </replace>
+    </target>
+
+    <!--modify CLI commands -->
+    <target name="mps-basic-cli-config"
+        description="Update Repository Information and Paths in ImportPolicies CLI Commands">
+        <echo message="=== Updating ImportPolicies CLI commands =="/>
+        <copy todir="${was.install.root}/mps/mcs/repository/bin" overwrite="true">
+            <fileset dir="${was.install.root}/mps/templates" includes="ImportPolicies.sh,ImportPolicies.bat"/>
+        </copy>
+
+        <replace dir="${was.install.root}/mps/mcs/repository/bin">
+            <replacefilter token="@WPS-INSTALL-LOCATION@" value="${was.install.root}"/>
+            <replacefilter token="@ODBC-VENDOR@" value="${DBVendor}"/>
+            <replacefilter token="@ODBC-HOST@" value="${DBHost}"/>
+            <replacefilter token="@ODBC-PORT@" value="${DBPort}"/>
+            <replacefilter token="@ODBC-SOURCE@" value="${DBInstance}"/>
+            <replacefilter token="@ODBC-USER@" value="${DBUser}"/>
+            <replacefilter token="@ODBC-PASSWORD@" value="${DBPass}"/>
+            <include name="ImportPolicies.sh"/>
+            <include name="ImportPolicies.bat"/>
+        </replace>
+        <chmod dir="${was.install.root}/mps/mcs/repository/bin" perm="ugo+rx" includes="*.sh"/>
+    </target>
+
+    <target name="mps-import-policies"
+        depends="init"
+        description="Import Default Example Policies into JDBC Repository">
+        <echo message="=== Importing default Example Policies into JDBC Repository =="/>
+        <exec executable="${was.install.root}/mps/mcs/repository/bin/ImportPolicies${was.platform.script.ext}" failonerror="true">
+            <arg line="-allcomponents -theme -layout -devicerepository &quot;${WasHome}/mps/mcs/repository/xml-repository/devices.mdpr&quot; -project ${DBProject} -srcdir &quot;${WasHome}/mps/mcs/repository/xml-repository/examples/policy&quot;"/>
+        </exec>
+    </target>
+
+    <target name="mps-import-devices"
+        depends="init"
+        description="Import Device Policies">
+        <echo message="=== Importing Device Policies =="/>
+        <exec executable="${was.install.root}/mps/mcs/repository/bin/ImportPolicies${was.platform.script.ext}" failonerror="true">
+            <arg line="-device -devicerepository &quot;${WasHome}/mps/mcs/repository/xml-repository/devices.mdpr&quot; -project ${DBProject} -srcdir &quot;${WasHome}/mps/mcs/repository/xml-repository&quot;"/>
+        </exec>
+    </target>
+
+    <target name="mps-cluster-node-config" depends="init">
+        <echo message="=== Updating config for Cluster Node =="/>
+        <replace dir="${was.install.root}/mps/mcs">
+            <replacefilter token="/path/to/volantis.log" value="${WasHome}/logs/${ServerName}/SystemOut.log"/>
+            <include name="mcs-log4j.xml"/>
+        </replace>
+    </target>
+
+</project>

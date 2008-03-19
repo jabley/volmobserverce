@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Iterator attributes</title>
+<link rel="stylesheet" href="../help.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<h1>Iterator attributes</h1>
+<h2>Spatial attributes</h2>
+<table border="1" cellpadding="0" cellspacing="0"  summary="Describes spatial iterator attributes">
+  <tr> 
+    <th width="25%"> Attribute </th>
+    <th> Description </th>
+  </tr>
+  <tr> 
+    <td> 2-D Indexing Direction</td>
+    <td> Method for numbering the cells of a spatial iterator. Across Down numbers 
+      left to right first. Down Across numbers top tobottom first.</td>
+  </tr>
+  <tr> 
+    <td> Row Iterations</td>
+    <td rowspan="2">Maximum or exact number of rows or columns</td>
+  </tr>
+  <tr> 
+    <td> Column Iterations</td>
+  </tr>
+</table>
+<h2>Temporal attributes</h2>
+<table border="1" cellpadding="0" cellspacing="0" summary="Describes temporal iterator attributes">
+  <tr> 
+    <th width="25%"> Attribute </th>
+    <th> Description </th>
+  </tr>
+  <tr
+	valign="middle"> 
+    <td> Cells</td>
+    <td>Whether the iterator has a fixed or variable number of cells. If variable, 
+      MCS uses the number of cells in the layout; otherwise MCS uses the value 
+      in <span class="uicontrol">Number.</span></td>
+  </tr>
+  <tr
+	valign="middle"> 
+    <td> Number</td>
+    <td> If <span class="uicontrol">Cells</span> is fixed, MCS ignores 
+      cells in the layout over this number </td>
+  </tr>
+  <tr
+	valign="middle"> 
+    <td> Time Values</td>
+    <td> Length of time for the display of each iterator cell. <span class="command">Browse</span> 
+      opens the Time Selection dialog. Values less than one minute are shown in 
+      milliseconds. </td>
+  </tr>
+</table>
+
+<p><span class="ri">Related information</span><br />
+  <a href="layout_common_attributes.html" title="Layout attributes">Layout attributes</a><br />
+  <a href="layout_time_choose.html" title="Setting iterator attributes">Setting iterator attributes</a></p>
+</body>
+</html>

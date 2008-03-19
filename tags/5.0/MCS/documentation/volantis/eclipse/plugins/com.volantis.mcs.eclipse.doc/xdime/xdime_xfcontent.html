@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>xfcontent</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>xfcontent</h1><h2>Purpose</h2>
+         <p>Used to add XDIME content to a form.</p>
+
+      <h2>Contained by</h2><p><a href="../xdime/xdime_xfform.html">xfform</a></p><h2>Attribute group</h2><p><a href="../xdime/block_attr.html">Block attributes</a></p><h2>Example</h2>
+         <pre class="code">&lt;xfform name="preferences"
+   method="post" action="prefs.xml"&gt; 
+   &lt;xf:content&gt;
+      &lt;p&gt;To download an upgrade to version 6.2, please
+      choose from the following options.&lt;/p&gt;
+   &lt;/xf:content&gt;  
+   &lt;xfsiselect name="prefs" caption="Preferences"&gt;           
+   ...
+   &lt;/xfsiselect&gt;    
+   &lt;xfaction type="submit" caption="Submit"/&gt;
+   &lt;xfaction type="reset" caption="Reset"/&gt;
+&lt;/xfform&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime/xdime_pr_er.html">XDIME presentation elements</a></p>
+      </body></html>

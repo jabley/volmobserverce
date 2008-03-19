@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>com.volantis</groupId>
+		<artifactId>map</artifactId>
+		<version>1.0</version>
+		<relativePath>../..</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>map.map-servlet-api</artifactId>
+	<name>${pom.groupId}:${pom.artifactId}</name>
+	<packaging>bundle</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>com.volantis</groupId>
+			<artifactId>map.localization-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.volantis</groupId>
+			<artifactId>map.operation-engine-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.volantis</groupId>
+			<artifactId>map.common-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.equinox</groupId>
+			<artifactId>osgi-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.equinox</groupId>
+			<artifactId>osgi</artifactId>
+		</dependency>
+		
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId> com.volantis.maven.plugins</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Export-Package></Export-Package>
+                        <Import-Package>
+                            org.osgi.*,
+                            com.volantis.map.localization*,
+                            com.volantis.map.operation*,
+                            com.volantis.map.common.encryption,
+                            com.volantis.synergetics*,
+                            javax.servlet*;version="[2.2,2.4)"
+                        </Import-Package>
+                        <Private-Package>com.volantis.map.webservice*</Private-Package> 
+                        <Bundle-Name>Volantis Media Access Proxy: Web Service Api</Bundle-Name>
+                        <Service-Component>OSGI-INF/com.volantis.map.webservice.MAPActivator.xml</Service-Component>
+
+                        <!--Bundle-SymbolicName></Bundle-SymbolicName>
+                        <Bundle-Version></Bundle-Version-->
+                    </instructions>
+                </configuration>
+            </plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>  
+						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+					</archive> 
+				</configuration>
+			</plugin>  
+        </plugins>
+    </build>
+
+</project>

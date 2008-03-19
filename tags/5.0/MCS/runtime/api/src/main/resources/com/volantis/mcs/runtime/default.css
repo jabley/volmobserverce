@@ -1,0 +1,223 @@
+/*
+ * Default XDIME styles.
+ *
+ * These are the default styles associated with XDIME elements.
+ *
+ * This information is guided by and partially derived from
+ *   http://www.w3.org/TR/CSS21/sample.html
+ *
+ * NOTE: Please ensure that any elements referenced here are XDIME elements and
+ * not output markup elements.
+ */
+
+/* XDIME 1 specific block elements */
+canvas, xfform {
+    display: block;
+}
+
+/* Standard XHTML block elements */
+body, h1, h2, h3, h4, h5, h6, p, div, noscript, hr, menu, pre, nl, label,
+        address, blockquote, ol, ul, dl, dt, dd  {
+    display: block;
+}
+
+li {
+    display: list-item;
+}
+
+head, style, link, meta {
+    display: none;
+}
+
+table {
+    display: table;
+}
+
+tr {
+    display: table-row;
+}
+
+thead {
+    display: table-header-group;
+}
+
+tbody {
+    display: table-row-group;
+}
+
+tfoot {
+    display: table-footer-group;
+}
+
+col {
+    display: table-column;
+}
+
+colgroup {
+    display: table-column-group;
+}
+
+td, th {
+    display: table-cell;
+}
+
+caption {
+    display: table-caption;
+}
+
+/**
+ * Set the value of text-align on body and canvas to be the special
+ * -internal-deferred-inherit so that any descendant elements that do not
+ * have it explicitly set will use this value. This value causes the element
+ * to inherit the value of its parent just before it is written out, this means
+ * that they can inherit text-align from their layout container instead of
+ * from the parent element on input.
+ */
+body,canvas {
+    text-align: -internal-deferred-inherit
+}
+
+sub {
+    font-size: .83em;
+    vertical-align: sub;
+}
+
+sup {
+    font-size: .83em;
+    vertical-align: super;
+}
+
+xfmuselect {
+    mcs-rows: 4
+}
+
+xftextinput {
+    mcs-columns: 20
+}
+
+/* XDIME2 Widget|progress */
+widget|progress {
+    display: block;
+    border: thin solid black;
+}
+
+/* XDIME2 Widget specific block elements */
+widget|summary, widget|detail, widget|field-expander {
+    display: block;
+}
+
+widget|wizard {
+    display: block;
+    background-color: white;    
+}
+
+widget|carousel {
+    display: block;
+    overflow: hidden;
+    left: 0px;
+    top: 0px;
+}
+
+widget|clock {
+    mcs-datetime-format: '%D %d %m %Y %h:%i:%s';
+}
+
+widget|timer {
+    mcs-datetime-format: '%H:%i:%s.%S';
+}
+
+widget|stopwatch {
+    display: block;
+    mcs-datetime-format: '%H:%i:%s.%S';
+}
+
+widget|folding-item {
+    display: block;
+    overflow: auto;
+}
+
+widget|popup {
+    display: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    background-color: white;
+}
+
+widget|dismiss {
+    display: inline;
+}
+
+widget|ticker-tape {
+    display: block;
+    mcs-marquee: left infinite normal scroll;
+    width: 100%;
+}
+
+widget|autocomplete {
+    display: block;
+    overflow: hidden;
+    border: thin solid black;
+    background-color: white;	
+}
+
+widget|log {
+	overflow:auto;
+	position:fixed;
+	height:20%;
+	width:100%;
+	bottom:0%;
+	left:0%;
+	border-top:2px solid black;
+	background-color:#EEEEFF;
+}
+
+widget|block, widget|block-content {
+	display: block;
+}
+
+widget|date-picker {
+	display: none;
+}
+
+ticker|item-description {
+    display: block;
+}
+
+ticker|item-display {
+    display: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    background-color: white;
+}
+
+widget|tabs {
+   display: block;
+}
+ 
+widget|tab {
+   display: block;
+   border: 1px solid black;
+}
+
+widget|tab::mcs-label {
+   display: block;
+   border: 1px solid black;
+   margin: 0px 2px;
+}
+
+gallery|gallery, gallery|slideshow, gallery|item-display {
+   display: block;
+}
+
+widget|table {
+    display: table;
+}
+
+widget|tbody {
+    display: table-row-group;
+}
+

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<variable-policy xmlns="http://www.volantis.com/xmlns/2006/02/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/2006/02/marlin-lpdm http://www.volantis.com/schema/2006/02/marlin-lpdm.xsd">
+    <type>theme</type>
+    <variants>
+        <variant>
+            <type>theme</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>PC</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <theme>
+                    <style-sheet>
+                        <rules>
+                            <rule>
+                                <selector-sequence>
+                                    <type>p</type>
+                                    <class>subdue</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#ff6666</colorRGB>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>p</type>
+                                    <class>highlight</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#ff0000</colorRGB>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>menu</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-menu-orientation">
+                                        <keyword>horizontal</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>a</type>
+                                    <link/>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#ff3333</colorRGB>
+                                    </property>
+                                    <property name="mcs-chart-foreground-colors">
+                                        <list unique="false">
+                                            <colorRGB>#ff0000</colorRGB>
+                                            <colorRGB>#00ff00</colorRGB>
+                                            <colorRGB>#0000ff</colorRGB>
+                                        </list>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>a</type>
+                                    <hover/>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#ff9865</colorRGB>
+                                    </property>
+                                </properties>
+                            </rule>
+                        </rules>
+                    </style-sheet>
+                </theme>
+            </content>
+        </variant>
+        <variant>
+            <type>theme</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>PocketPC</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <theme>
+                    <style-sheet>
+                        <rules>
+                            <rule>
+                                <selector-sequence>
+                                    <type>p</type>
+                                    <class>subdue</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#66ff66</colorRGB>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>p</type>
+                                    <class>highlight</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#00cc00</colorRGB>
+                                    </property>
+                                </properties>
+                            </rule>
+                        </rules>
+                    </style-sheet>
+                </theme>
+            </content>
+        </variant>
+    </variants>
+</variable-policy>

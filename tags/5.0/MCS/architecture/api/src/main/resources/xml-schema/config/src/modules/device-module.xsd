@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Paul Duffin (Volantis) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="common-module.xsd"/>
+    <xs:simpleType name="DeviceRepositoryFile">
+        <xs:restriction base="xs:string">
+            <xs:pattern value=".*\.mdpr"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="e-mail-address">
+      <xs:sequence>
+        <xs:element name="address" type="xs:anyURI"/>
+        <xs:element name="name" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:element name="devices">
+        <xs:annotation>
+            <xs:documentation>Encapsulates configuration related to devices and device repositories.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="standard" type="DeviceRepository">
+                    <xs:annotation>
+                        <xs:documentation>Specifies the location of the standard device repository policies.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="custom" type="DeviceRepository" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Specifies the location of the customer device repository policies.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="logging" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Configuration related to the logging of abstract or unknown devices.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="log-file" type="xs:anyURI">
+                            <xs:annotation>
+                                <xs:documentation>The name of the log file.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="e-mail">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="e-mail-sending" minOccurs="0">
+                                  <xs:annotation>
+                                      <xs:documentation>Specifies if the periodical e-mail sending is enabled or disabled.</xs:documentation>
+                                  </xs:annotation>
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:enumeration value="enable"/>
+                                    <xs:enumeration value="disable"/>
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:element>
+                              <xs:element name="config" minOccurs="0">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element name="smtp">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <xs:element name="host" type="xs:anyURI">
+                                              <xs:annotation>
+                                                  <xs:documentation>The host name of the SMTP server.</xs:documentation>
+                                              </xs:annotation>
+                                          </xs:element>
+                                          <xs:element name="port" type="xs:unsignedShort" minOccurs="0">
+                                              <xs:annotation>
+                                                  <xs:documentation>The port number for the SMTP service.</xs:documentation>
+                                              </xs:annotation>
+                                          </xs:element>
+                                          <xs:element name="user-name" type="xs:string" minOccurs="0">
+                                              <xs:annotation>
+                                                  <xs:documentation>The user name to be used for the SMTP service.</xs:documentation>
+                                              </xs:annotation>
+                                          </xs:element>
+                                          <xs:element name="password" type="xs:string" minOccurs="0">
+                                              <xs:annotation>
+                                                  <xs:documentation>The password to be used for the SMTP service.</xs:documentation>
+                                              </xs:annotation>
+                                          </xs:element>
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="from" type="e-mail-address">
+                                        <xs:annotation>
+                                            <xs:documentation>Details of the sender.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="to" type="e-mail-address">
+                                        <xs:annotation>
+                                            <xs:documentation>Details of the recipient.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="subject" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>The subject line of the notification e-mails.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="period" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>The period of the notification e-mails.</xs:documentation>
+                                        </xs:annotation>
+                                      <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                          <xs:enumeration value="day"/>
+                                          <xs:enumeration value="week"/>
+                                          <xs:enumeration value="month"/>
+                                          <xs:enumeration value="quarter"/>
+                                          <xs:enumeration value="year"/>
+                                        </xs:restriction>
+                                      </xs:simpleType>
+                                    </xs:element>
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+            </xs:sequence>
+            <xs:attribute name="preload" type="xs:boolean" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Controls whether the device information is preloaded into the caches during the initialisation of the MCS application. If set to true then they are, otherwise they are not. Note: This attribute does not affect the preloading of the device identification patterns as they are always preloaded.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="default" type="xs:string" use="optional">
+              <xs:annotation>
+                <xs:documentation>Provides the default fallback device to use should an unknown device access MCS</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="DeviceRepository">
+        <xs:choice>
+            <xs:element name="jdbc-repository">
+                <xs:complexType>
+                    <xs:attribute name="project" type="ProjectName" use="required">
+                        <xs:annotation>
+                            <xs:documentation>The name of the project, within the JDBC DataSource, that contains the device repository information. This uses the same DataSource as the local repository.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="file-repository">
+                <xs:complexType>
+                    <xs:attribute name="location" type="DeviceRepositoryFile" use="required">
+                        <xs:annotation>
+                            <xs:documentation>The location of the device repository file, i.e. a file that ends with .mdpr.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<device:identification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:device="http://www.volantis.com/xmlns/device-repository/device-identification" xsi:schemaLocation="http://www.volantis.com/xmlns/device-repository/device-identification ../xml-schema/device-identification.xsd">
+    <device:device name="Samsung-SprintPCS">
+        <device:userAgentPattern>
+            <device:regularExpression>AU-MIC2\.0 MMP/2\.0.*</device:regularExpression>
+        </device:userAgentPattern>
+    </device:device>
+    <device:device name="Semsung-SPH-A500">
+        <device:headerPattern name="X-WAP-PROFILE" baseDevice="blah">
+            <device:regularExpression>http://device\.sprintpcs\.com/Samsung/SPH-A500/.*</device:regularExpression>
+        </device:headerPattern>
+        <device:standard>
+            <device:device name="Semsung-SPH-A500">
+                <device:headerPattern name="X-WAP-PROFILE" baseDevice="blah">
+                    <device:regularExpression>original regexp</device:regularExpression>
+                </device:headerPattern>
+            </device:device>
+        </device:standard>
+    </device:device>
+    <device:device name="Semsung-SPH-A600">
+        <device:headerPattern name="X-WAP-PROFILE">
+            <device:regularExpression>http://device\.sprintpcs\.com/Samsung/SPH-A600/.*</device:regularExpression>
+        </device:headerPattern>
+    </device:device>
+    <device:device name="TestDevice">
+        <device:headerPattern name=".*">
+            <device:regularExpression>.*MAGIC.*</device:regularExpression>
+        </device:headerPattern>
+        <device:headerPattern name="Accept.*">
+            <device:regularExpression>.*text/.*</device:regularExpression>
+        </device:headerPattern>
+    </device:device>
+    <device:device name="Samsung-SGH-V205">
+        <device:userAgentPattern>
+            <device:regularExpression>SEC-SGHV205/.*</device:regularExpression>
+        </device:userAgentPattern>
+        <device:userAgentPattern>
+            <device:regularExpression>SAMSUNG-SGH-V205/.*</device:regularExpression>
+        </device:userAgentPattern>
+    </device:device>
+
+    <device:device name="Nokia-6210">
+        <device:headerPattern name="Profile">
+            <device:regularExpression>http://nds\.nokia\.com/uaprof/N6210.*</device:regularExpression>
+        </device:headerPattern>
+        <device:userAgentPattern>
+            <device:regularExpression>Nokia 6210.*</device:regularExpression>
+        </device:userAgentPattern>
+        <device:userAgentPattern>
+            <device:regularExpression>YourWap Nokia 6210/.*</device:regularExpression>
+        </device:userAgentPattern>
+        <device:userAgentPattern>
+            <device:regularExpression>Nokia6210/.*</device:regularExpression>
+        </device:userAgentPattern>
+    </device:device>
+    
+    <device:device name="Blackberry-7250-4_1">
+        <device:headerPattern name="Profile">
+            <device:regularExpression>http://www\.blackberry\.net/go/mobile/profiles/uaprof/7250/4\.1\..*</device:regularExpression>
+        </device:headerPattern>
+        <device:userAgentPattern>
+            <device:regularExpression>BlackBerry7250/4\.1.*</device:regularExpression>
+        </device:userAgentPattern>
+        <device:headerPattern name="Profile">
+            <device:regularExpression>http://device\.sprintpcs\.com/RIM/BlackBerry7250/4.1.*</device:regularExpression>
+        </device:headerPattern>
+    </device:device>
+
+</device:identification>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 13-Nov-05	9896/1	geoff	VBM:2005101906 Avoid using JDOM in MCS at runtime: rewrite runtime XML device repository
+
+ ===========================================================================
+-->

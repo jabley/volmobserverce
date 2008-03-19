@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Servlet elements</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Servlet elements</h1>
+		<p>The XDIME servlet elements have the namespace prefix <span class="code">servlet:</span> and the namespace declaration is <span class="code">http://www.volantis.com/xmlns/marlin-servlet</span>.</p>
+		<table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime/servlet_include_jsp.html">servlet:includeJSP</a></th><td><p>Used to include JSP and XML files. If the file is not found, an error will be generated.</p></td></tr><tr><th class="firstcell"><a href="../xdime/servlet_include_servlet.html">servlet:includeServlet</a></th><td><p>Used to include XML and JSP servlets. If the servlet is not found, an error will be generated.</p></td></tr><tr><th class="firstcell"><a href="../xdime/servlet_param.html">servlet:param</a></th><td><p>Used for passing parameters to a server resource. They may be passed either by adding them to the query string in the <span class="code">path</span> attribute on the including element, or by using nested <span class="code">servlet:param</span> elements, or a combination of both. The parameters specified in nested elements take precedence over those specified in the <span class="code">path</span>. An advantage of nested parameters, is that you can specify their values as expressions, such as templating expressions.</p></td></tr></tbody></table>
+		
+			<p><span class="ri">Related topics</span><br/><a href="../wag/dci_er.html">XDIME content integration elements</a></p>
+		
+	</body></html>

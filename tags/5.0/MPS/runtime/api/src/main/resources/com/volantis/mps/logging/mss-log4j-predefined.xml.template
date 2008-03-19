@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ! ==========================================================================
+ | Default log4j configuration file for ICS.
+ ! ==========================================================================
+ -->
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="@mss.log.conversionpattern@"/>
+        </layout>
+    </appender>
+
+    <category name="com.volantis.mps.servlet">
+        <priority value="info"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+</log4j:configuration>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<xs:schema
+    targetNamespace="http://www.volantis.com/xmlns/2006/09/ticker/response"
+    xmlns="http://www.volantis.com/xmlns/2006/09/ticker/response"
+    xmlns:ticker="http://www.volantis.com/xmlns/2006/09/ticker"
+    xmlns:response="http://www.volantis.com/xmlns/2006/09/ticker/response"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xh2="http://www.w3.org/2002/06/xhtml2"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://www.w3.org/2002/06/xhtml2"
+        schemaLocation="xhtml2.xsd" />
+    <xs:import namespace="http://www.volantis.com/xmlns/2006/05/widget"
+        schemaLocation="widgets.xsd" />
+
+    <!-- ======================================================================
+        !         Element definitions
+        ! ==================================================================== -->
+    <xs:element name="feed-poller">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="add-item"/>
+                <xs:element name="remove-item">
+                    <xs:annotation>
+                        <xs:documentation> The item(s) to remove identified by the unique item id.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="id" type="ItemID"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="set-url" type="xs:anyURI">
+                    <xs:annotation>
+                        <xs:documentation> The set URL. </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="set-skip-times">
+                    <xs:annotation>
+                        <xs:documentation> The set skip times. </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="skip-time" minOccurs="0" maxOccurs="2"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="set-polling-interval" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation> The set polling interval in seconds. </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="add-item">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title">
+                    <xs:annotation>
+                        <xs:documentation>The title of the item. May contain xdime.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+		                <xs:group ref="xh2:TextContentSet"/>
+                    </xs:complexType>   
+                </xs:element>
+                <xs:element name="icon" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>The icon of the item. May contain xdime.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+		                <xs:group ref="xh2:TextContentSet"/>
+                    </xs:complexType>   
+                </xs:element>
+                <xs:element name="description">
+                    <xs:annotation>
+                        <xs:documentation>The description of the channel. May contain xdime.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+		                <xs:group ref="xh2:FlowContentSet"/>
+                    </xs:complexType>   
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="ItemID">
+                <xs:annotation>
+                    <xs:documentation>The ID of the item, encoded using a Base64 encoding with URL and Filename Safe Alphabet (see: RFC 3548, chapter 4).</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="channel" type="ChannelName">
+                <xs:annotation>
+                    <xs:documentation>The channel name.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="skip-time">
+        <xs:annotation>
+            <xs:documentation>The skip times</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="from" type="Time"/>
+            <xs:attribute name="to" type="Time"/>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+        !         Supporting definitions
+        ! ==================================================================== -->
+    <xs:simpleType name="ItemID">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="ChannelName">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="Time">
+        <xs:annotation>
+            <xs:documentation>The number of minutes passed midnight. For 10:01am this will be 601
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:positiveInteger">
+            <xs:minInclusive value="0"/>
+            <xs:maxExclusive value="1440"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

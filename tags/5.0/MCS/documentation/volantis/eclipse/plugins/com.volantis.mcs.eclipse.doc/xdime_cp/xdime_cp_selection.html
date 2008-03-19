@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <title>Selection elements and attributes</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Selection elements and attributes</h1>
+      
+      <p>You can use 'select' elements and attributes to select
+         content according to different conditions. Select attributes
+         are available on most elements, and are most useful with
+         small amounts of content. The select elements act as
+         containers to help you manage more complex conditional rules. </p>
+      
+      <p class="note">
+         <strong>Note</strong>: If you use selection attributes on elements
+         outside the <span class="code">sel:</span> namespace, it must be qualified
+         with the namespace prefix.</p>
+      
+         
+      <h2>Using selection attributes</h2>
+         
+      <p>The <span class="code">sel:expr</span> attribute contains a conditional
+            expression that determines whether or not an element is
+            selected for processing. If the result of the evaluate is
+            'true' (default), the element is selected, otherwise the
+            element and its children are skipped. So if you omit this
+            attribute from an element, it will always be selected. </p>
+         
+      <p>The details of possible selection expressions is outside
+            the scope of this topic. The examples use expressions from
+            the <em>Starter Set XPath Functions</em> in the DISelect
+            specification, to which you can refer for more
+            information.</p>
+         
+            
+      <p>In the example, the <span class="code">div</span> element and
+               its children will be displayed only if the function
+                  <span class="code">dc:cssmq-width</span> returns a value greater
+               than 200 pixels.</p>
+            
+      <pre class="code">&lt;body&gt;
+   &lt;div name="main" expr=dc:cssmq-width('px') &amp;gt; 200"&gt;
+      &lt;!--content here--&gt;
+   &lt;/div&gt;
+   ...
+&lt;/body&gt;</pre>
+         
+         
+      <p>The <span class="code">sel:selid</span> attribute can be used to
+            substitute an identifier in source content with another
+            rendered in the output. If you wish to maintain alternate
+            versions of elements to be used under different
+            circumstances, substitution can help avoid clashes of
+               <span class="code">id</span> attribute in both the source and the
+            output. You can also reliably link to targets using
+            consistent identifiers.</p>
+         
+      <p>During processing, the <span class="code">sel:selid</span> attribute is
+            replaced with an <span class="code">id</span> attribute with the same
+            value.</p>
+         
+      <pre class="code">
+&lt;sel:select&gt;
+   &lt;sel:when sel:expr="dc:cssmq-width('px') &amp;gt; 200"&gt;
+      &lt;object sel:selid="pic42" src="image1"/&gt;
+   &lt;/sel:when&gt;
+   &lt;sel:when sel:expr="dc:cssmq-color() &amp;gt; 4"&gt;
+      &lt;object sel:selid="pic42" src="image2"/&gt;
+   &lt;/sel:when&gt;
+   &lt;sel:otherwise&gt;
+      &lt;p sel:selid="pic42"&gt;Many people had to be evacuated.&lt;/p&gt;
+   &lt;/sel:otherwise&gt;
+&lt;/sel:select&gt;</pre>
+      
+      
+         
+      <h2>Select elements</h2>
+         
+      <p>The <span class="code">sel:select</span> is a container for one
+            or more <span class="code">sel:when</span> elements and an
+            optional <span class="code">sel:otherwise</span> element. The
+               <span class="code">expr</span> attributes on the
+            <span class="code">sel:select</span> and
+            <span class="code">sel:when</span> elements control the
+            conditions for processing.</p>
+         
+      <p>The <span class="code">sel:select</span> has an additional
+               <span class="code">precept</span> attribute. There are two possible
+            values; 'matchfirst' (default) determines that only the
+            first selected <span class="code">sel:when</span> element is
+            processed, while 'matchevery' means that all the selected
+               <span class="code">sel:when</span> elements are handled. The
+            content of the <span class="code">sel:otherwise</span> element is
+            only processed if no <span class="code">sel:when</span> elements
+            are selected.</p>
+         
+      <pre class="code">
+&lt;sel:select&gt;
+   &lt;sel:when sel:expr="dc:cssmq-width('px') &amp;gt; 200"&gt;
+      &lt;object sel:selid="pic42" src="image1"/&gt;
+   &lt;/sel:when&gt;
+   &lt;sel:when sel:expr="dc:cssmq-color() &amp;gt; 4"&gt;
+      &lt;object sel:selid="pic42" src="image2"/&gt;
+   &lt;/sel:when&gt;
+   &lt;sel:otherwise&gt;
+      &lt;p sel:selid="pic42"&gt;Many people had to be evacuated.&lt;/p&gt;
+   &lt;/sel:otherwise&gt;
+&lt;/sel:select&gt;</pre>
+         
+      <p>You can use the <span class="code">sel:if</span> element as an
+            alternative to use of the <span class="code">sel:expr</span> attribute
+            when a condition applies to several elements. It is also
+            useful in applying control to a fragment of a document
+            that does not have a single root element.</p>
+         
+      <p class="note">
+         <strong>Note</strong>:  There is no <span class="code">sel:else</span>
+            element. Use <span class="code">sel:select</span> element and its
+            children to handle alternative versions of your content.</p>
+         
+      <pre class="code">&lt;sel:if sel:expr="dc:cssmq-width('px') &amp;gt; 200"&gt;
+   &lt;sel:select&gt;
+      &lt;object src="image1"/&gt;
+      &lt;p&gt;Many people had to be evacuated.&lt;/p&gt;
+   &lt;/sel:select&gt;
+&lt;/sel:if&gt;</pre>
+      
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../xdime_cp/xdime_cp_about.html">About XDIME-CP</a>
+         <br/>
+         <a href="http://www.w3.org/TR/cselection#sec-starter-setdiselect_starterset.html" target="_new">Starter Set XPath Functions</a>
+      </p>
+      
+   
+   </body>
+</html>

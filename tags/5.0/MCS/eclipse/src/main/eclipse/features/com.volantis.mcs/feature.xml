@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<feature
+      id="com.volantis.mcs"
+      label="%featureName"
+      version="${version.plugins.mcs}"
+      provider-name="%providerName">
+
+   <install-handler/>
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license>
+      %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url="http://to.be.defined.by.update.site.provider"/>
+      <discovery label="%updateSiteName" url="http://to.be.defined.by.update.site.provider"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.platform" version="3.0.1" match="compatible"/>
+   </requires>
+
+   <plugin
+         id="com.volantis.mcs.common"
+         version="${version.plugins.mcs}"/>
+
+   <plugin
+         id="com.volantis.mcs.eclipse.doc"
+         version="${version.plugins.mcs}"/>
+
+    <plugin
+          id="com.volantis.mcs.eclipse.ab"
+          version="${version.plugins.mcs}"/>
+
+    <plugin
+          id="com.volantis.mcs.eclipse.builder"
+          version="${version.plugins.mcs}"/>
+
+   <plugin
+         id="com.volantis.mcs.eclipse.common"
+         version="${version.plugins.mcs}"/>
+
+   <plugin
+         id="com.volantis.mcs.eclipse.controls"
+         version="${version.plugins.mcs}"/>
+
+   <plugin
+         id="com.volantis.mcs.eclipse.validation"
+         version="${version.plugins.mcs}"/>
+
+   <plugin
+         id="com.volantis.synergetics"
+         version="${version.plugins.mcs}"/>
+
+   <plugin
+         id="com.volantis.xml.apis"
+         version="${version.plugins.xml}"/>
+
+   <plugin
+         id="com.volantis.xml.xerces"
+         version="${version.plugins.xml}"/>
+
+   <plugin
+         id="com.volantis.mcs.ibm.ucp"
+         version="${version.plugins.ucp}"/>
+
+    <plugin
+          id="org.jdom"
+          download-size="129"
+          install-size="135"
+          version="${version.plugins.jdom}"/>
+
+    <plugin
+          id="org.jibx"
+          version="${version.plugins.jibx}"/>
+
+    <plugin
+          id="javax.jdo"
+          version="${version.plugins.jdo}"/>
+
+   <plugin
+         id="com.sun.jai"
+         download-size="1629"
+         install-size="1748"
+         version="${version.plugins.jai}"/>
+
+   <plugin
+         id="com.sun.jsse"
+         download-size="466"
+         install-size="520"
+         version="${version.plugins.jsse}"/>
+
+   <plugin
+         id="javax.xml.qname"
+         download-size="3"
+         install-size="3"
+         version="${version.plugins.xml-qname}"/>
+
+   <plugin
+         id="javax.xml.rpc"
+         download-size="21"
+         install-size="28"
+         version="${version.plugins.xml-rpc}"/>
+
+   <plugin
+         id="javax.xml.soap"
+         download-size="16"
+         install-size="19"
+         version="${version.plugins.xml-soap}"/>
+
+   <plugin
+         id="org.apache.axis"
+         download-size="1117"
+         install-size="1208"
+         version="${version.plugins.axis}"/>
+
+   <plugin
+         id="org.apache.commons.discovery"
+         download-size="59"
+         install-size="71"
+         version="${version.plugins.commons-discovery}"/>
+
+   <plugin
+         id="org.apache.commons.logging"
+         download-size="25"
+         install-size="26"
+         version="${version.plugins.commons-logging}"/>
+
+   <plugin
+         id="org.apache.regexp"
+         download-size="28"
+         install-size="30"
+         version="${version.plugins.regexp}"/>
+
+   <plugin
+         id="org.jaxen"
+         download-size="163"
+         install-size="186"
+         version="${version.plugins.jaxen}"/>
+
+   <plugin
+         id="org.jakarta.log4j"
+         download-size="287"
+         install-size="319"
+         version="${version.plugins.log4j}"/>
+
+   <plugin
+         id="com.volantis.mcs.common.nl1"
+         version="${version.plugins.mcs}"
+         fragment="true"/>
+
+    <plugin
+          id="com.volantis.mcs.eclipse.ab.nl1"
+          version="${version.plugins.mcs}"
+          fragment="true"/>
+
+    <plugin
+          id="com.volantis.mcs.eclipse.builder.nl1"
+          version="${version.plugins.mcs}"
+          fragment="true"/>
+
+   <plugin
+         id="com.volantis.mcs.eclipse.common.nl1"
+         version="${version.plugins.mcs}"
+         fragment="true"/>
+
+   <plugin
+         id="com.volantis.mcs.eclipse.controls.nl1"
+         version="${version.plugins.mcs}"
+         fragment="true"/>
+
+   <plugin
+         id="com.volantis.mcs.eclipse.validation.nl1"
+         version="${version.plugins.mcs}"
+         fragment="true"/>
+
+   <plugin
+         id="com.volantis.synergetics.nl1"
+         version="${version.plugins.mcs}"
+         fragment="true"/>
+
+   <plugin
+         id="com.volantis.xml.apis.nl1"
+         version="${version.plugins.xml}"
+         fragment="true"/>
+
+   <plugin
+         id="com.volantis.xml.xerces.nl1"
+         version="${version.plugins.xml}"
+         fragment="true"/>
+
+   <plugin
+         id="com.sun.jai.nl1"
+         download-size="1"
+         install-size="3"
+         version="${version.plugins.jai}"
+         fragment="true"/>
+
+   <plugin
+         id="com.sun.jsse.nl1"
+         download-size="2"
+         install-size="3"
+         version="${version.plugins.jsse}"
+         fragment="true"/>
+
+   <plugin
+         id="javax.xml.qname.nl1"
+         download-size="1"
+         install-size="3"
+         version="${version.plugins.xml-qname}"
+         fragment="true"/>
+
+   <plugin
+         id="javax.xml.rpc.nl1"
+         download-size="1"
+         install-size="3"
+         version="${version.plugins.xml-rpc}"
+         fragment="true"/>
+
+   <plugin
+         id="javax.xml.soap.nl1"
+         download-size="1"
+         install-size="3"
+         version="${version.plugins.xml-soap}"
+         fragment="true"/>
+
+   <plugin
+         id="org.apache.axis.nl1"
+         download-size="1"
+         install-size="3"
+         version="${version.plugins.axis}"
+         fragment="true"/>
+
+   <plugin
+         id="org.apache.commons.discovery.nl1"
+         download-size="2"
+         install-size="3"
+         version="${version.plugins.commons-discovery}"
+         fragment="true"/>
+
+   <plugin
+         id="org.apache.commons.logging.nl1"
+         download-size="1"
+         install-size="3"
+         version="${version.plugins.commons-logging}"
+         fragment="true"/>
+
+   <plugin
+         id="org.apache.regexp.nl1"
+         download-size="1"
+         install-size="3"
+         version="${version.plugins.regexp}"
+         fragment="true"/>
+
+   <plugin
+         id="org.jakarta.log4j.nl1"
+         download-size="1"
+         install-size="3"
+         version="${version.plugins.log4j}"
+         fragment="true"/>
+
+   <plugin
+         id="org.jaxen.nl1"
+         download-size="1"
+         install-size="3"
+         version="${version.plugins.jaxen}"
+         fragment="true"/>
+
+    <plugin
+          id="org.jdom.nl1"
+          download-size="2"
+          install-size="3"
+          version="${version.plugins.jdom}"
+          fragment="true"/>
+
+    <plugin
+          id="org.jibx.nl1"
+          version="${version.plugins.jibx}"
+          fragment="true"/>
+
+    <plugin
+          id="javax.jdo.nl1"
+          version="${version.plugins.jdo}"
+          fragment="true"/>
+
+</feature>

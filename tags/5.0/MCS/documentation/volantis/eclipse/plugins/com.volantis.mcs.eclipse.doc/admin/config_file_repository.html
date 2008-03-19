@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>file-repository</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>file-repository</h1>
+      <h2>Purpose</h2>
+				
+      <p>The file location of the custom device policies.</p>
+		
+      <h2>Contained by</h2>
+      <p>
+         <a href="../admin/config_standard.html">standard</a>
+      </p>
+      <h2>Attribute</h2>
+      <table cellspacing="0" summary="The table contains the attributes of the element or elements. It lists the name, the purpose or use, the XML schema datatype, the default value if there is one, value options if they are defined, and indicates if the attribute is required, optional, deprecated or obsolete.">
+         <tr>
+            <th class="firsthdr" scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Type</th>
+            <th scope="col">Default</th>
+            <th scope="col">Options</th>
+            <th scope="col">Use</th>
+         </tr>
+         <tr>
+            <th class="firstcell" scope="row">
+               <span class="requiredattr">location</span>
+            </th>
+            <td>The filename of the repository. The file extension must be <span class="code">.mdpr</span>
+            </td>
+            <td>xs:string</td>
+            <td>none</td>
+            <td/>
+            <td>required</td>
+         </tr>
+      </table>
+      <h2>Example</h2>
+			
+      <pre class="code">&lt;devices preload="false"&gt;
+   &lt;standard&gt;
+      &lt;jdbc-repository project="NamedProject"/&gt;
+   &lt;/standard&gt;
+   &lt;custom&gt;
+      &lt;file-repository location="/custom/devices.mdpr"/&gt;
+   &lt;/custom&gt;
+&lt;/devices&gt;</pre>
+		
+			
+      <p>
+         <span class="ri">Related topic</span>
+         <br/>
+         <a href="../admin/mcs_config_er.html">MCS configuration elements</a>
+      </p>
+		
+   </body>
+</html>

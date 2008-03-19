@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <title>Changes to the API</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Changes to the API</h1>
+      
+      <p>As a consequence of the changes that relate to device
+         categorization for to MCS policies, there have been extensive
+         modifications to the public API, which are summarized below.
+         Refer to the JavaDocs for additional information.</p>
+      
+         
+      <h2>New packages</h2>
+         
+      <p> com.volantis.mcs.project </p>
+         
+      <ul>
+            
+         <li> com.volantis.mcs.project.BatchOperation </li>
+            
+         <li> com.volantis.mcs.project.ProjectFactory </li>
+            
+         <li> com.volantis.mcs.project.Project </li>
+            
+         <li> com.volantis.mcs.project.ProjectConfiguration </li>
+            
+         <li> com.volantis.mcs.project.TransactionLevel </li>
+            
+         <li> com.volantis.mcs.project.PolicyManager </li>
+         
+      </ul>
+         
+      <p> com.volantis.mcs.policies </p>
+         
+      <ul>
+            
+         <li> com.volantis.mcs.policies.VariablePolicyType </li>
+            
+         <li> com.volantis.mcs.policies.SupportingPolicyType </li>
+            
+         <li> com.volantis.mcs.policies.CompositePolicyType </li>
+            
+         <li> com.volantis.mcs.policies.PolicyBuilder </li>
+            
+         <li> com.volantis.mcs.policies.ButtonImagePolicyBuilder </li>
+            
+         <li> com.volantis.mcs.policies.BaseURLPolicy </li>
+            
+         <li> com.volantis.mcs.policies.PolicyType </li>
+            
+         <li> com.volantis.mcs.policies.BaseURLPolicyBuilder </li>
+            
+         <li> com.volantis.mcs.policies.PolicyFactory </li>
+            
+         <li> com.volantis.mcs.policies.variants.VariantBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.image.ImageConversionMode </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.image.ImageEncoding </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.image.ImageMetaData </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.image.GenericImageSelectionBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.image.ImageRendering </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.image.GenericImageSelection </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.image.ImageMetaDataBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.video.VideoMetaDataBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.video.VideoMetaData </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.video.VideoEncoding </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.script.ScriptEncoding </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.script.ScriptMetaData </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.script.ScriptMetaDataBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.chart.AxisMetaDataBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.chart.ChartMetaDataBuilder </li>
+            
+         <li> com.volantis.mcs.policies.variants.chart.AxisMetaData </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.chart.ChartMetaData </li>
+            
+         <li> com.volantis.mcs.policies.variants.chart.ChartType </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.audio.AudioMetaData </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.audio.AudioMetaDataBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.audio.AudioEncoding </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.SelectionType </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.EncodingSelectionBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.DeviceReference </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.TargetedSelection </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.DefaultSelectionBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.TargetedSelectionBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.EncodingSelection </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.SelectionBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.DefaultSelection </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.CategoryReference </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.selection.Selection </li>
+            
+         <li> com.volantis.mcs.policies.variants.VariantType </li>
+            
+         <li> com.volantis.mcs.policies.variants.Variant </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.layout.LayoutContent </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.layout.LayoutContentBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.content.ContentType </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.content.EmbeddedContent </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.content.URLContentBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.content.BaseURLRelative </li>
+            
+         <li> com.volantis.mcs.policies.variants.content.URLContent </li>
+            
+         <li> com.volantis.mcs.policies.variants.content.Content </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.content.BaseURLRelativeBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.content.ContentBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.content.AutoURLSequenceBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.content.BaseLocation </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.content.EmbeddedContentBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.content.AutoURLSequence </li>
+            
+         <li> com.volantis.mcs.policies.variants.text.TextMetaData </li>
+            
+         <li> com.volantis.mcs.policies.variants.text.TextEncoding </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.text.TextMetaDataBuilder </li>
+            
+         <li> com.volantis.mcs.policies.variants.theme.ThemeContent </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.theme.ThemeContentBuilder </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.metadata.PixelDimensionsMetaDataBuilder </li>
+            
+         <li> com.volantis.mcs.policies.variants.metadata.MetaData </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.metadata.MetaDataType </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.metadata.EncodingCollection </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.metadata.PixelDimensionsMetaData </li>
+            
+         <li>
+               com.volantis.mcs.policies.variants.metadata.MetaDataBuilder </li>
+            
+         <li> com.volantis.mcs.policies.variants.metadata.Encoding </li>
+            
+         <li> com.volantis.mcs.policies.CacheControl </li>
+            
+         <li> com.volantis.mcs.policies.VariablePolicyBuilder </li>
+            
+         <li> com.volantis.mcs.policies.CacheControlBuilder </li>
+            
+         <li> com.volantis.mcs.policies.PolicyReference </li>
+            
+         <li> com.volantis.mcs.policies.ButtonImagePolicy </li>
+            
+         <li> com.volantis.mcs.policies.Policy </li>
+            
+         <li> com.volantis.mcs.policies.RolloverImagePolicy </li>
+            
+         <li> com.volantis.mcs.policies.RolloverImagePolicyBuilder </li>
+            
+         <li> com.volantis.mcs.policies.VariablePolicy </li>
+         
+      </ul>
+      
+      
+         
+      <h2>New classes / interfaces</h2>
+         
+      <ul>
+            
+         <li> com.volantis.mcs.context.BestVariant </li>
+            
+         <li> com.volantis.mcs.repository.xml.XMLRepositoryFactory </li>
+            
+         <li> com.volantis.mcs.repository.LocalRepository </li>
+            
+         <li>
+               com.volantis.mcs.repository.jdbc.MCSDriverConfiguration </li>
+            
+         <li>
+               com.volantis.mcs.repository.jdbc.MCSConnectionPoolConfiguration </li>
+            
+         <li>
+               com.volantis.mcs.repository.jdbc.JDBCDriverConfiguration </li>
+            
+         <li> com.volantis.mcs.repository.jdbc.JDBCDriverVendor </li>
+            
+         <li>
+               com.volantis.mcs.repository.jdbc.JDBCRepositoryFactory </li>
+            
+         <li>
+               com.volantis.mcs.repository.jdbc.JDBCRepositoryConfiguration
+            </li>
+         
+      </ul>
+      
+      
+         
+      <h2>Deprecated classes </h2>
+         
+      <ul>
+            
+         <li> com.volantis.mcs.application.RepositoryCacheType </li>
+            
+         <li> com.volantis.mcs.assets.DeviceAudioAssetIdentity </li>
+            
+         <li> com.volantis.mcs.assets.DeviceImageAssetIdentity </li>
+            
+         <li> com.volantis.mcs.assets.LinkAssetIdentity </li>
+            
+         <li> com.volantis.mcs.assets.ConvertibleImageAssetIdentity </li>
+            
+         <li> com.volantis.mcs.assets.ScriptAssetIdentity </li>
+            
+         <li> com.volantis.mcs.assets.AudioAssetIdentity </li>
+            
+         <li> com.volantis.mcs.assets.ChartAssetIdentity </li>
+            
+         <li> com.volantis.mcs.assets.DynamicVisualAssetIdentity </li>
+            
+         <li> com.volantis.mcs.assets.GenericImageAssetIdentity </li>
+            
+         <li> com.volantis.mcs.assets.TextAssetIdentity </li>
+            
+         <li> com.volantis.mcs.assets.AssetGroupIdentity </li>
+            
+         <li>
+               com.volantis.mcs.components.ButtonImageComponentIdentity </li>
+            
+         <li>
+               com.volantis.mcs.components.RolloverImageComponentIdentity </li>
+            
+         <li>
+               com.volantis.mcs.components.DynamicVisualComponentIdentity </li>
+            
+         <li> com.volantis.mcs.components.TextComponentIdentity </li>
+            
+         <li> com.volantis.mcs.components.AudioComponentIdentity </li>
+            
+         <li> com.volantis.mcs.components.ChartComponentIdentity </li>
+            
+         <li> com.volantis.mcs.components.ScriptComponentIdentity </li>
+            
+         <li> com.volantis.mcs.components.LinkComponentIdentity </li>
+            
+         <li> com.volantis.mcs.components.ImageComponentIdentity </li>
+            
+         <li>
+               com.volantis.mcs.accessors.xml.jibx.ComponentContainer </li>
+            
+         <li> com.volantis.mcs.assets.ConvertibleImageAsset </li>
+            
+         <li> com.volantis.mcs.assets.TextAsset </li>
+            
+         <li> com.volantis.mcs.assets.GenericImageAsset </li>
+            
+         <li> com.volantis.mcs.assets.DeviceAudioAsset </li>
+            
+         <li> com.volantis.mcs.assets.ScriptAsset </li>
+            
+         <li> com.volantis.mcs.assets.ChartAsset </li>
+            
+         <li> com.volantis.mcs.assets.AudioAsset </li>
+            
+         <li> com.volantis.mcs.assets.DynamicVisualAsset </li>
+            
+         <li> com.volantis.mcs.assets.DeviceImageAsset </li>
+            
+         <li> com.volantis.mcs.assets.AssetGroup </li>
+            
+         <li> com.volantis.mcs.assets.SubstantiveAsset </li>
+            
+         <li> com.volantis.mcs.assets.LinkAsset </li>
+            
+         <li> com.volantis.mcs.assets.ImageAsset </li>
+            
+         <li> com.volantis.mcs.assets.Asset </li>
+            
+         <li> com.volantis.mcs.repository.RepositoryManager </li>
+            
+         <li> com.volantis.mcs.repository.ScriptRepositoryManager </li>
+            
+         <li> com.volantis.mcs.repository.ChartRepositoryManager </li>
+            
+         <li>
+               com.volantis.mcs.repository.AssetGroupRepositoryManager </li>
+            
+         <li> com.volantis.mcs.repository.TextRepositoryManager </li>
+            
+         <li> com.volantis.mcs.repository.LayoutRepositoryManager </li>
+            
+         <li> com.volantis.mcs.repository.AudioRepositoryManager </li>
+            
+         <li> com.volantis.mcs.repository.LinkRepositoryManager </li>
+            
+         <li> com.volantis.mcs.repository.ImageRepositoryManager </li>
+            
+         <li>
+               com.volantis.mcs.repository.DynamicVisualRepositoryManager </li>
+            
+         <li> com.volantis.mcs.repository.xml.XMLRepository </li>
+            
+         <li> com.volantis.mcs.repository.jdbc.JDBCRepository </li>
+            
+         <li> com.volantis.mcs.components.TextComponent </li>
+            
+         <li> com.volantis.mcs.components.AudioComponent </li>
+            
+         <li> com.volantis.mcs.components.LinkComponent </li>
+            
+         <li> com.volantis.mcs.components.ScriptComponent </li>
+            
+         <li> com.volantis.mcs.components.ButtonImageComponent </li>
+            
+         <li> com.volantis.mcs.components.ImageComponent </li>
+            
+         <li> com.volantis.mcs.components.DynamicVisualComponent </li>
+            
+         <li> com.volantis.mcs.components.RolloverImageComponent </li>
+            
+         <li> com.volantis.mcs.components.ChartComponent </li>
+            
+         <li> com.volantis.mcs.components.AbstractComponent </li>
+            
+         <li> com.volantis.mcs.objects.RepositoryObjectIdentity </li>
+            
+         <li>
+               com.volantis.mcs.objects.RepositoryObjectDeviceIdentity </li>
+            
+         <li>
+               com.volantis.mcs.objects.AbstractCacheableRepositoryObject </li>
+            
+         <li> com.volantis.mcs.objects.AbstractRepositoryObject </li>
+            
+         <li> com.volantis.mcs.objects.CacheableRepositoryObject </li>
+            
+         <li>
+               com.volantis.mcs.objects.AbstractRepositoryObjectIdentity </li>
+            
+         <li> com.volantis.mcs.objects.RepositoryObject </li>
+         
+      </ul>
+      
+      
+         
+      <h2>Changed classes</h2>
+         
+      <p> com.volantis.mcs.context.MarinerRequestContext </p>
+         
+      <p> New methods </p>
+         
+      <ul>
+            
+         <li> retrieveVariantURLAsString(PolicyReference, Encoding) </li>
+            
+         <li> selectBestVariant(PolicyReference, Encoding) </li>
+         
+      </ul>
+         
+      <p> Deprecated Methods </p>
+         
+      <ul>
+            
+         <li> getAudioRepositoryManager() </li>
+            
+         <li> getChartRepositoryManager() </li>
+            
+         <li> getDynamicVisualRepositoryManager() </li>
+            
+         <li> getImageRepositoryManager() </li>
+            
+         <li> getTextRepositoryManager() </li>
+            
+         <li> retrieveAssetURLAsString(Asset) </li>
+            
+         <li> retrieveAudioAssetURLAsString(String,int) </li>
+            
+         <li> retrieveBestAudioAsset(...) </li>
+            
+         <li> retrieveBestChartAsset(...) </li>
+            
+         <li> retrieveDynamicVisualAssetURLAsString(String) </li>
+            
+         <li> retrieveBestDynamicVisualAsset(...) </li>
+            
+         <li> retrieveImageAssetURLAsString(String) </li>
+            
+         <li> retrieveBestImageAsset(...) </li>
+            
+         <li> retrieveBestLinkAsset(...) </li>
+            
+         <li> retrieveBestScriptAsset(...) </li>
+            
+         <li> retrieveBestTextAsset(...) </li>
+            
+         <li> getBrandedIdentity(RepositoryObjectIdentity) </li>
+         
+      </ul>
+         
+      <p> com.volantis.mcs.application.MarinerApplication </p>
+         
+      <p> New methods </p>
+         
+      <ul>
+            
+         <li> flushLocalPolicyCache(PolicyType) </li>
+            
+         <li> flushLocalPolicyCaches() </li>
+         
+      </ul>
+         
+      <p> Deprecated Methods </p>
+         
+      <ul>
+            
+         <li> getLocalRepository() </li>
+            
+         <li> flushRemotePolicyCache(RepositoryCacheType, String) </li>
+            
+         <li> flushRemotePolicyCache(RepositoryCacheType) </li>
+            
+         <li> flushAllRemotePolicyCaches(String) </li>
+            
+         <li> flushAllRemotePolicyCaches() </li>
+            
+         <li> flushThemeCache() </li>
+            
+         <li> flushLayoutCache() </li>
+            
+         <li> flushComponentAssetCache() </li>
+         
+      </ul>
+      
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../release/mcs351_release.html">MCS 3.5.1 release notes</a>
+      </p>
+      
+   
+   </body>
+</html>

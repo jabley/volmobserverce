@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:dismiss</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:dismiss</h1><h2>Purpose</h2>
+         <p>Provides a method for dismissing a widget.</p>
+         <p>Multiple instances may be present within a <span class="code">widget:date-picker</span> or
+               <span class="code">widget:popup</span> element; one for each dismiss action.</p>
+         <div class="note"><strong>Note</strong>: If a <span class="code">widget:dismiss</span> element is not provided then it is
+            assumed that the widget will be hidden by some external trigger.</div>
+      <h2>Contained by</h2><p><a href="../xdime_cp/widget_date_picker.html">widget:date-picker</a>, <a href="../xdime_cp/widget_popup.html">widget:popup</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">type</th><td>Defines a label for a dismiss button</td><td>xs:string</td><td> </td><td> </td><td>optional </td></tr></table><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+         <pre class="code">
+&lt;widget:popup&gt;
+   &lt;div&gt;Hello world!&lt;/div&gt;
+   &lt;widget:dismiss&gt;close&lt;/widget:dismiss&gt;
+&lt;/widget:popup&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/widget_er.html">Widget elements</a></p>
+      </body></html>

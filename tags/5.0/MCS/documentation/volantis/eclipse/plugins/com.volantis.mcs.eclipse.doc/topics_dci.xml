@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Dynamic content integration">
+	
+	<topic href="dci/dci_drivers.html" label="DCI services and drivers">
+		<topic href="dci/dci_web_driver.html" label="Defining HTTP resources">
+			<topic href="dci/dci_webd_parameter.html" label="Request parameters, headers and cookies"/>
+			<topic href="dci/dci_webd_content.html" label="Handling HTTP content"/>
+			<topic href="dci/dci_http_cache.html" label="HTTP caching"/>
+		</topic>
+		<topic href="dci/dci_sql_driver.html" label="Using databases">
+			<topic href="dci/dci_sql_result.html" label="Query and modification results"/>
+			<topic href="dci/dci_sql_transaction.html" label="Using transactions"/>
+			<topic href="dci/dci_mdc.html" label=" Getting XML from a database"/>
+		</topic>
+		<topic href="dci/dci_web_serv_driver.html" label="Integrating web services"/>
+	</topic>
+	<topic href="dci/dci_transform.html" label="Using transforms">
+		<topic href="dci/dci_transform_params.html" label="Passing parameters in transforms"/>
+	</topic>
+	<topic href="dci/dci_template_about.html" label="About templates">
+		<topic href="dci/dci_template_define.html" label="Defining templates"/>
+		<topic href="dci/dci_template_apply.html" label="Applying templates"/>
+		<topic href="dci/dci_template_param.html" label="Using template parameters"/>
+	</topic>
+	<topic href="dci/dci_caching.html" label="Pipeline caching"/>
+	<topic href="dci/dci_convert.html" label="Converting content"/>
+	<topic href="dci/dci_pipeline_error.html" label="Handling pipeline errors"/>
+   <topic href="wag/dci_er.html" label="Content integration elements"/>   
+</toc>

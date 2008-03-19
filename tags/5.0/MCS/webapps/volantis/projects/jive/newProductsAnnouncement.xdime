@@ -1,0 +1,73 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<html xmlns="http://www.w3.org/2002/06/xhtml2" xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+    xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+    xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+    xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+    xmlns:sel="http://www.w3.org/2004/06/diselect">
+    <head>
+        <title>Latest Products</title>
+        <!--
+            Links to the layout and theme for this page
+        -->
+        <link rel="mcs:layout" href="/jivearticle.mlyt"/>
+        <link rel="mcs:theme" href="/jive.mthm"/>
+    </head>
+    <!-- 
+        Page body
+    -->
+    <body>
+        <!-- 
+            The common material for the page header
+        -->
+        <urid:fetch href="jiveheader.xdinc"/>
+        <!-- 
+            Page Title 
+        -->
+        <h2 id="title">Latest Products</h2>
+        <!-- 
+            The article 
+        -->
+        <div id="article">
+            <div class="company_item">
+                <h3 class="company_header">Soccer Footwear</h3>
+                <p> Jive is proud to announce the release of 4 new lines of soccer footwear. The
+                    Jive Soccer product line is famous for providing customers with the latest,
+                    cutting-edge styles whilst maintaining a level of comfort unmatched by other
+                    brands. We are confident that these new ranges meet and exceed the standards
+                    Jive has already set in the industry. </p>
+                <h4>
+                    <a href="#"> Jive X552 </a>
+                </h4>
+                <h4>
+                    <a href="#">Jive Panther </a>
+                </h4>
+                <h4>
+                    <a href="#">Jive Jukes </a>
+                </h4>
+                <h4>
+                    <a href="#">Jive 2X </a>
+                </h4>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="blankspace" id="blankspace">
+            <p> </p>
+        </div>
+    </body>
+</html>

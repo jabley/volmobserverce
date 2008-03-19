@@ -1,0 +1,147 @@
+set NodeName [lindex $argv 0]
+set ServerName [lindex $argv 1]
+
+puts "NodeName : $NodeName"
+puts "ServerName : $ServerName"
+
+#set NodeName @NodeName@
+#set ServerName @ServerName@
+set LibraryName {MPSlib}
+
+set FlagErr false
+set AllFlagErr false
+
+
+#--------------------------------------------------------------
+# Proc to remove Library References in a Classloader
+#--------------------------------------------------------------
+proc removeLibRef {ClassLoader LibraryRef LibraryName} {
+	global AdminConfig
+	set LocalFlagErr false
+    set LibRef ""
+
+
+	# If there is more than one LibRefId, they are not returned in a list, but in a string. We need to split it
+	set TmpList [split [string trim [string trim [string trim $LibraryRef "{"] "}"] ] ")"]
+	foreach Tmp $TmpList {
+		set Tmp [string trim $Tmp " "]
+		append Tmp ")"
+		if { [string length $Tmp] > 1} {
+			lappend LibRef $Tmp
+		}
+	}
+	set FlagExist "False"
+	foreach TmpLibRef $LibRef {
+		if {[catch {$AdminConfig showAttribute $TmpLibRef libraryName} TmpLibRefName]} {
+			puts stdout $TmpLibRefName
+			puts stdout "ERROR: In '/Classloader:/'."
+			puts stdout "This is not a valid Library Reference."
+			puts stdout $TmpLibRef
+			set LocalFlagErr true
+		} else {
+			if {[string compare $TmpLibRefName $LibraryName] == 0} {
+				#### Actual remove is done here ##########
+				$AdminConfig remove $TmpLibRef
+				set FlagExist "True"
+			}
+		}
+	}
+	if {$FlagExist == "False"} {
+		puts stdout "'LibraryRef:$LibraryName' does not exist, no Action taken"
+	} else {
+		#### Check for success ###################
+		set LibraryRef [$AdminConfig showAttribute $ClassLoader libraries]
+		set TmpList [split [string trim [string trim [string trim $LibraryRef "{"] "}"] ] ")"]
+		foreach Tmp $TmpList {
+			set Tmp [string trim $Tmp " "]
+			append Tmp ")"
+			if { [string length $Tmp] > 1} {
+				lappend LibRef $Tmp
+			}
+		}
+		set FlagExist "False"
+		foreach TmpLibRef $LibRef {
+			set ReturnVar [catch {$AdminConfig showAttribute $TmpLibRef libraryName} TmpLibRefName]
+			if {[string compare $TmpLibRefName $LibraryName] == 0} {
+				set LibraryRef $TmpLibRef
+				set FlagExist "True"
+				break;
+			}
+		}
+		if {$FlagExist == "False"} {
+			puts stdout "LibraryRef '$LibraryName' successfully removed."
+		} else {
+			puts stdout "ERROR: 'LibraryRef:$LibraryName' could not be removed."
+			set LocalFlagErr true
+		}
+	}
+
+	return $LocalFlagErr
+}
+
+
+
+
+#--------------------------------------------------------------
+# Main
+#--------------------------------------------------------------
+
+##### Remove ApplicationServer Classloader LibraryReference
+set ClassLoaderId [$AdminConfig getid /Node:$NodeName/Server:$ServerName/ApplicationServer:/Classloader:/]
+if {$ClassLoaderId == ""} {
+	puts stdout "/Node:$NodeName/Server:$ServerName/ApplicationServer:/Classloader:/ does not exist, no Action taken"
+} else {
+	set LibraryRef [$AdminConfig showAttribute $ClassLoaderId libraries]
+	if {$LibraryRef == ""} {
+		puts stdout "/Node:$NodeName/Server:$ServerName/ApplicationServer:/Classloader:/LibraryRef:/ does not exist."
+	} else {
+		puts stdout "Start to remove /Node:$NodeName/Server:$ServerName/ApplicationServer:/CLassloader:/LibraryRef:$LibraryName/"
+		if {[removeLibRef $ClassLoaderId $LibraryRef $LibraryName] == "true"} {
+			set FlagErr true
+		}
+	}
+}
+
+
+
+
+
+##### Remove Library
+set LibraryId [$AdminConfig getid /Node:$NodeName/Library:$LibraryName/]
+if {$LibraryId == ""} {
+    puts stdout "/Node:$NodeName/Library:$LibraryName/ does not exist, no Action taken"
+} else {
+    foreach  TmpLibraryId $LibraryId {
+        $AdminConfig remove $TmpLibraryId
+    }
+	set LibraryId [$AdminConfig getid /Node:$NodeName/Library:$LibraryName/]
+	if {$LibraryId == ""} {
+		puts stdout "Library: '$LibraryName' successfully removed."
+	} else {
+		puts stdout "ERROR: /Node:$NodeName/Library:$LibraryName/ could not be removed."
+		set FlagErr true
+	}
+}
+
+##### Closing
+if {$FlagErr == "true"} {
+	puts stdout "ERROR: Shared Library and Shared Library Reference(s) for '$LibraryName' could not be removed."
+	puts stdout "Check the messages in this target for more details"
+	puts stdout " "
+    exit 1
+} else {
+    puts stdout "Shared Libraries and Shared Library Reference(s) for '$LibraryName' successfully removed or just not there."
+    puts stdout " "
+    $AdminConfig save
+}
+
+#
+# ===========================================================================
+# Change History
+# ===========================================================================
+# $Log$
+
+# 20-Dec-04	270/1	pcameron	VBM:2004122004 New packagers for wemp
+
+# ===========================================================================
+#

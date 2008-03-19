@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <title>Styling menus</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Styling menus</h1>
+        
+        
+            
+      <p>You use the Theme editor to
+                define menu properties for menu and their contained
+                menuitems, and the separators between groups of items.
+                The properties in the Menu category apply to the
+                <span class="code">menu</span> elements associated with the selectors of the highlighted rule. You can also apply
+                general properties such as fonts, colors and borders
+                to text in labels and menuitems.</p>
+            
+      
+<p>You can choose between rendering a menu of image or text items, or use both. 
+  If you use both, you can define their order, and specify which parts will be 
+  active.</p>
+            
+      <p>Both menus and menuitems can have a vertical or
+                horizontal orientation. However, you may find that
+                some protocols do not support all combinations of menu
+                and menuitem orientation. You can also define the properties for separators
+                between groups of items. These can be literal
+                characters, MCS image components or spaces, and you
+                can also define values for repetition and position.</p>
+            
+      <p>You can use the <span class="uicontrol">Menu Item Iterator
+                Allocation</span> property to bind menuitems to
+                a containing spatial iterator. It specifies how the menuitems will be
+                allocated when the <span class="code">menu</span> element
+                references the stem name of a pane in the iterator. If
+                you set the property to 'automatic', MCS writes a
+                menuitem to a separate instance of the pane; if you
+                set it to 'none' (default), and you haven't specified at least one dimension for the pane, the menuitem will be output to the
+                first instance of the pane.</p>
+            
+      <p> These properties and their descriptions are detailed
+                in <em>Menu properties</em>.</p>
+       
+        
+            
+      <h2>Numbering menuitems</h2>
+            
+      <p>You can define automatically-numbered menus with
+                associated shortcut keys for Openwave browsers. In the
+                Layout editor you can specify the fragment
+                <span class="uicontrol">StyleClass</span> attribute used to
+                render the link text. In the Theme editor Menu
+                category you can specify a 'numeric-shortcut' value in
+                the <span class="uicontrol">Link Style</span> property.</p>
+            
+      <p> MCS will render the menu or link with numeric
+                identifiers for each menuitem. These identifiers
+                provide a shortcut key. If the device does not support
+                shortcuts then the menu or link will be rendered using
+                the default value.</p>
+        
+        
+            
+      <h2>Access keys</h2>
+            
+      <p>In the <span class="uicontrol">Content</span> theme property you can specify values for menu accesskeys. The property value is a text string to be generated for an <span class="code">:mcs-shortcut</span> pseudo-element. This element is like a CSS <span class="code">:after</span> pseudo-element. If the value is anything other than 'inherit' or 'normal' it must be contained in quotes.</p>
+            
+        
+        
+            
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../wag/wag_xdime_menu.html">Menus</a>
+         <br/>
+         <a href="../themes/theme_style_edit.html">Setting style properties</a>
+         <br/>
+         <a href="../themes/theme_menu_prop.html">Menu properties</a>
+         <br/>
+         <a href="../themes/theme_text_prop.html">Text properties</a>
+      </p>
+        
+    
+   </body>
+</html>

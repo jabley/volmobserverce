@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Zoe Jones (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="core-module-internal.xsd"/>
+    <xs:include schemaLocation="common-layout-theme-types-internal.xsd"/>
+    <xs:complexType name="EmptyType" mixed="false"/>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Simple Types
+     ! ************************************************************************
+     !-->
+    <xs:simpleType name="ElementName">
+        <xs:annotation>
+            <xs:documentation>The type for element names.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:NCName"/>
+    </xs:simpleType>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Theme Elements
+     ! ************************************************************************
+     !-->
+    <!-- REMOVE -->
+<!--    <xs:element name="deviceTheme">-->
+<!--        <xs:annotation>-->
+<!--            <xs:documentation>The element which relates to DeviceTheme.</xs:documentation>-->
+<!--        </xs:annotation>-->
+<!--        <xs:complexType mixed="false">-->
+<!--            <xs:sequence>-->
+<!--                <xs:element ref="rule" minOccurs="0" maxOccurs="unbounded"/>-->
+<!--            </xs:sequence>-->
+<!--            <xs:attribute name="deviceName" type="DeviceNameType" use="required"/>-->
+<!--            <xs:attribute name="externalStyleSheet" type="ExternalURIType" use="optional"/>-->
+<!--            <xs:attribute name="importParentTheme" type="xs:boolean" use="optional"/>-->
+<!--        </xs:complexType>-->
+<!--    </xs:element>-->
+    <xs:group name="Subject">
+        <xs:choice>
+            <xs:element ref="selector-sequence"/>
+            <xs:element ref="combined-selector"/>
+            <xs:element ref="invalid-selector"/>
+        </xs:choice>
+    </xs:group>
+    <xs:element name="rule">
+        <xs:complexType mixed="false">
+            <xs:sequence>
+                <xs:group ref="Subject" maxOccurs="unbounded"/>
+                <xs:element name="properties">
+                    <xs:complexType>
+                        <xs:choice minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="property">
+                                <xs:complexType>
+                                    <xs:choice>
+                                        <xs:group ref="StyleValues"/>
+                                    </xs:choice>
+                                    <xs:attribute name="name" use="required" type="xs:string"/>
+                                    <xs:attribute name="priority" use="optional">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="normal"/>
+                                                <xs:enumeration value="important"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="UniversalNamespacePrefix">
+        <xs:annotation>
+            <xs:documentation>Matches all namespaces.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NamespacePrefix">
+        <xs:union memberTypes="UniversalNamespacePrefix xs:NCName"/>
+    </xs:simpleType>
+    <xs:simpleType name="CombinatorType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="descendant"/>
+            <xs:enumeration value="child"/>
+            <xs:enumeration value="direct-adjacent"/>
+            <xs:enumeration value="indirect-adjacent"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="selector-sequence">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="type">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="ElementName">
+                                <!--
+                                 ! Add this as an attribute as otherwise the schema would need to
+                                 ! be changed in an incompatible way and require additional migration.
+                                 ! This must be fixed the next time the schema is changed in such a
+                                 ! way as to require remigration.
+                                 !-->
+                                <xs:attribute name="namespace" type="NamespacePrefix" use="optional"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="universal">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="namespace" type="NamespacePrefix" minOccurs="0"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="class" type="ThemeClassNameType"/>
+                <xs:element name="id" type="ThemeIDType"/>
+                <xs:element name="attribute">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="namespace" type="xs:NCName" minOccurs="0"/>
+                            <xs:element name="local-name" type="xs:NCName"/>
+                            <xs:choice>
+                                <xs:element name="exists" type="EmptyType"/>
+                                <xs:element name="equals" type="xs:string"/>
+                                <xs:element name="contains" type="xs:string"/>
+                                <xs:element name="starts-with" type="xs:string"/>
+                                <xs:element name="ends-with" type="xs:string"/>
+                                <xs:element name="contains-word" type="xs:string"/>
+                                <xs:element name="language-match" type="xs:string"/>
+                            </xs:choice>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="first-child" type="EmptyType"/>
+                <xs:element name="nth-child">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <!--
+                             ! The value can be any one of the following
+                             !  an+b - where a and b can be any integer.
+                             !  an   - where a is a positive (non zero) integer.
+                             !  b    - where b is a positive (non zero) integer.
+                             !  odd  - which is equivalent to 2n+1
+                             !  even - which is equivalent to 2n
+                             !-->
+                            <xs:pattern value="(-?[0-9]+n[+\-][0-9]+)|([1-9][0-9]*n)|([1-9][0-9]*)|odd|even"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="link" type="EmptyType"/>
+                <xs:element name="visited" type="EmptyType"/>
+                <xs:element name="active" type="EmptyType" minOccurs="0"/>
+                <xs:element name="focus" type="EmptyType" minOccurs="0"/>
+                <xs:element name="hover" type="EmptyType" minOccurs="0"/>
+                <xs:element name="mcs-concealed" type="EmptyType" minOccurs="0"/>
+                <xs:element name="mcs-unfolded" type="EmptyType" minOccurs="0"/>
+                <xs:element name="mcs-invalid" type="EmptyType" minOccurs="0"/>
+                <xs:element name="mcs-normal" type="EmptyType" minOccurs="0"/>
+                <xs:element name="mcs-busy" type="EmptyType" minOccurs="0"/>
+                <xs:element name="mcs-failed" type="EmptyType" minOccurs="0"/>
+                <xs:element name="mcs-suspended" type="EmptyType" minOccurs="0"/>
+                <xs:element name="mcs-disabled" type="EmptyType" minOccurs="0"/>
+                <xs:element name="first-line" type="EmptyType"/>
+                <xs:element name="first-letter" type="EmptyType"/>
+                <xs:element name="mcs-shortcut" type="EmptyType"/>
+                <xs:element name="after" type="EmptyType"/>
+                <xs:element name="before" type="EmptyType"/>
+                <xs:element name="marker" type="EmptyType"/>
+                <xs:element name="mcs-next" type="EmptyType"/>
+                <xs:element name="mcs-previous" type="EmptyType"/>
+                <xs:element name="mcs-reset" type="EmptyType"/>
+                <xs:element name="mcs-cancel" type="EmptyType"/>
+                <xs:element name="mcs-complete" type="EmptyType"/>
+                <xs:element name="mcs-label" type="EmptyType"/>
+                <xs:element name="mcs-item" type="EmptyType"/>
+                <xs:element name="mcs-between" type="EmptyType"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="combined-selector">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="context">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element ref="selector-sequence"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="combinator" type="CombinatorType"/>
+                <xs:element name="subject">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:group ref="Subject"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="invalid-selector" type="xs:string"/>
+    <!-- ======================================================================
+     !           Elements
+     ! ==================================================================== -->
+    <xs:group name="StyleValues">
+        <xs:choice>
+            <xs:element ref="angle"/>
+            <xs:element ref="colorPercentages"/>
+            <xs:element ref="colorName"/>
+            <xs:element ref="colorRGB"/>
+            <xs:element ref="functionCall"/>
+            <xs:element ref="identifier"/>
+            <xs:element ref="inherit"/>
+            <xs:element ref="integer"/>
+            <xs:element ref="invalidStyle"/>
+            <xs:element ref="keyword"/>
+            <xs:element ref="length"/>
+            <xs:element ref="list"/>
+            <xs:element ref="mcs-policy-reference"/>
+            <xs:element ref="number"/>
+            <xs:element ref="pair"/>
+            <xs:element ref="percentage"/>
+            <xs:element ref="string"/>
+            <xs:element ref="time"/>
+            <xs:element ref="uri"/>
+        </xs:choice>
+    </xs:group>
+    <xs:element name="Expression" abstract="true">
+        <xs:annotation>
+            <xs:documentation>The base for all elements that are expressions.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="angle">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:double">
+                    <xs:attribute name="units" type="AngleUnitsEnumeration" use="optional"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="colorPercentages">
+        <xs:complexType>
+            <xs:attribute name="red" type="xs:double"/>
+            <xs:attribute name="green" type="xs:double"/>
+            <xs:attribute name="blue" type="xs:double"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="colorName" type="ColorNames"/>
+    <xs:element name="colorRGB" type="RGBColorType"/>
+    <xs:element name="functionCall" substitutionGroup="Expression">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="Expression"/>
+            </xs:sequence>
+            <xs:attribute name="name" type="CSSIdentToken"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="identifier" type="CSSIdentToken" substitutionGroup="Expression"/>
+    <xs:element name="inherit" type="EmptyType"/>
+    <xs:element name="integer" type="xs:integer" substitutionGroup="Expression"/>
+    <xs:element name="invalidStyle" type="xs:string"/>
+    <xs:simpleType name="NumericFontWeight">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="100"/>
+            <xs:enumeration value="200"/>
+            <xs:enumeration value="300"/>
+            <xs:enumeration value="400"/>
+            <xs:enumeration value="500"/>
+            <xs:enumeration value="600"/>
+            <xs:enumeration value="700"/>
+            <xs:enumeration value="800"/>
+            <xs:enumeration value="900"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Keyword">
+        <xs:union memberTypes="CSSIdentToken NumericFontWeight"/>
+    </xs:simpleType>
+    <xs:element name="keyword" type="Keyword"/>
+    <xs:element name="length">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:double">
+                    <xs:attribute name="units" type="LengthUnitsEnumeration" use="optional"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="list">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="StyleValues"/>
+            </xs:choice>
+            <xs:attribute type="xs:boolean" name="unique" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mcs-policy-reference" type="PolicyReferenceExpression"/>
+    <xs:element name="number" type="xs:double"/>
+    <xs:element name="pair">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="first">
+                    <xs:complexType>
+                        <xs:group ref="StyleValues"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="second" minOccurs="0">
+                    <xs:complexType>
+                        <xs:group ref="StyleValues"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="percentage" type="xs:double"/>
+    <xs:element name="string" type="xs:string" substitutionGroup="Expression"/>
+    <xs:element name="time">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:double">
+                    <xs:attribute name="units" type="TimeUnitsEnumeration" use="optional"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="uri" type="ExternalURIType"/>
+</xs:schema>

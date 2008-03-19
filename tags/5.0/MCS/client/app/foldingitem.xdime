@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:event="http://www.w3.org/2001/xml-events"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget">
+
+<head>
+  <title>Folding Item Widget</title>
+  <link rel="mcs:theme" href="/themes/main.mthm"/>
+  <link rel="mcs:layout" href="/layouts/main.mlyt"/>
+  <style type="text/css" media="handheld,all">
+    .folding {
+      mcs-effect-style: none;
+      mcs-effect-duration: 5s;
+    }
+    .folding:mcs-concealed {
+      mcs-effect-style: none;
+      mcs-effect-duration: 5s;        
+    }  
+  </style>
+  <widget:script id="fold">$W('myFoldingItem').fold()</widget:script>
+  <widget:script id="unfold">$W('myFoldingItem').unfold()</widget:script>
+</head>
+
+<body>
+  <template:apply href="templates/demo-main.xdtpl">
+    <template:binding name="title" value="Folding Item Widget"/>
+    <template:binding name="content">
+      <template:complexValue>
+
+        <widget:folding-item id="myFoldingItem" class="widget folding">
+            <widget:summary>List of cities</widget:summary>
+            <widget:detail>
+              <ul>
+                <li><a href="http://www.ankara-bel.gov.tr">Ankara</a></li>
+                <li><a href="http://www.berlin.de">Berlin</a></li>
+                <li><a href="http://www.budapest.hu">Budapest</a></li>
+                <li><a href="http://www.krakow.pl">Cracow</a></li>
+                <li><a href="http://www.nicosia.org.cy">Nicosia</a></li>
+                <li><a href="http://www.prague-city.cz">Prague</a></li>
+                <li><a href="http://www.sofia.bg">Sofia</a></li>
+                <li><a href="http://www.tirana.gov.al">Tirana</a></li>
+                <li><a href="http://www.wien.gv.at/">Vienna</a></li>
+                <li><a href="http://www.zagreb.hr">Zagreb</a></li>
+              </ul>
+            </widget:detail>
+        </widget:folding-item>
+
+        <div class="buttons">
+          <widget:button action="fold#invoke">hide</widget:button>
+          <widget:button action="unfold#invoke">show</widget:button>
+
+          <!-- Use instead of the above when FoldingItem Bar is APE enabled -->
+          <!--
+          <widget:button action="myFoldingItem#hide">hide</widget:button>
+          <widget:button action="myFoldingItem#show">show</widget:button>
+          -->
+        </div>
+
+      </template:complexValue>
+    </template:binding>
+  </template:apply>
+</body>
+</html>

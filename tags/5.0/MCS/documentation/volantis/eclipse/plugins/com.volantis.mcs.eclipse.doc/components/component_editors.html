@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><meta name="taskref" content="017"/><title>Component editors</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">Component editors</h1>
+      <p>There is a component editor for each component type. There
+         are some differences related to the component type, but they
+         share several features.</p>
+      <p>All the editors have controls grouped in the following
+         sections.</p>
+      
+         <h2>Component attributes</h2>
+         <p>Each editor contains a section defining the attributes of
+            the component. You can use the <span class="uicontrol">Device category
+            scheme</span> control to associate an existing device category scheme or a custom scheme
+            with the policy. For more information on using a custom scheme, refer to <em>Custom device policies</em>.</p>
+         <p>In some editors additional attribute values are fallback
+            component names to which the current component refers. For
+            example, a chart component has three possible fallback
+            types. In other cases such as rollover image components,
+            they are references to the actual image components used.
+            In all cases you can <span class="command">Browse</span> to locate
+            the component to refer to.</p>
+            <p>The <span class="command">Lock</span> and <span class="command">Unlock</span> buttons are displayed if this is a collaborative project. If you use them, the action applies to all the policy attributes.</p>
+      
+      
+         <h2>Variants</h2>
+         <p>Any variants that you have added to a component are listed
+            in the Variants section. You can add and remove variants at
+            any time. Some components support multiple variants, while
+            others, such as charts, allow only a single variant
+            reference.</p>
+         <p>Common to all Variants sections are buttons to
+            <span class="command">Add</span> or <span class="command">Delete</span>
+            variants, and a variants list. The Variant section for an image
+            component also has a <span class="command">New</span> button. When
+            you add image variants, you can browse to a directory and
+            filter for a file type, and in some cases see a preview of
+            the image. MCS also obtains some image variant attributes
+            from the file system.</p>
+         <p>Variant icons in the list are like the icons in the policy
+            tree, with a blue lozenge decoration. When you select an
+            variant in the list, the Selection Criteria, Content and
+            Metadata sections of the  editor are enabled, and you
+            can edit the attribute values. You can also choose
+            multiple variants, and apply values that are common to those
+            variants to all items in the selection.</p>
+         <p>The <span class="command">Lock</span> and <span class="command">Unlock</span> buttons apply to the selected component variant.</p>
+       
+      
+         <h2>Variant Selection Criteria</h2>
+         <p>You use this section to define which variant
+            is selected for use on a particular device. If the variant is targeted, you can choose
+            a combination of targets from the device tree and a single set of devices in a custom category scheme.</p>
+            
+      
+      
+         <h2>Variant Content</h2>
+         <p>All variants have a <span class="uicontrol">URL</span> control,
+            which is most often the filename of the variant.
+            Script and text variants additionally can be entered
+            directly in the content section as an alternative to using
+            a file resource.</p>
+         <p>In this section you can also add a reference to a asset
+            group, and
+            also specify a null variant</p>
+      
+      
+         <h2>Variant Metadata</h2>
+         <p>Metadata is information about the policy variant that is used by MCS to determine how to use the variant when it has been selected.</p>
+         <p>In this section you can set values such as MIME type, rendering, height and width values, the available controls depending on the component type you are working with.</p>
+      
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../mcs/mcs_editors.html">MCS policy editors</a><br/><a href="../components/component_add.html">Adding a component</a><br/><a href="../components/asset_add.html">Adding a variant</a><br/><a href="../devices/device_policy_definition.html">Custom device policies</a></p>
+      
+   </body></html>

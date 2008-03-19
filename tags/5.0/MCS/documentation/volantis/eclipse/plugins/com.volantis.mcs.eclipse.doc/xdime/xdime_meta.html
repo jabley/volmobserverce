@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>meta</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>meta</h1><h2>Purpose</h2>
+         <p>Specifies metadata about a page in name/value pairs. For example, it
+            can be used to specify the keywords that search engines can use to
+            index the page.</p>
+         
+         <p>You can use specific <span class="code">name</span> attribute values to control
+            external content caching. See <em>Controlling page caching</em> for details of the caching operation, and how you
+            should use these settings.</p>
+         <p>The mcs:refresh <span class="code">name</span> attribute value can be used to set
+            the timing and URL values for refresh and redirect. See <em>Timed redirect and refresh</em> for details.</p>
+         <p class="note"><strong>Tip</strong>: The syntax for expressing properties on the
+               <span class="code">meta</span> element differs in XDIME 2.</p>
+      <h2>Contained by</h2><p><a href="../xdime/xdime_canvas.html">canvas</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">content</th><td>The value of the property</td><td>xs:ID</td><td>none </td><td> </td><td>required </td></tr><tr><th class="firstcell" scope="row">expr</th><td>An MCS expression</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">http-equiv</th><td>The name of the property specified as an HTTP header</td><td>xs:ID</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">lang</th><td>The language of the page text</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">name</th><td>The name of the property</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;meta http-equiv="expires" content="2005-05-22"/&gt;
+&lt;meta name="keywords" content="markup, mcs, multi-channel, mobile internet 
+xdime, xml"/&gt;</pre>
+      
+         <p><span class="ri">Related topics</span><br/><a href="../xdime/xdime_pr_er.html">XDIME presentation elements</a><br/><a href="../wag/wag_xdime_cache.html">Controlling page caching</a><br/><a href="../wag/wag_redirect_refresh.html">Timed redirect and refresh</a></p>
+      </body></html>

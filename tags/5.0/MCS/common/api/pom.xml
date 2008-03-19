@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.volantis</groupId>
+        <artifactId>mcs</artifactId>
+        <version>5.0</version>
+        <relativePath>../..</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>mcs.common-api</artifactId>
+    <name>${pom.groupId}:${pom.artifactId}</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.localization-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>synergetics.cornerstone-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>synergetics.runtime-api</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>jdom</groupId>
+                    <artifactId>jdom</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis.volantis-jdom</groupId>
+            <artifactId>volantis-jdom</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>regexp</groupId>
+            <artifactId>regexp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>saxpath</groupId>
+            <artifactId>saxpath</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>synergetics.testtools-api</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>${project.artifactId}-plugin-description</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <property name="build.generated.dir" value="${project.build.directory}/generated-sources/antrun"/>
+                                <tstamp>
+                                    <format property="build.date" pattern="d-MMMM-yyyy hh:mm:ss aa" locale="en"/>
+                                </tstamp>
+
+                                <!-- Load "proper" build/version properties from external file. -->
+                                <property file="${directory}/../../../build-version.properties"/>
+
+                                <copy file="${project.build.sourceDirectory}/../resources/com/volantis/mcs/utilities/VolantisVersion.java.src"
+                                    tofile="${build.generated.dir}/com/volantis/mcs/utilities/VolantisVersion.java" overwrite="true"/>
+
+                                <replace file="${build.generated.dir}/com/volantis/mcs/utilities/VolantisVersion.java">
+                                    <replacefilter token="DateTOKEN" value="${build.date}"/>
+                                    <replacefilter token="NameTOKEN" value="${build.name}"/>
+                                    <replacefilter token="MajorTOKEN" value="${build.version.major}"/>
+                                    <replacefilter token="MinorTOKEN" value="${build.version.minor}"/>
+                                    <replacefilter token="RevisionTOKEN" value="${build.version.revision}"/>
+                                    <replacefilter token="PatchLevelTOKEN" value="${build.version.patchlevel}"/>
+                                </replace>
+                            </tasks>
+                            <sourceRoot>${project.build.directory}/generated-sources/antrun</sourceRoot>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

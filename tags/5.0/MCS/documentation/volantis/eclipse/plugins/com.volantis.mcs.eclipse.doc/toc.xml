@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Volantis Mobility Server" topic="mcs/vms_help_center.html">
+	<topic label="About MCS" href="mcs/mcs_about.html">
+		<link toc="topics_mcs.xml"/>
+	</topic>
+	<topic label="Components &amp; assets" href="components/component_and_assets.html">
+		<link toc="topics_components.xml"/>
+	</topic>
+	<topic label="Layouts" href="layouts/layout_about.html">
+		<link toc="topics_layouts.xml"/>
+	</topic>
+	<topic label="Themes" href="themes/theme_about.html">
+		<link toc="topics_themes.xml"/>
+	</topic>
+	<topic label="Devices" href="devices/device_about.html">
+		<link toc="topics_devices.xml"/>
+	</topic>
+	<topic label="Web author's guide" href="wag/wag_about.html">
+		<link toc="topics_wag.xml"/>
+	</topic>
+	<topic label="Dynamic content integration (DCI)" href="dci/dci_about.html">
+		<link toc="topics_dci.xml"/>
+	</topic>
+	<!--<topic label="XDIME elements" href="wag/xdime_elements.html">
+		<link toc="topics_xdime.xml"/>
+	</topic>-->
+	<topic label="XDIME 2 elements" href="wag/xdime2_elements.html">
+		<link toc="topics_xdime_cp.xml"/>
+	</topic>
+	<topic label="Installing MCS" href="install/mcs_install_oview.html">
+		<link toc="topics_install.xml"/>
+	</topic>
+	<topic label="Administering MCS" href="admin/mcs_admin.html">
+		<link toc="topics_admin.xml"/>
+	</topic>
+	<topic label="Message Preparation Server (MPS)" href="mps/mps_about.html">
+		<link toc="topics_mps.xml"/>
+	</topic>
+	<topic label="Media Access Proxy (MAP)" href="ics/map_about.html">
+		<link toc="topics_ics.xml"/>
+	</topic>
+	<topic label="Device Repository Web Service (DWS)" href="dws/dws_about.html">
+		<link toc="topics_dws.xml"/>
+	</topic>
+	<topic label="Client Framework" href="client/client_about.html">
+		<link toc="topics_client.xml"/>
+	</topic>
+	<topic label="BuzzCast Client" href="ticker/ticker_about.html">
+		<link toc="topics_ticker.xml"/>
+	</topic>
+</toc>

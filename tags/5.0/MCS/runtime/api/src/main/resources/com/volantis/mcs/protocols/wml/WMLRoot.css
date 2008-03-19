@@ -1,0 +1,64 @@
+h1 {
+  font-size: large;
+  font-weight: bold;
+}
+
+h2 {
+  font-weight: bold;
+  font-style: italic;
+}
+
+h3 {
+  font-style: italic;
+}
+
+h4 {}
+
+h5 {
+  font-size: small;
+  font-style: italic;
+}
+
+h6 {
+  font-size: small;
+}
+
+b {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+}
+
+u {
+  text-decoration: underline;
+}
+
+small {
+  font-size: small;
+}
+
+big {
+  font-size: large;
+}
+
+hr {
+  text-align: center;
+  white-space: nowrap;
+}
+
+/*
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 17-Nov-05	10330/1	pabbott	VBM:2005110907 Honour align with mode=nospace
+
+ 03-Oct-05	9522/1	ibush	VBM:2005091502 no_save on images
+
+ 10-Aug-05	9187/1	tom	VBM:2005080509 release of 2005080509 [extract WML default styles into a CSS file]
+
+ ===========================================================================
+*/

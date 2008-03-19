@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<device xmlns="http://www.volantis.com/xmlns/device-repository/device" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/device-repository/device http://www.volantis.com/schema/device-repository/v3.0/device.xsd">
+    <policies>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol">
+            <device:value>WMLVersion1_1</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mhtmlprotocol">
+            <device:value>none</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="fullpixelsx" value="70" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxcachedurl" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mincharactersx" value="11" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxcharactersx" value="47" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="preferredmessageprotocol" value="SMS" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="agifinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WapDeviceClass" value="C" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WmlVersion">
+            <device:value>1.1</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="charactersy" value="4" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="network.bandwidth" value="10" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxwmldeck" value="1300" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="preferredimagetype" value="WBMP" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WtaiLibraries">
+            <device:value>WTAVoiceCall</device:value>
+            <device:value>WTA.Public.makeCall</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pixelsy" value="40" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maximagesize" value="1900" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wtlskeystrng" value="40" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="sec.id.header" value="accept" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="localsec" value="74" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="charactersx" value="16" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WapVersion" value="1.1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.SupportedBearers">
+            <device:value>CSD</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cachefileext" value="wml" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gifinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.CurrentBearerService" value="TwoWayPacket" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="fullpixelsy" value="50" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="softlabelsize" value="5" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wtls" value="TRUE" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.CcppAccept">
+            <device:value>application/vnd.wap.wml</device:value>
+            <device:value>text/x-wap.wml</device:value>
+            <device:value>text/vnd.wap.wml</device:value>
+            <device:value>application/vnd.wap.wmlscript</device:value>
+            <device:value>text/vnd.wap.wmlscript</device:value>
+            <device:value>image/vnd.wap.wbmp</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wtlsclass" value="1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="weight" value="120" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pixelsx" value="65" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="dateintr" value="2000" />
+    </policies>
+</device>
+

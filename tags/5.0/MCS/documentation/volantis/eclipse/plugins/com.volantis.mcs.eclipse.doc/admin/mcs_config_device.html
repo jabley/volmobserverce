@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>Device configuration</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Device configuration</h1>
+
+      <p>The <span class="code">devices</span> section in the <span class="filepath">mcs-config.xml</span> file contains the location of <span class="code">standard</span> (and possibly <span class="code">custom</span>) device repository policies. Within each of these elements you can specify either a
+        <span class="code">jdbc-repository</span> or a <span class="code">file-repository</span> element. A JDBC repository entry contains the name of the project, whereas an XML repository contains the location of the device repository file, which has a <span class="code">.mdpr</span> file extension.</p>
+        
+      <p>If the <span class="code">preload</span> attribute is set to 'true' the repositories are loaded when MCS starts.</p>
+        
+      <p class="note">
+         <strong>Note</strong>: 
+			Device identification patterns are always preloaded.</p>
+
+        
+      <pre class="code">&lt;devices preload="false"&gt;
+   &lt;standard&gt;
+      &lt;jdbc-repository project="NamedProject"/&gt;
+   &lt;/standard&gt;
+   &lt;custom&gt;
+      &lt;file-repository location="/custom/devices.mdpr"/&gt;
+   &lt;/custom&gt;
+&lt;/devices&gt;</pre>
+		
+			
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../admin/mcs_configure.html">Configuring MCS</a>
+      </p>
+		
+	
+   </body>
+</html>

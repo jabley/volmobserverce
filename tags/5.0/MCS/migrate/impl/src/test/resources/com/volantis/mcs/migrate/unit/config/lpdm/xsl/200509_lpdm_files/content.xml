@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<lpdm:theme xmlns:lpdm="http://www.volantis.com/xmlns/2005/09/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/2005/09/marlin-lpdm http://www.volantis.com/schema/2005/09/marlin-lpdm.xsd">
+    <lpdm:deviceTheme deviceName="Master">
+        <lpdm:rule>
+            <lpdm:subjectSelectorSequence>
+                <lpdm:classSelector class="normal"/>
+            </lpdm:subjectSelectorSequence>
+            <lpdm:styleProperties>
+                <lpdm:content>
+                    <lpdm:keyword>normal</lpdm:keyword>
+                </lpdm:content>
+            </lpdm:styleProperties>
+        </lpdm:rule>
+        <lpdm:rule>
+            <lpdm:subjectSelectorSequence>
+                <lpdm:classSelector class="string"/>
+            </lpdm:subjectSelectorSequence>
+            <lpdm:styleProperties>
+                <lpdm:content>
+                    <lpdm:list unique="false">
+                        <lpdm:string>string</lpdm:string>
+                    </lpdm:list>
+                </lpdm:content>
+            </lpdm:styleProperties>
+        </lpdm:rule>
+        <lpdm:rule>
+            <lpdm:subjectSelectorSequence>
+                <lpdm:classSelector class="whitespace"/>
+            </lpdm:subjectSelectorSequence>
+            <lpdm:styleProperties>
+                <lpdm:content>
+                    <lpdm:list unique="false">
+                        <lpdm:string> </lpdm:string>
+                    </lpdm:list>
+                </lpdm:content>
+            </lpdm:styleProperties>
+        </lpdm:rule>
+    </lpdm:deviceTheme>
+</lpdm:theme>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 24-Nov-05	10369/1	emma	VBM:2005111604 Forward port: refactor migration tests
+
+ 21-Oct-05	9938/1	ianw	VBM:2005101915 Fix up theme accessor issues
+
+ 21-Oct-05	9936/1	ianw	VBM:2005101915 Fix up theme accessor issues
+
+ 11-Oct-05	9729/1	geoff	VBM:2005100507 Mariner Export fails with NPE
+
+ 29-Sep-05	9654/1	pduffin	VBM:2005092817 Added support for expressions and functions in styles
+
+ 15-Sep-05	9512/1	pduffin	VBM:2005091408 Committing changes to JIBX to use new schema
+
+ 13-Sep-05	9496/1	pduffin	VBM:2005091211 Replaced text-decoration with individual properties
+
+ 18-May-05	8181/3	adrianj	VBM:2005050505 XDIME/CP Migration CLI
+
+ 13-May-05	8181/1	adrianj	VBM:2005050505 XSL for theme migration
+
+ ===========================================================================
+-->

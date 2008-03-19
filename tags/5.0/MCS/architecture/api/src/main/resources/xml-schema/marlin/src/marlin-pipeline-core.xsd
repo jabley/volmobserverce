@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ ! $Header: /cvs/architecture/architecture/xml-schema/marlin/src/marlin-pipeline-core.xsd,v 1.1 2003/11/21 10:34:13 pduffin Exp $
+ ! ============================================================================
+ ! (c) Volantis Systems Ltd 2003. 
+ ! ============================================================================
+ ! Change History:
+ !
+ ! Date         Who             Description
+ ! =========    =============== ===============================================
+ ! 23-Jun-03    Paul            R752 Created. Contains those parts of the
+ !                              pipeline definition that are used by other
+ !                              schemata.
+ ! ======================================================================== -->
+<!--
+ !
+ ! ****************************************************************************
+ ! This file is owned by Architecture and can only be changed by a member of
+ ! that group.
+ ! ****************************************************************************
+ !
+ !-->
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/marlin-pipeline" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.volantis.com/xmlns/marlin-pipeline" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>This defines some core types associated with pipeline operations that all pipeline operations must use.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType name="PipelineExpression">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Element Groups
+     ! ************************************************************************
+     !-->
+    <xs:group name="PipelineOperation">
+        <xs:annotation>
+            <xs:documentation>Identifies markup which defines operations within the pipeline.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element ref="BasePipelineOperationElement"/>
+        </xs:choice>
+    </xs:group>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Complex Types
+     ! ************************************************************************
+     !-->
+    <xs:complexType name="RequiredPipelineOperation">
+        <xs:annotation>
+            <xs:documentation>Contains one or more pipeline operations.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:group ref="PipelineOperation" maxOccurs="unbounded"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="OptionalPipelineOperation">
+        <xs:annotation>
+            <xs:documentation>Contains any number of pipeline operations.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:group ref="PipelineOperation" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="MixedPipelineOperation" mixed="true">
+        <xs:annotation>
+            <xs:documentation>Contains any number of pipeline operations and mixed content.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:group ref="PipelineOperation" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="AnyExcludingPipelineOperation" mixed="true">
+        <xs:annotation>
+            <xs:documentation>Allows any content excluding pipeline operations.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="true">
+            <xs:extension base="xs:anyType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Abstract Elements
+     ! ************************************************************************
+     !-->
+    <xs:element name="BasePipelineOperationElement" abstract="true">
+        <xs:annotation>
+            <xs:documentation>This element is the base element for all elements that identify a pipeline operation.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+</xs:schema>

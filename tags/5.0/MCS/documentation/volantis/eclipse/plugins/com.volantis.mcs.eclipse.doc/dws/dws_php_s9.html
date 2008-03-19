@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <title>example9.php</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1 class="ocp">example9.php</h1>
+      
+      <pre class="code">#!/usr/bin/php
+
+&lt;?php
+#
+# (c) Copyright Volantis Systems Ltd. 2006. All rights reserved
+#
+# Simple READ query retrieving a list of the policies available in
+# the supplied category
+#
+
+require_once "HTTP/Request.php";
+require_once "drws-config.php";
+
+# Web Service base URL
+$base_url = "https://".WS_HOST.":".WS_PORT.WS_PATH;
+
+# Prepare the GET request with basic authentication
+$req =&amp; new HTTP_Request($base_url."/category/policy/names/protocol");
+$req-&gt;setMethod(HTTP_REQUEST_METHOD_GET);
+$req-&gt;setBasicAuth(WS_AUTH_USER, WS_AUTH_PASS);
+
+# Execute the request and print the response
+$req-&gt;sendRequest();
+echo $req-&gt;getResponseBody();
+?&gt;</pre>
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../dws/dws_category_policy_names.html">category-policy-names</a>
+         <br/>
+         <a href="../dws/dws_php.html">Code samples in PHP</a>
+      </p>
+      
+   
+   </body>
+</html>

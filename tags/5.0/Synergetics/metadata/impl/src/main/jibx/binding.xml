@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<binding xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../../externals/jibx/docs/binding.xsd" add-constructors="true"
+	force-classes="true" name="metadata">
+
+	<namespace uri="http://www.volantis.com/xmlns/2004/12/NOT A VALID URI" default="elements"/>
+	<namespace prefix="mdt" uri="http://www.volantis.com/xmlns/2004/12/meta-data-types"/>
+	<namespace prefix="mdv" uri="http://www.volantis.com/xmlns/2004/12/meta-data-values"/>
+
+	<!-- mappings for meta data values -->
+
+	<mapping name="structure" class="com.volantis.shared.metadata.impl.value.ImmutableStructureValueImpl"
+		extends="com.volantis.shared.metadata.value.MetaDataValue"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<collection iter-method="getFieldValues" add-method="addField"
+			item-type="com.volantis.shared.metadata.impl.value.StructureFieldValue"/>
+	</mapping>
+
+	<mapping name="field" class="com.volantis.shared.metadata.impl.value.StructureFieldValue"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<value name="name" usage="required" field="name" style="attribute"/>
+		<structure field="value" usage="required" type="com.volantis.shared.metadata.value.MetaDataValue"/>
+	</mapping>
+
+	<mapping name="choice" class="com.volantis.shared.metadata.impl.value.ImmutableChoiceValueImpl"
+		extends="com.volantis.shared.metadata.value.MetaDataValue"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<value name="choiceName" usage="required" set-method="setChoiceName" get-method="getChoiceName" style="attribute"/>
+		<structure get-method="getValue" set-method="setValue" usage="required" type="com.volantis.shared.metadata.value.MetaDataValue"/>
+	</mapping>
+
+	<mapping name="list" class="com.volantis.shared.metadata.impl.value.ImmutableListValueImpl"
+		extends="com.volantis.shared.metadata.value.MetaDataValue"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<collection iter-method="getValues" add-method="addValue"
+			item-type="com.volantis.shared.metadata.value.MetaDataValue"/>
+	</mapping>
+
+	<mapping name="set" class="com.volantis.shared.metadata.impl.value.ImmutableSetValueImpl"
+		extends="com.volantis.shared.metadata.value.MetaDataValue"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<collection iter-method="getValues" add-method="addValue"
+			item-type="com.volantis.shared.metadata.value.MetaDataValue"/>
+	</mapping>
+
+	<mapping abstract="true" class="com.volantis.shared.metadata.value.MetaDataValue"/>
+
+	<mapping name="string" class="com.volantis.shared.metadata.impl.value.ImmutableStringValueImpl"
+		extends="com.volantis.shared.metadata.value.MetaDataValue"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<value usage="required" style="text" set-method="setValue" get-method="getAsString"/>
+	</mapping>
+
+	<mapping name="boolean" class="com.volantis.shared.metadata.impl.value.ImmutableBooleanValueImpl"
+		extends="com.volantis.shared.metadata.value.MetaDataValue"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<value usage="required" style="text" set-method="setValue" get-method="getValueAsBoolean"/>
+	</mapping>
+
+	<mapping name="number" class="com.volantis.shared.metadata.impl.value.ImmutableNumberValueImpl"
+		extends="com.volantis.shared.metadata.value.MetaDataValue"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<structure set-method="setMutableNumber" get-method="getMutableNumber" usage="required"
+			type="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"/>
+	</mapping>
+
+	<mapping abstract="true" class="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values"/>
+
+
+	<mapping name="byte" class="com.volantis.shared.metadata.impl.value.jibx.MutableByte"
+		extends="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<structure map-as="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"/>
+		<value field="value" usage="required" style="text"/>
+	</mapping>
+
+	<mapping name="short" class="com.volantis.shared.metadata.impl.value.jibx.MutableShort"
+		extends="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<structure map-as="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"/>
+		<value field="value" usage="required" style="text"/>
+	</mapping>
+
+	<mapping name="int" class="com.volantis.shared.metadata.impl.value.jibx.MutableInteger"
+		extends="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<structure map-as="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"/>
+		<value field="value" usage="required" style="text"/>
+	</mapping>
+
+	<mapping name="long" class="com.volantis.shared.metadata.impl.value.jibx.MutableLong"
+		extends="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<structure map-as="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"/>
+		<value field="value" usage="required" style="text"/>
+	</mapping>
+
+	<mapping name="integer" class="com.volantis.shared.metadata.impl.value.jibx.MutableBigInteger"
+		extends="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<structure map-as="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"/>
+		<value field="value" usage="required" style="text"/>
+	</mapping>
+
+	<mapping name="decimal" class="com.volantis.shared.metadata.impl.value.jibx.MutableBigDecimal"
+		extends="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<structure map-as="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"/>
+		<value field="value" usage="required" style="text"/>
+	</mapping>
+
+	<mapping name="float" class="com.volantis.shared.metadata.impl.value.jibx.MutableFloat"
+		extends="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<structure map-as="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"/>
+		<value field="value" usage="required" style="text"/>
+	</mapping>
+
+	<mapping name="double" class="com.volantis.shared.metadata.impl.value.jibx.MutableDouble"
+		extends="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-values">
+		<structure map-as="com.volantis.shared.metadata.impl.value.jibx.MutableNumber"/>
+		<value field="value" usage="required" style="text"/>
+	</mapping>
+
+	<!-- mappings for meta data types -->
+
+	<mapping name="structure" class="com.volantis.shared.metadata.impl.type.ImmutableStructureTypeImpl"
+		extends="com.volantis.shared.metadata.type.MetaDataType"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<collection iter-method="getFieldTypes" add-method="addField"
+			item-type="com.volantis.shared.metadata.impl.type.ImmutableFieldDefinitionImpl"/>
+	</mapping>
+
+	<mapping name="field" class="com.volantis.shared.metadata.impl.type.ImmutableFieldDefinitionImpl"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<value name="name" usage="required" style="attribute" get-method="getName" set-method="setName"/>
+		<structure usage="required" type="com.volantis.shared.metadata.type.MetaDataType" get-method="getType"
+			set-method="setType"/>
+	</mapping>
+
+	<mapping name="choice" class="com.volantis.shared.metadata.impl.type.ImmutableChoiceTypeImpl"
+		extends="com.volantis.shared.metadata.type.MetaDataType"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<collection iter-method="getChoiceDefinitionsIterator" add-method="addChoiceDefinition"
+			item-type="com.volantis.shared.metadata.impl.type.ImmutableChoiceDefinitionImpl"/>
+	</mapping>
+
+	<mapping name="choiceDefinition" class="com.volantis.shared.metadata.impl.type.ImmutableChoiceDefinitionImpl"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<value name="name" usage="required" style="attribute" get-method="getName" set-method="setName"/>
+		<structure usage="required" type="com.volantis.shared.metadata.type.MetaDataType" get-method="getType"
+			set-method="setType"/>
+	</mapping>
+
+	<mapping name="set" class="com.volantis.shared.metadata.impl.type.ImmutableSetTypeImpl"
+		extends="com.volantis.shared.metadata.type.MetaDataType"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<structure usage="optional" get-method="getMemberTypeConstraint" set-method="setMemberTypeConstraint"
+			type="com.volantis.shared.metadata.impl.type.constraint.ImmutableMemberTypeConstraintImpl"/>
+	</mapping>
+
+	<mapping name="list" class="com.volantis.shared.metadata.impl.type.ImmutableListTypeImpl"
+		extends="com.volantis.shared.metadata.type.MetaDataType"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<value name="uniqueMemberConstraint" usage="optional" get-method="getUniqueMemberConstraint"
+			set-method="setUniqueMemberConstraint"
+			serializer="com.volantis.shared.metadata.impl.type.constraint.ImmutableUniqueMemberConstraintImpl.serializer"
+			deserializer="com.volantis.shared.metadata.impl.type.constraint.ImmutableUniqueMemberConstraintImpl.deserializer"
+			ns="http://www.volantis.com/xmlns/2004/12/meta-data-types"/>
+		<structure usage="optional" get-method="getMemberTypeConstraint" set-method="setMemberTypeConstraint"
+			type="com.volantis.shared.metadata.impl.type.constraint.ImmutableMemberTypeConstraintImpl"/>
+        <structure usage="optional" get-method="getMinimumLengthConstraint" set-method="setMinimumLengthConstraint"
+            type="com.volantis.shared.metadata.impl.type.constraint.ImmutableMinimumLengthConstraintImpl"/>
+        <structure usage="optional" get-method="getMaximumLengthConstraint" set-method="setMaximumLengthConstraint"
+            type="com.volantis.shared.metadata.impl.type.constraint.ImmutableMaximumLengthConstraintImpl"/>
+	</mapping>
+
+	<mapping name="memberTypeConstraint"
+		class="com.volantis.shared.metadata.impl.type.constraint.ImmutableMemberTypeConstraintImpl"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<structure set-method="setMemberType" get-method="getMemberType"
+			type="com.volantis.shared.metadata.type.MetaDataType"/>
+	</mapping>
+
+	<mapping abstract="true" class="com.volantis.shared.metadata.type.MetaDataType"/>
+
+	<mapping name="string" class="com.volantis.shared.metadata.impl.type.ImmutableStringTypeImpl"
+		extends="com.volantis.shared.metadata.type.MetaDataType"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+        <structure usage="optional" get-method="getEnumeratedConstraint" set-method="setEnumeratedConstraint"
+            type="com.volantis.shared.metadata.impl.type.constraint.ImmutableEnumeratedConstraintImpl"/>
+        <structure usage="optional" get-method="getMinimumLengthConstraint" set-method="setMinimumLengthConstraint"
+            type="com.volantis.shared.metadata.impl.type.constraint.ImmutableMinimumLengthConstraintImpl"/>
+        <structure usage="optional" get-method="getMaximumLengthConstraint" set-method="setMaximumLengthConstraint"
+            type="com.volantis.shared.metadata.impl.type.constraint.ImmutableMaximumLengthConstraintImpl"/>
+	</mapping>
+
+	<mapping name="boolean" class="com.volantis.shared.metadata.impl.type.ImmutableBooleanTypeImpl"
+		extends="com.volantis.shared.metadata.type.MetaDataType"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<structure usage="optional" get-method="getEnumeratedConstraint" set-method="setEnumeratedConstraint"
+			type="com.volantis.shared.metadata.impl.type.constraint.ImmutableEnumeratedConstraintImpl"/>
+	</mapping>
+
+	<mapping name="number" class="com.volantis.shared.metadata.impl.type.ImmutableNumberTypeImpl"
+		extends="com.volantis.shared.metadata.type.MetaDataType"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<structure usage="optional" get-method="getEnumeratedConstraint" set-method="setEnumeratedConstraint"
+			type="com.volantis.shared.metadata.impl.type.constraint.ImmutableEnumeratedConstraintImpl"/>
+		<structure usage="optional" get-method="getNumberSubTypeConstraint" set-method="setNumberSubTypeConstraint"
+			type="com.volantis.shared.metadata.impl.type.constraint.ImmutableNumberSubTypeConstraintImpl"/>
+		<structure usage="optional" get-method="getMinimumValueConstraint" set-method="setMinimumValueConstraint"
+			type="com.volantis.shared.metadata.impl.type.constraint.ImmutableMinimumValueConstraintImpl"/>
+		<structure usage="optional" get-method="getMaximumValueConstraint" set-method="setMaximumValueConstraint"
+			type="com.volantis.shared.metadata.impl.type.constraint.ImmutableMaximumValueConstraintImpl"/>
+	</mapping>
+
+	<mapping name="enumeratedConstraint"
+		class="com.volantis.shared.metadata.impl.type.constraint.ImmutableEnumeratedConstraintImpl"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<collection iter-method="getValues" add-method="addValue"
+			item-type="com.volantis.shared.metadata.value.MetaDataValue"/>
+	</mapping>
+
+	<mapping name="numberSubTypeConstraint"
+		class="com.volantis.shared.metadata.impl.type.constraint.ImmutableNumberSubTypeConstraintImpl"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<value name="subType" usage="required" style="attribute" get-method="getNumberSubType"
+			set-method="setNumberSubType"
+			serializer="com.volantis.shared.metadata.impl.type.constraint.ImmutableNumberSubTypeConstraintImpl.serializer"
+			deserializer="com.volantis.shared.metadata.impl.type.constraint.ImmutableNumberSubTypeConstraintImpl.deserializer"/>
+	</mapping>
+
+	<mapping name="minimumValueConstraint"
+		class="com.volantis.shared.metadata.impl.type.constraint.ImmutableMinimumValueConstraintImpl"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<structure get-method="getLimitAsMutableNumber" set-method="setLimitAsMutableNumber"/>
+		<value name="inclusive" get-method="isInclusive" set-method="setInclusive" style="attribute"/>
+	</mapping>
+
+	<mapping name="maximumValueConstraint"
+		class="com.volantis.shared.metadata.impl.type.constraint.ImmutableMaximumValueConstraintImpl"
+		ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+		<structure get-method="getLimitAsMutableNumber" set-method="setLimitAsMutableNumber"/>
+		<value name="inclusive" get-method="isInclusive" set-method="setInclusive" style="attribute"/>
+	</mapping>
+
+    <mapping name="minimumLengthConstraint"
+        class="com.volantis.shared.metadata.impl.type.constraint.ImmutableMinimumLengthConstraintImpl"
+        ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+        <value name="limit" get-method="getLimit" set-method="setLimit"
+            ns="http://www.volantis.com/xmlns/2004/12/meta-data-types"/>
+    </mapping>
+
+    <mapping name="maximumLengthConstraint"
+        class="com.volantis.shared.metadata.impl.type.constraint.ImmutableMaximumLengthConstraintImpl"
+        ns="http://www.volantis.com/xmlns/2004/12/meta-data-types">
+        <value name="limit" get-method="getLimit" set-method="setLimit"
+            ns="http://www.volantis.com/xmlns/2004/12/meta-data-types"/>
+    </mapping>
+</binding>

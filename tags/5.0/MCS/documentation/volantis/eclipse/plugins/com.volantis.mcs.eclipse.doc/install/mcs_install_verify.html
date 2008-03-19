@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Verifying the installation</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Verifying the installation</h1>
+      <p>After installing the MCS application, setting up your application server
+         and database if required, and completing any
+         post-installation tasks you can now verify that your
+         installation has been successful.</p>
+      
+         <h2>Displaying the welcome page</h2>
+         <p>You can verify that your installation is working by
+            displaying one of two welcome pages created during the web
+            application server setup,
+            <span class="filepath">welcome.xdime</span> and
+               <span class="filepath">welcome.jsp</span>. The files are in the
+               <span class="filepath">/MCS/webapps/welcome</span> directory on
+            your application server.</p>
+         <div class="note"><strong>Note</strong>: If you chose to use a database for runtime deployment,
+            the appropriate policies need to exist within the database
+            tables.</div>
+         <p>Start the web application server and MCS and load a
+            welcome page into a Web browser. If a page appears your
+            installation is working.</p>
+         <p>For example for a Tomcat installation, from a command
+            prompt, navigate to the bin directory and issue the
+               <span class="command">startup</span> command. The server will
+            report its usual startup messages. This will also mean
+            that the MCS server is effectively started and available.</p>
+         <p>Start a web browser and enter a URL that references the
+            web application instance, the directory and the welcome
+            page. For example, if you are running the browser on the
+            same machine as the server, you might use
+               <span class="code">http://localhost:8080/[context_root]/welcome/welcome.xdime</span>
+         </p>
+         
+      
+      
+         <h2>Accessing the policy editors</h2>
+         <p>You need to start Eclipse to access the policy editors,
+            for example <span class="filepath">C:\Program
+            Files\eclipse\eclipse.exe</span>.</p>
+         <p>You can then choose one of the MCS wizards for creating
+            policies by choosing <span class="command">File</span> |
+               <span class="command">New</span> | <span class="command">Other</span> |
+               <span class="command">MCS</span>. See <em>Choosing a Wizard</em> for further information.</p>
+        
+         <p>If you wish to review the policies used by the welcome
+            pages you can import them into an MCS project in Eclipse.</p>
+         <p>To create a project see <em>Creating a project</em>.</p>
+         <p class="taskhead">To import the welcome policies into the project:</p>
+         <ol>
+            <li>Expand the project and open the empty folder
+                  <span class="filepath">mcs-policies</span>
+            </li>
+            <li>Right-click and choose <span class="command">Import</span> and
+               then <span class="command">File System</span> and <span class="command">Next</span>
+            </li>
+            <li>Browse to pick up the policy definitions in the XML
+               repository, for example <span class="filepath">C:\Program
+                  Files\[context_root]\MCS\repository\xml-repository</span>
+            </li>
+            <li>Click <span class="command">Select all</span> and choose the
+                  <span class="uicontrol">Create selected folders only</span>
+               option</li>
+               <li>Click <span class="command">Finish</span> to import the files</li>
+         </ol>
+         <p>If you now expand the mcs-policies directory you will now
+            see the imported policies for both the tutorial and
+            welcome applications.</p>
+             <div class="note"><strong>Note</strong>: You can associate projects with the supplied device
+               repository file <span class="filepath">devices.mdpr</span> which
+               is located under the
+                  <span class="filepath">/MCS/repository/device-repository</span>
+               directory.</div>
+      
+      
+         <h2>If you have problems</h2>
+         <p>As MCS executes, by default it writes log and status
+            information to a file named <span class="filepath">.log</span>. The
+            file will be written to the log directory specified in the
+               <span class="filepath">web.xml</span> file.</p>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../install/mcs_install_oview.html">Installing MCS</a><br/><a href="../mcs/mcs_choose_wizard.html">Choosing a Wizard</a><br/><a href="../mcs/mcs_project_create.html">Creating a project</a></p>
+      
+   </body></html>

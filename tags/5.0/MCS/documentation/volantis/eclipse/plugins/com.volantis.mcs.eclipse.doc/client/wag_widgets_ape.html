@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD       XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Actions, properties and events</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Actions, properties and events</h1>
+      <p>The actions, properties and events (APE) architecture allows you to
+         define simple interactions between widgets on an XDIME 2 page, without
+         the need to use JavaScript methods. However, JavaScript remains fully
+         supported, and may be required for more complex applications.</p>
+      
+         <h2>Actions</h2>
+         <p>An action can be executed at any moment in time. It may have two
+            states.</p>
+         <ul>
+            <li>disabled - invoking an action does nothing</li>
+            <li>enabled - invoking an action performs it</li>
+         </ul>
+      
+      
+         <h2>Properties</h2>
+         <p>A property contains a value, which may change over time. Each
+            property has the following settings.</p>
+         <ul>
+            <li>readable - value of the selected property can be read</li>
+            <li>writable - value of the property can be written</li>
+         </ul>
+         <p>All the actions support the <span class="code">is-enabled</span> property, which
+            specifies their state.</p>
+      
+      
+         <h2>Events</h2>
+         <p>An event is information, which can be sent by a widget at any time.
+            The event can cause the <span class="code">widget:handler</span> element to
+            invoke certain actions when a specified event occurs.</p>
+         <p>Each property supports the <span class="code">value-changed</span> event, sent
+            when its value changes.</p>
+      
+      
+         <h2>APE and JavaScript API</h2>
+         <p>All the actions, properties and events are also exposed to the XDIME
+            author in the form of the JavaScript API. The following naming
+            conventions apply:</p>
+         <ul>
+            <li>Each action has a JavaScript method with a corresponding name,
+               for example, for the <span class="code">next-page</span> action, the
+                  <span class="code">nextPage()</span> JavaScript method exists.</li>
+            <li>In general, each readable property has a JavaScript method with the
+                  <span class="code">get</span> prefix, for example, the
+                  <span class="code">getCurrentPageNumber()</span> method corresponds to the
+                  <span class="code">current-page-number</span> property. But there are some
+               exceptions. If the name of the property starts with
+               <span class="code">is-</span>, <span class="code">can-</span>, <span class="code">has-</span> or
+                  <span class="code">does-</span>, the <span class="code">get</span> prefix in a
+               JavaScript method is omitted, for example, the
+               <span class="code">is-enabled</span> property corresponds to the
+                  <span class="code">isEnabled()</span> JavaScript method.</li>
+            <li>For each writable property there is usually a corresponding JavaScript method with the
+                  <span class="code">set</span> prefix, for example, the
+                  <span class="code">setCurrentPageNumber(number)</span> method corresponds
+               to the <span class="code">current-page-number</span> property. However, if the
+               name of the property starts with <span class="code">is-</span>,
+               <span class="code">can-</span>, <span class="code">has-</span> or <span class="code">does-</span>, then
+               its prefix in a JavaScript method is omitted, for example, the
+                  <span class="code">is-enabled</span> property corresponds to the
+                  <span class="code">setEnabled()</span> JavaScript method.</li>
+            <li>All events correspond to the widget notifications, for example,
+               the event named <span class="code">value-changed</span> corresponds to the
+                  <span class="code">valueChanged</span> notification. The following
+               JavaScript methods handle notifications: <table cellspacing="0" summary=""><thead>
+                     <tr>
+                        <th class="firsthdr">JavaScript method</th>
+                        <th>Description</th>
+                     </tr>
+                  </thead><tbody><tr><th class="firstcell"><span class="code">observe(widget, notificationName,
+                           methodName)</span>  </th><td>Starts observing selected widget for a specified
+                           notification. The defined method will be invoked when
+                           the notification is sent.  </td></tr><tr><th class="firstcell"><span class="code">stopObserving(widget,
+                           notificationName, methodName)</span>  </th><td>Stops observing selected widget for the specified
+                           notification  </td></tr></tbody></table>
+            </li>
+         </ul>
+      
+      
+         <h2>Example</h2>
+         <p>In the following example the <span class="code">widget:button</span>
+            element is used to launch the Forms Wizard widget with the
+            <span class="code">id</span> attribute set to 'myWizard'.</p>
+         <pre class="code">
+&lt;widget:button id="start-button" class="button" action="myWizard#launch"&gt;
+   Start the wizard
+&lt;/widget:button&gt;</pre>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../client/wag_widgets_javascript.html">JavaScript support</a></p>
+      
+   </body></html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs">
+  <head>
+    <title>Corporate Calendar </title>
+
+    <!-- Links to the layout and theme for this page -->
+    <link rel="mcs:layout" href="/jivearticle.mlyt"/>
+    <link rel="mcs:theme" href="/jive.mthm"/>
+  </head>
+
+  <!-- Page body -->
+  <body>
+
+    <!-- The common material for the page header -->
+    <urid:fetch href="jiveheader.xdinc"/>
+
+    <!-- Article title -->
+    <h2 id="title">Corporate Calendar</h2>
+
+    <!-- The article -->
+    <div id="article">
+      <div class="company_item">
+        <h3 class="company_header">Investor Calendar</h3>
+        <p> Jive sports is proud to maintain excellent investor relations. </p>
+        <p>The following schedule marks significant investor-related dates and events. </p>
+        <dl>
+          <dt>June 17</dt>
+          <dd>Final dividend record date</dd>
+          <dt>July 21</dt>
+          <dd>Annual general meeting</dd>
+          <dt>September 12</dt>
+          <dd>Final dividend payable</dd>
+          <dt>December 1</dt>
+          <dd>Interim results announced</dd>
+          <dt>January 25</dt>
+          <dd>End of accounting period</dd>
+          <dt>April 25</dt>
+          <dd>Final results announced</dd>
+        </dl>
+      </div>
+      <div class="company_item">
+        <h3 class="company_header">Family Events</h3>
+        <p> Events for our staff and their families</p>
+        <dl>
+          <dt>July 31</dt>
+          <dd>Family Fun Day</dd>
+          <dt>December 18</dt>
+          <dd>Holiday Season Dinner</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- The common material for the page footer -->
+    <urid:fetch href="jivefooter.xdinc"/>
+  </body>
+</html>

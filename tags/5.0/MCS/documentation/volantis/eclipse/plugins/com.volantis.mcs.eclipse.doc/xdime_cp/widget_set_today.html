@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:set-today</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:set-today</h1><h2>Purpose</h2>
+         <p>Defines a button that sets a current date in the field associated with a Date Picker
+            widget.</p><h2>Contained by</h2><p><a href="../xdime_cp/widget_date_picker.html">widget:date-picker</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+         <pre class="code">
+&lt;xf:input id="date-input"&gt;
+   &lt;xf:label&gt;Enter your birth date &lt;/xf:label&gt;
+&lt;/xf:input&gt;
+
+&lt;widget:date-picker inputField="date-input"&gt;
+   &lt;widget:previous-year&gt; Previous Year &lt;/widget:previous-year&gt;  
+   &lt;widget:previous-month&gt; Previous Month &lt;/widget:previous-month&gt;
+   &lt;widget:month-display/&gt;
+   &lt;widget:year-display/&gt;
+   &lt;widget:next-month&gt; Next Month &lt;/widget:next-month&gt;
+   &lt;widget:next-year&gt; Next Year &lt;/widget:next-year&gt;
+   &lt;widget:set-today&gt; Set today &lt;/widget:set-today&gt;
+   &lt;widget:calendar-display/&gt;  
+   &lt;widget:dismiss&gt; [close] &lt;/widget:dismiss&gt;
+&lt;/widget:date-picker&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/widget_er.html">Widget elements</a></p>
+      </body></html>

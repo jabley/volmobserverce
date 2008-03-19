@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:include schemaLocation="core-module-internal.xsd"/>
+    <xs:include schemaLocation="policy-type-module.xsd"/>
+
+    <xs:simpleType name="TrueOrFalse">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="false"/>
+            <xs:enumeration value="true"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ChartAxis">
+        <xs:all>
+            <xs:element name="title" type="xs:string" minOccurs="0"/>
+            <xs:element name="interval" type="xs:int" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="layout">
+        <!-- Layout has been extracted to the top level to allow validation of
+             layouts as independent documents within the interim Layout Editor in
+             the GUI - when the GUI fully switches over to the new model this can
+             be moved back into the variant definition. -->
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="canvasLayout"/>
+                <xs:element ref="montageLayout"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <!--    <xs:simpleType name="FormatNameType">-->
+<!--        <xs:restriction base="xs:token">-->
+<!--            <xs:pattern value="[a-zA-Z_][a-zA-Z0-9\-_.]*"/>-->
+<!--        </xs:restriction>-->
+<!--    </xs:simpleType>-->
+
+    <xs:complexType name="PolicyReference">
+        <xs:sequence>
+            <xs:element name="name" type="xs:anyURI" minOccurs="0"/>
+            <xs:element name="type" type="PolicyType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="policy-reference" type="PolicyReference"/>
+
+    <xs:simpleType name="BaseLocation">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="context"/>
+            <xs:enumeration value="device"/>
+            <xs:enumeration value="default"/>
+            <xs:enumeration value="host"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="BaseURL">
+        <xs:all>
+            <xs:element ref="policy-reference" minOccurs="0"/>
+            <xs:element name="location" type="BaseLocation" minOccurs="0">
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="PolicyReferenceContainer">
+        <xs:sequence>
+            <xs:element ref="policy-reference"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Alternates">
+        <xs:sequence>
+            <xs:element name="alternate" type="PolicyReferenceContainer" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="variable-policy" substitutionGroup="policy">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="type" type="VariablePolicyType"/>
+
+                <xs:element ref="cache-control" minOccurs="0"/>
+
+                <xs:element name="categorization-scheme"
+                    type="DevicePolicyNameType" minOccurs="0"/>
+
+                <xs:element name="alternates" type="Alternates" minOccurs="0"/>
+
+                <xs:element name="variants">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="variant" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="type" minOccurs="0">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="audio"/>
+                                                    <xs:enumeration value="chart"/>
+                                                    <xs:enumeration value="image"/>
+                                                    <xs:enumeration value="layout"/>
+                                                    <xs:enumeration value="link"/>
+                                                    <xs:enumeration value="null"/>
+                                                    <xs:enumeration value="script"/>
+                                                    <xs:enumeration value="text"/>
+                                                    <xs:enumeration value="theme"/>
+                                                    <xs:enumeration value="video"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+
+                                        <xs:element name="identifier" minOccurs="0" type="xs:string"/>
+
+                                        <xs:element name="selection" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:choice>
+                                                    <xs:element name="default" type="EmptyType"/>
+                                                    <xs:element name="encoding" type="EmptyType"/>
+
+                                                    <xs:element name="generic-image">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="width-hint" type="xs:int" minOccurs="0"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+
+                                                    <xs:element name="targeted">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="devices" minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="device" type="DeviceNameType" maxOccurs="unbounded"/>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+
+                                                                <xs:element name="categories" minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="category" type="xs:string" maxOccurs="unbounded"/>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                        <xs:element name="meta-data" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:choice>
+                                                    <xs:element name="audio">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="encoding" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="adpcm32"/>
+                                                                            <xs:enumeration value="amr"/>
+                                                                            <xs:enumeration value="basic"/>
+                                                                            <xs:enumeration value="gsm"/>
+                                                                            <xs:enumeration value="imelody"/>
+                                                                            <xs:enumeration value="midi"/>
+                                                                            <xs:enumeration value="mp3"/>
+                                                                            <xs:enumeration value="nokia-ring-tone"/>
+                                                                            <xs:enumeration value="real"/>
+                                                                            <xs:enumeration value="rmf"/>
+                                                                            <xs:enumeration value="smaf"/>
+                                                                            <xs:enumeration value="sp-midi"/>
+                                                                            <xs:enumeration value="wav"/>
+                                                                            <xs:enumeration value="windows-media"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                            </xs:all>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="chart">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="type" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="bar"/>
+                                                                            <xs:enumeration value="column"/>
+                                                                            <xs:enumeration value="legend"/>
+                                                                            <xs:enumeration value="line"/>
+                                                                            <xs:enumeration value="pie"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+
+                                                                <xs:element name="height-hint" type="xs:int" minOccurs="0"/>
+                                                                <xs:element name="width-hint" type="xs:int" minOccurs="0"/>
+                                                                <xs:element name="x-axis" type="ChartAxis" minOccurs="0"/>
+                                                                <xs:element name="y-axis" type="ChartAxis" minOccurs="0"/>
+
+                                                            </xs:all>
+                                                        </xs:complexType>
+                                                    </xs:element>
+
+                                                    <xs:element name="image">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="conversion-mode" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="always"/>
+                                                                            <xs:enumeration value="never"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+
+                                                                <xs:element name="encoding" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="bmp"/>
+                                                                            <xs:enumeration value="gif"/>
+                                                                            <xs:enumeration value="jpeg"/>
+                                                                            <xs:enumeration value="pjpeg"/>
+                                                                            <xs:enumeration value="png"/>
+                                                                            <xs:enumeration value="tiff"/>
+                                                                            <xs:enumeration value="videotex"/>
+                                                                            <xs:enumeration value="wbmp"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+
+                                                                <xs:element name="height" type="xs:int" minOccurs="0"/>
+
+                                                                <xs:element name="pixel-depth" type="xs:int" minOccurs="0"/>
+
+                                                                <xs:element name="rendering" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="color"/>
+                                                                            <xs:enumeration value="grayscale"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+
+                                                                <xs:element name="width" type="xs:int" minOccurs="0"/>
+
+                                                                <xs:element name="preserve-left" type="xs:int" minOccurs="0"/>
+                                                                <xs:element name="preserve-right" type="xs:int" minOccurs="0"/> 
+
+                                                            </xs:all>
+                                                        </xs:complexType>
+                                                    </xs:element>
+
+                                                    <xs:element name="script">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="encoding" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="javascript"/>
+                                                                            <xs:enumeration value="javascript1.0"/>
+                                                                            <xs:enumeration value="javascript1.1"/>
+                                                                            <xs:enumeration value="javascript1.2"/>
+                                                                            <xs:enumeration value="javascript1.3"/>
+                                                                            <xs:enumeration value="javascript1.4"/>
+                                                                            <xs:enumeration value="WML-task"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+
+                                                                <xs:element name="character-set" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:pattern value="[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                
+                                                            </xs:all>
+                                                        </xs:complexType>
+                                                    </xs:element>
+
+                                                    <xs:element name="text">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="encoding" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="plain"/>
+                                                                            <xs:enumeration value="form-validator"/>
+                                                                            <xs:enumeration value="voice-xml-error"/>
+                                                                            <xs:enumeration value="voice-xml-help"/>
+                                                                            <xs:enumeration value="voice-xml-nuance-grammar"/>
+                                                                            <xs:enumeration value="voice-xml-prompt"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                <xs:element name="language" type="xs:token" minOccurs="0"/>
+                                                            </xs:all>
+                                                        </xs:complexType>
+                                                    </xs:element>
+
+                                                    <xs:element name="video">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="encoding" minOccurs="0">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:enumeration value="animated-gif"/>
+                                                                            <xs:enumeration value="macromedia-flash"/>
+                                                                            <xs:enumeration value="macromedia-shockwave"/>
+                                                                            <xs:enumeration value="mpeg1"/>
+                                                                            <xs:enumeration value="mpeg4"/>
+                                                                            <xs:enumeration value="quicktime"/>
+                                                                            <xs:enumeration value="real"/>
+                                                                            <xs:enumeration value="3gpp"/>
+                                                                            <xs:enumeration value="windows-media"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+
+                                                                <xs:element name="height" type="xs:int" minOccurs="0"/>
+                                                                <xs:element name="width" type="xs:int" minOccurs="0"/>
+                                                            </xs:all>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                        <xs:element name="content" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:choice>
+
+                                                    <xs:element name="auto-url-sequence">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="base" type="BaseURL" minOccurs="0"/>
+                                                                <xs:element name="template" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="size" type="xs:int" minOccurs="0"/>
+                                                            </xs:all>
+                                                        </xs:complexType>
+                                                    </xs:element>
+
+                                                    <xs:element name="embedded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="data" type="xs:string"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+
+                                                    <xs:element ref="layout"/>
+
+                                                    <xs:element name="theme">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="import-parent" type="TrueOrFalse" minOccurs="0"/>
+                                                                <xs:element name="style-sheet" minOccurs="0">
+                                                                    <xs:complexType>
+                                                                        <xs:choice>
+                                                                            <xs:element name="css">
+                                                                                <xs:complexType>
+                                                                                    <xs:simpleContent>
+                                                                                        <xs:extension base="xs:string">
+                                                                                            <xs:attribute name="parser" use="optional">
+                                                                                                <xs:simpleType>
+                                                                                                    <xs:restriction base="xs:string">
+                                                                                                        <xs:enumeration value="strict"/>
+                                                                                                        <xs:enumeration value="lax"/>
+                                                                                                    </xs:restriction>
+                                                                                                </xs:simpleType>
+                                                                                            </xs:attribute>
+                                                                                        </xs:extension>
+                                                                                    </xs:simpleContent>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+
+                                                                            <xs:element name="rules" minOccurs="0">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element ref="rule" minOccurs="0" maxOccurs="unbounded"/>
+                                                                                    </xs:sequence>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:choice>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+
+                                                    <xs:element name="url">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="base" type="BaseURL" minOccurs="0"/>
+                                                                <xs:element name="relative" type="xs:anyURI" minOccurs="0"/>
+                                                            </xs:all>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="base-url-policy" substitutionGroup="policy">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="cache-control" minOccurs="0"/>
+                <xs:element name="url" type="xs:anyURI" minOccurs="0"/>
+                <xs:element name="location" type="BaseLocation" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="button-image-policy" substitutionGroup="policy">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="cache-control" minOccurs="0"/>
+                <xs:element name="alternates" type="Alternates" minOccurs="0"/>
+                <xs:element name="up" type="PolicyReferenceContainer" minOccurs="0"/>
+                <xs:element name="down" type="PolicyReferenceContainer" minOccurs="0"/>
+                <xs:element name="over" type="PolicyReferenceContainer" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="rollover-image-policy" substitutionGroup="policy">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="cache-control" minOccurs="0"/>
+                <xs:element name="alternates" type="Alternates" minOccurs="0"/>
+                <xs:element name="normal" type="PolicyReferenceContainer" minOccurs="0"/>
+                <xs:element name="over" type="PolicyReferenceContainer" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="cache-control">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="cache-this-policy" type="TrueOrFalse" minOccurs="0"/>
+                <xs:element name="retain-during-retry" type="TrueOrFalse" minOccurs="0"/>
+                <xs:element name="retry-failed-retrieval" type="TrueOrFalse" minOccurs="0"/>
+                <xs:element name="retry-interval" type="xs:int" minOccurs="0"/>
+                <xs:element name="retry-max-count" type="xs:int" minOccurs="0"/>
+                <xs:element name="time-to-live" type="xs:int" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

@@ -1,0 +1,22 @@
+#!/bin/bash
+# -----------------------------------------------------------------------------
+# (c) Volantis Systems Ltd 2005. All Rights Reserved.
+# -----------------------------------------------------------------------------
+# Purpose:   Runs the MCS Asset Loader application.
+# Arguments: As per the AssetLoaderCLI class program arguments.
+# -----------------------------------------------------------------------------
+
+CLASS_PATH=$($(dirname $(type -path $0))/classpath log4j.jar volantis-jdom.jar volantis-xercesImpl.jar volantis-xmlParserAPIs.jar volantis-xalan.jar jdbc2_0-stdext.jar synergetics-runtime.jar commons-cli-1.0.jar jakarta-regexp-1.3.jar jai_codec.jar jai_core.jar jai_imageio.jar volantis-mcs-assetloader-client-cli.jar mcs-api.jar volantis-mcs-common.jar volantis-mcs-core.jar)
+
+java -classpath ${CLASS_PATH}:${CLASSPATH} com.volantis.mcs.cli.asset.AssetLoaderCLI "$@"
+
+#
+# ===========================================================================
+# Change History
+# ===========================================================================
+# $Log$
+
+# 12-Jan-05	6648/3	philws	VBM:2005010605 Overhaul in-house scripts to correct classpath issues
+
+# ===========================================================================
+#

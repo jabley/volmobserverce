@@ -1,0 +1,58 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head><link href="../volantis.css" rel="stylesheet" type="text/css"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>MCS editors</title>
+  </head>
+  <body>
+<h1>Validation</h1>
+  
+<p>When MCS validates the content of work you have done, it reports any problems. 
+  What you see depends on the situation.</p>
+<h2>Policy editor errors</h2>
+<p>In the Alerts and Action Items section of a policy editor, the error information 
+  is updated each time you make a change. For example when you add a new asset 
+  to a component, MCS validates the change and reports on any required attributes 
+  that are missing. As you enter valid attribute data the list changes until there 
+  are no errors showing.</p>
+<p>If there are any current errors, you'll see a link to the relevant items in 
+  the Task view, for example, 'There are 2 errors 0, warnings and 3 tasks associated 
+  with this theme'. You can click on the link to highlight the items in the Task 
+  list. If there are no errors, you'll see 'No alerts at this time'.</p>
+<p> The figure shows an example. </p>
+<p><img src="../images/mcs_errors.png" alt="Errors listed in the Alerts and Action Items section of a policy editor" width="396" height="57" border="0"></p>
+<h2>Errors in the Task view</h2>
+<p>The same problems are also included in the workbench Task view. If the Task 
+  view is closed when MCS first reports an error, MCS opens it the Task view to 
+  show the problem.</p>
+<p><img src="../images/mcs_list_error.png" width="528" height="151" alt="Task view with MCS errors"></p>
+<p>The task list contains all the outstanding items that need your attention. 
+  When you <span class="command">Go To</span> an MCS resource on the Task list, 
+  MCS brings the resource tab to the front (or opens the editor if it is closed), 
+  and highlights the control where the problem is.</p>
+<h2>Errors in dialogs</h2>
+<p>Errors in dialogs are shown by text in the body of the dialog.</p>
+<p><img src="../images/mcs_warning.png" width="181" height="157" alt="Dialog with an error message"></p>
+<h2>Errors in lists</h2>
+<p>Errors in asset lists are indicated by an asset icon with an error decoration.</p>
+<p><span class="ri">Related information</span><br>
+  <a href="mcs_editors.htm" title="MCS policy editors">MCS policy editors</a> 
+</p>
+<p class="copyright">&copy; Copyright 2004 Volantis Systems Ltd</p></body>
+</html>

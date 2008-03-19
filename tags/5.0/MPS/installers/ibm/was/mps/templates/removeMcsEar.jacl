@@ -1,0 +1,42 @@
+set AppName "mcs"
+
+set FlagAppExist "False"
+foreach TmpAppName [$AdminApp list] {
+    if {[string compare $TmpAppName [string trim $AppName \"]] == 0} {
+        set FlagAppExist "True"
+        break;
+    }
+}
+
+if {$FlagAppExist == "False"} {
+    puts stdout "Application $AppName does not exist, no Action taken"
+	exit
+} else {
+    $AdminApp uninstall $AppName
+}
+
+#check for success
+set FlagAppExist "False"
+foreach TmpAppName [$AdminApp list] {
+        if {[string compare $TmpAppName [string trim $AppName \"]] == 0} {
+            set FlagAppExist "True"
+            break;
+        }
+}
+if {$FlagAppExist == "False"} {
+    puts stdout "Application $AppName successfully uninstalled."
+    $AdminConfig save
+} else {
+    puts stdout "ERROR: Application $AppName could not be uninstalled."
+}
+
+#
+# ===========================================================================
+# Change History
+# ===========================================================================
+# $Log$
+
+# 20-Dec-04	6522/1	pcameron	VBM:2004122004 New packagers for wemp
+
+# ===========================================================================
+#

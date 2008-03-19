@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>xf:submit</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>xf:submit</h1><h2>Purpose</h2>
+         <p>A form control that initiates submission of the form data
+            for processing.</p>
+      <h2>Contains</h2><p><a href="../xdime_cp/xf_label.html">xf:label</a>, <a href="../xdime_cp/xf_setvalue.html">xf:setvalue</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">ref</th><td>This attribute is part of the XForms schema, but in the context of a submit action it has no meaning. You therefore need not set it.</td><td>xs:NCName</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcellrequired" scope="row">submission</th><td>The identifier of the <span class="code">submission</span> element that defines how the form is submitted</td><td>xs:IDREF</td><td>none </td><td> </td><td>required </td></tr></table><h2>Attribute groups</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a>, <a href="../xdime_cp/sel_attr_cp.html">Selection attributes</a></p><h2>Example</h2><pre class="code">&lt;html&gt;
+   &lt;head&gt;
+      &lt;xf:model&gt;
+         &lt;xf:submission id="do-login" action="doLogin.jsp" method="get"/&gt;
+      &lt;/xf:model&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;xf:input ref="username"&gt;
+         &lt;xf:label&gt;Username:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+      &lt;xf:secret ref="password"&gt;
+         &lt;xf:label&gt;Password:&lt;/xf:label&gt;
+      &lt;/xf:secret&gt;
+      &lt;xf:submit submission="do-login"&gt;
+         &lt;xf:label&gt;Login&lt;/xf:label&gt;
+      &lt;/xf:submit&gt;            
+   &lt;/body&gt;
+&lt;/html&gt;</pre>
+         <p><span class="ri">Related topic</span><br/><a href="../wag/xf_er.html">XForms elements</a></p>
+      </body></html>

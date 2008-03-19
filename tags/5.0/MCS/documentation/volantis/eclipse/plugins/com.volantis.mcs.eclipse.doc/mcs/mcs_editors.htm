@@ -1,0 +1,141 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head><link href="../volantis.css" rel="stylesheet" type="text/css"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>MCS editors</title>
+  </head>
+  <body>
+<h1>MCS policy editors</h1>
+  
+<p>MCS policy editors vary somewhat in appearance, but they share some common 
+  features described here.</p>
+<p>When you add a new resource to a project, MCS opens the first page of the appropriate 
+  editor on a new resource tab in the workbench. From that point on you can open 
+  any MCS editor on any existing resource from the project policy tree. </p>
+<p>There are policy editors for</p>
+<ul>
+  <li>Components</li>
+  <li>Asset groups</li>
+  <li>Devices</li>
+  <li>Layouts</li>
+  <li>Themes</li>
+</ul>
+
+<h2>Pages and sections</h2>
+<p>Component editors have a single page. Layout and Theme editors have two pages, 
+  for Overview and Design. The Device Repository editor contains four pages.</p>
+<h2>Alerts and Action items</h2>
+<p>When you use a policy editor in MCS, you are creating or editing an underlying 
+  XML file. Each time you complete an entry in the editor, the content is validated 
+  against the XML schema for the resource.</p>
+<p>When the resource you are editing is validated, MCS automatically logs problems, 
+  errors, or warnings in the workbench Tasks view. See <a href="mcs_validation.htm" title="Validation">Validation</a> for details. The Alerts and Action Items section of an editor also 
+  reports on the current status of the resource you are editing. </p>
+<h2>Editing resources</h2>
+<p>You can have multiple MCS editors open on different resource tabs at any time, 
+  and the resources may be from more than one project. You can navigate between 
+  editors by clicking on an editor tab at the top of the editor page, or double-clicking 
+  an icon in the policy tree. Each tab contains the file name of the resource 
+  you are editing.</p>
+<h2>Icons and file extensions</h2>
+<p>In the the policy tree and on the editor tabs, each resource type is associated 
+  with an icon that helps you identify it. The file extension also identifies 
+  the type of resource.</p>
+<table width="55%" border="1" cellpadding="0" cellspacing="0">
+  <tr align="left" valign="top"> 
+    <th width="28%">Resource</th>
+    <th width="5%" align="center" valign="top">Icon</th>
+    <th width="67%">File extension</th>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Asset Group</td>
+    <td align="center" valign="top"><img src="../images/icons/asset_group.gif" width="16" height="16" alt="Asset group icon"></td>
+    <td>mgrp</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Audio</td>
+    <td align="center" valign="top"><img src="../images/icons/audio.gif" width="16" height="16" alt="Audio icon"></td>
+    <td>mauc</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Chart</td>
+    <td align="center" valign="top"><img src="../images/icons/chart.gif" width="16" height="16" alt="Chart icon"></td>
+    <td>mcht</td>
+  </tr>
+  <tr align="left" valign="top">
+    <td>Device Repository</td>
+    <td align="center"><img src="../images/icons/dev_repository_16px.gif" width="16" height="16" alt="Device repository icon"></td>
+    <td>mdpr</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Dynamic Visual</td>
+    <td align="center" valign="top"><img src="../images/icons/dynamic_visual.gif" width="16" height="16" alt="Dynamic visual icon"></td>
+    <td>mdyv</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Image</td>
+    <td align="center" valign="top"><img src="../images/icons/image.gif" width="16" height="16" alt="Mmage icon"></td>
+    <td>mimg</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Layout</td>
+    <td align="center" valign="top"><img src="../images/icons/layout.gif" width="16" height="16" alt="Layout icon"></td>
+    <td>mlyt</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Link</td>
+    <td align="center" valign="top"><img src="../images/icons/link.gif" width="16" height="16"  alt="Link icon"></td>
+    <td>mlnk</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Rollover Image</td>
+    <td align="center" valign="top"><img src="../images/icons/image_over.gif" width="16" height="16"  alt="Rollover icon"></td>
+    <td>mrlv</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Script</td>
+    <td align="center" valign="top"><img src="../images/icons/script.gif" width="16" height="16" alt="Script icon"></td>
+    <td>mscr</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Text</td>
+    <td align="center" valign="top"><img src="../images/icons/text.gif" width="16" height="16"  alt="Text icon"></td>
+    <td>mtxt</td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td>Theme</td>
+    <td align="center" valign="top"><img src="../images/icons/theme.gif" width="16" height="16" alt="Theme icon"></td>
+    <td>mthm</td>
+  </tr>
+</table>
+<h2>Default editor</h2>
+<p>Like all workbench editors, MCS uses the most recently used editor to open 
+  a file, so if you opened a file with a text editor for example, MCS will use 
+  it next time you double click on the resource. To change the default, right-click 
+  on a resource and choose the specific MCS editor for that file type.</p>
+<p><span class="ri">Related information</span><br>
+  <a href="mcs_policies.htm" title="MCS policies">MCS policies</a><br>
+  <a href="../components/component_editors.htm" title="Component editors">Component 
+  editors</a><br>
+<a href="../devices/device_editor.htm" title="Device Repository editor">Device Repository editor</a><br>
+  <a href="../layouts/layout_editor.htm" title="Layout editor">Layout editor</a><br><a href="../themes/theme_editor.htm" title="Theme editor">Theme editor</a><br>
+<a href="mcs_validation.htm" title="Validation">Validation</a><br>
+<a href="mcs_source_editor.htm" title="Using the MCS Source Editor">Using the MCS Source Editor</a></p>
+<p class="copyright">&copy; Copyright 2004 Volantis Systems Ltd</p></body>
+</html>

@@ -1,0 +1,11 @@
+set FileName "wemp_updateEar.jacl"
+
+puts "UpdateEarSrc : $UpdateEarSrc"
+puts "Attrs : $Attrs"
+puts ""
+
+$AdminConfig save
+$AdminApp install $UpdateEarSrc "$Attrs"
+$AdminConfig save
+
+

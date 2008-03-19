@@ -1,0 +1,33 @@
+<?xml version='1.0'?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<root xmlns:webd="http://www.volantis.com/xmlns/marlin-web-driver">
+    <p xml:base="http://localHost:8080/mantis/Mantis_Login.jsp">A Response Test</p>
+</root>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 20-Oct-04	5438/1	philws	VBM:2004082706 Transfer Pipeline source into MCS
+
+ 09-Jul-04	769/1	doug	VBM:2004070502 Improved integration tests for the Web Driver
+
+ ===========================================================================
+-->
