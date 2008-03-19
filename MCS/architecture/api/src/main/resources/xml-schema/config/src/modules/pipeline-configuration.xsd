@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Ian Willoughby (Hastings Computers) -->
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Paul Duffin (Volantis) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="common-module.xsd"/>
+	<xs:include schemaLocation="data-source-module.xsd"/>
+	<xs:element name="pipeline-configuration">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="debug-output" minOccurs="0"/>
+				<xs:element ref="markup-extensions" minOccurs="0"/>
+				<xs:element ref="caching-operation" minOccurs="0"/>
+				<xs:element ref="connection" minOccurs="0"/>
+				<xs:element ref="sql-driver" minOccurs="0"/>
+				<xs:element ref="transform" minOccurs="0"/>
+				<xs:element ref="web-driver" minOccurs="0"/>
+				<xs:element ref="web-services-driver" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<!--Debugging Operations-->
+	<xs:element name="debug-output">
+		<xs:annotation>
+			<xs:documentation>Controls the behaviour of those pipeline operations that produce debug output.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="directory" type="xs:anyURI" use="optional">
+				<xs:annotation>
+					<xs:documentation>Specifies the directory into which debugging pipeline operations will write their output.<p>If this is not specified then the operations are treated as inactive. Every file within the directory will be prefixed with the date, time and a unique number. Relative directories are relative to the location of the configuration file.</p>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!--Caching Operation-->
+	<xs:element name="caching-operation">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="cache"/>
+			</xs:sequence>
+            <xs:attribute name="expiry-mode" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="auto"/>
+                        <xs:enumeration value="fixed-age"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+	</xs:element>
+	<xs:element name="cache">
+		<xs:annotation>
+			<xs:documentation>Identifies a cache </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="strategy" type="CacheStrategyName" use="optional" default="least-recently-used"/>
+			<xs:attribute name="max-entries" type="CacheMaxEntries" use="required"/>
+			<xs:attribute name="max-age" type="CacheMaxAge" use="optional" default="unlimited"/>
+		</xs:complexType>
+	</xs:element>
+	<!--Connection-->
+	<xs:element name="connection">
+		<xs:annotation>
+			<xs:documentation>Configuration for (remote) connections.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="timeout" type="xs:integer" use="optional" default="-1">
+				<xs:annotation>
+					<xs:documentation>Defines the default timeout, in seconds, to apply to (remote) connections made by pipeline processes. A negative or zero value indicates no timeout.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+            <xs:attribute name="enable-caching" type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>Enables/disables caching of responses.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="max-cache-entries" type="xs:integer" use="optional" default="1000">
+                <xs:annotation>
+                    <xs:documentation>Defines the maximum number of cache entries.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!--Markup Extensions-->
+	<xs:element name="markup-extensions">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="markup-extension"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="markup-extension">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="process"/>
+				<xs:element ref="rule"/>
+			</xs:choice>
+			<xs:attribute name="local-name" type="xs:string" use="required"/>
+			<xs:attribute name="namespace-uri" type="xs:anyURI" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rule">
+		<xs:complexType>
+			<xs:attribute name="class-name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="process">
+		<xs:complexType>
+			<xs:attribute name="class-name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<!--SQL Driver-->
+	<xs:element name="sql-driver">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="data-sources" minOccurs="0"/>
+				<!--                <xs:element ref="data-sources" minOccurs="0"/>-->
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--Web Services Driver-->
+	<xs:element name="web-services-driver">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="wsdl-catalog" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="wsdl-catalog">
+		<xs:annotation>
+			<xs:documentation>Specifies alternative locations for WSDL documents.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="wsdl-entry"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="wsdl-entry">
+		<xs:annotation>
+			<xs:documentation>Specifies alternative locations for a WSDL document identified by the uri attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="class-resource" minOccurs="0"/>
+				<xs:element ref="servlet-resource" minOccurs="0"/>
+				<xs:element ref="uri-resource" minOccurs="0"/>
+			</xs:choice>
+			<xs:attribute name="uri" type="xs:anyURI" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="RelativePath">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<xs:element name="class-resource">
+		<xs:annotation>
+			<xs:documentation>Identifies a resource that can be found on the class path.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="path" type="RelativePath" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="servlet-resource">
+		<xs:annotation>
+			<xs:documentation>Identifies a resource that can be found within a servlet context.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="path" type="RelativePath" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="uri-resource">
+		<xs:annotation>
+			<xs:documentation>Identifies a resource by an arbitrary uri.
+Note: In order for this resource to be retrieved the protocol must be supported by the JVM.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="uri" type="xs:anyURI" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<!--Transform Operation-->
+	<xs:element name="transform">
+		<xs:annotation>
+			<xs:documentation>Configuration for transform operations.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="compile" type="xs:boolean" use="optional" default="false">
+				<xs:annotation>
+					<xs:documentation>Controls whether XSLTs referenced from transform and transformation elements can be compiled or not. If this is set to true, then those XSLTs referenced from transform and transformation elements that also have a compilable attribute set to true will be compiled, otherwise no XSLTs will be compiled. Great care must be taken when changing this attribute from its default value as XSLT compilers are not yet capable of handling all XSLT constructs.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="cache" type="xs:boolean" use="optional" default="false">
+				<xs:annotation>
+					<xs:documentation>Controls whether templates will be cached. <p>Templates are the internal structures, created from XSLT markup, that actually do the transformation. Construction of a template from the XSLT markup is quite a costly operation so caching them can improve performance significantly.</p>
+						<p>If this attribute is false then templates are never cached. Otherwise they are cached using a composite key constructed from the fully resolved URL and the compilable flag. Templates that are created from XSLT markup inline within the page do not have an associated URL and hence are not cacheable.</p>
+						<p>Currently, the templates' cache cannot be configured and is unlimited in size meaning that templates are never removed.</p>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!--Web Driver-->
+	<xs:element name="web-driver">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="script" minOccurs="0"/>
+				<xs:element ref="proxy" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="connection-timeout" type="xs:int" use="optional">
+				<xs:annotation>
+					<xs:documentation>Specifies the timeout on connection to a remote web server in milliseconds.
+						<p>A value of -1 indicate no timeout, which is the default value</p>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="proxy">
+		<xs:annotation>
+			<xs:documentation>Identifies the proxy configuration element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="id" use="required"/>
+			<xs:attribute name="port" use="required"/>
+			<xs:attribute name="host"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="script">
+		<xs:annotation>
+			<xs:documentation>Identifies the script configuration element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="module" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="module">
+		<xs:annotation>
+			<xs:documentation>Identifies the module configuration element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="filter" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="id" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="filter">
+		<xs:annotation>
+			<xs:documentation>Identifies the filter configuration element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="content-type" use="required"/>
+			<xs:attribute name="class" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

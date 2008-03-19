@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:multiple-validator</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:multiple-validator</h1><h2>Purpose</h2>
+         <p>The main element for a Multiple Forms Validator widget.</p>
+      <h2>Contains</h2><p><a href="../xdime_cp/widget_field.html">widget:field</a>, <a href="../xdime_cp/widget_validate.html">widget:validate</a></p><h2>Contained by</h2><p><a href="../xdime_cp/xdime_cp_body.html">body</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+         <div class="note"><strong>Note</strong>: The pseudo-class <span class="code">:mcs-invalid</span> specifies all style
+            changes that are applied after validation has failed.</div>
+         <pre class="code">
+&lt;head&gt;
+   &lt;xf:model id="authentication"&gt;
+      &lt;xf:instance&gt;
+         &lt;si:instance&gt;
+            &lt;si:item name="name"/&gt;
+            &lt;si:item name="pin"/&gt;
+         &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission id="form1" action="ajax-validator.xdime"/&gt;
+   &lt;/xf:model&gt;
+   &lt;widget:script id="validate-script"&gt; $W('myValidator').addSuccessCallback(function()
+      {$W('formMsgSuccess').setContent("Validation succeeded.")});
+      $W('myValidator').addFailureCallback(function() {$W('formMsgSuccess').setContent("")});
+      $W('myValidator').validate() &lt;/widget:script&gt;
+&lt;/head&gt;
+&lt;body id="body"&gt;
+   Please enter a name and PIN.
+   &lt;widget:display id="formMsgSuccess"/&gt;
+   &lt;span id="formMessage"/&gt;
+   &lt;xf:input ref="name" id="name"&gt;
+      &lt;xf:label id="formText1"&gt;Name&lt;/xf:label&gt;
+   &lt;/xf:input&gt;
+   &lt;span id="formMessage1"/&gt;
+   &lt;xf:input ref="pin" id="pin"&gt;
+      &lt;xf:label id="formText2"&gt;PIN&lt;/xf:label&gt;
+   &lt;/xf:input&gt;
+   &lt;span id="formMessage2"/&gt;
+   &lt;span id="formButton" class="button"&gt;
+      &lt;a href="javascript:Widget.getInstance('validate-script').invoke()"&gt;Validate&lt;/a&gt;
+   &lt;/span&gt;
+   &lt;widget:multiple-validator id="myValidator" class="validatable"&gt;
+      &lt;widget:field ref="name" message-area="formMessage1"/&gt;
+      &lt;widget:field ref="pin" message-area="formMessage2"/&gt;
+      &lt;widget:validate message-area="formMessage" src="service/validator"/&gt;
+   &lt;/widget:multiple-validator&gt;
+&lt;/body&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/widget_er.html">Widget elements</a><br/><a href="../xdime_cp/response_er.html">Widget response elements</a></p>
+      </body></html>

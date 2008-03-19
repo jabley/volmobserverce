@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><meta name="taskref" content="022"/><title>project</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>project</h1><h2>Purpose</h2>
+			<p>Optional container for project information.</p>
+		<h2>Contains</h2><p><a href="../admin/config_assets.html">assets</a>, <a href="../admin/config_fallback_project.html">fallback-project</a>, <a href="../admin/config_generated_resources.html">generated-resources</a>, <a href="../admin/config_jdbc_policies.html">jdbc-policies</a>, <a href="../admin/config_project_remote.html">remote-policies</a>, <a href="../admin/config_xml_policies.html">xml-policies</a></p><h2>Contained by</h2><p><a href="../admin/config_projects.html">projects</a></p><h2>Attributes</h2><table cellspacing="0" summary="The table contains the attributes of the element or elements. It lists the name; the purpose or use; the XML schema datatype, the default value if there is one; value options if they are predefined; and indicates if the attribute is required, optional, deprecated or obsolete."><tr><th class="firsthdr" scope="col">Name</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row"><span class="requiredattr">name</span></th><td>The project URI</td><td>xs:anyURI</td><td>none </td><td> </td><td>required </td></tr><tr><th class="firstcell" scope="row">preload</th><td>Whether or not the project information is preloaded into the caches when MCS starts.</td><td>xs:boolean</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Example</h2>	<pre class="code">&lt;project name="http://www.mycorp.com/mcs_policies/marketing"&gt;
+   &lt;xml-policies directory="/mcs-policies/product"/&gt;
+   &lt;assets base-url="/wps/"&gt;
+      &lt;audio-assets prefix-url="/audio/"/&gt;
+      &lt;dynamic-visual-assets prefix-url="/dynvis/"/&gt;
+      &lt;image-assets prefix-url="/images/"/&gt;
+      &lt;script-assets prefix-url="/scripts/"/&gt;
+      &lt;text-assets prefix-url="/text/"/&gt;
+   &lt;/assets&gt;
+&lt;/project&gt; </pre>
+			<p><span class="ri">Related topic</span><br/><a href="../admin/mcs_config_er.html">MCS configuration elements</a></p>
+		</body></html>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <title>Installing ICS to a web server</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Installing ICS to a web server</h1>
+      
+         
+      <h2>Creating a war file</h2>
+         
+      <ol>
+            
+         <li>Change to the [path]/MCS/webapps/[install] directory </li>
+            
+         <li>Enter <span class="command">cd
+               [install]/ics/webapps/ics</span>
+            
+         </li>
+            
+         <li>In the directory above the
+                  <span class="filepath">[path]/MCS/webapps</span> directory,
+               create a <span class="filepath">.war</span> file that contains
+               the contents of the
+                  <span class="filepath">[path]/MCS/webapps/[context_root]</span>
+               directory by entering <span class="command">jar -cvf
+                  ../[filename].war</span>
+               
+            <p class="note">
+               <strong>Note</strong>: Ensure you put
+                  the space and the full stop after the filename at
+                  the end of the jar command to pick up the contents
+                  of the current directory.</p>
+            
+         </li>
+         
+      </ol>
+      
+      
+         
+      <h2>Apache Tomcat version 4.1</h2>
+         
+      <p>To install the <span class="filepath">.war</span> file on Tomcat.</p>
+         
+      <ol>
+            
+         <li>Stop Tomcat </li>
+            
+         <li>Copy the <span class="filepath">.war</span> file
+               <span class="command">$TOMCAT_HOME/webapps</span>
+            
+         </li>
+            
+         <li>Start Tomcat to expand the <span class="filepath">.war</span>
+               file and create the <span class="filepath">ics</span> directory,
+               which also contains a sample image</li>
+         
+      </ol>
+      
+      
+         
+      <h2>WebSphere version 5</h2>
+         
+      <p>You can use the web-based WebSphere Administration Console
+            to install your ICS application using the newly created
+            <span class="filepath">.war</span> file. For example:</p>
+         
+      <p>
+            
+         <span class="code">http://localhost:9090/admin</span>
+         
+      </p>
+         
+      <ol>
+            
+         <li>Log in as appropriate </li>
+            
+         <li>Expand the <span class="uicontrol">Applications</span> option </li>
+            
+         <li>Choose the <span class="uicontrol">Install Applications</span>
+               option. You will now be guided through the steps to
+               prepare and install a new application </li>
+            
+         <li>Select local path and click <span class="command">Browse</span>
+               to locate the <span class="filepath">.war</span> file you
+               created to hold the
+                  <span class="filepath">[path]/MCS/ics/webapps/ics</span>
+               directory </li>
+            
+         <li>Set the context root to <span class="filepath">ics</span>.
+               Click <span class="command">Next</span>. </li>
+            
+         <li>Accept the default settings of 'do not override
+               existing bindings' and default virtual host name of
+               'default_host'. Click <span class="command">Next</span>. </li>
+            
+         <li>Accept the default settings of 'distribute
+               applications' , your <span class="filepath">.war</span> filename
+               which will now have _war at the end instead of a <span class="filepath">.war</span>
+               extension and 'create Mbeans for resources'. Click
+                  <span class="command">Next</span>. </li>
+            
+         <li>Choose the Image Conversion Service web module. Click
+                  <span class="command">Next</span>. The installer displays a
+               summary of your installation </li>
+            
+         <li>If you are satisfied with the entries scroll down and
+               click <span class="command">Finish</span>. </li>
+            
+         <li>When the installation has successfully completed you
+               will need to save your Master configuration changes
+            </li>
+         
+      </ol>
+      
+      
+         
+      <h2>Testing your installation</h2>
+         
+      <p>Now test that ICS has been properly installed, using the
+            following URLs:</p>
+         
+      <p>
+            
+         <span class="code">http://[machine-name]:[port]/ics/ics/ics/images/gp8/test.jpg</span>
+         
+      </p>
+         
+      <p>
+            
+         <span class="code">http://[machine-name]:[port]/ics/ics/ics/images/gp8/test.jpg?v.ditherMode=ordered-dither</span>
+         
+      </p>
+      
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../ics/ics_about.html">About ICS</a>
+         <br/>
+         <a href="../install/mcs_install_oview.html">Installing MCS</a>
+      </p>
+      
+   
+   </body>
+</html>

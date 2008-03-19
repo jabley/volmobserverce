@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Form instance data</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Form instance data</h1>
+      <p>In XDIME 2 you can take advantage of many XForms features, including
+         separation the data model from the forms control markup and
+         modularization. XDIME 2 supports a processing mode that does not
+         require the full XForms data model, but that allows the use of initial
+         values and hidden fields.</p>
+
+      
+         <h2>Initialization</h2>
+         <p>If you want to initialize form controls or provide additional hidden
+            data during form submission, you can use two elements, which take an
+               <span class="code">si:</span> namespace prefix, as a simple way of providing
+            instance data in name/value pairs.</p>
+         <p>The <span class="code">si:instance</span> element is the body content of an
+               <span class="code">xf:instance</span> element in the model for the form.
+            It can contain one or more <span class="code">si:item</span> elements.</p>
+         <pre class="code">&lt;html xmlns="http://www.w3.org/2002/06/xhtml2" 
+      xmlns:xf="http://www.w3.org/2002/xforms"
+      xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"&gt;
+   &lt;head&gt;
+      &lt;title&gt;Subscriber update&lt;/title&gt;
+      &lt;xf:model id="address"&gt;
+          &lt;xf:instance&gt;
+              &lt;si:instance&gt;
+                  &lt;si:item name="street"&gt;149, rue Deguy&lt;/si:item&gt;
+                  &lt;si:item name="postcode"&gt;13004 Marseille&lt;/si:item&gt;
+                  &lt;si:item name="country"&gt;fr&lt;/si:item&gt;
+                  &lt;si:item name="hidden"&gt;subscriber_id&lt;/si:item&gt;
+                  ...
+              &lt;/si:instance&gt;
+          &lt;/xf:instance&gt;
+          ...
+      &lt;/xf:model&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+   ....
+   &lt;/body&gt;
+&lt;/html&gt;</pre>
+         <p>When the <span class="code">name</span> attribute on the
+            <span class="code">si:item</span> matches the <span class="code">ref</span> attribute on
+            a form control, the content of the <span class="code">si:item</span>
+            element is used to initialize the control. Otherwise, it is treated
+            as additional data to be submitted with the form. The
+            <span class="code">name</span> attribute must be unique within a
+               <span class="code">si:instance</span> element. Taking the example above,
+            the some input fields will be populated with the address values.</p>
+
+         <pre class="code">&lt;xf:input class="addr" ref="street"&gt;
+   &lt;xf:label class="label"&gt;Rue&lt;/xf:label&gt;
+&lt;/xf:input&gt;
+&lt;xf:input class="addr" ref="postcode"&gt;
+   &lt;xf:label class="label"&gt;Code postal&lt;/xf:label&gt;
+&lt;/xf:input&gt;
+&lt;xf:select1&gt;
+...
+   &lt;xf:item&gt;
+      &lt;xf:label&gt;France&lt;/xf:label&gt;
+      &lt;xf:value&gt;fr&lt;/xf:value&gt;
+   &lt;/xf:item&gt;
+...
+&lt;xf:select1&gt;</pre>
+         <p>The matching process is straightforward for the input elements
+               <span class="code">xf:input</span>, <span class="code">xf:secret</span> and
+               <span class="code">xf:textarea</span>.</p>
+         <p>In select controls, the <span class="code">si:item</span> content should
+            additionally match one of the possible item values. If the content
+            does not match a valid value, the default selection is used.</p>
+         <p>For a <span class="code">xf:select1</span> element, the content is treated
+            as the initial value of the control. In the case of an
+               <span class="code">xf:select</span> element, the body content is
+            interpreted as a comma separated list of values. If a value matches
+            that of one of the items, that item is marked as selected.</p>
+      
+
+      <h2>Using multiple submit controls</h2>
+      <p>You can use multiple submit controls in forms, by associating each
+         button with an <span class="code">xf:submission</span> element. In the
+            <span class="code">xf:setvalue</span> element, the <span class="code">ref</span>
+         attribute value must match that of the <span class="code">id</span> attribute on an
+            <span class="code">xf:submission</span> element in the form model.</p>
+      <p>In the first example, if the 'Reject' button is clicked, the URL will
+         be
+         <span class="code">http://localhost:8080/volantis/response.jsp?on_click=reject</span></p>
+      <pre class="code">&lt;xf:model&gt;
+   &lt;xf:submission id="submit" action="http://localhost:8080/volantis/response.jsp"/&gt;
+&lt;/xf:model&gt;
+   ...
+&lt;xf:submit submission="submit"&gt;
+   &lt;xf:label&gt;Accept&lt;/xf:label&gt;
+   &lt;xf:setvalue ev:event="DOMActivate" ref="on_click" value="accept"/&gt;
+&lt;/xf:submit&gt;
+&lt;xf:submit submission="submit"&gt;
+   &lt;xf:label&gt;Reject&lt;/xf:label&gt;
+   &lt;xf:setvalue ev:event="DOMActivate" ref="on_click" value="reject"/&gt;
+&lt;/xf:submit&gt;</pre>
+      <p>It is also possible to discriminate on the basis of the
+         <span class="code">ref</span> attribute, in which case the URL will be
+            <span class="code">http://localhost:8080/volantis/response.jsp?reject=</span></p>
+      <pre class="code">&lt;xf:model&gt;
+   &lt;xf:submission id="submit" action="http://localhost:8080/volantis/response.jsp"/&gt;
+&lt;/xf:model&gt;
+   ...
+&lt;xf:submit submission="submit"&gt;
+   &lt;xf:label&gt;Accept&lt;/xf:label&gt;
+   &lt;xf:setvalue ev:event="DOMActivate" ref="accept" value=""/&gt;
+&lt;/xf:submit&gt;
+&lt;xf:submit submission="submit"&gt;
+   &lt;xf:label&gt;Reject&lt;/xf:label&gt;
+   &lt;xf:setvalue ev:event="DOMActivate" ref="reject" value=""/&gt;
+&lt;/xf:submit&gt;</pre>
+      
+         <h2>XDIME 2 validation style</h2>
+         <p>You can use text input validation in XDIME 2 forms, including Widget
+            library forms. Not all devices support a full range of client-side
+            validation features, and some may be incapable of supporting any
+            validation at all. So it is good practice to use server-side form
+            validation in all events.</p>
+         <p>However, where it is supported, you can make good use of client-side
+            validation to improve the quality of data submitted by users. It
+            also avoids the need to repeatedly send a form to the server for
+            error checking.</p>
+         <p>You use the theme property <span class="uicontrol">Input format</span> to
+            specify the validation pattern. Alternatively you can apply the
+            property in a style attribute, for example
+               <span class="code">&lt;xf:input style="mcs-input-format: M:A*a"&gt;</span>.
+            See <em>Validation patterns</em> for details.</p>
+      
+
+      
+         <p><span class="ri">Related topics</span><br/><a class="link" target="" href="../wag/xdime2_about.html">Working with XDIME 2</a><br/><a class="link" target="" href="wag_valiid_pattern.html">Validation patterns</a><br/>
+         </p>
+      
+   </body></html>

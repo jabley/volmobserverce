@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:message</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:message</h1><h2>Purpose</h2>
+         <p>Message displayed when particular type of validation error occurs. This element is used
+            by the Simple Validator widget. It should not be specified for a Multiple Forms
+            Validator widget because a server side process is responsible for displaying error
+            messages.</p>
+      <h2>Contained by</h2><p><a href="../xdime_cp/widget_validate.html">widget:validate</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">type</th><td>Defines message type</td><td>xs:string</td><td>invalid </td><td>invalid, empty </td><td>optional </td></tr></table><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+         <pre class="code">
+&lt;head&gt;
+   &lt;xf:model&gt;
+      &lt;xf:instance&gt;
+         &lt;si:instance&gt;
+            &lt;si:item name="name"/&gt;
+            &lt;si:item name="pin"/&gt;
+         &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission id="default" action="validator.xdime"/&gt;
+   &lt;/xf:model&gt;
+&lt;/head&gt;
+&lt;body&gt;
+   &lt;xf:input ref="name" id="inputTXT"&gt;
+      &lt;xf:label id="formText1"&gt;Name&lt;/xf:label&gt;
+      &lt;widget:validate message-area="formMessage1"&gt;
+         &lt;widget:message type="empty"&gt;The name cannot be empty!&lt;/widget:message&gt;
+         &lt;widget:message type="invalid"&gt;The name must be at least 4 characters and start with an
+            uppercase character!&lt;/widget:message&gt;
+      &lt;/widget:validate&gt;
+   &lt;/xf:input&gt;
+   &lt;xf:input ref="pin" id="inputPIN"&gt;
+      &lt;xf:label id="formText2"&gt;PIN&lt;/xf:label&gt;
+      &lt;widget:validate message-area="formMessage2"&gt;
+         &lt;widget:message type="empty"&gt;PIN cannot be empty!&lt;/widget:message&gt;
+         &lt;widget:message type="invalid"&gt;PIN must consist of 6 digits!&lt;/widget:message&gt;
+      &lt;/widget:validate&gt;
+   &lt;/xf:input&gt;
+&lt;/body&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/widget_er.html">Widget elements</a></p>
+      </body></html>

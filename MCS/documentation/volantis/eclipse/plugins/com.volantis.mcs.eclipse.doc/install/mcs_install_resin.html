@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>Installing on Caucho Resin</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Installing on Caucho Resin</h1>
+      
+         
+      <p>You need to create a directory that the machine running
+            Resin can access, to contain the MCS installation
+               <span class="filepath">MCS/webapps/[context_root]</span> directory.
+            It can be local to the server machine or accessed via a
+            drive mapping. For example it might be a directory under
+            the <span class="filepath">webapps</span> directory of the Resin
+            installation.</p>
+         
+      <ol>
+            
+         <li> Create a directory named [context_root] under the Resin
+                  <span class="filepath">webapps</span> directory </li>
+            
+         <li> Copy the entire contents of the
+                  <span class="filepath">[path]/MCS/webapps/[context_root]</span>
+               directory to the Resin webapps/ directory, for example
+                  <span class="command">$RESIN_HOME/webapps/[context_root]</span>
+            
+         </li>
+         
+      </ol>
+         
+      <p class="note">
+         <strong>Note</strong>: 
+			If you are using Resin on a non-windows machine, copy
+            the <span class="filepath">-xercesImpl.jar </span>and
+               <span class="filepath">xmlParserAPIs.jar</span> files from the
+               <span class="filepath">MCS/lib</span> directory to the
+               <span class="filepath">$RESIN_HOME/lib</span> directory. Make
+            sure that the generic <span class="filepath">xerces.jar</span> file
+            is not in the <span class="filepath">$RESIN_HOME/lib</span>
+            directory and is copied elsewhere. This is to ensure that
+            the correct version of Xerces parser is used.</p>
+      
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../install/mcs_setup_webapp.html">Setting up your web server</a>
+      </p>
+      
+   
+   </body>
+</html>

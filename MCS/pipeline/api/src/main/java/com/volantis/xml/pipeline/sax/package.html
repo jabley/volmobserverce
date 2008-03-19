@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+  (c) Volantis Systems Ltd 2003. 
+
+-->
+</head>
+<body bgcolor="white">
+
+Provides classes and interfaces for the XML pipeline.
+
+<h2 id="contextual-information">Contextual Information</h2>
+
+<p>Due to the dynamic nature of the pipeline it is not possible for processes to
+reliably access contextual information that is normally made available within
+the event stream, e.g. namespace / prefix mappings and xml:base attributes. This
+is because the process may have been added after the information was sent down
+the pipeline but before it was overridden by any nested events. Therefore,
+processes must retrieve this information from the
+{@link com.volantis.xml.pipeline.sax.XMLPipelineContext}.</p>
+
+<h3>Updating Context</h3>
+
+<p>In order for processes to be able to access the information from the context
+it first needs to be added to the context and that is the responsibility of the
+context updating process. Any event source that generates a standard SAX event
+sequence must pass the events through a context updating process before they
+enter the pipeline, e.g. XSLT Transfomer, XMLPipelineReader,
+XMLPipelineFilter, ....</p>
+<p>Context updating processes can be created using the
+{@link com.volantis.xml.pipeline.sax.XMLPipelineFactory#createContextUpdatingProcess}
+method.</p>
+<p>The context updating process updates the context based on information within
+the event stream as follows.</p>
+
+<h4>Namespace / Prefix Mappings</h4>
+
+<p>The <code>NamespacePrefixTracker</code> associated with the
+<code>XMLPipelineContext</code> is updated as follows.</p>
+
+<ul>
+    <li>Upon receipt of a <code>startPrefixMapping</code> event a mapping is added to
+it.</li>
+    <li>Upon receipt of a <code>endPrefixMapping</code> event a mapping is removed
+from it.</li>
+</ul>
+
+<p>Currently the above events are not consumed by this process but eventually
+they will be so processes should not rely on them, either for the information
+they contain or for the fact that they are produced at all.</p>
+
+<h4>Base URI</h4>
+
+<p>The Base URI associated with the <code>XMLPipelineContext</code> is updated
+as follows.</p>
+<ul>
+    <li>It is the responsibility of the creator of the pipeline to provide an
+    initial base URI against which subsequent possibly relative base URIs can
+    be resolved.</li>
+
+    <li>Upon receipt of a <code>startDocument</code> event the system id of the
+    <code>Locator</code> that was passed to the <code>setDocumentLocator</code>
+    method is resolved against the current base URI and the result is pushed
+    onto the stack of base URIs. In addition the <code>Locator</code> will be
+    pushed onto the stack of <code>Locator</code>s. If no <code>Locator</code>
+    was provided, or the system id was null then a warning should be logged but
+    neither of the stacks will be modified.</li>
+
+    <li>Upon receipt of an <code>endDocument</code> event the current base URI
+    and current locator are popped off the stacks as long as they were pushed by
+    the matching <code>startDocument</code> event.</li>
+
+    <li>Upon receipt of a <code>startElement</code> event that has an
+    <code>xml:base</code> attribute the value of the attribute is resolved
+    against the current base URI and then pushed onto the stack.</li>
+
+    <li>Upon receipt of a <code>endElement</code> event the current base URI
+    is popped off the stack as long as it was pushed by the matching
+    <code>startElement</code> event.</li>
+</ul>
+
+<p>The <code>setDocumentLocator</code>, <code>startDocument</code>, and
+<code>endDocument</code> events are all consumed by this process as they are
+not allowed within the pipeline.</p>
+
+<h3>Annotating Event Stream</h3>
+
+<p>Standard SAX event consumers, such as XSLT Transformers and serializers as
+well as custom written <code>ContentHandler</code>s will not work properly
+unless receive the contextual information within the event stream. This is the
+responsibility of the context annotating process which will eventually be an
+exact mirror of the context updating process.</p>
+<p>Context annotating processes can be created using the
+{@link com.volantis.xml.pipeline.sax.XMLPipelineFactory#createContextAnnotatingProcess}
+method.</p>
+<p>The context annotating process adds the following information back into the
+stream.</p>
+<ul>
+    <li>Upon invocation of the <code>startProcess</code> method it will invoke
+    <code>setDocumentLocator</code> with a <code>Locator</code> object
+    that wraps the <code>XMLPipelineContext</code> and delegates to its current
+    <code>Locator</code>, generate a <code>startDocument</code> event and
+    finally forward the input event.</li>
+
+    <li>Upon invocation of the <code>stopProcess</code> method it will generate
+    a matching <code>endDocument</code> event.</li>
+
+    <li>It will add an xml:base attribute with a value equal to the value of the
+    current base URI to the root elements (if we are generating an XML fragment
+    there may be many) and also to any element when it detects that the current
+    base URI is different to the value of the closest enclosing xml:base
+    attribute.</li>
+</ul>
+
+<!--
+##### FILL IN ANY SPECS NEEDED BY JAVA COMPATIBILITY KIT #####
+<ul>
+  <li><a href="">##### REFER TO ANY FRAMEMAKER SPECIFICATION HERE #####</a>
+</ul>
+
+<h2>Related Documentation</h2>
+
+For overviews, tutorials, examples, guides, and tool documentation, please see:
+<ul>
+  <li><a href="">##### REFER TO NON-SPEC DOCUMENTATION HERE #####</a>
+</ul>
+-->
+
+<!-- Put @see and @since tags down here. -->
+
+</body>
+</html>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 20-Oct-04	5438/1	philws	VBM:2004082706 Transfer Pipeline source into MCS
+
+ 20-Jan-04	529/1	adrian	VBM:2004011904 Pipeline API updates in preparation for fully integrating ContextUpdating/Annotating processes
+
+ ===========================================================================
+-->

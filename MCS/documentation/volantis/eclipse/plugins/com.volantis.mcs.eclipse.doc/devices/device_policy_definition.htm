@@ -1,0 +1,133 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head><link href="../volantis.css" rel="stylesheet" type="text/css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Custom policy definition</title>
+  </head>
+
+  <body>
+<h1>Custom policy definition</h1>
+<p>Custom policies allow you to classify devices in a different way to the standard 
+  Device policy tree. For example, you might issue a range of devices to employees 
+  in your company. You could the set the type, style and presentation of information 
+  available on your intranet to departments within your group, and also to different 
+  cross-company teams.</p>
+<p> Custom policies must be added to the Custom category below the Master device 
+  level. They cannot be added elsewhere in the tree.</p>
+<p>The New Policy wizard and the Policy Definition section on the Structure page 
+  provide the controls to define a policy; the name, type, available values, and 
+  associated meta-information that combine to make a device repository policy.</p>
+<p class="note"><strong>Note</strong>: Policy names must be unique in a within 
+  a repository.</p>
+<h2>Policy composition and type</h2>
+<p>Name, composition and type are defined in the first page of the wizard. You 
+  use the <span class="uicontrol">Composition</span> drop-down to specify whether 
+  the policy will contain a single value, an ordered set of values, or an unordered 
+  set of values. The <span class="uicontrol">Type</span> control defines the type 
+  of data that the policy contains.</p>
+<p>The table shows the possible combinations and the controls that will be used 
+  edit the values for the policy.</p>
+<table border="1" cellpadding="0" cellspacing="0" summary="Shows possible combinations of composition and type and the controls that will be used edit the values for the policy">
+
+							<tr>
+								<th>Type</th>
+								<th>Composition</th>
+								<th>Controls</th>
+							</tr>
+						
+						<tr>
+							<td>Boolean</td>
+							<td>Single</td>
+							<td>Checkbox</td>
+						</tr>
+						<tr>
+							<td>Numeric</td>
+							<td>Single</td>
+							<td>Edit box</td>
+						</tr>
+						<tr>
+							<td>Numeric</td>
+							<td>Unordered Set</td>
+							<td>List</td>
+						</tr>
+						<tr>
+							<td>Numeric</td>
+							<td>Ordered Set</td>
+							<td>List with reorder buttons</td>
+						</tr>
+						<tr>
+							<td>Range</td>
+							<td>Single</td>
+							<td>Edit box</td>
+						</tr>
+						<tr>
+							<td>Range</td>
+							<td>Unordered Set</td>
+							<td>List</td>
+						</tr>
+						<tr>
+							<td>Range</td>
+							<td>Ordered Set</td>
+							<td>List with reorder buttons</td>
+						</tr>
+						<tr>
+							<td>Select</td>
+							<td>Single</td>
+							<td>Drop-down list</td>
+						</tr>
+						<tr>
+							<td>Select</td>
+							<td>Unordered Set</td>
+							<td>List and selection dialog</td>
+						</tr>
+						<tr>
+							<td>Select</td>
+							<td>Ordered Set</td>
+							<td>List with reorder buttons and selection dialog</td>
+						</tr>
+						<tr>
+							<td>Text</td>
+							<td>Single</td>
+							<td>Edit box</td>
+						</tr>
+						<tr>
+							<td>Text</td>
+							<td>Unordered Set</td>
+							<td>List</td>
+						</tr>
+						<tr>
+							<td>Text</td>
+							<td>Ordered Set</td>
+							<td>List with reorder buttons</td>
+						</tr>
+						<tr>
+							<td>Emulate Emphasis Tag</td>
+							<td>Select</td>
+							<td>Emulate Emphasis controls</td>
+						</tr>
+					</table>
+
+<p><span class="ri">Related information</span><br>
+  <a href="device_editor.htm" title="Device Repository browser">Device Repository 
+  editor</a> <br>
+</p>
+<p class="copyright">&copy; Copyright 2004 Volantis Systems Ltd</p>
+</body>
+</html>

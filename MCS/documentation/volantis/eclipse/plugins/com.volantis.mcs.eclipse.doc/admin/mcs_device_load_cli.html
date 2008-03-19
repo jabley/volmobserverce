@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>Device repository update CLI</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1 class="ocp">Device repository update CLI</h1>
+      
+      <p>As an alternative to the Eclipse interface to the device update service, you
+         can use the <span class="code">mcsUpdateClient</span> command line utility
+         to download the latest version of an update to a device
+         repository, and the <span class="code">mcsRepositoryManager</span>
+         utility to merge repositories and report on the merge.</p>
+      
+      
+         
+      <h2>Downloading the update</h2>
+      
+      
+      <p>To load the new reposirory use the <span class="code">mcsUpdateClient</span>
+         command line, specifying a user name and password, the
+         repository to update, and the file location for the download.
+         You can also optionally define parameters for a proxy server.</p>
+      
+      <p>You cannot overwrite an existing repository file, and you
+         must specify a new filename in the <span class="code">updateFile</span>
+         parameter. To overwrite or merge the update with a
+         repository, you use the Update wizard.</p>
+      
+      <p class="note">
+         <strong>Note</strong>: 
+			It is not possible to specify a version of a
+         repository other than the latest version. If you want an
+         earlier version you should use the Eclipse interface.</p>
+      
+         
+      <h2>CLI parameters</h2>
+         
+      <table cellspacing="0" summary="">
+         <thead>
+               
+            <tr>
+                  
+               <th class="firsthdr" scope="col">Parameter</th>
+                  
+               <th scope="col">Description</th>
+               
+            </tr>
+            
+         </thead>
+         <tbody>
+            <tr scope="row">
+               <th class="firstcell">
+                     
+                  <code>-user</code>
+                  
+               </th>
+               <td>
+                     
+                  <em>Required</em>. User name for the update
+                     service</td>
+            </tr>
+            <tr scope="row">
+               <th class="firstcell">
+                     
+                  <code>-password</code>
+                  
+               </th>
+               <td>
+                     
+                  <em>Required</em>. Password for the update
+                     service</td>
+            </tr>
+            <tr scope="row">
+               <th class="firstcell">
+                     
+                  <code>-proxyHost</code>
+                  
+               </th>
+               <td>Address of the proxy server</td>
+            </tr>
+            <tr scope="row">
+               <th class="firstcell">
+                     
+                  <code>-proxyPort</code>
+                  
+               </th>
+               <td>Port of the proxy server</td>
+            </tr>
+            <tr scope="row">
+               <th class="firstcell">
+                     
+                  <code>-proxyUser</code>
+                  
+               </th>
+               <td>Username for the proxy server</td>
+            </tr>
+            <tr scope="row">
+               <th class="firstcell">
+                     
+                  <code>-proxyPassword</code>
+                  
+               </th>
+               <td>Password for the proxy server</td>
+            </tr>
+            <tr scope="row">
+               <th class="firstcell">
+                     
+                  <code>-deviceRepository</code>
+                  
+               </th>
+               <td>
+                     
+                  <em>Required</em>. The full path to the current
+                        <span class="code">.mdpr</span> file containing device
+                     information. Must exist.</td>
+            </tr>
+            <tr scope="row">
+               <th class="firstcell">
+                     
+                  <code>-updateFile</code>
+                  
+               </th>
+               <td>
+                     
+                  <em>Required</em>. The full path and name of the
+                     file to save. Must not exist.</td>
+            </tr>
+         </tbody>
+      </table>
+         
+      <pre class="code">    
+mcsUpdateClient[-user &lt;username&gt;
+                -password &lt;password&gt;]
+               [-proxyHost &lt;proxyHost&gt;
+                -proxyPort &lt;proxyHost&gt;
+                -proxyUser &lt;proxyUser&gt;
+                -proxyPassword &lt;proxyPassword&gt;]   
+               [latest
+                -deviceRepository &lt;deviceRepository&gt;
+                -updateFile &lt;updateFile&gt;] </pre>
+      
+      
+         
+      <h2>Merging the update</h2>
+         
+      <p>To merge the update with a repository, you use <span class="code">mcsRepositoryManager merge </span> command.</p>
+            
+         
+      <table cellspacing="0" summary="">
+         <caption> Merge parameters </caption>
+         <thead>
+               
+            <tr>
+                  
+               <th class="firsthdr" scope="col">Parameter</th>
+                  
+               <th scope="col">Description</th>
+               
+            </tr>
+            
+         </thead>
+         <tbody>
+            <tr scope="row">
+               <th class="firstcell">
+                     
+                  <code>-deviceRepository</code>
+                  
+               </th>
+               <td>
+                     
+                  <em>Required</em>. The full path to the current
+                        .mdpr file. Must
+                     exist.</td>
+            </tr>
+            <tr scope="row">
+               <th class="firstcell">
+                     
+                  <code>-updateFile</code>
+                  
+               </th>
+               <td>
+                     
+                  <em>Required</em>. The full path and name of the
+                     update repository. Must exist.</td>
+            </tr>
+         </tbody>
+      </table>
+         
+      <pre class="code">mcsRepositoryManager
+   merge[-deviceRepository &lt;deviceRepository&gt;
+   -updateFile &lt;updateFile&gt;] </pre>
+      
+      
+      <h2>Merge report</h2>
+      
+      <p> MCS creates an XML merge report listing the changes to the
+            repository in the same directory as the existing
+            repository. The report is named using the repository
+            version numbers in the form <span class="filepath">[repositoryfilename]-2005040501-updates-to-2005033001.xml</span>. You can transform the report to another format using an XSL transform.</p>
+            
+      <p>The report is divided into main sections by the <span class="code">categories</span>, <span class="code">policies</span> and <span class="code">devices</span> elements. Individual <span class="code">category</span>, <span class="code">policy</span> and <span class="code">device</span> elements have a <span class="code">name</span> attribute, and a <span class="code">status</span> attribute that can take the  values 'created', 'updated, or 'deleted'. These elements, and others, can contain nested <span class="code">old</span> or <span class="code">new</span> elements, with details of labels types and values, and <span class="code">device</span> elements can contain nested policy, device hierarchy and identification sections.</p>
+            
+            
+      <pre class="code">&lt;policy-definitions&gt;
+   &lt;categories&gt;
+      &lt;category status="created" name="downloads"&gt;
+        &lt;new label="downloads" /&gt;
+      &lt;/category&gt;
+        ...
+   &lt;/categories&gt;
+   &lt;policies&gt;
+      &lt;policy status="created" name="audio.synth.polyphony.level"&gt;
+        &lt;new label="Polyphony Level"&gt;
+          &lt;type&gt;
+            &lt;text /&gt;
+          &lt;/type&gt;
+        &lt;/new&gt;
+      &lt;/policy&gt;
+      &lt;policy status="created" name="downloadable.audio.3GPP"&gt;
+        &lt;new label="3GPP audio downloads"&gt;
+          &lt;type&gt;
+            &lt;boolean /&gt;
+          &lt;/type&gt;
+        &lt;/new&gt;
+      &lt;/policy&gt;
+      ...
+   &lt;/policies&gt;
+   &lt;devices&gt;
+      &lt;device name="au-C410T" status="updated"&gt;
+         &lt;hierarchy&gt;
+           &lt;device name="Master" /&gt;
+           &lt;device name="Mobile" /&gt;
+           &lt;device name="Handset" /&gt;
+           &lt;device name="HDML-Handset" /&gt;
+           &lt;device name="KDDI-HDML" /&gt;
+         &lt;/hierarchy&gt;
+         &lt;policies&gt;
+           &lt;policy status="deleted" name="fallback"&gt;
+             &lt;old label="fallback"&gt;
+               &lt;value&gt;KDDI-HDML&lt;/value&gt;
+             &lt;/old&gt;
+           &lt;/policy&gt;
+         &lt;/policies&gt;
+      &lt;/device&gt;
+        ...
+   &lt;/devices&gt;
+&lt;/policy-definitions&gt;</pre>
+      
+         
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../admin/mcs_admin.html">Administering MCS</a>
+         <br/>
+         <a href="../devices/device_update_service.html">Device repository update service</a>
+      </p>
+      
+   
+   </body>
+</html>

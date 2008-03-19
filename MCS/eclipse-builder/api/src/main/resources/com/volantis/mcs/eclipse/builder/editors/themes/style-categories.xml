@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+
+<!-- Neither this xml nor its schema has a namespace -->
+<styleCategories
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.volantis.com/style-categories.xsd">
+    <styleCategory name="background" isSynchronizable="false">
+        <styleProperty name="background-attachment"/>
+        <styleProperty name="background-color"/>
+        <styleProperty name="background-image"/>
+        <styleProperty name="background-repeat"/>
+        <styleProperty name="background-position"/>
+    </styleCategory>
+    <styleCategory name="border" isSynchronizable="false">
+        <styleProperty name="border-collapse"/>
+        <styleProperty name="border-spacing"/>
+        <styleCategory name="border-color" isSynchronizable="true">
+            <styleProperty name="border-top-color"/>
+            <styleProperty name="border-right-color"/>
+            <styleProperty name="border-bottom-color"/>
+            <styleProperty name="border-left-color"/>
+        </styleCategory>
+        <styleCategory name="border-style" isSynchronizable="true">
+            <styleProperty name="border-top-style"/>
+            <styleProperty name="border-right-style"/>
+            <styleProperty name="border-bottom-style"/>
+            <styleProperty name="border-left-style"/>
+        </styleCategory>
+        <styleCategory name="border-width" isSynchronizable="true">
+            <styleProperty name="border-top-width"/>
+            <styleProperty name="border-right-width"/>
+            <styleProperty name="border-bottom-width"/>
+            <styleProperty name="border-left-width"/>
+        </styleCategory>
+    </styleCategory>
+    <styleCategory name="box" isSynchronizable="false">
+        <styleProperty name="display"/>
+        <styleProperty name="line-height"/>
+        <styleProperty name="height"/>
+        <styleProperty name="width"/>
+        <styleProperty name="visibility"/>
+        <styleCategory name="box-margin" isSynchronizable="true">
+            <styleProperty name="margin-top"/>
+            <styleProperty name="margin-right"/>
+            <styleProperty name="margin-bottom"/>
+            <styleProperty name="margin-left"/>
+        </styleCategory>
+        <styleCategory name="box-padding" isSynchronizable="true">
+            <styleProperty name="padding-top"/>
+            <styleProperty name="padding-right"/>
+            <styleProperty name="padding-bottom"/>
+            <styleProperty name="padding-left"/>
+        </styleCategory>
+    </styleCategory>
+    <styleCategory name="chart" isSynchronizable="false">
+        <styleProperty name="mcs-chart-adornments"/>
+        <styleProperty name="mcs-chart-foreground-colors"/>
+        <styleProperty name="mcs-chart-grid-color"/>
+        <styleProperty name="mcs-chart-height"/>
+        <styleProperty name="mcs-chart-width"/>
+        <styleProperty name="mcs-chart-label-values"/>
+        <styleProperty name="mcs-chart-x-axis-angle"/>
+        <styleProperty name="mcs-chart-y-axis-angle"/>
+    </styleCategory>
+    <styleCategory name="content" isSynchronizable="false">
+        <styleProperty name="content"/>
+        <styleProperty name="counter-increment"/>
+        <styleProperty name="counter-reset"/>
+    </styleCategory>
+    <styleCategory name="font" isSynchronizable="false">
+        <styleProperty name="mcs-system-font"/>
+        <styleProperty name="font-family"/>
+        <styleProperty name="font-size"/>
+        <styleProperty name="font-size-adjust"/>
+        <styleProperty name="font-stretch"/>
+        <styleProperty name="font-style"/>
+        <styleProperty name="font-variant"/>
+        <styleProperty name="font-weight"/>
+    </styleCategory>
+    <styleCategory name="form" isSynchronizable="false">
+        <styleProperty name="mcs-form-action-style"/>
+        <styleProperty name="mcs-form-action-image"/>
+        <styleProperty name="mcs-image"/>
+        <styleProperty name="mcs-columns"/>
+        <styleProperty name="mcs-rows"/>
+        <styleProperty name="mcs-selection-list-option-layout"/>
+        <styleProperty name="mcs-selection-list-style"/>
+        <styleProperty name="mcs-selection-list-trigger"/>
+        <styleProperty name="mcs-focus"/>
+        <styleProperty name="mcs-http-method-hint"/>
+        <styleProperty name="mcs-break-after"/>
+        <styleProperty name="mcs-input-format"/>
+    </styleCategory>
+    <styleCategory name="format" isSynchronizable="false">
+        <styleProperty name="color"/>
+        <styleProperty name="mcs-caret-color"/>
+        <styleProperty name="mcs-corner-radius"/>
+        <styleProperty name="mcs-line-gap"/>
+        <styleProperty name="overflow"/>
+        <styleProperty name="mcs-paragraph-gap"/>
+    </styleCategory>
+    <styleCategory name="image" isSynchronizable="false">
+        <styleProperty name="mcs-image-saving"/>
+        <styleProperty name="mcs-image-repeat-count"/>
+        <styleProperty name="mcs-image-frame-interval"/>
+        <styleProperty name="mcs-image-initial-frame"/>
+        <styleProperty name="mcs-media-style"/>
+    </styleCategory>
+    <styleCategory name="layout" isSynchronizable="false">
+        <styleProperty name="mcs-container"/>
+        <styleProperty name="mcs-layout"/>
+        <styleProperty name="mcs-fragment-list-orientation"/>
+        <styleProperty name="mcs-fragment-list-position"/>
+        <styleProperty name="mcs-link-media"/>
+        <styleProperty name="mcs-link-style"/>
+    </styleCategory>
+    <styleCategory name="list" isSynchronizable="false">
+        <styleProperty name="list-style-image"/>
+        <styleProperty name="list-style-type"/>
+        <styleProperty name="list-style-position"/>
+    </styleCategory>
+    <styleCategory name="menus" isSynchronizable="false">
+        <styleProperty name="mcs-aural-dtmf-allocation"/>
+        <styleProperty name="mcs-aural-menu-scope"/>
+        <styleProperty name="mcs-menu-style"/>
+        <styleProperty name="mcs-menu-link-style"/>
+        <styleProperty name="mcs-menu-image-style"/>
+        <styleProperty name="mcs-menu-text-style"/>
+        <styleProperty name="mcs-menu-orientation"/>
+        <styleProperty name="mcs-menu-item-iterator-allocation"/>
+        <styleProperty name="mcs-menu-item-order"/>
+        <styleProperty name="mcs-menu-item-orientation"/>
+        <styleProperty name="mcs-menu-item-active-area"/>
+        <styleProperty name="mcs-menu-item-shortcut-active"/>
+        <styleCategory name="separators" isSynchronizable="false">
+            <styleProperty name="mcs-menu-separator-characters"/>
+            <styleProperty name="mcs-menu-separator-position"/>
+            <styleProperty name="mcs-menu-separator-repeat"/>
+            <styleProperty name="mcs-menu-separator-image"/>
+            <styleProperty name="mcs-menu-horizontal-separator"/>
+            <styleProperty name="mcs-menu-separator-type"/>
+        </styleCategory>
+    </styleCategory>
+    <styleCategory name="position" isSynchronizable="false">
+        <styleProperty name="caption-side"/>
+        <styleProperty name="position"/>
+        <styleProperty name="top"/>
+        <styleProperty name="right"/>
+        <styleProperty name="bottom"/>
+        <styleProperty name="left"/>
+        <styleProperty name="clear"/>
+        <styleProperty name="float"/>
+        <styleProperty name="vertical-align"/>
+        <styleProperty name="direction"/>
+    </styleCategory>
+    <styleCategory name="text" isSynchronizable="false">
+        <styleProperty name="text-align"/>
+        <styleProperty name="mcs-text-blink"/>
+        <styleProperty name="mcs-text-line-through-style"/>
+        <styleProperty name="mcs-text-overline-style"/>
+        <styleProperty name="mcs-text-underline-style"/>
+        <styleProperty name="text-indent"/>
+        <styleProperty name="letter-spacing"/>
+        <styleProperty name="text-transform"/>
+        <styleProperty name="word-spacing"/>
+        <styleProperty name="white-space"/>
+    </styleCategory>
+    <styleCategory name="effects" isSynchronizable="false">
+        <styleProperty name="mcs-marquee-style"/>
+        <styleProperty name="mcs-marquee-direction"/>
+        <styleProperty name="mcs-marquee-repetition"/>
+        <styleProperty name="mcs-marquee-speed"/>
+        <styleProperty name="mcs-frame-rate"/>
+        <styleProperty name="mcs-effect-duration"/>
+        <styleProperty name="mcs-effect-style"/>
+        <styleProperty name="mcs-transition-interval"/>
+        <styleProperty name="mcs-initial-state"/>
+        <styleProperty name="mcs-toggle-event"/>
+        <styleProperty name="mcs-validation-error-action"/>
+        <styleProperty name="mcs-cancelable"/>
+        <styleProperty name="mcs-border-top-left-radius"/>
+        <styleProperty name="mcs-border-top-right-radius"/>
+        <styleProperty name="mcs-border-bottom-right-radius"/>
+        <styleProperty name="mcs-border-bottom-left-radius"/>                
+    </styleCategory>
+</styleCategories>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 03-Nov-05	10107/1	adrianj	VBM:2005101810 Add caption-side style property to GUI
+
+ 02-Nov-05	10105/1	adrianj	VBM:2005101810 Added caption-side style property to GUI
+
+ 01-Nov-05	9886/2	pduffin	VBM:2005101811 Committing new user interface changes that have been ported forward from 3.5
+
+ 28-Oct-05	9886/1	adrianj	VBM:2005101811 New theme GUI
+
+ 14-Oct-05	9825/3	pduffin	VBM:2005091502 Corrected device name and made use of new stylistic property.
+
+ 13-Oct-05	9732/1	adrianj	VBM:2005100509 Fixes to Eclipse GUI
+
+ 13-Sep-05	9496/1	pduffin	VBM:2005091211 Replaced text-decoration with individual properties
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6416/1	ianw	VBM:2004120703 New Build
+
+ ===========================================================================
+-->

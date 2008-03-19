@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>include</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>include</h1><h2>Purpose</h2>
+         <p>Used to include XDIME fragments, or dynamic content from the DCI
+            pipeline. If content is not found a processing error is thrown. If
+            the pipeline content is invalid a streaming error is thrown.</p>
+      <h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">encoding</th><td>The character encoding of the included content. Has no
+               effect when parse is set to 'xml'.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">expr</th><td>An MCS expression</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">href</th><td>The URI to retrieve</td><td>xs:anyURI</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">parse</th><td>Whether to treat the included content as XML or literal
+               text.</td><td>xs:string</td><td>xml </td><td>xml, text </td><td>optional </td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;unit&gt;
+   &lt;include href="attributes/xdime_attr.xml" parse="xml"/&gt;
+   &lt;include href="examples/menuitem.xml" parse="text" encoding="utf-8"/&gt;
+&lt;unit/&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime/xdime_pr_er.html">XDIME presentation elements</a></p>
+      </body></html>

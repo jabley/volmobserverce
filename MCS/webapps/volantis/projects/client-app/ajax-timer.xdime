@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget">
+
+<head>
+  <title>Timer Widget with AJAX</title>
+  <link rel="mcs:theme" href="/themes/main.mthm"/>
+  <link rel="mcs:layout" href="/layouts/main.mlyt"/>
+  <style type="text/css" media="handheld,all">
+    #myTimer{
+      mcs-datetime-format: '%d%1%H%1%i%1%s';
+    }
+  </style>
+</head>
+
+<body>
+  <template:apply href="templates/demo-main.xdtpl">
+    <template:binding name="title" value="Timer w/AJAX"/>
+    <template:binding name="content">
+      <template:complexValue>
+        <div>
+        <widget:timer id="myTimer">
+
+          <widget:load src="service/timer"/>
+
+          <widget:clock-content type="digit" value="0">
+            <object src="/images/clock/clockWidget_grey_0_r_01.mimg">0</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="digit" value="1">
+            <object src="/images/clock/clockWidget_grey_1_r_01.mimg">1</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="digit" value="2">
+            <object src="/images/clock/clockWidget_grey_2_r_01.mimg">2</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="digit" value="3">
+            <object src="/images/clock/clockWidget_grey_3_r_01.mimg">3</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="digit" value="4">
+            <object src="/images/clock/clockWidget_grey_4_r_01.mimg">4</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="digit" value="5">
+            <object src="/images/clock/clockWidget_grey_5_r_01.mimg">5</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="digit" value="6">
+            <object src="/images/clock/clockWidget_grey_6_r_01.mimg">6</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="digit" value="7">
+            <object src="/images/clock/clockWidget_grey_7_r_01.mimg">7</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="digit" value="8">
+            <object src="/images/clock/clockWidget_grey_8_r_01.mimg">8</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="digit" value="9">
+            <object src="/images/clock/clockWidget_grey_9_r_01.mimg">9</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="separator" value="1">
+            <object src="/images/clock/cell_5_11x37.mimg">:</object>
+          </widget:clock-content>
+
+          <widget:clock-content type="separator" value="2">
+            <object src="/images/clock/clockWidget_grey_null_r_01.mimg"> </object>
+          </widget:clock-content>
+
+          <widget:clock-content type="separator" value="3">
+            <object src="/images/clock/clockWidget_grey_pause_r_01.mimg"> </object>
+          </widget:clock-content>
+
+        </widget:timer>
+        </div>
+
+ 	      <div class="buttons">
+          <widget:button action="myTimer#start" style="margin-right: 8px;">Start</widget:button>
+          <widget:button action="myTimer#stop" style="margin-right: 8px">Stop</widget:button>
+          <widget:button action="myTimer#reset">Reset</widget:button>
+        </div>
+      </template:complexValue>
+    </template:binding>
+  </template:apply>
+</body>
+</html>

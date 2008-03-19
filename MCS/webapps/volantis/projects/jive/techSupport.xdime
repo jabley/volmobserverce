@@ -1,0 +1,74 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs">
+  <head>
+    <title>Techncal Support</title>
+    
+    <!-- Links to the layout and theme for this page -->
+    <link rel="mcs:layout" href="/jivearticle.mlyt"/>
+    <link rel="mcs:theme" href="/jive.mthm"/>
+  </head>
+  
+  <!-- Page body -->
+  <body>
+    
+    <!-- The common material for the page header -->
+    <urid:fetch href="jiveheader.xdinc"/>
+    
+    <!-- Page Title -->
+    <h2 id="title">Technical Support</h2>
+    
+    <!-- The article -->
+    <div id="article">
+      <p> Jive Sports provides full technical support services for the products that it produces. We
+        provide a world-wide network of support specialists. We welcome customer feedback.
+        Information about our regional Technical Centres is given below: </p>
+      <div class="company_item">
+        <h3 class="company_header"> Europe </h3>
+        <p> Via Della Filanda</p>
+        <p> 534 Bologna</p>
+        <p> Italy</p>
+        <p> Tel: 00 39 555 343432</p>
+        <p> Email: <a href="mailto:europe@jive.example.com">Europe</a></p>
+      </div>
+      <div class="company_item">
+        <h3 class="company_header"> North America </h3>
+        <p> 15645 52nd St New York</p>
+        <p> NY 123456</p>
+        <p> USA </p>
+        <p>Tel: 00 1 555 845 8784</p>
+        <p> Email: <a href="mailto:americas@jive.example.com">North America</a>
+        </p>
+      </div>
+      <div class="company_item">
+        <h3 class="company_header"> Asia </h3>
+        <p> 89 Tai Yau Building </p>
+        <p>23 Johnston Road</p>
+        <p> Wanchai</p>
+        <p>Hong Kong</p>
+        <p> Tel: 00 65 555 6454-8784</p>
+        <p> Email: <a href="mailto:asia@jive.example.com">Asia</a>
+        </p>
+      </div>
+    </div>
+    
+    <!-- The common material for the page footer -->
+    <urid:fetch href="jivefooter.xdinc"/>
+  </body>
+</html>

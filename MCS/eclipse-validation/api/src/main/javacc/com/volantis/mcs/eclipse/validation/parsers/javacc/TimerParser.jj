@@ -1,0 +1,153 @@
+/* ----------------------------------------------------------------------------
+ * $Header: /src/voyager/com/volantis/mcs/gui/validation/parsers/javacc/TimerParser.jj,v 1.3 2002/11/15 11:45:08 aboyd Exp $
+ * ----------------------------------------------------------------------------
+ * (c) Volantis Systems Ltd 2000.
+ * ----------------------------------------------------------------------------
+ * Change History:
+ * ----------------------------------------------------------------------------
+ * Date         Who             Description
+ * ---------    --------------- -----------------------------------------------
+ * 14-Nov-02    Allan           VBM:2002111110 - A javacc parser for a timer
+ *                              that parses times of the format defined in
+ *                              AN003 for Temporal Format Iterators. It could
+ *                              also be used for more general timer/clock
+ *                              parsing.
+ * ----------------------------------------------------------------------------
+*/
+
+/*
+
+Here is the BNF representation of valid tokens as defined by Rhys.
+
+Clock-value         ::= ( Full-clock-value | Partial-clock-value | Timecount-value )
+Full-clock-value    ::= Hours ":" Minutes ":" Seconds ("." Fraction)?
+Partial-clock-value ::= Minutes ":" Seconds ("." Fraction)?
+Timecount-value     ::= Timecount ("." Fraction)? (Metric)?
+Metric              ::= "h" | "min" | "s" | "ms"
+Hours               ::= DIGIT+; any positive number
+Minutes             ::= 2DIGIT; range from 00 to 59
+Seconds             ::= 2DIGIT; range from 00 to 59
+Fraction            ::= DIGIT+
+Timecount           ::= DIGIT+
+2DIGIT              ::= DIGIT DIGIT
+DIGIT               ::= [0-9]
+*/
+
+options {
+  STATIC = false;
+  JAVA_UNICODE_ESCAPE = true;
+}
+
+
+PARSER_BEGIN(TimerParser)
+package com.volantis.mcs.eclipse.validation.parsers.javacc;
+
+import com.volantis.mcs.eclipse.validation.parsers.ParserStrategy;
+import com.volantis.mcs.eclipse.validation.parsers.TextParseException;
+
+import java.io.EOFException;
+import java.io.Reader;
+
+public class TimerParser implements ParserStrategy {
+
+    public static void main(String args[]) throws ParseException {
+        TimerParser parser = new TimerParser(System.in);
+        try {
+            parser.parseClockValues();
+        }
+        catch(ParseException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void parse() throws java.text.ParseException, EOFException {
+        try {
+            parseClockValues();
+        }
+        catch(TokenMgrError e) {
+            // If we are here it means that we ran out of characters i.e.
+            // everything so far was parsed correctly and we were expecting
+            // some more characters.
+            throw new EOFException();
+        }
+        catch(ParseException e){
+            Token currentToken = e.currentToken;
+            int position = currentToken.next.beginColumn;
+
+            throw new TextParseException("Invalid text",
+                currentToken.next.image, position);
+        }
+    }
+
+}
+
+PARSER_END(TimerParser)
+
+SPECIAL_TOKEN :
+{
+  " "
+}
+
+SKIP :
+{
+ "\n"
+| "\r"
+}
+
+MORE : {
+    ":": IN_MINS_OR_SECS
+|   "m": IN_MIN_OR_MS
+}
+
+<IN_MINS_OR_SECS> MORE : {
+    <["0" - "5"]>: IN_SECOND_DIGIT
+}
+
+<IN_SECOND_DIGIT> SKIP : {
+    <["0" - "9"]>: DEFAULT
+}
+
+<IN_MIN_OR_MS> MORE : {
+    "i": IN_MIN
+}
+
+<IN_MIN_OR_MS> SKIP : {
+    "s": DEFAULT
+}
+
+<IN_MIN> SKIP : {
+    "n": DEFAULT
+}
+
+
+TOKEN :
+{
+   <CLOCK_VALUE: <FULL_CLOCK> | <PARTIAL_CLOCK> | <TIMECOUNT> >
+|  <FULL_CLOCK: (<DIGIT>)+ ":" <MINS_OR_SECS> ":" <MINS_OR_SECS> ("." <FRACTION>)? >
+|  <PARTIAL_CLOCK: <MINS_OR_SECS> ":" <MINS_OR_SECS> ("." <FRACTION>)? >
+|  <TIMECOUNT: (<DIGIT>)+ ("." <FRACTION>)? (<METRIC>)?>
+|  <MINS_OR_SECS: <MAX_FIVE_DIGIT> <DIGIT> >
+|  <FRACTION: (<DIGIT>)+ >
+|  <DIGIT: (["0" - "9"]) >
+|  <MAX_FIVE_DIGIT: (["0" - "5"]) >
+|  <METRIC: "h" | "min" | "s" | "ms" >
+}
+
+Token parseClockValues() :
+{ Token token = getToken(1); }
+{
+  <CLOCK_VALUE> ( "," <CLOCK_VALUE> )* <EOF>
+
+    {
+      return token;
+    }
+}
+
+// Catch all unexpected characters so we throw a ParseException instead
+// of a TokenMgrError.
+< * > TOKEN :
+{
+< UNEXPECTED_CHAR : ~[]>
+}
+

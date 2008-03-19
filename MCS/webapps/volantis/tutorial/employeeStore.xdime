@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+    xmlns:xf="http://www.w3.org/2002/xforms">
+    <head>
+        <title>Employee Store</title>
+
+<!-- Links to the layout and theme for this page -->
+        <link rel="mcs:layout" href="/jivearticle.mlyt"/>
+        <link rel="mcs:theme" href="/jive.mthm"/>
+
+<!-- Model for availability check form -->
+        <xf:model>
+            <xf:submission id="avail" action="checkAvail.jsp"/>
+        </xf:model>
+    </head>
+
+<!-- Page body -->
+    <body>
+
+<!-- The common material for the page header -->
+        <div>
+
+<!-- The banner -->
+            <div id="logo">
+                <a class="homelogo" href="jivehome.xdime">
+                    <object class="homelogo" src="/images/jive_logo.mimg"/>
+                </a>
+            </div>
+            <div id="photos">
+                <object src="/images/photos.mimg"/>
+            </div>
+        </div>
+        
+<!-- The main menu -->
+        <div id="menu_company_news" class="main_menu">
+            <a class="pnav" href="companyNews.xdime">
+                <object src="/images/menu_company_news.mimg"/>
+            </a>
+        </div>
+        <div id="menu_human_resources" class="main_menu">
+            <a class="pnav" href="humanResources.xdime">
+                <object src="/images/menu_human_resources.mimg"/>
+            </a>
+        </div>
+        <div id="menu_employee_store" class="main_menu">
+            <a class="pnav" href="employeeStore.xdime">
+                <object src="/images/menu_employee_store.mimg"/>
+            </a>
+        </div>
+
+<!--The current stock price-->
+        <div id="stockprice"> Latest from NYSE for Jive (VBE): 21.50 (+ 2.25) </div>
+
+<!-- Page Title -->
+        <h2 id="title">Employee Store</h2>
+
+<!-- The article -->
+        <div id="article">
+            <p> Various items of Jive sportswear are available to employees at discounted prices. Style has
+                never been such good value! </p>
+            <p> Get more information and purchase items by clicking on items in the lists. </p>
+            <div class="company_item">
+                <h3 class="company_header">Availability</h3>
+                <p>
+                    <xf:select1 ref="item">
+                        <xf:label>Item</xf:label>
+                        <xf:item>
+                            <xf:label>Storm Jacket</xf:label>
+                            <xf:value>storm jacket</xf:value>
+                        </xf:item>
+                        <xf:item>
+                            <xf:label>Long Sleeve Sport</xf:label>
+                            <xf:value>long sleeve sports shirt</xf:value>
+                        </xf:item>
+                        <xf:item>
+                            <xf:label>Twill Shirt</xf:label>
+                            <xf:value>twill shirt</xf:value>
+                        </xf:item>
+                        <xf:item>
+                            <xf:label>Jersey Sport Shirt</xf:label>
+                            <xf:value>jersey sports shirt</xf:value>
+                        </xf:item>
+                        <xf:item>
+                            <xf:label>Cotton Sport Shirt</xf:label>
+                            <xf:value>cotton sports shirt</xf:value>
+                        </xf:item>
+                    </xf:select1>
+                </p>
+                <p>
+                    <xf:select1 ref="size">
+                        <xf:label>Size</xf:label>
+                        <xf:item>
+                            <xf:label>XS</xf:label>
+                            <xf:value>extra small</xf:value>
+                        </xf:item>
+                        <xf:item>
+                            <xf:label>S</xf:label>
+                            <xf:value>small</xf:value>
+                        </xf:item>
+                        <xf:item>
+                            <xf:label>R</xf:label>
+                            <xf:value>regular</xf:value>
+                        </xf:item>
+                        <xf:item>
+                            <xf:label>L</xf:label>
+                            <xf:value>large</xf:value>
+                        </xf:item>
+                        <xf:item>
+                            <xf:label>XL</xf:label>
+                            <xf:value>extra Large</xf:value>
+                        </xf:item>
+                        <xf:item>
+                            <xf:label>XXL</xf:label>
+                            <xf:value>huge</xf:value>
+                        </xf:item>
+                    </xf:select1>
+                </p>
+                <p>
+                    <xf:submit submission="avail">
+                        <xf:label>Check</xf:label>
+                    </xf:submit>
+                </p>
+            </div>
+            <div class="company_item">
+                <h3 class="company_header">Most Popular Items</h3>
+                <dl>
+                    <dt>
+                        <a href="#">Storm Jacket</a>
+                    </dt>
+                    <dd>Jive-Tek Nylon shell Storm Jacket is water repellent, wind resistant, has a front
+                        zipper and elastic waistband. <strong>$19.98</strong></dd>
+                    <dt>
+                        <a href="#">Long Sleeve Sport Shirt</a>
+                    </dt>
+                    <dd>Cotton, long-sleeve pique knit sport shirt. Designed with a full cut and soft,
+                        comfortable look to please anyone. <strong>$15.98</strong></dd>
+                    <dt>
+                        <a href="#">Short Sleeve Twill Shirt</a>
+                    </dt>
+                    <dd>This classic 100% cotton, twill short sleeve shirt has a patch pocket and a
+                        button-down collar. <strong>$15.98</strong></dd>
+                    <dt>
+                        <a href="#">Jersey Knit Sport Shirt</a>
+                    </dt>
+                    <dd>This cotton jersey knit sport shirt is unique and upscale, perfect for the office or
+                        out on the putting green. <strong>$14.98</strong></dd>
+                    <dt>
+                        <a href="#">Cotton Sport Shirt</a>
+                    </dt>
+                    <dd class="article">This 100% cotton shirt pays has horn tone buttons, welt collar and
+                        cuffs, side vents, and locker patch. <strong>$11.98</strong></dd>
+                </dl>
+            </div>
+            <div class="company_item">
+                <h3 class="company_header">Special Offers</h3>
+                <dl>
+                    <dt>
+                        <a href="#">Long Sleeve Twill Shirt</a>
+                    </dt>
+                    <dd>This classic 100% cotton, twill long sleeve shirt has a patch pocket and a button-down
+                        collar. <strong>$15.98</strong></dd>
+                    <dt>
+                        <a href="#">Short Sleeve Denim Shirt</a>
+                    </dt>
+                    <dd>This classic cotton, 6.5-ounce stonewashed denim shirt is perfect for a corporate or
+                        casual situation. <strong>$15.98</strong></dd>
+                </dl>
+            </div>
+        </div>
+
+<!-- The common material for the page footer -->
+        <div id="footer">
+            <p>Copyright <a href="jivehome.xdime">Jive Sports</a></p>
+        </div>
+        
+    </body>
+</html>

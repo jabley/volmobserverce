@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>response:ticker-tape</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>response:ticker-tape</h1><h2>Purpose</h2>
+         <p>Defines the main element for a Ticker Tape widget response, enabling the widget to
+            refresh its contents periodically.</p>
+      <h2>Contained by</h2><p><a href="../xdime_cp/response_body.html">response:body</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+         <pre class="code">
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+   xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+   xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+   &lt;response:head&gt;
+      &lt;response:link rel="mcs:theme" href="/main.mthm"/&gt;
+   &lt;/response:head&gt;
+   &lt;response:body&gt;
+      &lt;response:ticker-tape id="myWeatherTicker"&gt;
+         &lt;span&gt;Current weather conditions - last update 2007-02-23 12:27&lt;/span&gt;
+         &lt;span&gt;&lt;a href="http://www.berlin.de"&gt;Berlin&lt;/a&gt;: 25°C, partly cloudy&lt;/span&gt;
+      &lt;/response:ticker-tape&gt;
+   &lt;/response:body&gt;
+&lt;/response:response&gt;</pre>
+      
+         <p><span class="ri">Related topics</span><br/><a href="../xdime_cp/response_er.html">Widget response elements</a><br/><a href="../xdime_cp/widget_ticker_tape.html">widget:ticker-tape</a></p>
+      </body></html>

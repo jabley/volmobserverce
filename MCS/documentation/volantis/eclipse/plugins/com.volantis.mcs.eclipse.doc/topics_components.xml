@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Components">
+	<topic label="Component types" href="components/component_types.html"/>
+	<topic label="Component editors" href="components/component_editors.html"/>
+	<topic label="Types of variant" href="components/asset_about.html"/>
+	<topic label="Variant selection criteria" href="components/asset_selection_criteria.html"/>
+	<topic label="Asset groups" href="components/asset_group.html"/>
+	<topic label="Working with components" type="Task" href="components/component_working.html">
+		<topic label="Adding a component" href="components/component_add.html"/>
+		<topic label="Adding a variant" href="components/asset_add.html"/>
+		<!--<topic label="Creating an image sequence" href="components/asset_image_sequence.html"/>-->
+		<topic label="Adding an asset group" href="components/asset_group_add.html"/>
+	</topic>
+	<topic label="Component attributes" href="components/component_attributes.html"/>
+	<topic label="Common variant attributes" href="components/asset_common_attr.html"/>
+	<topic label="Audio attributes" href="components/asset_audio_attr.html"/>
+	<topic label="Chart attributes" href="components/asset_chart_attr.html"/>
+	<!--<topic label="Dynvis attributes" href="components/asset_dynvis_attr.html"/>-->
+	<topic label="Image attributes" href="components/asset_image_attr.html"/>
+	<topic label="Script attributes" href="components/asset_script_attr.html"/>
+	<topic label="Text attributes" href="components/asset_text_attr.html"/>
+	<topic label="Asset group attributes" href="components/asset_group_attributes.html"/>
+</toc>

@@ -1,0 +1,285 @@
+<?xml version="1.0" standalone="no"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!DOCTYPE script SYSTEM "script.dtd">
+
+<script title="Propagate attribute tests">
+
+<updateAttribValue name="top1" value="top1Value"
+  expected="(1) new top1 propagated to both top elements">
+  <proxy name="topA">
+  </proxy>
+</updateAttribValue>
+
+<checkProxieds name="topA" recurse="n" callCount="1" reason="a"
+  expected="(2) 1st call: both have new attribute">
+  <topA top1="top1Value">
+  </topA>
+  <topA top1="top1Value">
+  </topA>
+</checkProxieds>
+
+<checkProxieds name="middleA" recurse="n" callCount="0" reason="n"
+  expected="(3) no change, no calls">
+  <null/>
+  <null/>
+</checkProxieds>
+
+<checkProxieds name="bottomA" recurse="n" callCount="0" reason="n"
+  expected="(4) no change, no calls">
+  <null/>
+  <null/>
+</checkProxieds>
+
+<checkProxy name="topA" recurse="n"
+  expected="(5) Proxy itself also has new attribute">
+  <topA top1="top1Value" top2="">
+  </topA>
+</checkProxy>
+
+<updateAttribValue name="top1" value="top1ValueNew"
+  expected="(6) existing attributes in proxieds updated">
+  <proxy name="topA">
+  </proxy>
+</updateAttribValue>
+
+<checkProxieds name="topA" recurse="n" callCount="2" reason="av"
+  expected="(7) propagation of new value for existing attribute">
+  <topA top1="top1ValueNew">
+  </topA>
+  <topA top1="top1ValueNew">
+  </topA>
+</checkProxieds>
+
+<checkProxieds name="middleA" recurse="n" callCount="0" reason="n"
+  expected="(8) no change, no calls">
+  <null/>
+  <null/>
+</checkProxieds>
+
+<checkProxieds name="bottomA" recurse="n" callCount="0" reason="n"
+  expected="(9) no change, no calls">
+  <null/>
+  <null/>
+</checkProxieds>
+
+<checkProxy name="topA" recurse="n"
+  expected="(a) Proxy itself also has new attribute value">
+  <topA top1="top1ValueNew" top2="">
+  </topA>
+</checkProxy>
+
+<updateAttribValue name="bottom1" value="bottom1Value"
+  expected="(b) new bottom1 propagated to non-existent bottom elements">
+  <proxy name="bottomA">
+  </proxy>
+</updateAttribValue>
+
+<checkProxieds name="topA" recurse="n" callCount="2" reason="av"
+  expected="(c) call count and values both unchanged">
+  <topA top1="top1ValueNew">
+  </topA>
+  <topA top1="top1ValueNew">
+  </topA>
+</checkProxieds>
+
+<checkProxieds name="middleA" recurse="n" callCount="2" reason="e"
+  expected="(d) 1st and 2nd call (2 middle elements just created)">
+  <middleA/>
+  <middleA/>
+</checkProxieds>
+
+<checkProxieds name="bottomA" recurse="n" callCount="1" reason="e"
+  expected="(e) 1st call with the new attribute in each">
+  <bottomA bottom1="bottom1Value">
+  </bottomA>
+  <bottomA bottom1="bottom1Value">
+  </bottomA>
+</checkProxieds>
+
+<checkProxy name="bottomA" recurse="n"
+  expected="(f) Proxy itself also has new attribute">
+  <bottomA bottom1="bottom1Value" bottom2="">
+  </bottomA>
+</checkProxy>
+
+<updateAttribValue name="bottom2" value="bottom2Value"
+  expected="(g) new bottom2 propagated to EXISTING bottom elements">
+  <proxy name="bottomA">
+  </proxy>
+</updateAttribValue>
+
+<checkProxieds name="topA" recurse="n" callCount="2" reason="av"
+  expected="(h) call count and values both unchanged">
+  <topA top1="top1ValueNew">
+  </topA>
+  <topA top1="top1ValueNew">
+  </topA>
+</checkProxieds>
+
+<checkProxieds name="middleA" recurse="n" callCount="2" reason="e"
+  expected="(i) no change, no calls">
+  <middleA/>
+  <middleA/>
+</checkProxieds>
+
+<checkProxieds name="bottomA" recurse="n" callCount="2" reason="a"
+  expected="(j) 2nd call with the new attribute in each">
+  <bottomA bottom1="bottom1Value" bottom2="bottom2Value">
+  </bottomA>
+  <bottomA bottom1="bottom1Value" bottom2="bottom2Value">
+  </bottomA>
+</checkProxieds>
+
+<checkProxy name="bottomA" recurse="n"
+  expected="(k) Proxy itself also has new attribute">
+  <bottomA bottom1="bottom1Value" bottom2="bottom2Value">
+  </bottomA>
+</checkProxy>
+
+<updateAttribValue name="bottom2" value="bottom2ValueNew"
+  expected="(l) existing attributes in proxieds updated">
+  <proxy name="bottomA">
+  </proxy>
+</updateAttribValue>
+
+<checkProxieds name="topA" recurse="n" callCount="2" reason="av"
+  expected="(m) no change, no calls">
+  <topA top1="top1ValueNew">
+  </topA>
+  <topA top1="top1ValueNew">
+  </topA>
+</checkProxieds>
+
+<checkProxieds name="middleA" recurse="n" callCount="2" reason="e"
+  expected="(n) no change, no calls">
+  <middleA/>
+  <middleA/>
+</checkProxieds>
+
+<checkProxieds name="bottomA" recurse="n" callCount="3" reason="av"
+  expected="(o) 3rd call with the new attribute in each">
+  <bottomA bottom1="bottom1Value" bottom2="bottom2ValueNew">
+  </bottomA>
+  <bottomA bottom1="bottom1Value" bottom2="bottom2ValueNew">
+  </bottomA>
+</checkProxieds>
+
+<checkProxy name="bottomA" recurse="n"
+  expected="(p) Proxy itself also has new attribute value">
+  <bottomA bottom1="bottom1Value" bottom2="bottom2ValueNew">
+  </bottomA>
+</checkProxy>
+
+<updateAttribValue name="bottom1" value=""
+  expected="(q) clear original bottom attrib, leaving the other one">
+  <proxy name="bottomA">
+  </proxy>
+</updateAttribValue>
+
+<checkProxieds name="bottomA" recurse="n" callCount="4" reason="a"
+  expected="(r) 4th call with the attribute removed">
+  <bottomA bottom2="bottom2ValueNew">
+  </bottomA>
+  <bottomA bottom2="bottom2ValueNew">
+  </bottomA>
+</checkProxieds>
+
+<checkProxy name="bottomA" recurse="n"
+  expected="(s) Proxy itself also has new empty attribute value">
+  <bottomA bottom1="" bottom2="bottom2ValueNew">
+  </bottomA>
+</checkProxy>
+
+<checkProxieds name="middleA" recurse="n" callCount="2" reason="e"
+  expected="(t) no change, no calls">
+  <middleA/>
+  <middleA/>
+</checkProxieds>
+
+<updateAttribValue name="bottom2" value=""
+  expected="(u) clear other bottom attrib, unwinding back to top">
+  <proxy name="bottomA">
+  </proxy>
+</updateAttribValue>
+
+<checkProxieds name="bottomA" recurse="n" callCount="5" reason="e"
+  expected="(v) 5th call with both set back to null">
+  <null/>
+  <null/>
+</checkProxieds>
+
+<checkProxieds name="middleA" recurse="n" callCount="4" reason="e"
+  expected="(w) 3rd and 4th call where deletion propagates up to middle two">
+  <null/>
+  <null/>
+</checkProxieds>
+
+<checkProxy name="bottomA" recurse="n"
+  expected="(x) Proxy itself also has new empty attribute value">
+  <bottomA bottom1="" bottom2="">
+  </bottomA>
+</checkProxy>
+
+<updateAttribValue name="bottom2" value=""
+  expected="(y) delete the attribute again and observe no change">
+  <proxy name="bottomA">
+  </proxy>
+</updateAttribValue>
+
+<checkProxieds name="bottomA" recurse="n" callCount="5" reason="e"
+  expected="(z) no calls, no change">
+  <null/>
+  <null/>
+</checkProxieds>
+
+<checkProxieds name="middleA" recurse="n" callCount="4" reason="e"
+  expected="(aa) no calls, no change">
+  <null/>
+  <null/>
+</checkProxieds>
+
+<checkProxy name="bottomA" recurse="n"
+  expected="(ab) no change">
+  <bottomA bottom1="" bottom2="">
+  </bottomA>
+</checkProxy>
+
+
+
+<!-- End script -->
+</script>
+
+
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6416/1	ianw	VBM:2004120703 New Build
+
+ 18-Dec-03	2137/5	richardc	VBM:2003120402 Extra tests for event non-generation
+
+ 17-Dec-03	2137/3	richardc	VBM:2003120402 Version for initial review (code and test harness)
+
+ ===========================================================================
+-->

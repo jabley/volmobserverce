@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><link href="../volantis.css" rel="stylesheet" type="text/css"/><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>policy-all-values</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">policy-all-values</h1><h2>Purpose</h2>
+         <p>Lists all the policy values for a device.</p>
+         
+         <p>If the device name is missing or invalid, '404 Not Found' is returned.</p>
+      <h2>Method</h2><p><span class="code">GET</span></p><h2>Signature</h2><p><span class="code">/device/policy/all-values[device-name]</span></p><h2>Parameter</h2><table cellspacing="0" summary="The table contains the&#xA;            parameters of the function. It lists the name, the purpose&#xA;            or use, and the XML schema datatype."><tr><th class="firsthdr" scope="col">Name</th><th scope="col">Description</th><th scope="col">Type</th></tr><tr><th class="firstcell" scope="row">device_name</th><td><p>The device name</p></td><td>xs:string</td></tr></table><h2>Examples</h2>
+         <p>Input</p>
+         <pre class="code">/device/policy/all-values/Nokia-9110i</pre>
+         <p>Returns</p>
+         <pre class="code">&lt;policy-values xmlns="http://www.volantis.com/xmlns/2006/01/device-ws" device-name="Nokia-9110i"&gt;
+   &lt;policy policy-name="pjpeginpage"&gt;
+      &lt;boolean&gt;false&lt;/boolean&gt;
+   &lt;/policy&gt;
+   &lt;policy policy-name="aggregation"&gt;
+      &lt;boolean&gt;false&lt;/boolean&gt;
+   &lt;/policy&gt;
+   &lt;policy policy-name="ggif2rule"&gt;
+      &lt;string&gt;gg2&lt;/string&gt;
+   &lt;/policy&gt;
+   &lt;policy policy-name="UAProf.InputCharSet"&gt;
+      &lt;set&gt;
+         &lt;string&gt;utf8&lt;/string&gt;
+      &lt;/set&gt;
+   &lt;/policy&gt;
+   &lt;policy policy-name="UAProf.Push-MsgSize"&gt;
+      &lt;number&gt;
+         &lt;int&gt;-1&lt;/int&gt;
+      &lt;/number&gt;
+   &lt;/policy&gt;
+&lt;/policy-values&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../dws/dws_rest_api.html">DWS API reference</a><br/><a href="../dws/dws_php_s7.html">example7.php</a><br/><a href="../dws/dws_ruby_s7.html">example7.rb</a></p>
+      </body></html>

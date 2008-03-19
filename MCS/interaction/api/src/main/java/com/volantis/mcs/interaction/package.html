@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--===========================================================================
+ ! (c) Volantis Systems Ltd 2005. 
+ ! ======================================================================== -->
+ <style>
+ table {border-collapse: collapse}
+ table, th, td {border: thin solid}
+ </style>
+</head>
+<body bgcolor="white">
+
+Provides a layer that can be applied on top of an object model to allow the
+model to be interacted with, e.g. from a GUI.
+
+<h2>Interaction Layer</h2>
+
+<p>The interaction layer provides most of the capabilities normally required of
+a model by interactive applications:</p>
+<ul>
+<li>Generalised access to the properties and contents of the model.</li>
+<li>Notification of changes to the model.</li>
+<li>Diagnostic management (it is assumed that the model will perform its own
+validation).</li>
+<li>Dynamic construction of model.</li>
+<li>Undo/redo support.</li>
+</ul>
+
+<p>The reason for separating these capabilities from the underlying object model
+is that it greatly simplifies the object model which typically will be used
+from a number of different places, not just from within interactive
+applications. It also allows them to be used across many diverse object
+models.</p>
+
+<p>Although this is not restricted to being used by a user interface this will
+by its typical use so that term will be used when referring to the code that
+uses this layer.</p>
+
+<h3>Relationship with Underlying Model</h3>
+
+<p>The underlying model consists of a number of connected model objects. These
+objects can contain a number of properties, some of which will be simple types,
+some of which will be lists (other collections and maps are not supported at the
+moment) and some of which will be references to other objects in the model. The
+interaction layer is only interested in those externally visible aspects of an
+object that have to be exposed to the user interface, e.g. fields or methods
+that are not used by the user interface can be ignored.</p>
+
+<p>The interaction layer contains a proxy for each model object and
+also one for each of the simple and list properties. For each property a
+reference exists from the proxy representing the model object
+containing the property to the proxy representing the property. This
+means that proxies in the interaction layer shadow model items.</p>
+
+<p>The classes for the proxies do not form a parallel hierarchy to the
+classes in the model as that would reduce the benefits of separating the
+interaction aspects out from the model. Instead the proxies are
+heavily parameterised to allow them to manage any model object.</p>
+
+<p>The only requirement that the interaction layer places on the model is that
+when it performs validation it provides enough information to uniquely identify
+the proxy representing the value that has the problem. For model
+objects this is just the object itself but if the problem is with a property of
+a model object then it is the name of the property as well as the object
+containing that property.</p>
+
+<p>The proxies are always arranged in a tree structure even if the
+underlying model represents a graph.</p>
+
+<h3>Events</h3>
+
+<p>Changes to the model are only made through the interaction layer so it will
+always know when a change occurs and can report them to any interested
+parties. Changes generate event on a proxy and the events bubble up the
+interaction hierarchy until they reach the top. Listeners can be registered on
+a proxy to received either events only from that proxy, or events from that
+proxy and all its descendants.</p>
+
+<h3>Diagnostics</h3>
+
+<p>A diagnostic message is an indication that there is something not quite
+right with the underlying model. The model must implement validation, this is
+because other usages of the model will also need to be able to validate. The
+model validation mechanism needs the following capabilities:
+<ul>
+<li>It should not fail at the first problem (e.g. by throwing an exception),
+instead it should keep going to try and find as many problems in one go.</li>
+<li>It must report the location of the error, including the property. This is to
+allow the errors to be associated with the correct interaction proxy.</li>
+<li>Diagnostics must contain both an internationalized message as well as a
+language independent key and arguments. This is to allow the user interface
+to provide special support for particular errors.</li>
+<li>It should generate the most important messages first as the user interface
+may only be able to display a small number of messages. The messages will be
+sorted by severity first, followed by their original order.</li>
+</ul>
+
+<p>Although the interaction layer does not mandate a specific implementation
+of validation it should have built in support for the validation infrastructure
+defined in the validation subsystem. It is recommended that models use that as
+their validation framework.</p>
+
+<p>Validation occurs across the whole model any time that the model changes as
+a local change could break another part of the model. It is the responsibility
+of the user interface to register a listener to detect those changes and
+invoke the validation. The interaction layer will then collate all the
+diagnostic messages at the top level and also target them at the appropriate
+proxy. This allows all the diagnostics to be displayed globally as
+well as providing filtered diagnostics on a per proxy basis.</p>
+
+<h3>Dynamic Construction</h3>
+
+<p>There are two ways in which the interaction layer is constructed. It can
+either be constructed from an existing model (or part of a model), or
+constructed by the user interface directly. In the latter case the proxies are
+responsible for creating the underlying model objects but otherwise
+they are not.</p>
+
+<p>When a model has first been loaded it is associated with the interaction
+layer which then grows the proxies over the top of it. In order for it to do
+this the layer needs information to describe each class of object that can be
+stored in the model. This means that it needs to be able to map from the class
+of the object to that information. This is complicated by the fact that the
+actual class of an object may not be the same as its publicly visible class.</p>
+
+<p>In some cases a partial model may also be constructed directly by the user
+interface, e.g. by using a parser that can convert from a text input directly
+by the user into the model, or by selecting from a list of predefined model
+objects. When this partial model is associated with a proxy this
+will cause the previously associated proxy to be discarded (actually
+saved away in case it should be undone) and new proxies grown over
+the partial model.</p>
+
+<p>When the user performs some action on the user interface to create a new
+object in the model first an appropriate proxy is created. That proxy
+will create the underlying model object if and when it is necessary, e.g. when
+the user has set some values on the model.</p>
+
+<h3>Operations</h3>
+
+<p>An operation is something that can be performed on the model that will cause
+a change to the model and hence trigger events. Currently all operations must be
+undoable and redoable.</p>
+
+<p>There are only be a very small number of operations that can be performed
+on the model:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Undo / Redo State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set Property</td>
+<td>Sets a property to a new value.</td>
+<td>Old and new values.</td>
+</tr>
+<tr>
+<td>Add To List</td>
+<td>Adds an object to the end of a list.</td>
+<td>New object.</td>
+</tr>
+<tr>
+<td>Insert In List</td>
+<td>Inserts an object at a specific position in a list.</td>
+<td>Position in the list and the object to insert.</td>
+</tr>
+<tr>
+<td>Remove From List</td>
+<td>Removes an object from the list.</td>
+<td>The object that was removed and its position within the list.</td>
+</tr>
+</tbody>
+</table>
+
+<p>It is possible to compose multiple operations on an proxy into a
+single composite operation that can be atomically applied, e.g. moving a proxy
+from one position in a list to another can be represented as a remove followed
+by an insert. When composing operations it may also be necessary to compose
+the events that will be triggered by those operations. Otherwise a listener
+would see a sequence of events and responding to them individually could cause
+unnecessary work, e.g. repainting the control.</p>
+
+</body>
+</html>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 21-Oct-05	9961/1	pduffin	VBM:2005101811 Committing first stab at interaction layer
+
+ ===========================================================================
+-->

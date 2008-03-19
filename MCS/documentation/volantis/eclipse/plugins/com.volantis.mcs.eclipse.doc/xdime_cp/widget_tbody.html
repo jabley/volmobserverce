@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:tbody</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:tbody</h1><h2>Purpose</h2>
+         <p>Defines body of the AJAX Table widget.</p>
+      <h2>Contains</h2><p><a href="../xdime_cp/widget_load.html">widget:load</a>, <a href="../xdime_cp/xdime_cp_tr.html">tr</a></p><h2>Contained by</h2><p><a href="../xdime_cp/widget_table.html">widget:table</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">cached-pages-count</th><td>Specifies the number of cached pages. By default nothing is cached.</td><td>xs:integer</td><td>0 </td><td> </td><td>optional </td></tr></table><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Actions</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Action</th><th scope="col">Description</th></tr><tr><th class="firstcell" scope="row">first-page</th><td>Displays the first page of a table, unless table is displaying the first
+               page</td></tr><tr><th class="firstcell" scope="row">last-page</th><td>Displays the last page of a table, unless table is displaying the last
+               page</td></tr><tr><th class="firstcell" scope="row">next-page</th><td>Displays the next page of a table, unless table is displaying the last
+               page</td></tr><tr><th class="firstcell" scope="row">next-row</th><td>Displays the next row of a table, unless table is displaying the last
+            row</td></tr><tr><th class="firstcell" scope="row">previous-page</th><td>Displays the previous page of a table, unless table is displaying the first
+               page</td></tr><tr><th class="firstcell" scope="row">previous-row</th><td>Displays the previous row of a table, unless table is displaying the first
+               row</td></tr></table><h2>Properties</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Property</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Access</th></tr><tr><th class="firstcell" scope="row">end-row-number</th><td>A number of the last row being displayed in the table</td><td>xs:integer</td><td>read/write </td></tr><tr><th class="firstcell" scope="row">load</th><td>Identifies the <span class="code">widget:load</span> element used to load the
+               content of the table</td><td>xs:string</td><td>read </td></tr><tr><th class="firstcell" scope="row">load-error-message</th><td>Contains an error message if the last load action failed, or empty string
+               if it was successful</td><td>xs:string</td><td>read </td></tr><tr><th class="firstcell" scope="row">rows-count</th><td>Total number of rows in the table</td><td>xs:integer</td><td>read </td></tr><tr><th class="firstcell" scope="row">start-row-number</th><td>A number of the first row being displayed in the table</td><td>xs:integer</td><td>read/write </td></tr></table><h2>Example</h2>
+         <pre class="code">
+&lt;widget:table&gt;
+   &lt;thead&gt;
+      &lt;tr&gt;
+         &lt;th&gt;Code&lt;/th&gt;
+         &lt;th&gt;Country name&lt;/th&gt;
+      &lt;/tr&gt;
+   &lt;/thead&gt;
+   &lt;widget:tbody id="tbody" cached-pages-count="10" style="mcs-table-rows-per-page:10"&gt;
+      &lt;widget:load src="service/table" when="onload"/&gt;
+      &lt;tr&gt;
+         &lt;td&gt;--&lt;/td&gt;
+         &lt;td&gt;Loading, please wait...&lt;/td&gt;
+      &lt;/tr&gt;
+   &lt;/widget:tbody&gt;
+&lt;/widget:table&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/widget_er.html">Widget elements</a><br/><a href="../xdime_cp/response_tbody.html">response:tbody</a></p>
+      </body></html>

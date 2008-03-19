@@ -1,0 +1,26 @@
+<!-- Use this file to undeploy some handlers/chains and services    -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient undeploy.wsdd        -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server undeploy.wsdd -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<undeployment
+    xmlns="http://xml.apache.org/axis/wsdd/">
+
+  <!-- Services from DeviceUpdateServices WSDL service -->
+
+  <service name="SOAPDeviceUpdateService"/>
+</undeployment>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 26-Feb-04	3211/1	claire	VBM:2004022410 Update service build process
+
+ ===========================================================================
+-->

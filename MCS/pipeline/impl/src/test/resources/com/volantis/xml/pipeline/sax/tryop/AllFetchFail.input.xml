@@ -1,0 +1,47 @@
+<?xml version='1.0'?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!--===========================================================================
+! (c) Volantis Systems Ltd 2003. 
+! ======================================================================== -->
+<root xmlns:integration="http://www.volantis.com/xmlns/marlin-integration"
+    xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+    xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver">
+    <pipeline:try>
+        <pipeline:preferred>
+            <urid:fetch parse="text" href="./doesnotexist.txt"/>            
+            <integration:failOnExecute/>
+        </pipeline:preferred>
+        <pipeline:alternative>
+            <urid:fetch parse="text" href="./doesnotexisteither.txt"/>
+            <integration:failOnExecute/>
+        </pipeline:alternative>
+    </pipeline:try>      
+</root>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 20-Oct-04	5438/1	philws	VBM:2004082706 Transfer Pipeline source into MCS
+
+ 13-Aug-03	331/1	adrian	VBM:2003081001 implemented try operation
+
+ ===========================================================================
+-->

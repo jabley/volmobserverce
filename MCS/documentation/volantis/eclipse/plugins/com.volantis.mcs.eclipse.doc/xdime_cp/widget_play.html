@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:play</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:play</h1><h2>Purpose</h2>
+         <p>Defines a play button. When used in a Slideshow widget, it starts or resumes the
+            slideshow presentations.</p>
+         <p>It can be either in normal or disabled state. You can show the disabled state with the
+               <span class="code">:mcs-disabled</span> pseudo-class.</p>
+      <h2>Contained by</h2><p><a href="../xdime_cp/gallery_slideshow.html">gallery:slideshow</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+         <pre class="code">
+&lt;widget:popup id="gallery-popup" class="popup"&gt;
+   &lt;gallery:slideshow id="slideshow" class="slideshow"&gt;
+      &lt;gallery:item-display/&gt;
+      &lt;table&gt;
+         &lt;tr&gt;
+            &lt;td&gt;
+               &lt;widget:previous&gt;&amp;lt;&amp;lt;&lt;/widget:previous&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+               &lt;widget:pause&gt;Pause&lt;/widget:pause&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+               &lt;widget:play&gt;Play&lt;/widget:play&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+               &lt;widget:next&gt;&amp;gt;&amp;gt;&lt;/widget:next&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+               &lt;widget:dismiss&gt;Close&lt;/widget:dismiss&gt;
+            &lt;/td&gt;
+         &lt;/tr&gt;
+      &lt;/table&gt;
+      &lt;div class="slideshow-info"&gt;Displaying item &lt;gallery:item-number/&gt; of
+         &lt;gallery:items-count/&gt;&lt;/div&gt;
+   &lt;/gallery:slideshow&gt;
+&lt;/widget:popup&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/gallery_er.html">Gallery elements</a><br/><a href="../xdime_cp/widget_er.html">Widget elements</a></p>
+      </body></html>

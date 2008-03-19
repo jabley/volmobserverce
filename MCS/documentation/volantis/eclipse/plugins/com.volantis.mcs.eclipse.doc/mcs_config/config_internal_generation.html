@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><meta name="taskref" content="011"/><title>internal-generation</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>internal-generation</h1><h2>Purpose</h2>
+				<p>If this element is present in releases prior to MCS 3.5, MCS will cache internal style sheets in memory using the values in the contained <span class="code">cache</span> element.</p>
+		   <p class="note"><strong>Note</strong>: In MCS 3.5 and later the  settings for this element no longer have any effect, though it is retained for backward compatibility.</p>
+		<h2>Contains</h2><p><a href="../admin/config_cache.html">cache</a></p><h2>Contained by</h2><p><a href="../admin/config_style_sheets.html">style-sheets</a></p><h2>Example</h2>
+			<pre class="code">&lt;style-sheets&gt;
+   &lt;external-generation cache="enabled"
+      flush-on-restart="true"
+      base-directory="[path]/mcs/css"
+      base-url="[context_root]/MCSCSS"/&gt;
+   &lt;internal-generation&gt;    
+      &lt;cache name="styleCache"      
+         strategy="least-recently-used"
+         max-entries="25"/&gt;  
+   &lt;/internal-generation&gt;   
+   &lt;page-level-generation max-age="120000"/&gt;
+&lt;/style-sheets&gt;</pre>
+		
+			<p><span class="ri">Related topic</span><br/><a href="../admin/mcs_config_er.html">MCS configuration elements</a></p>
+		</body></html>

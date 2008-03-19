@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><meta name="taskref" content="014"/><title>request:getHeader</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>request:getHeader</h1><h2>Purpose</h2>
+         <p>Used to access the value of a request header.</p>
+         <p>If the specified request header exists then its value is returned. If it does not exist, the result depends on whether a <span class="code">default</span> argument was provided. If it was then it is returned as the result of this function, otherwise an empty sequence is returned.</p>
+
+<p>A request header can have more than one value associated with it, for example by repeating the parameter. If this is the case then this function will be equivalent to accessing the first value returned by calling the <span class="code">request:getHeaders</span> function.</p>
+      <h2>Signature</h2><p><span class="code">request:getHeader($name as xs:string, $default as xs:string?) as xs:string?</span></p><h2>Parameters</h2><table cellspacing="0" summary="The table contains the&#xA;            parameters of the function. It lists the name, the purpose&#xA;            or use, and the XML schema datatype."><tr><th class="firsthdr" scope="col">Name</th><th scope="col">Description</th><th scope="col">Type</th></tr><tr><th class="firstcell" scope="row">default</th><td><p>The value to return if the request header is not present</p></td><td>xs:string</td></tr><tr><th class="firstcell" scope="row">name</th><td><p>Tthe name of the request header</p></td><td>xs:string</td></tr></table>
+         <p><span class="ri">Related topic</span><br/><a href="../wag/wag_function_expr.html">MCS function expressions</a></p>
+      </body></html>

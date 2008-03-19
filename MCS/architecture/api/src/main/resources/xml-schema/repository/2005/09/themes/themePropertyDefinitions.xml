@@ -1,0 +1,4439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<thm:themeDefinition xmlns="http://vine.uk.volantis.com/architecture/document/xmlns/ArchitectureDocument" xmlns:thm="http://vine.uk.volantis.com/architecture/document/xmlns/ThemeInfo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vine.uk.volantis.com/architecture/document/xmlns/ThemeInfo xml-schema/ThemeInfo.xsd">
+    <thm:typeDefinition documentation="box.html#value-def-mcs-border-color" specification="CSS 2.1">
+        <thm:name>mcs-border-color</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:colorType/>
+            </thm:choiceType>
+        </thm:type>
+    </thm:typeDefinition>
+    <thm:typeDefinition documentation="box.html#value-def-border-style" specification="CSS 2.1">
+        <thm:name>border-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>hidden</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>dotted</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>dashed</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="4">
+                        <thm:name>solid</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="5">
+                        <thm:name>double</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="6">
+                        <thm:name>groove</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="7">
+                        <thm:name>ridge</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="8">
+                        <thm:name>inset</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="9">
+                        <thm:name>outset</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+    </thm:typeDefinition>
+    <thm:typeDefinition documentation="box.html#value-def-border-width" specification="CSS 2.1">
+        <thm:name>border-width</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>thin</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>medium</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>thick</thm:name>
+                    </thm:keyword>
+                    <thm:specifications>
+                        <thm:cssMobileProfile/>
+                        <thm:cssWap/>
+                    </thm:specifications>
+                </thm:keywords>
+                <thm:lengthType>
+                    <thm:specifications>
+                        <thm:cssMobileProfile/>
+                    </thm:specifications>
+                </thm:lengthType>
+            </thm:choiceType>
+        </thm:type>
+    </thm:typeDefinition>
+    <thm:typeDefinition documentation="box.html#value-def-margin-width" specification="CSS 2.1">
+        <thm:name>margin-width</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>auto</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:lengthType/>
+                <thm:percentageType/>
+            </thm:choiceType>
+        </thm:type>
+    </thm:typeDefinition>
+    <thm:typeDefinition documentation="box.html#value-def-padding-width" specification="CSS 2.1">
+        <thm:name>padding-width</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:lengthType/>
+                <thm:percentageType/>
+            </thm:choiceType>
+        </thm:type>
+    </thm:typeDefinition>
+    <thm:typeDefinition documentation="box.html#value-def-mcs-position" specification="CSS 2.1">
+        <thm:name>mcs-position</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>auto</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:lengthType/>
+                <thm:percentageType/>
+            </thm:choiceType>
+        </thm:type>
+    </thm:typeDefinition>
+    <thm:property specification="CSS 2" documentation="colors.html#propdef-background-attachment">
+        <thm:name>background-attachment</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>scroll</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>fixed</thm:name>
+                        <thm:specifications>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>scroll</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="colors.html#propdef-background-color">
+        <thm:name>background-color</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>transparent</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:colorType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>transparent</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="colors.html#propdef-background-image">
+        <thm:name>background-image</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:specifications>
+                            <thm:css1/>
+                            <thm:css2/>
+                            <thm:cssMobileProfile/>
+                        </thm:specifications>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:uriType/>
+                <thm:mcsComponentURIType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2.1" documentation="colors.html#propdef-background-position">
+        <thm:name>background-position</thm:name>
+        <thm:type>
+            <thm:pairType>
+                <thm:first>
+                    <thm:name>x</thm:name>
+                    <thm:choiceType>
+                        <thm:percentageType/>
+                        <thm:lengthType/>
+                        <thm:keywords>
+                            <thm:keyword enumeration="0">
+                                <thm:name>left</thm:name>
+                            </thm:keyword>
+                            <thm:keyword enumeration="1">
+                                <thm:name>center</thm:name>
+                            </thm:keyword>
+                            <thm:keyword enumeration="2">
+                                <thm:name>right</thm:name>
+                            </thm:keyword>
+                        </thm:keywords>
+                    </thm:choiceType>
+                </thm:first>
+                <thm:second>
+                    <thm:name>y</thm:name>
+                    <thm:choiceType>
+                        <thm:percentageType/>
+                        <thm:lengthType/>
+                        <thm:keywords>
+                            <thm:keyword enumeration="0">
+                                <thm:name>top</thm:name>
+                            </thm:keyword>
+                            <thm:keyword enumeration="1">
+                                <thm:name>center</thm:name>
+                            </thm:keyword>
+                            <thm:keyword enumeration="2">
+                                <thm:name>bottom</thm:name>
+                            </thm:keyword>
+                        </thm:keywords>
+                    </thm:choiceType>
+                </thm:second>
+            </thm:pairType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:pairValue>
+                <thm:percentageValue>0</thm:percentageValue>
+                <thm:percentageValue>0</thm:percentageValue>
+            </thm:pairValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:selfBox/>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="colors.html#propdef-background-repeat">
+        <thm:name>background-repeat</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>repeat</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>repeat-x</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>repeat-y</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>no-repeat</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>repeat</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-bottom-color">
+        <thm:name>border-bottom-color</thm:name>
+        <thm:type>
+            <thm:typeRef>mcs-border-color</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:propertyRef>color</thm:propertyRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-bottom-style">
+        <thm:name>border-bottom-style</thm:name>
+        <thm:type>
+            <thm:typeRef>border-style</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-bottom-width">
+        <thm:name>border-bottom-width</thm:name>
+        <thm:type>
+            <thm:typeRef>border-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>medium</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="tables.html#propdef-border-collapse">
+        <thm:name>border-collapse</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>collapse</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>separate</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>separate</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:display>table</thm:display>
+            <thm:display>inline-table</thm:display>
+        </thm:appliesTo>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-left-color">
+        <thm:name>border-left-color</thm:name>
+        <thm:type>
+            <thm:typeRef>mcs-border-color</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:propertyRef>color</thm:propertyRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-left-style">
+        <thm:name>border-left-style</thm:name>
+        <thm:type>
+            <thm:typeRef>border-style</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-left-width">
+        <thm:name>border-left-width</thm:name>
+        <thm:type>
+            <thm:typeRef>border-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>medium</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-right-color">
+        <thm:name>border-right-color</thm:name>
+        <thm:type>
+            <thm:typeRef>mcs-border-color</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:propertyRef>color</thm:propertyRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-right-style">
+        <thm:name>border-right-style</thm:name>
+        <thm:type>
+            <thm:typeRef>border-style</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-right-width">
+        <thm:name>border-right-width</thm:name>
+        <thm:type>
+            <thm:typeRef>border-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>medium</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="tables.html#propdef-border-spacing">
+        <thm:name>border-spacing</thm:name>
+        <thm:type>
+            <thm:pairType>
+                <thm:first>
+                    <thm:name>horizontal</thm:name>
+                    <thm:lengthType/>
+                </thm:first>
+                <thm:second>
+                    <thm:name>vertical</thm:name>
+                    <thm:lengthType/>
+                </thm:second>
+            </thm:pairType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:pairValue>
+                <thm:lengthValue units="px">0</thm:lengthValue>
+                <thm:lengthValue units="px">0</thm:lengthValue>
+            </thm:pairValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-top-color">
+        <thm:name>border-top-color</thm:name>
+        <thm:type>
+            <thm:typeRef>mcs-border-color</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:propertyRef>color</thm:propertyRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-top-style">
+        <thm:name>border-top-style</thm:name>
+        <thm:type>
+            <thm:typeRef>border-style</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-border-top-width">
+        <thm:name>border-top-width</thm:name>
+        <thm:type>
+            <thm:typeRef>border-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>medium</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visuren.html#propdef-bottom">
+        <thm:name>bottom</thm:name>
+        <thm:type>
+            <thm:typeRef>mcs-position</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>auto</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>height</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="tables.html#propdef-caption-side">
+        <thm:name>caption-side</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>top</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>bottom</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>top</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visuren.html#propdef-clear">
+        <thm:name>clear</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>left</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>right</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>both</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="colors.html#propdef-color">
+        <thm:name>color</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:colorType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:dependentValue userAgent="true"/>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="generate.html#propdef-content">
+        <thm:name>content</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>none</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:listType>
+                    <thm:choiceType>
+                        <thm:functionCallType/>
+                        <thm:stringType/>
+                        <thm:uriType/>
+                        <thm:mcsComponentURIType/>
+                    </thm:choiceType>
+                </thm:listType>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:pseudo-element>after</thm:pseudo-element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2.1" documentation="generate.html#propdef-counter-increment">
+        <thm:name>counter-increment</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:listType>
+                    <thm:choiceType>
+                        <thm:pairType>
+                            <thm:first>
+                                <thm:name>identifier</thm:name>
+                                <thm:identifierType/>
+                            </thm:first>
+                            <thm:second>
+                                <thm:name>integer</thm:name>
+                                <thm:integerType/>
+                            </thm:second>
+                        </thm:pairType>
+                    </thm:choiceType>
+                </thm:listType>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>all</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2.1" documentation="generate.html#propdef-counter-reset">
+        <thm:name>counter-reset</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:listType>
+                    <thm:choiceType>
+                        <thm:pairType>
+                            <thm:first>
+                                <thm:name>identifier</thm:name>
+                                <thm:identifierType/>
+                            </thm:first>
+                            <thm:second>
+                                <thm:name>integer</thm:name>
+                                <thm:integerType/>
+                            </thm:second>
+                        </thm:pairType>
+                    </thm:choiceType>
+                </thm:listType>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>all</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visuren.html#propdef-display">
+        <thm:name>display</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>inline</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>block</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>list-item</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>run-in</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="4">
+                        <thm:name>compact</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="5">
+                        <thm:name>marker</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="6">
+                        <thm:name>table</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="7">
+                        <thm:name>inline-table</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="8">
+                        <thm:name>table-row-group</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="9">
+                        <thm:name>table-header-group</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="10">
+                        <thm:name>table-footer-group</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="11">
+                        <thm:name>table-row</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="12">
+                        <thm:name>table-column-group</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="13">
+                        <thm:name>table-column</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="14">
+                        <thm:name>table-cell</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="15">
+                        <thm:name>table-caption</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="16">
+                        <thm:name>none</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>inline</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>all</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visuren.html#propdef-float">
+        <thm:name>float</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>left</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>right</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>none</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="fonts.html#propdef-font-family">
+        <thm:name>font-family</thm:name>
+        <thm:type>
+            <thm:orderedSetType>
+                <thm:choiceType>
+                    <thm:identifierType/>
+                    <thm:stringType/>
+                    <thm:keywords>
+                        <thm:keyword enumeration="0">
+                            <thm:name>serif</thm:name>
+                        </thm:keyword>
+                        <thm:keyword enumeration="1">
+                            <thm:name>sans-serif</thm:name>
+                        </thm:keyword>
+                        <thm:keyword enumeration="2">
+                            <thm:name>cursive</thm:name>
+                        </thm:keyword>
+                        <thm:keyword enumeration="3">
+                            <thm:name>fantasy</thm:name>
+                        </thm:keyword>
+                        <thm:keyword enumeration="4">
+                            <thm:name>monospace</thm:name>
+                        </thm:keyword>
+                    </thm:keywords>
+                </thm:choiceType>
+            </thm:orderedSetType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:dependentValue userAgent="true"/>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="fonts.html#propdef-font-size">
+        <thm:name>font-size</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>xx-small</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>x-small</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>small</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>medium</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="4">
+                        <thm:name>large</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="5">
+                        <thm:name>x-large</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="6">
+                        <thm:name>xx-large</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="7">
+                        <thm:name>larger</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="8">
+                        <thm:name>smaller</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:lengthType/>
+                <thm:percentageType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>medium</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:percentages>
+            <thm:parentElement>
+                <thm:propertyRef>font-size</thm:propertyRef>
+            </thm:parentElement>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="fonts.html#propdef-font-size-adjust">
+        <thm:name>font-size-adjust</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:numberType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="fonts.html#propdef-font-stretch">
+        <thm:name>font-stretch</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>wider</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>narrower</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>ultra-condensed</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="4">
+                        <thm:name>extra-condensed</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="5">
+                        <thm:name>condensed</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="6">
+                        <thm:name>semi-condensed</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="7">
+                        <thm:name>semi-expanded</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="8">
+                        <thm:name>expanded</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="9">
+                        <thm:name>extra-expanded</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="10">
+                        <thm:name>ultra-expanded</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="fonts.html#propdef-font-style">
+        <thm:name>font-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>italic</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>oblique</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="fonts.html#propdef-font-variant">
+        <thm:name>font-variant</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>small-caps</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="fonts.html#propdef-font-weight">
+        <thm:name>font-weight</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>bold</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>bolder</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>lighter</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="4">
+                        <thm:name>100</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="5">
+                        <thm:name>200</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="6">
+                        <thm:name>300</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="7">
+                        <thm:name>400</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="8">
+                        <thm:name>500</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="9">
+                        <thm:name>600</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="10">
+                        <thm:name>700</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="11">
+                        <thm:name>800</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="12">
+                        <thm:name>900</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visudet.html#propdef-height">
+        <thm:name>height</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>auto</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:lengthType/>
+                <thm:percentageType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>auto</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:selfBox/>
+            <thm:description>TODO</thm:description>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visuren.html#propdef-left">
+        <thm:name>left</thm:name>
+        <thm:type>
+            <thm:typeRef>mcs-position</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>auto</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="text.html#propdef-letter-spacing">
+        <thm:name>letter-spacing</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:lengthType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visudet.html#propdef-line-height">
+        <thm:name>line-height</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:numberType/>
+                <thm:lengthType/>
+                <thm:percentageType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:percentages>
+            <thm:propertyRef>font-size</thm:propertyRef>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="generate.html#propdef-list-style-image">
+        <thm:name>list-style-image</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                        </thm:specifications>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:uriType/>
+                <thm:mcsComponentURIType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="generate.html#propdef-list-style-position">
+        <thm:name>list-style-position</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>outside</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>inside</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>outside</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="generate.html#propdef-list-style-type">
+        <thm:name>list-style-type</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>disc</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>circle</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>square</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="4">
+                        <thm:name>decimal</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="5">
+                        <thm:name>decimal-leading-zero</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="6">
+                        <thm:name>lower-roman</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="7">
+                        <thm:name>upper-roman</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="8">
+                        <thm:name>lower-greek</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="9">
+                        <thm:name>lower-alpha</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="10">
+                        <thm:name>lower-latin</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="11">
+                        <thm:name>upper-alpha</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="12">
+                        <thm:name>upper-latin</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="13">
+                        <thm:name>hebrew</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="14">
+                        <thm:name>armenian</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="15">
+                        <thm:name>georgian</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="16">
+                        <thm:name>cjk-ideographic</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="17">
+                        <thm:name>hiragana</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="18">
+                        <thm:name>katakana</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="19">
+                        <thm:name>hiragana-iroha</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="20">
+                        <thm:name>katakana-iroha</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>disc</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-margin-bottom">
+        <thm:name>margin-bottom</thm:name>
+        <thm:type>
+            <thm:typeRef>margin-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:lengthValue units="px">0</thm:lengthValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-margin-left">
+        <thm:name>margin-left</thm:name>
+        <thm:type>
+            <thm:typeRef>margin-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:lengthValue units="px">0</thm:lengthValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-margin-right">
+        <thm:name>margin-right</thm:name>
+        <thm:type>
+            <thm:typeRef>margin-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:lengthValue units="px">0</thm:lengthValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-margin-top">
+        <thm:name>margin-top</thm:name>
+        <thm:type>
+            <thm:typeRef>margin-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:lengthValue units="px">0</thm:lengthValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visufx.html#propdef-overflow">
+        <thm:name>overflow</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>visible</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>hidden</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>scroll</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>auto</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>visible</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-padding-bottom">
+        <thm:name>padding-bottom</thm:name>
+        <thm:type>
+            <thm:typeRef>padding-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:lengthValue units="px">0</thm:lengthValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-padding-left">
+        <thm:name>padding-left</thm:name>
+        <thm:type>
+            <thm:typeRef>padding-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:lengthValue units="px">0</thm:lengthValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-padding-right">
+        <thm:name>padding-right</thm:name>
+        <thm:type>
+            <thm:typeRef>padding-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:lengthValue units="px">0</thm:lengthValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="box.html#propdef-padding-top">
+        <thm:name>padding-top</thm:name>
+        <thm:type>
+            <thm:typeRef>padding-width</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:lengthValue units="px">0</thm:lengthValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visuren.html#propdef-position">
+        <thm:name>position</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>static</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>relative</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>absolute</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>fixed</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>static</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visuren.html#propdef-right">
+        <thm:name>right</thm:name>
+        <thm:type>
+            <thm:typeRef>mcs-position</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>auto</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="text.html#propdef-text-align">
+        <thm:name>text-align</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>left</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>right</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>center</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>justify</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:stringType>
+                    <thm:specifications/>
+                </thm:stringType>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:dependentValue writingDirection="true" userAgent="true"/>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="text.html#propdef-text-indent">
+        <thm:name>text-indent</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:lengthType/>
+                <thm:percentageType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:integerValue>0</thm:integerValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="text.html#propdef-text-transform">
+        <thm:name>text-transform</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>capitalize</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>uppercase</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>lowercase</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>none</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visuren.html#propdef-top">
+        <thm:name>top</thm:name>
+        <thm:type>
+            <thm:typeRef>mcs-position</thm:typeRef>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>auto</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>height</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visudet.html#propdef-vertical-align">
+        <thm:name>vertical-align</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>baseline</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>sub</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>super</thm:name>
+                        <thm:specifications>
+                            <thm:cssMobileProfile/>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>top</thm:name>
+                        <thm:specifications>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="4">
+                        <thm:name>text-top</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="5">
+                        <thm:name>middle</thm:name>
+                        <thm:specifications>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="6">
+                        <thm:name>bottom</thm:name>
+                        <thm:specifications>
+                            <thm:cssWap/>
+                        </thm:specifications>
+                    </thm:keyword>
+                    <thm:keyword enumeration="7">
+                        <thm:name>text-bottom</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:lengthType>
+                    <thm:specifications>
+                        <thm:cssMobileProfile/>
+                    </thm:specifications>
+                </thm:lengthType>
+                <thm:percentageType>
+                    <thm:specifications>
+                        <thm:cssMobileProfile/>
+                    </thm:specifications>
+                </thm:percentageType>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>baseline</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:propertyRef>line-height</thm:propertyRef>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visufx.html#propdef-visibility">
+        <thm:name>visibility</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>visible</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>hidden</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>collapse</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:inheritValue/>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="text.html#propdef-white-space">
+        <thm:name>white-space</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>pre</thm:name>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>nowrap</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="visudet.html#propdef-width">
+        <thm:name>width</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>auto</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:lengthType/>
+                <thm:percentageType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>auto</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:containingBlock>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:containingBlock>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property specification="CSS 2" documentation="text.html#propdef-word-spacing">
+        <thm:name>word-spacing</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:lengthType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:css1/>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-aural-dtmf-allocation</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>automatic</thm:name>
+                        <thm:description>The accesskey values will be automatically assigned to the &lt;menuitem&gt; elements. If the &lt;menuitem&gt; specified an accesskey this will be overridden by the automatic generation.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>manual</thm:name>
+                        <thm:description>No generation of accesskey will occur an all accesskey attributes specified on the &lt;menuitem&gt; elements will be honored.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>manual</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>aural</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p/>
+      <p>This property specifies how dtmf keys are assigned to child &lt;menuitem&gt; elements, this can either be automatic or manual. The values of this property have the following meanings:</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-aural-menu-scope</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>dialog</thm:name>
+                        <thm:description>The grammer of this menu is only active for the duration of this menu.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>document</thm:name>
+                        <thm:description>The grammer of this menu is active during processing of the whole page. If this is the root page then the grammer is active through out the whole session.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>dialog</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>aural</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p/>
+      <p>This property specifies the scope of the menu, either dialog or document. It may only be applied to &lt;menu&gt; elements. The values of this property have the following meanings: </p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-background-dynamic-visual</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:uriType/>
+                <thm:mcsComponentURIType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies a dynamic visual to use as the background.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-caret-color</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:colorType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:dependentValue userAgent="true"/>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the color of the caret displayed in a text input field..</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-chart-adornments</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>all</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies what level of adornment the chart has. The value 'none' means that the chart has no adornments and 'all' means that it has all the adornments.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-chart-foreground-colors</thm:name>
+        <thm:type>
+            <thm:listType>
+                <thm:choiceType>
+                    <thm:keywords>
+                        <thm:keyword enumeration="0">
+                            <thm:name>transparent</thm:name>
+                            <thm:description/>
+                        </thm:keyword>
+                    </thm:keywords>
+                    <thm:colorType/>
+                </thm:choiceType>
+            </thm:listType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:emptyList/>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the different colors of the chart's components. The position of the color in the list determines which chart component is affected.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-chart-grid-color</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:colorType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:colorValue>black</thm:colorValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property affects the color of the chart's grid.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-chart-height</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:percentageType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:percentageValue>100</thm:percentageValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:device>
+                <thm:propertyRef>height</thm:propertyRef>
+            </thm:device>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the height of the chart as a percentage of the height of the display device in pixels.</p>
+      <p>In future we will probably support being able to specify the height of the chart as a length.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-chart-label-values</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>yes</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>no</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>no</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property affects whether the chart values are labelled.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-chart-width</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:percentageType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:percentageValue>100</thm:percentageValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:percentages>
+            <thm:device>
+                <thm:propertyRef>width</thm:propertyRef>
+            </thm:device>
+        </thm:percentages>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the width of the chart as a percentage of the width of the display device in pixels.</p>
+      <p>In future we will probably support being able to specify the width of the chart as a length.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-chart-x-axis-angle</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:angleType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:angleValue units="deg">0</thm:angleValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the angle through which the x axis of the chart should be rotated.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-chart-y-axis-angle</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:angleType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:angleValue units="deg">0</thm:angleValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the angle through which the y axis of the chart should be rotated.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-container</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>current</thm:name>
+                        <thm:description>The element will use the current container.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:stringType/>
+                <thm:functionCallType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>current</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+            <p>This property specifies the container within the current layout within which the element and its contents will be written.</p>
+        </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-corner-radius</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:lengthType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:integerValue>0</thm:integerValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the radius of the corners of the rounded rectangle which is drawn around the specified element.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-focus</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>accept</thm:name>
+                        <thm:description>The element accepts the focus.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>ignore</thm:name>
+                        <thm:description>The element ignores the focus.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>accept</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies whether the element should accept the focus or ignore it.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-form-action-image</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description>Indicates that an image should not be used for the form action.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:uriType/>
+                <thm:mcsComponentURIType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>xfaction</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the image to use when a form action is rendered as an image. See the <thm:propertyRef>mcs-form-action-style</thm:propertyRef> property.</p>
+      <p>This can take either a Mariner image component name, or a URI.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-form-action-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>default</thm:name>
+                        <thm:description>The action is displayed in the default way for the device, this may be either as a button, or as a item in a menu.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>image</thm:name>
+                        <thm:description>The action is displayed as an image which is specified in the <thm:propertyRef>mcs-form-action-image</thm:propertyRef> property. If the target device does not support images in form actions, or an associated image could not be found then this will be treated as <thm:keywordRef>default</thm:keywordRef>.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>link</thm:name>
+                        <thm:description>The action is displayed as a link. If the target device does not support a form being submitted by a link then this will be treated as <thm:keywordRef>default</thm:keywordRef>.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>default</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>xfaction</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies how a form action should be displayed.</p>
+      <note type="documentation">
+                <p>Customers must not rely on a target device's lack of support for a style in order to achiieve their desired look. This is because we are constantly improving the quality of our device support which could mean that we start supporting one or more of them on a device which did not previously support it. This would have the effect of changing the pages rendered for that device.</p>
+            </note>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-fragment-list-orientation</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>horizontal</thm:name>
+                        <thm:description>The list is to be generated horizontally with a single space separating each link.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>vertical</thm:name>
+                        <thm:description>The list is to be generated vertically with one link per line.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>horizontal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the orientation of the list of links to fragments generated within the root fragment of a canvas.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-fragment-list-position</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>top</thm:name>
+                        <thm:description>The list is to be generated at the top of the canvas.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>bottom</thm:name>
+                        <thm:description>The list is to be generated at the bottom of the canvas.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>bottom</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the position of the list of links to fragments generated within the root fragment of a canvas.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-http-method-hint</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>get</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>post</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>get</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description/>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-image</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:uriType/>
+                <thm:mcsComponentURIType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies an image to associate with an element.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-image-frame-interval</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:timeType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:timeValue units="s">1</thm:timeValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the time between each frame within an animated image..</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-image-initial-frame</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:numberType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:integerValue>0</thm:integerValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the index of the initial frame of an animated image to display.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-image-repeat-count</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>indefinite</thm:name>
+                        <thm:description>The image will not stop looping as long as it is displayed.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:integerType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>indefinite</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the number of times that an animated image should repeat.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-image-saving</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>default</thm:name>
+                        <thm:description>The device specific default.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>disallow</thm:name>
+                        <thm:description>Tries to prevent the image from being saved by the client.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>default</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property controls whether an image is allowed to be saved by the target device or not.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-input-format</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:stringType/>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>xftextinput</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+            <thm:cssWap/>            
+        </thm:specifications>
+        <thm:description>
+            <p>This property defines the format (validation) applied to a text input field.</p>
+        </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-layout</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>current</thm:name>
+                        <thm:description>The element will use the current layout.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:stringType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>current</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+            <p>This property specifies the layout to be associated with the element.</p>
+        </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-line-gap</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:lengthType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:integerValue>0</thm:integerValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the gap between lines in pixels.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-link-media</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                        <thm:description>The same as the current page.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>tv</thm:name>
+                        <thm:description>A TV page.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>web</thm:name>
+                        <thm:description>A Web page.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies what media the target of the link is intended for.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-link-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>default</thm:name>
+                        <thm:description>The default style used by the target device for links.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>button</thm:name>
+                        <thm:description>The link is rendered as a button inline in the page. If the target device does not support a link being rendered as a button then this will be treated as <thm:keywordRef>link</thm:keywordRef>.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>numeric-shortcut</thm:name>
+                        <thm:description>The menu will be rendered with numeric identifiers for each menu item. These identifiers provide a shorcut key for that menu item.If the device does not support shortcuts then the link will be rendered using the <thm:keywordRef>link</thm:keywordRef>
+            </thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>default</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies how a link (anchor) will be represented to the user.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-horizontal-separator</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description>Causes no separator character to be inserted between items.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>space</thm:name>
+                        <thm:description>Causes a normal space character to be inserted between items.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>non-breaking-space</thm:name>
+                        <thm:description>Causes a non breaking space (Unicode 160) to be inserted between items.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>non-breaking-space</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies how to separate menu items in menus that are oriented horizontally.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-image-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description>Indicates that the image information in each menuitem is to be ignored</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>plain</thm:name>
+                        <thm:description>IIndicates that the static image information in each menuitem is to be used in creating the menu</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>rollover</thm:name>
+                        <thm:description>IIndicates that the rollover image information in each menuitem is to be used in creating the menu</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies how image information is to be used in creating the menuitems for this menu.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-item-active-area</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>text-only</thm:name>
+                        <thm:description>Indicates that when both image and text information is being used in each menuitem, only the text should be active.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>image-only</thm:name>
+                        <thm:description>Indicates that when both image and text information is being used in each menuitem, only the image should be active.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>both</thm:name>
+                        <thm:description>Indicates that when both image and text information is being used in each menuitem, they should both be active.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>both</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies which of the menuitem parts (image and text) is active when more than one part is present.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-item-iterator-allocation</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>automatic</thm:name>
+                        <thm:description>Each menuitem that will be output to the pane referenced by the menu will be written to a separate instance of that pane within the spatial iterator. </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>none</thm:name>
+                        <thm:description>Every menuitem that will be output to the pane referenced by the menu will be written to the first instance of the pane within the spatial iterator.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p/>
+      <p>This property specifies how menuitems will be allocated when the menu references the stem name of a pane that is within a spatial iterator.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-item-order</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>image-first</thm:name>
+                        <thm:description>Indicates that when both image and text information is being used in each menuitem, the image information should appear before the text information.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>text-first</thm:name>
+                        <thm:description>Indicates that when both image and text information is being used in each menuitem, the text information should appear before the image information.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>image-first</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the order in which the menuitem parts (image and text) are to be used in constructing the menu when more than one part is present. Only one kind of image and one kind of text can be shown in a single menuitem. The types of image and text are controlled by the <thm:propertyRef>mcs-menu-image-style</thm:propertyRef> and <thm:propertyRef>mcs-menu-text-style</thm:propertyRef> style properties respectively.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-item-orientation</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>horizontal</thm:name>
+                        <thm:description>Indicates that when both image and text information is being used in each menuitem, they should be oriented horizontally.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>vertical</thm:name>
+                        <thm:description>Indicates that when both image and text information is being used in each menuitem, they should be oriented vertically.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>horizontal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the orientation of the contents of a menuitem when more than one item is present.</p>
+      <note type="documentation">
+                <p>There are no guarantees that every combination of <thm:propertyRef>mcs-menu-orientation</thm:propertyRef> and this property are supported on each protocol.</p>
+            </note>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-item-shortcut-active</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>active</thm:name>
+                        <thm:description>Indicates that the shortcut (and associated separator) will be active, i.e. it will be inside the link.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>inactive</thm:name>
+                        <thm:description>Indicates that the shortcut (and associated separator) will be inactive, i.e. it will be outside the link.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>active</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+            <p>This property specifies whether the shortcut is an active part of the menu items belonging to the subject menu.</p>
+        </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-link-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>default</thm:name>
+                        <thm:description>The menu will be shown in the default style for the device. The menu items will be rendered according to the menu item specific properties.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>numeric-shortcut</thm:name>
+                        <thm:description>The menu will be rendered with numeric identifiers for each menu item. These identifiers provide a shorcut key for that menu item.If the device does not support shortcuts then the link will be rendered using the <thm:keywordRef property="mcs-menu-link-style">default</thm:keywordRef>
+            </thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>default</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>Specifies the style of menu to use. This could be a traditional style menu or an enhanced "OpenWave" style menu.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-orientation</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>horizontal</thm:name>
+                        <thm:description>The menu is to be generated horizontally with an optional separator between each item.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>vertical</thm:name>
+                        <thm:description>The menu is to be generated vertically with one item per line.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>vertical</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the orientation of menu items within a menu.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-separator-characters</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:stringType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:stringValue>-</thm:stringValue>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menuitemgroup</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies one or more characters to be used as the separator between groups of menu items. For example, the single character - might be used. Alternatively the group *----* could be chosen. </p>
+      <p>The separator is created by repeating the characters specified in this property the appropriate number of times. Where the separator characters property contains multiple characters and an integer number of repetitions would create a separator longer than that required (see below) the extra characters are simply truncated.</p>
+      <p>The number of characters in the separator is defined by the related property <thm:propertyRef>mcs-menu-separator-repeat</thm:propertyRef>. </p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-separator-image</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description>Indicates that an image should not be used for the menu separator.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+                <thm:uriType/>
+                <thm:mcsComponentURIType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menuitemgroup</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies an image to be used as the separator between groups of menu items. </p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-separator-position</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>after</thm:name>
+                        <thm:description>The separator appears after the group of menu items.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>before</thm:name>
+                        <thm:description>The separator appears before the group of menu items.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>both</thm:name>
+                        <thm:description>The separator appears both before and after the group of menu items.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>after</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menuitemgroup</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the location of a separator used to delimit a group of items within a menu.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-separator-repeat</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:integerType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:integerValue>0</thm:integerValue>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menuitemgroup</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the number of times to repeat the separator characters to create the separator. </p>
+      <p>Where the value of this property is 0, the separator must contain the same number of characters as the longest item in the menu to which the menuitemgroup belongs. </p>
+      <p>Note: Where proportionally spaced fonts are in use, the actual length of the separator may be different from the length of the items in the menu item group. There is no requirement to attempt to match the physical length of the separator to that of the items themselves.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-separator-type</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description>Indicates that no separator is required.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>image</thm:name>
+                        <thm:description>The separator is the image and specified by the associated <thm:propertyRef>mcs-menu-separator-image</thm:propertyRef> property.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>characters</thm:name>
+                        <thm:description>The separator is a set of characters defined by the <thm:propertyRef>mcs-menu-separator-characters</thm:propertyRef> and <thm:propertyRef>mcs-menu-separator-repeat</thm:propertyRef> properties.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menuitemgroup</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the type of separator used to delimit a group of items within a menu.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>static</thm:name>
+                        <thm:description>Indicates that the menu is static</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>dynamic</thm:name>
+                        <thm:description>Indicates that the menu is dynamic</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>static</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies whether the menu is to be static or dynamic.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-menu-text-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description>Indicates that the text information in each menuitem is to be ignored</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>plain</thm:name>
+                        <thm:description>Indicates that the text information in each menuitem is to be used in creating the menu</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>plain</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>menu</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies how text information is to be used in creating the menuitems for this menu. Note that rollover text menus are created as a combination of plain text menus and the <strong>hover </strong>pseudo class</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-mmflash-align</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>bottom</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>center</thm:name>
+                        <thm:description>Center the movie in the browser window and crop the edges if the browser window is smaller than the movie. </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>left</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>right</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="4">
+                        <thm:name>top</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>center</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies how the Flash movie window is positioned within the browser window. </p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-mmflash-quality</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>high</thm:name>
+                        <thm:description>favors appearance over playback speed and always applies anti-aliasing. If the movie does not contain animation, bitmaps are smoothed; if the movie has animation, bitmaps are not smoothed. </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>medium</thm:name>
+                        <thm:description>applies some anti-aliasing and does not smooth bitmaps. It produces a better quality than the Low setting, but lower quality than the High setting. </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>low</thm:name>
+                        <thm:description>favors playback speed over appearance and never uses anti-aliasing.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>auto-high</thm:name>
+                        <thm:description>emphasizes playback speed and appearance equally at first but sacrifices appearance for playback speed if necessary. Playback begins with anti-aliasing turned on. If the actual frame rate drops below the specified frame rate, anti-aliasing is turned off to improve playback speed. Use this setting to emulate the View &gt; Antialias setting in Flash. </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="4">
+                        <thm:name>auto-low</thm:name>
+                        <thm:description>emphasizes speed at first but improves appearance whenever possible. Playback begins with anti-aliasing turned off. If the Flash Player detects that the processor can handle it, anti-aliasing is turned on. </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="5">
+                        <thm:name>best</thm:name>
+                        <thm:description>provides the best display quality and does not consider playback speed. All output is anti-aliased and all bitmaps are smoothed. </thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>high</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the level of anti-aliasing to be used during playback of a movie. Because anti-aliasing requires a faster processor to smooth each frame of the movie before it is rendered on the viewer's screen, choose a value based on whether speed or appearance is your top priority:</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-mmflash-scale</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>show-all</thm:name>
+                        <thm:description>This makes the entire movie visible in the specified area without distortion, while maintaining the original aspect ratio of the movie. Borders may appear on two sides of the movie. </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>no-border</thm:name>
+                        <thm:description>scales the movie to fill the specified area, without distortion but possibly with some cropping, while maintaining the original aspect ratio of the movie. </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>exact-fit</thm:name>
+                        <thm:description>makes the entire movie visible in the specified area without trying to preserve the original aspect ratio. Distortion may occur. </thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>show-all</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies how the movie is placed within the browser window when WIDTH and HEIGHT values are percentages. </p>
+      <p>The default value is showall if this attribute is omitted (and width and height values are percentages). </p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-mmflash-scaled-align</thm:name>
+        <thm:type>
+            <thm:pairType>
+                <thm:first>
+                    <thm:name>x</thm:name>
+                    <thm:choiceType>
+                        <thm:keywords>
+                            <thm:keyword enumeration="0">
+                                <thm:name>left</thm:name>
+                                <thm:description/>
+                            </thm:keyword>
+                            <thm:keyword enumeration="1">
+                                <thm:name>center</thm:name>
+                                <thm:description>The movie is centred in the browser window. Cropping may occur or borders may appear on any side, as needed. </thm:description>
+                            </thm:keyword>
+                            <thm:keyword enumeration="2">
+                                <thm:name>right</thm:name>
+                                <thm:description/>
+                            </thm:keyword>
+                        </thm:keywords>
+                    </thm:choiceType>
+                </thm:first>
+                <thm:second>
+                    <thm:name>y</thm:name>
+                    <thm:choiceType>
+                        <thm:keywords>
+                            <thm:keyword enumeration="0">
+                                <thm:name>top</thm:name>
+                                <thm:description/>
+                            </thm:keyword>
+                            <thm:keyword enumeration="1">
+                                <thm:name>center</thm:name>
+                                <thm:description>The movie is centred in the browser window. Cropping may occur or borders may appear on any side, as needed. </thm:description>
+                            </thm:keyword>
+                            <thm:keyword enumeration="2">
+                                <thm:name>bottom</thm:name>
+                                <thm:description/>
+                            </thm:keyword>
+                        </thm:keywords>
+                    </thm:choiceType>
+                </thm:second>
+            </thm:pairType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>center</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies where a scaled Flash movie is positioned within the area defined by the width and height settings. See mariner-mmflash-scale for more information about these conditions.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-mmflash-windows-mode</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>window</thm:name>
+                        <thm:description>plays the movie in its own rectangular window on a Web page. </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>opaque</thm:name>
+                        <thm:description>makes the movie hide everything behind it on the page. </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>transparent</thm:name>
+                        <thm:description>makes the background of the HTML page show through all the transparent portions of the movie, and may slow animation performance.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>window</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property takes advantage of the transparent movie, absolute positioning, and layering capabilities available in Internet Explorer 4.0. It works only in Windows with the Flash ActiveX control and the &lt;OBJECT&gt; tag.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-paragraph-gap</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:lengthType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:integerValue>0</thm:integerValue>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the gap between paragraphs in pixels. It is a global setting which affects the whole page.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-selection-list-option-layout</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>caption-first</thm:name>
+                        <thm:description>The caption is rendered before the control where before is defined in terms of the reading order.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>control-first</thm:name>
+                        <thm:description>The control is rendered before the caption where before is defined in terms of the reading order.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>caption-first</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>xfsiselect</thm:element>
+            <thm:element>xfmuselect</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies the layout of each individual option within a selection list which is being rendered using the controls style. See the mariner-selection-list-style property.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-selection-list-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>controls</thm:name>
+                        <thm:description>The selection list is displayed as separate captions and controls. The controls will behave either like radio buttons, or checkboxes depending on whether the selection list allows only a single value, or multiple values to be selected at once.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>default</thm:name>
+                        <thm:description>The selection list is displayed the default way for the device.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>circular-list</thm:name>
+                        <thm:description>If this selection list is an xfsiselect is displayed as a spin control on browsers that support this type of control. If the device does not support the use of spin controls or this selection list is an xfmuselect then the selection list is displayed in the default way for the device as if "default" had been used.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>menu</thm:name>
+                        <thm:description>If the selection list is displayed as a popup menu on browsers that support this type of control. If the device does not support the use of popup menu's or this selection list is an xfmuselect then the selection list is displayed in the default way for the device as if "default" had been used.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>default</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>xfsiselect</thm:element>
+            <thm:element>xfmuselect</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property controls how selection list input controls are displayed.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-selection-list-trigger</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>normal</thm:name>
+                        <thm:description>The normal device specific behaviour is used.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>focus</thm:name>
+                        <thm:description>The selection list will display when the field has the focus.</thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>select</thm:name>
+                        <thm:description>The selection list will display when the field is selected.</thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>normal</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>xfsiselect</thm:element>
+            <thm:element>xfmuselect</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property controls what will trigger a selection list to be displayed.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-columns</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:integerType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:integerValue>20</thm:integerValue>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>xftextinput</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies how many characters wide a text input control should be.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property>
+        <thm:name>mcs-rows</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:integerType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:integerValue>1</thm:integerValue>
+        </thm:initialValue>
+        <thm:appliesTo>
+            <thm:element>xftextinput</thm:element>
+        </thm:appliesTo>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies how many characters high a text input control should be.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property specification="CSS 2.1" documentation="fonts.html#propdef-font">
+        <thm:name>mcs-system-font</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>caption</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>icon</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="2">
+                        <thm:name>menu</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="3">
+                        <thm:name>message-box</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="4">
+                        <thm:name>small-caption</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                    <thm:keyword enumeration="5">
+                        <thm:name>status-bar</thm:name>
+                        <thm:description/>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:dependentValue userAgent="true"/>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>true</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <!-- This is probably not the right thing to do but we will do it now because we love Geoff. -->
+            <thm:css2/>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+      <p>This property specifies a system font.</p>
+    </thm:description>
+    </thm:property>
+    <thm:property specification="CSS 3" documentation="2003/CR-css3-text-20030514/#text-blink">
+        <thm:name>mcs-text-blink</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description>
+                            Produces no blinking.
+                        </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>blink</thm:name>
+                        <thm:description>
+                            Blinks.
+                        </thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description>
+            <p>This property specifies the line style for line-through text decoration.</p>
+        </thm:description>
+    </thm:property>
+    <thm:property specification="CSS 3" documentation="2003/CR-css3-text-20030514/#text-line-through-color">
+        <thm:name>mcs-text-line-through-color</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:colorType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:propertyRef>color</thm:propertyRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+            <p>This property specifies the line color for line-through text decoration.</p>
+        </thm:description>
+    </thm:property>
+    <thm:property specification="CSS 3" documentation="2003/CR-css3-text-20030514/#text-line-through-style">
+        <thm:name>mcs-text-line-through-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description>
+                            Produces no line.
+                        </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>solid</thm:name>
+                        <thm:description>
+                            Produces a solid line.
+                        </thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+            <thm:css1/>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description>
+            <p>This property specifies the line style for line-through text decoration.</p>
+        </thm:description>
+    </thm:property>
+    <thm:property specification="CSS 3" documentation="2003/CR-css3-text-20030514/#text-overline-color">
+        <thm:name>mcs-text-overline-color</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:colorType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:propertyRef>color</thm:propertyRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+            <p>This property specifies the line color for overline text decoration.</p>
+        </thm:description>
+    </thm:property>
+    <thm:property specification="CSS 3" documentation="2003/CR-css3-text-20030514/#text-overline-style">
+        <thm:name>mcs-text-overline-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description>
+                            Produces no line.
+                        </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>solid</thm:name>
+                        <thm:description>
+                            Produces a solid line.
+                        </thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+            <thm:css1/>
+            <thm:css2/>
+        </thm:specifications>
+        <thm:description>
+            <p>This property specifies the line style for overline text decoration.</p>
+        </thm:description>
+    </thm:property>
+    <thm:property specification="CSS 3" documentation="2003/CR-css3-text-20030514/#text-underline-color">
+        <thm:name>mcs-text-underline-color</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:colorType/>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:propertyRef>color</thm:propertyRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+        </thm:specifications>
+        <thm:description>
+            <p>This property specifies the line color for underline text decoration.</p>
+        </thm:description>
+    </thm:property>
+    <thm:property specification="CSS 3" documentation="2003/CR-css3-text-20030514/#text-underline-style">
+        <thm:name>mcs-text-underline-style</thm:name>
+        <thm:type>
+            <thm:choiceType>
+                <thm:keywords>
+                    <thm:keyword enumeration="0">
+                        <thm:name>none</thm:name>
+                        <thm:description>
+                            Produces no line.
+                        </thm:description>
+                    </thm:keyword>
+                    <thm:keyword enumeration="1">
+                        <thm:name>solid</thm:name>
+                        <thm:description>
+                            Produces a solid line.
+                        </thm:description>
+                    </thm:keyword>
+                </thm:keywords>
+            </thm:choiceType>
+        </thm:type>
+        <thm:initialValue>
+            <thm:keywordRef>none</thm:keywordRef>
+        </thm:initialValue>
+        <thm:appliesTo/>
+        <thm:inherited>false</thm:inherited>
+        <thm:media>visual</thm:media>
+        <thm:specifications>
+            <thm:mcs/>
+            <thm:css1/>
+            <thm:css2/>
+            <thm:cssMobileProfile/>
+            <thm:cssWap/>
+        </thm:specifications>
+        <thm:description>
+            <p>This property specifies the line style for underline text decoration.</p>
+        </thm:description>
+    </thm:property>
+     <thm:element>
+        <thm:name>a</thm:name>
+        <thm:display>inline</thm:display>
+        <thm:isFocusable>true</thm:isFocusable>
+        <thm:isLink>true</thm:isLink>
+    </thm:element>
+    <thm:element>
+        <thm:name>address</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>audio</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>b</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>big</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>blockquote</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>br</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>canvas</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>chart</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>cite</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>code</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>dd</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>div</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>dividehint</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>dl</thm:name>
+        <thm:display>block</thm:display>
+        <thm:isList>true</thm:isList>
+    </thm:element>
+    <thm:element>
+        <thm:name>dt</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>dynvis</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>em</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>h1</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>h2</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>h3</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>h4</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>h5</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>h6</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>hr</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>i</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>img</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>include</thm:name>
+        <thm:display>none</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>kbd</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>li</thm:name>
+        <thm:display>list-item</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>logo</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>menu</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>menuitem</thm:name>
+        <thm:display>menu-item</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>menuitemgroup</thm:name>
+        <thm:display>menu-item-group</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>message</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>meta</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>mmflash</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>montage</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>nativemarkup</thm:name>
+        <thm:display>inherited</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>noscript</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>ol</thm:name>
+        <thm:display>block</thm:display>
+        <thm:isList>true</thm:isList>
+    </thm:element>
+    <thm:element>
+        <thm:name>otherwise</thm:name>
+        <thm:display>inherited</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>p</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>pane</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>phonenumber</thm:name>
+        <thm:display>block</thm:display>
+        <thm:isLink>true</thm:isLink>
+    </thm:element>
+    <thm:element>
+        <thm:name>pre</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>quicktime</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>realaudio</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>realvideo</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>region</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>samp</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>script</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>segment</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>select</thm:name>
+        <thm:display>inherited</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>small</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>span</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>ssiconfig</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>ssiinclude</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>strong</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>sub</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>sup</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>table</thm:name>
+        <thm:display>table</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>tbody</thm:name>
+        <thm:display>table-row-group</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>td</thm:name>
+        <thm:display>table-cell</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>tfoot</thm:name>
+        <thm:display>table-footer-group</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>th</thm:name>
+        <thm:display>table-cell</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>thead</thm:name>
+        <thm:display>table-header-group</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>timer</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>tr</thm:name>
+        <thm:display>table-row</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>tt</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>u</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>ul</thm:name>
+        <thm:display>block</thm:display>
+        <thm:isList>true</thm:isList>
+    </thm:element>
+    <thm:element>
+        <thm:name>unit</thm:name>
+        <thm:display>inherited</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>usePipeline</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>va</thm:name>
+        <thm:display>inline</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>when</thm:name>
+        <thm:display>inherited</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>winaudio</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>winvideo</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>wsdirectives</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>xfaction</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isFormField>true</thm:isFormField>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>xfboolean</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isFormField>true</thm:isFormField>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+    <thm:element>
+        <thm:name>xfcontent</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>xfform</thm:name>
+        <thm:display>block</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>xfimplicit</thm:name>
+        <thm:display>none</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>xfmuselect</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isFormField>true</thm:isFormField>
+        <thm:isReplaced>true</thm:isReplaced>
+        <thm:isSelection>true</thm:isSelection>
+    </thm:element>
+    <thm:element>
+        <thm:name>xfoptgroup</thm:name>
+        <thm:display>selection-option-group</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>xfoption</thm:name>
+        <thm:display>selection-option</thm:display>
+    </thm:element>
+    <thm:element>
+        <thm:name>xfsiselect</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isFormField>true</thm:isFormField>
+        <thm:isReplaced>true</thm:isReplaced>
+        <thm:isSelection>true</thm:isSelection>
+    </thm:element>
+    <thm:element>
+        <thm:name>xftextinput</thm:name>
+        <thm:display>inline-block</thm:display>
+        <thm:isFormField>true</thm:isFormField>
+        <thm:isReplaced>true</thm:isReplaced>
+    </thm:element>
+</thm:themeDefinition>

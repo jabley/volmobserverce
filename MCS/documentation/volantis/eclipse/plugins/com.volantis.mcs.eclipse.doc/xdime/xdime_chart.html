@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>chart</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>chart</h1><h2>Purpose</h2>
+         <p>Refers to a chart component and defines values for the chart. The
+            values may be defined statically in the <span class="code">data</span> and
+               <span class="code">label</span> attributes or obtained dynamically from a
+            user-defined Java class.</p>
+      <h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">altText</th><td>Text to be displayed if the chart is not available.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">data</th><td>A reference to the Java bean method that returns data
+               values</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">labels</th><td>A reference to the Java bean method that returns the
+               labels that correspond to the data</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">name</th><td>The component name of the chart</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Attribute groups</h2><p><a href="../xdime/block_attr.html">Block attributes</a>, <a href="../xdime/event_attr.html">Event attributes</a>, <a href="../xdime/xdime_attr.html">Core attributes</a></p><h2>Example</h2>
+         <pre class="code">
+&lt;canvas layoutName="/chart.mlyt"&gt;
+   &lt;jsp:useBean id="chartData1" 
+      class="volantis.mcs.example.utilities.ExampleChartData" 
+      scope="session"&lt;/jsp:useBean&gt;
+   &lt;chart= pane="onePane"
+      name="ExampleChart"
+      data="&lt;%=chartData1.getData().toString()%&gt;"
+      labels="&lt;%=chartData1.getLabels().toString()%&gt;"/&gt;
+&lt;/canvas&gt; 
+   </pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/xdime_pr_er.html">XDIME presentation elements</a><br/><a href="../wag/wag_xdime_chart.html">Specifying charts</a></p>
+      </body></html>

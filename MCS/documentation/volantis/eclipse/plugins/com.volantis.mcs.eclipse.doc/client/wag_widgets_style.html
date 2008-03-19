@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD       XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Styling widgets</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Styling widgets</h1>
+      <p>You can style widgets either using the theme editor, the <span class="code">style</span> element
+         on the page, or the <span class="code">style</span> attribute on a widget element. Using the attribute
+         overrides the element style, which overrides the theme.</p>
+      
+         <h2>Common properties</h2>
+         <p>The shaded background indicates that the style property applies to the widget. For
+            details of <span class="uicontrol">Effects style</span> and <span class="uicontrol">Effect
+            duration</span> values see <em>About transitions</em>.</p>
+         <table cellspacing="0" summary=""><thead>
+               <tr>
+                  <th class="firsthdr">Property </th>
+                  <th>AJAX Table</th>
+                  <th>Autocompleter</th>
+                  <th>Carousel</th>
+                  <th>Clock</th>
+                  <th>Date Picker</th>
+                  <th>Deck</th>
+                  <th>Dynamic Menu</th>
+                  <th>Field Expander</th>
+                  <th>Folding Item</th>
+                  <th>Forms Validators</th>
+                  <th>Forms Wizard</th>
+                  <th>Gallery</th>
+                  <th>Stopwatch</th>
+                  <th>Tabs</th>
+                  <th>Ticker Tape</th>
+                  <th>Timer</th>
+               </tr>
+            </thead><tbody><tr><th class="firstcell">Break after   </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">Cancelable  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">Frame rate  </th><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td class="shade">  </td><td class="shade">  </td></tr><tr><th class="firstcell">Widget initial state  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">Input format  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">Marquee direction  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td></tr><tr><th class="firstcell">Marquee repetition  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td></tr><tr><th class="firstcell">Marquee style  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td></tr><tr><th class="firstcell">Marquee velocity   </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td></tr><tr><th class="firstcell">Menu orientation  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">Style  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">Toggle event  </th><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td class="shade">  </td><td class="shade">  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">Transition interval  </th><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">Validation error action  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">mcs-auto-play  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">mcs-count-mode  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">mcs-datetime-format  </th><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td class="shade">  </td></tr><tr><th class="firstcell">mcs-deck-mode  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">mcs-delay  </th><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">mcs-duration  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">mcs-item-limit  </th><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">mcs-items-order  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">mcs-repetitions  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">mcs-slideshow-launch-delay  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">mcs-table-rows-per-page  </th><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">:focus  </th><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td></tr><tr><th class="firstcell">:mcs-disabled  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">:mcs-invalid  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">:mcs-unfolded  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td class="shade">  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">::before, ::after  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td></tr><tr><th class="firstcell">::marker  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td class="shade">  </td><td class="shade">  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td></tr><tr><th class="firstcell">::mcs-label  </th><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td>  </td><td class="shade">  </td><td>  </td><td>  </td></tr></tbody></table>
+      
+      
+         <h2>Applying styles</h2>
+         <p>The tables list the theme editor control for style properties (mainly in the Effects
+            category), pseudo-classes, and pseudo-elements, and gives an example that shows the
+            equivalent CSS property name.</p>
+         <table cellspacing="0" summary=""><thead>
+               <tr>
+                  <th class="firsthdr">Property</th>
+                  <th>Description</th>
+                  <th>CSS</th>
+               </tr>
+            </thead><tbody><tr><th class="firstcell">Break after  </th><td>Whether fragmentation occurs or not, and where it occurs. If set to 'always'
+                     then the wizard step ends a form fragment, and another fragment begins
+                     immediately.  </td><td>
+                     <span class="code">widget:wizard {mcs-break-after: always;}</span>
+                    </td></tr><tr><th class="firstcell">Cancelable  </th><td>Each wizard step may optionally include this 'Cancel' action. a value of
+                     'always' means the wizard can be canceled; 'never' means the opposite.  </td><td>
+                     <span class="code">widget:wizard {mcs-cancelable: always;}</span>
+                    </td></tr><tr><th class="firstcell">Frame rate  </th><td>Specifies the frequency in hz or khz that is required when displaying visual
+                     effects such as transitions, or scrolling.  </td><td>
+                     <span class="code">mcs-frame-rate: 3 khz;</span>
+                    </td></tr><tr><th class="firstcell">Widget initial state  </th><td>Specifies whether the initial state of the widget is 'folded' or 'unfolded'  </td><td>
+                     <span class="code">widget:folding-item {mcs-initial-state: inactive;}</span>
+                    </td></tr><tr><th class="firstcell">Input format  </th><td>Specifies the pattern to use in field validation  </td><td>
+                     <span class="code">xf|input {mcs-input-format: 'M:M*M';}</span>
+                    </td></tr><tr><th class="firstcell">Marquee direction  </th><td>The initial direction in which the marquee content will move   </td><td>
+                     <span class="code">widget:ticker-tape {mcs-marquee-direction: left;}</span>
+                    </td></tr><tr><th class="firstcell">Marquee repetition  </th><td>Number of times that the content will move across the screen. The default
+                     value is 1.   </td><td>
+                     <span class="code">widget:ticker-tape {mcs-marquee-repetition: infinite;}</span>
+                    </td></tr><tr><th class="firstcell">Marquee style  </th><td>The effect that will be used for the marquee   </td><td>
+                     <span class="code">widget:ticker-tape {mcs-marquee-style: scroll;}</span>
+                    </td></tr><tr><th class="firstcell">Marquee velocity  </th><td>Speed that the marquee content will move across the screen. A negative value
+                     will reverse the direction of movement.  </td><td>
+                     <span class="code">widget:ticker-tape {mcs-marquee-speed: 6 em;}</span>
+                    </td></tr><tr><th class="firstcell">Menu orientation  </th><td>Controls the orientation of the menu and submenu. Orientation can be
+                     horizontal or vertical.  </td><td>
+                     <span class="code">nl {mcs-menu-orientation: vertical;}</span>
+                    </td></tr><tr><th class="firstcell">Style  </th><td>If set to 'dynamic' then <span class="code">nl</span> is rendered as dynamic menu
+                     otherwise as normal unordered list. This style is inherited.  </td><td>
+                     <span class="code">nl {mcs-menu-style: dynamic;}</span>
+                    </td></tr><tr><th class="firstcell">Toggle event  </th><td>Describes on which event widget or submenu will be unfolded. Possible values:
+                     'focus' - unfold on focus, 'click' - unfold on click.  </td><td>
+                     <span class="code">widget:field-expander {mcs-toggle-event: click;}</span>
+                    </td></tr><tr><th class="firstcell">Transition interval  </th><td>The duration of the content replacement  </td><td>
+                     <span class="code">widget:carousel {mcs-transition-interval: 2;}</span>
+                    </td></tr><tr><th class="firstcell">Validation error action  </th><td>Actions that will occur after validation failure. The possible values are:
+                     'none', 'focus' - field receives the focus, 'message' - message is shown.  </td><td>
+                     <span class="code">xf|input {mcs-validation-error-action: message;}</span>
+                    </td></tr></tbody></table>
+         <p>The table below lists the widget style properties that are not available
+            as the theme editor controls. They must be used in their CSS form.</p>
+         <table cellspacing="0" summary=""><thead>
+               <tr>
+                  <th class="firsthdr">Property</th>
+                  <th>Description</th>
+                  <th>CSS</th>
+               </tr>
+            </thead><tbody><tr><th class="firstcell">mcs-auto-play  </th><td>Specifies if a slideshow should be automatically started when the XDIME page
+                     is loaded. The possible values are: yes, no (default).  </td><td>
+                     <span class="code">gallery:slideshow {mcs-auto-play: yes;}</span>
+                    </td></tr><tr><th class="firstcell">mcs-count-mode  </th><td>Sets the Stopwatch widget mode. The possible values are: 'split' (default) or
+                     'lap'.  </td><td>
+                     <span class="code">widget:stopwatch {mcs-count-mode: split}</span>
+                    </td></tr><tr><th class="firstcell">mcs-datetime-format  </th><td>Sets the format for time and date  </td><td>
+                     <span class="code">widget:digital-clock {mcs-datetime-format='%D %d %F %Y %h:%i:%s';}</span>
+                    </td></tr><tr><th class="firstcell">mcs-deck-mode  </th><td>Specifies the Deck widget mode. When it is set to 'switch', deck will display
+                     a single page. When it is set to 'unfold', the consecutive pages will be
+                     displayed below those already visible.  </td><td>
+                     <span class="code">widget:deck {mcs-deck-mode: switch}</span>
+                    </td></tr><tr><th class="firstcell">mcs-delay  </th><td>Defines the time delay between the last character being typed, and the AJAX
+                     request being sent to the server that provides the list of matching items. The
+                     possible values are: 'auto' - set to 1s for all devices, time - a fixed delay
+                     time in seconds.  </td><td>
+                     <span class="code">widget:autocomplete {mcs-delay: 2;}</span>
+                    </td></tr><tr><th class="firstcell">mcs-duration  </th><td>Defines the time for which a single gallery item will be displayed by the
+                     Slideshow widget. The default value is 5s.  </td><td>
+                     <span class="code">gallery:slideshow {mcs-duration: 4;}</span>
+                    </td></tr><tr><th class="firstcell">mcs-item-limit  </th><td>Specifies the maximum number of matching items to be displayed in the
+                     drop-down list of the Autocompleter widget. The possible values are: 'auto' -
+                     set to 5 for all devices, 'infinite' - there is no limit on the number of
+                     displayed items, integer - a maximum number of displayed items.  </td><td>
+                     <span class="code">widget:autocomplete {mcs-item-limit: 6;}</span>
+                    </td></tr><tr><th class="firstcell">mcs-items-order  </th><td>Defines the order of the items in the slideshow. The possible values are:
+                     normal (default), reverse and random.  </td><td>
+                     <span class="code">gallery:slideshow {mcs-slideshow-items-order: reverse;}</span>
+                    </td></tr><tr><th class="firstcell">mcs-repetitions  </th><td>Specifies the number of slideshow repetitions. The possible values are:
+                     infinite (default) or an integer.  </td><td>
+                     <span class="code">gallery:slideshow {mcs-slideshow-repetitions: infinite;}</span>
+                    </td></tr><tr><th class="firstcell">mcs-slideshow-launch-delay  </th><td>Time after which the slideshow will be automatically launched if there is no
+                     activity in the Gallery widget. The possible values are: none (default) or time
+                     in seconds.  </td><td>
+                     <span class="code">gallery:gallery {mcs-slideshow-launch-delay: 10;}</span>
+                    </td></tr><tr><th class="firstcell">mcs-table-rows-per-page  </th><td>Specifies the number of rows displayed on a single page of the table. Only
+                     rows from the table body are taken into account, header and footer are omitted.
+                     When it is set to 'infinite', all rows will be shown.  </td><td>
+                     <span class="code">widget:table {mcs-table-rows-per-page: 5}</span>
+                    </td></tr></tbody></table>
+         <table cellspacing="0" summary=""><thead>
+               <tr>
+                  <th class="firsthdr">Pseudo-class</th>
+                  <th>Description</th>
+                  <th>CSS</th>
+               </tr>
+            </thead><tbody><tr><th class="firstcell">:focus  </th><td>Specifies whether or not the widget is focusable, allowing the user to select
+                     it even if it contains no link content  </td><td>
+                     <span class="code">widget|carousel:focus {mcs-effect-style: highlight;}</span>
+                    </td></tr><tr><th class="firstcell">:mcs-disabled  </th><td>Allows styling on the elements in the disable state, such as
+                        <span class="code">widget:next</span>, <span class="code">widget:play</span>, etc. For
+                     example, <span class="code">widget:next</span> is disabled if the end of gallery was
+                     reached.  </td><td>
+                     <span class="code">widget:play:mcs-disabled {display:none;}</span>
+                    </td></tr><tr><th class="firstcell">:mcs-invalid  </th><td>Style applied after validation has failed  </td><td>
+                     <span class="code">xf|input:mcs-invalid {color:red;}</span>
+                    </td></tr><tr><th class="firstcell">:mcs-unfolded  </th><td>Specifies whether the label remains visible when the item is unfolded  </td><td>
+                     <span class="code">label:mcs-unfolded::marker {content: url('unfolded.gif');}</span>
+                    </td></tr></tbody></table>
+         <table cellspacing="0" summary=""><thead>
+               <tr>
+                  <th class="firsthdr">Pseudo-element</th>
+                  <th>Description</th>
+                  <th>CSS</th>
+               </tr>
+            </thead><tbody><tr><th class="firstcell">::before, ::after  </th><td>Controls how the gap between paragraphs, or at the end of a ticker is
+                     displayed. The default is to display four space characters.  </td><td>
+                     <span class="code">p::after {content: " | "}</span>
+                    </td></tr><tr><th class="firstcell">::marker  </th><td>Allows styling on the marker of <span class="code">li</span> elements of a list, so
+                     the style of the list item content can be separated from the style of the
+                     marker  </td><td>
+                     <span class="code">li::marker {color: red;}&gt;</span>
+                    </td></tr><tr><th class="firstcell">::mcs-label  </th><td>Represents the tab label in the Tabs widget  </td><td>
+                     <span class="code">widget:tab::mcs-label:active {font-weight: bold;}</span>
+                    </td></tr></tbody></table>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../client/wag_widgets_about.html">About widgets</a><br/><a href="../client/transitions_about.html">About transitions</a><br/><a href="../themes/theme_effect_prop.html">Effects properties</a></p>
+      
+   </body></html>

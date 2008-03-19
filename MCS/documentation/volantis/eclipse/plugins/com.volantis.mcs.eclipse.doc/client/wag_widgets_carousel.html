@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD       XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Creating a carousel</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Creating a carousel</h1>
+      <p>The Carousel widget displays a subset of a list of content items for a given period of
+         time. At the end of the time period the displayed subset changes. The Carousel widget
+         allows users to select an item from a list that is longer than can be displayed on the
+         device.</p>
+      
+         <h2>Visual appearance</h2>
+         <p>The item display is cyclical, so when all items have been displayed it starts again at
+            the beginning. For example, a carousel displays 4 items out of a list of 10 items.
+            Initially it displays items 1-4 from the list. After a defined period of time, it
+            changes to display items 5 to 8. After a further period of time it changes to display
+            items 9-10 followed by 1-2. It continues to cycle through the content indefinitely.</p>
+      
+      
+         <h2>User interactions</h2>
+         <p>When user selects the Carousel widget itself, or a focusable item being displayed inside
+            it the transitions are suspended, and resume again when the user selects something
+            outside of the widget. If the user selects on a focusable item, then the linked object
+            is opened.</p>
+      
+      
+         <h2>XDIME 2 elements</h2>
+         <p>You use the <span class="code">widget:carousel</span> element to define a carousel. Inside the
+            carousel, a <span class="code">li</span> element contains links to the items to be displayed.
+            This list does not need to be enclosed in the usual list containers;
+            <span class="code">nl</span>, <span class="code">ol</span>, or <span class="code">ul</span>.</p>
+         <p/>
+         <pre class="code">
+&lt;widget:carousel id="myWeatherCarousel&gt;
+   &lt;li&gt;&lt;a href="http://www.wien.gv.at/"&gt;Vienna&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href="http://www.vilnius.lt"&gt;Vilnius&lt;/a&gt;&lt;/li&gt;
+&lt;/widget:carousel&gt;</pre>
+         <p>You can refresh the widget contents periodically, at intervals specified in the
+               <span class="code">widget:refresh</span> element - see <em>Load, refresh and fetch actions</em>
+            for details.</p>
+         <pre class="code">
+&lt;widget:carousel id="myWeatherCarousel" class="widget"&gt;
+   &lt;widget:refresh src="service/carousel?id=myWeatherCarousel" interval="30"/&gt;
+   &lt;li&gt;&lt;a href="http://www.vilnius.lt"&gt;Vilnius&lt;/a&gt;&lt;/li&gt;
+&lt;/widget:carousel&gt;</pre>
+         <p>The <span class="code">carousel:response</span> element replaces existing content. In the
+            following example the styles for each list item are specified in the
+            <span class="code">response:link</span>
+            reference to <span class="filepath">/main.mthm</span> theme policy. See <em>Widget response structure</em> for more information.</p>
+         <pre class="code">
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+   xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+   xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+   &lt;response:head&gt;
+      &lt;response:link rel="mcs:theme" href="/main.mthm"/&gt;
+   &lt;/response:head&gt;
+   &lt;response:body&gt;
+      &lt;response:carousel id="myWeatherCarousel"&gt;
+         &lt;li&gt;&lt;a href="http://www.budapest.hu"&gt;Budapest&lt;/a&gt;&lt;li&gt;
+         &lt;li&gt;&lt;a href="http://www.prague-city.cz"&gt;Prague&lt;/a&gt;&lt;li&gt;
+      &lt;/response:carousel&gt;
+   &lt;/response:body&gt;
+&lt;/response:response&gt;</pre>
+         <div class="note"><strong>Note</strong>: The Carousel widget must have a layout associated with it to separate its
+            content from its container. If none is specified then it will behave the same as the
+            body element. that is an implicit layout containing a single region.</div>
+      
+      
+         <h2>Styling the widget</h2>
+         <p>You can use the <span class="uicontrol">Transition interval</span> property to control the
+            duration of the content replacement. The default value is one second.</p>
+         <p>A carousel may take the focus, even if it does not contain any focusable elements, if
+            you use the <span class="code">focus</span> pseudo-class on the element. The default value for this
+            pseudo-class is 'accept'. If you specify 'ignore', users will not be able to action
+            carousel elements unless they can take the focus.</p>
+      
+      
+         <h2>Non-client fallback</h2>
+         <p>If a device does not support the Carousel widget then it simply displays all the items
+            at once, and they cannot be updated from the server.</p>
+      
+      <div class="note"><strong>Note</strong>: This widget supports JavaScript. Please see <em>JavaScript support</em> for details.</div>
+      
+         <p><span class="ri">Related topics</span><br/><a href="../client/widget_library.html">Widget library</a><br/><a href="../xdime_cp/widget_carousel.html">widget:carousel</a><br/><a href="../xdime_cp/response_carousel.html">response:carousel</a><br/><a href="../client/wag_widgets_actions.html">Load, refresh and fetch actions</a><br/><a href="../client/wag_widgets_structure.html">Widget response structure</a><br/><a href="../client/wag_widgets_style.html">Styling widgets</a><br/><a href="../client/wag_widgets_javascript.html">JavaScript support</a></p>
+      
+   </body></html>

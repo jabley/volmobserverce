@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+	xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver">
+
+<head>
+  <title>Wizard w/custom dialog</title>
+  <link rel="mcs:theme" href="/themes/main.mthm"/>
+  <link rel="mcs:theme" href="/themes/wizard.mthm"/>
+  <link rel="mcs:layout" href="/layouts/main.mlyt"/>
+  <urid:fetch href="wizard-model.inc"/>
+ 	<style type="text/css" media="handheld,all">
+		widget|popup#myPopup {
+			width: 50%;
+			left: 25%;
+			top: 10%;
+			border: 1px solid #e5eaed;
+			overflow: hidden;
+			text-align: center;
+      padding: 0px;
+		}
+
+    widget|popup#myPopup > #confirmTitle {
+      width: 100%;
+      text-align: left;
+      white-space: nowrap;
+      background-color: #23516a;
+      padding: 2px 1px 2px 1px
+    }
+
+    widget|popup#myPopup > #confirmMessage {
+      text-align: center;
+      padding: 10px;
+      color: #000;
+    }
+	</style>
+</head>
+
+<body>
+  <template:apply href="templates/demo-main.xdtpl">
+    <template:binding name="title" value="Wizard w/custom dialog"/>
+    <template:binding name="content">
+      <template:complexValue>
+
+			<widget:wizard class="widget" id="myWizard" cancel-dialog="myPopup">
+      	<urid:fetch href="wizard-form-step1.inc"/>
+      	<urid:fetch href="wizard-form-step2.inc"/>
+			</widget:wizard>
+
+      <widget:button id="start-button" action="myWizard#launch">Start the wizard</widget:button>
+
+      <widget:popup id="myPopup">
+        <div id="confirmTitle">Confirm cancellation</div>
+        <div id="confirmMessage">
+          Do you really want to cancel? All the data you entered will be lost.
+        </div>
+        <div class="buttons">
+          <widget:dismiss type="yes">yes</widget:dismiss>
+          <widget:dismiss type="no">no</widget:dismiss>
+        </div>
+      </widget:popup>
+
+		 </template:complexValue>
+    </template:binding>
+  </template:apply>
+</body>
+</html>

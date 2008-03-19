@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib>
+
+    <palettegenerator>com.bea.portal.ide.taglibs.DefaultPaletteGenerator</palettegenerator>
+    <palette-priority>1</palette-priority>
+	
+	<tag>
+		<name>if</name>
+		<palette-image-name>/com/volantis/mcs/bea/weblogic/platform/workshop/diselect/icons/if.gif</palette-image-name>
+		<attribute>
+			<name>expr</name>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>select</name>
+		<palette-image-name>/com/volantis/mcs/bea/weblogic/platform/workshop/diselect/icons/select.gif</palette-image-name>
+		<attribute>
+			<name>expr</name>
+		</attribute>
+		<attribute>
+			<name>precept</name>
+			<validationrule>matchfirst|mathevery</validationrule>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>when</name>
+		<palette-image-name>/com/volantis/mcs/bea/weblogic/platform/workshop/diselect/icons/when.gif</palette-image-name>
+		<requiredparent>select</requiredparent>
+		<attribute>
+			<name>expr</name>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>otherwise</name>
+		<palette-image-name>/com/volantis/mcs/bea/weblogic/platform/workshop/diselect/icons/otherwise.gif</palette-image-name>
+		<requiredparent>select</requiredparent>
+	</tag>
+	
+</taglib>

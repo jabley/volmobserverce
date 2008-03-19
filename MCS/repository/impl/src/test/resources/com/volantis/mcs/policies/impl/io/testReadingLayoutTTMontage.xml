@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<variable-policy xmlns="http://www.volantis.com/xmlns/2006/02/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mdv="http://www.volantis.com/xmlns/2004/12/meta-data-values" xmlns:rpdm="http://www.volantis.com/xmlns/2006/02/marlin-rpdm" xmlns:struct="http://www.volantis.com/xmlns/2005/10/ThemeStruct">
+    <type>layout</type>
+    <variants>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Master</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <montageLayout defaultSegment="bar">
+                        <segmentGridFormat frameBorder="true" rows="2" borderColor="purple" frameSpacing="0" borderWidth="2" columns="1">
+                            <segmentGridFormatColumns>
+                                <segmentGridFormatColumn width="100" widthUnits="percent"/>
+                            </segmentGridFormatColumns>
+                            <segmentGridFormatRow height="15">
+                                <segmentFormat frameBorder="true" marginHeight="2" marginWidth="2" borderColor="olive" name="bar" resize="true" scrolling="never"/>
+                            </segmentGridFormatRow>
+                            <segmentGridFormatRow height="85">
+                                <segmentGridFormat frameBorder="true" rows="1" borderColor="yellow" frameSpacing="0" borderWidth="2" columns="2">
+                                    <segmentGridFormatColumns>
+                                        <segmentGridFormatColumn width="20" widthUnits="percent"/>
+                                        <segmentGridFormatColumn width="80" widthUnits="percent"/>
+                                    </segmentGridFormatColumns>
+                                    <segmentGridFormatRow height="50">
+                                        <segmentFormat name="menu" marginWidth="4" resize="true" scrolling="auto" marginHeight="4" borderColor="green" frameBorder="true"/>
+                                        <segmentFormat frameBorder="true" marginHeight="5" marginWidth="5" borderColor="navy" name="content" resize="true" scrolling="auto"/>
+                                    </segmentGridFormatRow>
+                                </segmentGridFormat>
+                            </segmentGridFormatRow>
+                        </segmentGridFormat>
+                    </montageLayout>
+                </layout>
+            </content>
+        </variant>
+    </variants>
+</variable-policy>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>Using conditional markup</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Using conditional markup</h1>
+		
+      <p>Conditional expressions provide the means for testing values against one another and using markup accordingly. You can use a group of 'select' elements on larger blocks of content, and the <span class="code">expr</span> attribute on individual elements.</p>
+		
+			
+      <h2>Select elements</h2>
+			
+      <p>The <span class="code">select</span>, <span class="code">when</span> and <span class="code">otherwise</span> elements provide a way to include content that is similar in use to <span class="code">case</span> and <span class="code">switch</span> statements in procedural languages.</p>
+
+      <pre class="code">
+&lt;select precept="matchfirst"&gt;
+   &lt;when expr="device:getPolicyValue('pixelsx')='300'"&gt;
+      &lt;img src="/bigImage.mimg"/&gt;
+   &lt;/when&gt;
+   &lt;when expr="device:getPolicyValue('name')='Nokia-7650'"&gt;
+      &lt;img src="/littleImage.mimg"/?
+   &lt;/when&gt;
+   &lt;otherwise&gt;
+      &lt;p&gt;The Image&lt;/p&gt;
+   &lt;/otherwise&gt;
+&lt;/select&gt;</pre>
+		
+		
+			
+      <h2>Using the expr attribute</h2>
+			
+      <p>All XDIME elements with the exception of <span class="code">otherwise</span> have an <span class="code">expr</span> attribute. It is optional on all elements except the <span class="code">select</span> and <span class="code">when</span> elements, where it is used differently.</p>
+			
+      <p>
+         <span class="code">expr</span> can contain an MCS expression. If it evaluates to <em>true</em> the element is processed as normal. If the expression evaluates to <em>false</em> then the element and its children are skipped, and processing continues.</p>
+			
+      <p>The example shows that  MCS will only process the <span class="code">pane</span> element and its children if a
+        function <span class="code">device:getPolicyValue('java')</span> returns
+       the value 'J2ME'.</p>
+				
+      <pre class="code">&lt;canvas&gt;
+   &lt;pane name="main" expr="device:getPolicyValue('java')='J2ME'"&gt;
+      &lt;p&gt;Your browser supports J2ME&lt;/p&gt;
+   &lt;/pane&gt; 
+&lt;/canvas&gt;</pre>
+			
+			
+		
+
+		
+			
+      <p>
+         <span class="ri">Related topics</span>
+         <br/>
+         <a href="../wag/wag_xdime_about.html">Working with XDIME</a>
+         <br/>
+         <a href="../xdime/xdime_select.html">select</a>
+      </p>
+		
+	
+   </body>
+</html>

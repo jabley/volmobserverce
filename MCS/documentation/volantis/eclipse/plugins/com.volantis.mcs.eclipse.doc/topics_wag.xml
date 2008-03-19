@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Web author's guide" href="wag/wag_about.html">
+   <topic label="Developing MCS policies" href="wag/wag_develop_policies.html">
+      <topic label="Device independence and MCS"
+         href="wag/wag_device_indep.html"/>
+      <topic href="wag/er_about.html" label="About element references"/>
+      <topic label="Understanding schema diagrams"
+         href="wag/schema_diagrams.html"/>
+
+      <!--<topic label="About branding" href="wag/wag_branding.html"/>-->
+      <topic label="MCS repositories" href="wag/wag_repositories.html"/>
+      <topic label="Development options" href="wag/wag_dev_options.html"/>
+      <topic label="About fallback" href="wag/wag_fallback.html"/>
+      <topic label="Generic assets" href="wag/wag_generic_asset.html"/>
+      <topic label="Component fallback" href="wag/wag_component_fallback.html"/>
+      <topic label="Resolving variant URLs" href="wag/wag_asset_url.html"/>
+      <topic label="Using convertible images" href="wag/wag_ics.html"/>
+      <topic label="Using form fragments" href="wag/wag_form_fragments.html"/>
+      <topic label="Setting text direction" href="wag/wag_bidi.html"/>
+      <topic label="Testing MCS policies" href="wag/wag_test.html"/>
+      <topic label="Using remote policies" href="wag/wag_remote.html">
+         <topic label="Remote policy requests"
+            href="wag/wag_remote_request.html"/>
+         <topic label="Encoding remote policy responses"
+            href="wag/wag_remote_xml.html"/>
+         <topic label="Managing the remote caches"
+            href="wag/wag_remote_api.html"/>
+      </topic>
+
+      <topic label="Protocol support" href="wag/wag_protocol_refs.html"/>
+   </topic>
+
+   <!--XDIME 1
+   <topic label="Working with XDIME" href="wag/wag_xdime_about.html">
+      
+      <topic label="Types of canvas" href="wag/wag_canvas_type.html"/>
+      <topic label="Controlling page caching" href="wag/wag_xdime_cache.html"/>
+      <topic label="Defining portals" href="wag/wag_portal.html"/>
+      <topic label="Using forms" href="wag/wag_xdime_forms.html">
+         <topic label="Using form fragments" href="wag/wag_form_fragments.html"/>
+         <topic label="Validating form input" href="wag/wag_form_valid.html"/>
+         <topic label="Form help and prompts" href="wag/wag_form_help.html"/>
+         <topic label="Styling forms" href="wag/wag_form_style.html"/>
+         <topic label="Clearing WML variables in forms"
+            href="wag/wag_wml_variables.html"/>
+      </topic>
+      <topic label="Menus" href="wag/wag_xdime_menu.html">
+         <topic label="Styling menus" href="wag/wag_menu_style.html"/>
+      </topic>
+      <topic label="Specifying charts" href="wag/wag_xdime_chart.html">
+         <topic label="Chart attributes" href="wag/wag_chart_attr.html"/>
+         <topic label="Styling charts" href="wag/wag_chart_style.html"/>
+      </topic>
+      <topic label="Using scripts" href="wag/wag_xdime_script.html"/>
+      <topic label="Overriding fragment links" href="wag/wag_xdime_layout.html"/>
+      
+      <topic label="Using conditional markup"
+         href="wag/wag_conditional_markup.html"/>
+      <topic label="MCS expressions" href="wag/wag_mcs_expr.html"/>
+      <topic label="Directing web servers" href="wag/wag_web_server.html"/>
+   </topic>-->
+
+   <topic label="Working with XDIME 2" href="wag/xdime2_about.html">
+      <topic label="XDIME 2 in layouts" href="wag/xdime_cp_layout.html"/>
+      <topic label="Fragment links in XDIME 2" href="wag/wag_meta_fragment.html"/>
+      <topic label="Form fragment links in XDIME 2"
+         href="wag/wag_xf_fragment.html"/>
+      <topic label="References to media" href="wag/xdime2_media.html"/>
+      <topic label="Selection elements and attributes"
+         href="wag/xdime_cp_selection.html"/>
+      <topic label="Form instance data" href="wag/xdime_cp_formdata.html"/>
+
+      <topic label="Scripting in XDIME 2" href="wag/wag_xdime2_scripting.html"/>
+      <topic label="Timed redirect and refresh"
+         href="wag/wag_redirect_refresh.html"/>
+      <topic label="Markup in Java Server Pages" href="wag/xdime_jsp.html"/>
+      <topic label="MCS expressions" href="wag/wag_mcs_expr.html"/>
+      <topic label="Container reference functions"
+         href="xdime_cp/xdime_cp_function_expr.html"/>
+         
+      
+   </topic>
+
+
+   <topic href="wag/wag_function_expr.html" label="MCS function expressions">
+      <!--<topic href="wag/branding_getunbrandedpolicy.html"
+         label="branding:getUnbrandedPolicy"/>-->
+      <topic href="wag/device_getancestorrelationship.html"
+         label="device:getAncestorRelationship"/>
+      <topic href="wag/device_isinstanceof.html" label="device:isInstanceOf"/>
+      <topic href="wag/device_getpolicyvalue.html" label="device:getPolicyValue"/>
+      <topic href="wag/request_getcookievalue.html"
+         label="request:getCookieValue"/>
+      <topic href="wag/request_getparameter.html" label="request:getParameter"/>
+      <topic href="wag/request_getparameters.html" label="request:getParameters"/>
+      <topic href="wag/request_getheader.html" label="request:getHeader "/>
+      <topic href="wag/request_getheaders.html" label="request:getHeaders "/>
+      <topic href="wag/layout_getpaneinstance.html"
+         label="layout:getPaneInstance"/>
+      <topic href="wag/layout_getregioninstance.html"
+         label="layout:getRegionInstance"/>
+      <topic href="wag/pipeline_duration_to_seconds.html"
+         label="pipeline:duration-to-seconds"/>
+      <topic label="counter" href="xdime_cp/cp_expr_counter.html"/>
+      <topic label="mcs-container-instance"
+         href="xdime_cp/cp_expr_container_instance.html"/>
+   </topic>
+</toc>

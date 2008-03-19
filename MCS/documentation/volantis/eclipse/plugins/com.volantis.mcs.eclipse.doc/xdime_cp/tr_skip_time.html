@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>tr:skip-time</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>tr:skip-time</h1><h2>Purpose</h2>
+         <p>The skip time, given as a number of minutes since midnight in client's time zone. The
+            possible values are 0-1439. Up to two skip times can be defined for a single Feed Poller
+            widget.</p>
+      <h2>Contained by</h2><p><a href="../xdime_cp/tr_set_skip_times.html">tr:set-skip-times</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">from</th><td>Sets the beginning of a idle period. It is given as a number of minutes
+               since midnight in the time zone of the client device.</td><td>xs:intiger</td><td> </td><td> </td><td>required </td></tr><tr><th class="firstcellrequired" scope="row">to</th><td>Sets the end of the idle period. It is given as a number of minutes since
+               midnight in the time zone the client device.</td><td>xs:intiger</td><td> </td><td> </td><td>required </td></tr></table><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+         <p>In this response example, following commands will be executed:</p>
+         <ul>
+            <li>insert new item with specified ID, channel, title and description</li>
+            <li>remove item with specified ID</li>
+            <li>set (redirect) URL to the new BuzzCast Server</li>
+            <li>set new skip times to be between 11:00-12:00, and 22:00-2:30</li>
+            <li>set new polling interval to 10 minutes</li>
+         </ul>
+         <pre class="code">
+&lt;response:response
+   xmlns="http://www.w3.org/2002/06/xhtml2"
+   xmlns:wr="http://www.volantis.com/xmlns/2006/05/widget/response"
+   xmlns:tr="http://www.volantis.com/xmlns/2006/09/ticker/response"/&gt;
+
+   &lt;response:head
+      &lt;response:link rel="mcs:theme" href="/myTheme.mthm"/&gt;
+   &lt;/response:head&gt;
+
+   &lt;response:body&gt;
+      &lt;tr:feed-poller&gt;
+         &lt;tr:add-item item-id="763h" channel="F1"&gt;
+            &lt;tr:title&gt;Important News&lt;/tr:title&gt;
+            &lt;tr:icon&gt;&lt;object src="/icon.mimg"/&gt;&lt;/tr:icon&gt;
+            &lt;tr:description&gt;Breaking News
+               &lt;a href="http://www.importantnews.com"&gt;Read more...&lt;/a&gt;&lt;/tr:description&gt;
+         &lt;/tr:add-item&gt;
+         &lt;tr:remove-item item-id="4532"/&gt;
+         &lt;tr:set-url&gt;http://www.new-service.com/vmds&lt;/tr:set-url&gt;
+         &lt;tr:set-skip-times&gt;
+            &lt;tr:skip-time from="1140" to="1200"/&gt;
+            &lt;tr:skip-time from="1320" to="150"/&gt;
+         &lt;/tr:set-skip-times&gt;
+         &lt;tr:set-polling-interval&gt;600&lt;/tr:set-polling-interval&gt;
+      &lt;/tr:feed-poller&gt;
+   &lt;/response:body&gt;
+&lt;/response:response&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../xdime_cp/ticker_response_er.html">BuzzCast response elements</a></p>
+      </body></html>

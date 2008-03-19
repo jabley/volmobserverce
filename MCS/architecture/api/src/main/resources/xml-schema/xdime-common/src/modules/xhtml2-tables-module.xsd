@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Paul Duffin (Volantis) -->
+ <xs:schema targetNamespace="http://www.w3.org/2002/06/xhtml2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2002/06/xhtml2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="xhtml2-structural-module-base.xsd"/>
+    <xs:include schemaLocation="xhtml2-caption-module.xsd"/>
+    <!--Internal Components-->
+    <!--External Components-->
+    <xs:element name="table" substitutionGroup="StructuralContentSet">
+        <xs:annotation>
+            <xs:documentation>Table</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="caption" minOccurs="0"/>
+                <xs:choice>
+                    <xs:sequence>
+                        <xs:element ref="thead" minOccurs="0"/>
+                        <xs:element ref="tfoot" minOccurs="0"/>
+                        <xs:element ref="tbody" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:element ref="tr" maxOccurs="unbounded"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonAttributeCollection"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tr">
+        <xs:annotation>
+            <xs:documentation>Table row</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="td"/>
+                <xs:element ref="th"/>
+            </xs:choice>
+            <xs:attributeGroup ref="CommonAttributeCollection"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="td">
+        <xs:annotation>
+            <xs:documentation>Table cell</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent mixed="true">
+                <xs:extension base="FlowCommon"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="th">
+        <xs:annotation>
+            <xs:documentation>Table heading cell</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent mixed="true">
+                <xs:extension base="FlowCommon"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tfoot">
+        <xs:annotation>
+            <xs:documentation>Table footer</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="tr"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonAttributeCollection"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="thead">
+        <xs:annotation>
+            <xs:documentation>Table header</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="tr"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonAttributeCollection"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tbody">
+        <xs:annotation>
+            <xs:documentation>Table body</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="tr"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonAttributeCollection"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

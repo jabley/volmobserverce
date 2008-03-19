@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>sqld:query</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">sqld:query</h1><h2>Purpose</h2>
+         <p>Container for a SQL query. The query can be a normal query, or be
+            configured to take parameters. If a parameter is used, the query
+            element must contain a nested string parameter.</p>
+         <div class="note"><strong>Note</strong>: The <span class="code">transaction</span> attribute binds the SQL
+            statement to the transaction. Although it is optional the
+               <span class="code">transaction</span> attribute should <em>always</em> be used
+            when transactions are nested, to ensure that the correct database
+            connection is identified.</div>
+      <h2>Contains</h2><p><a href="../xdime/sqld_column.html">sqld:column</a>, <a href="../xdime/sqld_types.html">SQL driver datatype elements</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">dataSource</th><td>Name of a valid datasource as specified in the
+               mcs-config.xml file.</td><td>xs:string</td><td>none </td><td> </td><td>required </td></tr><tr><th class="firstcellrequired" scope="row">sql</th><td>Specifies the query that is to be applied to the
+               datasource.</td><td>xs:string</td><td>none </td><td> </td><td>required </td></tr><tr><th class="firstcell" scope="row">transaction</th><td>Identifies the transaction to which the statement
+               belongs. Required in nested transactions.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;sqld:query
+   datasource="PressReleases" 
+   sql="select TITLE,ABSTRACT 
+      from PRESS_RELEASES 
+      where STORY = ?"&gt;
+   &lt;sqld:string value="%{request:getParameter('STORY')}"/&gt;
+   &lt;sqld:column name="ABSTRACT"&gt;
+      &lt;mdc:parseAsXML
+         defaultNsPrefix="pr"
+         defaultNsURI="http://mycorp.com/schemas/pr"/&gt; 
+   &lt;/sqld:column&gt;
+    ...
+&lt;/sqld:query&gt;</pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/sqld_er.html">SQL driver elements</a></p>
+      </body></html>

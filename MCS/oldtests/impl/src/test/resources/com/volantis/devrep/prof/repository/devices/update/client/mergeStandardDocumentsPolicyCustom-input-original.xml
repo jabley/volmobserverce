@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<device
+        xmlns="http://www.volantis.com/xmlns/device-repository/device"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.volantis.com/xmlns/device-repository/device http://www.volantis.com/schema/device-repository/v3.0/device.xsd"
+        name="added">
+    <policies>
+        <policy name="originalOnly">
+            <value>originalOnlyCustomValue</value>
+            <standard>
+                <policy name="originalOnly">
+                    <value>originalOnlyValue</value>
+                </policy>
+            </standard>
+        </policy>
+        <policy name="bothIdentical">
+            <value>commonCustomValue</value>
+            <standard>
+                <policy name="bothIdentical">
+                    <value>commonValue</value>
+                </policy>
+            </standard>
+        </policy>
+        <policy name="bothDifferent">
+            <value>originalCustomValue</value>
+            <standard>
+                <policy name="bothDifferent">
+                    <value>originalValue</value>
+                </policy>
+            </standard>
+        </policy>
+        <policy name="customisationNotRequired">
+            <value>commonValue</value>
+            <standard>
+                <policy name="customisationNotRequired">
+                    <value>originalValue</value>
+                </policy>
+            </standard>
+        </policy>
+    </policies>
+</device>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 28-Apr-05	7361/1	geoff	VBM:2005031007 Provide device repository merge report
+
+ 27-Apr-05	7645/1	geoff	VBM:2005041309 Device repository merge report: mergeable document event generation
+
+ ===========================================================================
+-->

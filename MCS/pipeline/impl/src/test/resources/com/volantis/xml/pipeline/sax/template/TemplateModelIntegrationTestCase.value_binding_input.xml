@@ -1,0 +1,76 @@
+<?xml version='1.0'?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ ! (c) Volantis Systems Ltd 2003. 
+ ! ======================================================================== -->
+<root xmlns:template="http://www.volantis.com/xmlns/marlin-template">
+  <!-- the outer template -->
+  <template:apply>
+    <template:bindings>
+      <template:binding name="outer">
+        <template:complexValue>
+            <p>Outer content</p>
+        </template:complexValue>
+      </template:binding>
+    </template:bindings>
+    <template:definition>
+      <template:declarations>
+        <template:parameter name="outer" type="complex"/>
+      </template:declarations>
+      <template:body>
+        <!-- the inner template -->
+        <template:apply>
+          <template:bindings>
+            <template:binding name="inner">
+              <template:complexValue>
+                  <p>Binding Before</p>
+                  <template:value ref="outer"/>
+                  <p>Binding After</p>
+              </template:complexValue>
+            </template:binding>
+          </template:bindings>
+          <template:definition>
+            <template:declarations>
+              <template:parameter name="inner" type="complex"/>
+            </template:declarations>
+            <template:body>
+              <p>Body Before</p>
+              <template:value ref="inner"/>
+              <p>Body After</p>
+            </template:body>
+          </template:definition>
+        </template:apply>
+        <!-- inner template ends -->
+      </template:body>
+    </template:definition>
+  </template:apply>
+  <!-- outer template ends -->
+</root>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 20-Oct-04	5438/1	philws	VBM:2004082706 Transfer Pipeline source into MCS
+
+ 03-Mar-04	582/2	geoff	VBM:2004022507 Template binding cannot access outer parameters
+
+ ===========================================================================
+-->

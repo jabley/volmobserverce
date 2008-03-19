@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Paul Duffin (Volantis) -->
+<xs:schema targetNamespace="http://www.w3.org/2002/06/xhtml2" xmlns="http://www.w3.org/2002/06/xhtml2" xmlns:xh2="http://www.w3.org/2002/06/xhtml2" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="xhtml2-structural-module-base.xsd"/>
+    <!--Internal Components-->
+    <xs:complexType name="HeadingType" mixed="true">
+        <xs:annotation>
+            <xs:documentation>The content of a heading</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent mixed="true">
+            <xs:extension base="TextCommon"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--External Components-->
+    <xs:element name="address" type="TextCommon" substitutionGroup="StructuralContentSet">
+        <xs:annotation>
+            <xs:documentation>Address</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="blockquote" type="TextCommon" substitutionGroup="StructuralContentSet">
+        <xs:annotation>
+            <xs:documentation>Block quote</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="div" type="FlowCommon" substitutionGroup="StructuralContentSet">
+        <xs:annotation>
+            <xs:documentation>Block level division</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="h1" type="HeadingType" substitutionGroup="HeadingContentSet">
+        <xs:annotation>
+            <xs:documentation>Level 1 heading</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="h2" type="HeadingType" substitutionGroup="HeadingContentSet">
+        <xs:annotation>
+            <xs:documentation>Level 2 heading</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="h3" type="HeadingType" substitutionGroup="HeadingContentSet">
+        <xs:annotation>
+            <xs:documentation>Level 3 heading</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="h4" type="HeadingType" substitutionGroup="HeadingContentSet">
+        <xs:annotation>
+            <xs:documentation>Level 4 heading</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="h5" type="HeadingType" substitutionGroup="HeadingContentSet">
+        <xs:annotation>
+            <xs:documentation>Level 5 heading</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="h6" type="HeadingType" substitutionGroup="HeadingContentSet">
+        <xs:annotation>
+            <xs:documentation>Level 6 heading</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="p" type="TextCommon" substitutionGroup="StructuralContentSet">
+        <xs:annotation>
+            <xs:documentation>Paragraph</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="pre" type="TextCommon" substitutionGroup="StructuralContentSet">
+        <xs:annotation>
+            <xs:documentation>Preformatted text</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+</xs:schema>

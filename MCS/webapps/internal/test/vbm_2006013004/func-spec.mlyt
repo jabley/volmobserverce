@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<lpdm:layoutFormat xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.volantis.com/xmlns/2005/12/marlin-lpdm
+    /opt/work/2006013004/MCS/architecture/built/src/api/com/volantis/schema/2005/12/marlin-lpdm.xsd"
+    xmlns:lpdm="http://www.volantis.com/xmlns/2005/12/marlin-lpdm">
+    <lpdm:deviceLayoutCanvasFormat deviceName="Master" defaultFragment="fragment1">
+        <lpdm:fragmentFormat name="fragment1" linkText="Link to Main Page">
+            <lpdm:gridFormat rows="4" borderWidth="0" backgroundComponentType="image"
+                widthUnits="pixels" horizontalAlignment="left" cellSpacing="0" cellPadding="0"
+                optimizationLevel="never" verticalAlignment="center" columns="1">
+                <lpdm:gridFormatColumns>
+                    <lpdm:gridFormatColumn widthUnits="percent"/>
+                </lpdm:gridFormatColumns>
+                <lpdm:gridFormatRow>
+                    <lpdm:paneFormat filterOnKeyboardUsability="0" name="articleGroupPane"
+                        borderWidth="0" backgroundComponentType="image"
+                        widthUnits="percent" horizontalAlignment="left" cellSpacing="0"
+                        cellPadding="0" optimizationLevel="never"
+                        verticalAlignment="center" width="100"/>
+                </lpdm:gridFormatRow>
+                <lpdm:gridFormatRow>
+                    <lpdm:fragmentFormat name="articleFragment1" linkText="Link to Articles">
+                        <lpdm:gridFormat rows="1" borderWidth="0" backgroundComponentType="image"
+                            widthUnits="percent" horizontalAlignment="left" cellSpacing="0"
+                            cellPadding="0" optimizationLevel="never" verticalAlignment="center"
+                            columns="1">
+                            <lpdm:gridFormatColumns>
+                                <lpdm:gridFormatColumn widthUnits="percent"/>
+                            </lpdm:gridFormatColumns>
+                            <lpdm:gridFormatRow>
+                                <lpdm:paneFormat filterOnKeyboardUsability="0" name="articlePane1"
+                                    borderWidth="0" backgroundComponentType="image"
+                                    widthUnits="percent" horizontalAlignment="left" cellSpacing="0"
+                                    cellPadding="0" optimizationLevel="never"
+                                    verticalAlignment="center" width="100"/>
+                            </lpdm:gridFormatRow>
+                        </lpdm:gridFormat>
+                    </lpdm:fragmentFormat>
+                </lpdm:gridFormatRow>
+                <lpdm:gridFormatRow>
+                    <lpdm:fragmentFormat name="articleFragment2" linkText="Link to Articles">
+                        <lpdm:gridFormat rows="1" borderWidth="0" backgroundComponentType="image"
+                            widthUnits="percent" horizontalAlignment="left" cellSpacing="0"
+                            cellPadding="0" optimizationLevel="never" verticalAlignment="center"
+                            columns="1">
+                            <lpdm:gridFormatColumns>
+                                <lpdm:gridFormatColumn widthUnits="percent"/>
+                            </lpdm:gridFormatColumns>
+                            <lpdm:gridFormatRow>
+                                <lpdm:paneFormat filterOnKeyboardUsability="0" name="articlePane2"
+                                    borderWidth="0" backgroundComponentType="image"
+                                    widthUnits="percent" horizontalAlignment="left" cellSpacing="0"
+                                    cellPadding="0" optimizationLevel="never"
+                                    verticalAlignment="center" width="100"/>
+                            </lpdm:gridFormatRow>
+                        </lpdm:gridFormat>
+                    </lpdm:fragmentFormat>
+                </lpdm:gridFormatRow>
+                <lpdm:gridFormatRow>
+                    <lpdm:fragmentFormat name="articleFragment3" linkText="Link to Articles">
+                        <lpdm:gridFormat rows="1" borderWidth="0" backgroundComponentType="image"
+                            widthUnits="percent" horizontalAlignment="left" cellSpacing="0"
+                            cellPadding="0" optimizationLevel="never" verticalAlignment="center"
+                            columns="1">
+                            <lpdm:gridFormatColumns>
+                                <lpdm:gridFormatColumn widthUnits="percent"/>
+                            </lpdm:gridFormatColumns>
+                            <lpdm:gridFormatRow>
+                                <lpdm:paneFormat filterOnKeyboardUsability="0" name="articlePane3"
+                                    borderWidth="0" backgroundComponentType="image"
+                                    widthUnits="percent" horizontalAlignment="left" cellSpacing="0"
+                                    cellPadding="0" optimizationLevel="never"
+                                    verticalAlignment="center" width="100"/>
+                            </lpdm:gridFormatRow>
+                        </lpdm:gridFormat>
+                    </lpdm:fragmentFormat>
+                </lpdm:gridFormatRow>
+            </lpdm:gridFormat>
+        </lpdm:fragmentFormat>
+    </lpdm:deviceLayoutCanvasFormat>
+</lpdm:layoutFormat>
+<!-- <lpdm:layoutFormat xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.volantis.com/xmlns/2005/12/marlin-lpdm
+    /opt/work/2006013004/MCS/architecture/built/src/api/com/volantis/schema/2005/12/marlin-lpdm.xsd"
+    xmlns:lpdm="http://www.volantis.com/xmlns/2005/12/marlin-lpdm">
+    <lpdm:deviceLayoutCanvasFormat deviceName="Master" defaultFragment="fragment1">
+    <lpdm:fragmentFormat name="fragment1" linkText="Link to Main Page">
+    <lpdm:gridFormat rows="2" borderWidth="0" backgroundComponentType="image"
+    widthUnits="pixels" horizontalAlignment="left" cellSpacing="0" cellPadding="0"
+    optimizationLevel="never" verticalAlignment="center" columns="1">
+    <lpdm:gridFormatColumns>
+    <lpdm:gridFormatColumn widthUnits="percent"/>
+    </lpdm:gridFormatColumns>
+    <lpdm:gridFormatRow>
+    <lpdm:fragmentFormat name="articleGroupFragment" linkText="Link to Article Group">
+    <lpdm:gridFormat rows="1" borderWidth="0" backgroundComponentType="image"
+    widthUnits="percent" horizontalAlignment="left" cellSpacing="0"
+    cellPadding="0" optimizationLevel="never" verticalAlignment="center"
+    columns="1">
+    <lpdm:gridFormatColumns>
+    <lpdm:gridFormatColumn widthUnits="percent"/>
+    </lpdm:gridFormatColumns>
+    <lpdm:gridFormatRow>
+    <lpdm:paneFormat filterOnKeyboardUsability="0"
+    name="articleGroupPane" borderWidth="0"
+    backgroundComponentType="image" widthUnits="percent"
+    horizontalAlignment="left" cellSpacing="0" cellPadding="0"
+    optimizationLevel="never" verticalAlignment="center" width="100"
+    />
+    </lpdm:gridFormatRow>
+    </lpdm:gridFormat>
+    </lpdm:fragmentFormat>
+    </lpdm:gridFormatRow>
+    <lpdm:gridFormatRow>
+    <lpdm:fragmentFormat name="articleFragment" linkText="Link to Articles">
+    <lpdm:gridFormat rows="1" borderWidth="0" backgroundComponentType="image"
+    widthUnits="percent" horizontalAlignment="left" cellSpacing="0"
+    cellPadding="0" optimizationLevel="never" verticalAlignment="center"
+    columns="1">
+    <lpdm:gridFormatColumns>
+    <lpdm:gridFormatColumn widthUnits="percent"/>
+    </lpdm:gridFormatColumns>
+    <lpdm:gridFormatRow>
+    <lpdm:paneFormat filterOnKeyboardUsability="0" name="articlePane"
+    borderWidth="0" backgroundComponentType="image"
+    widthUnits="percent" horizontalAlignment="left" cellSpacing="0"
+    cellPadding="0" optimizationLevel="never"
+    verticalAlignment="center" width="100"/>
+    </lpdm:gridFormatRow>
+    </lpdm:gridFormat>
+    </lpdm:fragmentFormat>
+    </lpdm:gridFormatRow>
+    </lpdm:gridFormat>
+    </lpdm:fragmentFormat>
+    </lpdm:deviceLayoutCanvasFormat>
+    </lpdm:layoutFormat>
+-->

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>MCS 3.5.1 release notes</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>MCS 3.5.1 release notes</h1>
+      <p>The following is a summary of the changes to features and
+         functionality in MCS 3.5.1. Further information and details
+         about existing functionality and features may be found in
+         previous release notes and documentation.</p>
+      <p>You should also refer to the notes in <em>MCS Supported platforms</em> and <em>Changes to the API</em>.</p>
+      
+         <h2>XDIME 2</h2>
+         <p>XDIME 2 is a new version of XDIME that adds elements from
+            the XHTML 2 namespace to those already available in
+            XDIME-CP. XDIME-CP is thus a subset of both XDIME and
+            XDIME 2 for use by content providers who plan to supply
+            pages to carrier partners for configuration in content
+            adaptation environments.</p>
+         <p>XDIME 2 is not yet functionally equivalent to XDIME. At
+            present, bindings to layouts and themes are available
+            using the <span class="code">link</span> element, and it is
+            possible to override text links on fragments using the
+               <span class="code">meta</span> element, and on form fragments
+            using the new <span class="code">xf:group</span> tag in layouts.
+            Additional elements and functionality will be
+            progressively added in future releases.</p>
+      
+      
+      
+         <h2>Changes to the Eclipse policy interface</h2>
+         <p>There are several changes to the policy editor interfaces.</p>
+         <ul>
+            <li>The term 'variant' replaces 'asset', device layout'
+               and 'device theme' in the interface labels.</li>
+            <li>In component, layout and theme editors you can choose
+               the name of a custom device policy to target a variant
+               or variants at specific devices. When you choose the
+               policy name, the set of custom values you specified is
+               available for selection to target those devices.</li>
+            <li>A project on any user's machine can be configured for
+               collaborative working when it is created. A database
+               stores the policies, and the database policies are
+               downloaded and refreshed automatically in the Eclipse
+               workbench. The configuration supports individual user
+               locks on entire policies or selected policy variants,
+               and users can see the current status in a Locks view.</li>
+            <li/>
+            <li>New pseudo-element selectors
+               <span class="code">::mcs-previous</span>, <span class="code">::mcs-next</span>
+               and <span class="code">::mcs-reset</span>, and new properties on
+               presentation elements have been added to support
+               fragmentation overrides.</li>
+            <li>A Style Rules view provides an alternative way to view
+               all the rules for a particular theme variant. It
+               contains a table that displays the style rules,
+               organized by selector sequence, showing validation
+               status, importance, name and property value.</li>
+         </ul>
+      
+      
+         <h2>Remote projects</h2>
+         <p>You can now develop MCS projects remotely in the Eclipse
+            workbench and deploy them on a policy server using a
+            secure connection. </p>
+         <p>MCS can host multiple Secure Publishing Server (SPS)
+            instances using a Secure Connection Server (SCS) as an
+            HTTP proxy server for a host MCS service. It supports the
+            proxying of both HTTP and HTTPS requests, and maintains a
+            list of HTTP 1.0 and 1.1 connections and the associated
+            URLs.</p>
+         <p>An <span class="code">http-proxy</span> element is added to the
+               <span class="filepath">mcs-config.xml</span> file.</p>
+      
+      
+         <h2>Named projects</h2>
+         <p>You can override the settings for the default project by
+            placing an <span class="filepath">mcs-project.xml</span> file
+            either in the same directory as an XDIME page being
+            processed, or somewhere on the path to it. MCS will
+            traverse the directory hierarchy to the context root of
+            your web application to find a file with this name, and if
+            it fails to find one, it will use the URI and variant
+            values in the <span class="code">default</span> element.</p>
+      
+      
+         <h2>XDIME form elements</h2>
+         <p>You can upload binary assets to a form using the XDIME
+               <span class="code">xfupload</span> element. The element only
+            results in markup on HTML based protocols.</p>
+         <p>WML does support file upload. Using the xfupload element
+            may cause some WML browsers to show an error when the page
+            is processed.</p>
+      
+      
+      
+         <h2>WML protocol configuration</h2>
+         <p>The <span class="code">input-dollars</span> attribute on the
+               <span class="code">wml</span> element in the MCS configuration
+            schema is obsolete and has been removed. MCS now processes
+            WML in the 'variable' mode.</p>
+      
+      
+         <h2>Configuration schema changes</h2>
+         <p>The configuration schema also changes in the following
+            ways.</p>
+         <ol>
+            <li>Variant (asset) caches are no longer supported. MCS
+               now caches the whole policy and all information derived
+               from that policy, for example the best variant for a
+               specific device, using a single cache entry. You should
+               therefore re-calculate the optimal size of your caches.</li>
+            <li>The plugin attribute, policy preference and URL caches
+               are no longer used and have been removed</li>
+            <li>There is now only a single remote cache, rather than
+               one for each policy type. It is therefore no longer
+               possible to associate different default caching
+               properties and quotas with individual policy
+            types.</li>
+         </ol>
+      
+      
+         <h2>Caching database policies</h2>
+<p>A performance improvement has been made to cache locking. It prevents the possibility 
+  of blocked access to cached policies in a JDBC database.</p>
+<h2>API change</h2>
+<p>In addition to other API changes noted for this release, the <span class="code">elementDirect</span> 
+  method in the <span class="code">DeprecatedPAPIElement</span> interface, allows 
+  you to write literals to the output, without character encoding.</p>
+<h2>Policy migration note</h2>
+<p>The 2.9 to 3.0 Migration tool applies DTD/Schema validation to local policies 
+  as they are read. If the policy fails validation, an erro will be generated 
+  and that policy will be ignored. </p>
+<p>This behaviour matches that of the 2.9 Runtime. So, any local policieswhich 
+  fail to migrate from 2.9 because they are invalid and should not have been usable 
+  in the 2.9 runtime. This in turns means that they shouldnot be in current use 
+  in any website generated by MCS 2.9. These policies should either be modified 
+  by hand to be valid, or discarded if no longer in use.</p>
+<p>For example, a 2.9 image policy containing &lt;deviceImageAsset ...encoding=&quot;png&quot; 
+  ... &gt; will not be valid according to the DTD and will fail to migrate as 
+  the schema has uppercase PNG instead.</p>
+
+
+      
+      
+         <h2>Known issues</h2>
+         
+            <p>There is a problem with naming
+               layout policies. If you try to create a layout in a new
+               folder when the layout name already exists somewhere
+               else in project, under a different folder then you get
+               the error "The policy [layout_name] already exists".</p>
+            <p>When using ICS from DSB you need
+               to use the
+               <span class="code">pipeline:convertImageURLToDMS</span>
+               element in transforce emulation mode.</p>
+            <p>In an <span class="code">xfform</span>
+               element, if neither the <span class="code">captionPane</span> nor
+                  <span class="code">entryPane</span> attributes are set, instead
+               of the element being output in the default pane,
+               nothing is rendered.</p>
+            <p>In the Type Allocation Codes
+               section of device editor, you may encounter display
+               problems when expanding or contracting the section.</p>
+            <p>Remote asset groups will not work
+               when referenced from image components, and the asset
+               group is always assumed to be local to the project.</p>
+            <p>On WebSphere Everyplace Mobile
+               Portal 5.1, when the ICS is configured to access a
+               remote image server, or when v.imgHost and v.imgPort
+               are used in the URL, and a requested image is PNG then
+               ICS returns a 404 error.</p>
+            <p>On WMLC devices,
+               <span class="code">accesskey</span> attribute values set on
+                  <span class="code">a</span> elements do not render
+               correctly.</p>
+            <p>In the layout editor you cannot
+               drag and drop dissecting pane formats. You should use
+               cut and paste.</p>
+            <p>In collaborative working projects
+               you cannot save rollover images when save when not
+               holding the lock, even if it appears to be allowed.
+               Attempting to do so will result in an error, but the
+               save will not be carried out.</p>
+            <p>You may see visual artifacts on
+               importing JDBC polices to a collaborative project</p>
+            <p>Double-click does not focus asset
+               type. You should select the asset type manually.</p>
+            <p>The image variant wizard does not
+               show the Device Category tab for targeted devices. You
+               should assign device categories once the variant has
+               been created. Specific devices can still be defined
+               with the wizard.</p>
+            <p>You may get an exception opening
+               the Style Rules View If this occurs, closing and
+               re-opening the View should resolve the problem.</p>
+           
+            <p>All policies are incorrectly
+               referred to as themes in the alerts/actions section of
+               the asset group editor. You can be safely ignore this
+               issue.</p>
+            <p>Opening a layout and selecting a
+               variant incorrectly marks the layout as changed. If no
+               changes have been made to the file then you can closed
+               without saving.</p>
+           
+            <p>You cannot target a variant in
+               some wizards. You should assign target
+               devices/categories for layouts once they have been
+               created.</p>
+            <p>Some commands when creating Layout
+               should not be visible and actions have no effect.</p>
+            <p>Incorrect markup is generated for
+               Windows WMA sound files.</p>
+            <p>mcsImport -merge option is fails
+               with a Postgres database. You should therefore not
+               merge databases - instead export the database, edit it
+               and import into an new or cleared database.</p>
+            <p>The <span class="code">directory</span>
+               attribute on the <span class="code">debug-output</span>
+               element in the <span class="filepath">mcs-config.xml</span> file
+               specifies the output directory location. A trailing
+               slash in this value is not significant, and the
+               location is assumed to be a directory in which the
+               debug files will be created.</p>
+            <p>The WML protocol does not render
+               whitespace correctly in the following cases:</p>
+            <ul>
+               <li>A page that contains a
+                  <span class="code">dividehint</span> element and does not
+                  require dissection causes a <span class="code">p</span>
+                  element with an empty space to be rendered</li>
+               <li>A <span class="code">p</span> element with a
+                  <span class="code">pane</span> attribute and a preceding
+                     <span class="code">p</span> element will not be merged
+                  even though their styles would allow it.</li>
+               <li>The mode is not being correctly set when a page is
+                  rendered as multiple cards due to dissecting panes.
+                  It should be explicitly set to the default value if
+                  the last paragraph of the previous card specified
+                  the non default value.</li>
+            </ul>
+            <p>ICS does not fall back to use the
+               default configuration file in the web application's
+                  <span class="filepath">WEB-INF</span> directory. The location
+               of the ICS configuration file specified in the
+                  <span class="filepath">web.xml</span> file should therefore
+               always specify a path to a valid configuration file.</p>
+            <p>Montage layouts should not be used
+               in this release</p>
+            <p>In some environments, a
+               SQLException may thrown when connecting to DB2 when
+               requesting a JSP page for the first time after a
+               restart. Subsequent requests are processed correctly.
+               It may be possible to resolve the problem by changing
+               the DB2 driver.</p>
+            <p>If a device accepts WMLC but uses
+               XHTML, then XDIME pages are not cached.</p>
+            <p>MCS currently supports the jconn2
+               database driver for Sybase, which cannot fetch values
+               of columns &gt;256 characters. As a result values in wider
+               columns may be cut.</p>
+            <p>If the web driver connection
+               timeout in the mcs-config.xml file is specified as -1
+               and the global timeout is set, then the global timeout
+               is applied to the web driver connection.</p>
+            <p>Empty policy names such as
+                  <span class="code"> &lt;img src=""&gt; </span> should not
+               be used as they will result in an exception.</p>
+            <p>Alternative text not shown in jsp
+               page and multimedia components.</p>
+         
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../mcs/mcs_about.html">About MCS</a><br/><a href="../release/mcs351_api.html">Changes to the API</a><br/><a href="../release/mcs35_platforms.html">MCS Supported platforms</a></p>
+      
+   </body></html>

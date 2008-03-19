@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+<title>XDIME 2 and XDIME-CP in layouts</title>
+<link rel="stylesheet" href="../volantis.css"/>
+</head>
+<body>
+<h1>XDIME 2 and XDIME-CP in layouts</h1>
+<p>When you incorporate XDIME-CP markup, either in an XDIME or XDIME 2 pages, 
+  you use two distinct approaches. </p>
+<p>In XDIME, you specify the layout for the entire page, and a region that will 
+  contain the XDIME-CP. Using a separate namespace for the XDIME elements.</p>
+<pre class="code">&lt;cdm:canvas
+   xmlns="http://www.w3.org/2002/06/xhtml2"
+   xmlns:cdm="http://www.volantis.com/xmlns/marlin-cdm"
+   layoutname="/mainlayout.mlyt" theme="maintheme"&gt;
+   &lt;cdm:region&gt;
+      &lt;html&gt;
+         &lt;body&gt;
+            &lt;nl class=”itemlist”&gt;
+               &lt;li class=”item”&gt;
+                  &lt;object src=”image1.png” srctype=”image/png”/&gt;
+                  &lt;a href=”link1.xdime”&gt;Link 1&lt;/a&gt;
+                  &lt;div class=”label”&gt;Label 1&lt;/div&gt;
+               &lt;/li&gt;
+               ...
+            &lt;/nl&gt;
+         &lt;/body&gt;
+      &lt;/html&gt;
+   &lt;/cdm:region&gt;
+&lt;/cdm:canvas&gt;</pre>
+<p>In XDIME 2, the <span class="code">html</span> element is the root container, 
+  and attributes on the <span class="code">link</span> tag binds the page to a 
+  layout or theme. If these attributes are not present, MCS will use the default 
+  project values for layout and theme, and failing that will attempt to render 
+  a page using built in values.</p>
+<pre class="code">&lt;head xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"&gt;
+   &lt;title&gt;Welcome&lt;/title&gt;
+   &lt;link rel="mcs-rel:layout" href="/mylayout.mlyt"/&gt;
+   &lt;link rel="mcs-rel:theme"  href="/mytheme1.mthm"/&gt;
+   &lt;link rel="mcs-rel:theme"  href="/mytheme2.mthm"/&gt;
+&lt;/head&gt;</pre>
+<p>XDIME-CP markup defines presentation with theme properties, two of which control 
+  layout.</p>
+<ul>
+  <li>The <span class="uicontrol">Target Layout</span> property names the layout 
+    policy to be used</li>
+  <li>An element can be directed to an area within the current layout <span class="uicontrol">Target 
+    Container</span>.</li>
+</ul>
+<p>You can also use CSS expressions with iterator panes.</p>
+<h2>Target layout</h2>
+<p>When you assign the <span class="uicontrol">Target Layout</span> property to 
+  an element it causes that element and all its contents to be targeted to that 
+  layout. For example, you might specify a class 'itemlist' for a navigation list 
+  and set the property to '/mylayout.mlyt', and use the following markup.</p>
+<pre class="code">&lt;nl class=”itemlist”&gt;
+   &lt;li class=”item”&gt;
+      &lt;object src=”image1.png” srctype=”image/png”/&gt;
+      &lt;a href=”link1.xdime”&gt;Link 1&lt;/a&gt;
+      &lt;div class=”label”&gt;Label 1&lt;/div&gt;
+   &lt;/li&gt;
+   ...
+&lt;/nl&gt;</pre>
+<h2>Target container</h2>
+<p>Because a layout can have several potential containers, you must also specify 
+  the one in which the XDIME-CP content should be placed. You do this using the 
+  <span class="uicontrol">Target Container</span> property. It is an error if 
+  an element with a <span class="uicontrol">Target Layout</span> property does 
+  not also have <span class="uicontrol">Target Container</span> setting. However, 
+  you can use different rules for the two properties if required.</p>
+<h2>Container references</h2>
+<p>A container reference can either be the name of a container represented as 
+  a CSS string, or a CSS expression that uses the <span class="code">mcs-container-instance</span> 
+  function to select a specific instance of a container to use. This is equivalent 
+  to the <span class="code">layout:getPaneInstance()</span> and <span class="code">layout:getRegionInstance()</span> 
+  function expressions that you can use in XDIME.</p>
+<pre class="code">mcs-container-instance($name as xs:string[, $index as xs:integer]*)
+            as layout:container</pre>
+<p>The next example shows how to specify the tenth instance of the container within 
+  a containing spatial iterator. Indexes are zero based.</p>
+<pre class="code">mcs-container: mcs-container-instance(“header”, 9)</pre>
+<p>However, in most cases where you might use this function you won't know how 
+  many instances there will be, so you will need to use the <span class="code">counter</span> 
+  function.</p>
+<pre class="code">counter($name as xs:string) as xs:integer </pre>
+<p>Unlike a CSS counter, the name of the counter is specified as a string, rather 
+  than a CSS identifier, and the optional style parameter is not needed. The allowable 
+  values are however identical.</p>
+<pre class="code">nl.itemlist {
+   counter-reset: items -1;
+}
+nl.itemlist &gt; li.item {
+   counter-increment: items;
+   mcs-layout: “/layout.mlyt”;
+}
+li.item &gt; object {
+   mcs-container: mcs-container-instance(“images”, counter(“items”));
+}
+li.item &gt; a {
+   mcs-container: mcs-container-instance(“links”, counter(“items”));
+}
+            
+li.item &gt; div.label {
+   mcs-container: mcs-container-instance(“labels”, counter(“items”));
+}</pre>
+<p>The scope of a container name is that of the <em>innermost</em> containing 
+  layout; normally be the layout of the block element containing the element that 
+  references the container. The block element or any elements that it contains 
+  may reference containers within the layout.</p>
+<p>If the pane does not exist within this scope, the output of that content is 
+  suppressed. If you do not specify a container, the content is directed to the 
+  area where the parent element's content is written.</p>
+<p>You can use a number of optional XDIME elements to define or override the link 
+  texts on fragments at run time. These are values that you might have omitted 
+  in the Layout editor because the layout is not always fragmented, or that you 
+  set as defaults to be changed in specific contexts.</p>
+<h2>Overriding fragment links</h2>
+<p>In your XDIME 2 content, you can override fragment and form fragment link texts 
+  at run time, using the <span class="code">meta</span> and <span class="code">xf:group</span> 
+  elements. These are values that you might have omitted in the Layout editor 
+  because the layout is not always fragmented, or that you set as defaults to 
+  be changed in specific contexts. See <em>Fragment links in XDIME 2</em> and 
+  <em>Form fragments links in XDIME 2</em> for details.</p>
+<p><span class="ri">Related topics</span><br/>
+  <a href="../xdime_cp/xdime_cp_about.html">XDIME 2 and XDIME-CP</a><br/>
+  <a href="../xdime_cp/xdime_cp_function_expr.html">Container reference 
+  functions</a><br/>
+  <a href="../xdime_cp/wag_xf_fragment.html">Form fragments links in XDIME 2</a><br/>
+  <a href="../xdime_cp/wag_meta_fragment.html">Fragment links in XDIME 2</a></p>
+</body>
+</html>

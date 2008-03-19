@@ -1,0 +1,1056 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!--
+  ==========================================================================
+  ! $Header: /cvs/architecture/architecture/xml-schema/config/src/mcs-config-internal.xsd,v 1.37 2005/12/14 15:52:00 ianw Exp $
+  ! ============================================================================
+  ! (c) Volantis Systems Ltd 2001. 
+  ! ============================================================================
+  ! Change History:
+  !
+  ! Date         Who             Description
+  ! =========    =============== ===============================================
+  ! 10-Jan-02    Allan           VBM:2001121703 - Modified local-repository to
+  !                              allow an xml-definition child and have a type
+  !                              attribute. Added xml-definition. Created this
+  !                              change history.
+  ! 11-Feb-02    Paul            VBM:2001122105 - Added script-assets.
+  ! 20-Feb-02    Allan           VBM:2002022007 - Added url-cache.
+  ! 06-Mar-02    Allan           VBM:2002030504 - Removed device-pattern-cache
+  !                              optional attribute.
+  ! 08-Mar-02    Paul            VBM:2002030607 - Added style-sheets and
+  !                              associated elements.
+  ! 02-Apr-02	Mat             VBM:2002022009 - Added secondary-repository
+  ! 12-Jul-02    Adrian          VBM:2002070301 - Updated policy-cache element,
+  !                              added chart, link, script -component-cache and
+  !                              -asset-cache elements.  Added remote policy
+  !                              elements.
+  ! 31-Oct-02    Adrian          VBM:2002103004 - Added attribute anonymous to
+  !                              ATTLIST odbc-db-definition
+  ! 07-Nov-02    Adrian          VBM:2002103004 - moved anonymous to
+  !                              ATTLIST web-application
+  ! 19-Nov-02    Phil W-S        VBM:2002111816 - Added configuration entry
+  !                              definition for the custom asset URL rewriter
+  ! 21-Nov-02    Phil W-S        VBM:2002111816 - Synchronized with the internal
+  !                              version of this file (which is now deprecated).
+  ! 07-Nov-02    Adrian          VBM:2002103004 - Removed IMPLIED declaration
+  !                              from anonymous declaration on web-application
+  !                              element.
+  ! 16-Dec-02    Phil W-S        VBM:2002121001 - Added configuration entry
+  !                              definition for stylesheet max-age control.
+  ! 09-Jan-03    Byron           VBM:2003010910 - Added configuration entry
+  !                              definition for repository connection-timeout.
+  ! 31-Jan-03	Byron           VBM:2003013109: - Added configuration entry
+  !                              for page-packaging
+  ! 04-Mar-03    Sumit           VBM:2003022717 - Added quote-value-cache-enabled
+  !                              to page cache
+  ! 11-Mar-03    Steve           VBM:2003021101 - Added session-proxy and
+  !                              map-cookies elements.
+  ! 30-Apr-03    Chris W         VBM:2003041503 - Added jsp element that
+  !                              configures character reference support.
+  ! =======================================================================
+-->
+<!-- Definitions associated with the caching of policy values -->
+<!--
+  ===========================================================================
+  Change History
+  ===========================================================================
+  $Log: mcs-config-internal.xsd,v $
+  Revision 1.37  2005/12/14 15:52:00  ianw
+  Fixed typo
+
+  Revision 1.36  2005/12/14 12:47:33  ianw
+  R1153: Add http-proxy to mcs-config
+
+  Revision 1.35  2005/06/22 11:25:54  pduffin
+  Added entries for CSS generation configuration
+
+  Revision 1.33  2005/05/20 08:55:02  pduffin
+  Added default-scope attribute to page-cache element
+
+  Revision 1.32  2005/03/18 22:27:41  pduffin
+  Added add-device-capabilities-parameter to plugins element
+
+  Revision 1.31  2005/03/18 22:14:06  pduffin
+  Added add-device-capabilities-parameter to plugins element
+
+  Revision 1.30  2005/02/10 14:14:14  pduffin
+  Added jsessionid-name parameter to servlet-filter and added a reference from it to the page-cache element
+
+  Revision 1.29  2005/02/07 16:39:08  pduffin
+  Added remote policy project support and fallback projects
+
+  Revision 1.28  2005/02/01 15:39:47  ianw
+  A944: Deprecated old page-cache attributes and used standard caching attributes
+
+  Revision 1.27  2005/01/26 08:28:14  pduffin
+  Added selection-method-plugin element
+
+  Revision 1.26  2005/01/12 16:55:00  pduffin
+  Added resource component, asset and template
+
+  Revision 1.25  2004/12/09 18:39:54  ianw
+  R:931 Config for servlet-filter
+
+  Revision 1.24  2004/12/01 16:37:04  pduffin
+  Document mcs config schema
+
+  Revision 1.23  2004/10/29 15:47:46  pduffin
+  Changed marlin to XDIME
+
+  Revision 1.22  2004/10/04 13:20:10  pduffin
+  Added use-short-names to jdbc-repository
+
+  Revision 1.21  2004/07/05 14:17:04  ianw
+  R385: Removed message-store-url from MPS config
+
+  Revision 1.20  2004/07/05 12:40:59  ianw
+  R385: Added message-store-url to MPS config
+
+  Revision 1.19  2004/06/24 14:17:50  pduffin
+  Fixed minor errors in configuration
+
+  Revision 1.17  2004/06/22 10:37:17  pduffin
+  Removed style sheet and navigation url rewriter attributes on plugins and replaced with page url rewriter
+
+  Revision 1.16  2004/06/21 15:39:25  pduffin
+  Added style sheet and navigation url rewriter attributes to plugins
+
+  Revision 1.15  2004/06/17 09:59:31  pduffin
+  Added management module
+
+  Revision 1.14  2004/03/02 13:03:25  pduffin
+  Added devices configuration module
+
+  Revision 1.13  2004/02/05 17:36:01  pduffin
+  Added changes for rationlization of data sources back in
+
+  Revision 1.12  2004/01/06 09:26:08  pduffin
+  Extended JavaClassName pattern and allowed multiple markup-plugin elements
+
+  Revision 1.11  2003/12/29 16:48:14  pduffin
+  Removed any attribute on channel as it did not work as expected
+
+  Revision 1.8  2003/12/29 13:38:42  pduffin
+  Added comments attribute to debug element
+
+  Revision 1.7  2003/12/29 12:15:54  pduffin
+  Fixed old inconsistency between the schema and the code / documentation for configuration of remote policy caches and quotas.
+
+  Revision 1.6  2003/12/29 11:43:07  pduffin
+  Added session-proxy to top level element
+
+  Revision 1.5  2003/12/15 16:38:15  pduffin
+  Correct some issues with protocols module
+
+  Revision 1.4  2003/12/15 16:35:52  pduffin
+  Added protocols
+
+  Revision 1.3  2003/12/15 13:39:18  pduffin
+  Refactored data source specification
+
+  Revision 1.2  2003/12/05 14:56:53  pduffin
+  Fixed some inconsistencies
+
+  Revision 1.1  2003/11/28 12:13:08  pduffin
+  Added configuration schema
+
+  
+  
+  25-Jun-03	492/3	byron	VBM:2003061808 Allow MCS to configure the pipeline WebService Connector
+  
+  25-Jun-03	544/3	geoff	VBM:2003061007 Allow JSPs to create binary output
+  
+  25-Jun-03	540/1	geoff	VBM:2003061709 remove mariner config debug enabled attribute
+  
+  24-Jun-03	497/2	byron	VBM:2003062302 Issues with Database configuring and sql connector
+  
+  ===========================================================================
+-->
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/mcs/config" xmlns:mcscfg="http://www.volantis.com/xmlns/mcs/config" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.volantis.com/xmlns/mcs/config" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="modules/common-module.xsd"/>
+    <xs:include schemaLocation="modules/data-source-module.xsd"/>
+    <xs:include schemaLocation="modules/device-module.xsd"/>
+    <xs:include schemaLocation="modules/pipeline-configuration.xsd"/>
+    <xs:include schemaLocation="modules/projects-module.xsd"/>
+    <xs:include schemaLocation="modules/protocols-module.xsd"/>
+    <xs:include schemaLocation="modules/management-module.xsd"/>
+    <!-- ======================================================================
+     !         Common Type Definitions
+     ! ==================================================================== -->
+    <xs:simpleType name="JavaClassName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\p{L}(\p{L}|\p{N})*(\.\p{L}(\p{L}|\p{N})*)*($\p{L}(\p{L}|\p{N})*)*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- ======================================================================
+     !         Root Element Definition
+     ! ==================================================================== -->
+    <xs:element name="mcs-config">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="jndi-configuration" minOccurs="0"/>
+                <xs:element ref="data-sources" minOccurs="0"/>
+                <xs:element ref="local-repository"/>
+                <xs:element ref="devices"/>
+                <xs:element ref="projects"/>
+                <xs:element ref="plugins" minOccurs="0"/>
+                <xs:element ref="secondary-repository" minOccurs="0"/>
+                <xs:element ref="page-messages" minOccurs="0"/>
+                <xs:element ref="policy-cache" minOccurs="0"/>
+                <xs:element ref="jsp" minOccurs="0"/>
+                <xs:element ref="style-sheets" minOccurs="0"/>
+                <xs:element ref="chartimages" minOccurs="0"/>
+                <xs:element ref="modesets" minOccurs="0"/>
+                <xs:element ref="scripts" minOccurs="0"/>
+                <xs:element ref="log4j" minOccurs="0"/>
+                <xs:element ref="mcs-agent" minOccurs="0"/>
+                <xs:element ref="remote-policies" minOccurs="0"/>
+                <xs:element ref="mcs-plugins" minOccurs="0"/>
+                <xs:element ref="application-plugins" minOccurs="0"/>
+                <xs:element ref="user-repositories" minOccurs="0"/>
+                <xs:element ref="web-application" minOccurs="0"/>
+                <xs:element ref="page-packaging" minOccurs="0"/>
+                <xs:element ref="debug" minOccurs="0"/>
+                <xs:element ref="pipeline-configuration" minOccurs="0"/>
+                <xs:element ref="protocols" minOccurs="0"/>
+                <xs:element ref="session-proxy" minOccurs="0"/>
+                <xs:element ref="management" minOccurs="0"/>
+                <xs:element ref="servlet-filter" minOccurs="0"/>
+                <xs:element ref="http-proxy" minOccurs="0"/>
+                <xs:element ref="media-access-proxy" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+        <xs:key name="GlobalInitialContextName">
+            <xs:annotation>
+                <xs:documentation>Ensures that all JNDI initial-context names are unique.</xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath="mcscfg:jndi-configuration/mcscfg:initial-context"/>
+            <xs:field xpath="@name"/>
+        </xs:key>
+        <xs:key name="GlobalDataSourceName">
+            <xs:annotation>
+                <xs:documentation>Ensure that global data sources (those defined in the top level data-sources element) are unique.</xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath="mcscfg:data-sources/mcscfg:named-data-source"/>
+            <xs:field xpath="@name"/>
+        </xs:key>
+        <xs:keyref name="InitialContextReference" refer="GlobalInitialContextName">
+            <xs:selector xpath=".//mcscfg:jndi-data-source">
+                <xs:annotation>
+                    <xs:documentation>Ensure that all jndi-data-source elements reference valid JNDI initial-contexts.</xs:documentation>
+                </xs:annotation>
+            </xs:selector>
+            <xs:field xpath="@initial-context"/>
+        </xs:keyref>
+        <xs:key name="DataSourceName">
+            <xs:selector xpath=".//mcscfg:named-data-source">
+                <xs:annotation>
+                    <xs:documentation>Ensure that all data sources have unique names whether they are global or specific to the SQL driver.</xs:documentation>
+                </xs:annotation>
+            </xs:selector>
+            <xs:field xpath="@name"/>
+        </xs:key>
+        <xs:keyref name="GlobalDataSourceReference" refer="GlobalDataSourceName">
+            <xs:selector xpath=".//mcscfg:data-source">
+                <xs:annotation>
+                    <xs:documentation>Ensure that all data-source elements reference global data sources.</xs:documentation>
+                </xs:annotation>
+            </xs:selector>
+            <xs:field xpath="@ref"/>
+        </xs:keyref>
+    </xs:element>
+    <!-- ======================================================================
+     !         Local Repository Related Definitions
+     ! ==================================================================== -->
+    <xs:element name="local-repository">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="jdbc-repository" minOccurs="0"/>
+                <xs:element ref="xml-repository" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="jdbc-repository">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:group ref="AnonymousDataSource"/>
+            </xs:sequence>
+            <xs:attribute name="vendor" type="VendorName" use="optional">
+                <xs:annotation>
+                    <xs:documentation>This specifies the vendor name of the data source it must always be specified unless the referenced data source was specified using mcs-database (either directly, or nested within a connection-pool) in which case the vendor attribute specified on that is used. It is an error if both this element and the referenced data source have vendor attributes with different values.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="use-short-names" type="xs:boolean" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Determines whether short or descriptive names are used for tables and columns. If set to true then short names are used, otherwise descriptive names are used. The short names are all 18 characters or less.
+
+Note: Some databases (e.g. DB2 z/OS) will only work with short names. In these cases this configuration is ignored.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="xml-repository">
+        <xs:complexType mixed="false"/>
+    </xs:element>
+    <xs:element name="secondary-repository">
+        <xs:annotation>
+            <xs:documentation>The definition of the Secondary Mariner repository to be used. The secondary repository can also be used to store components and assets at runtime</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="inline-metadata" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="inline-metadata">
+        <xs:complexType>
+            <xs:attribute name="enabled" default="false">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="true"/>
+                        <xs:enumeration value="false"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+     !         Policy Cache Related Definitions
+     ! ==================================================================== -->
+    <xs:attributeGroup name="LocalPolicyCacheAttributes">
+        <xs:attribute name="enabled" type="xs:boolean" use="optional" default="false"/>
+        <xs:attribute name="strategy" type="CacheStrategyName" default="least-used"/>
+        <xs:attribute name="max-entries" use="optional" default="-1">
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:minInclusive value="-1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="timeout" use="optional" default="-1">
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:minInclusive value="-1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:element name="policy-cache">
+        <xs:annotation>
+            <xs:documentation>Controls the caching of policies within the MCS application.
+On a production server it is recommended that you set all policy caches to true, on a development server you may wish to switch off some of the policy caches so changes are effective immediately without restarting the application.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="asset-group-cache" minOccurs="0"/>
+                <xs:element ref="audio-component-cache" minOccurs="0"/>
+                <xs:element ref="button-image-component-cache" minOccurs="0"/>
+                <xs:element ref="chart-component-cache" minOccurs="0"/>
+                <xs:element ref="device-cache" minOccurs="0"/>
+                <xs:element ref="dynamic-visual-component-cache" minOccurs="0"/>
+                <xs:element ref="image-component-cache" minOccurs="0"/>
+                <xs:element ref="layout-cache" minOccurs="0"/>
+                <xs:element ref="link-component-cache" minOccurs="0"/>
+                <xs:element ref="resource-component-cache" minOccurs="0"/>
+                <xs:element ref="rollover-image-component-cache" minOccurs="0"/>
+                <xs:element ref="script-component-cache" minOccurs="0"/>
+                <xs:element ref="text-component-cache" minOccurs="0"/>
+                <xs:element ref="theme-cache" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="asset-group-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="audio-component-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="button-image-component-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="chart-component-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="device-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dynamic-visual-component-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="image-component-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="layout-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="link-component-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="resource-component-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rollover-image-component-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="script-component-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="text-component-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="theme-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+     !         Remote Repository Related Definitions
+     ! ==================================================================== -->
+    <xs:element name="remote-policies">
+        <xs:annotation>
+            <xs:documentation>Definitions associated with the caching of remote policy values</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="remote-policy-cache" minOccurs="0"/>
+                <xs:element ref="remote-policy-quotas" minOccurs="0"/>
+            </xs:all>
+            <xs:attribute name="connection-timeout"/>
+        </xs:complexType>
+    </xs:element>
+    <!-- The remote repository connection timeout which is optional and default value is 15 seconds. The units are seconds -->
+    <xs:attributeGroup name="remote-cache-attrs">
+        <xs:attribute name="allowRetainDuringRetry"/>
+        <xs:attribute name="allowRetryFailedRetrieval"/>
+        <xs:attribute name="cachePolicies"/>
+        <xs:attribute name="defaultRetainDuringRetry"/>
+        <xs:attribute name="defaultRetryFailedRetrieval"/>
+        <xs:attribute name="defaultRetryInterval"/>
+        <xs:attribute name="defaultRetryMaxCount"/>
+        <xs:attribute name="defaultTimeToLive"/>
+        <xs:attribute name="maxCacheSize"/>
+        <xs:attribute name="maxRetryMaxCount"/>
+        <xs:attribute name="maxTimeToLive"/>
+        <xs:attribute name="minRetryInterval"/>
+        <xs:attribute name="minimumTimeToLiveForSharing"/>
+        <xs:attribute name="usePersistentCache"/>
+    </xs:attributeGroup>
+    <xs:element name="remote-policy-cache">
+        <xs:complexType>
+            <xs:attributeGroup ref="remote-cache-attrs"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attributeGroup name="RemotePolicyQuotaAttributes">
+        <xs:attribute name="URL" type="xs:anyURI" use="required"/>
+        <xs:attribute name="percentage" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:unsignedInt">
+                    <xs:minInclusive value="0"/>
+                    <xs:maxInclusive value="100"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:element name="remote-policy-quotas" type="RemotePolicyQuotaContainer"/>
+    <xs:element name="remote-policy-quota">
+        <xs:complexType>
+            <xs:attributeGroup ref="RemotePolicyQuotaAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="RemotePolicyQuotaContainer">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="remote-policy-quota"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- ======================================================================
+     !         Style Sheet Related Definitions
+     ! ==================================================================== -->
+    <xs:element name="style-sheets">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="external-generation" minOccurs="0"/>
+                <xs:element ref="internal-generation" minOccurs="0"/>
+                <xs:element ref="page-level-generation" minOccurs="0"/>
+            </xs:all>
+            <xs:attribute name="max-age" type="CacheMaxAge" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="external-generation">
+        <xs:annotation>
+            <xs:documentation>
+Controls the generation of external style sheets.
+An external style sheet is one which is referred to from the page rather than included in it. If this element is present then where possible external style sheets will be generated. Some protocol/device combinations may not allow this in which case the style sheet will be generated inline within the page.
+In order for external style sheets to be cached theme caching must be enabled, the base-directory must exist and it must contain a subdirectory named 'cssFileCache'.
+</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="cache" use="optional" default="disabled">
+                <xs:annotation>
+                    <xs:documentation/>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="enabled"/>
+                        <xs:enumeration value="disabled"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="flush-on-restart" type="xs:boolean" use="optional" default="true">
+                <xs:annotation>
+                    <xs:documentation>If true the contents of the base-directory are deleted when the MCS bean is created.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="base-directory" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>This must contain the absolute path to the directory into which the generated style sheets are written.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="base-url" type="xs:anyURI" use="optional">
+                <xs:annotation>
+                    <xs:documentation>This is the path that the browser must use in order to access the mariner servlet which serves the generated css files. This must take into account any URL mapping which may be done by servers between the browser and the application server on which the servlet is running. It must not end in /. If this is not specified then it defaults to &lt;context path&gt;/MarinerCSS.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="session" type="CSSSessionType" use="optional">
+                <xs:annotation>
+                    <xs:documentation>This is type of session that may be associated with the external style sheet. Currently there is one value allowed: include-id-in-url which includes the session id as part of the URL.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="internal-generation">
+        <xs:annotation>
+            <xs:documentation>Controls the generation of internal style sheets.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="cache"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="page-level-generation">
+        <xs:annotation>
+            <xs:documentation>Controls the generation of page level CSS.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="max-age" type="CacheMaxAge" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+     !         JSP Related Definitions
+     ! ==================================================================== -->
+    <xs:element name="jsp">
+        <xs:annotation>
+            <xs:documentation>Configuration relating to JSPs</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="support-required" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Controls whether support for jsp pages is required. It should be set to false if the web application does not contain any XDIME JSP pages and true otherwise. Its primary use is to allow web applications that do not use JSPs to prevent unnecessary work being done during initialisation.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="write-direct" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Controls whether JSP tags should write device dependent content direct to the output, or whether they should write device independent content to Mariner. This should only be set to true for older web applications that rely on being able to write direct to the output. New web applications should just use the default value of false.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="resolve-character-references" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Controls whether JSP tags attempt to resolve character references within their attributes and content before passing them onto PAPI. Web applications that do not use character references within JSPs should set this to false as it will improve performance slightly.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="evaluate-page-after-canvas" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Control whether JSPs should evaluate page content after the canvas tag. This should only be set to true for older web applications that rely having JSP content after the canvas tag. New web applications should just use the default value of false. If this is set to true it may have adverse affects for web applications which generate binary content such as WBXML/WMLC or packaged output.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+     !         Integration Related Definitions
+     ! ==================================================================== -->
+    <xs:element name="mcs-plugins">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="markup-plugin" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="markup-plugin">
+        <xs:annotation>
+            <xs:documentation>Markup Plugins are java classes whose methods can be invoked directly from XDIME markup using the invoke element.  These classes must conform to the interface com.volantis.mcs.integration.MarkupPlugin.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="PluginType">
+                    <xs:attribute name="scope" use="optional" default="canvas">
+                        <xs:annotation>
+                            <xs:documentation>MarkupPlugins can be defined to have the following scopes.</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:token">
+                                <xs:enumeration value="application">
+                                    <xs:annotation>
+                                        <xs:documentation>The plugin is initialized when the web app starts and terminates when the web application ends.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:enumeration>
+                                <xs:enumeration value="session">
+                                    <xs:annotation>
+                                        <xs:documentation>The plugin is initialized when a new session starts and terminates when the session ends.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:enumeration>
+                                <xs:enumeration value="canvas">
+                                    <xs:annotation>
+                                        <xs:documentation>The plugin is initializes when a canvas element is invoked and terminates when the canvas generation ends.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:enumeration>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="initialize">
+        <xs:annotation>
+            <xs:documentation>The initialization arguments are specified as name-value pairs which are passed as a java.util.Map to the initialize method of the MarkupPlugin.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="argument" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="argument">
+        <xs:complexType>
+            <xs:attribute name="name" use="required"/>
+            <xs:attribute name="value" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="plugins">
+        <xs:complexType>
+            <xs:attribute name="url-rewriter" type="JavaClassName">
+                <xs:annotation>
+                    <xs:documentation>Defines the name of a custom Java class that implements the com.volantis.mcs.integration.URLRewriter interface.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="page-url-rewriter" type="JavaClassName">
+                <xs:annotation>
+                    <xs:documentation>Defines the name of a custom Java class that implements the com.volantis.mcs.integration.PageURLRewriter interface.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="asset-url-rewriter" type="JavaClassName">
+                <xs:annotation>
+                    <xs:documentation>Defines the name of a custom Java class that implements the com.volantis.mcs.integration.AssetURLRewriter interface.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="asset-transcoder" type="JavaClassName">
+                <xs:annotation>
+                    <xs:documentation>Defines the name of a custom Java class that implements the com.volantis.mcs.integration.PluggableAssetTranscoder</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="add-device-capability-parameter" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Controls whether the ICS asset transcoder plugin passes device capability information to the ICS transcoder by adding a  parameter to URLs for convertible images. If true then it does add the <code>v.dc</code> parameter, otherwise it does not. The default is for it not to add the parameter.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="web-application">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="base-url">
+                <xs:annotation>
+                    <xs:documentation>Defines the effective URL of the server seen from a client, and is used only when there is some URL mapping in use.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="internal-url">
+                <xs:annotation>
+                    <xs:documentation>Defines the absolute URL of the server as seen from the web application, and is used only when there is no other more specific prefix, for example, from associated asset groups, for the absolute part of their URL.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="page-base">
+                <xs:annotation>
+                    <xs:documentation>Used when generating resources. For example the URL to generated chart images is prefixed by the web-application base-url, the web-application page-base, and the chartimages base attributes concatenated together with any additional path delimeters required.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="xml-reader"/>
+            <xs:attribute name="app-server-name">
+                <xs:annotation>
+                    <xs:documentation>Indicates the application server in use.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="jndi-provider"/>
+            <xs:attribute name="use-server-connection-pool">
+                <xs:annotation>
+                    <xs:documentation>Controls whether the application server's connection pool should be used, if available.
+ If the connection pool is used, the datasource-vendor, datasource, user and password attributes need to be set, and if a BEA Weblogic connection pool is used the jndi-provider attribute also needs to be set.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="datasource"/>
+            <xs:attribute name="datasource-vendor"/>
+            <xs:attribute name="user"/>
+            <xs:attribute name="password"/>
+            <xs:attribute name="anonymous" default="false">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="true"/>
+                        <xs:enumeration value="false"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+     !         Policy Selection Plugins
+     ! ==================================================================== -->
+    <xs:complexType name="PluginType">
+        <xs:annotation>
+            <xs:documentation>Base type for all plugin definitions.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="initialize" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:NCName" use="required">
+            <xs:annotation>
+                <xs:documentation>The name by which the plugin will be referenced.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="class" type="JavaClassName" use="required">
+            <xs:annotation>
+                <xs:documentation>The plugin class implementing the appropriate plugin specific interface.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <!-- ======================================================================
+     !         MCS Application Related Definitions
+     ! ==================================================================== -->
+    <xs:element name="application-plugins">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="mps" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mps">
+        <xs:annotation>
+            <xs:documentation>The MPS application plugin contains the Mariner MPS configuration.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="channels" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="internal-base-url" type="xs:anyURI">
+                <xs:annotation>
+                    <xs:documentation>Defines the url to use for MPS asset resolution from internal requests.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="message-recipient-info" type="JavaClassName">
+                <xs:annotation>
+                    <xs:documentation>Defines the user supplied class used to resolve recipient devices and channels.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="channels">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="channel" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="channel">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="argument" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:annotation>
+                    <xs:documentation>The name of the channel.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="class" type="JavaClassName" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The class implementing the ChannelAdapter interface for this channel.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+     !         User Preference Related Definitions
+     ! ==================================================================== -->
+    <xs:element name="external-preferences-repository">
+        <xs:annotation>
+            <xs:documentation>Definitions associated with an external repository used for holding information about users and their preferences. This definition is associated with a Mariner plugin of type  POLICY_PREFS_REPOSITORY</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="plugin-name" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="internal-preferences-repository">
+        <xs:annotation>
+            <xs:documentation>Definitions associated with that part of Mariner's internal repository used for holding user preferences.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="user-repositories">
+        <xs:annotation>
+            <xs:documentation>Definitions associated with repositories that hold information about users and their preferences</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="external-preferences-repository" minOccurs="0"/>
+                <xs:element ref="internal-preferences-repository" minOccurs="0"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+     !         Generated File Related Definitions
+     ! ==================================================================== -->
+    <xs:element name="scripts">
+        <xs:annotation>
+            <xs:documentation>Definitions associated with Scripts generated by Mariner for those devices that support them.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="base"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="modesets">
+        <xs:annotation>
+            <xs:documentation>Definitions associated with Mode Sets generated by Mariner for those devices that support them.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="base"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="chartimages">
+        <xs:annotation>
+            <xs:documentation>Definitions associated with Chart Images generated by Mariner for those devices that support them.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="base"/>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+     !         Servlet Filter Definitions
+     ! ==================================================================== -->
+    <xs:element name="servlet-filter">
+        <xs:annotation>
+            <xs:documentation>Configures the XDIME Servlet Filter</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="mime-type"/>
+                    <xs:element ref="exclude-device"/>
+                </xs:choice>
+                <xs:element ref="page-cache" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="jsessionid-name" type="xs:NCName" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The name of the path parameter that is used to specify the session id.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mime-type">
+        <xs:annotation>
+            <xs:documentation>Specifies a mime-type which the servlet filter will pass as XDIME</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="value" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The value of the mime type e.g. x-application/vnd.xdime+xml</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="exclude-device">
+        <xs:annotation>
+            <xs:documentation>Excludes a specific device from being processed by the Servlet Filter</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>The name of the device to exclude</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+     !         Miscellaneous Definitions
+     ! ==================================================================== -->
+    <xs:element name="page-cache">
+        <xs:annotation>
+            <xs:documentation>Definitions associated with the caching of generated pages to improve overall server performance.
+This is currently ignored.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="max-age" use="optional">
+                <xs:annotation>
+                    <xs:documentation>This attribute is deprecated</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="base-directory" use="optional">
+                <xs:annotation>
+                    <xs:documentation>This attribute is deprecated</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="base-url" use="optional">
+                <xs:annotation>
+                    <xs:documentation>This attribute is deprecated</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="default-scope" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Determines the caching strategy for renderend pages when an XDIME document does not have a cacheScope attribute.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="none">
+                            <xs:annotation>
+                                <xs:documentation>No caching.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="safe">
+                            <xs:annotation>
+                                <xs:documentation>Pipeline markup is evaluated in the XDIME before it is used as part of the cache hashing.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="optimistic">
+                            <xs:annotation>
+                                <xs:documentation>Pipeline markup is NOT evaluated in the XDIME before it is used as part of the cache hashing.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="quote-value-cache-enabled" use="optional">
+                <xs:annotation>
+                    <xs:documentation>This attribute is deprecated</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="true"/>
+                        <xs:enumeration value="false"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attributeGroup ref="LocalPolicyCacheAttributes"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="debug">
+        <xs:complexType>
+            <xs:attribute name="comments" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Controls whether MCS will attempt to generate comments in the output pages. Setting this to true does not guarantee that comments will be written to the output pages as not all protocols support them.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="logPageOutput" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>Controls whether the markup for the generated page is written to the MCS log.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="log4j">
+        <xs:annotation>
+            <xs:documentation>Definition which controls how log4j is configured.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="xml-configuration-file">
+                <xs:annotation>
+                    <xs:documentation>The path to the file containing the configuration for Mariner's log4j based logging.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mcs-agent">
+        <xs:annotation>
+            <xs:documentation>Definitions associated with the Mariner agent.   The Mariner agent allows the remote flushing of policy caches and provides the ability to change the level of logging online.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="enabled"/>
+            <xs:attribute name="port"/>
+            <xs:attribute name="password"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="http-proxy">
+        <xs:complexType>
+            <xs:attribute name="host" type="xs:string" use="required"/>
+            <xs:attribute name="port" type="xs:unsignedShort"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="session-proxy">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="map-cookies" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="map-cookies">
+        <xs:complexType>
+            <xs:attribute name="enabled" default="false">
+                <xs:simpleType>
+                    <xs:restriction base="xs:token">
+                        <xs:enumeration value="true"/>
+                        <xs:enumeration value="false"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="media-access-proxy">
+        <xs:complexType>
+            <xs:attribute name="url-prefix" type="xs:anyURI" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

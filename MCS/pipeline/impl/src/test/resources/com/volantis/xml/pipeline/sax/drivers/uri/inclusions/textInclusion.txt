@@ -1,0 +1,2 @@
+This is some included TEXT
+<p>This is some xml that should not be parsed</p>

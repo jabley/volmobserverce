@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><meta name="taskref" content="014"/><title>device:getAncestorRelationship</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>device:getAncestorRelationship</h1><h2>Purpose</h2>
+         <p>Checks whether the named device is an ancestor of the
+            current device. It is equivalent to the
+               <span class="code">getAncestorRelationShip</span> method of the
+               <span class="code">MarinerRequestContext</span> class. The return
+            codes from that method are mapped to one of the returned
+            values.</p>
+      <h2>Signature</h2><p><span class="code">device:getAncestorRelationship($device as xs:string) as
+         xs:string?</span></p><h2>Parameters</h2><table cellspacing="0" summary="The table contains the&#xA;            parameters of the function. It lists the name, the purpose&#xA;            or use, and the XML schema datatype."><tr><th class="firsthdr" scope="col">Name</th><th scope="col">Description</th><th scope="col">Type</th></tr><tr><th class="firstcell" scope="row">ancestor</th><td><p>The device is an ancestor of the current device</p></td><td>xs:string</td></tr><tr><th class="firstcell" scope="row">device</th><td><p>As a called value, the name of the device to compare against</p></td><td>xs:string</td></tr><tr><th class="firstcell" scope="row">device</th><td><p>As a returned value, the named device is the same as the current device</p></td><td>xs:string</td></tr><tr><th class="firstcell" scope="row">unknown</th><td><p>The device is unknown, or there is no current device</p></td><td>xs:string</td></tr><tr><th class="firstcell" scope="row">unrelated</th><td><p>The device is unrelated to the current device in that it is not actually an ancestor</p></td><td>xs:string</td></tr></table><h2>Example</h2>
+         <pre class="code">&lt;p expr="device:getAncestorRelationship('PC') = 'ancestor'
+or device:getAncestorRelationship('PC') = 'device'"&gt;
+This message is only for those PC users out there.
+&lt;/p&gt; </pre>
+      
+         <p><span class="ri">Related topic</span><br/><a href="../wag/wag_function_expr.html">MCS function expressions</a></p>
+      </body></html>

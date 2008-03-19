@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.volantis.mcs.eclipse.doc" name="%pluginName" version="5.0.0" provider-name="%providerName">
+	<runtime/>
+	<extension point="org.eclipse.help.toc">
+		<toc file="toc.xml" primary="true"/>
+		<toc file="topics_mcs.xml"/>
+		<toc file="topics_components.xml"/>
+		<toc file="topics_layouts.xml"/>
+		<toc file="topics_themes.xml"/>
+		<toc file="topics_devices.xml"/>
+		<toc file="topics_dci.xml"/>
+		<!--<toc file="topics_xdime.xml"/>-->
+		<toc file="topics_xdime_cp.xml"/>
+		<toc file="topics_wag.xml"/>
+		<toc file="topics_install.xml"/>
+		<toc file="topics_admin.xml"/>
+		<toc file="topics_mps.xml"/>
+		<toc file="topics_ics.xml"/>
+		<toc file="topics_dws.xml"/>
+		<toc file="topics_client.xml"/>
+		<toc file="topics_ticker.xml"/>
+	</extension>
+</plugin>

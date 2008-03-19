@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/>
+      <title>Working with XDIME</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Working with XDIME</h1>
+      
+      <p>XDIME (XML Device Independent Markup Extensions) is an XML
+         vocabulary with elements that partly reflect the usage of
+         tags in languages such as HTML and WML, though the exact
+         syntax and attributes may not be identical. This makes it
+         very easy to create XDIME content if you already know these
+         languages. These are elements for block and inline text,
+         hyperlinks, and inserting images and other objects.</p>
+      
+         
+      <p>Additionally there are several groups of elements that are
+            specific to XDIME.</p>
+         
+      <ul>
+            
+         <li>A flexible <strong>
+               <b>container</b>
+            </strong> structure that allows for
+               nesting and the maintenance of reuseable code fragments</li>
+            
+         <li>Binding to components, layouts and themes</li>
+            
+         <li>Page <strong>
+               <b>caching</b>
+            </strong> options</li>
+            
+         <li>Tags for <strong>
+               <b>forms</b>
+            </strong> using XForms concepts and
+               allowing form fragmentation</li>
+            
+         <li>Elements for <strong>
+               <b>menu</b>
+            </strong> structures</li>
+            
+         <li>
+               
+            <strong>
+               <b>Conditional</b>
+            </strong> markup</li>
+            
+         <li>An extensive vocabulary for <strong>
+               <b>dynamic content
+                  integration</b>
+            </strong>
+            
+         </li>
+            
+         <li>Messaging elements</li>
+         
+      </ul>
+         
+      <p>The example contains a <span class="code">canvas</span>, or page,
+            that is bound to a layout in the <span class="code">layoutName</span>.
+            The <span class="code">logo</span> defines an image component.
+            The layout has three panes. Two panes are defined with
+               <span class="code">pane</span> elements, and a third pane
+            defined with the alternate <span class="code">pane</span> attribute
+            syntax on the paragraph.</p>
+         
+      <pre class="code">&lt;canvas
+   layoutName="/example.mlyt"
+   theme="/example.mthm"&gt;
+   &lt;logo pane="logo1" src="/stars.mimg"/&gt;
+   &lt;pane name="cpynews"&gt;
+      &lt;h2&gt;Floods in Britain set to worsen&lt;/h2&gt;
+      &lt;p&gt;Weather forecasters are predicting further strong winds and
+      heavy rain this weekend, adding to the misery for the
+      thousandsof people whose homes have been flooded during the
+      last two weeks. With rivers at record levels, the worst floods
+      for over 50 years have forced large numbers of people to seek
+      shelter elsewhere.&lt;/p&gt;
+   &lt;/pane&gt;
+   &lt;pane name="headlines"&gt;
+      &lt;h2&gt;Other Stories&lt;/h2&gt;
+         &lt;p&gt;&lt;a href="elvis.xml"&gt;Nun sees Elvis on moon&lt;/a&gt;&lt;/p&gt;
+         &lt;p&gt;&lt;a href="man.xml"&gt;Man bites dog&lt;/a&gt;&lt;/p&gt;
+         &lt;p&gt;&lt;a href="hamster.xml"&gt;Hamster abducted by aliens&lt;/a&gt;&lt;/p&gt;
+   &lt;/pane&gt;  
+   &lt;p pane="trailer"&gt;&lt;i&gt;Copyright 2004 NewsService Group&lt;/i&gt;&lt;/p&gt;
+&lt;/canvas&gt;</pre>
+      
+      
+      <p/>
+      
+         
+      <p>
+         <span class="ri">Related topic</span>
+         <br/>
+         <a href="../wag/xdime_jsp.html">Markup in Java Server Pages</a>
+         <br/>
+         <a href="../wag/wag_canvas_type.html">Types of canvas</a>
+         <br/>
+         <a href="../wag/wag_xdime_cache.html">Controlling page caching</a>
+         <br/>
+         <a href="../wag/wag_portal.html">Defining portals</a>
+         <br/>
+         <a href="../wag/wag_xdime_forms.html">Using forms</a>
+         <br/>
+         <a href="../wag/wag_xdime_menu.html">Menus</a>
+         <br/>
+         <a href="../wag/wag_xdime_chart.html">Specifying charts</a>
+         <br/>
+         <a href="../wag/wag_xdime_script.html">Using scripts</a>
+         <br/>
+         <a href="../wag/wag_xdime_layout.html">Overriding fragment links</a>
+         <br/>
+         <a href="../wag/wag_conditional_markup.html">Using conditional markup</a>
+         <br/>
+		 <a href="../wag/wag_bidi.html">Setting text direction</a>
+         <br/>
+         <a href="../wag/wag_mcs_expr.html">MCS expressions</a>
+         <br/>
+         <a href="../wag/wag_web_server.html">Directing web servers</a>
+         <br/>
+         <a href="../wag/wag_custom_class.html">Calling custom classes</a>
+         <br/>
+         <a href="../wag/wag_test.html">Testing MCS policies</a>
+      </p>
+      
+   
+   </body>
+</html>

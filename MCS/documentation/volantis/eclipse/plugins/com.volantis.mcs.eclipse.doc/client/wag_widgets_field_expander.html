@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD       XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Expanding a form field</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Expanding a form field</h1>
+      <p>By using the Field Expander widget you can include fields in the form or in wizard step,
+         without making them visible initially. The field or fields are made visible when a related
+         form field receives focus. This allows you to design an uncluttered layout for forms that
+         contain a lot of fields.</p>
+      
+         <h2>Visual appearance</h2>
+         <p>When folded, users see only the primary part of the content, usually with a marker which
+            indicates that the item can be opened. When unfolded, both the primary field and
+            subordinate fields are visible, normally with a marker which indicates that the item can
+            be closed, and with the primary field potentially rendered in a different style.</p>
+         <div class="note"><strong>Note</strong>: Unfolding results in the content below the widget moving down to make
+            space for the unfolded item. Folding moves the content up to reclaim the space. You can
+            apply transitions to the process.</div>
+      
+      
+         <h2>User interactions</h2>
+         <p>The unfolding action can be triggered when the user clicks on the primary field in its
+            folded state, or gives it the focus. Folding can be triggered by clicking, or by moving
+            focus away from the primary or the subordinate fields.</p>
+      
+      
+         <h2>XDIME 2 elements</h2>
+         <p>You use the <span class="code">widget:field-expander</span> element to define hidden form
+            fields.</p>
+         <pre class="code">
+&lt;widget:field-expander&gt;
+   &lt;xf:input ref="name" &gt;
+      &lt;xf:label&gt;Name &lt;/xf:label&gt;
+   &lt;/xf:input&gt;
+    &lt;xf:group&gt;
+      &lt;table&gt;
+         &lt;tr&gt;
+            &lt;td&gt;Address&lt;/td&gt;
+            &lt;td&gt;
+               &lt;xf:input ref="address" /&gt;
+            &lt;/td&gt;
+         &lt;/tr&gt;
+         &lt;tr&gt;
+            &lt;td&gt;E-mail&lt;/td&gt;
+            &lt;td&gt;
+               &lt;xf:input ref="email"/&gt;
+            &lt;/td&gt;
+         &lt;/tr&gt;
+      &lt;/table&gt;
+   &lt;/xf:group&gt;
+&lt;/widget:field-expander&gt;</pre>
+      
+      
+         <h2>Styling the widget</h2>
+         <p>The <span class="uicontrol">Toggle event</span> property describes the event that expands the
+            primary field, with values 'focus' or 'click'.</p>
+         <p>The <span class="code">:mcs-unfolded</span> pseudo-class, and the <span class="code">::marker</span>
+            pseudo-element set the style for unfolded field labels and markers.</p>
+      
+      
+         <h2>Non-client fallback</h2>
+         <p>If a device does not support the Field Expander widget, then it displays all elements in
+            the unfolded state.</p>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../client/widget_library.html">Widget library</a><br/><a href="../xdime_cp/widget_field_expander.html">widget:field-expander</a><br/><a href="../client/wag_widgets_style.html">Styling widgets</a></p>
+      
+   </body></html>

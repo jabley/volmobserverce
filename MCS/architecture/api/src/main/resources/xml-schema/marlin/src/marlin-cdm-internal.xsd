@@ -1,0 +1,1722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Zoe Jones (private) -->
+<!-- ==========================================================================
+ ! $Header: /cvs/architecture/architecture/xml-schema/marlin/src/marlin-cdm-internal.xsd,v 1.16 2005/03/11 14:31:50 pduffin Exp $
+ ! ============================================================================
+ ! (c) Volantis Systems Ltd 2001. 
+ ! ============================================================================
+ ! Change History:
+ !
+ ! Date         Who             Description
+ ! =========    =============== ===============================================
+ ! 14-Nov-01    Paul            VBM:2001111402 - Added this header.
+ ! 30-Nov-01    Paul            VBM:2001112909 - Added FieldAttrs and
+ !                              SelectFieldAttrs attribute groups.
+ ! 19-Dec-01    Paul            VBM:2001120506 - Made more compatible with
+ !                              architecture schema.
+ ! 10-Jan-02    Adrian          VBM:2001122803 - Natural names of Dynamic
+ !                              Visuals updated (eg. quicktime to quick time)
+ ! 22-Jan-02    Paul            VBM:2002012202 - Brought up to date with
+ !                              schema.
+ ! 25-Jan-02    Paul            VBM:2002012202 - Moved name out of FieldAttrs
+ !                              and added it to t he individual elements as for
+ !                              some elements it is optional. A pseudo
+ !                              name attribute was added to FieldAttrs to allow
+ !                              the code generator to generate the same set of
+ !                              attributes for XFFormFieldAttributes.
+ ! 25-Jan-02    Paul            VBM:2002012503 - Added papi processing
+ !                              instructions to indicate which attributes can
+ !                              be mariner expressions and what there default
+ !                              component type is.
+ ! 31-Jan-02    Paul            VBM:2001122105 - Added event attributes.
+ ! 01-Feb-02    Steve           VBM:2002010803 - Added url attribute to mmflash
+ !                              realaudio, et al... This makes the name
+ !                              attribute no longer mandatory as name or url
+ !                              can be used.
+ ! 19-Feb-02    Paul            VBM:2001100102 - Added value on xfaction.
+ ! 25-Feb-02    Paul            VBM:2002022503 - Fixed some minor problems
+ !                              with the deprecated elements, i.e. classic
+ !                              forms and onPaneActive.
+ ! 28-Feb-02    Mat             VBM:2002021203 - Added SSIInclude & SSIConfig
+ ! 13-Mar-02    Paul            VBM:2002030104 - Removed classic form elements
+ !                              and onPaneActive element.
+ ! 14-Mar-02    Steve           VBM:2002021119 - Added inputMode attribute to
+ !                              xftextinput as required by imode-HTML and mml
+ ! 19-Mar-02    Steve           VBM:2002021105 - Added fragment elements
+ !                              layout - Container for elements affecting the
+ !                              layout fragment - Override fragment link text
+ !                              formfragment - Override form fragment link text
+ ! 20-Mar-02    Doug            VBM:2002031905 - Added a defaultComponentType
+ !                              for accessKey.
+ ! 22-Mar-02    Steve           VBM:2002031801 - Added substituteformat
+ !                              element.
+ ! 03-Apr-02    Adrian          VBM:2001102414 - Added brand attribute to the
+ !                              canvas element.
+ ! 05-Jun-02    Adrian          VBM:2002021103 - Added keepTogether attribute
+ !                              to div and tbody elements
+ ! 05-Jun-02    Byron           VBM:2002053002 - Added support for tabindex and
+ !                              fixed the tab formatting.
+ ! 21-Jun-02    Paul            T0412 - Added captionClass, captionPane and
+ !                              entryPane to xfoption and also added the
+ !                              xfcontent element.
+ ! 09-Jul-02    Paul            T0412 - Made xfcontent accept mixed content.
+ ! 31-Jul-02    Paul            T0438 - Added xfoptgroup.
+ ! 21-Aug-02    Paul            VBM:2002081508 - Added uaContext to canvas.
+ ! 22-Aug-02    Paul            VBM:2002081421 - Added inline.xfforms group.
+ ! 22-Aug-02    Paul            VBM:2002081306 - Added urlc attribute to img.
+ ! 06-Sep-02    Rhys            Requirement 439 - correct the namespace
+ !                              definition to allow rpdm to include this
+ ! 12-Sep-02    Rhys            Requirement 376 - add the message element
+ ! 30-Sep-02    Paul            VBM:2002093002 - Added prompt attribute to
+ !                              xfoption and xfoptgroup.
+ ! 18-Oct-02    Paul            VBM:2002101807 - Changed content model of
+ !                              message to allow only one canvas and added papi
+ !                              processing instruction.
+ ! 05-Nov-02    Paul            VBM:2002090207 - Added mapRuleType processing
+ !                              instructions.
+ ! 21-Nov-02    Rhys            Added audio element for Mandate task 505
+ ! 11-Dec-02    Paul            VBM:2002112212 - Fixed processing instructions
+ !                              for audio element.
+ ! 12-Dec-02    Paul            Moved menu from Block into block, removed
+ !                              canvas from block, moved pane from block to
+ !                              Block. Changed content model of pane from
+ !                              Block to Flow, updated documentation of Flow.
+ ! 12-Dec-02    Paul            VBM:2002121215 - Made region content model#
+ !                              mixed and added Flow.
+ ! 17-Dec-02    Rhys            R428 Added the markup for invoke, including
+ !                              import of the new marlin-im schema. Renamed
+ !                              this file to marlin-cdm-internal to support 
+ !                              separation of internal and external views
+ ! 30-Dec-02    Rhys            R420 Added the phone number element and
+ !                              reorganised anchor attributes
+ ! 21-Jan-03    Rhys            R420 Corrected phonenumber element to all
+ !                              lowercase and added to the appropriate content
+ !                              models.
+ ! 22-Jan-03    Rhys            R355 Added menuitemgroup element
+ ! 22-Jan-03    Rhys            R355 Added PAPI definitions for menuitemgroup
+ ! 29-Jan-03    Rhys            R384 Added the ssGenType attribute to PageAttrs
+ ! 06-Feb-03    Rhys            R398 Added the dissectingpane element within
+ !                              layout   
+ ! 21-Feb-03    Rhys            R671 Added the nativemarkup element
+ ! 21-Feb-03    Rhys            R480 Moved vtim:invoke references to Block,
+ !                              Flow, Inline.
+ ! 21-Feb-03    Paul            Added constraints on form field names and
+ !                              xfoption values.
+ ! 21-Feb-03    Paul            R672 Added onenterforward and onenterbackward
+ !                              to canvas element.
+ ! 24-Feb-03    Rhys            R671 Added the clientvariablename attribute to
+ !                              xfimplicit
+ ! 26-Feb-03    Rhys            R671 Corrected names of attributes classes
+ !                              associated with dissecting panes and fragments
+ ! 14-Mar-03    Ian             R671 Added the processing instruction for
+ !                              nativemarkup element
+ ! 19-Mar-03    Rhys            R420 Corrected processing instruction class
+ !                              name for phonenumber element
+ ! 19-Mar-03    Rhys            VBM:2003031710 added text component support to
+ !                              image alternate text
+ ! 20-Mar-03    Rhys            R420  Corrected processing instruction class
+ !                              name for phonenumber element (again!)
+ ! 20-Mar-03    Rhys            R398 Added generated class names to
+ !                              dissectingpane element
+ ! 27-Mar-03    Ian             R702 Added prompt for menuitem and prompts,
+ !                              errmsg and help to menu.
+ ! 31-Mar-03    Rhys            R504 Added Pane as valid content for xfform
+ ! 14-Apr-04    Paul            R701/A703 Added src attribute to span.
+ ! 14-Apr-03    Paul            Removed duplicate name attributes, changed
+ !                              target namespace to provide more separation
+ !                              between the namespace and the schema.
+ ! 14-Apr-03    Paul            Added Anywhere/anywhere groups and include
+ !                              element.
+ ! 05-May-03    Paul            R747 - Added tabindex to td and changed type
+ !                              of id attribute to xs:ID from xs:string and
+ !                              change initialFocus to be type xs:IDREF.
+ ! 23-Jun-03    Paul            VBM:2003061910 - Added mixed="true" to
+ !                              nativemarkup.
+ ! 23-Jun-03    Paul            R752 Added imports for pipeline schemata, added
+ !                              usePipeline, template:apply, template:value to
+ !                              the anywhere group, also added some attributes
+ !                              to include to make it equivalent to urid:fetch.
+ ! 24-Jun-03    Paul            R752 Changed usePipeline to use its own
+ !                              complexType instead of a predefined type. This
+ !                              is simply due to limitations in the current
+ !                              code generator.
+ ! 24-Jun-03    Paul            R752 Changed include to not use a type due to
+ !                              limitations in the code genarator.
+ ! 30-Jun-03    Paul            R752 Added processing instructions for include
+ !                              element.
+ ! 01-Jul-03    Ian             R726 Added conditional elements.
+ ! 02-Jul-03    Ian             R726 made expr optional on select and changed 
+ !                              matchall to matchevery.
+ ! 03-Jul-03    Ian             R722 Added marlin-web-driver.
+ ! 04-Jul-03    Ian             R724 Add malin-proxy.
+ ! 07-Jul-03    Rhys  R724 remove marlin-proxy
+ ! 07-Jul-03    Rhys  R756 update expressions. Rename MarinerExpression to ComponentName
+ !                              Remove the patterns associated with the expr attributes since they always
+ !                              contain Volantis Expressions
+ ! 07-Jul-03    Ian             R726 Added paip statemens for
+ !                              conditional elements.
+ ! 07-Jul-03    Ian             R724 Removed marlin-proxy.
+ ! 08-Jul-03    Ian             R726 Created ExprAttr group.
+ ! 16-Jul-03    Ian             R763 Added "maml" element.
+ ! 16-Jul-03    Ian             R763 made "maml" mixed.
+ ! 16-Jul-03    Ian             R763 changed "maml" to "unit".
+ ! 08-Aug-03    Paul            R763 Added papi PI to unit.
+ ! 10-Oct-03    Paul            Fixed errors identified by Xerces.
+ ! 02-Dec-03   Rhys         R760 Deprecated image and color-related attributes that are device dependent on 
+ !                                   menuitem. Will be replaced with values from theme
+ !                                   Deprecated menu type attribute and made use optional. 
+ !                                   This will be replaced by values from themes.
+ !                                   Added label attribute to menu 
+ ! 14-Dec-03 Rhys          R760 Added pane and image attributes to menuitem
+ ! 9-Jan-04   Rhys           R760 removed erroneous label attribute from menu
+ !18-Mar-04  Rhys          R760 corrected content model and attributes for label element
+ ! ======================================================================== -->
+<!--
+ !
+ ! ***************************************************************************************************
+ ! This file is owned by Architecture and can only be changed by a member of
+ ! that group.
+ !
+ ! This is the internal description of the Mariner markup language. It
+ ! includes the external definition of the language together with
+ ! embellishments used in generation of some of the classes that implement it.
+ ! This form of the schema is used to create the external form in addition to
+ ! a number of other definitions and source code used in creation and
+ ! documentation of the product.
+ !NOTE: Comments within the xs:schema element are preserved in the external version
+ ! ***************************************************************************************************
+ !
+ !-->
+<?xml-stylesheet type="text/xsl" href="CreateExternalSchema.xsl"?>
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/marlin-cdm" xmlns:cdm="http://www.volantis.com/xmlns/marlin-cdm" xmlns:webd="http://www.volantis.com/xmlns/marlin-web-driver" xmlns:wsd="http://www.volantis.com/xmlns/marlin-web-service-driver" xmlns="http://www.volantis.com/xmlns/marlin-cdm" xmlns:vtim="http://www.volantis.com/xmlns/marlin-im" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline" xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver" xmlns:template="http://www.volantis.com/xmlns/marlin-template" xmlns:sqld="http://www.volantis.com/xmlns/marlin-sql-driver" xmlns:servlet="http://www.volantis.com/xmlns/marlin-servlet" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <!--
+     ! ****************************************************************************************************************************
+     ! Schema Name:  Marlin Canvas Definition Module
+     ! Purpose: Define the XML representation of the markup used to represent Mariner pages
+     ! ****************************************************************************************************************************
+     !-->
+    <!--
+     ! ************************************************************************
+     !         Imports and Inclusions
+     ! ************************************************************************
+     !-->
+    <xs:import namespace="http://www.volantis.com/xmlns/marlin-im" schemaLocation="marlin-im-internal.xsd"/>
+    <xs:import namespace="http://www.volantis.com/xmlns/marlin-pipeline" schemaLocation="marlin-pipeline.xsd"/>
+    <xs:import namespace="http://www.volantis.com/xmlns/marlin-uri-driver" schemaLocation="marlin-uri-driver.xsd"/>
+    <xs:import namespace="http://www.volantis.com/xmlns/marlin-template" schemaLocation="marlin-template.xsd"/>
+    <xs:import namespace="http://www.volantis.com/xmlns/marlin-sql-driver" schemaLocation="marlin-sql-driver.xsd"/>
+    <xs:import namespace="http://www.volantis.com/xmlns/marlin-web-service-driver" schemaLocation="marlin-web-service-driver.xsd"/>
+    <xs:import namespace="http://www.volantis.com/xmlns/marlin-servlet" schemaLocation="marlin-servlet.xsd"/>
+    <xs:import namespace="http://www.volantis.com/xmlns/marlin-web-driver" schemaLocation="marlin-web-driver.xsd"/>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Simple Types
+     ! ************************************************************************
+     !-->
+    <xs:simpleType name="cellhalign">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="left"/>
+            <xs:enumeration value="right"/>
+            <xs:enumeration value="center"/>
+            <xs:enumeration value="justify"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="cellvalign">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="top"/>
+            <xs:enumeration value="middle"/>
+            <xs:enumeration value="bottom"/>
+            <xs:enumeration value="baseline"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="menutype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="plaintext"/>
+            <xs:enumeration value="rollovertext"/>
+            <xs:enumeration value="rolloverimage"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="bullettype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="circle"/>
+            <xs:enumeration value="disc"/>
+            <xs:enumeration value="square"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="numbertype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="a"/>
+            <xs:enumeration value="I"/>
+            <xs:enumeration value="i"/>
+            <xs:enumeration value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="textinputtype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="text"/>
+            <xs:enumeration value="password"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ProjectRef">
+        <xs:annotation>
+            <xs:documentation>Specifies a project to use. This can either be the name of a project, or the expression <code>project:getDefaultProject()</code>.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="QuotedComponentRef">
+        <xs:annotation>
+            <xs:documentation>Specifies a component to use. This must start with a { and end with a }. Within those delimiters the allowable values are the same as for a <code>UnquotedComponentRef</code>.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\{.*\}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="UnquotedPolicyRef">
+        <xs:annotation>
+            <xs:documentation>Specifies a policy to use. This can either be the name of the policy, or an expression using <code>project:getPolicy()</code> and related methods. If it is just a name then it is assumed to be within the current project.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="UnquotedComponentRef">
+        <xs:annotation>
+            <xs:documentation>Specifies a component to use. See <code>UnquotedPolicyRef</code>.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="UnquotedPolicyRef"/>
+    </xs:simpleType>
+    <xs:simpleType name="StringList">
+        <xs:list itemType="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="QuotedComponentRefOrList">
+        <xs:annotation>
+            <xs:documentation>Either a literal white space separated list of strings, or a <code>QuotedComponentRef</code> that resolves to a value of the same format.<p>It is treated as a <code>QuotedComponentRef</code> if and only if it is delimited by {}, otherwise it is a literal.</p></xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="QuotedComponentRef StringList"/>
+    </xs:simpleType>
+    <xs:simpleType name="QuotedComponentRefOrScript">
+        <xs:annotation>
+            <xs:documentation>Either a literal script, or a <code>QuotedComponentRef</code> that resolves to a value of the same format.<p>It is treated as a <code>QuotedComponentRef</code> if and only if it is delimited by {}, otherwise it is a literal.</p></xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="QuotedComponentRef xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="QuotedComponentRefOrShortcut">
+        <xs:annotation>
+            <xs:documentation>Either a literal shortcut, or a <code>QuotedComponentRef</code> that resolves to a value of the same format.<p>It is treated as a <code>QuotedComponentRef</code> if and only if it is delimited by {}, otherwise it is a literal.</p></xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="QuotedComponentRef xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="QuotedComponentRefOrText">
+        <xs:annotation>
+            <xs:documentation>Either literal text, or a <code>QuotedComponentRef</code> that resolves to a value of the same format.<p>It is treated as a <code>QuotedComponentRef</code> if and only if it is delimited by {}, otherwise it is a literal.</p></xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="QuotedComponentRef xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="QuotedComponentRefOrURI">
+        <xs:annotation>
+            <xs:documentation>Either a literal URI, or a <code>QuotedComponentRef</code> that resolves to a value of the same format.<p>It is treated as a <code>QuotedComponentRef</code> if and only if it is delimited by {}, otherwise it is a literal.</p></xs:documentation>
+        </xs:annotation>
+        <xs:union memberTypes="QuotedComponentRef xs:anyURI"/>
+    </xs:simpleType>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Attribute Groups
+     ! ************************************************************************
+     !-->
+    <xs:attributeGroup name="AnchorAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes common to anchor elements</xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="AnchorBaseAttrs"/>
+        <xs:attribute name="href" type="QuotedComponentRefOrURI" use="optional"/>
+        <xs:attribute name="segment" type="xs:string" use="optional"/>
+        <xs:attribute name="target" type="xs:string" use="optional"/>
+        <xs:attribute name="name" type="xs:string" use="optional"/>
+        <?papi attributeGroupClass="AbstractAnchorAttributes" naturalName="abstract anchor"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="AnchorBaseAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes common to anchor and phone number elements</xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="BlockAttrsDep"/>
+        <xs:attributeGroup ref="focus"/>
+        <xs:attribute name="shortcut" type="QuotedComponentRefOrShortcut" use="optional"/>
+        <xs:attribute name="tabindex" type="xs:integer" use="optional"/>
+        <?papi attributeGroupClass="AbstractAnchorBaseAttributes" naturalName="abstract anchor base"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="BaseAttrs">
+        <xs:attribute name="id" type="xs:ID" use="optional"/>
+        <xs:attribute name="class" type="xs:string" use="optional">
+            <?papi name="styleClass"?>
+        </xs:attribute>
+        <xs:attribute name="style" type="xs:string" use="optional"/>
+        <xs:attributeGroup ref="ExprAttrs"/>
+        <?papi attributeGroupClass="BaseAttributes"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="BlockAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes common to all block elements</xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="attrs"/>
+        <xs:attribute name="pane" type="xs:string" use="optional"/>
+        <?papi attributeGroupClass="BlockAttributes"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="BlockAttrsDep">
+        <xs:annotation>
+            <xs:documentation>Attributes common to all elements where pane is deprecated</xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="attrs"/>
+        <xs:attribute name="pane" type="xs:string" use="optional">
+            <?deprecated?>
+        </xs:attribute>
+        <?papi attributeGroupClass="DeprecatedBlockAttributes" baseAttributeGroup="BlockAttrs" naturalName="deprecated block"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="ExprAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes associated wit content selection</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="expr" type="xs:string" use="optional"/>
+        <?papi attributeGroupClass="ExprAttributes"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="FieldAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes common to most form fields</xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="attrs"/>
+        <xs:attributeGroup ref="focus"/>
+        <xs:attribute name="active" type="xs:boolean" use="optional" default="true"/>
+        <xs:attribute name="caption" type="QuotedComponentRefOrText" use="optional"/>
+        <xs:attribute name="captionPane" type="xs:string" use="optional"/>
+        <xs:attribute name="entryPane" type="xs:string" use="optional"/>
+        <xs:attribute name="help" type="QuotedComponentRefOrText" use="optional"/>
+        <xs:attribute name="prompt" type="QuotedComponentRefOrText" use="optional"/>
+        <xs:attribute name="shortcut" type="QuotedComponentRefOrShortcut" use="optional"/>
+        <xs:attribute name="onchange" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onChange"?>
+        </xs:attribute>
+        <xs:attribute name="onselect" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onSelect"?>
+        </xs:attribute>
+        <xs:attribute name="tabindex" type="xs:integer" use="optional"/>
+        <!--
+         ! Add a pseudo name attribute here for the code generator.
+         ! This is needed because all fields which use this attribute
+         ! group have a name and the common code needs to use it but
+         ! it is required in all fields apart from xfaction where
+         ! it is optional and it is not possible for an element to
+         ! change the properties of an inherited attribute.
+         !-->
+        <?papi attribute="name" type="xs:string" use="optional"?>
+        <?papi attributeGroupClass="XFFormFieldAttributes" naturalName="extended function form field"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="DissectingPaneAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes common to dissecting panes</xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="PartAttrs"/>
+        <?papi attributeGroupClass="AbstractDissectingPaneAttributes" naturalName="dissecting pane"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="FragmentAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes common to fragments</xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="PartAttrs"/>
+        <?papi attributeGroupClass="AbstractFragmentAttributes" naturalName="fragment"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="PartAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes common to parts of pages</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <xs:attribute name="linkText" type="QuotedComponentRefOrText" use="optional"/>
+        <xs:attribute name="backLinkText" type="QuotedComponentRefOrText" use="optional"/>
+        <xs:attributeGroup ref="ExprAttrs"/>
+        <?papi attributeGroupClass="AbstractPartAttributes" naturalName="part"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="ImageAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes common to image elements</xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="BlockAttrs"/>
+        <xs:attribute name="alt" type="QuotedComponentRefOrText" use="optional">
+            <?papi name="altText" ?>
+        </xs:attribute>
+        <xs:attribute name="src" type="UnquotedComponentRef" use="optional"/>
+        <xs:attribute name="assetURLsuffix" type="xs:string" use="optional"/>
+        <xs:attribute name="url" type="xs:string" use="optional"/>
+        <xs:attribute name="urlc" type="xs:string" use="optional"/>
+        <?papi attributeGroupClass="AbstractImageAttributes" naturalName="abstract image"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="PageAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes associated with the entire page</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="layoutName" type="UnquotedPolicyRef" use="required"/>
+        <xs:attribute name="cacheScope" type="xs:string" use="optional"/>
+        <xs:attribute name="maxAge" type="xs:string" use="optional"/>
+        <xs:attribute name="pageTitle" type="xs:string" use="optional"/>
+        <xs:attribute name="theme" type="UnquotedPolicyRef" use="optional"/>
+        <xs:attribute name="onload" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onLoad"?>
+        </xs:attribute>
+        <xs:attribute name="onunload" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onUnload"?>
+        </xs:attribute>
+        <xs:attribute name="ssGenType" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="internal"/>
+                    <xs:enumeration value="external"/>
+                    <xs:enumeration value="default"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <?papi attributeGroupInterface="PageAttributes"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="SelectFieldAttrs">
+        <xs:annotation>
+            <xs:documentation>Attributes common to the select fields</xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="FieldAttrs"/>
+        <xs:attribute name="errmsg" type="QuotedComponentRefOrText" use="optional"/>
+        <xs:attribute name="initial" type="xs:string" use="optional"/>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+        <?papi attributeGroupClass="XFSelectAttributes" naturalName="extended function select field"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="attrs">
+        <xs:attributeGroup ref="coreattrs"/>
+        <xs:attributeGroup ref="i18n"/>
+        <xs:attributeGroup ref="events"/>
+        <?papi attributeGroupClass="AttrsAttributes"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="coreattrs">
+        <xs:attributeGroup ref="BaseAttrs"/>
+        <xs:attribute name="title" type="xs:string" use="optional"/>
+        <?papi attributeGroupClass="CoreAttributes"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="events">
+        <xs:attribute name="onclick" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onClick"?>
+        </xs:attribute>
+        <xs:attribute name="ondblclick" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onDoubleClick"?>
+        </xs:attribute>
+        <xs:attribute name="onkeydown" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onKeyDown"?>
+        </xs:attribute>
+        <xs:attribute name="onkeypress" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onKeyPress"?>
+        </xs:attribute>
+        <xs:attribute name="onkeyup" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onKeyUp"?>
+        </xs:attribute>
+        <xs:attribute name="onmousedown" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onMouseDown"?>
+        </xs:attribute>
+        <xs:attribute name="onmousemove" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onMouseMove"?>
+        </xs:attribute>
+        <xs:attribute name="onmouseout" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onMouseOut"?>
+        </xs:attribute>
+        <xs:attribute name="onmouseover" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onMouseOver"?>
+        </xs:attribute>
+        <xs:attribute name="onmouseup" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onMouseUp"?>
+        </xs:attribute>
+        <?papi attributeGroupInterface="EventAttributes"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="focus">
+        <xs:attribute name="accesskey" type="QuotedComponentRefOrShortcut" use="optional">
+            <?papi name="accessKey" protocolName="shortcut"?>
+        </xs:attribute>
+        <xs:attribute name="onfocus" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onFocus"?>
+        </xs:attribute>
+        <xs:attribute name="onblur" type="QuotedComponentRefOrScript" use="optional">
+            <?papi name="onBlur"?>
+        </xs:attribute>
+        <?papi attributeGroupInterface="FocusAttributes"?>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="i18n">
+        <?papi attributeGroupInterface="InternationalisationAttributes"?>
+    </xs:attributeGroup>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Groups
+     ! ************************************************************************
+     !-->
+    <xs:group name="anywhere">
+        <xs:annotation>
+            <xs:documentation>This group encapsulates those elements that can go anywhere in the page.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element ref="include"/>
+            <xs:element ref="usePipeline"/>
+            <xs:element ref="template:apply"/>
+            <xs:element ref="template:value"/>
+            <xs:element ref="vtim:invoke"/>
+            <xs:element ref="select"/>
+            <xs:element ref="unit"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="block">
+        <xs:choice>
+            <xs:element ref="p"/>
+            <xs:group ref="heading"/>
+            <xs:element ref="div"/>
+            <xs:group ref="lists"/>
+            <xs:group ref="blocktext"/>
+            <xs:element ref="menu"/>
+            <xs:element ref="table"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="blocktext">
+        <xs:choice>
+            <xs:element ref="pre"/>
+            <xs:element ref="hr"/>
+            <xs:element ref="blockquote"/>
+            <xs:element ref="address"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="fontstyle">
+        <xs:choice>
+            <xs:element ref="tt"/>
+            <xs:element ref="i"/>
+            <xs:element ref="b"/>
+            <xs:element ref="big"/>
+            <xs:element ref="small"/>
+            <xs:element ref="u"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="inline">
+        <xs:choice>
+            <xs:element ref="a"/>
+            <xs:element ref="va"/>
+            <xs:element ref="phonenumber"/>
+            <xs:group ref="special"/>
+            <xs:group ref="fontstyle"/>
+            <xs:group ref="phrase"/>
+            <xs:group ref="inline.xfforms"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="inline.xfforms">
+        <xs:annotation>
+            <xs:documentation>This group is not intended to allow you to mix form fields with other markup inside a form. Rather it is simply intended to allow you to place fields inline in the page which trigger a script.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element ref="xfaction"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="heading">
+        <xs:choice>
+            <xs:element ref="h1"/>
+            <xs:element ref="h2"/>
+            <xs:element ref="h3"/>
+            <xs:element ref="h4"/>
+            <xs:element ref="h5"/>
+            <xs:element ref="h6"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="lists">
+        <xs:choice>
+            <xs:element ref="ul"/>
+            <xs:element ref="ol"/>
+            <xs:element ref="dl"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="misc">
+        <xs:choice>
+            <xs:element ref="script"/>
+            <xs:element ref="noscript"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="phrase">
+        <xs:choice>
+            <xs:element ref="em"/>
+            <xs:element ref="strong"/>
+            <xs:element ref="code"/>
+            <xs:element ref="sub"/>
+            <xs:element ref="sup"/>
+            <xs:element ref="samp"/>
+            <xs:element ref="kbd"/>
+            <xs:element ref="cite"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="xfSelectOptions">
+        <xs:choice>
+            <xs:element ref="xfoptgroup"/>
+            <xs:element ref="xfoption"/>
+            <xs:group ref="anywhere"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="special">
+        <xs:choice>
+            <xs:element ref="audio"/>
+            <xs:element ref="br"/>
+            <xs:element ref="span"/>
+            <xs:element ref="img"/>
+            <xs:element ref="logo"/>
+            <xs:element ref="chart"/>
+            <xs:element ref="dividehint"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="Block">
+        <xs:choice>
+            <xs:group ref="block"/>
+            <xs:element ref="meta"/>
+            <xs:element ref="pane"/>
+            <xs:group ref="misc"/>
+            <xs:element ref="xfform"/>
+            <xs:element ref="region"/>
+            <xs:element ref="nativemarkup"/>
+            <xs:group ref="anywhere"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="Flow">
+        <xs:annotation>
+            <xs:documentation>Block elements which are used as part of this group must not specify a pane.</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:group ref="block"/>
+            <xs:group ref="inline"/>
+            <xs:group ref="misc"/>
+            <xs:element ref="nativemarkup"/>
+            <xs:group ref="anywhere"/>
+        </xs:choice>
+    </xs:group>
+    <xs:group name="Inline">
+        <xs:choice>
+            <xs:group ref="inline"/>
+            <xs:group ref="misc"/>
+            <xs:element ref="nativemarkup"/>
+            <xs:group ref="anywhere"/>
+        </xs:choice>
+    </xs:group>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Complex Types
+     ! ************************************************************************
+     !-->
+    <xs:complexType name="a.content" mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="special"/>
+            <xs:group ref="fontstyle"/>
+            <xs:group ref="phrase"/>
+            <xs:group ref="misc"/>
+            <xs:group ref="anywhere"/>
+        </xs:choice>
+        <xs:attributeGroup ref="AnchorAttrs"/>
+    </xs:complexType>
+    <xs:complexType name="pre.content" mixed="true">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="a"/>
+            <xs:element ref="va"/>
+            <xs:element ref="phonenumber"/>
+            <xs:element ref="br"/>
+            <xs:element ref="span"/>
+            <xs:element ref="tt"/>
+            <xs:element ref="i"/>
+            <xs:element ref="b"/>
+            <xs:group ref="anywhere"/>
+        </xs:choice>
+        <xs:attributeGroup ref="BlockAttrs"/>
+    </xs:complexType>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Elements Associated with Layouts
+     ! ************************************************************************
+     !-->
+    <xs:element name="layout">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="dissectingpane"/>
+                <xs:element ref="fragment"/>
+                <xs:element ref="formfragment"/>
+                <xs:element ref="substituteformat"/>
+            </xs:choice>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="LayoutElement" attributesClass="LayoutAttributes" naturalName="layout" ?>
+    </xs:element>
+    <xs:element name="dissectingpane">
+        <xs:complexType>
+            <xs:attributeGroup ref="DissectingPaneAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="DissectingPaneElement" attributesClass="DissectingPaneAttributes" naturalName="dissectingpane" ?>
+    </xs:element>
+    <xs:element name="fragment">
+        <xs:complexType>
+            <xs:attributeGroup ref="FragmentAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="FragmentElement" attributesClass="FragmentAttributes" naturalName="fragment"?>
+    </xs:element>
+    <xs:element name="formfragment">
+        <xs:complexType>
+            <xs:attributeGroup ref="FragmentAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="FormFragmentElement" attributesClass="FormFragmentAttributes" naturalName="formfragment"?>
+    </xs:element>
+    <xs:element name="substituteformat">
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="type" type="xs:string" use="required"/>
+            <xs:attribute name="newFormatName" type="xs:string" use="required"/>
+            <xs:attribute name="newFormatType" type="xs:string" use="required"/>
+            <xs:attribute name="newLayoutName" type="xs:string" use="required"/>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="SubstituteFormatElement" attributesClass="SubstituteFormatAttributes" naturalName="substituteformat"?>
+    </xs:element>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Elements Associated with Presentation
+     ! ************************************************************************
+     !-->
+    <xs:element name="a" type="a.content">
+        <?papi elementClass="AnchorElement" attributesClass="AnchorAttributes" naturalName="anchor"?>
+    </xs:element>
+    <xs:element name="address">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="AddressElement" attributesClass="AddressAttributes" naturalName="address"?>
+    </xs:element>
+    <xs:element name="audio">
+        <xs:complexType>
+            <xs:attributeGroup ref="BlockAttrs"/>
+            <xs:attribute name="src" type="UnquotedComponentRef" use="optional"/>
+            <xs:attribute name="assetURLsuffix" type="xs:string" use="optional"/>
+            <xs:attribute name="alt" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="AudioElement" attributesClass="AudioAttributes" naturalName="audio"?>
+    </xs:element>
+    <xs:element name="b">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="BoldElement" attributesClass="BoldAttributes" naturalName="bold"?>
+    </xs:element>
+    <xs:element name="big">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="BigElement" attributesClass="BigAttributes" naturalName="big"?>
+    </xs:element>
+    <xs:element name="blockquote">
+        <xs:complexType mixed="true">
+            <xs:group ref="Block" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+            <xs:attribute name="cite" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="BlockQuoteElement" attributesClass="BlockQuoteAttributes" naturalName="block quote"?>
+    </xs:element>
+    <xs:element name="br">
+        <xs:complexType>
+            <xs:attributeGroup ref="coreattrs"/>
+        </xs:complexType>
+        <?papi elementClass="LineBreakElement" attributesClass="LineBreakAttributes" naturalName="line break"?>
+    </xs:element>
+    <xs:element name="canvas">
+        <xs:complexType>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:annotation>
+                        <xs:documentation>This choice is valid for canvas types of main, portal, portlet, gear and inclusion which are not treated as an ensemble.</xs:documentation>
+                    </xs:annotation>
+                    <xs:element ref="style" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:group ref="anywhere" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="layout" minOccurs="0"/>
+                    <xs:group ref="anywhere" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="timer" minOccurs="0"/>
+                    <xs:group ref="Block" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>This choice is only valid for a canvas type of main, or portal which are treated as an ensemble.</xs:documentation>
+                    </xs:annotation>
+                    <xs:element ref="region"/>
+                    <xs:element ref="canvas"/>
+                    <xs:group ref="anywhere"/>
+                </xs:choice>
+            </xs:choice>
+            <xs:attributeGroup ref="attrs"/>
+            <xs:attributeGroup ref="PageAttrs"/>
+            <xs:attribute name="brand" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="pageUsage" type="xs:string" use="optional"/>
+            <xs:attribute name="policyProject" type="ProjectRef" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Specifies the project that is used for resolving unqualified or partially qualified policy names within the canvas. This includes policies referenced from attributes of this element, e.g. layouts and themes. Once this element and all its contents have been processed the current project is set back to its previous version.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="type" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="main"/>
+                        <xs:enumeration value="portal"/>
+                        <xs:enumeration value="portlet"/>
+                        <xs:enumeration value="gear"/>
+                        <xs:enumeration value="inclusion"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="initialFocus" type="xs:IDREF" use="optional"/>
+            <xs:attribute name="ontimer" type="QuotedComponentRefOrScript" use="optional">
+                <?papi name="onTimer"?>
+            </xs:attribute>
+            <xs:attribute name="onenter" type="QuotedComponentRefOrScript" use="optional">
+                <?papi name="onEnter"?>
+            </xs:attribute>
+            <xs:attribute name="onenterbackward" type="QuotedComponentRefOrScript" use="optional">
+                <?papi name="onEnterBackward"?>
+            </xs:attribute>
+            <xs:attribute name="onenterforward" type="QuotedComponentRefOrScript" use="optional">
+                <?papi name="onEnterForward"?>
+            </xs:attribute>
+            <xs:attribute name="overlay" type="xs:boolean" use="optional"/>
+            <xs:attribute name="uaContext" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="CanvasElement" attributesClass="CanvasAttributes" naturalName="canvas"?>
+    </xs:element>
+    <xs:element name="chart">
+        <xs:complexType>
+            <xs:attributeGroup ref="BlockAttrs"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="altText" type="xs:string" use="optional"/>
+            <xs:attribute name="data" type="xs:string" use="optional"/>
+            <xs:attribute name="labels" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="ChartElement" attributesClass="ChartAttributes" naturalName="chart"?>
+    </xs:element>
+    <xs:element name="cite">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="CiteElement" attributesClass="CiteAttributes" naturalName="cite"?>
+    </xs:element>
+    <xs:element name="code">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="CodeElement" attributesClass="CodeAttributes" naturalName="code"?>
+    </xs:element>
+    <xs:element name="dd">
+        <xs:complexType mixed="true">
+            <xs:group ref="Flow" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrsDep"/>
+        </xs:complexType>
+        <?papi elementClass="DefinitionDataElement" attributesClass="DefinitionDataAttributes" naturalName="definition data"?>
+    </xs:element>
+    <xs:element name="div">
+        <xs:complexType mixed="true">
+            <xs:group ref="Flow" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+            <xs:attribute name="keepTogether" type="xs:boolean" use="optional" default="false"/>
+        </xs:complexType>
+        <?papi elementClass="DivElement" attributesClass="DivAttributes" naturalName="div"?>
+    </xs:element>
+    <xs:element name="dividehint">
+        <xs:complexType>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="DivideHintElement" attributesClass="DivideHintAttributes" naturalName="divide hint"?>
+    </xs:element>
+    <xs:element name="dl">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="dt"/>
+                <xs:element ref="dd"/>
+            </xs:choice>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="DefinitionListElement" attributesClass="DefinitionListAttributes" naturalName="definition list"?>
+    </xs:element>
+    <xs:element name="dt">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrsDep"/>
+        </xs:complexType>
+        <?papi elementClass="DefinitionTermElement" attributesClass="DefinitionTermAttributes" naturalName="definition term"?>
+    </xs:element>
+    <xs:element name="em">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="EmphasisElement" attributesClass="EmphasisAttributes" naturalName="emphasis"?>
+    </xs:element>
+    <xs:element name="h1">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="Heading1Element" attributesClass="Heading1Attributes" naturalName="heading1"?>
+    </xs:element>
+    <xs:element name="h2">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="Heading2Element" attributesClass="Heading2Attributes" naturalName="heading2"?>
+    </xs:element>
+    <xs:element name="h3">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="Heading3Element" attributesClass="Heading3Attributes" naturalName="heading3"?>
+    </xs:element>
+    <xs:element name="h4">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="Heading4Element" attributesClass="Heading4Attributes" naturalName="heading4"?>
+    </xs:element>
+    <xs:element name="h5">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="Heading5Element" attributesClass="Heading5Attributes" naturalName="heading5"?>
+    </xs:element>
+    <xs:element name="h6">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="Heading6Element" attributesClass="Heading6Attributes" naturalName="heading6"?>
+    </xs:element>
+    <xs:element name="hr">
+        <xs:complexType>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="HorizontalRuleElement" attributesClass="HorizontalRuleAttributes" naturalName="horizontal rule"?>
+    </xs:element>
+    <xs:element name="i">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="ItalicElement" attributesClass="ItalicAttributes" naturalName="italic"?>
+    </xs:element>
+    <xs:element name="img">
+        <xs:complexType>
+            <xs:attributeGroup ref="ImageAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="ImageElement" attributesClass="ImageAttributes" naturalName="image"?>
+    </xs:element>
+    <xs:element name="include">
+        <xs:annotation>
+            <xs:documentation>Short cut for including external XML and text files within a marlin page.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="href" type="xs:anyURI" use="optional"/>
+            <xs:attribute name="parse" use="optional" default="xml">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="xml"/>
+                        <xs:enumeration value="text"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="encoding" type="xs:string" use="optional"/>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="IncludeElement" attributesClass="IncludeAttributes" naturalName="include"?>
+    </xs:element>
+    <xs:element name="kbd">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="KeyboardElement" attributesClass="KeyboardAttributes" naturalName="keyboard"?>
+    </xs:element>
+    <xs:element name="li">
+        <xs:complexType mixed="true">
+            <xs:group ref="Flow" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrsDep"/>
+        </xs:complexType>
+        <?papi elementClass="ListItemElement" attributesClass="ListItemAttributes" naturalName="list item"?>
+    </xs:element>
+    <xs:element name="label">
+        <xs:annotation>
+            <xs:documentation>This is based on a subset of the XHTML 2 label element for lists</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:group ref="phrase" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="LabelElement" attributesClass="LabelAttributes" naturalName="label"?>
+    </xs:element>
+    <xs:element name="logo">
+        <xs:complexType>
+            <xs:attributeGroup ref="ImageAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="LogoElement" attributesClass="LogoAttributes" naturalName="logo"?>
+    </xs:element>
+    <xs:element name="menu">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="label" minOccurs="0"/>
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element ref="menuitem" minOccurs="0"/>
+                    <xs:element ref="menuitemgroup" minOccurs="0"/>
+                    <xs:element ref="menu" minOccurs="0"/>
+                    <xs:group ref="anywhere"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attributeGroup ref="BlockAttrs"/>
+            <xs:attribute name="errmsg" type="QuotedComponentRefOrText" use="optional"/>
+            <xs:attribute name="help" type="QuotedComponentRefOrText" use="optional"/>
+            <xs:attribute name="prompt" type="QuotedComponentRefOrText" use="optional"/>
+            <xs:attribute name="type" type="menutype" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+        </xs:complexType>
+        <?papi elementClass="MenuElement" attributesClass="MenuAttributes" naturalName="menu"?>
+    </xs:element>
+    <xs:element name="menuitem">
+        <xs:complexType>
+            <xs:attributeGroup ref="BlockAttrs"/>
+            <xs:attributeGroup ref="focus"/>
+            <xs:attribute name="href" type="QuotedComponentRefOrURI" use="required"/>
+            <xs:attribute name="image" type="xs:string" use="optional"/>
+            <xs:attribute name="offColor" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="offImage" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="onColor" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="onImage" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="rolloverImage" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="segment" type="xs:string" use="optional"/>
+            <xs:attribute name="target" type="xs:string" use="optional"/>
+            <xs:attribute name="shortcut" type="QuotedComponentRefOrShortcut" use="optional"/>
+            <xs:attribute name="text" type="xs:string" use="required"/>
+            <xs:attribute name="prompt" type="QuotedComponentRefOrText" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="MenuItemElement" attributesClass="MenuItemAttributes" naturalName="menu item"?>
+    </xs:element>
+    <xs:element name="menuitemgroup">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="menuitem"/>
+            </xs:choice>
+            <xs:attributeGroup ref="BaseAttrs"/>
+            <xs:attribute name="pane" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="MenuItemGroupElement" attributesClass="MenuItemGroupAttributes" naturalName="menu item group"?>
+    </xs:element>
+    <xs:element name="message">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="canvas"/>
+            </xs:choice>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="MessageElement" attributesClass="MessageAttributes" naturalName="message"?>
+    </xs:element>
+    <xs:element name="meta">
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="optional"/>
+            <xs:attribute name="http-equiv" type="xs:string" use="optional">
+                <?papi name="httpEquiv" ?>
+            </xs:attribute>
+            <xs:attribute name="lang" type="xs:string" use="optional"/>
+            <xs:attribute name="content" type="xs:string" use="required"/>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="MetaElement" attributesClass="MetaAttributes" naturalName="meta"?>
+    </xs:element>
+    <xs:element name="montage">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="segment" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:attributeGroup ref="coreattrs"/>
+            <xs:attributeGroup ref="PageAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="MontageElement" attributesClass="MontageAttributes" naturalName="montage"?>
+    </xs:element>
+    <xs:element name="nativemarkup">
+        <xs:complexType mixed="true">
+            <xs:choice>
+                <xs:any/>
+            </xs:choice>
+            <xs:attribute name="targetLocation" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="wml.deck.head"/>
+                        <xs:enumeration value="wml.deck.template"/>
+                        <xs:enumeration value="wml.card.timer"/>
+                        <xs:enumeration value="wml.card.onevent"/>
+                        <xs:enumeration value="wml.card.beforebody"/>
+                        <xs:enumeration value="here"/>
+                        <xs:enumeration value="pane"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="pane" type="xs:string" use="optional"/>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="NativeMarkupElement" attributesClass="NativeMarkupAttributes" naturalName="native markup"?>
+    </xs:element>
+    <xs:element name="noscript">
+        <xs:complexType mixed="true">
+            <xs:group ref="Block" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+            <xs:attribute name="idref" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="NoScriptElement" attributesClass="NoScriptAttributes" naturalName="no script"?>
+    </xs:element>
+    <xs:element name="ol">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="li"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="BlockAttrs"/>
+            <xs:attribute name="start" type="xs:integer" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="type" type="numbertype" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+        </xs:complexType>
+        <?papi elementClass="OrderedListElement" attributesClass="OrderedListAttributes" naturalName="ordered list"?>
+    </xs:element>
+    <xs:element name="otherwise">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:group ref="Block" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <?papi elementClass="OtherwiseElement" attributesClass="OtherwiseAttributes" naturalName="otherwise"?>
+    </xs:element>
+    <xs:element name="p">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="ParagraphElement" attributesClass="ParagraphAttributes" naturalName="paragraph"?>
+    </xs:element>
+    <xs:element name="pane">
+        <xs:complexType mixed="true">
+            <xs:group ref="Flow" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+        </xs:complexType>
+        <?papi elementClass="PaneElement" attributesClass="PaneAttributes" naturalName="pane"?>
+    </xs:element>
+    <xs:element name="phonenumber">
+        <xs:complexType mixed="true">
+            <xs:complexContent mixed="true">
+                <xs:extension base="a.content">
+                    <xs:attribute name="fullNumber" type="xs:string" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+        <?papi elementClass="PhoneNumberElement" attributesClass="PhoneNumberAttributes" naturalName="phone number"?>
+    </xs:element>
+    <xs:element name="pre" type="pre.content">
+        <?papi elementClass="PreElement" attributesClass="PreAttributes" naturalName="pre"?>
+    </xs:element>
+    <xs:element name="region">
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="canvas"/>
+                <xs:group ref="Flow" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="RegionElement" attributesClass="RegionAttributes" naturalName="region"?>
+    </xs:element>
+    <xs:element name="samp">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="SampleElement" attributesClass="SampleAttributes" naturalName="sample"?>
+    </xs:element>
+    <xs:element name="script">
+        <xs:complexType mixed="true">
+            <xs:group ref="anywhere" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attribute name="id" type="xs:string" use="optional"/>
+            <xs:attribute name="type" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="src" type="QuotedComponentRefOrURI" use="optional"/>
+            <xs:attribute name="language" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="defer" type="xs:boolean" use="optional"/>
+            <xs:attribute name="charSet" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="styleClass" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="title" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="ScriptElement" attributesClass="ScriptAttributes" naturalName="script"?>
+    </xs:element>
+    <xs:element name="segment">
+        <xs:complexType>
+            <xs:attributeGroup ref="coreattrs"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="src" type="QuotedComponentRefOrURI" use="required"/>
+            <xs:attribute name="longDesc" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="SegmentElement" attributesClass="SegmentAttributes" naturalName="segment"?>
+    </xs:element>
+    <xs:element name="select">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="when" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="otherwise" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="precept" use="optional" default="matchfirst">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="matchfirst"/>
+                        <xs:enumeration value="matchevery"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="expr" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="SelectElement" attributesClass="SelectAttributes" naturalName="select"?>
+    </xs:element>
+    <xs:element name="small">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="SmallElement" attributesClass="SmallAttributes" naturalName="small"?>
+    </xs:element>
+    <xs:element name="span">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+            <xs:attribute name="src" type="QuotedComponentRefOrURI" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="SpanElement" attributesClass="SpanAttributes" naturalName="span"?>
+    </xs:element>
+    <xs:element name="strong">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="StrongElement" attributesClass="StrongAttributes" naturalName="strong"?>
+    </xs:element>
+    <xs:element name="style">
+        <xs:complexType mixed="true">
+            <xs:attribute name="type" type="xs:string" use="required"/>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="StyleElement" attributesClass="StyleAttributes" naturalName="style"?>
+    </xs:element>
+    <xs:element name="sub">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="SubscriptElement" attributesClass="SubscriptAttributes" naturalName="subscript"?>
+    </xs:element>
+    <xs:element name="sup">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="SuperscriptElement" attributesClass="SuperscriptAttributes" naturalName="superscript"?>
+    </xs:element>
+    <xs:element name="table">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:group ref="anywhere" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="thead" minOccurs="0"/>
+                <xs:group ref="anywhere" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="tfoot" minOccurs="0"/>
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element ref="tbody"/>
+                    <xs:element ref="tr"/>
+                    <xs:group ref="anywhere"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attributeGroup ref="BlockAttrs"/>
+            <xs:attribute name="cols" type="xs:positiveInteger" use="optional">
+                <?papi ignore="true" deprecated="true"?>
+            </xs:attribute>
+        </xs:complexType>
+        <?papi elementClass="TableElement" attributesClass="TableAttributes" naturalName="table"?>
+    </xs:element>
+    <xs:element name="tbody">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="tr"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="BlockAttrsDep"/>
+            <xs:attribute name="keepTogether" type="xs:boolean" use="optional" default="false"/>
+        </xs:complexType>
+        <?papi elementClass="TableBodyElement" attributesClass="TableBodyAttributes" naturalName="table body"?>
+    </xs:element>
+    <xs:element name="td">
+        <xs:complexType mixed="true">
+            <xs:group ref="Flow" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrsDep"/>
+            <xs:attributeGroup ref="focus"/>
+            <xs:attribute name="align" type="cellhalign" use="optional"/>
+            <xs:attribute name="bgcolor" type="xs:string" use="optional">
+                <?papi name="bgColor"?>
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="colspan" type="xs:positiveInteger" use="optional">
+                <?papi name="colSpan"?>
+            </xs:attribute>
+            <xs:attribute name="height" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="nowrap" type="xs:string" use="optional">
+                <?papi name="noWrap"?>
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="rowspan" type="xs:positiveInteger" use="optional">
+                <?papi name="rowSpan"?>
+            </xs:attribute>
+            <xs:attribute name="tabindex" type="xs:integer" use="optional"/>
+            <xs:attribute name="valign" type="cellvalign" use="optional">
+                <?papi name="vAlign"?>
+            </xs:attribute>
+            <xs:attribute name="width" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+        </xs:complexType>
+        <?papi elementClass="TableDataCellElement" attributesClass="TableDataCellAttributes" naturalName="table data cell"?>
+    </xs:element>
+    <xs:element name="th">
+        <xs:complexType mixed="true">
+            <xs:group ref="Flow" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="BlockAttrsDep"/>
+            <xs:attribute name="align" type="cellhalign" use="optional"/>
+            <xs:attribute name="bgcolor" type="xs:string" use="optional">
+                <?papi name="bgColor"?>
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="colspan" type="xs:positiveInteger" use="optional">
+                <?papi name="colSpan"?>
+            </xs:attribute>
+            <xs:attribute name="height" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="nowrap" type="xs:string" use="optional">
+                <?papi name="noWrap"?>
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="rowspan" type="xs:positiveInteger" use="optional">
+                <?papi name="rowSpan"?>
+            </xs:attribute>
+            <xs:attribute name="valign" type="cellvalign" use="optional">
+                <?papi name="vAlign"?>
+            </xs:attribute>
+            <xs:attribute name="width" type="xs:string" use="optional">
+                <?deprecated?>
+            </xs:attribute>
+        </xs:complexType>
+        <?papi elementClass="TableHeaderCellElement" attributesClass="TableHeaderCellAttributes" naturalName="table header cell"?>
+    </xs:element>
+    <xs:element name="tr">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="td"/>
+                <xs:element ref="th"/>
+            </xs:choice>
+            <xs:attributeGroup ref="BlockAttrsDep"/>
+            <xs:attribute name="align" type="cellhalign" use="optional"/>
+            <xs:attribute name="bgcolor" type="xs:string" use="optional">
+                <?papi name="bgColor"?>
+                <?deprecated?>
+            </xs:attribute>
+            <xs:attribute name="valign" type="cellvalign" use="optional">
+                <?papi name="vAlign"?>
+            </xs:attribute>
+        </xs:complexType>
+        <?papi elementClass="TableRowElement" attributesClass="TableRowAttributes" naturalName="table row"?>
+    </xs:element>
+    <xs:element name="tfoot">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="tr"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="BlockAttrsDep"/>
+            <xs:attribute name="align" type="cellhalign" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="TableFooterElement" attributesClass="TableFooterAttributes" naturalName="table footer"?>
+    </xs:element>
+    <xs:element name="thead">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="tr"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="BlockAttrsDep"/>
+            <xs:attribute name="align" type="cellhalign" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="TableHeaderElement" attributesClass="TableHeaderAttributes" naturalName="table header"?>
+    </xs:element>
+    <xs:element name="timer">
+        <xs:complexType>
+            <xs:attributeGroup ref="BaseAttrs"/>
+            <xs:attribute name="duration" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Duration of timer in milliseconds.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+        <?papi elementClass="TimerElement" attributesClass="TimerAttributes" naturalName="timer"?>
+    </xs:element>
+    <xs:element name="tt">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="MonospaceFontElement" attributesClass="MonospaceFontAttributes" naturalName="monospace font"?>
+    </xs:element>
+    <xs:element name="u">
+        <xs:complexType mixed="true">
+            <xs:group ref="Inline" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="attrs"/>
+        </xs:complexType>
+        <?papi elementClass="UnderlineElement" attributesClass="UnderlineAttributes" naturalName="underline"?>
+        <?deprecated?>
+    </xs:element>
+    <xs:element name="ul">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="li"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="BlockAttrs"/>
+            <xs:attribute name="type" type="bullettype" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="UnorderedListElement" attributesClass="UnorderedListAttributes" naturalName="unordered list"?>
+    </xs:element>
+    <xs:element name="unit">
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="canvas"/>
+                <xs:element ref="montage"/>
+                <xs:element ref="segment"/>
+                <xs:group ref="Flow" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+        </xs:complexType>
+        <?papi elementClass="UnitElement" attributesClass="UnitAttributes" naturalName="unit"?>
+    </xs:element>
+    <xs:element name="usePipeline">
+        <xs:complexType>
+            <xs:choice>
+                <xs:group ref="pipeline:PipelineOperation" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="va" type="a.content">
+        <?papi elementClass="ValidatedAnchorElement" attributesClass="ValidatedAnchorAttributes" naturalName="validated anchor"?>
+    </xs:element>
+    <xs:element name="when">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:group ref="Block" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="expr" type="xs:string" use="required"/>
+        </xs:complexType>
+        <?papi elementClass="WhenElement" attributesClass="WhenAttributes" naturalName="when"?>
+    </xs:element>
+    <xs:element name="xfaction">
+        <xs:complexType>
+            <xs:attributeGroup ref="FieldAttrs"/>
+            <xs:attribute name="name" type="xs:string" use="optional"/>
+            <xs:attribute name="type" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="XFActionElement" attributesClass="XFActionAttributes" naturalName="extended function action"?>
+    </xs:element>
+    <xs:element name="xfboolean">
+        <xs:complexType>
+            <xs:attributeGroup ref="FieldAttrs"/>
+            <xs:attribute name="errmsg" type="QuotedComponentRefOrText" use="optional"/>
+            <xs:attribute name="falseValue" type="QuotedComponentRefOrList" use="optional" default="0"/>
+            <xs:attribute name="initial" type="xs:integer" use="optional"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="trueValue" type="QuotedComponentRefOrList" use="optional" default="1"/>
+        </xs:complexType>
+        <?papi elementClass="XFBooleanElement" attributesClass="XFBooleanAttributes" naturalName="extended function boolean"?>
+    </xs:element>
+    <xs:element name="xfcontent">
+        <xs:complexType mixed="true">
+            <xs:group ref="Flow" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attribute name="pane" type="xs:string" use="optional"/>
+            <xs:attributeGroup ref="ExprAttrs"/>
+        </xs:complexType>
+        <?papi elementClass="XFContentElement" attributesClass="XFContentAttributes" naturalName="extended function content"?>
+    </xs:element>
+    <xs:element name="xfform">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="xfaction"/>
+                <xs:element ref="xfboolean"/>
+                <xs:element ref="xfcontent"/>
+                <xs:element ref="xfimplicit"/>
+                <xs:element ref="xfmuselect"/>
+                <xs:element ref="xfsiselect"/>
+                <xs:element ref="xftextinput"/>
+                <xs:element ref="xfupload"/>                
+                <xs:element ref="pane"/>
+                <xs:group ref="anywhere"/>
+            </xs:choice>
+            <xs:attributeGroup ref="BaseAttrs"/>
+            <xs:attribute name="action" type="QuotedComponentRefOrURI" use="required"/>
+            <xs:attribute name="segment" type="xs:string" use="optional"/>
+            <xs:attribute name="help" type="QuotedComponentRefOrText" use="optional"/>
+            <xs:attribute name="method" type="xs:string" use="optional"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="prompt" type="QuotedComponentRefOrText" use="optional"/>
+            <xs:attribute name="onsubmit" type="QuotedComponentRefOrScript" use="optional">
+                <?papi name="onSubmit"?>
+            </xs:attribute>
+            <xs:attribute name="onreset" type="QuotedComponentRefOrScript" use="optional">
+                <?papi name="onReset"?>
+            </xs:attribute>
+        </xs:complexType>
+        <xs:unique name="form-fields">
+            <xs:annotation>
+                <xs:documentation>Ensure that field names are unique within the body of an xfform element.</xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath="xfaction|xfboolean|xfimplicit|xfmuselect|xfsiselect|xftextinput|xfupload"/>
+            <xs:field xpath="@name"/>
+        </xs:unique>
+        <?papi elementClass="XFFormElement" attributesClass="XFFormAttributes" naturalName="extended function form"?>
+    </xs:element>
+    <xs:element name="xfimplicit">
+        <xs:complexType>
+            <xs:attributeGroup ref="BaseAttrs"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+            <xs:attribute name="clientVariableName" type="QuotedComponentRefOrText" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="XFImplicitElement" attributesClass="XFImplicitAttributes" naturalName="extended function implicit"?>
+    </xs:element>
+    <xs:element name="xfmuselect">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="xfoptgroup"/>
+                <xs:element ref="xfoption"/>
+            </xs:choice>
+            <xs:attributeGroup ref="SelectFieldAttrs"/>
+        </xs:complexType>
+        <xs:unique name="xfmuselect-options">
+            <xs:annotation>
+                <xs:documentation>Ensure that xfoption values are unique within an xfmuselect field.</xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath=".//xfoption"/>
+            <xs:field xpath="@value"/>
+        </xs:unique>
+        <?papi elementClass="XFMultipleSelectElement" attributesClass="XFMultipleSelectAttributes" naturalName="extended function multiple select"?>
+    </xs:element>
+    <xs:element name="xfoptgroup">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="xfoptgroup"/>
+                <xs:element ref="xfoption"/>
+            </xs:choice>
+            <xs:attributeGroup ref="BaseAttrs"/>
+            <xs:attribute name="caption" type="QuotedComponentRefOrText" use="required"/>
+            <xs:attribute name="prompt" type="QuotedComponentRefOrText" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="XFOptionGroupElement" attributesClass="XFOptionGroupAttributes" naturalName="extended function option group"?>
+    </xs:element>
+    <xs:element name="xfoption">
+        <xs:complexType>
+            <xs:attributeGroup ref="BaseAttrs"/>
+            <xs:attribute name="caption" type="QuotedComponentRefOrText" use="required"/>
+            <xs:attribute name="captionClass" type="xs:string" use="optional"/>
+            <xs:attribute name="captionPane" type="xs:string" use="optional"/>
+            <xs:attribute name="entryPane" type="xs:string" use="optional"/>
+            <xs:attribute name="prompt" type="QuotedComponentRefOrText" use="optional"/>
+            <xs:attribute name="selected" type="xs:string" use="optional"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+        </xs:complexType>
+        <?papi elementClass="XFOptionElement" attributesClass="XFOptionAttributes" naturalName="extended function option"?>
+    </xs:element>
+    <xs:element name="xfsiselect">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="xfoptgroup"/>
+                <xs:element ref="xfoption"/>
+            </xs:choice>
+            <xs:attributeGroup ref="SelectFieldAttrs"/>
+        </xs:complexType>
+        <xs:unique name="xfsiselect-options">
+            <xs:annotation>
+                <xs:documentation>Ensure that xfoption values are unique within an xfsiselect field.</xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath=".//xfoption"/>
+            <xs:field xpath="@value"/>
+        </xs:unique>
+        <?papi elementClass="XFSingleSelectElement" attributesClass="XFSingleSelectAttributes" naturalName="extended function single select"?>
+    </xs:element>
+    <xs:element name="xftextinput">
+        <xs:complexType>
+            <xs:attributeGroup ref="FieldAttrs"/>
+            <xs:attribute name="errmsg" type="QuotedComponentRefOrText" use="optional"/>
+            <xs:attribute name="initial" type="xs:string" use="optional"/>
+            <xs:attribute name="maxLength" type="xs:positiveInteger" use="optional"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="type" type="textinputtype" use="optional" default="text"/>
+            <xs:attribute name="validate" type="QuotedComponentRefOrText" use="optional"/>
+            <xs:attribute name="inputMode" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <?papi elementClass="XFTextInputElement" attributesClass="XFTextInputAttributes" naturalName="extended function text input"?>
+    </xs:element>
+    <xs:element name="xfupload">
+                <xs:complexType>
+                        <xs:attributeGroup ref="FieldAttrs"/>
+                        <xs:attribute name="initial" type="xs:string" use="optional"/>
+                        <xs:attribute name="maxLength" type="xs:positiveInteger" use="optional"/>
+                        <xs:attribute name="name" type="xs:string" use="required"/>
+                </xs:complexType>
+                <?papi elementClass="XFUploadElement" attributesClass="XFUploadAttributes" naturalName="extended function upload"?>
+        </xs:element>    
+</xs:schema>

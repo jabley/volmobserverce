@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rollover-image-policy xmlns="http://www.volantis.com/xmlns/2006/02/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/2006/02/marlin-lpdm http://www.volantis.com/schema/2006/02/marlin-lpdm.xsd">
+    <normal>
+        <policy-reference>
+            <name>/suppliers_off.mimg</name>
+            <type>image</type>
+        </policy-reference>
+    </normal>
+    <over>
+        <policy-reference>
+            <name>/suppliers_on.mimg</name>
+            <type>image</type>
+        </policy-reference>
+    </over>
+</rollover-image-policy>

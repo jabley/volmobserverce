@@ -1,0 +1,23 @@
+#!/bin/bash
+# -----------------------------------------------------------------------------
+# (c) Volantis Systems Ltd 2005. All Rights Reserved.
+# -----------------------------------------------------------------------------
+# Purpose:   Runs the debug log enclose application. This finds exposed debug
+#            log statements and encloses them in an idDebugEnabled test.
+# Arguments: The source file to process.
+# -----------------------------------------------------------------------------
+
+CLASS_PATH=$($(dirname $(type -path $0))/classpath build-tools.jar)
+
+java -cp ${CLASS_PATH} com.volantis.mcs.build.javacc.enclosedbg.EncloseDebugLog "$1"
+
+#
+# ===========================================================================
+# Change History
+# ===========================================================================
+# $Log$
+
+# 12-Jan-05	6648/2	philws	VBM:2005010605 Overhaul in-house scripts to correct classpath issues
+
+# ===========================================================================
+#

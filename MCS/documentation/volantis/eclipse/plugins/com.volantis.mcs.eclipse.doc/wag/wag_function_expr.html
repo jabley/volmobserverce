@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>MCS function expressions</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>MCS function expressions</h1>
+      <p>MCS expressions make use of a number of specific functions that provide
+         access to information from a variety of sources, including the current
+         HTTP request and the device repository. This section provides details
+         of the functions available.</p>
+      
+         <h2>Namespaces</h2>
+         <p>The mapping between the function namespaces and their prefixes is
+            defaulted by the MCS expression processor, so that you do not need
+            to supply namespace definitions in the XDIME document. However, if
+            your XDIME includes an expression with a namespace definition, it is
+            honored by the processor, allowing you to override the defaults if
+            you wish.</p>
+         <dl>
+           <!-- <dt>
+               <span class="code">branding:</span>
+            </dt>
+            <dd>
+               <span class="code">http://www.volantis.com/xmlns/mariner/branding</span>
+            </dd> -->
+            <dt>
+               <span class="code">device:</span>
+            </dt>
+            <dd>
+               <span class="code">http://www.volantis.com/xmlns/mariner/device</span>
+            </dd>
+            <dt>
+               <span class="code">pipeline:</span>
+            </dt>
+            <dd>
+               <span class="code">http://www.volantis.com/xmlns/marlin-pipeline</span>
+            </dd>
+            <dt>
+               <span class="code">request:</span>
+            </dt>
+            <dd>
+               <span class="code">http://www.volantis.com/xmlns/mariner/request</span>
+            </dd>
+            <dt>
+               <span class="code">layout:</span>
+            </dt>
+            <dd>
+               <span class="code">http://www.volantis.com/xmlns/mariner/layout</span>
+            </dd>
+
+            
+            
+         </dl>
+      
+     
+      <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../wag/branding_getunbrandedpolicy.html">branding:getUnbrandedPolicy </a></th><td><p>Used to override branding by specifying an unbranded component name.</p></td></tr><tr><th class="firstcell"><a href="../wag/device_getancestorrelationship.html">device:getAncestorRelationship</a></th><td><p>Checks whether the named device is an ancestor of the current
+            device. It is equivalent to the <span class="code">getAncestorRelationShip</span>
+            method of the <span class="code">MarinerRequestContext</span> class. The return
+            codes from that method are mapped to one of the returned values.</p></td></tr><tr><th class="firstcell"><a href="../wag/device_getpolicyvalue.html">device:getPolicyValue</a></th><td><p>Used to access the value of a specific device policy for
+            the current target device. If no value for the specified
+            policy can be found, an empty sequence is returned.
+            Otherwise the value of the policy is returned as a
+         string.</p></td></tr><tr><th class="firstcell"><a href="../wag/device_isinstanceof.html">device:isInstanceOf</a></th><td><p>Returns a boolean value indicating if the current device is an instance of the named device.</p></td></tr><tr><th class="firstcell"><a href="../wag/layout_getpaneinstance.html">layout:getPaneInstance</a></th><td><p>Returns a reference to one instance of a pane inside an
+            iterating format. The reference can be used wherever a
+            pane name can be used.</p></td></tr><tr><th class="firstcell"><a href="../wag/layout_getregioninstance.html">layout:getRegionInstance</a></th><td><p>Returns a reference to one instance of a region inside an
+            iterating format. The reference can be used wherever a
+            region name can be used.</p></td></tr><tr><th class="firstcell"><a href="../wag/pipeline_duration_to_seconds.html">pipeline:duration-to-seconds</a></th><td><p>Converts an XML schema duration value or XML schema string
+            representation of a duration into a number of seconds. Returns the
+            equivalent number of seconds and fractions of a second, resolving
+            the duration against the current datetime and timezone.</p></td></tr><tr><th class="firstcell"><a href="../wag/request_getcookievalue.html">request:getCookieValue</a></th><td><p>Used to access the value of a cookie when direct access to the original request is not available.</p></td></tr><tr><th class="firstcell"><a href="../wag/request_getparameter.html">request:getParameter</a></th><td><p>Used to access the value of a request parameter.</p></td></tr><tr><th class="firstcell"><a href="../wag/request_getparameters.html">request:getParameters</a></th><td><p>Used to access the set of values of a request parameter.</p></td></tr><tr><th class="firstcell"><a href="../wag/request_getheader.html">request:getHeader</a></th><td><p>Used to access the value of a request header.</p></td></tr><tr><th class="firstcell"><a href="../wag/request_getheaders.html">request:getHeaders</a></th><td><p>Used to access the set of values of a request headers.</p></td></tr></tbody></table>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a class="link" target="" href="../wag/xdime2_about.html">Working with XDIME 2</a><br/></p>
+      
+   </body></html>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Configuring the DWS server</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">Configuring the DWS server</h1>
+      <p>The DWS installation wizard provides an option to install Tomcat 5.5.
+         If you wish to use an existing Tomcat installation you will need to
+         configure the web application server.</p>
+      
+         <h2>Configuring an existing application server</h2>
+         <p>You configure the DWS servlet by setting the 'repository-url',
+            'cache-dir', 'cache-refresh-base' and 'cache refresh-frequency'
+               <span class="code">init-param</span> element parameter values in the
+               <span class="filepath">web.xml</span> file.</p>
+         <p>The web service uses basic declarative authentication, so the whole
+            application can be accessed by users with the roles specified in the
+               <span class="filepath">web.xml</span> file.</p>
+         <pre class="code">&lt;security-constraint&gt;
+   &lt;web-resource-collection&gt;
+      &lt;web-resource-name&gt;Entire Application&lt;/web-resource-name&gt;
+      &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+   &lt;/web-resource-collection&gt;
+   &lt;auth-constraint&gt;
+      &lt;role-name&gt;dws-admin&lt;/role-name&gt;
+   &lt;/auth-constraint&gt;
+&lt;/security-constraint&gt; 			
+      
+&lt;login-config&gt;
+   &lt;auth-method&gt;BASIC&lt;/auth-method&gt;
+   &lt;realm-name&gt;Device Repository Web Service&lt;/realm-name&gt;
+&lt;/login-config&gt;
+      
+&lt;security-role&gt;
+   &lt;description&gt;The user role required to log in&lt;/description&gt;
+   &lt;role-name&gt;dws-client&lt;/role-name&gt;
+&lt;/security-role&gt; </pre>
+         <p>Roles are defined along with users in the web application user
+            configuration file, for example the
+            <span class="filepath">tomcat-users.xml</span> file, where you can define the
+            roles and associate them with multiple users. The example defines a
+            Tomcat user who has a DWS client role. You should refer to your
+            application server documentation for specific user configuration
+            details.</p>
+         <pre class="code">&lt;tomcat-users&gt;
+   ...      
+   &lt;role rolename="dws-client"/&gt;&lt;br/&gt;
+   &lt;user username="dws_user" password="dws_user" roles="dws-client"/&gt;
+   ...
+&lt;/tomcat-users&gt;</pre>
+         <p>The content of the responses is encrypted using HTTPS, so you need
+            to configure the web application server accordingly. For example
+            with Tomcat, proceed as outlined below, following the
+            recommendations in <em>SSL configuration how-to</em>.</p>
+         <ol>
+            <li>Create a certificate keystore with the command
+                  <pre class="code">[tomcat_home]/bin/keytool -genkey -alias tomcat
+                  -keyalg RSA</pre>
+            </li>
+            <li>At the prompts, complete the details required for the
+               certificate</li>
+            <li>Uncomment and modify or add the SSL <span class="code">Connector</span>
+               element attributes in the
+               <span class="filepath">[tomcat_home]/conf/server.xml</span> file to match
+               those for your certificate</li>
+            <li>Restart Tomcat and test the service using
+                  <pre class="code">https://localhost:8443</pre>
+            </li>
+         </ol>
+         <p>After setting up SSL the DWS URL will have the following form.</p>
+         <pre class="code">https://[username]:[password]@[hostname]:[portnumber]/[context_root]/[request_path]</pre>
+      
+
+
+      
+         <h2>Device logging</h2>
+
+         <p>In the <span class="filepath">drws-config.xml</span> file,you can use the
+               <span class="code">logging</span> element to configure a service to log
+            information from devices that are not recorded in the device
+            repository, and to generate email reports to your device service
+            provider. If the <span class="code">logging</span> element is not present, a default log file name is used.</p>
+            <p>The information includes</p>
+         <ul>
+            <li>Device name</li>
+            <li>Device type</li>
+            <li>Additional information from the request such as TAC.FAC or IMEI
+               number, UA profile URL and the header names and values</li>
+         </ul>
+
+         <p>The <span class="code">log-file</span> element specifies the full path to
+            the log file, and the <span class="code">e-mail-sending</span> element
+            enables and disables the reporting service. If reporting is
+            disabled, logging will continue.</p>
+         <p>If email is enabled you use the <span class="code">config</span> element
+            container to define the parameters for the SMTP mail server, the
+            email address, subject and frequency information for the reports.</p>
+         <p>A report is considered to be successfully sent if the email process
+            does not throw exceptions, and the log file is deleted. The process
+            doesn't check if the recipient received and processed the report. If
+            reporting fails, the log entries are not deleted, and the service
+            will retry after a period.</p>
+         <p>Duplicated entries are filtered out during logging, and the data
+            structure of the filter process is rebuilt from the log file after
+            restarting MCS or DWS. However due to memory constraints duplicated
+            entries are still possible. Duplicates are also possible between
+            different reports.</p>
+         <p>Details of the configuration elements can be found in <em>MCS configuration elements</em>.</p>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a href="../dws/dws_about.html">Device Repository Web Service</a><br/><a class="external" target="_blank" title="External resource" href="http://tomcat.apache.org/tomcat-5.0-doc/ssl-howto">SSL configuration how-to</a><br/><a href="../admin/mcs_config_er.html">MCS configuration elements</a></p>
+      
+   </body></html>

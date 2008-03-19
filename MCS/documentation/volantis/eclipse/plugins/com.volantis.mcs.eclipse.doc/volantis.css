@@ -1,0 +1,374 @@
+body {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 10pt;
+   line-height: 10pt;
+   background-color: white;
+   color: black;
+}
+p {
+   margin-top: 3pt;
+   margin-bottom: 5pt;
+}
+th, p {
+   margin-top: 0pt;
+   margin-bottom: 5pt;
+}
+.clsMenu {
+   background-color: #E6E6E6;
+   color: inherit;
+   position: absolute;
+   visibility: hidden;
+   width: 300px;
+   border-top: 1px white solid;
+   border-left: 1px white solid;
+   border-bottom: 1px black solid;
+   border-right: 1px black solid;
+   padding-top: 5px;
+   padding-left: 3px;
+   padding-right: 0px;
+   padding-bottom: 8px;
+}
+
+h1 {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 16pt;
+   line-height: 20pt;
+   margin-bottom: 6pt;
+   page-break-after: avoid; 
+}
+h1.ocp{background: url(icons/flag_ocp.png) top right no-repeat;}
+h2 {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 12pt;
+   line-height: 14pt;
+   margin-bottom: 6pt;
+   margin-top: 3pt;
+   page-break-after: avoid; 
+}
+h3 {
+   font-family : Arial, Helvetica, sans-serif;
+   font-size : 10pt;
+   line-height : 12pt;
+   page-break-after: avoid;
+}
+ol,ul {
+   margin-top: 3pt;
+   margin-bottom: 5pt;
+}
+li.toc{
+	list-style-type: none;
+	cursor: default;
+	font-weight: normal;
+	margin-left: -25px;
+}
+ul.toc{
+	margin-top: 0pt;
+	margin-bottom: 0pt;
+
+}
+.relatedLinks{
+	margin: 0px;
+	padding: 0px 0px 10px 10px;
+	border-bottom: 0px solid #cccccc;
+}
+
+.relatedLinks a{
+	display: block; 
+}
+a {
+   color: #006699;
+   background-color: inherit;
+    
+}
+a:hover {
+   color: black;
+   background-color: inherit;
+    
+}
+table {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 9pt;
+   line-height: 10pt;
+   background-color: white;
+   color: black;
+   width: 95%;
+   margin-top: 3pt;
+   margin-bottom: 5pt;
+   page-break-inside: avoid;
+}
+.gloss {
+   background-color: white;
+   color: inherit;
+   border: none;
+}
+.noborder {
+   border: none;
+}
+table.box {
+   border-color: #E6E6E6;
+   border: thin solid #E6E6E6;
+}
+th.rowhead {
+   border: 0px;
+   background-color: white;
+   color: inherit;
+}
+.pagemeta {
+   line-height: 9pt;
+   border:0px;
+   margin: 0px;
+   padding:3px;
+}
+caption {
+   text-align: left;
+   padding-left: 4px;
+   font-size: 10pt;
+}
+.caption {
+   text-align: left;
+   padding-left: 4px;
+   font-size: 10pt;
+}
+table.iconbar {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 12px;
+   line-height: 10pt;
+   background-color: #E6E6E6;
+   color: inherit;
+   border-top: 1px #E6E6E6 solid;
+   border-left: 1px #E6E6E6 solid;
+   margin-bottom: 0px;
+}
+table.context {
+   border:0px;
+   margin-right: 0px;
+   margin-top: 0px;
+   margin-bottom: 0px;
+   padding-left: 2px;
+   color: black;
+   background-color: #E6E6E6;
+}
+th {
+   vertical-align: top;
+   text-align: left;
+   border-left-width: 0px;
+   border-top-width: 1px;
+   border-right-width: 1px;
+   border-bottom-width: 1px;
+   border-color: #E6E6E6;
+   border-style: solid;
+   background-color: #AAC7E4;
+   color: inherit;
+   padding: 2px;
+}
+th.firsthdr {
+   border-left-width: 1px;
+   width: 30%;
+}
+td {
+   vertical-align: top;
+   text-align: left;
+   border-left-width: 0px;
+   border-top-width: 0px;
+   border-right-width: 1px;
+   border-bottom-width: 1px;
+   border-color: #E6E6E6;
+   border-style: solid;
+   padding: 2px;
+}
+td.firstcell {
+   width: 20%;
+}
+th.firstcell {
+   border-left-width: 1px;
+   border-top-width: 0px;
+   background-color: white;
+   color: inherit;
+   font-weight: normal;
+   width: 20%;
+}
+/*browsers won't do multiple classes*/
+th.firstcellrequired {
+   border-left-width: 1px;
+   border-top-width: 0px;
+   background-color: white;
+   color: inherit;
+   font-weight: bold;
+   width: 20%;
+}
+th.firstcelldeprecated {
+   border-left-width: 1px;
+   border-top-width: 0px;
+   background-color: white;
+   color: gray;
+   font-weight: normal;
+   width: 20%;
+}
+
+.shade {
+   background-color: #CCCCCC;
+   color: inherit;
+}
+.required {
+   background-color: #FFFCCC;
+   color: inherit;
+}
+th.center {
+   text-align: center;
+}
+td.center {
+   text-align: center;
+}
+.attributecell, .attributehdr {
+   border-width: 1px;
+   border-bottom-color: #E6E6E6;
+   border-bottom-style: solid;
+}
+.attributehdr,.attributehdrfirst {
+   border-width: 1px;
+   border-top-color: #E6E6E6;
+   border-top-style: solid;
+   border-bottom-color: #E6E6E6;
+   border-bottom-style: solid;
+   background-color: #96BBDE;
+   color: inherit;
+}
+.attributehdr {
+   border-width: 1px;
+   border-color: #E6E6E6;
+   border-style: solid;
+}
+.attributefirst {
+   border-width: 1px;
+   border-color: #E6E6E6;
+   border-style: solid;
+}
+.attributehdrfirst {
+   border-width: 1px;
+   border-left-color: #E6E6E6;
+   border-left-style: solid;
+   border-bottom-color: #E6E6E6;
+   border-bottom-style: solid;
+}
+.deprecated {
+   color: Gray;
+   background-color: inherit;
+}
+.simple {
+   list-style-type: none;
+   margin-left: 0.5em;
+}
+li.simplelink {
+   list-style-type: none;
+   margin-left: 0.5em;
+   color: #006699;
+   background-color: inherit;
+    
+}
+dt {
+   font-weight : bold;
+   margin-bottom : 2pt;
+}
+dd {
+   font-weight : normal;
+   margin-bottom : 2pt;
+}
+.command {
+   color: Maroon;
+   background-color: inherit;
+   font-weight: bold;
+}
+.userinput {
+   font-style: italic;
+}
+.note {
+   border: 1px solid #E6E6E6;
+   padding: 4px;
+   width: 95%;
+   font-size: 9pt;
+   background-color: #FFFFCC;
+   color: inherit;
+}
+.taskhead {
+   color: Gray;
+   background-color: inherit;
+   font-weight: bold;
+}
+.uicontrol {
+   font-style : italic;
+}
+.button {
+   font-weight: bold;
+   cursor: pointer;
+}
+.code, pre, cli {
+   font-family: "Courier New", Courier, monospace;
+   font-size: 10pt;
+   line-height: 10pt;
+}
+pre {
+   color: maroon;
+   background-color: inherit;
+}
+.product {
+   color:blue;
+   background-color: inherit;
+}
+.filepath {
+   font-family: "Courier New", Courier, monospace;
+   font-size: 10pt;
+   line-height: 10pt;
+   color: inherit;
+   background-color: inherit;
+}
+.aquery {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 10pt;
+   line-height: 12pt;
+   font-weight: bold;
+   color: #FF0000;
+   background-color: inherit;
+}
+.ri {
+   font-weight: bold;
+}
+.requiredattr {
+   font-weight: bold;
+}
+.includeproof {
+   background-color: #E6E6E6;
+   color: inherit;
+}
+a.external {
+   background: url(icons/icon_external.png) center right no-repeat;
+   padding-right: 13px;
+}
+
+ /* site */
+td.navbar{
+	text-align: center;
+	border: 0px;
+	height: 30px;}
+.navtext{
+	color: #99CC66;
+	background-color: inherit;
+	font-weight: bold;
+	cursor: pointer;
+}
+.highlight {
+  color: white; 
+  background-color: inherit;
+  font-weight: bold; 
+  cursor: pointer;
+}
+
+/* pdf */
+.strap {
+   margin-bottom: 0pt;
+   line-height: 14pt;
+   font-size: 12px;
+   font-weight: normal;
+}
+.titlepage {
+   margin-top: 2pt;
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" "http://www.wapforum.org/DTD/wml_1.1.xml">
+<wml>
+    <card>
+        <p>
+            my label is this
+            <input name="Field-1" size="20" type="text"/>
+            <br/>
+            the qrs label is this
+            <select ivalue="1;2" multiple="true" name="Select">
+                <option value="and a value">and a value</option>
+                <option value="one more value">one more value</option>
+                <option value="last value">last value</option>
+            </select>
+            <br/>
+            my abc label
+        </p>
+        <do name="mySubID99" type="accept">
+            <go href="http://www.volantis.com" method="get">
+                <postfield name="Field-1" value="_Field-1_"/>
+                <postfield name="Select" value="_Select_"/>
+                <postfield name="Field1" value="_Field1_"/>
+                <postfield name="Field2" value="_Field2_"/>
+                <postfield name="Select1" value="_Select1_"/>
+                <postfield name="MyPassword" value="_MyPassword_"/>
+                <postfield name="Unreferenced value" value="Unreferenced value"/>
+                <postfield name="vform" value="s1"/>
+            </go>
+        </do>
+        <p>
+            <br/>
+            Label for Field 1
+            <input name="Field1" size="20" type="text" value="Initial value for field 1"/>
+            <br/>
+            Label for Field 2
+            <input name="Field2" size="20" type="text" value="Initial value for field 2"/>
+            <br/>
+            Label for Field 3
+            <select ivalue="2" multiple="false" name="Select1">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+            <br/>
+            Enter your password
+            <input name="MyPassword" size="20" type="password"/>
+            <br/>
+            Press Me
+        </p>
+        <do name="mySubID99" type="accept">
+            <go href="http://www.volantis.com" method="get">
+                <postfield name="Field-1" value="_Field-1_"/>
+                <postfield name="Select" value="_Select_"/>
+                <postfield name="Field1" value="_Field1_"/>
+                <postfield name="Field2" value="_Field2_"/>
+                <postfield name="Select1" value="_Select1_"/>
+                <postfield name="MyPassword" value="_MyPassword_"/>
+                <postfield name="Unreferenced value" value="Unreferenced value"/>
+                <postfield name="vform" value="s1"/>
+            </go>
+        </do>
+        <p/>
+    </card>
+</wml>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 10-Oct-05	9637/1	emma	VBM:2005092807 Adding tests for XForms emulation
+
+ ===========================================================================
+-->

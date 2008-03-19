@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <meta content="application/xhtml+xml" http-equiv="Content-Type"/>
+      <title>Validating form input</title>
+      <link rel="stylesheet" href="../volantis.css"/>
+   </head>
+   <body>
+      <h1>Validating form input</h1>
+		
+      <p>You can use text input validation in MCS forms. Not all devices support a full range of client-side validation features, and some may be incapable of supporting any validation at all. So it is good practice to use server-side form validation in all events.</p>
+		
+      <p>However, where it is supported, you can make good use of client-side validation to improve the quality of data submitted by users. It also avoids the need to repeatedly send a form to the server for error checking.</p>
+		
+      <p class="note">
+         <strong>Note</strong>: 
+			Validation in input fields does not apply to VoiceXML, which uses XML validation.</p>
+		
+			
+      <h2>Validation attributes</h2>
+			
+      <p>The <span class="code">xftextinput</span> element has several attributes that support validation.</p>
+			
+      <p>The <span class="code">maxLength</span> defines the maximum number of characters allowed in a field. Because some validation patterns effectively define the maximum length of valid input, you may not need to use this attribute.</p>
+			
+      <p>Validators are  expressions that define the content patterns for input fields, and specify whether data must be provided or not. You use a validator in the optional <span class="code">validate</span> attribute.</p>
+			
+      <p>In the <span class="code">errmsg</span> attribute you can define a message to display if the field fails validation.</p>
+		
+		
+			
+      <h2>Validation patterns</h2>
+			
+      <p>The following tables show client-side validator patterns for MCS forms.</p>
+			
+      <p>A validator consists of a prefix separated by a colon (:) from the pattern, for example <span class="code">M:x*x</span>. The prefix determines the data type of the validator and whether it is required or not. An uppercase prefix means that the input is required, and a lowercase prefix means that it is optional.</p>
+			
+      <table cellspacing="0" summary="">
+         <caption>Prefixes</caption>
+         <thead>
+					
+            <tr>
+						
+               <th class="firsthdr">Prefix</th>
+						
+               <th>Example</th>
+						
+               <th>Description</th>
+					
+            </tr>
+				
+         </thead>
+         <tbody>
+            <tr>
+               <th class="firstcell">M</th>
+               <td>M:X*X</td>
+               <td>One or more uppercase alphabetic characters of any type</td>
+            </tr>
+            <tr>
+               <th class="firstcell">N</th>
+               <td>n:###</td>
+               <td>Optional, three numeric characters</td>
+            </tr>
+            <tr>
+               <th class="firstcell">P</th>
+               <td>P:+##-####-######</td>
+               <td>A required telephone number with a country code</td>
+            </tr>
+            <tr>
+               <th class="firstcell">D</th>
+               <td>d:DD-MM-YY</td>
+               <td>An optional date</td>
+            </tr>
+         </tbody>
+      </table>
+			
+      <p>The pattern following the prefix indicates the validator type. Here, the uppercase and lowercase mean that the pattern is case sensitive. The length is also defined by the pattern unless the wildcard match of '*' is specified.</p>
+			
+      <table cellspacing="0" summary="">
+         <caption>Validator types</caption>
+         <thead>
+					
+            <tr>
+						
+               <th class="firsthdr">Character</th>
+						
+               <th>Example</th>
+						
+               <th>Description</th>
+					
+            </tr>
+				
+         </thead>
+         <tbody>
+            <tr>
+               <th class="firstcell">M</th>
+               <td>M:M*M</td>
+               <td>Validation not required</td>
+            </tr>
+            <tr>
+               <th class="firstcell">X</th>
+               <td>M:x*x</td>
+               <td>Mixed characters of any type</td>
+            </tr>
+            <tr>
+               <th class="firstcell">A</th>
+               <td>M:A*a</td>
+               <td>Alphabetic and punctuation characters</td>
+            </tr>
+            <tr>
+               <th class="firstcell">#</th>
+               <td>M:####</td>
+               <td>Numeric value</td>
+            </tr>
+            <tr>
+               <th class="firstcell">*</th>
+               <td>M:A*a</td>
+               <td>The preceding character can be matched zero or more times. A character followed by a '*' and  followed by the same character again indicates that the character must occur one or more times.</td>
+            </tr>
+         </tbody>
+      </table>
+			
+      <p>Date and time pattern characters have these meanings in the context of a 'D' prefix.</p>
+			
+      <table cellspacing="0" summary="">
+         <caption>Date and time</caption>
+         <thead>
+					
+            <tr>
+						
+               <th class="firsthdr">Character</th>
+						
+               <th>Example</th>
+						
+               <th>Description</th>
+					
+            </tr>
+				
+         </thead>
+         <tbody>
+            <tr>
+               <th class="firstcell">Y</th>
+               <td>YYYY</td>
+               <td>Year number, normally used in pairs or as a group of four</td>
+            </tr>
+            <tr>
+               <th class="firstcell">M</th>
+               <td>MM</td>
+               <td>Month number, in the range 1-12, normally used in pairs</td>
+            </tr>
+            <tr>
+               <th class="firstcell">D</th>
+               <td>DD</td>
+               <td>Day number, in the range 1-31, normally used in pairs. Valid values depend on the maximum days in the related month. Leap year logic is applied for February.</td>
+            </tr>
+            <tr>
+               <th class="firstcell">/</th>
+               <td>DD/MM</td>
+               <td>Date separator</td>
+            </tr>
+            <tr>
+               <th class="firstcell">-</th>
+               <td>YYYY-MM-DD</td>
+               <td>Date separator</td>
+            </tr>
+            <tr>
+               <th class="firstcell">H</th>
+               <td>d:HH:MM</td>
+               <td>Hour number, normally used in pairs. The range is 00 to 23 for a 24-hour clock and from 1 to 12 for 12-hour clock.</td>
+            </tr>
+            <tr>
+               <th class="firstcell">M</th>
+               <td>D:MM</td>
+               <td>Minute number, normally used in pairs, with a range of 00 to 59.</td>
+            </tr>
+            <tr>
+               <th class="firstcell">S</th>
+               <td>D:MM:SS</td>
+               <td>Second number, normally used in pairs, with a range of 00 to 59.</td>
+            </tr>
+            <tr>
+               <th class="firstcell">:</th>
+               <td>d:MM:SS</td>
+               <td>Time separator</td>
+            </tr>
+            <tr>
+               <th class="firstcell">a</th>
+               <td>D:HH:MM a</td>
+               <td>Optional PM indicator used to validate 12-hour clock values. If the time is
+after 1200 on the 24-hour clock, the matching content must be 'PM', otherwise it must not be present. For example, if the pattern is <span class="code">D:HH:mm a</span>, values of '11:23 PM' or '11.23' are valid, whereas '11.23' AM or '23.23' are invalid.</td>
+            </tr>
+         </tbody>
+      </table>
+			
+      <p>These pattern characters have these meanings in the context of a 'P' prefix.</p>
+			
+      <table cellspacing="0" summary="">
+         <caption>Other patterns</caption>
+         <thead>
+					
+            <tr>
+						
+               <th class="firsthdr">Character</th>
+						
+               <th>Example</th>
+						
+               <th>Description</th>
+					
+            </tr>
+				
+         </thead>
+         <tbody>
+            <tr>
+               <th class="firstcell">+</th>
+               <td>P:+##-##-####-####</td>
+               <td>Phone number country code</td>
+            </tr>
+            <tr>
+               <th class="firstcell">-</th>
+               <td>P:##-####-####</td>
+               <td>Phone number separator</td>
+            </tr>
+         </tbody>
+      </table>
+		
+		
+			
+      <p>
+         <span class="ri">Related topic</span>
+         <br/>
+         <a href="../wag/wag_xdime_forms.html">Using forms</a>
+      </p>
+		
+	
+   </body>
+</html>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<?eclipse version="${build.version.eclipse}"?>
+<plugin
+   id="com.volantis.mcs.common"
+   name="%pluginName"
+   version="${version.plugins.mcs}"
+   provider-name="%providerName">
+
+    <runtime>
+        <library name="device-repository.repository-api-${version.jars.device-repository}.jar">
+            <export name="*"/>
+        </library>
+        <library name="device-repository.repository-impl-${version.jars.device-repository}.jar">
+            <export name="*"/>
+        </library>
+
+        <library name="device-repository.api-api-${version.jars.device-repository}.jar">
+            <export name="*"/>
+        </library>
+
+        <library name="device-repository.component-impl-${version.jars.device-repository}.jar">
+            <export name="*"/>
+        </library>
+
+        <library name="device-repository.device-api-${version.jars.device-repository}.jar">
+            <export name="*"/>
+        </library>
+        <library name="device-repository.device-impl-${version.jars.device-repository}.jar">
+            <export name="*"/>
+        </library>
+
+        <library name="device-repository.localization-api-${version.jars.device-repository}.jar">
+            <export name="*"/>
+        </library>
+
+        <library name="mcs.architecture-api-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+
+        <library name="mcs.cornerstone-api-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+        <library name="mcs.cornerstone-impl-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+
+        <library name="mcs.interaction-api-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+        <library name="mcs.interaction-impl-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+        
+        <library name="mcs.localization-api-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+
+        <library name="mcs.model-api-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+        <library name="mcs.model-impl-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+        
+        <library name="mcs.repository-api-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+        <library name="mcs.repository-impl-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+        
+        <library name="mcs.common-api-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+        <library name="mcs.common-impl-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+
+        <library name="mcs.api-api-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+        <library name="mcs.api-impl-${build.version.mcs}.jar">
+            <export name="*"/>
+        </library>
+    </runtime>
+
+   <requires>
+       <import plugin="org.eclipse.core.runtime.compatibility"/>
+       <import plugin="com.volantis.synergetics" version="${version.plugins.mcs}"/>
+       <import plugin="com.volantis.xml.xerces" version="${version.plugins.xml}"/>
+       <import plugin="org.jakarta.log4j" version="${version.plugins.log4j}"/>
+       <import plugin="org.jdom" version="${version.plugins.jdom}"/>
+       <import plugin="org.jaxen" version="${version.plugins.jaxen}"/>
+       <import plugin="org.jibx" version="${version.plugins.jibx}"/>
+       <import plugin="javax.xml.rpc" version="${version.plugins.xml-rpc}"/>
+       <import plugin="javax.xml.qname" version="${version.plugins.xml-qname}"/>
+       <import plugin="org.apache.axis" version="${version.plugins.axis}" match="perfect"/>
+       <import plugin="com.sun.jsse" version="${version.plugins.jsse}"/>
+       <import plugin="org.apache.regexp" version="${version.plugins.regexp}"/>
+   </requires>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-cdm"
+                uri="marlin-cdm.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-driver-conditioners"
+                uri="marlin-driver-conditioners.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-im"
+                uri="marlin-im.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-pipeline"
+                uri="marlin-pipeline.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-proxy"
+                uri="marlin-proxy.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-servlet"
+                uri="marlin-servlet.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-sql-driver"
+                uri="marlin-sql-driver.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-template"
+                uri="marlin-template.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-uri-driver"
+                uri="marlin-uri-driver.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-web-driver"
+                uri="marlin-web-driver.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-web-service-driver"
+                uri="marlin-web-service-driver.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.ibm.com/mwp/mcs-integration"
+                uri="mcs-integration.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/marlin-rpdm"
+                uri="marlin-rpdm.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+
+    <extension point="com.ibm.etools.xmlcatalog.catalogContributor">
+        <catalogContributor catalogId="default">
+            <mappingInfo
+                key="http://www.volantis.com/xmlns/device/merge-report"
+                uri="device-merge-report.xsd">
+            </mappingInfo>
+        </catalogContributor>
+    </extension>
+</plugin>

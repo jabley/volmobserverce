@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>SQL driver elements</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1 class="ocp">SQL driver elements</h1>
+		<p>The XDIME SQL result namespace prefix is <span class="code">sqlr:</span> and the namespace declaration is <span class="code">http://www.volantis.com/xmlns/marlin-sql-result</span>.</p>
+		<table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime/sqlr_result.html">sqlr:result</a></th><td><p>Contains the result of a SQL query or modification. For a query it contains multiple row elements. For a modification it contains a count of the rows that have been updated.</p></td></tr><tr><th class="firstcell"><a href="../xdime/sqlr_row.html">sqlr:row</a></th><td><p>The row container for a SQL result.</p></td></tr><tr><th class="firstcell"><a href="../xdime/sqld_query.html">sqld:query</a></th><td><p>Container for a SQL query. The query can be a normal query, or be configured to take parameters. If a parameter is used, the query element must contain a nested string parameter.</p></td></tr><tr><th class="firstcell"><a href="../xdime/sqlr_update_count.html">sqlr:updateCount</a></th><td><p>Contains a count of the rows that have been updated with a <span class="code">sqld:modify</span>.</p></td></tr><tr><th class="firstcell"><a href="../xdime/sqlr_types.html">SQL result datatype elements</a></th><td><p>There are several elements for datatypes defined in the
+            <span class="code">sqlr:</span> namespace. For convenience they are grouped here
+            rather than under individual element names. The elements are empty,
+            with the exception of the <span class="code">sqlr:exml</span> element,
+            where the content model is <span class="code">xs:any</span>.</p></td></tr></tbody></table>
+		
+			<p><span class="ri">Related topics</span><br/><a href="../wag/dci_er.html">XDIME content integration elements</a></p>
+		
+	</body></html>

@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.volantis</groupId>
+        <artifactId>mcs</artifactId>
+        <version>5.0</version>
+        <relativePath>../..</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>mcs.architecture-api</artifactId>
+    <name>${pom.groupId}:${pom.artifactId}</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>mcs.localization-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.volantis</groupId>
+            <artifactId>synergetics.cornerstone-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <latest.repository.schema>xml-schema/repository/2006/02</latest.repository.schema>
+    </properties>
+
+    <build>
+            <resources>
+                <resource>
+                    <directory>src/main/resources</directory>
+                    <excludes>
+                        <exclude>xml-schema/**</exclude>
+                        <exclude>com/volantis/mcs/build/themes/**</exclude>
+                    </excludes>
+                </resource>
+            </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xslt-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+
+                    <!-- 2005 09 repository -->
+
+                    <execution>
+                        <id>2005-09-create-invalid-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/2005/09/</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/repository/2005/09/src/</srcDir>
+                            <srcIncludes>marlin-lpdm-internal.xsd</srcIncludes>
+                            <fileNameRegex>marlin-lpdm-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-lpdm-invalid.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/repository/2005/09/transforms/GeneratePublicLPDMSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>2005-09-fix-invalid-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/repository/2005/09/</destDir>
+                            <srcDir>${project.build.directory}/temp/2005/09/</srcDir>
+                            <srcIncludes>marlin-lpdm-invalid.xsd</srcIncludes>
+                            <fileNameRegex>marlin-lpdm-invalid.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-lpdm.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>2005-09-rpdm-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/repository/2005/09/</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/repository/2005/09/src/</srcDir>
+                            <srcIncludes>marlin-rpdm-internal.xsd</srcIncludes>
+                            <fileNameRegex>marlin-rpdm-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-rpdm.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/repository/2005/09/transforms/GeneratePublicRPDMSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+
+                    <!-- 2005 12 repository -->
+
+                    <execution>
+                        <id>2005-12-create-invalid-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/2005/12/</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/repository/2005/12/src/</srcDir>
+                            <srcIncludes>marlin-lpdm-internal.xsd</srcIncludes>
+                            <fileNameRegex>marlin-lpdm-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-lpdm-invalid.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/repository/2005/12/transforms/GeneratePublicLPDMSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>2005-12-fix-invalid-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/repository/2005/12/</destDir>
+                            <srcDir>${project.build.directory}/temp/2005/12/</srcDir>
+                            <srcIncludes>marlin-lpdm-invalid.xsd</srcIncludes>
+                            <fileNameRegex>marlin-lpdm-invalid.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-lpdm.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>2005-12-rpdm-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/repository/2005/12/</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/repository/2005/12/src/</srcDir>
+                            <srcIncludes>marlin-rpdm-internal.xsd</srcIncludes>
+                            <fileNameRegex>marlin-rpdm-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-rpdm.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/repository/2005/12/transforms/GeneratePublicRPDMSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+
+                    <!-- 2006 02 repository -->
+
+                    <execution>
+                        <id>2006-02-create-invalid-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/2006/02/</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/repository/2006/02/src/</srcDir>
+                            <srcIncludes>marlin-lpdm-internal.xsd</srcIncludes>
+                            <fileNameRegex>marlin-lpdm-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-lpdm-invalid.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/repository/2006/02/transforms/GeneratePublicLPDMSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>2006-02-fix-invalid-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/repository/2006/02/</destDir>
+                            <srcDir>${project.build.directory}/temp/2006/02/</srcDir>
+                            <srcIncludes>marlin-lpdm-invalid.xsd</srcIncludes>
+                            <fileNameRegex>marlin-lpdm-invalid.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-lpdm.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>2006-02-rpdm-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/repository/2006/02/</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/repository/2006/02/src/</srcDir>
+                            <srcIncludes>marlin-rpdm-internal.xsd</srcIncludes>
+                            <fileNameRegex>marlin-rpdm-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-rpdm.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/repository/2006/02/transforms/GeneratePublicRPDMSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+
+                    <!-- 3.5 project -->
+
+                    <execution>
+                        <id>3-5-create-invalid-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/3-5/</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/project/3-5/src/</srcDir>
+                            <srcIncludes>mcs-project-internal.xsd</srcIncludes>
+                            <fileNameRegex>mcs-project-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>mcs-project-invalid.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/project/3-5/transforms/BuildPublicProjectSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>3-5-fix-invalid-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/project/3-5/</destDir>
+                            <srcDir>${project.build.directory}/temp/3-5/</srcDir>
+                            <srcIncludes>mcs-project-invalid.xsd</srcIncludes>
+                            <fileNameRegex>mcs-project-invalid.xsd</fileNameRegex>
+                            <fileNameReplacement>mcs-project.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+
+                    <!-- Marlin XSDs -->
+
+                    <execution>
+                        <id>marlin-cdm-internal</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/marlin/v3.0</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/marlin/src/</srcDir>
+                            <srcIncludes>marlin-cdm-internal.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/marlin/transforms/GenerateCodeGeneratorSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>marlin-cdm</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/marlin/v3.0</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/marlin/src/</srcDir>
+                            <srcIncludes>marlin-cdm-internal.xsd</srcIncludes>
+                            <fileNameRegex>marlin-cdm-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-cdm.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/marlin/transforms/GeneratePublicSchemaCore.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>marlin-im</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/marlin/v3.0</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/marlin/src/</srcDir>
+                            <srcIncludes>marlin-im-internal.xsd</srcIncludes>
+                            <fileNameRegex>marlin-im-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-im.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/marlin/transforms/GeneratePublicSchemaCore.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>marlin-ipim</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/marlin/v3.0</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/marlin/src/</srcDir>
+                            <srcIncludes>marlin-ipim-internal.xsd</srcIncludes>
+                            <fileNameRegex>marlin-ipim-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>marlin-ipim.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/marlin/transforms/GeneratePublicSchemaCore.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>marlin-public</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/marlin/v3.0</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/marlin/src/</srcDir>
+                            <srcIncludes>marlin-pipeline.xsd,marlin-sql-driver.xsd,marlin-template.xsd,marlin-web-service-driver.xsd,marlin-proxy.xsd,marlin-sql-result.xsd,marlin-uri-driver.xsd,marlin-web-service-response.xsd,marlin-driver-conditioners.xsd,marlin-pipeline-core.xsd,marlin-servlet.xsd,marlin-template-core.xsd,marlin-web-driver.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/marlin/transforms/GeneratePublicSchemaCore.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>marlin-websphere</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/xml-schema/marlin/v3.0/websphere</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/marlin/src/websphere/</srcDir>
+                            <srcIncludes>mcs-integration.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/marlin/transforms/GeneratePublicSchemaCore.xsl</xslFile>
+                        </configuration>
+                    </execution>
+
+                    <!-- Config XSDs -->
+
+                    <execution>
+                        <id>mcs-config</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/config/v3.5</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/config/src/</srcDir>
+                            <srcIncludes>mcs-config-internal.xsd</srcIncludes>
+                            <fileNameRegex>mcs-config-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>mcs-config.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/config/transforms/GenerateConfigurationSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>mss-config</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/config/v3.5</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/config/src/</srcDir>
+                            <srcIncludes>mss-config-internal.xsd</srcIncludes>
+                            <fileNameRegex>mss-config-internal.xsd</fileNameRegex>
+                            <fileNameReplacement>mss-config.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/xml-schema/config/transforms/GenerateConfigurationSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+
+                    <!-- XDIME-CP XSDs -->
+
+                    <execution>
+                        <id>xdime-cp-xml-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime-cp</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-common/src/</srcDir>
+                            <srcIncludes>xml.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicXMLSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-xml</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2004/06/xdime-cp</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime-cp/</srcDir>
+                            <srcIncludes>xml.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-xforms-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime-cp</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-cp/src/</srcDir>
+                            <srcIncludes>xforms.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-cp/transforms/GeneratePublicXDIMECPXFormsSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-xforms</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2004/06/xdime-cp</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime-cp/</srcDir>
+                            <srcIncludes>xforms.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-xml-events-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime-cp</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-common/src/</srcDir>
+                            <srcIncludes>xml-events.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicXMLEventsSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-xml-events</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2004/06/xdime-cp</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime-cp/</srcDir>
+                            <srcIncludes>xml-events.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-xhtml2-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime-cp</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-cp/src/</srcDir>
+                            <srcIncludes>xhtml2.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicXHTML2Schema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-xhtml2</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2004/06/xdime-cp</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime-cp/</srcDir>
+                            <srcIncludes>xhtml2.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-diselect-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime-cp</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-common/src/</srcDir>
+                            <srcIncludes>diselect.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicDISelectSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-diselect</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2004/06/xdime-cp</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime-cp/</srcDir>
+                            <srcIncludes>diselect.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-mcs-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime-cp</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-cp/src/</srcDir>
+                            <srcIncludes>xdime-cp-mcs.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicXDIMEMCSSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-mcs</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2004/06/xdime-cp</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime-cp/</srcDir>
+                            <srcIncludes>xdime-cp-mcs.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-si-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime-cp</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-cp/src/</srcDir>
+                            <srcIncludes>xdime-cp-si.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-cp/transforms/GeneratePublicXDIMECPSISchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime-cp-si</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2004/06/xdime-cp</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime-cp/</srcDir>
+                            <srcIncludes>xdime-cp-si.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+
+                    <!-- XDIME-2 XSDs -->
+
+                    <execution>
+                        <id>xdime2-xml-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime2</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-common/src/</srcDir>
+                            <srcIncludes>xml.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicXMLSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-xml</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime2/</srcDir>
+                            <srcIncludes>xml.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-xforms-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime2</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime2/src/</srcDir>
+                            <srcIncludes>xforms.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime2/transforms/GeneratePublicXDIME2XFormsSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-xforms</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime2/</srcDir>
+                            <srcIncludes>xforms.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-xml-events-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime2</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-common/src/</srcDir>
+                            <srcIncludes>xml-events.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicXMLEventsSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-xml-events</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime2/</srcDir>
+                            <srcIncludes>xml-events.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-xhtml2-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime2</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime2/src/</srcDir>
+                            <srcIncludes>xhtml2.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicXHTML2Schema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-xhtml2</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime2/</srcDir>
+                            <srcIncludes>xhtml2.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-diselect-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime2</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-common/src/</srcDir>
+                            <srcIncludes>diselect.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicDISelectSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-diselect</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime2/</srcDir>
+                            <srcIncludes>diselect.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-mcs-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime2</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime2/src/</srcDir>
+                            <srcIncludes>xdime2-mcs.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicXDIMEMCSSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-mcs</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime2/</srcDir>
+                            <srcIncludes>xdime2-mcs.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-si-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime2</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime2/src/</srcDir>
+                            <srcIncludes>xdime2-si.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime2/transforms/GeneratePublicXDIME2SISchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-si</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime2/</srcDir>
+                            <srcIncludes>xdime2-si.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-widgets-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime2</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-common/src/</srcDir>
+                            <srcIncludes>widgets.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicWidgetsSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-widgets</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime2/</srcDir>
+                            <srcIncludes>widgets.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-widgets-response-intermediate</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.directory}/temp/xdime2</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/xml-schema/xdime-common/src/</srcDir>
+                            <srcIncludes>widgets-response.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/xdime-common/transforms/GeneratePublicWidgetsResponseSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xdime2-widgets-response</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2</destDir>
+                            <srcDir>${project.build.directory}/temp/xdime2/</srcDir>
+                            <srcIncludes>widgets-response.xsd</srcIncludes>
+                            <xslFile>src/main/resources/xml-schema/utilities/transforms/PostProcessSchema.xsl</xslFile>
+                        </configuration>
+                    </execution>
+
+                    <!-- Theme Data -->
+
+                    <execution>
+                        <id>theme-schema</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/themes/</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/${latest.repository.schema}/themes</srcDir>
+                            <srcIncludes>themePropertyDefinitions.xml</srcIncludes>
+                            <fileNameRegex>themePropertyDefinitions.xml</fileNameRegex>
+                            <fileNameReplacement>Mariner-Theme.xsd</fileNameReplacement>
+                            <xslFile>src/main/resources/com/volantis/mcs/build/themes/GenerateMarinerTheme.xsl</xslFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>theme-structure</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <destDir>${project.build.outputDirectory}/themes/</destDir>
+                            <srcDir>${project.build.sourceDirectory}/../resources/${latest.repository.schema}/themes</srcDir>
+                            <srcIncludes>themePropertyDefinitions.xml</srcIncludes>
+                            <fileNameRegex>themePropertyDefinitions.xml</fileNameRegex>
+                            <fileNameReplacement>ThemeStructure.xml</fileNameReplacement>
+                            <xslFile>src/main/resources/com/volantis/mcs/build/themes/GenerateThemeStructure.xsl</xslFile>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>ant</groupId>
+                        <artifactId>ant-trax</artifactId>
+                        <version>1.6.5</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>${project.artifactId}-plugin-description</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <copy toDir="${project.build.outputDirectory}/com/volantis/schema/">
+                                    <fileset dir="${project.build.outputDirectory}/xml-schema/repository/"/>
+                                </copy>
+
+                                <copy file="${project.build.outputDirectory}/xml-schema/project/3-5/mcs-project.xsd"
+                                    toFile="${project.build.outputDirectory}/com/volantis/schema/project/3-5/mcs-project.xsd" />
+
+                                <copy todir="${project.build.outputDirectory}/com/volantis/schema/v2.7.1">
+                                    <fileset dir="${project.build.sourceDirectory}/../resources/xml-schema/repository/2-7-1">
+                                        <include name="*.xsd"/>
+                                    </fileset>
+                                </copy>
+
+                                <copy todir="${project.build.outputDirectory}/com/volantis/schema/v2.9.1">
+                                    <fileset dir="${project.build.sourceDirectory}/../resources/xml-schema/repository/2-9-1">
+                                        <include name="*.xsd"/>
+                                    </fileset>
+                                </copy>
+
+                                <copy todir="${project.build.outputDirectory}/com/volantis/schema/v3.0">
+                                    <fileset dir="${project.build.sourceDirectory}/../resources/xml-schema/repository/3-0-0">
+                                        <include name="*.xsd"/>
+                                    </fileset>
+                                </copy>
+
+                                <copy todir="${project.build.outputDirectory}/com/volantis/schema/v3.0">
+                                    <fileset dir="${project.build.outputDirectory}/xml-schema/marlin/v3.0/">
+                                        <include name="**/*.xsd"/>
+                                        <exclude name="**/*-internal.xsd"/>
+                                    </fileset>
+                                </copy>
+
+                                <copy file="${project.build.sourceDirectory}/../resources/xml-schema/xdime-cp/src/xdime-cp.xsd"
+                                    todir="${project.build.outputDirectory}/com/volantis/schema/2004/06/xdime-cp" overwrite="true"/>
+
+                                <copy toDir="${project.build.outputDirectory}/xml-schema/2004/06/xdime-cp">
+                                    <fileset dir="${project.build.outputDirectory}/com/volantis/schema/2004/06/xdime-cp"/>
+                                </copy>
+
+                                <copy file="${project.build.sourceDirectory}/../resources/xml-schema/xdime2/src/xdime2.xsd"
+                                    todir="${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2" overwrite="true"/>
+
+                                <copy toDir="${project.build.outputDirectory}/xml-schema/2006/01/xdime2">
+                                    <fileset dir="${project.build.outputDirectory}/com/volantis/schema/2006/01/xdime2"/>
+                                </copy>
+
+                                <copy file="${project.build.sourceDirectory}/../resources/xml-schema/Mariner-imdapi.xsd"
+                                      tofile="${project.build.outputDirectory}/imdapi/Mariner-imdapi.xsd"/>
+
+                                <copy file="${project.build.sourceDirectory}/../resources/xml-schema/device-update/device-merge-report.xsd"
+                                      tofile="${project.build.outputDirectory}/com/volantis/schema/device-repository/v3.0/device-merge-report.xsd"/>
+
+                                <copy file="${project.build.sourceDirectory}/../resources/${latest.repository.schema}/themes/themePropertyDefinitions.xml"
+                                      tofile="${project.build.outputDirectory}/themes/themePropertyDefinitions.xml"/>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

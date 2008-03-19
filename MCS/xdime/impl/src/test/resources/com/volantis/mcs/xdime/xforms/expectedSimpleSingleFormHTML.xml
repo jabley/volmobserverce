@@ -1,0 +1,85 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<html>
+    <head>
+        <link href="/volantis/MCSCSS?key=MTEyNzc0MzIzMjA2OS0x"
+        rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <table cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td valign="top">
+                    <div>
+                        my label is this
+                        <form id="__DEFAULT__" action="http://www.volantis.com" method="get">
+                            <input name="Unreferenced value" type="hidden" value="Unreference value should appear as implicit data"/>
+                            <input name="vform" type="hidden" value="s1"/>
+                            <input id="124" name="Field-1" size="20" type="text"/>
+                            <br/>
+                            the qrs label is this
+                            <select id="1" multiple="multiple" name="Select" size="1">
+                                <option selected="selected" value="and a value">
+                                    another label here
+                                </option>
+                                <option selected="selected" value="one more value">
+                                    one more label
+                                </option>
+                                <option value="last value">
+                                    last label
+                                </option>
+                            </select>
+                            <br/>
+                            <input name="mySubID99" type="submit" value="my abc label"/>
+                            <br/>
+                            <span>Field 1</span> +Label for
+                            <input id="125" name="Field1" size="20" type="text" value="Initial value for field 1"/>
+                            <br/>
+                            <span>Field 2</span>Label for
+                            <input id="126" name="Field2" size="20" type="text" value="Initial value for field 2"/>
+                            <br/>
+                            Label for Field 3
+                            <select id="er" name="Select1">
+                                <option value="1">
+                                    Item 1
+                                </option>
+                                <option selected="selected" value="2">
+                                    Item 2
+                                </option>
+                            </select>
+                            <br/>
+                            Enter your password
+                            <input id="secret" name="MyPassword" size="20" type="password"/>
+                            <br/>
+                            <input id="abc" name="mySubID99" type="submit" value="Press Me"/>
+                        </form>
+                        <br/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 10-Oct-05	9637/1	emma	VBM:2005092807 Adding tests for XForms emulation
+
+ ===========================================================================
+-->
