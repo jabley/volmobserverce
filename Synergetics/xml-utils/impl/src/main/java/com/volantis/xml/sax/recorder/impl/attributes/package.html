@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+  (c) Volantis Systems Ltd 2005. 
+
+-->
+</head>
+<body bgcolor="white">
+
+Provides classes and interfaces for efficiently storing the attributes for a
+number of SAX <code>startElement</code> events.
+
+<h3>Overview</h3>
+
+<p>A SAX attribute consists of 5 separate strings. Rather than create a single
+object for each attribute that has 5 fields the SAX API provides a container
+{@link Attributes} that provides access to the individual fields of each
+attribute but no abstraction of a single attribute. This makes it possible for
+the container to store all the information for a single startElement event's
+attributes in a single array.</p>
+
+<p>The classes in this package extend that concept to allow all the attributes
+for a number of <code>startElement</code> events to be stored in a single
+array within a container. Of course the fact that it is stored in a single
+array is not exposed to the user of the classes.</p>
+
+<p>The {@link AttributesContainer} interface defines the behaviour of the
+container and the {@link AttributesWindow} provides a view on a range of
+attributes within the container.</p>
+
+<h3>Usage</h3>
+
+<p>A {@link AttributesContainerBuilder} is created and populated while
+building up the recording. When recording has finished it is used to construct
+a {@link AttributesContainer} that is then owned by the recording. All the
+strings for the attributes are mapped to an index using the {@link StringTable}
+so that they are shared.</p>
+
+<p>Every time the recording is played back by a {@link SAXPlayer} it creates a
+new {@link AttributesWindow} and exposes the appropriate range of attributes
+for each <code>startElement</code> event sent to the SAX event handler.</p>
+
+<pre>
+    private AttributesWindow window = container.createWindow();
+
+    public void play()
+        throws SAXException {
+
+          :
+        // Process the startElement event.
+          :
+        // Extract the range of attributes from the event.
+        int offset = ...;
+        int length = ...;
+
+        window.move(offset, length);
+
+        // Forward the startElement event to the SAX event handler.
+        handler.startElement(namespaceURI, localName, qName, window);
+          :
+    }
+</pre>
+
+</body>
+</html>

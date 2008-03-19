@@ -1,0 +1,60 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<html
+    xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+    xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+    xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+    xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+    >
+    <head>
+        <title>Welcome to XDIME XML</title>
+        <link rel="mcs:layout" href="welcome.mlyt"/>
+        <link rel="mcs:theme" href="welcome.mthm"/>
+    </head>
+    <body>
+
+        <div class="logo">
+            <object src="vol_logo.mimg">
+                <span>Volantis Systems Ltd.</span>
+            </object>
+        </div>
+        
+        <p class="background">Imagine a world where information
+            can be delivered to any access device, over any communication
+            channel - and always appear exactly as it should.
+            Our unique technology lets you create on-line content and
+            web applications that support a high quality end-user experience,
+            no matter what access device your customers are using.</p>
+
+        <template:apply href="XDIMETemplates/welcometemplate.xdtpl">
+            <template:binding name="linkstitle" value="Useful Links:"/>
+        
+            <template:binding name="congratulations">
+                <template:complexValue>
+                    <h2>Congratulations</h2>
+                    <p>You have successfully installed and configured
+                        Volantis MCS.</p>
+                </template:complexValue>
+            </template:binding>
+        
+            <template:binding name="smallprint"
+                value="../XDIMEIncludes/smallprint.xdinc"/>
+        </template:apply>
+
+    </body>
+</html>
