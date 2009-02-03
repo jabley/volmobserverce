@@ -1,0 +1,9 @@
+<xfragment>
+	<pack name="Repository" required="no" id="repository">                                                                                       
+	            <description>XML Repository</description> 	
+		<fileset dir="packs/repository"
+			 targetdir="${INSTALL_PATH}">
+		  <include name="**"/>		
+		</fileset>		
+	</pack>
+</xfragment>

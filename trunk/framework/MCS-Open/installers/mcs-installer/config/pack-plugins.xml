@@ -1,0 +1,9 @@
+<xfragment>
+	<pack name="Plugins" required="no" id="plugins">                                                                                             
+	           <description>Eclipse Plugins</description> 
+		<fileset dir="packs/plugins"
+			 targetdir="${INSTALL_PATH}">
+		  <include name="**"/>		
+		</fileset>
+	</pack>
+</xfragment>

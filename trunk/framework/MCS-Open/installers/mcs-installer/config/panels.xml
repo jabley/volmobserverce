@@ -1,0 +1,30 @@
+<xfragment>
+
+    <conditions>
+      <condition type="variable" id="RepositoryIsXML">
+        <name>mcsRepositoryVendor</name>
+        <value>xml</value>
+      </condition>
+    </conditions>
+
+    <!-- 
+        The panels section.
+        We indicate here which panels we want to use. The order will be respected.
+    -->
+    <panels>
+        <panel classname="HelloPanel"/>
+        <panel classname="HTMLInfoPanel"/>
+        <panel classname="HTMLLicencePanel"/>
+        <panel classname="PacksPanel"/> 
+        <panel classname="TargetPanel"/>
+        <panel classname="UserInputPanel"/>  <!-- Select repository vendor -->
+        <panel classname="UserInputPanel" condition="!RepositoryIsXML" />  <!-- Repository configuration -->
+        <panel classname="UserInputPanel"/>  <!-- Choose App server -->
+        <panel classname="UserInputPanel"/>  <!-- Choose MAP Host -->
+    <!-- <panel classname="DataCheckPanel" />  -->
+        <panel classname="SummaryPanel"/>
+        <panel classname="InstallPanel"/>
+        <panel classname="FinishPanel"/> 
+    </panels>
+
+</xfragment>

@@ -1,0 +1,9 @@
+The keystores and verts in the directory are for use
+with the updateclient and updateserver, against
+the name of update.volantis.com these will need to
+correct when we got to volantis.net. I have
+also placed a copy of the cert and keystore for the
+client in the com/volantis/mcs/gui/updateclient/
+directory to be shipped with the updateclient.
+
+jason.

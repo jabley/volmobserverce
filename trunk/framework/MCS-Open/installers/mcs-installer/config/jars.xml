@@ -1,0 +1,4 @@
+<xfragment>
+    <jar src="jar/ant/ant.jar" stage="both" />
+    <jar src="jar/ant/ant-launcher.jar" stage="both" />
+</xfragment>
