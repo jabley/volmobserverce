@@ -1,0 +1,10 @@
+<xfragment>
+    <appname>Media Access Proxy</appname>
+    <appversion>${installer.product.revision}</appversion>
+    <appsubpath>MAP</appsubpath>
+    <authors>
+        <author name="Volantis Systems Ltd." email="info@volantis.com"/>
+    </authors>
+    <url>http://www.volantis.com/</url>
+    <summarylogfilepath>$INSTALL_PATH/Uninstaller/MAPInstallSummary.html</summarylogfilepath>
+</xfragment>

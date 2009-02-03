@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================================
+ ! (c) Volantis Systems Ltd 2003.
+ ! ========================================================================== -->
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- ==================================================================
+     ! An appender which writes the output to the console.
+     ! ================================================================ -->
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="@ics.log.conversionpattern@"/>
+        </layout>
+    </appender>
+
+    <!-- ==================================================================
+     ! An appender which does the logging on a background thread similar
+     ! to the old volantis logger.
+     ! ================================================================ -->
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+
+        <!--
+         ! The following statement makes sure that the location of
+         ! the logger is available for the layout.
+         !-->
+        <param name="LocationInfo" value="false"/>
+
+        <!-- Use the default appender. -->
+        <appender-ref ref="CONSOLE"/>
+    </appender>
+
+
+    <!--
+     ! The list of categories corresponding to the top-level packages used
+     ! by ICS. These categories should be chosen so that they are unique
+     ! across products at runtime.
+     !-->
+    <category name="com.volantis.map.ics">
+        <priority value="info"/>
+        <appender-ref ref="ASYNC"/>
+    </category>
+
+    <category name="com.volantis.synergetics">
+        <priority value="info"/>
+        <appender-ref ref="ASYNC"/>
+    </category>
+
+    <category name="com.volantis.map.ics.servlet">
+        <priority value="info"/>
+        <appender-ref ref="ASYNC"/>
+    </category>
+
+    <category name="our">
+        <priority value="info"/>
+        <appender-ref ref="ASYNC"/>
+    </category>
+
+</log4j:configuration>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 19-Apr-05	422/1	pcameron	VBM:2005040505 Logging initialisation changed
+
+ ===========================================================================
+-->

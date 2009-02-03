@@ -1,0 +1,2 @@
+Bundle-Name=Volantis Media Access Proxy: Common
+DynamicImport-Package=localization.map

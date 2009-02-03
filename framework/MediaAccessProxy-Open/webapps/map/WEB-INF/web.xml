@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+This file is part of Volantis Mobility Server.
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.� See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.� If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!-- ==========================================================================
+ ! (c) Volantis Systems Ltd 2005.
+ ! ======================================================================= -->
+
+<!DOCTYPE web-app
+PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+"http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+    <display-name>MAP</display-name>
+
+    <description>
+        This is the MAP application deployment descriptor.
+    </description>
+
+    <!-- _iid: location:/web-app/context-params -->
+
+    <!-- System packages configured for Sun JRE 1.5
+         may need to be reconfigured for other JVM implementations -->
+
+    <context-param>
+      <param-name>system.packages.sun.awt.image</param-name>
+      <param-value>sun.awt.image;sun.awt.image.codec; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+      <param-name>system.packages.com.sun.imageio.plugins.gif</param-name>
+      <param-value>com.sun.imageio.plugins.gif; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+      <param-name>system.packages.com.sun.image.codec.jpeg</param-name>
+      <param-value>com.sun.image.codec.jpeg; version=1.5.0</param-value>
+    </context-param>
+
+    <!-- javax.crypto is provided by Java Cryptography Extensions bundled with JRE 1.5.0 -->
+    <context-param>
+      <param-name>system.packages.javax.crypto</param-name>
+      <param-value>javax.crypto;javax.crypto.spec; version=1.5.0</param-value>
+    </context-param>
+    <context-param>
+      <param-name>system.packages.sun.security</param-name>
+      <param-value>sun.security.action;sun.security.provider; version=1.5.0</param-value>
+    </context-param>
+
+
+
+    <context-param>
+        <param-name>map.log4j.config.file</param-name>
+        <param-value>${INSTALL_PATH}/webapps/map/WEB-INF/map-log4j.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>
+            com.volantis.synergetics.osgi.j2ee.boot.OSGiBootListener
+        </listener-class>
+    </listener>
+
+
+    <servlet>
+        <servlet-name>Bridge</servlet-name>
+        <servlet-class>com.volantis.synergetics.osgi.j2ee.bridge.http.servlet.OSGiHttpBridgeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Bridge</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>

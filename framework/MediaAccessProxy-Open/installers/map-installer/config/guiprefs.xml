@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    The gui preferences indication.
+    Sets the installer window to 640x480. It will not be able to change the size.
+-->
+<guiprefs width="800" height="650" resizable="yes">
+    <modifier key="showDebugWindow" value="true"/>
+    <modifier key="headingPanelCounter" value="progressbar"/>
+    <modifier key="headingPanelCounterPos" value="inNavigationPanel"/>
+    <modifier key="useHeadingPanel" value="yes"/>
+    <modifier key="useHeadingForSummary" value="no"/>
+    <modifier key="headingLineCount" value="0"/>
+    <modifier key="headingImageBorderSize" value="0"/>
+    <modifier key="headingBackgroundColor" value="0x00335e98"/>
+    <modifier key="headingForegroundColor" value="0x00335e98"/>
+</guiprefs>
