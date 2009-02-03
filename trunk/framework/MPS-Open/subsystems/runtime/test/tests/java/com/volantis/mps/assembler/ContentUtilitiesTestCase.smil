@@ -1,0 +1,29 @@
+<smil>
+    <head>
+        <meta content="Themes" name="title"/>
+        <layout>
+            <root-layout/>
+            <region height="160" id="Text" left="0" top="0" width="60"/>
+            <region height="160" id="Image" left="60" top="0" width="60"/>
+        </layout>
+    </head>
+    <body>
+        <par dur="1000ms">
+            <text region="Text" src="cid:142D3D768963EC52EA38626B0DD03498"/>
+            <img region="Image" src="cid:6B27662DD3C3FC716D28AE8D43353E8F"/>
+        </par>
+        <par dur="2000ms">
+            <text region="Text" src="cid:A6BD7E04BF1B37DFBB9BB5C2EB58AE01"/>
+            <img region="Image" src="cid:42161D516C6284380464526D2676C8AE"/>
+        </par>
+        <par dur="3000ms">
+            <text region="Text" src="cid:C6812704055C0AB9EE782E9C2D96CBB3"/>
+            <img region="Image" src="cid:42161D516C6284380464526D2676C8AE"/>
+        </par>
+        <par dur="1000ms">
+            <text region="Text" src="cid:7BCA3128615E2A7A23A2CA55EBBAF8D9"/>
+            <img region="Image" src="cid:6B27662DD3C3FC716D28AE8D43353E8F"/>
+        </par>
+        <par dur="2000ms"/>
+    </body>
+</smil>

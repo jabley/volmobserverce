@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<!-- The English langpack -->
+
+<langpack>
+        <str id="base" txt="Message Preparation Server" />
+	<str id="base.description" txt="The Message Preparation Server (MPS) serves email, text (SMS) or Multi media (MMS) messages in a format appropriate to the target device." />
+	<str id="samples" txt="Sample MPS Servlet" />
+	<str id="samples.description" txt="A sample servlet to send messages to devices using the Message Preparation Server." />
+	<str id="docs" txt="Documentation" />
+	<str id="docs.description" txt="User documentation for the Message Preparation Server." />
+</langpack>

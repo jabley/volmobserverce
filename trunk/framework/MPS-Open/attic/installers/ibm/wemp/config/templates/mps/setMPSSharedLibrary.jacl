@@ -1,0 +1,172 @@
+set NodeName [lindex $argv 0]
+set ServerName [lindex $argv 1]
+
+puts "NodeName : $NodeName"
+puts "ServerName : $ServerName"
+
+#set NodeName @NodeName@
+#set ServerName @ServerName@
+#set AppName @WmmAppName@
+
+set LibraryName {MPSlib}
+
+set cp1 [list classPath {${WPS_HOME}/shared/mps/volantis-mps-core.jar}]
+set cp2 [list classPath {${WPS_HOME}/shared/mps/volantis-mps-sample.jar}]
+set cp3 [list classPath {${WPS_HOME}/shared/mps/jaxen-core.jar}]
+set cp4 [list classPath {${WPS_HOME}/shared/mps/jaxen-jdom.jar}]
+set cp5 [list classPath {${WPS_HOME}/shared/mps/saxpath.jar}]
+
+
+#--------------------------------------------------------------
+# Proc to create a Library Reference in a Classloader
+#--------------------------------------------------------------
+proc createLibRef {ClassLoaderId LibraryRef LibraryName IdString} {
+	global AdminConfig
+	set LocalFlagErr false
+	set LibRef ""
+	set FlagExist "False"
+
+		#### Check if its already there ###################
+		if {$LibraryRef != ""} {
+			set TmpList [split [string trim [string trim [string trim $LibraryRef "{"] "}"] ] ")"]
+			foreach Tmp $TmpList {
+				set Tmp [string trim $Tmp " "]
+				append Tmp ")"
+				if { [string length $Tmp] > 1} {
+					lappend LibRef $Tmp
+				}
+			}
+			foreach TmpLibRef $LibRef {
+				if {[catch {$AdminConfig showAttribute $TmpLibRef libraryName} TmpLibRefName]} {
+					puts stdout $TmpLibRefName
+					puts stdout "ERROR: In '/Classloader:/'."
+					puts stdout "This is not a valid Library Reference."
+					puts stdout $TmpLibRef
+					set LocalFlagErr true
+				} else {
+					if {[string compare $TmpLibRefName $LibraryName] == 0} {
+						set FlagExist "True"
+						break
+					}
+				}
+			}
+		}
+
+		if {$FlagExist == "True"} {
+			puts stdout "$IdString already there, no Action taken"
+		} else {
+			##### Create Application Classloader LibraryReference
+			set LibraryNameList [list libraryName $LibraryName]
+			set attrs [list $LibraryNameList]
+			set LibraryRef [$AdminConfig create LibraryRef $ClassLoaderId $attrs]
+			if {$LibraryRef == ""} {
+				puts stdout "ERROR: $IdString could not be created."
+				set LocalFlagErr true
+			} else {
+				#### Check for success ###################
+				set TmpList [split [string trim [string trim [string trim $LibraryRef "{"] "}"] ] ")"]
+				foreach Tmp $TmpList {
+					set Tmp [string trim $Tmp " "]
+					append Tmp ")"
+					if { [string length $Tmp] > 1} {
+						lappend LibRef $Tmp
+					}
+				}
+				set FlagExist "False"
+				foreach TmpLibRef $LibRef {
+					if {[catch {$AdminConfig showAttribute $TmpLibRef libraryName} TmpLibRefName]} {
+						puts stdout $TmpLibRefName
+						puts stdout "ERROR: In '/CLassloader:/'."
+						puts stdout "This is not a valid Library Reference."
+						puts stdout $TmpLibRef
+						set LocalFlagErr true
+					} else {
+						if {[string compare $TmpLibRefName $LibraryName] == 0} {
+							set FlagExist "True"
+							break
+						}
+					}
+				}
+			}
+
+			if {$FlagExist == "True"} {
+				puts stdout "$IdString successfully created."
+				set LocalFlagErr false
+			} else {
+				puts stdout "ERROR: $IdString could not be created."
+				set LocalFlagErr true
+			}
+		}
+
+	return $LocalFlagErr
+}
+
+
+
+#--------------------------------------------------------------
+# Main
+#--------------------------------------------------------------
+set NodeId [$AdminConfig getid /Node:$NodeName/]
+set ServerId [$AdminConfig getid /Server:$ServerName/]
+
+##### Create Library
+set LibraryId [$AdminConfig getid /Node:$NodeName/Library:$LibraryName/]
+if {$LibraryId != ""} {
+    puts stdout "Library: /Node:$NodeName/Library:$LibraryName/ already exists, no Action taken"
+} else {
+	set NameList [list name $LibraryName]
+    set attrs [list $NameList $cp1]
+    set LibraryId [$AdminConfig create Library $NodeId $attrs]
+	if {$LibraryId == ""} {
+		puts stdout "ERROR: Library: /Node:$NodeName/Library:$LibraryName/ could not be created."
+		exit 1
+	} else {
+        ##### Modify Library
+        set attrs [list $cp2 $cp3 $cp4 $cp5 ]
+        $AdminConfig modify $LibraryId $attrs
+		puts stdout "Library: /Node:$NodeName/Library:$LibraryName/ successfully created."
+	}
+}
+
+##### Create ApplicationServer Classloader
+set ClassLoaderId [$AdminConfig getid /Node:$NodeName/Server:$ServerName/ApplicationServer:/Classloader:/]
+if {$ClassLoaderId != ""} {
+	puts stdout "Classloader: /Node:$NodeName/Server:$ServerName/ApplicationServer:/Classloader:/ exists, no Action taken"
+} else {
+	# wmm  set attrs [list [list mode PARENT_FIRST]]
+	set attrs [list [list mode PARENT_LAST]]
+	set AppServerId [$AdminConfig getid /Node:$NodeName/Server:$ServerName/ApplicationServer:/]
+	set ClassLoaderId [$AdminConfig create Classloader $AppServerId $attrs]
+	if {$ClassLoaderId == ""} {
+		puts stdout "ERROR: Classloader: /Node:$NodeName/Server:$ServerName/ApplicationServer:/Classloader:/ could not be created."
+		exit 1
+	} else {
+		puts stdout "Classloader: /Node:$NodeName/Server:$ServerName/ApplicationServer:/Classloader:/ successfully created."
+	}
+}
+
+##### Create ApplicationServer Classloader LibraryReference
+puts "Start to create /Node:$NodeName/Server:$ServerName/ApplicationServer:/Classloader:/LibraryRef:$LibraryName/"
+set LibraryRef [$AdminConfig showAttribute $ClassLoaderId libraries]
+set IdString "LibraryRef: /Node:$NodeName/Server:$ServerName/ApplicationServer:/Classloader:/LibraryRef:$LibraryName/"
+if {[createLibRef $ClassLoaderId $LibraryRef $LibraryName $IdString] == "true"} {
+    exit 1
+}
+
+
+puts stdout "Shared Library and Shared Library Reference(s) for '$LibraryName' successfully created or already there."
+puts " "
+$AdminConfig save
+
+puts " "
+
+#
+# ===========================================================================
+# Change History
+# ===========================================================================
+# $Log$
+
+# 20-Dec-04	270/1	pcameron	VBM:2004122004 New packagers for wemp
+
+# ===========================================================================
+#

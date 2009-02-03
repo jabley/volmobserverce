@@ -1,0 +1,35 @@
+<product>
+    <name>MPS</name>
+    <organisation>com.volantis</organisation>
+    <version>5.1.0</version>
+    <!--<branch>5.1</branch>-->
+    <other>
+        <identifier>testtools</identifier>
+        <version>3.0</version>
+    </other>
+    <other>
+        <identifier>synergetics</identifier>
+        <version>5.1.0</version>
+        <!--<branch>5.1</branch>-->
+    </other>
+    <other>
+        <identifier>devices</identifier>
+        <version>5.1.0</version>
+        <!--<branch>5.1</branch>-->
+    </other>
+    <other>
+        <identifier>map</identifier>
+        <version>5.1.0</version>
+        <!--<branch>5.1</branch>-->
+    </other>
+    <other>
+        <identifier>pipeline</identifier>
+        <version>5.1.0</version>
+        <!--<branch>5.1</branch>-->
+    </other>
+    <other>
+        <identifier>mcs</identifier>
+        <version>5.1.0</version>
+        <!--<branch>5.1</branch>-->
+    </other>
+</product>

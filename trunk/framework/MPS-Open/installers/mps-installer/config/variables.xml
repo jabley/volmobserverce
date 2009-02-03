@@ -1,0 +1,6 @@
+<xfragment>
+    <variables>
+        <variable name="mcsMAPUseCache" value="off"/> 
+        <variable name="InstallerFrame.cleanAllAtInterrupt" value="no"/>
+    </variables>
+</xfragment>
