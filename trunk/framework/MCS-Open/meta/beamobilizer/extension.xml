@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+
+<extension-definition>
+
+	<extension-xml id="urn:com-bea-ide:settings">
+		<ide-preferences>
+			<panel
+				label="Volantis Mobilizer Toolkit"
+				class="com.volantis.mcs.bea.weblogic.platform.workshop.settings.WorkshopPreferences"/>
+		</ide-preferences>
+		<project-preferences>
+			<panel
+				label="Volantis Mobilizer Toolkit"
+				class="com.volantis.mcs.bea.weblogic.platform.workshop.settings.ProjectPreferences"/>
+		</project-preferences>
+	</extension-xml>
+
+	<extension-xml id="urn:com-bea-ide:frame">
+		<frame-view-set>
+			<frame-view
+				class="com.volantis.mcs.bea.weblogic.platform.workshop.portal.StylerFrameView"
+				label="Volantis Mobilizer Styles"
+				askavailable="true"/>
+		</frame-view-set>
+	</extension-xml>
+
+    <extension-xml id="urn:com-bea-ide:actions">
+	    <action-ui>
+	    	<menu id="volantis" path="menu/main" priority="100" label="Volantis Mobilizer">
+	    		<action-group id="main" priority="10"/>
+	    		<action-group id="emulators" priority="10">
+		    		<menu id="emulators" label="Mobile Emulators" priority="20">
+			    		<action-group
+			    			id="main"
+		    				priority="10"
+		    				generator="com.volantis.mcs.bea.weblogic.platform.workshop.menu.EmulatorsGenerator"/>
+			    	</menu>
+			    </action-group>
+	    	</menu>
+	    </action-ui>
+        <action-set>
+            <action
+            	class="com.volantis.mcs.bea.weblogic.platform.workshop.portal.StylerAction"
+            	label="Volantis Mobilizer Styles">
+            	<location path="popup/projectPaneRightClick/main"/>
+            </action>
+            <action
+            	class="com.volantis.mcs.bea.weblogic.platform.workshop.menu.PolicyManagerAction"
+            	label="Policy Manager">
+            	<location path="menu/volantis/main"/>
+           	</action>         	
+        </action-set>
+    </extension-xml>
+    
+</extension-definition>
