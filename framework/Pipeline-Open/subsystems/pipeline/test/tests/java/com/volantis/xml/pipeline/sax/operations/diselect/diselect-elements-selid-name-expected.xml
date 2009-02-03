@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<root xmlns:diselect="http://www.w3.org/2004/06/diselect">
+    <abc1 abc1="xyz1"/>
+    <abc2 abc2="xyz2"/>
+    <abc3 abc3="xyz3"/>
+    <abc4 abc4="xyz4"/>
+</root>

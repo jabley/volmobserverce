@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<root xmlns:xyz="http://acme.com/" xmlns:diselect="http://www.w3.org/2004/06/diselect">
+    <abc xmlns="http://acme.com/" xyz:myid="abc">
+        <qrs xmlns:hij="http://acme.com/" hij:myid="qrs"/>
+    </abc>
+</root>

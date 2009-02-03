@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<root xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+      xmlns:diselect="http://www.w3.org/2004/06/diselect">
+        <abc/>
+</root>
