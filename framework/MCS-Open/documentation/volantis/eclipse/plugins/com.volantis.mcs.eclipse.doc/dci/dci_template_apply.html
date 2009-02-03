@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Applying templates</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Applying templates</h1>
+    <p>To apply a template, you provide bindings for all the required parameters and as many of the
+      optional parameters as you want to change. The <span class="code">template:apply</span> element
+      causes a template to be applied.</p>
+    
+      <h2>Parameter bindings</h2>
+      <p>There are two ways you can define the bindings.</p>
+      <ol>
+        <li>Use the optional <span class="code">href</span> attribute to name the template to apply. In this case
+          you also specify a single <span class="code">template:binding</span> element.</li>
+        <li>Alternatively, you can omit the <span class="code">href</span> attribute, embed a full template
+          definition and specify multiple <span class="code">template:bindings</span>.</li>
+      </ol>
+      <p><img src="../graphics/template_apply_cm.png" alt="The template:apply element content model" title="The template:apply element content model"/></p>
+      <p>The required <span class="code">name</span> attribute on the <span class="code">template:binding</span> element
+        uniquely identifies a parameter in a set of bindings. You should use the optional
+          <span class="code">value</span> attribute to bind a fixed, simple or complex value to the parameter.
+        For a dynamic value, you can specify a value using nested mark-up that is appropriate to the
+        parameter type.</p>
+      <p>The <span class="code">ref</span> attribute identifies another parameter value to use, and is only valid
+        when a <span class="code">template:binding</span> appears within the body of a containing template
+        definition.</p>
+      <p>In the topic <em>Defining templates</em> we illustrated the use of two parameter
+        names, 'title' and 'content' in a template definition. The following example shows how to
+        bind that template to a page in the <span class="code">template:apply</span>, with the
+          <span class="code">template:binding</span> elements passing the title and content parameter
+        values.</p>
+      <pre class="code">
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Template elements&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="test.xdtpl"&gt;
+      &lt;template:binding name="title" value="Welcome to Jive Intranet"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+          &lt;div&gt;
+            &lt;p&gt;Jive Sports is seeking people to fill new job openings.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../dci/dci_template_about.html">About templates</a><br/><a class="link" href="../dci/dci_template_define.html">Defining templates</a><br/></p>
+    
+  </body></html>

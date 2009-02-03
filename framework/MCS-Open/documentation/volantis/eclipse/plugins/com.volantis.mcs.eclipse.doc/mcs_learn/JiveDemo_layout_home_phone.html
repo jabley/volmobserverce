@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Smartphone home page layout</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../mcs_learn/JiveDemo_about_jive.html" title="Next steps with MCS">Start</a></li><li><a href="../mcs_learn/JiveDemo_layout_home_pc.html" title="PC home page layout">Previous</a></li><li><a href="../mcs_learn/JiveDemo_layout_article.html" title="Article page layout">Next</a></li></ul></td></tr></table><h1>Smartphone home page layout</h1>
+    <p>The structure for the Smartphone home page is basically similar to the PC, but omits the
+      photo strip, stock price and title.</p>
+    <p>Because phones have limited display capability, you often need to modify the content sent to
+      them. Text can be very difficult to read if users have to scroll it both horizontally and
+      vertically, for example.</p>
+    <p>MCS allows you to split your content into a series of pages with links to provide navigation
+      between them. Each individual page generated from a larger layout is called a fragment.</p>
+    <p>Each fragment contains one or more panes. Content directed to these panes will appear in the
+      fragment that contains them. Notice that this completely decouples the structure of the pages
+      from the structure of the content, allowing you freedom in the way that material is fragmented
+      on different devices.</p>
+    <p>Fragment attributes define the text used in the links and the styling applied.</p>
+    <p>In this module we will use the Eclipse Outline view to work with the layout structure. At all
+      times, the Outline, Design and Format Attributes views stay synchronized.</p>
+  <h2>Using grids <a href="../layouts/layout_add_grid.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><p>The first step in creating a fragment set is to create a root fragment for the whole page.
+      This fragment will contain the links to the other fragments. The other fragments each contain
+      a link back to the root fragment. So users can select and traverse the links just as they
+      would for any other web link.</p><p>As you develop the layout, use the same pane names as you did in the PC layout.</p><ol><li>If the Outline view is not open already, <span class="command">Window</span> |
+      <span class="command">View</span> | <span class="command">Outline</span></li><li>Pick the 'Targeted, Smartphone' variant on the Overview page and switch to the Design page</li><li>Expand the first node in the outline, right click on the empty cell, and choose
+        <span class="command">Add</span> | <span class="command">Fragment</span></li><li>In the <span class="uicontrol">Format Attributes</span> view set the fragment
+      <span class="uicontrol">Name</span> to 'Top', and <span class="uicontrol">Link Styleclass</span> to
+      'fraglink'. This style will be defined in the theme.</li><li>Right click on the 'Top' fragment cell, and pick <span class="command">Add</span> |
+      <span class="command">Grid</span> | <span class="command">N by M</span> to create a 4 row by 1 column grid</li><li>Add a single logo pane in the first row</li><li>Add 3 columns and panes for the menu section in the second row</li><li>In the third row, the announcements and news fragments will be rendered as separate pages.
+      First add a two column grid. Now add and name two fragments called 'companyInformation' and
+      'newsFeeds' before you create the grids and panes inside the fragments.</li><li>In the <span class="uicontrol">Format Attributes</span> window set the fragment attribute
+        <span class="uicontrol">Link Styleclass</span> values to 'fraglink', and <span class="uicontrol">Text
+      Link</span> controls to 'Company Information' and 'News Feeds'</li><li>Return to the Overview page and click on the <span class="uicontrol">Default fragment</span>
+      control in the Variant content section. You'll see the name values you have just created. Set
+      the control to 'Top'. <p><img src="../graphics/layout_oview_content.png" alt="Setting the default fragment" title="Setting the default fragment"/></p></li><li>The outline structure should look like the one shown below <p><img src="../graphics/outline_home_phone.png" alt="Outline - smart phone" title="Outline - smart phone"/></p>
+    </li></ol><h2>Checklist</h2>
+    <p>Here are the fragment attributes values you need to enter.</p>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name  </th><th>Link Styleclass   </th><th>Link Text   </th></tr></thead><tbody><tr><th class="firstcell">Top  </th><td rowspan="3">fraglink  </td><td>  </td></tr><tr><th class="firstcell">companyInfo  </th><td>Company Information   </td></tr><tr><th class="firstcell">newsFeeds  </th><td>News Feeds   </td></tr></tbody></table>
+    <p>This table summarizes the attribute values that are required for panes in this layout.</p>
+    <table cellspacing="0"><thead><tr><th class="firsthdr" scope="row">Name  </th><th>Width   </th><th>Border Width   </th><th>Cell Padding   </th><th>Cell Spacing   </th><th>Horizontal Alignment   </th><th>Vertical Alignment   </th><th>Markup Optimization   </th><th>Filter Useability Below  </th></tr></thead><tbody><tr><th class="firstcell" scope="row">logo  </th><td rowspan="7">100%  </td><td rowspan="10">0  </td><td rowspan="10">0  </td><td rowspan="10">0  </td><td>  </td><td>  </td><td rowspan="7">Never  </td><td rowspan="10">0  </td></tr><tr><th class="firstcell" scope="row">announcements  </th><td rowspan="6">Left  </td><td rowspan="6">Top  </td></tr><tr><th class="firstcell" scope="row">human_resources  </th></tr><tr><th class="firstcell" scope="row">from_CEO  </th></tr><tr><th class="firstcell" scope="row">global_news  </th></tr><tr><th class="firstcell" scope="row">US_news  </th></tr><tr><th class="firstcell" scope="row">footer  </th></tr><tr><th class="firstcell" scope="row">menu_company_news  </th><td rowspan="3">33%  </td><td rowspan="3">Center  </td><td rowspan="3">Top  </td><td>Always  </td></tr><tr><th class="firstcell" scope="row">menu_human_resources  </th><td>  </td></tr><tr><th class="firstcell" scope="row">menu_employee_store  </th><td>  </td></tr></tbody></table>
+  </body></html>

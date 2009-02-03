@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Aligning form controls</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../xforms_learn/xformsTutorial_about_xforms.html" title="Working with XForms">Start</a></li><li><a href="../xforms_learn/xformsTutorial_validation.html" title="Validating forms">Previous</a></li></ul></td></tr></table><h1>Aligning form controls</h1>
+    <p>In this module we will explain how to use layouts to control the position of form elements and
+      their labels on a page. We will start by creating a new layout policy. Then you will learn how
+      to target XDIME 2 content to different layout elements. Refer to <em>Next steps with MCS</em>
+      for further information about using layouts.</p>
+    <p class="note"><strong>Tip</strong>: The MCS policy editors operate within the open-source Eclipse Framework. See
+        <em/> for details.</p>
+  <h2>Adding a layout <a href="../layouts/layout_add.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>Choose <span class="command">File</span> | <span class="command">New</span> and pick the
+      <span class="command">Layout</span> wizard from the Eclipse menu</li><li>The layout policy should be located in the
+      <span class="filepath">xforms/WebContent/mcs-policies</span> directory. Choose that folder in the
+      policy tree view, or enter its full path in the first text box.</li><li>Name a new layout 'form' and then click the <span class="command">Next</span> button. The MCS wizard
+      automatically adds the <span class="filepath">.mlyt</span> layout file extension to the file name.</li><li>Choose <span class="command">Default</span> in the <span class="uicontrol">Selection Criteria</span> box</li><li>Click the <span class="command">Finish</span> button to complete</li></ol><h2>Layout editor <a href="../layouts/layout_editor.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><p>The Layout Editor has two pages, an Overview page listing the device layouts and their
+      general attributes, and a Design page where you can develop your layout.</p><h2>Working with layouts <a href="../layouts/layout_working.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>Make sure the <span class="filepath">form.mlyt</span> layout is opened in the Layout editor</li><li>Pick the 'Default' variant in the list of variants and click on the
+      'Design' tab at the bottom of the window</li><li>Right click in the empty cell area and choose <span class="command">Add</span> |
+      <span class="command">Grid</span> | <span class="command">N by M</span> to open the Add Grid dialog</li><li>Enter values for 2 rows and 2 columns and click <span class="command">OK</span>. There are now empty
+      cells for each row.</li><li>Add required panes. Right click in the empty cell area and choose <span class="command">Add</span> |
+        <span class="command">Pane</span> | <span class="command">Pane</span>. Repeat this for all four cells. </li><li>Name the newly created panes. Your final layout structure should look like the one
+      presented below.<p><img src="../graphics/xformsTutorial_img/xf_layout_2by2.png" alt="Layout" title="Layout"/></p>
+    </li></ol><h2>Targeting XDIME 2 content</h2><ol><li>You use the <span class="code">mcs-container</span> property to target XDIME 2 content to specific
+      layout elements<pre class="code">
+&lt;xf:input model="demoAlign" ref="input" style="mcs-container: 'top-right'"&gt;
+  &lt;xf:label style="mcs-container: 'top-left'"&gt;Enter Your Name:&lt;/xf:label&gt;
+&lt;/xf:input&gt;
+&lt;xf:select1 model="demoAlign" ref="select1"
+  style="mcs-selection-list-style: controls; 
+  mcs-selection-list-option-layout: control-first; mcs-container: 'bottom-right'"&gt;
+  &lt;xf:label style="mcs-container: 'bottom-left'"&gt;Select1:&lt;/xf:label&gt;
+  &lt;xf:item&gt;
+    &lt;xf:label&gt;Item1&lt;/xf:label&gt;
+    &lt;xf:value&gt;Item1&lt;/xf:value&gt;
+  &lt;/xf:item&gt;
+  &lt;xf:item&gt;
+    &lt;xf:label&gt;Item2&lt;/xf:label&gt;
+    &lt;xf:value&gt;Item2&lt;/xf:value&gt;
+  &lt;/xf:item&gt;
+  &lt;xf:item&gt;
+    &lt;xf:label&gt;Item3&lt;/xf:label&gt;
+    &lt;xf:value&gt;Item3&lt;/xf:value&gt;
+  &lt;/xf:item&gt;
+&lt;/xf:select1&gt;</pre>
+    </li><li>The label of the text input field will be displayed in the
+      'top-left' pane, while the control in the 'top-right' pane. The selection elements and
+      their label will be displayed in the 'bottom-right' and 'bottom-left' pane respectively. <p><img src="../graphics/xformsTutorial_img/xforms_align.png" alt="XForms" title="XForms"/></p></li></ol><h2>Complete code</h2><ol><li>Create a new file called <span class="filepath">xforms_align.xdime</span></li><li>Modify <span class="filepath">xforms_align.xdime</span> by including the following code <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Aligning Form Controls&lt;/title&gt;
+    &lt;link rel="mcs:layout" href="/form.mlyt"/&gt;
+    &lt;xf:model id="demoAlign"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="input"/&gt;
+          &lt;si:item name="select1"/&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;xf:input model="demoAlign" ref="input" style="mcs-container: 'top-right'"&gt;
+      &lt;xf:label style="mcs-container: 'top-left'"&gt;Enter Your Name:&lt;/xf:label&gt;
+    &lt;/xf:input&gt;
+    &lt;xf:select1 model="demoAlign" ref="select1"
+      style="mcs-selection-list-style: controls; 
+      mcs-selection-list-option-layout: control-first; mcs-container: 'bottom-right'"&gt;
+      &lt;xf:label style="mcs-container: 'bottom-left'"&gt;Select1:&lt;/xf:label&gt;
+      &lt;xf:item&gt;
+        &lt;xf:label&gt;Item1&lt;/xf:label&gt;
+        &lt;xf:value&gt;Item1&lt;/xf:value&gt;
+      &lt;/xf:item&gt;
+      &lt;xf:item&gt;
+        &lt;xf:label&gt;Item2&lt;/xf:label&gt;
+        &lt;xf:value&gt;Item2&lt;/xf:value&gt;
+      &lt;/xf:item&gt;
+      &lt;xf:item&gt;
+        &lt;xf:label&gt;Item3&lt;/xf:label&gt;
+        &lt;xf:value&gt;Item3&lt;/xf:value&gt;
+      &lt;/xf:item&gt;
+    &lt;/xf:select1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/si_instance.html">si:instance</a></th><td><p>Container for data items used to supply initial values for forms controls, or to provide
+        additional data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/si_item.html">si:item</a></th><td><p>Defines an item of instance data that is required if a form control needs to be
+        initialized, or when data not associated with a form control needs to be provided during
+        form submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_input.html">xf:input</a></th><td><p>A form control for text input.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_instance.html">xf:instance</a></th><td><p>Optional element that contains instance data associated with the <span class="code">model</span>
+        element. It is used to supply initial values for forms controls, or to provide additional
+        data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_label.html">xf:label</a></th><td><p>Provides a descriptive label for forms controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_model.html">xf:model</a></th><td><p>Represents a form definition, used as a container for elements associated with its
+        submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_select1.html">xf:select1</a></th><td><p>A form control that provides for selection of a single choice from an available list of
+        options; for example, a group of radio buttons.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_attr_cp.html">Form attributes</a></th><td><p>Binding expressions provide the mapping between the data associated with a particular
+        control and the data provided for processing when the form is submitted. The expression is
+        the name of the parameter associated with the control's data when the form is submitted.
+        These parameters appear on the submission URL if the form is submitted using the HTTP
+          <span class="code">GET</span> method, and are hidden if the <span class="code">POST</span> method is used. The
+        methods are specified as attributes on the <span class="code">xf:submission</span> element.</p></td></tr></tbody></table>
+  </body></html>

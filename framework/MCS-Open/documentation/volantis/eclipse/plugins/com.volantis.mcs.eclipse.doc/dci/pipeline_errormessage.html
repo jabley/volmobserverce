@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>pipeline:errorMessage</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>pipeline:errorMessage</h1><h2>Purpose</h2>
+      <p>Returns the human readable message provided by the operation that caused an error.</p>
+    <h2>Signature</h2><p><span class="code">pipeline:errorMessage()</span></p><h2>Example</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:gdocs="http://www.volantis.com/xmlns/2008/08/gdocs"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Pipeline error functions&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;pipeline:try&gt;
+        &lt;pipeline:preferred&gt;
+          &lt;pipeline:transform href="fetch2xdime.xsl"&gt;
+            &lt;gdocs:fetch xml:id="first fetch" category="document"
+              href="http://docs.google.com/feeds/download/documents/RawDocContents?action=fetch&amp;amp;
+                justBody=false&amp;amp;revision=_latest&amp;amp;editMode=false&amp;amp;docID=dcg224t7_2d92rmb64"&gt;
+              &lt;gdocs:authenticate user-id="1testvolantis@gmail.com" password="1volantis1"/&gt;
+            &lt;/gdocs:fetch&gt;
+          &lt;/pipeline:transform&gt;
+        &lt;/pipeline:preferred&gt;
+        &lt;pipeline:alternative&gt;
+          &lt;pipeline:content&gt;
+            &lt;p&gt;There was a problem retrieving the information requested.&lt;/p&gt;
+            &lt;p&gt;Message: &lt;pipeline:value-of expr="pipeline:errorMessage()"/&gt;&lt;/p&gt;
+            &lt;p&gt;Source Id: &lt;pipeline:value-of expr="pipeline:errorSourceID()"/&gt;&lt;/p&gt;
+            &lt;p&gt;Code Name: &lt;pipeline:value-of expr="pipeline:errorCodeName()"/&gt;&lt;/p&gt;
+            &lt;p&gt;Code URI: &lt;pipeline:value-of expr="pipeline:errorCodeURI()"/&gt;&lt;/p&gt;
+            &lt;p&gt;Code info (Captcha Token): &lt;pipeline:value-of
+                expr="pipeline:errorInfo('captcha-key')"/&gt;&lt;/p&gt;
+            &lt;p&gt;Code info (Captcha URL): &lt;pipeline:value-of expr="pipeline:errorInfo('captcha-url')"/&gt;&lt;/p&gt;
+            &lt;p&gt;Code info (Login): &lt;pipeline:value-of expr="pipeline:errorInfo('login')"/&gt;&lt;/p&gt;
+          &lt;/pipeline:content&gt;
+        &lt;/pipeline:alternative&gt;
+      &lt;/pipeline:try&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../dci/dci_pipeline_error.html">Handling pipeline errors</a><br/><a class="link" href="../dci/pipeline_error_er.html">Pipeline error functions</a><br/></p>
+    </body></html>

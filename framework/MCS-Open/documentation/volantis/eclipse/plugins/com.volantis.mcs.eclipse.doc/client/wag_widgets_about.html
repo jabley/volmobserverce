@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>About widgets</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>About widgets</h1>
+    <p>Framework Client provides developers with a simple, standards-compliant authoring
+      environment. Control over widget behavior and transitions is available as either policy theme
+      properties or as attributes on markup. In this section authors can find all the information
+      needed to create graphically appealing client applications with more client-side interactivity
+      than standard mobile browser applications are able to provide.</p>
+    <p class="note"><strong>Tip</strong>: Some widgets support transitions, such as sliding, fade in, etc. See the <em>About transitions</em> section for details.</p>
+    
+      <h2>Fallback styling</h2>
+      <p>It was mentioned that if the device does not support the Framework Client, the server-side
+        processing of the XDIME 2 widget provides an alternative static rendering that assures the
+        basic function for which the widget was designed. In addition, the XDIME 2 authors can
+        control fallback styling with normal HTML mechanisms – for example by putting a widget in a
+          <span class="code">div</span> element. Please see the <em>Fallback styling</em> section
+        for details.</p>
+    
+    
+      <h2>Actions and responses</h2>
+      <p>Many widgets are active, in that they are able to load or refresh their content or status.
+        These actions are implemented using Asynchronous JavaScript and XML (AJAX).</p>
+      <p>You use the XDIME response vocabulary to provide data for widgets. You should always use
+        this vocabulary; any other approach might result in unexpected behavior. Refer to <em>Widget response structure</em> for more information.</p>
+      <p>You can allow users to suspend content polling through a provided JavaScript API, but note
+        that it affects only automatic interval-based polling. Polling triggered by the user or
+        JavaScript API is not affected. See <em>JavaScript support</em> for details.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../client/client_about.html">Client Framework</a><br/><a class="link" href="../client/wag_widgets_structure.html">Widget response structure</a><br/><a class="link" href="../client/wag_widgets_actions.html">Load, refresh and fetch actions</a><br/><a class="link" href="../client/wag_widgets_style.html">Styling widgets</a><br/><a class="link" href="../client/wag_widgets_fallback.html">Fallback styling</a><br/><a class="link" href="../client/wag_widgets_javascript.html">JavaScript support</a><br/><a class="link" href="../client/widget_library.html">Widget library</a><br/></p>
+    
+  </body></html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Debugging features</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Debugging features</h1>
+    <p>You can enable MCS debugging features in the <span class="code">debug</span> and the
+        <span class="code">debug-output</span> sections of the <span class="filepath">mcs-config.xml</span>.</p>
+    
+      <h2>Viewing comments and logging output</h2>
+      <p>You can enable or disable MCS debugging features in the <span class="code">debug</span> section of
+        the <span class="filepath">mcs-config.xml</span> file.</p>
+      <pre class="code">
+&lt;debug
+  comments="false"
+  logPageOutput="false"/&gt;</pre>
+      <p>The default value for the <span class="code">comments</span> attribute is 'false'. No comments are
+        output in the generated pages, apart from copyright information and the page message, and
+        new line characters are reduced in number.</p>
+      <p>If you set the <span class="code">comments</span> attribute to 'true', MCS will attempt to generate
+        comments in the output pages. This approach will not work for device protocols that do not
+        support comments. You will get line breaks, which makes the generated code easier to read
+        during development. You will also get internal MCS comments.</p>
+      <p>With devices that do not allow the delivered source to be viewed, you will also need to set
+          <span class="code">logPageOutput</span> to 'true', which sends page output to the log file.</p>
+    
+    
+      <h2>Debugging pipeline markup</h2>
+      <p>You can also configure pipeline debugging features in the <span class="code">debug-output</span>
+        section of the <span class="filepath">mcs-config.xml</span> file by setting the value of the
+          <span class="code">directory</span> attribute. It specifies the directory into which debugging pipeline
+        operations will write their output. If this is not specified MCS treats debugging as
+        inactive. Relative paths values should be relative to the root application context.</p>
+      <pre class="code">
+&lt;debug-output directory="/pipeline_debug"/&gt;</pre>
+      <p>The output files are named with a timestamp and a unique number, and suffixed with a
+          <span class="code">fileSuffix</span> attribute value that you set in the
+        <span class="code">pipeline:serialize</span> element in the XDIME source. </p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../admin/mcs_configure.html">Configuring MCS</a><br/><a class="link" href="../mcs_config/config_debug.html">debug</a><br/><a class="link" href="../mcs_config/config_debug_output.html">debug-output</a><br/></p>
+    
+  </body></html>

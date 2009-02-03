@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Creating a dynamic table</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Creating a dynamic table</h1>
+      <p>The AJAX Table widget extends the functionality of the standard XDIME 2 table. You can load
+         the widget contents with AJAX requests, and defer loading until the user requests it. In
+         addition, the body of the table can be divided into pages with a fixed number of rows.</p>
+      
+         <h2>Visual appearance</h2>
+         <p>The data is presented in a form of a typical table. Initially, headers and a first set
+            of rows are shown.</p>
+      
+      
+         <h2>User interactions</h2>
+         <p>The user can display a new set of data by a single row, or by pages. Each page contains
+            predefined number of rows. The provided controls allow the user to navigate within and
+            across the table.</p>
+      
+      
+         <h2>XDIME 2 elements</h2>
+         <p>The <span class="code">widget:table</span> element defines the AJAX Table widget. It has the
+            same attributes as the standard XDIME 2 <span class="code">table</span> element. The content of
+            the table can be downloaded from an external source. The <span class="code">widget:load</span>
+            element must be placed within <span class="code">widget:tbody</span>. The optional
+               <span class="code">cached-pages-count</span> attribute may be used to control the number of cached
+            pages.</p>
+         <pre class="code">
+&lt;widget:table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Code&lt;/th&gt;
+      &lt;th&gt;Country name&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;widget:tbody id="tbody" cached-pages-count="10" style="mcs-table-rows-per-page:10"&gt;
+    &lt;widget:load src="service/table" when="onload"/&gt;
+    &lt;tr&gt;
+      &lt;td&gt;--&lt;/td&gt;
+      &lt;td&gt;Loading, please wait...&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/widget:tbody&gt;
+&lt;/widget:table&gt;</pre>
+         <p>The requesting URL may have some optional query parameters. <span class="code">mcs-start</span>
+            defines an initial row. If it is not set, loading will start from the first row.
+               <span class="code">mcs-count</span> specifies the total number of rows to download. All available
+            rows are loaded by default. Both parameters range from 1 to 2^31-1.</p>
+         <p>The following request will download content of 20 rows, starting from row 5.</p>
+         <pre class="code">
+service/table?mcs-start=5&amp;mcs-count=20</pre>
+         <p>The update of the content must be enclosed by the <span class="code">response:tbody</span>
+            element. The optional <span class="code">total-rows-count</span> attribute specifies the total number
+            of rows in the table.</p>
+         <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+  &lt;response:head&gt;
+    &lt;response:link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+  &lt;/response:head&gt;
+  &lt;response:body&gt;
+    &lt;response:tbody total-rows-count="202"&gt;
+      &lt;tr style="background-color:#000"&gt;
+        &lt;td style="border: 1px solid #442"&gt;AD&lt;/td&gt;
+        &lt;td style="border: 1px solid #442"&gt;ANDORRA&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr style="background-color:#111"&gt;
+        &lt;td style="border: 1px solid #442"&gt;AE&lt;/td&gt;
+        &lt;td style="border: 1px solid #442"&gt;UNITED ARAB EMIRATES&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/response:tbody&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;</pre>
+         <p>You may specify an error message, that will be displayed if there is no content to
+            download.</p>
+         <pre class="code">
+&lt;response:error&gt;Information could not be retrieved.&lt;/response:error&gt;</pre>
+      
+      
+         <h2>Styling the widget</h2>
+         <p>The <span class="uicontrol">mcs-table-rows-per-page</span> property specifies the number of rows
+            displayed on a single page of the table. Only rows from the table body are taken into
+            account; header and footer are omitted. When it is set to 'infinite', all rows will be
+            shown.</p>
+         <div class="note"><strong>Note</strong>: This style property is not available
+            as the theme editor control. It must be used in its CSS form. Refer to 
+            <em>Styling widgets</em> for
+            more information. </div>
+      
+      
+         <h2>Non-client fallback</h2>
+         <p>If the content of the table is defined directly on a XDIME page, everything will be
+            shown at once. If the load action is used, the widget will be ignored.</p>
+      
+      
+         <p><span class="ri">Related topics</span><br/><a class="link" href="../client/widget_library.html">Widget library</a><br/><a class="link" href="../xdime_cp/widget_table.html">widget:table</a><br/><a class="link" href="../xdime_cp/response_tbody.html">response:tbody</a><br/><a class="link" href="../client/wag_widgets_actions.html">Load, refresh and fetch actions</a><br/><a class="link" href="../client/wag_widgets_structure.html">Widget response structure</a><br/><a class="link" href="../client/wag_widgets_style.html">Styling widgets</a><br/></p>
+      
+   </body></html>

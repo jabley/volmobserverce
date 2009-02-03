@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Pipeline caching</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Pipeline caching</h1>
+    <p>Because both content and the XSL transforms used to process the content may be re-used
+      frequently, DCI supports both content and XSLT caching.</p>
+    
+      <h2>Caching pipeline content</h2>
+      <p>Content caching is a simple, general purpose caching method that supports both simple cache
+        keys, and multiple attribute keys that are matched with template parameter values. Once
+        executed, the cache is held until the application server is stopped or restarted.</p>
+      <p>The <span class="code">pipeline:cache</span> element is the container for content cache
+        definition. The cache stores objects based on the <span class="code">key</span> attribute, or in the case
+        of multiple keys the <span class="code">pipeline:cacheKey</span> element. The key is then counted
+        and used as a reference against the cache size. The cache uses the least-recently-used
+        strategy for handling its content which is contained in the
+        <span class="code">pipeline:cacheBody</span> element.</p>
+      <p>The <span class="code">pipeline:cacheControl</span> element has a <span class="code">timeToLive</span>
+        attribute containing the length of time in seconds that the entry is valid from the time it
+        enters the cache. The example shows it set to 600 seconds (10 minutes).</p>
+      <pre class="code">
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:webd="http://www.volantis.com/xmlns/marlin-web-driver"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Pipeline cache&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;pipeline:cache name="jiveCache"&gt;
+        &lt;pipeline:cacheInfo&gt;
+          &lt;pipeline:cacheKey value="weatherConditions"/&gt;
+          &lt;pipeline:cacheControl timeToLive="600"/&gt;
+        &lt;/pipeline:cacheInfo&gt;
+        &lt;pipeline:cacheBody&gt;
+          &lt;pipeline:transform href="test.xsl"&gt;
+            &lt;webd:get url="http://weather.yahooapis.com/forecastrss"&gt;
+              &lt;webd:parameters&gt;
+                &lt;webd:parameter name="p" value="USWA0395"/&gt;
+                &lt;webd:parameter name="u" value="c"/&gt;
+              &lt;/webd:parameters&gt;
+            &lt;/webd:get&gt;
+          &lt;/pipeline:transform&gt;
+        &lt;/pipeline:cacheBody&gt;
+      &lt;/pipeline:cache&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <div class="note"><strong>Note</strong>: You can flush either a named pipeline cache or all pipeline caches with the
+          <span class="code">mcsServerManager</span> CLI.</div>
+    
+    
+      <h2>Caching transforms</h2>
+      <p>The <span class="code">pipeline:transform</span> defines the caching of individual XSL transforms,
+        and provides functions for compiling the transform.</p>
+      <p>Together with the setting of the <span class="code">compile</span> attribute on the
+        <span class="code">transform</span> element in the <span class="code">pipeline-configuration</span>
+        section of <span class="filepath">mcs-config.xml</span> file, the <span class="code">compilable</span> attribute
+        specifies whether the XSL transform should be compiled or not. If both values are 'true',
+        the transform is compiled.</p>
+    
+    
+      <h2>Configuring pipeline caches</h2>
+      <p>Cache configuration parameters are contained in the
+        <span class="code">pipeline-configuration</span> section of the <span class="filepath">mcs-config.xml</span>
+        file.</p>
+      <p>Content caching is defined by the <span class="code">caching-operation</span> and
+        <span class="code">cache</span> elements. The <span class="code">name</span> and <span class="code">max-entries</span>
+        attributes on the <span class="code">cache</span> element are required.</p>
+      <p>The <span class="code">expiry-mode</span> attribute on the <span class="code">caching-operation</span> element
+        may be used to track dependencies in dynamic content, and take these into account when
+        working out when the cache expires. A value of 'fixed-age' will not track dependencies. A
+        value of 'auto' will turn tracking on. This global value may be overridden at
+          <span class="code">pipeline:cache</span> element level.</p>
+      <div class="note"><strong>Note</strong>: The attributes <span class="code">enable-caching</span> and
+        <span class="code">max-cache-entries</span> on the <span class="code">connection</span> element may be used to
+        enable or disable caching and set the cache size for responses to
+        <span class="code">urid-fetch</span> requests.</div>
+      <pre class="code">
+&lt;caching-operation&gt;
+  &lt;cache name="jiveCache"
+    max-entries="10"
+    strategy="least-recently-used"/&gt;
+&lt;/caching-operation&gt;</pre>
+      <p>You configure the transform cache with the <span class="code">transform</span> element. The
+          <span class="code">cache</span> attribute controls whether templates will be cached. Templates are the
+        internal structures, created from XSLT markup, that actually do the transformation.
+        Construction of a template from the XSLT markup is quite a costly operation so caching them
+        can improve performance significantly.</p>
+      <p>If this attribute is false then templates are never cached. Otherwise they are cached using
+        a composite key constructed from the fully resolved URL and the <span class="code">compilable</span>
+        attribute value. Templates that are created from XSLT markup inline within the page do not
+        have an associated URL and hence are not cacheable.</p>
+      <p>The size of the cache cannot be configured and is unlimited in size, meaning that templates
+        are never removed.</p>
+      <p>If the <span class="code">compile</span> attribute is set to 'true',
+        <span class="code">pipeline:transform</span> and <span class="code">pipeline:transformation</span>
+        elements whose <span class="code">compilable</span> attribute are also set to 'true' are cached. If the
+          <span class="code">compile</span> attribute is set to 'false', no attempt is made to compile
+        transforms.</p>
+      <div class="note"><strong>Note</strong>: Care must be taken when changing this attribute from its default value as
+        XSLT compilers are not yet capable of handling all XSLT constructs.</div>
+      <pre class="code">&lt;pipeline:transform compilable="false" cache="true"/&gt;</pre>
+    
+    
+      <h2>Caching templates</h2>
+      <p>Construction of a template is quite a costly operation and in fact for smallish XSLTs can
+        actually exceed the cost of the transformation itself. Therefore, caching templates can have
+        a significant performance benefit. Two related methods, <span class="code">setTemplateCache</span> and
+          <span class="code">getTemplateCache</span> are available in the public API.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../dci/dci_about.html">About DCI</a><br/><a class="link" href="../admin/mcs_server_manager.html">Clearing caches manually</a><br/></p>
+    
+  </body></html>

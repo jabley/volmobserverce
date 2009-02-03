@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Web Service Client</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_date_picker_ajax.html" title="Date Picker with AJAX">Previous</a></li><li><a href="../client_learn/clientTutorial_clock_ajax.html" title="Clock with AJAX">Next</a></li></ul></td></tr></table><h1>Web Service Client</h1>
+    <p>The Web Service Client widget allows to import XML data from an external source, transform it
+      into format acceptable by the XDIME application and load the results on a device via AJAX.</p>
+    <p>The following example illustrates how one can create a simple XDIME web application that
+      provides weather information.</p>
+    <p><img src="../graphics/cfTutorial/presenter.png" alt="Web Service Client" title="Web Service Client"/></p>
+  <h2>Web Service Client <a href="../client/wag_widgets_presenter.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">widget:fetch</span> element specifies URL to an external XML data source,
+      and URL to a proper XSL stylesheet. The <span class="code">service</span> attribute defines a path to the
+      fetch service. It must be specified if the fetch service location is different than the
+      default one, defined in <span class="filepath">web.xml</span>. Information received from the fetch
+      service will be displayed by the <span class="code">widget:block</span> element. <pre class="code">
+&lt;widget:block id="display"&gt;
+  &lt;widget:fetch
+    src="http://xml.weather.yahoo.com/forecastrss?p=TUXX0002&amp;amp;u=c"
+    when="onload" transformation="weather-presenter.xsl"
+    service="/projects/client-app/servicefetch"/&gt;
+&lt;/widget:block&gt;</pre>
+    </li><li>The <span class="code">widget:select</span> element allows the user to choose desired location
+      from a list specified by <span class="code">widget:option</span>. The <span class="code">value</span> attribute
+      holds the information that will be used to create the final query for the web service.<pre class="code">
+&lt;widget:select id="city"&gt;
+  &lt;widget:option value="p=TUXX0002&amp;amp;u=c" selected="selected"&gt;
+    Ankara&lt;/widget:option&gt;
+  &lt;widget:option value="p=YIXX0005&amp;amp;u=c"&gt;Beograd&lt;/widget:option&gt;
+  &lt;widget:option value="p=GMXX0007&amp;amp;u=c"&gt;Berlin&lt;/widget:option&gt;
+&lt;/widget:select&gt;</pre></li><li>The <span class="code">widget:fetch</span> and <span class="code">widget:select</span> elements are
+      coupled together by a JavaScript function. It is responsible for converting user's query to a
+      full request, that will be sent to the external source. <span class="code">$W(id)</span> identifies the
+      widget by its <span class="code">id</span>. <span class="code">getValue()</span> returns the location specified by the
+      user, and <span class="code">setSrc()</span> sets the complete URL.<pre class="code">
+&lt;widget:script id="checkWeather" type="text/javascript"&gt;
+  var d = $W("display");
+  var location = $W('city').getValue();
+  var url = 'http://xml.weather.yahoo.com/forecastrss?' + location;
+  d.getFetch().setSrc(url)
+  d.getFetch().execute();
+&lt;/widget:script&gt;</pre>
+    </li><li>Finally, the button executing the script is defined<pre class="code">
+&lt;widget:button action="checkWeather#invoke"&gt;Get weather&lt;/widget:button&gt;</pre>
+    </li></ol><h2>Widget response structure <a href="../client/wag_widgets_structure.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The XSL transformation providing the widget response may look like the one shown below<pre class="code">
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+  &lt;xsl:template match="/"&gt;
+    &lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+      xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+      xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"
+      xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+      &lt;response:head&gt;
+        &lt;response:link rel="mcs:theme" href="/main.mthm"/&gt;
+      &lt;/response:head&gt;
+      &lt;response:body&gt;
+        &lt;widget:block-content id="myWeatherPresenter"&gt;
+          &lt;table&gt;
+            &lt;tr&gt;
+              &lt;td&gt;City: &lt;/td&gt;
+              &lt;td&gt;
+                &lt;xsl:value-of select="//yweather:location@city"/&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Date:&lt;/td&gt;
+              &lt;td&gt;
+                &lt;xsl:value-of select="rss/channel/item/pubDate"/&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Weather:&lt;/td&gt;
+              &lt;td&gt;
+                &lt;xsl:value-of select="//yweather:condition@text"/&gt;,
+                  Temp&lt;xsl:text&gt;: &lt;/xsl:text&gt;
+                &lt;xsl:value-of select="//yweather:condition@temp"/&gt;
+                &lt;xsl:text&gt;   &lt;/xsl:text&gt;
+                &lt;xsl:value-of select="//yweather:units@temperature"/&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/table&gt;
+        &lt;/widget:block-content&gt;
+      &lt;/response:body&gt;
+    &lt;/response:response&gt;
+  &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</pre></li><li>The body of response must be enclosed by the <span class="code">widget:block-content</span>
+      element. Refer to the XSL documentation for further information.</li></ol><h2>Complete XDIME 2 code</h2><ol><li>Create a <span class="filepath">ajax-presenter.xdime</span> file</li><li>Modify the <span class="filepath">ajax-presenter.xdime</span> file by including the following code<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:gallery="http://www.volantis.com/xmlns/2006/10/gallery-widget"
+  xmlns:event="http://www.w3.org/2001/xml-events"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Weather Presenter Widget with AJAX&lt;/title&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+    &lt;widget:script id="checkWeather" type="text/javascript"&gt;
+      var d = $W("display");
+      var location = $W('city').getValue();
+      var url = 'http://xml.weather.yahoo.com/forecastrss?' + location;
+      d.getFetch().setSrc(url)
+      d.getFetch().execute();
+    &lt;/widget:script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Weather Presenter w/AJAX"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+          &lt;p&gt;Yahoo! Weather service for cities: &lt;/p&gt;
+          &lt;widget:select id="city"&gt;
+            &lt;widget:option value="p=TUXX0002&amp;amp;u=c" selected="selected"&gt;
+              Ankara&lt;/widget:option&gt;
+            &lt;widget:option value="p=YIXX0005&amp;amp;u=c"&gt;Beograd&lt;/widget:option&gt;
+            &lt;widget:option value="p=GMXX0007&amp;amp;u=c"&gt;Berlin&lt;/widget:option&gt;
+            &lt;widget:option value="p=LOXX0001&amp;amp;u=c"&gt;Bratislava&lt;/widget:option&gt;
+            &lt;widget:option value="p=HUXX0002&amp;amp;u=c"&gt;Budapest&lt;/widget:option&gt;
+            &lt;widget:option value="p=ROXX0003&amp;amp;u=c"&gt;Bucharest&lt;/widget:option&gt;
+            &lt;widget:option value="p=PLXX0012&amp;amp;u=c"&gt;Cracow&lt;/widget:option&gt;
+            &lt;widget:option value="p=SIXX0002&amp;amp;u=c"&gt;Ljubljana&lt;/widget:option&gt;
+            &lt;widget:option value="p=CYXX0005&amp;amp;u=c"&gt;Nicosia&lt;/widget:option&gt;
+            &lt;widget:option value="p=YIXX0001&amp;amp;u=c"&gt;Podgorica&lt;/widget:option&gt;
+            &lt;widget:option value="p=EZXX0012&amp;amp;u=c"&gt;Prague&lt;/widget:option&gt;
+            &lt;widget:option value="p=LGXX0004&amp;amp;u=c"&gt;Riga&lt;/widget:option&gt;
+            &lt;widget:option value="p=BUXX0005&amp;amp;u=c"&gt;Sofia&lt;/widget:option&gt;
+            &lt;widget:option value="p=ENXX0004&amp;amp;u=c"&gt;Tallinn&lt;/widget:option&gt;
+            &lt;widget:option value="p=ALXX0002&amp;amp;u=c"&gt;Tirana&lt;/widget:option&gt;
+            &lt;widget:option value="p=MTXX0001&amp;amp;u=c"&gt;Valletta&lt;/widget:option&gt;
+            &lt;widget:option value="p=AUXX0025&amp;amp;u=c"&gt;Vienna&lt;/widget:option&gt;
+            &lt;widget:option value="p=LHXX0005&amp;amp;u=c"&gt;Vilnius&lt;/widget:option&gt;
+            &lt;widget:option value="p=HRXX0005&amp;amp;u=c"&gt;Zagreb&lt;/widget:option&gt;
+          &lt;/widget:select&gt;
+          &lt;widget:button action="checkWeather#invoke"&gt;Get weather&lt;/widget:button&gt;
+          &lt;widget:block id="display"&gt;
+            &lt;widget:fetch
+              src="http://xml.weather.yahoo.com/forecastrss?p=TUXX0002&amp;amp;u=c"
+              when="onload" transformation="weather-presenter.xsl"
+              service="/projects/client-app/servicefetch"/&gt;
+          &lt;/widget:block&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/widget_block.html">widget:block</a></th><td><p>Displays content specified by the <span class="code">widget:block-content</span> element or
+        provided by the one of the dynamic actions - fetch, load or refresh. This element supports
+        transition effects.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_block_content.html">widget:block-content</a></th><td><p>A structural element enclosing content, that can be displayed by
+        <span class="code">widget:block</span>. It supports transition effects.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_button.html">widget:button</a></th><td><p>A general purpose element, used by widgets which need a button-like control.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_fetch.html">widget:fetch</a></th><td><p>Requests an XML data from an external source and optionally processes it using specified
+        XSL transformation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_option.html">widget:option</a></th><td><p>A single item on a list.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_script.html">widget:script</a></th><td><p>Contains a script that can be executed by the <span class="code">invoke</span> action.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_select.html">widget:select</a></th><td><p>Defines a single or multiple selection control, for example a dropdown list.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr></tbody></table>
+  </body></html>

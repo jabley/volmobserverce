@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Widget response structure</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_welcome_page.html" title="The welcome page">Previous</a></li><li><a href="../client_learn/clientTutorial_transitions.html" title="Applying effects">Next</a></li></ul></td></tr></table><h1>Widget response structure</h1>
+    <p>Many widgets support dynamic behavior actions. The <span class="code">widget:load</span> and
+        <span class="code">widget:refresh</span> actions retrieve the contents of a URL. These actions can
+      be used to either update state on the client, the server or both. For example, widgets can
+      update their content, or periodically use the server session to ensure that it does not time
+      out while the user is completing a form.</p>
+  <h2>Widget response structure <a href="../client/wag_widgets_structure.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><p>You use the same elements from the <span class="code">response:</span> namespace to define the
+      outermost structure of all responses. The structure of the contained elements depends on the
+      associated widget.</p><p>For example, the following response will set the bar of the Progress bar widget to 50%.
+      Refer to <em>Active progress bar</em> for further information.</p><pre class="code">
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+  &lt;response:head/&gt;
+  &lt;response:body&gt;
+    &lt;response:progress&gt;50&lt;/response:progress&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;</pre><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/response_body.html">response:body</a></th><td><p>Container for widget response elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/response_head.html">response:head</a></th><td><p>Enables any relevant themes to be specified for a widget response. These are only needed
+        when the response contains styled content; otherwise the element can be ignored.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/response_link.html">response:link</a></th><td><p>Binds theme and layout policies to a response that contains styled content.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/response_progress.html">response:progress</a></th><td><p>Allows the Progress Bar widget to refresh the operation percentage value.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/response_response.html">response:response</a></th><td><p>Defines the outer container for a widget response.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_fetch.html">widget:fetch</a></th><td><p>Requests an XML data from an external source and optionally processes it using specified
+        XSL transformation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_load.html">widget:load</a></th><td><p>Controls the loading of a widget's contents in relation to the containing page.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_refresh.html">widget:refresh</a></th><td><p>Allows a widget to update its contents.</p></td></tr></tbody></table>
+  </body></html>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Administering MCS">
+  <topic label="Configuring MCS" href="admin/mcs_configure.html">
+    <topic label="Local repository configuration" href="admin/mcs_config_local.html"/>
+    <topic label="Device configuration" href="admin/mcs_config_device.html"/>
+    <topic label="Project configuration" href="admin/mcs_config_project.html"/>
+    <topic label="Controlling stylesheet caching" href="admin/mcs_config_css.html"/>
+    <topic label="Configuring the policy caches" href="admin/mcs_config_policy_cache.html"/>
+    <topic label="Configuring a JNDI datasource" href="admin/mcs_config_jndi.html"/>
+    <topic label="Configuring JSP support" href="admin/mcs_config_jsp.html"/>
+    <topic label="Enabling MIME packaging" href="admin/mcs_config_mime.html"/>
+    <topic label="Configuring transcoder access" href="admin/mcs_config_media_access.html"/>
+    <topic label="Configuring the application server" href="admin/mcs_config_webapp.html"/>
+    <topic label="Debugging features" href="admin/mcs_config_debug.html"/>
+    <topic label="Specifying plugin class names" href="admin/mcs_config_plugins.html"/>
+    <topic label="Enabling page tracking" href="admin/mcs_config_tracking.html"/>
+    <topic label="Configuring remote policy caches" href="admin/mcs_config_remote.html"/>
+    <topic label="Filtering XDIME content" href="admin/mcs_config_servlet_filter.html"/>
+    <topic label="VMS update notification" href="admin/mcs_ping.html"></topic>
+  </topic>
+  <topic label="Configuring log files" href="admin/mcs_logging.html"/>
+  <topic label="Device logging" href="admin/mcs_device_logging.html"/>
+  <topic label="Application response measurement" href="admin/mcs_config_arm.html"/>
+  <topic label="State in MCS" href="admin/mcs_state.html"/>
+  <topic label="Importing and exporting repositories" href="admin/mcs_import_export.html"/>
+  <topic label="Loading image assets" href="admin/mcs_asset_load_cli.html"/>
+  <topic label="Clearing caches manually" href="admin/mcs_server_manager.html"/>
+  <topic label="Using an XML Repository" href="admin/mcs_xml_repository.html"/>
+  <topic label="MCS configuration elements" href="admin/mcs_config_er.html">
+    <topic label="address" href="mcs_config/config_address.html"/>
+    <topic label="anonymous-data-source" href="mcs_config/config_anonymous_data_source.html"/>
+    <topic label="application-plugins" href="mcs_config/config_app_plugins.html"/>
+    <topic label="argument" href="mcs_config/config_argument.html"/>
+    <topic label="Assets elements" href="mcs_config/config_asset_elements.html"/>
+    <topic label="assets" href="mcs_config/config_assets.html"/>
+    <topic label="cache" href="mcs_config/config_cache.html"/>
+    <topic label="caching-operation" href="mcs_config/config_caching_operation.html"/>
+    <topic label="channel" href="mcs_config/config_channel.html"/>
+    <topic label="channels" href="mcs_config/config_channels.html"/>
+    <topic label="chartimages" href="mcs_config/config_chartimages.html"/>
+    <topic label="class-resource" href="mcs_config/config_class_resource.html"/>
+    <topic label="connection" href="mcs_config/config_connection.html"/>
+    <topic label="connection-pool" href="mcs_config/config_connection_pool.html"/>
+    <topic label="custom" href="mcs_config/config_custom.html"/>
+    <topic label="data-source" href="mcs_config/config_data_source.html"/>
+    <topic label="data-sources" href="mcs_config/config_data_sources.html"/>
+    <topic label="debug" href="mcs_config/config_debug.html"/>
+    <topic label="debug-output" href="mcs_config/config_debug_output.html"/>
+    <topic label="default" href="mcs_config/config_default.html"/>
+    <topic label="devices" href="mcs_config/config_devices.html"/>
+    <topic label="exclude-device" href="mcs_config/config_exclude_device.html"/>
+    <topic label="external-generation" href="mcs_config/config_external_generation.html"/>
+    <topic label="external-preferences-repository"
+      href="mcs_config/config_external_preferences.html"/>
+    <topic label="fallback-project" href="mcs_config/config_fallback_project.html"/>
+    <topic label="file-repository" href="mcs_config/config_file_repository.html"/>
+    <topic label="filter" href="mcs_config/config_filter.html"/>
+    <topic label="generated-resources" href="mcs_config/config_generated_resources.html"/>
+    <topic label="http-proxy" href="mcs_config/config_http_proxy.html"/>
+    <topic label="initial-context" href="mcs_config/config_initial_context.html"/>
+    <topic label="initialize" href="mcs_config/config_initialize.html"/>
+    <topic label="inline-metadata" href="mcs_config/config_inline_metadata.html"/>
+    <topic label="internal-generation" href="mcs_config/config_internal_generation.html"/>
+    <topic label="internal-preferences-repository"
+      href="mcs_config/config_internal_preferences.html"/>
+    <topic label="jdbc-repository" href="mcs_config/config_jdbc_deviceref.html"/>
+    <topic label="jdbc-driver" href="mcs_config/config_jdbc_driver.html"/>
+    <topic label="jdbc-policies" href="mcs_config/config_jdbc_policies.html"/>
+    <topic label="jdbc-repository" href="mcs_config/config_jdbc_repository.html"/>
+    <topic label="jndi-configuration" href="mcs_config/config_jndi_config.html"/>
+    <topic label="jndi-data-source" href="mcs_config/config_jndi_datasource.html"/>
+    <topic label="jsp" href="mcs_config/config_jsp.html"/>
+    <topic label="local-repository" href="mcs_config/config_local_repository.html"/>
+    <topic label="log4j" href="mcs_config/config_log4j.html"/>
+    <topic label="logging" href="mcs_config/config_logging.html"/>
+    <topic label="log-file" href="mcs_config/config_log_file.html"/>
+    <topic label="e-mail" href="mcs_config/config_email.html"/>
+    <topic label="config" href="mcs_config/config_email_config.html"/>
+    <topic label="from" href="mcs_config/config_from.html"/>
+    <topic label="to" href="mcs_config/config_to.html"/>
+    <topic label="smtp" href="mcs_config/config_smtp.html"/>
+    <topic label="host" href="mcs_config/config_host.html"/>
+    <topic label="port" href="mcs_config/config_port.html"/>
+    <topic label="user-name" href="mcs_config/config_username.html"/>
+    <topic label="password" href="mcs_config/config_password.html"/>
+    <topic label="subject" href="mcs_config/config_subject.html"/>
+    <topic label="period" href="mcs_config/config_period.html"/>
+    <topic label="e-mail-sending" href="mcs_config/config_email_sending.html"/>
+    <topic label="name" href="mcs_config/config_name.html"/>
+    <topic label="management" href="mcs_config/config_management.html"/>
+    <topic label="markup-extension" href="mcs_config/config_markup_extension.html"/>
+    <topic label="markup-extensions" href="mcs_config/config_markup_extensions.html"/>
+    <topic label="markup-plugin" href="mcs_config/config_markup_plugin.html"/>
+    <topic label="mcs-agent" href="mcs_config/config_mcs_agent.html"/>
+    <topic label="mcs-config" href="mcs_config/config_mcs_config.html"/>
+    <topic label="mcs-database" href="mcs_config/config_mcs_database.html"/>
+    <topic label="mcs-plugins" href="mcs_config/config_mcs_plugins.html"/>
+    <topic label="media-access-proxy" href="mcs_config/config_media_access_proxy.html"/>
+    <topic label="mime-packaging" href="mcs_config/config_mime_packaging.html"/>
+    <topic label="mime-type" href="mcs_config/config_mime_type.html"/>
+    <topic label="modesets" href="mcs_config/config_modesets.html"/>
+    <topic label="module" href="mcs_config/config_module.html"/>
+    <topic label="mps" href="mcs_config/config_mps.html"/>
+    <topic label="named-data-source" href="mcs_config/config_named_data_source.html"/>
+    <topic label="object-pool" href="mcs_config/config_object_pool.html"/>
+    <topic label="page-cache" href="mcs_config/config_page_cache.html"/>
+    <topic label="page-level-generation" href="mcs_config/config_page_level_generation.html"/>
+    <topic label="page-messages" href="mcs_config/config_page_messages.html"/>
+    <topic label="page-packaging" href="mcs_config/config_page_packaging.html"/>
+    <topic label="parameter" href="mcs_config/config_parameter.html"/>
+    <topic label="pipeline-configuration" href="mcs_config/config_pipeline_config.html"/>
+    <topic label="plugins" href="mcs_config/config_plugins.html"/>
+    <topic label="policy-cache" href="mcs_config/config_policy_cache.html"/>
+    <topic label="Policy cache elements" href="mcs_config/config_policy_cache_elements.html"/>
+    <topic label="preload" href="mcs_config/config_preload.html"/>
+    <topic label="process" href="mcs_config/config_process.html"/>
+    <topic label="project" href="mcs_config/config_project.html"/>
+    <topic label="remote-policies" href="mcs_config/config_project_remote.html"/>
+    <topic label="projects" href="mcs_config/config_projects.html"/>
+    <topic label="protocols" href="mcs_config/config_protocols.html"/>
+    <topic label="proxy" href="mcs_config/config_proxy.html"/>
+    <topic label="remote-policy-cache" href="mcs_config/config_remote_policy_cache.html"/>
+    <topic label="remote-policies" href="mcs_config/config_remote_policies.html"/>
+    <topic label="remote-policy-quota" href="mcs_config/config_remote_policy_quota.html"/>
+    <topic label="remote-policy-quotas" href="mcs_config/config_remote_policy_quotas.html"/>
+    <topic label="rule" href="mcs_config/config_rule.html"/>
+    <topic label="script" href="mcs_config/config_script.html"/>
+    <topic label="scripts" href="mcs_config/config_scripts.html"/>
+    <topic label="secondary-repository" href="mcs_config/config_secondary_repository.html"/>
+    <topic label="servlet-filter" href="mcs_config/config_servlet_filter.html"/>
+    <topic label="servlet-resource" href="mcs_config/config_servlet_resource.html"/>
+    <topic label="standard" href="mcs_config/config_standard.html"/>
+    <topic label="style-sheets" href="mcs_config/config_style_sheets.html"/>
+    <topic label="page-tracking" href="mcs_config/config_tracking.html"/>
+    <topic label="transform" href="mcs_config/config_transform.html"/>
+    <topic label="uri-resource" href="mcs_config/config_uri_resource.html"/>
+    <topic label="user-repositories" href="mcs_config/config_user_repositories.html"/>
+    <topic label="web-application" href="mcs_config/config_web_app.html"/>
+    <topic label="web-driver" href="mcs_config/config_web_driver.html"/>
+    <topic label="web-service-driver" href="mcs_config/config_web_serv_driver.html"/>
+    <topic label="wml" href="mcs_config/config_wml.html"/>
+    <topic label="wsdl-catalog" href="mcs_config/config_wsdl_catalog.html"/>
+    <topic label="wsdl-entry" href="mcs_config/config_wsdl_entry.html"/>
+    <topic label="xml-policies" href="mcs_config/config_xml_policies.html"/>
+    <topic label="xml-repository" href="mcs_config/config_xml_repository.html"/>
+  </topic>
+</toc>

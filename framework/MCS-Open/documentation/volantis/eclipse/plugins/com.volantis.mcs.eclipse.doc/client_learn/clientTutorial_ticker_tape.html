@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Creating a ticker tape</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_progress_indicator.html" title="Showing progress">Previous</a></li><li><a href="../client_learn/clientTutorial_date_picker.html" title="Picking a date">Next</a></li></ul></td></tr></table><h1>Creating a ticker tape</h1>
+    <p>The Ticker Tape widget is a display area that may contain styled text, images and links in a
+      scrolling set of content that cycles continuously. Its purpose is to display information such
+      as news headlines, stock prices, and banner advertisements.</p>
+    <p>The Ticker Tape widget is able to refresh its contents periodically via AJAX. Refer to <em>Ticker Tape with AJAX</em> for further information.</p>
+    <p><img src="../graphics/cfTutorial/tickertape.png" alt="Ticker Tape widget" title="Ticker Tape widget"/></p>
+  <h2>Creating a ticker tape <a href="../client/wag_widgets_ticker_tape.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">widget:ticker-tape</span> element defines the widget<pre class="code">
+&lt;widget:ticker-tape id="myTickerTape"&gt;
+  &lt;span&gt;The Text Ticker Widget is a sideways-scrolling display area.&lt;/span&gt;
+  &lt;span&gt;Its purpose is to display information such as news headlines,
+    stock prices, weather conditions etc&lt;/span&gt;
+&lt;/widget:ticker-tape&gt;</pre></li><li>You can use the <span class="uicontrol">Marquee direction</span>, <span class="uicontrol">Marquee
+      velocity</span>, and <span class="uicontrol">Marquee repetition</span> properties to control the
+      scrolling direction, speed, and the number of repetitions</li></ol><h2>Complete XDIME 2 code</h2><ol><li>Create a <span class="filepath">tickertape.xdime</span> file, and modify it by including the
+      following code<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Ticker Tape Widget&lt;/title&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+    &lt;style type="text/css" media="handheld,all"&gt;
+      .ticker {
+        mcs-marquee-direction: right;
+        mcs-marquee-style: alternate;
+        width: 99%;
+      }
+      .ticker &gt; span {
+        padding-left: 3em;
+        padding-right: 3em;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Ticker Tape Widget"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+          &lt;widget:ticker-tape id="myTickerTape" class="ticker"&gt;
+            &lt;span&gt;The Text Ticker Widget is a sideways-scrolling display area.&lt;/span&gt;
+            &lt;span&gt;Its purpose is to display information such as news headlines,
+              stock prices, weather conditions etc&lt;/span&gt;
+          &lt;/widget:ticker-tape&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_span.html">span</a></th><td><p>Inline element used to set a style.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_ticker_tape.html">widget:ticker-tape</a></th><td><p>Defines a Ticker Tape widget which provides a horizontal scrolling display area.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr></tbody></table>
+  </body></html>

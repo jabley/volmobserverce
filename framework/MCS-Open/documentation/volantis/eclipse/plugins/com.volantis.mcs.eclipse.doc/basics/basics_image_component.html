@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Adding an image component</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../basics/basics_about.html" title="Getting started">Start</a></li><li><a href="../basics/basics_project.html" title="Creating a project">Previous</a></li><li><a href="../basics/basics_layout.html" title="Creating a layout">Next</a></li></ul></td></tr></table><h1>Adding an image component</h1>
+    <p>Now you will see how we added an image component for the Volantis logo to the project,
+      created an image variant, and associated it with a standard device family.</p>
+    <p>All the image files are located in the <span class="filepath">welcome/images</span> directory. The
+      image component policies are in the
+      <span class="filepath">welcome/WebContent/mcs-policies/images</span> directory.</p>
+    
+  <h2>Adding a component <a href="../components/component_add.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>Choose <span class="command">File</span> | <span class="command">New</span> | <span class="command">Image
+      Component</span></li><li>Select the <span class="filepath">welcome/WebContent/mcs-policies/images</span> folder in the
+      Navigator view, and enter 'vol_logo' as the component name. MCS will automatically append the
+        <span class="filepath">.mimg</span> image component policy file extension when the file is created.</li><li>Click the <span class="command">Next</span> button <p><img src="../graphics/basics/mcs_image_name_ui.png" alt="Naming an image component" title="Naming an image component"/></p></li></ol><h2>Adding a variant <a href="../components/asset_add.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>Use the <span class="command">Browse</span> button to locate <span class="filepath">welcome/images</span>
+      folder as the <span class="uicontrol">Image root path</span></li><li>Select 'GIF(*.gif)' from the <span class="uicontrol">Files of type</span> list to filter the list,
+      and choose <span class="filepath">logo_sys_r_rgb_300.gif</span> from the <span class="filepath">images/PC</span>
+      directory. To preview the variant, select the filename.</li><li>Check the box next to the filename to select it, and click the <span class="command">Next</span>
+      button. You should choose no more than one variant to enable the <span class="command">Next</span>
+      button and target devices at this time.<p><img src="../graphics/basics/mcs_variant_logo_ui.png" alt="Logo variant" title="Logo variant"/></p></li></ol><h2>Choosing a device <a href="../devices/device_choose.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><p>Most component variants are device specific. They can be targeted at a particular device or
+      device family. MCS searches the repository for a variant which is targeted at the device
+      currently in use. If there is no exact match, MCS searches for variants that match the parent
+      of the current device in the device tree. This search continues up the hierarchy until either
+      a variant is found, or MCS reaches the root of the device tree.</p><ol><li>On the next page of the wizard choose 'Targeted' in the <span class="uicontrol">Selection
+      criteria</span> box, and click the <span class="command">Next</span> button <p><img src="../graphics/mcs_image_criteria_ui.png" alt="Image selection criteria" title="Image selection criteria"/></p>
+    </li><li>Go to the <span class="uicontrol">Device Tree</span> tab and expand the 'Master' tree to find 'PC'
+      devices. Check the box next to the device to select it, and click the
+      <span class="command">Finish</span> button. <p><img src="../graphics/mcs_target_device_ui.png" alt="Choosing target devices" title="Choosing target devices"/></p>
+    </li><li>MCS displays the Image Component Editor. Select the PC variant in the
+      <span class="uicontrol">Variants</span> section to display the related attributes.</li></ol><h2>Adding the Smartphone variant</h2><p>Now we will add a logo variant for Smartphone devices to the existing policy.</p><ol><li>In the policy editor click the <span class="command">New</span> button located below the Variants
+      section to open the wizard</li><li>This time choose <span class="filepath">logo_sys_r_rgb_150.gif</span> from the
+      <span class="filepath">images</span> directory</li><li>Click the <span class="command">Next</span> button</li><li>On the next page of the wizard pick the 'Targeted' and click <span class="command">Next</span></li><li>On the <span class="uicontrol">Device List</span> tab type '*Smartphone' in the top text box to
+      filter list of available devices. The list of matched devices is updated as you type. <p><img src="../graphics/mcs_target_device_smart_ui.png" alt="Smartphone targeted device" title="Smartphone targeted device"/></p></li><li>Check the 'Smartphone' box and click <span class="command">Finish</span>. The new variant is listed
+      in the Variants section. </li></ol></body></html>

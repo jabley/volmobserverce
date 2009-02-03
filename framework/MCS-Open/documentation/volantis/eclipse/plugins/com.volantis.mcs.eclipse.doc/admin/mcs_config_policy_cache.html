@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Configuring the policy caches</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Configuring the policy caches</h1>
+    <p>MCS uses caching in order to avoid accessing the repository for policies that have been
+      retrieved recently. All variants are cached with their containing policies.</p>
+    <p>You can configure caching in the <span class="code">policy-cache</span> section of the
+        <span class="filepath">mcs-config.xml</span> file by setting global cache values to optimize
+      performance.</p>
+    <pre class="code">
+&lt;policy-cache&gt;
+  &lt;asset-group-cache
+    enabled="true"
+    max-entries="25"
+    timeout="3600"/&gt;
+&lt;/policy-cache&gt;</pre>
+    
+      <h2>Setting cache attributes</h2>
+      <p>You define cache settings by editing <span class="code">policy-cache</span> attribute values. You
+        can set up values for each type of object, and then switch them on or off with the
+          <span class="code">enabled</span> attribute. On a production server you should set all policy caches to
+        'true'; on a development server you may wish to switch off some caches so that any changes
+        you make to content are effective immediately.</p>
+      <p>Each item in the cache has a count that is incremented when MCS accesses the object, and a
+        record of the time of last access. MCS always removes the 10 least recently used items.</p>
+      <p>The <span class="code">max-entries</span> attribute defines the default number of entries in each cache.
+        If you don't specify a value, or set it to '-1', no size limit is set. Asset groups, images
+        and layouts may need the most space in the policy cache, whereas themes may require a
+        relatively smaller cache. For devices, remember to allow for growth in the device
+        repository.</p>
+      <p>When an item is requested from the cache MCS checks the <span class="code">timeout</span> attribute,
+        which specifies the default number of seconds an item can remain in the cache. If the item
+        has timed out, MCS removes it from the cache and requests the item from the repository. The
+        new item is then cached. This means that, although items may have timed out, they will still
+        exist in the cache until accessed.</p>
+      <p>You can use the timeout feature to force the cache to update items which may have changed
+        in the repository during run time. It is not intended as a device for resizing the cache
+        after a certain time period. If you don't specify a <span class="code">timeout</span> value, or set it to
+        -1, a cache will be created where none of the items timeout.</p>
+      
+      
+        <h2>Factors affecting cache size</h2>
+      <p>There is no exact formula for calculating the size of a cache. There is one cache entry for
+        each policy, and each policy includes all the variants in a component, and the variants
+        selected for each device. Also the size of the cache depends on the number of requests for
+        the individual policies. Layout and theme policies take the most space, as well as being the
+        most frequently requested. Otherwise cache entries are quite small, so increasing the
+        setting of <span class="code">max-entries</span> attribute value will not use large amounts of
+      memory.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../admin/mcs_configure.html">Configuring MCS</a><br/><a class="link" href="../mcs_config/config_policy_cache_elements.html">Policy cache elements</a><br/><a class="link" href="../admin/mcs_config_css.html">Controlling stylesheet caching</a><br/></p>
+    
+  </body></html>

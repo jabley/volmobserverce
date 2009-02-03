@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>pipeline:convertAbsoluteToRelativeURL</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>pipeline:convertAbsoluteToRelativeURL</h1><h2>Purpose</h2>
+      <p>Removes base URL prefixes or translates URLs in content.</p>
+    <h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">baseURL</th><td>The remote server prefix to match. If used by itself, MCS strips off the prefix
+          in all content instances.</td><td>xs:anyURI</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">substitutionPath</th><td>Must be used with the baseURL attribute. The remote server prefix to replace
+          the value in baseURL.</td><td>xs:anyURI</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Examples</h2>
+      <pre class="code">
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"&gt;
+  &lt;head&gt;
+    &lt;title&gt;pipeline:convertAbsoluteToRelativeURL&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;pipeline:convertAbsoluteToRelativeURL
+        baseURL="http://www.mytestsite.com/"
+        substitutionPath="http://localhost:8080/"&gt;
+        &lt;urid:fetch href="test.xdinc"/&gt;
+      &lt;/pipeline:convertAbsoluteToRelativeURL&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>The <span class="filepath">test.xdinc</span> file may look like this.</p>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;div xmlns="http://www.w3.org/2002/06/xhtml2"&gt;
+  &lt;a href="http://www.mytestsite.com/mcs/projects/client-app/index.xdime"&gt;Client Framework Demo&lt;/a&gt;
+&lt;/div&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../dci/pipeline_er.html">Pipeline elements and functions</a><br/></p>
+    </body></html>

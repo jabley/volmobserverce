@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>page-cache</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>page-cache</h1><h2>Purpose</h2>
+      <p>Defines the global default page cache setting. Authors may override the default value with
+        an alternative scope value on individual pages, using the <span class="code">cacheScope</span> attribute
+        on the <span class="code">canvas</span> element.</p>
+      
+    <h2>Contained by</h2><p><a href="../mcs_config/config_servlet_filter.html">servlet-filter</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">default-scope</th><td>Contains a global default scope for XDIME page caching</td><td/><td>'none' </td><td>optimistic, safe, none </td><td>optional </td></tr></table><h2>Example</h2>
+      <pre class="code">
+&lt;servlet-filter
+  jsessionid-name="jsessionid"&gt;
+  &lt;exclude-device name="PC"/&gt;
+  &lt;mime-type value="x-application/vnd.xdime+xml"/&gt;
+  &lt;mime-type value="x-application/vnd.volantis.xdime+xml"/&gt;
+  &lt;page-cache default-scope="none"/&gt;
+&lt;/servlet-filter&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../admin/mcs_config_er.html">MCS configuration elements</a><br/></p>
+    </body></html>

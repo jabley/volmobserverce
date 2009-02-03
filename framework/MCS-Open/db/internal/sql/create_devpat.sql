@@ -1,0 +1,18 @@
+insert into device_patterns values ('PocketPC','.*Windows CE.*');
+insert into device_patterns values ('PC','.*MSIE.*');
+insert into device_patterns values ('PC','.*Mozilla.*');
+insert into device_patterns values ('Phone-WML-1.1','.*UPG1.*');
+insert into device_patterns values ('Phone-WML-1.1','.*ALAV.*');
+insert into device_patterns values ('Phone-WML-1.1','.*ERK0.*');
+insert into device_patterns values ('Phone-WML-1.1','.*SP01.*');
+insert into device_patterns values ('Phone-WML-1.1','.*IM1K.*');
+insert into device_patterns values ('Phone-WML-1.1','.*MOT-CB.*');
+insert into device_patterns values ('Phone-WML-1.1','.*SH.*');
+insert into device_patterns values ('Phone-WML-1.1','.*WinWAP.*');
+insert into device_patterns values ('Phone-WML-1.1','.*EricssonR320/R1A.*');
+insert into device_patterns values ('Nokia7110','.*Nokia-WAP.*');
+insert into device_patterns values ('Phone-WML-1.1', '.*WapIDE-SDK/2.0');
+insert into device_patterns values ('Nokia7110','.*Nokia7110/1.0.*');
+insert into device_patterns values ('PalmV-AUS','.*AUR PALM WAPPER.*');
+insert into device_patterns values ('PsionRevo','.*EPOC32-WTL/2.0 (RVGA).*');
+insert into device_patterns values ('PsionRevoWAP','.*Catspaw/0.98b(RV) War/0.78b.*');

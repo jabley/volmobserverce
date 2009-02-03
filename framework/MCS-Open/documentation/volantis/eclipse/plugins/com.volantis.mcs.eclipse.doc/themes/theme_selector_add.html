@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Adding a selector</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Adding a selector</h1>
+    <p>On the Theme editor Design page you can add or edit selectors that are associated with
+      element names, <span class="code">class</span> attributes or <span class="code">id</span> attributes in the XDIME
+      content the device will display. For example, you'll want to create selectors for headings,
+      paragraphs, links and so on.</p>
+    <p>The Selector list has two columns. The <span class="uicontrol">Selector</span> column contains the
+      names of one or more selectors. The <span class="uicontrol">Order</span> column indicates the order of
+      the style rules.</p>
+    <p>Because a simple style rule can be applied to multiple elements, you can group elements
+      together in selector groups.</p>
+    <p>You can use the New Style Rule wizard to create a sequence of simple selectors for the
+      selector column or simply edit the text. In the wizard you can set values for the following
+      selectors:</p>
+    <ul><li class="simple">Element</li><li class="simple">Namespace</li><li class="simple">Class</li><li class="simple">Id</li><li class="simple">Attribute</li><li class="simple">Psuedo-class</li><li class="simple">Pseudo-element</li></ul>
+    <p>For an explanation of the meaning and use of style selectors, you should refer to the <em>Cascading Style Sheets, level 2 Revision 1 (CSS2.1) Specification</em>.</p>
+    <div class="note"><strong>Note</strong>: Not all devices support multiple classes on elements, so if you apply more
+      than one class to a given element in a theme, you may get unexpected results.</div>
+    <p class="taskhead">To add a selector:</p>
+    <ol>
+      <li>Click <span class="command">New</span> to start the New Style Rule wizard.</li>
+      <li>Choose or enter values for a combination of <span class="uicontrol">Element</span> and
+          <span class="uicontrol">Namespace</span>
+      </li>
+      <li>Optionally enter an <span class="uicontrol">Id</span> to bind this style to a specific element
+        instance</li>
+      <li>Click <span class="command">Browse</span> next to the <span class="uicontrol">Class</span> control to choose
+        or add a class in a selector dialog</li>
+      <li>Repeat step 4 for Attribute, Pseudo-class and Pseudo-element selectors</li>
+      <li>Click <span class="command">Add</span> to insert the selector into the <span class="uicontrol">Selector
+        group</span>, or choose <span class="command">Append</span> and one of the append options to
+        combine this selector with another one </li>
+      <li>Click <span class="command">Up</span> or <span class="command">Down</span> to change the order of the
+        selectors in the rule</li>
+      <li>Click <span class="command">Finish</span> to close the wizard</li>
+    </ol>
+    <p>To remove a selector select an item in the list and click <span class="command">Remove.</span>
+    </p>
+    
+      <h2>Editing selectors directly</h2>
+      <p>If you are familiar with XDIME element names and CSS syntax, you can optionally click
+          <span class="command">Add</span> to add a blank item to the list, and enter the selector text
+        directly in the list.</p>
+      <p>To modify style selectors, you have to edit them in place in the Selectors list. You can
+        also cut, copy and paste text, to change the order of selectors, or add them to another
+        theme.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../themes/theme_working.html">Working with themes</a><br/><a class="link" href="../themes/theme_style_edit.html">Setting style properties</a><br/><a class="link" href="../themes/theme_attr_selector.html">Attribute selectors</a><br/><a class="link" href="../themes/theme_pseudo_class_selector.html">Pseudo-class selectors</a><br/><a class="link" href="../themes/theme_pseudo_element_selector.html">Pseudo-element selectors</a><br/><a class="external" href="http://www.w3.org/TR/CSS2/" title="External link">Cascading Style Sheets, level 2 Revision 1 (CSS2.1) Specification</a><br/></p>
+    
+  </body></html>

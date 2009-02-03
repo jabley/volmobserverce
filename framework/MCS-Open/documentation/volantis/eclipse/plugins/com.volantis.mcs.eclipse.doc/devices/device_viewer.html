@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Device Repository view</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Device Repository view</h1>
+    <p>You can use the Device Repository Browser to examine the identifiers and policies for the
+      devices defined in the repository associated with your project.</p>
+    
+      <h2>Devices</h2>
+      <p>The Devices section of the browser contains a tree view of the devices available in the
+        repository. The structure of the tree reflects the fallback hierarchy of the devices. You
+        can expand the tree to make a single device selection.</p>
+    
+    
+      <h2>Identifiers</h2>
+      <p>MCS uses identification patterns at runtime to identify an unknown device. The patterns are
+        regular expressions that are matched against the device headers. These patterns are
+        contained in an XML file. The Identifiers section of the view contains the part of the XML
+        file defining the patterns for the device you have selected.</p>
+    
+    
+      <h2>Policies</h2>
+      <p>In the Policies section you can view a list of device policies, or sets of attributes for
+        the device you have selected. You can click on a column heading in the table to change the
+        order of devices, and scroll the table to see the attributes. The list has the following
+        column headings:</p>
+      <ul>
+        <li>Name</li>
+        <li>Value</li>
+        <li>Origin</li>
+        <li>Category</li>
+        <li>Short name</li>
+        <li>Description</li>
+      </ul>
+      <p>Where the value of the policy is not inherited from an ancestor device the origin will not
+        have a value. This empty value will be deemed to be alphabetically before any other value.
+        This provides a convenient means of viewing all of the policy values overridden on the
+        selected device.</p>
+    
+    
+      <h2>Device icons</h2>
+      <p>The following icons are associated with devices. </p>
+      <table cellspacing="0"><thead><tr><th class="firsthdr">Resource  </th><th>Icon  </th></tr></thead><tbody><tr><th class="firstcell" scope="row">Device  </th><td>
+              <img src="../icons/icon_device.gif" alt="Device icon" title="Device icon"/>
+              </td></tr><tr><th class="firstcell" scope="row">Device Repository  </th><td>
+              <img src="../icons/icon_dev_repository.gif" alt="Device repository icon" title="Device repository icon"/>
+              </td></tr></tbody></table>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../devices/device_about.html">About devices</a><br/><a class="link" href="../mcs/mcs_views.html">MCS views</a><br/></p>
+    
+  </body></html>

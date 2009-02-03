@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Creating a theme</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_layout_list.html" title="Additional layouts">Previous</a></li><li><a href="../client_learn/clientTutorial_theme_main.html" title="Main theme">Next</a></li></ul></td></tr></table><h1>Creating a theme</h1>
+    <p>In this module, you will create the main theme policy for the application. Each theme can
+      have variants that you define for individual devices or groups of devices.</p>
+    <p>Styles are device-dependent because devices differ greatly in the support available for this
+      kind of information. So MCS has to identify the requesting device before applying a set of
+      rules. Each variant is made up of a set of style rules, and each rule is identified by a
+      selector, and has a set of properties.</p>
+    <p>You use the Theme Wizard and Theme Editor to associate variants with devices, and to define
+      selectors and properties. You can also use the <span class="uicontrol">Style Rules</span> view to get
+      an overall picture of the themes for a particular theme variant, and perform some limited
+      editing actions.</p>
+  <h2>Adding a theme <a href="../themes/theme_add.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>Choose <span class="command">File</span> | <span class="command">New</span> and pick the
+      <span class="command">Theme</span> wizard from the Eclipse menu</li><li>The theme policy should be located in the
+        <span class="filepath">client-app/WebContent/mcs-policies/themes/</span> directory. Choose that
+      folder in the policy tree view, or enter the full path for the project folder in the first
+      text box.</li><li>Name a new theme policy 'main' and then click the <span class="command">Next</span> button. The MCS
+      automatically adds <span class="filepath">.mthm</span> file extension to the theme name.<p><img src="../graphics/cfTutorial/mcs_new_theme_ui.png" alt="Theme policy" title="Theme policy"/></p></li></ol><h2>Variant selection criteria <a href="../components/asset_selection_criteria.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>Choose <span class="command">Default</span> in the <span class="uicontrol">Selection Criteria</span> box<p><img src="../graphics/cfTutorial/mcs_new_theme_selection_ui.png" alt="Theme variant selection criteria" title="Theme variant selection criteria"/></p></li><li>Click <span class="command">Finish</span> to complete</li></ol><h2>Theme editor <a href="../themes/theme_editor.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><p>The Theme editor has two pages, an Overview page listing the theme variants and their general
+      attributes, and a Design page where you can specify your style selectors and define style
+      properties.</p><p><img src="../graphics/cfTutorial/theme_view.png" alt="Theme overview" title="Theme overview"/></p><p>Next, we will detail the theme by adding appropriate selectors and setting style rules for
+      them.</p></body></html>

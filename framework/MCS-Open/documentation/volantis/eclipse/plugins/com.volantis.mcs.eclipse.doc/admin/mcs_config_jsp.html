@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Configuring JSP support</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Configuring JSP support</h1>
+    <p>The attributes in the <span class="code">jsp</span> section of <span class="filepath">mcs-config.xml</span>
+      control the use and behavior of Java Server Pages (JSP). The settings allow you to turn JSP
+      support on or off, and tune performance on some JSP operations.</p>
+    
+    <pre class="code">
+&lt;jsp support-required="true"
+  write-direct="false"
+  resolve-character-references="true"
+  evaluate-page-after-canvas="false"/&gt;</pre>
+    <p>If your web application does not contain any JSPs, you should set the
+      <span class="code">support-required</span> attribute to false, to prevent unnecessary initialization.</p>
+    <p>Some existing applications may rely on writing device dependent content direct to the output.
+      If this is the case, you can set the <span class="code">write-direct</span> to 'true'. For new applications
+      you should use the default value of 'false' to write device independent content to MCS.</p>
+    <p>The <span class="code">resolve-character-reference</span> attribute value is used to handle the resolution
+      of character references in JSP tag attributes and content. Set the attribute to 'true' to
+      resolve references before passing them on to the MCS API. Otherwise, set it to false for a
+      slight performance improvement.</p>
+    <p>If an existing web applications relies on evaluating page content after the
+      <span class="code">canvas</span> element, set the <span class="code">evaluate-page-after-canvas</span> attribute
+      to 'true'. Using a false setting may avoid adverse affects for applications that generate
+      binary content such as WBXML/WMLC or packaged output.</p>
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../admin/mcs_configure.html">Configuring MCS</a><br/><a class="link" href="../mcs_config/config_jsp.html">jsp</a><br/></p>
+    
+  </body></html>

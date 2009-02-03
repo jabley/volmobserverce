@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Programming MPS</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Programming MPS</h1>
+    <p>You can use the Message Preparation Services API (MPSAPI) to develop MPS applications.
+      Details of the API are contained in the JavaDoc, and the code fragments in this section
+      illustrate its use.</p>
+    <p>The main steps in programming MPS applications are:</p>
+    <ul>
+      <li> Establishing the <strong>session</strong>
+      </li>
+      <li> Adding <strong>attachments</strong>
+      </li>
+      <li> Adding <strong>recipients</strong>
+      </li>
+      <li> Resolving <strong>channels and devices</strong>
+      </li>
+    </ul>
+    
+      <h2>Establishing the session</h2>
+      <p>The example servlet uses the following code to define the application and then initialize
+        it.</p>
+      <pre class="code">
+MarinerServletApplication mpsTest;           
+public RunMps() {
+}
+public void init() throws ServletException {
+  super.init();
+  mpsTest = MarinerServletApplication.getInstance(
+    getServletConfig().getServletContext());
+}</pre>
+      <p>If you initialize MCS from a custom application that has its own servlet context you should
+        use something like the following code.</p>
+      <pre class="code">
+ServletContext sc = pageContext.getServletContext().getContext("/mcs")
+
+MarinerServletApplication example =
+MarinerServletApplication.getInstance(sc);}</pre>
+    
+    
+      <h2>Adding attachments</h2>
+      <p>Multipart MIME messages generated for MPS may need to carry arbitrary attachments if the
+        channel adapter supports attachments. Such attachments are not referenced from within the
+        body of the message but travel with it. The attachments can include things such as:</p>
+      <ul>
+        <li>Manufacturer-specific ringtones</li>
+        <li>Java applications</li>
+        <li>Executable content in other formats (such as Mophun, BREW)</li>
+        <li>vCard, vCalendar entries</li>
+      </ul>
+      <p>Allowing attachments to MPS messages supports the use of MPS as a delivery mechanism for
+        provisioning. For this use, no device independence is required for attachments, since the
+        attachment objects(s) would have been preselected by the provisioning engine.</p>
+      <p>Device dependent attachments are supported</p>
+      <p>MPS can include arbitrary objects in the rendered multipart MIME message, such that they
+        will be treated as an attachment by the receiving MMS client. An attachment in this context
+        is an object that is included as part of the multipart/related MIME message but is not
+        referenced by the markup (root) part of the message (for example the MMS SMIL part in MMS).</p>
+      <p>You specify the list of attachments through MPSAPI using either local or fully-qualified
+        URLs. A local URLs must be the fully qualified file path to the attachment on the server
+        where MPS is installed.</p>
+      <p>When a message is rendered for a message type that does not support attachments (such as
+        SMS), then any attachments specified are ignored.</p>
+      <p>The classes provided for handling message attachments are: <span class="code">MessageAttachments</span>,
+          <span class="code">MessageAttachment</span> and <span class="code">DeviceMessageAttachment</span>.</p>
+      <div class="note"><strong>Note</strong>: All slashes ('/') in the file attachment path are treated as path separators
+        for compatibility with Windows and Linux platforms. There is no need to escape space
+        characters.</div>
+    
+    
+      <h2>Create a MessageAttachments object</h2>
+      <p>In the example servlet the following code creates a <span class="code">MessageAttachments</span> object
+        from the parameters coming in from the HTTP request.</p>
+        <pre class="code">
+private MessageAttachments getAttachments(HttpServletRequest request) {
+  String attachment[] = request.getParameterValues("attachment");
+  String attachmentValueType[] = request.getParameterValues(
+  String attachmentChannel[] = request.getParameterValues(
+  String attachmentDevice[] = request.getParameterValues(
+  String attachmentMimeType[] = request.getParameterValues(
+    "attachmentMimeType");
+                                                                                                
+  MessageAttachments messageAttachments = new MessageAttachments();
+  for(int i=0;i&lt;attachment.length;i++){
+    if(!attachment[i].equals("")){
+      DeviceMessageAttachment dma = new DeviceMessageAttachment();
+      try {
+        dma.setChannelName(attachmentChannel[i]);
+        dma.setDeviceName(attachmentDevice[i]);
+        dma.setValue(attachment[i]);
+        dma.setValueType(Integer.parseInt(attachmentValueType[i]));
+        if(!attachmentMimeType[i].equals("")){
+          dma.setMimeType(attachmentMimeType[i]);
+        }
+        messageAttachments.addAttachment(dma);
+      } 
+      catch(MessageException me){
+        log("Failed to create attachment for "+attachment[i],me);
+      }
+    }
+  }
+  return messageAttachments;     
+}</pre>
+    
+    
+      <h2>Adding recipients</h2>
+      <p>The following code loads a recipient set from the ServletRequest by looking at parameters
+        'recipients' and 'device'. If 'device' = "" or there are fewer devices than recipients then
+        no device is specified for the recipient. If the channel is specified as SMS then the MSISDN
+        of the recipient is set rather than the address.</p>
+        <pre class="code">
+private MessageRecipients getRecipients(HttpServletRequest
+  request, String inType) throws RecipientException, AddressException{
+  String[] names = request.getParameterValues("recipients");
+  String[] devices = request.getParameterValues("device");
+  String[] type = request.getParameterValues("type");
+  String[] channel = request.getParameterValues("channel");
+  MessageRecipients messageRecipients = new MessageRecipients();
+  for(int i=0;i&lt;type.length;i++) {
+    if(type[i].equals(inType)){
+      if(!names[i].equals("")){
+        MessageRecipient messageRecipient = new MessageRecipient();
+        //Is there a channel for this index? Is it not empty?
+        if(channel.length&gt;i&amp;&amp;!channel[i].equals("")) {
+          // set the channel for the recipient
+          messageRecipient.setChannelName(channel[i]);
+          if(channel[i].equals("smsc")) {
+            // The channel is smsc so set the MSISDN rather than
+            messageRecipient.setMSISDN(names[i]);
+          }  else if (channel[i].equals("mmsc") &amp;&amp; names[i].charAt(0)=='+') {
+            messageRecipient.setMSISDN(names[i]);
+          }  else {
+            messageRecipient.setAddress(new InternetAddress(names[i]));
+          }
+        } else {
+          // channel is not present or empty so use smtp
+          // as default - This will have to be changed if the smtp
+          // channel is not present in the mcs-config file
+          messageRecipient.setChannelName("smtp");
+        }
+               
+        // If there is a device then set it otherwise let MPS use the 
+        // defaults
+        if(devices.length&gt;i){
+          String device = devices[i];
+          if(!device.equals("")){
+            messageRecipient.setDeviceName(device);
+          }
+        }
+        // Add recipient to the list of MessageRecipients
+        messageRecipients.addRecipient(messageRecipient);
+      }
+    }
+  }
+  return messageRecipients;
+}</pre>
+    
+    
+      <h2>Resolving channels and devices</h2>
+      <p>Explicit device identification does <em>not</em> occur in message preparation. Instead,
+        each user is identified with a device. When page generation is invoked, the name of the
+        target device is supplied. The name is derived from the entry for the recipient. This may
+        happen in one of two ways:</p>
+      <ul>
+        <li>The name of the device may be supplied within each recipient list entry by the
+          application that creates them </li>
+        <li>The device may be supplied via an API invoked in response to the
+            <span class="code">ResolveDeviceNames</span> method of the <span class="code">MessageRecipients</span> class. This
+          API is customer-written and implements the <span class="code">MessageRecipientInfo</span> interface,
+          described in the following section. </li>
+      </ul>
+      <p>Explicit channel identification does <em>not</em> occur in message preparation. Instead,
+        each user is identified with a channel. When page generation is invoked, the name of the
+        target channel is found as follows.</p>
+      <ul>
+        <li> There are default channels for each message type </li>
+        <li> The name of the channel may be supplied within each recipient list entry by the
+          application that creates them </li>
+        <li> The channel may be supplied via an API invoked in response to the
+            <span class="code">ResolveChannelNames</span> method of the <span class="code">MessageRecipients</span> class.
+          This API is customer-written and implements the <span class="code">MessageRecipientInfo</span>
+          interface, described in the following section. </li>
+      </ul>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../mps/mps_about.html">About MPS</a><br/><a class="link" href="../mps/mps_interfaces.html">Using MPS interfaces</a><br/><a class="link" href="../mps/mps_example.html">MPS example servlet</a><br/></p>
+    
+  </body></html>

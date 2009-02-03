@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>jdbc-repository</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>jdbc-repository</h1><h2>Purpose</h2>
+      <p>Specifies that the MCS repository is a JDBC repository. The name of the repository is
+        defined in the <span class="code">jdbc-policies</span> element.</p>
+      
+    <h2>Contains</h2><p><a href="../mcs_config/config_anonymous_data_source.html">anonymous-data-source</a>, <a href="../mcs_config/config_connection_pool.html">connection-pool</a>, <a href="../mcs_config/config_data_source.html">data-source</a>, <a href="../mcs_config/config_jdbc_driver.html">jdbc-driver</a>, <a href="../mcs_config/config_jndi_datasource.html">jndi-data-source</a>, <a href="../mcs_config/config_mcs_database.html">mcs-database</a></p><h2>Contained by</h2><p><a href="../mcs_config/config_local_repository.html">local-repository</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">use-short-names</th><td>Determines whether short or descriptive names are used for tables and columns.
+          If set to true then short names are used, otherwise descriptive names are used. The short
+          names are all 18 characters or less. </td><td>xs:boolean</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">vendor</th><td>The name of the database vendor</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Example</h2>
+      <pre class="code">
+&lt;local-repository&gt;
+  &lt;jdbc-repository&gt;
+    &lt;jndi-data-source
+      initial-context="myContext"
+      name="datasourceName"/&gt;
+  &lt;/jdbc-repository&gt;
+&lt;local-repository&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../admin/mcs_config_er.html">MCS configuration elements</a><br/></p>
+    </body></html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Common page elements</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../mcs_learn/JiveDemo_about_jive.html" title="Next steps with MCS">Start</a></li><li><a href="../mcs_learn/JiveDemo_prelims_xd.html" title="XDIME preliminaries">Previous</a></li><li><a href="../mcs_learn/JiveDemo_home_xd.html" title="Jive home page">Next</a></li></ul></td></tr></table><h1>Common page elements</h1>
+    <p>The XDIME 2 pages described in the next modules contain some common <span class="code">div</span>
+      elements, which we will discuss here. The figure shows the PC and Smartphone versions of the
+      Jive home page. Note that although they look differently, the XDIME 2 markup is exactly the
+      same. The differences are achieved by the combination of image component policies, layouts,
+      and themes.</p>
+    <p><img src="../graphics/jive_home.jpg" alt="Jive Home Page" title="Jive Home Page"/></p>
+  <h2>Header</h2><p>The PC and Smartphone versions of the banner are quite different. The PC version consists of
+      the Jive logo and separate sports photos. The Smartphone version combines these into a
+      smaller, simpler image. This is achieved through a combination of references to the images,
+      layout and theme that you created earlier.</p><ol><li>Open the file <span class="filepath">jivehome.xdime</span> that you created in the previous module.
+      Have the files <span class="filepath">jive_logo.mimg</span><span class="filepath">jivehome.mlyt</span> and
+        <span class="filepath">jive.mthm</span> open for reference</li><li>In the Theme editor select the PC variant, and on the Design page pick the
+      <span class="code">#logo</span> selector and the layout category. The <span class="uicontrol">Target
+      Container</span> property identifies the 'logo' pane in the layout. Associate the theme
+      using the <span class="code">id</span> attribute on the <span class="code">div</span> element. <pre class="code">
+&lt;div id="logo"&gt;
+  ...   
+&lt;/div&gt;</pre></li><li>The logo contains a link to the home page. Add an <span class="code">a</span> element with the
+      'homelogo' <span class="code">class</span> attribute value, and <span class="filepath">jivehome.xdime</span> in the
+        <span class="code">href</span> attribute. <pre class="code">
+&lt;div id="logo"&gt;
+  &lt;a class="homelogo" href="jivehome.xdime"&gt;
+  ...   
+  &lt;/a&gt;
+&lt;/div&gt;</pre></li><li>The logo reference is to the image component you added earlier. Enter an
+      <span class="code">object</span> element with the project relative path in the <span class="code">src</span>
+      attribute. <pre class="code">
+&lt;div id="logo"&gt;
+  &lt;a class="homelogo" href="jivehome.xdime"&gt;
+    &lt;object class="homelogo" src="/images/jive_logo.mimg"/&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</pre>
+    </li><li>The photo section applies only to the PC page, and there is no link. Enter the following
+      markup, and wrap both <span class="code">div</span> elements in another <span class="code">div</span> to
+      complete your work on the header. <pre class="code">
+&lt;div&gt;
+  &lt;div id="logo"&gt;
+    &lt;a class="homelogo" href="jivehome.xdime"&gt;
+      &lt;object class="homelogo" src="/images/jive_logo.mimg"/&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div id="photos"&gt;
+    &lt;object src="/images/photos.mimg"/&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </li></ol><h2>Menus</h2><p>The structure of the menus is similar to the header. Each menu is represented by an image.
+      The PC version the image of the text; the Smartphone variant is an icon.</p><ol><li>Each menu is assigned to a particular pane. Refer to the
+      <span class="filepath">jivehome.mlyt</span> layout as a reminder. Again, the value in <span class="uicontrol">Target
+        Container</span> property is the value to use in the <span class="code">id</span> attribute. Enter
+      the following markup, referring to <span class="filepath">companyNews.xdime</span> and
+        <span class="filepath">menu_company_news.mimg</span>. <pre class="code">
+&lt;div id="menu_company_news" class="main_menu"&gt;
+  &lt;a class="pnav" href="companyNews.xdime"&gt;
+    &lt;object src="/images/menu_company_news.mimg"/&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</pre>
+    </li><li>Repeat the process with the Human Resources and Employee Store menus. Your additional
+      markup should look like this.<pre class="code">
+&lt;div id="menu_human_resources" class="main_menu"&gt;
+  &lt;a class="pnav" href="humanResources.xdime"&gt;
+    &lt;object src="/images/menu_human_resources.mimg"/&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;div id="menu_employee_store" class="main_menu"&gt;
+  &lt;a class="pnav" href="employeeStore.xdime"&gt;
+    &lt;object src="/images/menu_employee_store.mimg"/&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</pre></li></ol><h2>Welcome</h2><ol><li>This section displays a welcome, and the current company stock price (on the PC version
+      only). Apply styling on the <span class="code">id</span> attribute referencing the <span class="code">stockprice</span>
+      selector in the theme. <pre class="code">
+&lt;div id="stockprice"&gt;Latest from NYSE for Jive (VBE): 21.50 (+ 2.25) &lt;/div&gt;</pre>
+    </li><li>The title is declared in an <span class="code">h2</span> and targeted on the 'title' pane in the layout.<pre class="code">
+&lt;h2 id="title"&gt;Welcome to Jive Intranet&lt;/h2&gt;</pre>
+    </li></ol><h2>Footer</h2><ol><li>An identical footer is used in every page of the demonstration. It provides a common
+      copyright notice and a link back to the home page. <pre class="code">
+&lt;div id="footer"&gt;
+  &lt;p&gt;Copyright &lt;a href="jivehome.xdime"&gt;Jive Sports&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</pre>
+    </li><li>Save your work, and continue to the next module to add body elements to the home page.
+      Since this content can be reused later in the project, you may want to keep a copy at this
+      stage.</li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_a.html">a</a></th><td><p>Used to create an explicit link to another place in the same document or to another
+        document. The current document is the source of the link and the value of the
+        <span class="code">href</span> attribute, defines the link target</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_heading.html">h1, h2, h3, h4, h5, h6</a></th><td><p>Heading elements for sections within a document. The number associated with each element
+        indicates its relative position in the hierarchy of headings, with 1 indicating the top
+        level and 6 the lowest level.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_object.html">object</a></th><td><p>A reference to a media resource. <span class="code">Object</span> allows a variety of media
+        resources to be placed on the rendered page. The resource may be specified as an image
+        policy or a device depended mime type. <span class="code">Object</span> also allows the control of
+        media transcoding to ensure the resource will render on the requesting agent. See <em>References to media</em> for details.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_p.html">p</a></th><td><p>Block element that defines a paragraph.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/hypertext_attr_cp.html">Hypertext attributes</a></th><td><p>Attributes that define link targets.</p></td></tr></tbody></table>
+  </body></html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>pipeline:convertImageURLToDMS</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>pipeline:convertImageURLToDMS</h1><h2>Purpose</h2>
+      <p>Rewrites all <span class="code">img</span> element URLs in a page to be routed through the Media
+        Access Proxy (MAP). The operation will calculate the most appropriate transcoding rule to
+        use, based on the calling device characteristics.</p>
+      <div class="note"><strong>Note</strong>: This element is deprecated and is replaced with
+          <span class="code">pipeline:convertImageURLToTranscoder</span>.</div>
+    <h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">maxfilesize</th><td>The maximum image size</td><td>xs:integer</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">relativeWidth</th><td>The percentage width of the image on the device</td><td>xs:integer</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcellrequired" scope="row">server</th><td>The address of the transcoding server</td><td>xs:anyURI</td><td>none </td><td> </td><td>required </td></tr></table>
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../dci/pipeline_er.html">Pipeline elements and functions</a><br/><a class="link" href="../xdime/pipeline_convert_ics.html">pipeline:convertImageURLToTranscoder</a><br/></p>
+    </body></html>

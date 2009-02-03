@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Using the widget library</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_new_project.html" title="Creating a new project">Next</a></li></ul></td></tr></table><h1>Using the widget library</h1>
+    <p>The Client Framework is a platform that can be used to create XDIME 2 applications with a
+      rich client-side user interface, for a wide range of devices. The Client Framework consists of
+      two parts. On the server side, you use a combination of XDIME 2 markup and policy values to
+      access the widget functions. In addition, you can include JavaScript in your markup to invoke
+      functions from the client library. On the client side, a widget library consists of JavaScript
+      that implements those functions.</p>
+    <p>If the device does not support the Framework Client, the server-side processing of the XDIME
+      2 widget provides an static rendering that assures the basic widget functions.</p>
+    
+      <h2>Dynamic behavior</h2>
+      <p>Many Client Framework widgets are active, in that they are able to load or refresh their
+        content or status. These actions are implemented using Asynchronous JavaScript and XML
+        (AJAX). In order to demonstrate the AJAX capabilities of widgets, MCS includes sample AJAX
+        services.</p>
+    
+    
+      <h2>JavaScript and APE</h2>
+      <p>Many of the widgets provide a JavaScript API to allow them to be used from other scripts.
+        However, the actions, properties and events (APE) architecture allows you to define simple
+        interactions between widgets on an XDIME 2 page, without the need to use JavaScript
+      methods.</p>
+    
+    
+      <h2>About this tutorial</h2>
+      <p>This tutorial describes all the necessary steps to recreate the Client Framework sample
+        application, which is part of the Multi-Channel Server (MCS) installation. The policy, XDIME
+        and asset files are located in the <span class="filepath">MCS/webapps/mcs/projects/client-app/</span>
+        directory. The sample application has a home page with links to sub pages for AJAX and
+        non-AJAX widgets, and a page demonstrating the transition effects. </p>
+      <p>The first part of the tutorial will guide you through the process of creating the necessary
+        component policies, layouts, and themes for the application. The second part of the tutorial
+        reviews some basic aspects of XDIME 2 markup and content integration markup, before moving
+        on to the specifics of the widget library.</p>
+      <p>You should read the documentation on the Client Framework in the <em>Web author's
+        guide</em> for background information, and review some of the characteristic of the widget
+        library.</p>
+      <p>We assume that you are already familiar with MCS concepts and XDIME 2 authoring. If you
+        have not already done so, please refer to the tutorials <em>Next steps with MCS</em> and
+          <em>Adding dynamic content</em>.</p>
+    
+  </body></html>

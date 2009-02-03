@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Submitting forms</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../xforms_learn/xformsTutorial_about_xforms.html" title="Working with XForms">Start</a></li><li><a href="../xforms_learn/xformsTutorial_select.html" title="Selection controls">Previous</a></li><li><a href="../xforms_learn/xformsTutorial_submit_multi.html" title="Multiple submit buttons">Next</a></li></ul></td></tr></table><h1>Submitting forms</h1>
+    <p>When the user provides required information, then the form must be submitted for
+    processing.</p>
+  <h2>Form instance data <a href="../wag/xdime_cp_formdata.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">xf:model</span> element that defines the model for the form must be placed
+      within the head element of the page. The following model specifies that two parameters will be
+      submitted for processing. The model also includes the definition of the URL to be used when
+      submitting the form.<pre class="code">
+&lt;xf:model id="demoSubmission"&gt;
+  &lt;xf:instance&gt;
+    &lt;si:instance&gt;
+      &lt;si:item name="firstName1"/&gt;
+      &lt;si:item name="lastName1"/&gt;
+    &lt;/si:instance&gt;
+  &lt;/xf:instance&gt;
+  &lt;xf:submission action="helloWorld1.jsp" id="submit1"/&gt;
+&lt;/xf:model&gt;</pre>
+    </li><li>The <span class="code">action</span> attribute specifies the URL to be used when submitting the form.
+      In our case, the form data will be processed by the JSP <span class="filepath">helloWorld1.jsp</span>. </li><li>An optional <span class="code">method</span> attribute specifies the HTTP method by which the data
+      should be submitted. Possible values are: 'get' and 'post'.</li></ol><h2>xf:submit <a href="../xdime_cp/xf_submit.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The form controls should be placed within the body of the page. The <span class="code">model</span>
+      attribute points to the form model, and <span class="code">ref</span> references the element defined by
+      that model. <pre class="code">
+&lt;p&gt;
+  &lt;xf:input model="demoSubmission" ref="firstName1"&gt;
+    &lt;xf:label&gt;Enter Your Name:&lt;/xf:label&gt;
+  &lt;/xf:input&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;xf:input model="demoSubmission" ref="lastName1"&gt;
+    &lt;xf:label&gt;Enter Your Surname:&lt;/xf:label&gt;
+  &lt;/xf:input&gt;
+&lt;/p&gt;</pre>
+    </li><li>The <span class="code">xf:submit</span> element allows the user to submit the data for
+      processing. Its <span class="code">submission</span> attribute identifies the
+      <span class="code">xf:submission</span> element. <pre class="code">
+&lt;xf:submit submission="submit1"&gt;
+  &lt;xf:label&gt;Send&lt;/xf:label&gt;
+&lt;/xf:submit&gt;</pre>
+      <p class="note"><strong>Tip</strong>: XDIME 2 supports multiple submit buttons. Refer to <em>Multiple submit buttons</em> for further information.</p>
+    </li></ol><h2>Processing submitted data</h2><p>For the purpose of this demonstration submitted data will be processed by a simple JSP. The
+        <span class="filepath">helloWorld1.jsp</span> page displays a welcome message. The details of JSP are
+      outside the scope of this tutorial, but you can clearly see that the 'firstName1' and
+      'lastName1' strings are the parameters passed by the form.</p><pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;%@ page import="com.volantis.mcs.servlet.*" %&gt;
+&lt;%
+response.setContentType("x-application/vnd.xdime+xml");
+String firstName1 = MarinerServletRequestContext.findInstance(request).getParameter("firstName1");
+String lastName1 = MarinerServletRequestContext.findInstance(request).getParameter("lastName1");
+%&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Form Submission&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;h4&gt;Hello &lt;%=firstName1%&gt; &lt;%=lastName1%&gt;!&lt;/h4&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre><h2>Complete XDIME 2 code</h2><ol><li>The <span class="filepath">xforms_submit.xdime</span> file must contain the following code <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Form Submission&lt;/title&gt;
+    &lt;xf:model id="demoSubmission"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="firstName1"/&gt;
+          &lt;si:item name="lastName1"/&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission action="helloWorld1.jsp" id="submit1"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;
+      &lt;xf:input model="demoSubmission" ref="firstName1"&gt;
+        &lt;xf:label&gt;Enter Your Name:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;xf:input model="demoSubmission" ref="lastName1"&gt;
+        &lt;xf:label&gt;Enter Your Surname:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+    &lt;/p&gt;
+    &lt;xf:submit submission="submit1"&gt;
+      &lt;xf:label&gt;Send&lt;/xf:label&gt;
+    &lt;/xf:submit&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Example 1: Two forms on a single page</h2><ol><li>The following page contains two independent forms<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Two forms on a single page&lt;/title&gt;
+    &lt;xf:model id="First_Form"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="select_f1"&gt;one,two&lt;/si:item&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission id="Submit_Form1" action="form1.jsp"/&gt;
+    &lt;/xf:model&gt;
+    &lt;xf:model id="Second_Form"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="select_f2"&gt;four&lt;/si:item&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission id="Submit_Form2" action="form2.jsp"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;xf:select model="First_Form" ref="select_f1" style="mcs-selection-list-style:controls"&gt;
+        &lt;xf:label&gt;Form1:&lt;/xf:label&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;one&lt;/xf:label&gt;
+          &lt;xf:value&gt;one&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;two&lt;/xf:label&gt;
+          &lt;xf:value&gt;two&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+      &lt;/xf:select&gt;
+      &lt;xf:submit model="First_Form" submission="Submit_Form1"&gt;
+        &lt;xf:label&gt;SubmitForm1&lt;/xf:label&gt;
+      &lt;/xf:submit&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;xf:select model="Second_Form" ref="select_f2" style="mcs-selection-list-style:controls"&gt;
+        &lt;xf:label&gt;Form2:&lt;/xf:label&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;three&lt;/xf:label&gt;
+          &lt;xf:value&gt;three&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;four&lt;/xf:label&gt;
+          &lt;xf:value&gt;four&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+      &lt;/xf:select&gt;
+      &lt;xf:submit model="Second_Form" submission="Submit_Form2"&gt;
+        &lt;xf:label&gt;SubmitForm2&lt;/xf:label&gt;
+      &lt;/xf:submit&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></li><li>Within the head section the <span class="code">xf:model</span> elements define the models for both
+      forms. The <span class="code">id</span> attribute is used to differentiate the
+      forms.</li><li>The form controls and the corresponding submit buttons appear within the body of the page. The
+      <span class="code">model</span> attribute binds the controls with the appropriate models.</li></ol><h2>Example 2: Submit and cancel buttons</h2><ol><li>The following example contains the <span class="command">Submit</span> and <span class="command">Cancel</span>
+      buttons. The form is submitted for processing when the user clicks the
+      <span class="command">Submit</span> button. Clicking <span class="command">Cancel</span> allows the user to leave
+      the page without submitting the form.<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Submit or cancel a form&lt;/title&gt;
+    &lt;xf:model id="Form1"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="select_f1"&gt;one&lt;/si:item&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission id="Submit_Form1" action="form1.jsp"/&gt;
+    &lt;/xf:model&gt;
+    &lt;xf:model&gt;
+      &lt;xf:submission id="Cancel_Form1" action="cancel.xdime"/&gt; 
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;xf:select model="Form1"  ref="select_f1" style="mcs-selection-list-style:controls"&gt;
+        &lt;xf:label&gt;Form:&lt;/xf:label&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;one&lt;/xf:label&gt;
+          &lt;xf:value&gt;one&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;two&lt;/xf:label&gt;
+          &lt;xf:value&gt;two&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+      &lt;/xf:select&gt;
+      &lt;xf:submit model="Form1" submission="Submit_Form1"&gt;
+        &lt;xf:label&gt;Submit&lt;/xf:label&gt;
+      &lt;/xf:submit&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;xf:submit submission="Cancel_Form1"&gt;
+        &lt;xf:label&gt;Cancel&lt;/xf:label&gt;
+      &lt;/xf:submit&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></li><li>There are two form models defined. The first one specifies the form and its submission
+      action. The second model defines the action to be called when the <span class="command">Cancel</span>
+      buttons is clicked. In this case the <span class="code">id</span> attribute is omitted.</li><li>There are two <span class="code">xf:submit</span> elements on the page. The first one with the
+        <span class="code">model</span> attribute corresponding to the model <span class="code">id</span> attribute submits
+      the form for processing. The second button, the one without the <span class="code">model</span> attribute,
+      redirects the user to <span class="filepath">cancel.xdime</span> without submitting the form.</li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/si_instance.html">si:instance</a></th><td><p>Container for data items used to supply initial values for forms controls, or to provide
+        additional data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/si_item.html">si:item</a></th><td><p>Defines an item of instance data that is required if a form control needs to be
+        initialized, or when data not associated with a form control needs to be provided during
+        form submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_input.html">xf:input</a></th><td><p>A form control for text input.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_instance.html">xf:instance</a></th><td><p>Optional element that contains instance data associated with the <span class="code">model</span>
+        element. It is used to supply initial values for forms controls, or to provide additional
+        data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_label.html">xf:label</a></th><td><p>Provides a descriptive label for forms controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_model.html">xf:model</a></th><td><p>Represents a form definition, used as a container for elements associated with its
+        submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_submission.html">xf:submission</a></th><td><p>Defines the information to submit, where it should be sent, and how to send it.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_submit.html">xf:submit</a></th><td><p>A form control that initiates submission of the form data for processing.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_attr_cp.html">Form attributes</a></th><td><p>Binding expressions provide the mapping between the data associated with a particular
+        control and the data provided for processing when the form is submitted. The expression is
+        the name of the parameter associated with the control's data when the form is submitted.
+        These parameters appear on the submission URL if the form is submitted using the HTTP
+          <span class="code">GET</span> method, and are hidden if the <span class="code">POST</span> method is used. The
+        methods are specified as attributes on the <span class="code">xf:submission</span> element.</p></td></tr></tbody></table>
+  </body></html>

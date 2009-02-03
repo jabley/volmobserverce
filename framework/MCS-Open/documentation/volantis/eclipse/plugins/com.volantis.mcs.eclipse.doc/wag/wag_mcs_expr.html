@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>MCS expressions</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>MCS expressions</h1>
+    <p>MCS expressions allow additional information to be transmitted to various parts of MCS, such
+      as its tags and layouts. MCS expressions can be used, for example, to specify that a text
+      variant be used in place of literal text as an attribute on a particular tag. In more complex
+      situations, they can be used to evaluate, for example, the name of pane to which output is to
+      be sent during page generation.</p>
+    <p>The major area to exploit MCS expressions is the use of components and variants. In this use,
+      the MCS expression used evaluates to a particular variant used to provide the data for the
+      attribute.</p>
+    
+      <h2>Expression syntax</h2>
+      <p>MCS Expressions are distinguished from regular literals by being enclosed in scope
+        delimiting braces '{' and '}'. Because component names will often be the sole contents of
+        MCS expressions, you can use the shorthand form
+        <span class="code">{/[componentName].[fileExtension]}</span> whenever an attribute value could be either
+        a text literal or a component reference. Where there is no ambiguity, as in the
+        <span class="code">title</span> attribute on the <span class="code">a</span> element in the next example, the
+        '{ }' syntax is not required.</p>
+      <pre class="code">&lt;a href="../hr/workplace.xdime" title="{/workplace.mtxt}"/&gt;</pre>
+      <p>Contrast the use of the <span class="code">title</span> attribute with the next example, where the
+        attribute has a literal value.</p>
+      <pre class="code">&lt;a href="../hr/workplace.xdime"  title="Workplace information"/&gt;</pre>
+    
+    
+      <h2>Escaping complete attributes</h2>
+      <p>MCS generally uses the '\' character to escape its scope delimiters. However, because JSP
+        also uses this character, a pair of back slashes must be used.</p>
+      <p>The following statement contains a MCS expression that results in a component name being
+        used as the value of the <span class="code">myparm</span> attribute.</p>
+      <pre class="code">&lt;sometag myparm="{/mycomponent.mtxt}"&gt;</pre>
+      <p>To escape this value, so that the literal text of the entire attribute is passed as a
+        parameter, you would use the following syntax.</p>
+      <pre class="code">&lt;sometag myparm="\\{/mycomponent.mtxt\\}"&gt;</pre>
+    
+    
+      <h2>Expression evaluation</h2>
+      <p>MCS Expressions are evaluated within the custom tags to which they are passed. This
+        contrasts with JSP expressions that are evaluated before the tag's methods are invoked.</p>
+      <p>JSP expressions can generate MCS expressions if desired. In this case, the JSP expression
+        must evaluate to a string containing a properly formed MCS expression. The resulting string
+        is passed as the value of the attribute and is interpreted within the tag.</p>
+      <p>If an attribute expression evaluates to an empty sequence then it is as if the attribute
+        was not specified. If the attribute is required then this is an error.</p>
+    
+    
+      <h2>Boolean operations</h2>
+      <p>The following XPath boolean operations are supported:</p>
+      <p>=, &gt;, &gt;=, &lt;, &lt;=, !=, and, or,
+        not</p>
+    
+    
+      <h2>Casting operations</h2>
+      <p>To cast values to the number type and compare values you can use the number() casting
+        function, defined in XPath, for example <span class="code">number(device:getPolicyValue('pixelsy'))
+          &gt;= 80</span>
+      </p>
+    
+    
+      <h2>UAProf policy values</h2>
+      <p>You can test whether or not a single item is contained within a device policy that is
+        represented as a <span class="code">rdf:Bag</span> or <span class="code">rdf:Seq</span> element in UAProf
+        documents. An example of such a policy is UAProf.CcppAcceptCharSet.</p>
+    
+    
+      <h2>Function expressions</h2>
+      <p>Function expressions are identified by name that consists of namespace prefix and local
+        name, and have a structure and syntax similar to that used in XPath 2.0 functions, for
+        example <span class="code">request:getParameter('id')</span>. Refer to <em>MCS function expressions</em>
+        for further information.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../wag/xdime2_about.html">Working with XDIME 2</a><br/><a class="link" href="../wag/wag_function_expr.html">MCS function expressions</a><br/></p>
+    
+  </body></html>

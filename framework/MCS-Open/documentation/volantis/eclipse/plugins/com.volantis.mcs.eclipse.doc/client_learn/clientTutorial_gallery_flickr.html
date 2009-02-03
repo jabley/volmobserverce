@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Displaying images from Flickr</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_gallery_picasa.html" title="Displaying photos from Google Picasa Web albums">Previous</a></li><li><a href="../client_learn/clientTutorial_progress_indicator_ajax.html" title="Active progress bar">Next</a></li></ul></td></tr></table><h1>Displaying images from Flickr</h1>
+    <p>The Flickr® connector allows you to display images from Flickr® using the Gallery widget.
+      Once you publish your site, you can upload images to Flickr. The mobile website will then
+      display the newly uploaded images. </p>
+  <h2>Retrieving images from social services <a href="../dci/open_connector_gfx.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">gallery:items</span> element defines a set of items which will be
+      displayed by the Gallery or Slideshow widgets. You use the load action to upload specified
+      content from an external source using AJAX.<pre class="code">
+&lt;gallery:items&gt;
+  &lt;widget:load src="flickr-album.xdres"/&gt;
+&lt;/gallery:items&gt;</pre></li><li>The <span class="filepath">flickr-album.xdres</span> file contains the pipeline code requesting
+      photos from Flickr and transforming the response to XDIME. Refer to the <em>Adding dynamic
+        content</em> tutorial to learn more about content integration.<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"
+  xmlns:flickr="http://www.volantis.com/xmlns/2008/08/flickr"&gt;
+  &lt;response:head&gt;
+    &lt;response:link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+  &lt;/response:head&gt;
+  &lt;response:body&gt;
+    &lt;pipeline:try&gt;
+      &lt;pipeline:preferred&gt;
+        &lt;pipeline:transform href="flickr2response.xsl"&gt;
+          &lt;flickr:list-photos api-key="to-be-provided-by-page-author" user-id="30193659@N08"
+            page-index="%{(number(request:getParameter('mcs-start')) + 2) div 3}" page-size="3"/&gt;
+        &lt;/pipeline:transform&gt;
+      &lt;/pipeline:preferred&gt;
+      &lt;pipeline:alternative&gt;
+        &lt;pipeline:content&gt;
+          &lt;p&gt;There was a problem retrieving the information requested.&lt;/p&gt;
+        &lt;/pipeline:content&gt;
+      &lt;/pipeline:alternative&gt;
+    &lt;/pipeline:try&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;</pre></li><li>The <span class="code">flickr:list-photos</span> element retrieves images from the Flickr
+      service. The <span class="code">api-key</span> attribute identifies your application. It is your
+      responsibility to request and manage your own API key. Refer to <em>Flickr Services</em> for further information.</li><li>The <span class="code">user-id</span> attribute allows to display images that belong to the selected
+      user.</li><li>As the number of returned photos may be large, the response is paginated, i.e. split into
+      pages. You can specify the maximum number of images in each response page using the
+        <span class="code">page-size</span> attribute. Its value must be in the range between 1 and 500. The
+      default is 10. The <span class="code">page-index</span> attribute specifies the number of a page to be
+      returned.</li><li>Flickr returns requested content as a feed. This feed must be converted to XDIME using XSL transform.<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:flickr="urn:flickr:"
+  xmlns:media="http://search.yahoo.com/mrss/"
+  xmlns:gallery="http://www.volantis.com/xmlns/2006/10/gallery-widget"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;xsl:template match="photos"&gt;
+    &lt;gallery:items count="9"&gt;
+      &lt;xsl:for-each select="photo"&gt;
+        &lt;xsl:apply-templates select="."/&gt;
+      &lt;/xsl:for-each&gt;
+    &lt;/gallery:items&gt;
+  &lt;/xsl:template&gt;
+  &lt;xsl:template match="photo"&gt;
+    &lt;gallery:item&gt;
+      &lt;widget:summary style="mcs-effect-style:fade; mcs-effect-duration:1s"&gt;
+        &lt;div&gt;
+          &lt;object style="width:50px;height:50px" srctype="image/jpeg"&gt;
+            &lt;xsl:attribute name="src"&gt;http://farm&lt;xsl:value-of select="@farm"
+                /&gt;.static.flickr.com/&lt;xsl:value-of select="@server"/&gt;/&lt;xsl:value-of select="@id"
+                /&gt;_&lt;xsl:value-of select="@secret"/&gt;.jpg&lt;/xsl:attribute&gt;
+            &lt;param name="mcs-external-label"&gt;
+              &lt;xsl:attribute name="value"&gt;
+                &lt;xsl:value-of select="@title"/&gt;
+              &lt;/xsl:attribute&gt;
+            &lt;/param&gt;
+          &lt;/object&gt;
+        &lt;/div&gt;
+      &lt;/widget:summary&gt;
+      &lt;widget:detail style="mcs-effect-style:slide-left; mcs-effect-duration:1s"&gt;
+        &lt;div style="text-align: center;width:100%;height:100%"&gt;
+          &lt;div style="width:100%;height:10%"&gt;
+            &lt;xsl:value-of select="@title"/&gt;
+          &lt;/div&gt;
+          &lt;div style="width:100%;height:80%"&gt;
+            &lt;object style="width:170px;height:170px" srctype="image/jpeg"&gt;
+              &lt;xsl:attribute name="src"&gt;http://farm&lt;xsl:value-of select="@farm"
+                  /&gt;.static.flickr.com/&lt;xsl:value-of select="@server"/&gt;/&lt;xsl:value-of select="@id"
+                  /&gt;_&lt;xsl:value-of select="@secret"/&gt;.jpg&lt;/xsl:attribute&gt;
+              &lt;param name="mcs-external-label"&gt;
+                &lt;xsl:attribute name="value"&gt;
+                  &lt;xsl:value-of select="@title"/&gt;
+                &lt;/xsl:attribute&gt;
+              &lt;/param&gt;
+            &lt;/object&gt;
+          &lt;/div&gt;
+          &lt;div style="width:100%;height:10%"&gt;Tags:&lt;xsl:value-of select="@tags"/&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/widget:detail&gt;
+    &lt;/gallery:item&gt;
+  &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</pre></li></ol><h2>Complete XDIME 2 code</h2><ol><li>Create a new file named <span class="filepath">ajax-flickr.xdime</span></li><li>Modify the <span class="filepath">ajax-flickr.xdime</span> file by including the following code<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:gallery="http://www.volantis.com/xmlns/2006/10/gallery-widget"
+  xmlns:event="http://www.w3.org/2001/xml-events" xmlns:sel="http://www.w3.org/2004/06/diselect"
+  xmlns:device="http://www.volantis.com/xmlns/mariner/device"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:flickr="http://www.volantis.com/xmlns/2008/08/flickr"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Flickr Gallery Widget with AJAX&lt;/title&gt;
+    &lt;style type="text/css"&gt;
+      .item-display {
+        width:50px;
+        height:50px;
+        border:1px solid #c5c5c5;
+        margin:5px 5px 5px 5px;
+      }
+      .detail-item-display {
+        width:170px;
+        height:240px;
+        border:1px solid #c5c5c5;
+      }
+      .gallery-info, .slideshow-info {
+        border: 1px solid #c5c5c5;
+        text-align: center;
+        color: black;
+      }
+      .popup { 
+        position:static;
+        height:100%;
+      }
+      .gallery-popup {
+        mcs-effect-style: slide-top;
+        height: 100%;
+        position: static;
+      }
+      .item-detail {
+        mcs-effect-style: slide-right;
+        mcs-effect-duration: 1s;
+        mcs-transition-interval: 1s;
+      }
+      .item-detail:mcs-concealed {
+        mcs-effect-style: slide-right;
+        mcs-effect-duration: 1s;
+      }
+    &lt;/style&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Flickr Gallery w/AJAX"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+          &lt;sel:select&gt;
+            &lt;sel:when expr="device:getPolicyValue('supports.client.framework') = 'true'"&gt;
+              &lt;gallery:items&gt;
+                &lt;widget:load src="flickr-user.xdres" when="defer"/&gt;
+              &lt;/gallery:items&gt;
+              &lt;table&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;
+                    &lt;gallery:gallery class="widget" slideshow="slideshow"
+                      slideshow-popup="gallery-popup"&gt;
+                      &lt;div style="width:100%;overflow: auto"&gt;
+                        &lt;table&gt;
+                          &lt;tr&gt;
+                            &lt;td&gt;
+                              &lt;widget:previous class="button"&gt;&amp;lt;&amp;lt;&lt;/widget:previous&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                              &lt;gallery:item-display class="item-display"/&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                              &lt;gallery:item-display class="item-display"/&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                              &lt;gallery:item-display class="item-display"/&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                              &lt;widget:next class="button"&gt;&amp;gt;&amp;gt;&lt;/widget:next&gt;
+                            &lt;/td&gt;
+                          &lt;/tr&gt;
+                        &lt;/table&gt;
+                      &lt;/div&gt;
+                      &lt;div class="gallery-info"&gt;Displaying items from &lt;gallery:start-item-number/&gt;
+                        to &lt;gallery:end-item-number/&gt; of &lt;gallery:items-count/&gt;&lt;/div&gt;
+                    &lt;/gallery:gallery&gt;
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td style="text-align:center;"&gt;
+                    &lt;widget:popup id="gallery-popup" class="popup"&gt;
+                      &lt;gallery:slideshow id="slideshow" class="widget"&gt;
+                        &lt;gallery:item-display class="detail-item-display" style="margin: auto"/&gt;
+                        &lt;div style="text-align: center"&gt;
+                          &lt;table&gt;
+                            &lt;tr&gt;
+                              &lt;td&gt;
+                                &lt;widget:previous class="button"&gt;&amp;lt;&amp;lt;&lt;/widget:previous&gt;
+                              &lt;/td&gt;
+                              &lt;td&gt;
+                                &lt;widget:pause class="button"&gt;Pause&lt;/widget:pause&gt;
+                              &lt;/td&gt;
+                              &lt;td&gt;
+                                &lt;widget:play class="button"&gt;Play&lt;/widget:play&gt;
+                              &lt;/td&gt;
+                              &lt;td&gt;
+                                &lt;widget:next class="button"&gt;&amp;gt;&amp;gt;&lt;/widget:next&gt;
+                              &lt;/td&gt;
+                              &lt;td&gt;
+                                &lt;widget:dismiss class="button"&gt;Close&lt;/widget:dismiss&gt;
+                              &lt;/td&gt;
+                            &lt;/tr&gt;
+                          &lt;/table&gt;
+                        &lt;/div&gt;
+                        &lt;div class="slideshow-info"&gt;Displaying item &lt;gallery:item-number/&gt; of
+                          &lt;gallery:items-count/&gt;&lt;/div&gt;
+                      &lt;/gallery:slideshow&gt;
+                    &lt;/widget:popup&gt;
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/table&gt;
+              &lt;div&gt;Note: MAP is required for this widget demo to work properly. Also, make sure
+                whether flickr api-key is provided.&lt;/div&gt;
+            &lt;/sel:when&gt;
+            &lt;sel:otherwise&gt;
+              &lt;pipeline:try&gt;
+                &lt;pipeline:preferred&gt;
+                  &lt;pipeline:transform href="../connectors/flickr/flickr2xdime.xsl"&gt;
+                    &lt;flickr:list-photos api-key="to-be-provided-by-page-author"
+                      user-id="30193659@N08" page-size="9"/&gt;
+                  &lt;/pipeline:transform&gt;
+                  &lt;div&gt;Note: MAP is required for this widget demo fallback to work properly. Also,
+                    make sure whether flickr api-key is provided.&lt;/div&gt;
+                &lt;/pipeline:preferred&gt;
+                &lt;pipeline:alternative&gt;
+                  &lt;pipeline:content&gt;
+                    &lt;p&gt;There was a problem retrieving the information requested.&lt;/p&gt;
+                  &lt;/pipeline:content&gt;
+                &lt;/pipeline:alternative&gt;
+              &lt;/pipeline:try&gt;
+            &lt;/sel:otherwise&gt;
+          &lt;/sel:select&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime/flickr_list_photos.html">flickr:list-photos</a></th><td><p>Retrieves images from Flickr®.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/gallery_end_item_number.html">gallery:end-item-number</a></th><td><p>Returns the number of the last item in the group being displayed by the Gallery widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/gallery_gallery.html">gallery:gallery</a></th><td><p>Defines a Gallery widget that displays content items identified in the <span class="code">items</span>
+        attribute.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/gallery_item_display.html">gallery:item-display</a></th><td><p>Displays content of an item specified by the <span class="code">gallery:item</span> element. When
+        used within the <span class="code">gallery:gallery</span> element, it displays the summary part of
+        the item. If used within the <span class="code">gallery:slideshow</span> element, it displays its
+        detail part.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/gallery_item_number.html">gallery:item-number</a></th><td><p>Returns the number of the item being displayed by Slideshow widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/gallery_items.html">gallery:items</a></th><td><p>Defines a set of items to be displayed by the Gallery or Slideshow widgets.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/gallery_item.html">gallery:item</a></th><td><p>Defines a single item in the set of items used by the Gallery or Slideshow widgets. Content
+        specified by the <span class="code">widget:summary</span> element will be displayed in the gallery.
+        The Slideshow widget will present content provided by <span class="code">widget:detail</span>.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/gallery_items_count.html">gallery:items-count</a></th><td><p>Displays the total number of <span class="code">gallery:item</span> elements in a gallery or
+        slideshow.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/gallery_slideshow.html">gallery:slideshow</a></th><td><p>The main element of a Slideshow widget that displays either the content identified in the
+          <span class="code">items</span> attribute, or in the same attribute on an associated
+          <span class="code">gallery:gallery</span> element.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/gallery_start_item_number.html">gallery:start-item-number</a></th><td><p>Returns the number of the first item in the group being displayed by the Gallery
+      widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_object.html">object</a></th><td><p>A reference to a media resource. <span class="code">Object</span> allows a variety of media
+        resources to be placed on the rendered page. The resource may be specified as an image
+        policy or a device depended mime type. <span class="code">Object</span> also allows the control of
+        media transcoding to ensure the resource will render on the requesting agent. See <em>References to media</em> for details.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_alternative.html">pipeline:alternative</a></th><td><p>Contains alternative content inside a <span class="code">try</span> element.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_content.html">pipeline:content</a></th><td><p>Allows you to specify mixed content. Pipeline markup within the element will cause a
+        streaming error.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_preferred.html">pipeline:preferred</a></th><td><p>Contains preferred content inside a <span class="code">try</span> element. It must contain one or
+        more pipeline operation elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_transform.html">pipeline:transform</a></th><td><p>The root element for a transform.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_try.html">pipeline:try</a></th><td><p>Provides both preferred and alternative content if there are errors in the pipeline.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/response_body.html">response:body</a></th><td><p>Container for widget response elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/response_head.html">response:head</a></th><td><p>Enables any relevant themes to be specified for a widget response. These are only needed
+        when the response contains styled content; otherwise the element can be ignored.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/response_link.html">response:link</a></th><td><p>Binds theme and layout policies to a response that contains styled content.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/response_response.html">response:response</a></th><td><p>Defines the outer container for a widget response.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_table.html">table</a></th><td><p>Defines a table.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_td.html">td</a></th><td><p>A cell in a table containing data.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_tr.html">tr</a></th><td><p>Denotes a row within a table.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_detail.html">widget:detail</a></th><td><p>Specifies the content of the widget that is initially hidden. It is made visible when the
+          <span class="code">widget:summary</span> content is clicked. May contain XDIME 2 block elements
+        in addition to nested folding items.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_dismiss.html">widget:dismiss</a></th><td><p>Provides a method for dismissing a widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_load.html">widget:load</a></th><td><p>Controls the loading of a widget's contents in relation to the containing page.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_next.html">widget:next</a></th><td><p>Defines a button that links to the next step. In a gallery, it displays the next page. When
+        used in a slideshow, it displays the next item.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_pause.html">widget:pause</a></th><td><p>Defines the pause button. When used within a Slideshow widget, it pauses the slideshow
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_play.html">widget:play</a></th><td><p>Defines a play button. When used in a Slideshow widget, it starts or resumes the slideshow
+        presentations.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_popup.html">widget:popup</a></th><td><p>The main element for a Popup widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_previous.html">widget:previous</a></th><td><p>Defines a button that links to the previous step. In a gallery, it displays the previous
+        page. When used within a slideshow, it displays the previous item.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_summary.html">widget:summary</a></th><td><p>Defines the visible title, label or thumbnail for content that is initially hidden.
+        Clicking on the element content makes the <span class="code">widget:detail</span> visible.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr></tbody></table>
+  </body></html>

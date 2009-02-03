@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Form fragmentation</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../xforms_learn/xformsTutorial_about_xforms.html" title="Working with XForms">Start</a></li><li><a href="../xforms_learn/xformsTutorial_submit_multi.html" title="Multiple submit buttons">Previous</a></li><li><a href="../xforms_learn/xformsTutorial_validation.html" title="Validating forms">Next</a></li></ul></td></tr></table><h1>Form fragmentation</h1>
+    <p>You can use form fragments to manage the display of forms that are too large to present on
+      devices with small screens. MCS combines the results from each of the form fragments before
+      the entire data is submitted for processing.</p>
+    <div class="note"><strong>Note</strong>: A group element can only contain controls for a single form model, i.e. it is not possible to
+      mix controls bound to different form models into one group.</div>
+  <h2>Form fragments links in XDIME 2 <a href="../wag/wag_xf_fragment.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">xf:group</span> element contains form controls that should be
+      treated as a group<pre class="code">
+&lt;xf:group class="fragment"&gt;
+  &lt;xf:input model="demoFragmentation" ref="firstName3"&gt;
+    &lt;xf:label&gt;Enter Your Name:&lt;/xf:label&gt;
+  &lt;/xf:input&gt;
+&lt;/xf:group&gt;
+
+&lt;xf:group class="fragment"&gt;
+  &lt;xf:input model="demoFragmentation" ref="lastName3"&gt;
+    &lt;xf:label&gt;Enter Your Surname:&lt;/xf:label&gt;
+  &lt;/xf:input&gt;
+  &lt;xf:submit submission="submit3"&gt;
+    &lt;xf:label&gt;Send&lt;/xf:label&gt;
+  &lt;/xf:submit&gt;
+&lt;/xf:group&gt;</pre>
+    </li><li>The <span class="code">mcs-break-after</span> theme property allows you to control whether
+      fragmentation occurs or not, and where it occurs. The default value of
+      'never' means that the group does not end a form fragment. If set to 'always' then the group
+      ends a form fragment, and another fragment begins immediately. <pre class="code">
+&lt;style type="text/css" media="handheld,all"&gt;
+  .fragment {
+    mcs-break-after: always;
+  }
+  .fragment::before::mcs-reset {
+  content: "Reset";
+  }
+  .fragment::before::mcs-previous {
+    content: "&amp;lt;&amp;lt;";
+  }
+  .fragment::after::mcs-next {
+    content: "&amp;gt;&amp;gt;";
+  } 
+&lt;/style&gt;</pre>
+    </li><li>The buttons that allow the user to navigate to the previous and next fragments
+      are created by MCS automatically. You use the pseudo-element selectors
+      <span class="code">::mcs-previous</span> and <span class="code">::mcs-next</span> to style those buttons. 
+      The <span class="code">::mcs-reset</span>  pseudo-element provides an optional reset button. Any of these can
+      appear before, after or both before and after the main content of the fragment. To position 
+      the buttons you use the <span class="code">::before</span> and <span class="code">::after</span> pseudo element
+      selectors.
+      <div class="note"><strong>Note</strong>: The rule order is significant. In our case, the 'reset' button will
+        be placed before the 'previous' and 'next' buttons.</div></li><li>The <span class="uicontrol">Content</span> theme property  allows you to change the
+      default button labels</li><li>The 'reset' button will not be displayed unless you explicitly specify its
+    label</li></ol><h2>Processing submitted data</h2><p>The submitted data will be processed by the <span class="filepath">helloWorld3.jsp</span> JSP
+      presented below.</p><pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;%@ page import="com.volantis.mcs.servlet.*" %&gt;
+&lt;%
+response.setContentType("x-application/vnd.xdime+xml");
+String firstName3 = MarinerServletRequestContext.findInstance(request)
+  .getParameter("firstName3");
+String lastName3 = MarinerServletRequestContext.findInstance(request)
+  .getParameter("lastName3");
+%&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Form Fragmentation&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;h4&gt;Hello &lt;%=firstName3%&gt; &lt;%=lastName3%&gt;!&lt;/h4&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre><h2>Complete XDIME 2 code</h2><ol><li>Create a new file called <span class="filepath">xforms_fragmentation.xdime</span></li><li>Modify <span class="filepath">xforms_fragmentation.xdime</span> by including the following code <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Form Fragmentation&lt;/title&gt;
+    &lt;style type="text/css" media="handheld,all"&gt;
+      .fragment {
+        mcs-break-after: always;
+      }
+      .fragment::before::mcs-reset {
+      content: "Reset";
+      }
+      .fragment::before::mcs-previous {
+        content: "&amp;lt;&amp;lt;";
+      }
+      .fragment::after::mcs-next {
+        content: "&amp;gt;&amp;gt;";
+      } 
+    &lt;/style&gt;
+    &lt;xf:model id="demoFragmentation"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="firstName3"/&gt;
+          &lt;si:item name="lastName3"/&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission action="helloWorld3.jsp" id="submit3"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h4&gt;Form Fragmentation&lt;/h4&gt;
+    &lt;xf:group class="fragment"&gt;
+        &lt;xf:input model="demoFragmentation" ref="firstName3"&gt;
+          &lt;xf:label&gt;Enter Your Name:&lt;/xf:label&gt;
+        &lt;/xf:input&gt;
+    &lt;/xf:group&gt;
+    &lt;xf:group class="fragment"&gt;
+      &lt;xf:input model="demoFragmentation" ref="lastName3"&gt;
+        &lt;xf:label&gt;Enter Your Surname:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+      &lt;xf:submit submission="submit3"&gt;
+        &lt;xf:label&gt;Send&lt;/xf:label&gt;
+      &lt;/xf:submit&gt;
+    &lt;/xf:group&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/si_instance.html">si:instance</a></th><td><p>Container for data items used to supply initial values for forms controls, or to provide
+        additional data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/si_item.html">si:item</a></th><td><p>Defines an item of instance data that is required if a form control needs to be
+        initialized, or when data not associated with a form control needs to be provided during
+        form submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_group.html">xf:group</a></th><td><p>Combines a set of form controls into a user interface component. By applying theme
+        properties on this element, you can control where form fragmentation occurs, and define or
+        override at runtime the link texts specified on form fragment layouts.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_input.html">xf:input</a></th><td><p>A form control for text input.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_instance.html">xf:instance</a></th><td><p>Optional element that contains instance data associated with the <span class="code">model</span>
+        element. It is used to supply initial values for forms controls, or to provide additional
+        data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_label.html">xf:label</a></th><td><p>Provides a descriptive label for forms controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_model.html">xf:model</a></th><td><p>Represents a form definition, used as a container for elements associated with its
+        submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_submission.html">xf:submission</a></th><td><p>Defines the information to submit, where it should be sent, and how to send it.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_submit.html">xf:submit</a></th><td><p>A form control that initiates submission of the form data for processing.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_attr_cp.html">Form attributes</a></th><td><p>Binding expressions provide the mapping between the data associated with a particular
+        control and the data provided for processing when the form is submitted. The expression is
+        the name of the parameter associated with the control's data when the form is submitted.
+        These parameters appear on the submission URL if the form is submitted using the HTTP
+          <span class="code">GET</span> method, and are hidden if the <span class="code">POST</span> method is used. The
+        methods are specified as attributes on the <span class="code">xf:submission</span> element.</p></td></tr></tbody></table>
+  </body></html>

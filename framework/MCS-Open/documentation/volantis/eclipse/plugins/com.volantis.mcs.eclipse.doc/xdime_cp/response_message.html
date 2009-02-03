@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>response:message</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>response:message</h1><h2>Purpose</h2>
+      <p>The message displayed when a particular type of error occurs. Used by the Multiple Forms
+        Validator widget. If enclosed directly within the <span class="code">response:validation</span>
+        element, it describes an overall validation failure. If contained by the
+          <span class="code">response:field</span> element, it describes a field-specific validation
+        failure.</p>
+    <h2>Contained by</h2><p><a href="../xdime_cp/response_field.html">response:field</a>, <a href="../xdime_cp/response_validation.html">response:validation</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">type</th><td>Defines the message type</td><td>xs:string</td><td>invalid </td><td>invalid, empty </td><td>optional </td></tr></table><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+      <pre class="code">
+&lt;!--  failed response  --&gt;            
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+  &lt;response:head&gt;
+    &lt;response:link rel="mcs:theme" href="/main.mthm"/&gt;
+  &lt;/response:head&gt;
+  &lt;response:body&gt;
+    &lt;response:validation result="failed"&gt;
+      &lt;response:message&gt;Validation failed&lt;/response:message&gt;
+      &lt;response:field ref="pin"&gt;
+        &lt;response:message&gt;PIN must be exactly 6 digits long&lt;/response:message&gt;
+      &lt;/response:field&gt;
+      &lt;response:field ref="name"&gt;
+        &lt;response:message&gt;Name must be at least 4 characters long&lt;/response:message&gt;
+      &lt;/response:field&gt;
+    &lt;/response:validation&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;
+
+&lt;!--  passed response  --&gt;
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+  &lt;response:head&gt;
+    &lt;response:link rel="mcs:theme" href="/main.mthm"/&gt;
+  &lt;/response:head&gt;
+  &lt;response:body&gt;
+    &lt;response:validation result="passed"/&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;</pre>
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../client/response_er.html">Widget response elements</a><br/></p>
+    </body></html>

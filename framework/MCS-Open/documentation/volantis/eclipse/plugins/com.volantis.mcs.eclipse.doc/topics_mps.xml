@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Message Preparation Server">
+  <topic label="Installing MPS" href="mps/mps_install.html"/>
+  <topic label="Creating a message" href="mps/message_create.html"/>
+  <topic label="Using XDIME in messages" href="mps/mps_xdime.html"/>
+  <topic label="Configuring MPS" href="mps/mps_config.html"/>
+  <topic label="Messaging with WAP push" href="mps/mps_wap_push.html"/>
+  <topic label="Using MPS interfaces" href="mps/mps_interfaces.html"/>
+  <topic label="Programming MPS" href="mps/mps_program.html"/>
+  <topic label="MPS example servlet" href="mps/mps_example.html"/>
+</toc>

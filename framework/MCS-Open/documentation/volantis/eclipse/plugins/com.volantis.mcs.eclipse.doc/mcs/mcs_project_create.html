@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Creating a project</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Creating a project</h1>
+    <p>A project is a set of resources that you define for a particular web application. Resources
+      that make up a project could include XML or JSP files, variants, layout, theme, component and
+      device policies.</p>
+    <p>MCS organizes resources according to project, so you can arrange for multiple projects to
+      share the same policy repository.</p>
+    <p>In MCS, you use the New Project wizard to add a new project to the Workbench. The wizard
+      allows you to define:</p>
+    <ul>
+      <li>A project name and location</li>
+      <li>Project settings for a device repository and a source directory</li>
+    </ul>
+    
+      <h2>Naming the project</h2>
+      <p>The first page in the wizard allows you to locate and name the project, and the location of
+        the project contents.</p>
+      <ol>
+        <li>Choose <span class="command">File</span> | <span class="command">New</span> | <span class="command">MCS Project</span></li>
+        <li>Enter a name in the <span class="uicontrol">Project name</span> text box</li>
+        <li>To choose a location other than your workspace, uncheck the <span class="uicontrol">Use
+          default</span> checkbox, and <span class="command">Browse</span> to select a system folder in
+          the <span class="uicontrol">Directory</span> control</li>
+        <li>Click <span class="command">Next</span>
+        </li>
+      </ol>
+    
+    
+      <h2>Defining project settings</h2>
+      <p>On the next page you must enter values for the location of the project device repository,
+        name the source directory, and optionally enable collaborative working.</p>
+      <p>The device repository can be any one on your system that is appropriate for this project.
+        The repository filename extension is always <span class="filepath">.mdpr</span>.</p>
+      <p>There can only be one policy source directory for a project, and all your MCS resources
+        must be in this folder or one under it. The default path of the source directory is
+          <span class="filepath">WebContent/mcs-policies</span>, but you can use any name you wish.</p>
+      <div class="note"><strong>Note</strong>: Changing this directory location after you create a project may invalidate
+        any existing policies.</div>
+      <ol>
+        <li>Use the <span class="command">Browse</span> button to locate a <span class="uicontrol">Standard device
+            repository file</span></li>
+        <li>Enter a name in the <span class="uicontrol">Policy source directory</span> control, or accept
+          the default</li>
+        <li>Click <span class="command">Finish</span></li>
+        <li>In the Open Associated Perspective dialog, check <span class="command">Yes</span> to ensure the
+          MCS perspective is used to display this project. The new project icon appears in the
+          Navigator pane.</li>
+        <li>To view the project contents, select the icon and choose <span class="command">File</span> |
+            <span class="command">Refresh</span>. Now expand the project.</li>
+      </ol>
+    
+    
+      <h2>Adding MCS resources to an existing project</h2>
+    
+    <p>You can add MCS resources to an existing Eclipse project,
+      such as a company web site, by adding a folder to your project. This will be your policy
+      source directory. You do not have to create an MCS project.</p>
+    <ol>
+      <li>Choose an existing folder or right click on a project folder and choose
+        <span class="command">New</span> | <span class="command">Folder</span>. With a new folder you can use any name,
+        but a name like 'MCS policies' will be meaningful.</li>
+      <li>Now choose a policy wizard for the resource you want to add</li>
+      <li>On the MCS settings page in the wizard click <span class="command">Browse</span> to locate a device
+        repository for the project</li>
+      <li>Continue with the wizard to complete adding the resource</li>
+    </ol>
+    <p>MCS displays the resource icon in the new folder, and opens an editor on the resource.</p>
+    
+      
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../mcs/mcs_working.html">Working with MCS policies</a><br/><a class="link" href="../mcs/mcs_choose_wizard.html">Choosing a Wizard</a><br/><a class="link" href="../mcs/mcs_project_attr.html">Project attributes</a><br/></p>
+    
+  </body></html>

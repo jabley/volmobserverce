@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Using XSL transformations</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../dci_learn/dciTutorial_about_dci.html" title="Adding dynamic content">Start</a></li><li><a href="../dci_learn/dciTutorial_http_about.html" title="Accessing HTTP resources">Previous</a></li><li><a href="../dci_learn/dciTutorial_http_xdime.html" title="Integrating HTTP content">Next</a></li></ul></td></tr></table><h1>Using XSL transformations</h1>
+    <p>First, we have to create an XSL transformation that will convert the data provided by the
+      weather service to XDIME. In the next module you will learn how to incorporate it into an XDIME
+      page.</p>
+  <h2>Using transforms <a href="../dci/dci_transform.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The Yahoo! Weather service returns the requested data in a form of RSS feed<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes" ?&gt;
+&lt;rss version="2.0" xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+  xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"&gt;
+  &lt;channel&gt;
+    &lt;title&gt;Yahoo! Weather - Seattle, WA&lt;/title&gt;
+    &lt;link&gt;http://us.rd.yahoo.com/dailynews/rss/weather/
+      Seattle__WA/*http://weather.yahoo.com/forecast/USWA0395_c.html&lt;/link&gt;
+    &lt;description&gt;Yahoo! Weather for Seattle, WA&lt;/description&gt;
+    &lt;language&gt;en-us&lt;/language&gt;
+    &lt;lastBuildDate&gt;Wed, 06 Feb 2008 3:53 am PST&lt;/lastBuildDate&gt;
+    &lt;ttl&gt;60&lt;/ttl&gt;
+    &lt;yweather:location city="Seattle" region="WA" country="US"/&gt;
+    &lt;yweather:units temperature="C" distance="km" pressure="mb" speed="kph"/&gt;
+    &lt;yweather:wind chill="0" direction="190" speed="16"/&gt;
+    &lt;yweather:atmosphere humidity="79" visibility="1609" pressure="1020" rising="1"/&gt;
+    &lt;yweather:astronomy sunrise="7:29 am" sunset="5:17 pm"/&gt;
+    &lt;image&gt;
+      &lt;title&gt;Yahoo! Weather&lt;/title&gt;
+      &lt;width&gt;142&lt;/width&gt;
+      &lt;height&gt;18&lt;/height&gt;
+      &lt;link&gt;http://weather.yahoo.com/&lt;/link&gt;
+      &lt;url&gt;http://l.yimg.com/us.yimg.com/i/us/nws/th/main_142b.gif&lt;/url&gt;
+    &lt;/image&gt;
+    &lt;item&gt;
+      &lt;title&gt;Conditions for Seattle, WA at 3:53 am PST&lt;/title&gt;
+      &lt;geo:lat&gt;47.62&lt;/geo:lat&gt;
+      &lt;geo:long&gt;-122.32&lt;/geo:long&gt;
+      &lt;link&gt;http://us.rd.yahoo.com/dailynews/rss/weather/
+        Seattle__WA/*http://weather.yahoo.com/forecast/USWA0395_c.html&lt;/link&gt;
+      &lt;pubDate&gt;Wed, 06 Feb 2008 3:53 am PST&lt;/pubDate&gt;
+      &lt;yweather:condition text="Cloudy" code="26" temp="4"
+        date="Wed, 06 Feb 2008 3:53 am PST"/&gt;
+      &lt;description&gt;
+        &lt;img src="http://l.yimg.com/us.yimg.com/i/us/we/52/26.gif" /&gt;&lt;br /&gt;
+        &lt;b&gt;Current Conditions:&lt;/b&gt;&lt;br /&gt;
+        Cloudy, 4 C&lt;BR /&gt;&lt;BR /&gt;
+        &lt;b&gt;Forecast:&lt;/b&gt;&lt;BR /&gt;
+        Wed - Rain/Snow. High: 5 Low: 3&lt;br /&gt;
+        Thu - Showers. High: 6 Low: 5&lt;br /&gt;
+        &lt;br /&gt;
+        &lt;a href="http://us.rd.yahoo.com/dailynews/rss/weather/
+          Seattle__WA/*http://weather.yahoo.com/forecast/USWA0395_c.html"&gt;
+          Full Forecast at Yahoo! Weather&lt;/a&gt;&lt;BR/&gt;
+        (provided by The Weather Channel)&lt;br/&gt;
+      &lt;/description&gt;
+      &lt;yweather:forecast day="Wed" date="06 Feb 2008" low="3" high="5"
+        text="Rain/Snow" code="5"/&gt;
+      &lt;yweather:forecast day="Thu" date="07 Feb 2008" low="5" high="6"
+        text="Showers" code="11"/&gt;
+      &lt;guid isPermaLink="false"&gt;USWA0395_2008_02_06_3_53_PST&lt;/guid&gt;
+    &lt;/item&gt;
+  &lt;/channel&gt;
+&lt;/rss&gt;</pre></li><li>We need to create an XSL transform to filter required information and convert it to XDIME.
+      The following transformation must be saved in the
+        <span class="filepath">Volantis/MCS/webapps/mcs/tutorial/xsl/</span> directory as
+        <span class="filepath">http2xdime.xsl</span>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+  xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+  xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"&gt;
+  &lt;xsl:output method="xml"/&gt;
+  &lt;xsl:template match="/"&gt;
+    &lt;div class="company_item" xmlns="http://www.w3.org/2002/06/xhtml2"&gt;
+      &lt;h3 class="company_header"&gt;
+        &lt;xsl:value-of select="/rss/channel/item/title"/&gt;
+      &lt;/h3&gt;
+      &lt;div&gt;
+        &lt;h4&gt;Current Conditions:&lt;/h4&gt;
+        &lt;p&gt;&lt;xsl:value-of select="/rss/channel/item/yweather:condition/@text"/&gt;,
+          &lt;xsl:value-of
+            select="/rss/channel/item/yweather:condition/@temp"/&gt;
+          &lt;xsl:value-of select="/rss/channel/yweather:units/@temperature"/&gt;&lt;/p&gt;
+        &lt;h4&gt;Forecast:&lt;/h4&gt;
+        &lt;xsl:for-each select="/rss/channel/item/yweather:forecast"&gt;
+          &lt;p&gt;
+            &lt;xsl:value-of select="current()/@day"/&gt; - &lt;xsl:value-of
+              select="current()/@text"/&gt;.
+            High: &lt;xsl:value-of select="current()/@high"/&gt;
+            &lt;xsl:value-of select="/rss/channel/yweather:units/@temperature"/&gt; Low:
+            &lt;xsl:value-of select="current()/@low"/&gt;
+            &lt;xsl:value-of select="/rss/channel/yweather:units/@temperature"/&gt;
+          &lt;/p&gt;
+        &lt;/xsl:for-each&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</pre>
+    </li><li>The <span class="filepath">http2xdime.xsl</span> transform converts the data to an XDIME fragment
+      similar to the one presented below<pre class="code">
+&lt;div xmlns="http://www.w3.org/2002/06/xhtml2" class="company_item"&gt;
+  &lt;h3 class="company_header"&gt;Conditions for Seattle, WA at 3:53 am PST&lt;/h3&gt;
+  &lt;div&gt;
+    &lt;h4&gt;Current Conditions:&lt;/h4&gt;
+    &lt;p&gt;Cloudy, 4C&lt;/p&gt;
+    &lt;h4&gt;Forecast&lt;/h4&gt;
+    &lt;p&gt;Wed - Rain/Snow. High: 5C Low: 3C&lt;/p&gt;
+    &lt;p&gt;Thu - Showers. High: 6C Low: 5C&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </li><li>The value of the <span class="code">/rss/channel/item/title</span> element is used as a header</li><li>Current weather conditions are provided by the attributes of the
+        <span class="code">/rss/channel/item/yweather:condition</span> element. The
+      <span class="code">temperature</span> attribute of <span class="code">/rss/channel/yweather:units</span> defines
+      the temperature units.</li><li>The attributes of the <span class="code">/rss/channel/item/yweather:forecast</span> element
+      provide the weather forecast for the upcoming days</li></ol></body></html>

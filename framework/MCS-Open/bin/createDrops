@@ -1,0 +1,33 @@
+#!/bin/bash
+# -----------------------------------------------------------------------------
+# (c) Volantis Systems Ltd 2005. All Rights Reserved.
+# -----------------------------------------------------------------------------
+# Purpose:   Generates a SQL script designed to drop all tables created in
+#            the specified script argument. The script is output to standard
+#            out.
+# Arguments: The name of a SQL script containing table creation commands.
+# -----------------------------------------------------------------------------
+
+function usage () {
+  echo >&2
+  echo "usage: $(basename $0) create_sql" >&2
+  echo >&2
+  exit 2
+}
+
+if [ $# -ne 1 ]; then
+    usage
+fi
+
+grep -i create $1 | grep -i table | tr "(" " "| awk  '{printf "DROP TABLE %s CASCADE CONSTRAINTS ;\n\n",$3}'
+
+#
+# ===========================================================================
+# Change History
+# ===========================================================================
+# $Log$
+
+# 12-Jan-05	6648/2	philws	VBM:2005010605 Overhaul in-house scripts to correct classpath issues
+
+# ===========================================================================
+#

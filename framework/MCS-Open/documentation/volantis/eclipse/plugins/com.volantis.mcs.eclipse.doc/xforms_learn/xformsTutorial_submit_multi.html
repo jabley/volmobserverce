@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Multiple submit buttons</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../xforms_learn/xformsTutorial_about_xforms.html" title="Working with XForms">Start</a></li><li><a href="../xforms_learn/xformsTutorial_submit.html" title="Submitting forms">Previous</a></li><li><a href="../xforms_learn/xformsTutorial_fragmentation.html" title="Form fragmentation">Next</a></li></ul></td></tr></table><h1>Multiple submit buttons</h1>
+    <p>XDIME 2 supports multiple submit buttons. Each submit button may have a different
+      <span class="code">ref</span> or <span class="code">value</span> attribute, so it is possible for the form handler to
+      determine which button was used to submit the form. However, the restriction of having a
+      single submission per model still applies.</p>
+  <h2>xf:setvalue <a href="../xdime_cp/xf_setvalue.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">xf:setvalue</span> element associates a specific
+      <span class="code">xf:submit</span> control with the value to be submitted when there are multiple
+      submit buttons on a form <pre class="code">
+&lt;xf:submit submission="submit2"&gt;
+  &lt;xf:label&gt;button1&lt;/xf:label&gt;
+  &lt;xf:setvalue ev:event="DOMActivate" ref="btype" value="bt1"/&gt;
+&lt;/xf:submit&gt;</pre>
+      <div class="note"><strong>Note</strong>: The <span class="code">xf:setvalue</span> element requires the
+          <span class="filepath">xmlns:ev="http://www.w3.org/2001/xml-events"</span> namespace
+      declaration.</div>
+    </li><li>The <span class="code">ev:event</span> attribute is a global attribute defined within the XML Events
+      namespace. It must be set to 'DOMActivate'.</li><li>For WML devices, the <span class="code">value</span> attribute may be used to differentiate the
+      buttons. It specifies the value to set in the submitted form. If it is not present, then the
+      content of the <span class="code">xf:setvalue</span> element is used as the value. If the content is
+      empty, then it is equivalent to specifying a value attribute as an empty string. For devices
+      other than WML such as HTML, XHTML, XHTMLMobile, XHTMLBasic, etc., the content of the
+        <span class="code">xf:label</span> element is used as the value of the <span class="code">ref</span> attribute.<pre class="code">
+&lt;xf:submit submission="submit2"&gt;
+  &lt;xf:label&gt;button1&lt;/xf:label&gt;
+  &lt;xf:setvalue ev:event="DOMActivate" ref="btype" value="bt1"/&gt;
+&lt;/xf:submit&gt;
+&lt;xf:submit submission="submit2"&gt;
+  &lt;xf:label&gt;button2&lt;/xf:label&gt;
+  &lt;xf:setvalue ev:event="DOMActivate" ref="btype" value="bt2"/&gt;
+&lt;/xf:submit&gt;</pre>
+    </li><li>For WML devices, if you press <span class="command">button1</span>, then the <span class="code">btype=bt1</span>
+      parameter will be added to the request, and the URL will have the following form: <pre class="code">
+http://localhost:8080/mcs/helloWorld2.jsp?vform=s0&amp;firstName2=Joe&amp;
+  lastName2=Smith&amp;btype=bt1</pre> If you press <span class="command">button2</span>, then
+        <span class="code">btype=bt2</span> will be added to the request. In this case the URL will be similar to
+      the one shown below: <pre class="code">
+http://localhost:8080/mcs/helloWorld2.jsp?vform=s0&amp;firstName2=Joe&amp;
+  lastName2=Smith&amp;btype=bt2</pre></li><li>For devices other that WML, if you press <span class="command">button1</span>, then the
+        <span class="code">btype=button1</span> parameter will be added to the request, and the URL will have the
+      following form: <pre class="code">
+http://localhost:8080/mcs/helloWorld2.jsp?vform=s0&amp;firstName2=Joe&amp;
+  lastName2=Smith&amp;btype=button1</pre> If you press <span class="command">button2</span>, then
+        <span class="code">btype=button2</span> will be added to the request, and the URL will look like this: <pre class="code">
+http://localhost:8080/mcs/helloWorld2.jsp?vform=s0&amp;firstName2=Joe&amp;
+  lastName2=Smith&amp;btype=button2</pre></li><li>The submit buttons may also be differentiated using the <span class="code">ref</span> parameter<pre class="code">
+&lt;xf:submit submission="submit2"&gt;
+  &lt;xf:label&gt;button3&lt;/xf:label&gt;
+  &lt;xf:setvalue ev:event="DOMActivate" ref="btype3" value="1"/&gt;
+&lt;/xf:submit&gt;
+&lt;xf:submit submission="submit2"&gt;
+  &lt;xf:label&gt;button4&lt;/xf:label&gt;
+  &lt;xf:setvalue ev:event="DOMActivate" ref="btype4" value="2"/&gt;
+&lt;/xf:submit&gt;</pre></li><li>For WML devices, if you press <span class="command">button3</span>, then the <span class="code">btype3=1</span>
+      parameter will be appended to the request. If <span class="command">button4</span> is pressed, then the
+        <span class="code">btype4=2</span> parameter will be added to the request.</li><li>For devices other than WML, the content of the <span class="code">xf:label</span> element will be
+      used as the value of the <span class="code">ref</span> attribute. In other words, the
+      <span class="code">btype3=button3</span> or <span class="code">btype4=button4</span> parameter will be added to the
+      request.</li></ol><h2>Processing submitted data</h2><p>A simple JSP is used to process the data. It indicates which button was used to submit the
+      form. The <span class="filepath">helloWorld2.jsp</span> file must contain the following code.</p><pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;%@ page import="com.volantis.mcs.servlet.*" %&gt;
+&lt;%
+response.setContentType("x-application/vnd.xdime+xml");
+String btype = MarinerServletRequestContext.findInstance(request).getParameter("btype");
+String btype3 = MarinerServletRequestContext.findInstance(request).getParameter("btype3");
+String btype4 = MarinerServletRequestContext.findInstance(request).getParameter("btype4");
+String firstName2 = MarinerServletRequestContext.findInstance(request).getParameter("firstName2");
+String lastName2 = MarinerServletRequestContext.findInstance(request).getParameter("lastName2");
+%&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Form Submission&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;h4&gt;Hello &lt;%=firstName2%&gt; &lt;%=lastName2%&gt;!&lt;/h4&gt;
+      &lt;% if (btype!=null) { %&gt;
+        You've clicked &lt;%=btype%&gt;.
+        &lt;% } else { %&gt; 
+          &lt;% if (btype3!=null) { %&gt;
+          You've clicked &lt;%=btype3%&gt;.
+          &lt;% } else { %&gt; 
+            You've clicked &lt;%=btype4%&gt;.
+        &lt;% } %&gt; 
+      &lt;% } %&gt;  
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre><h2>Complete XDIME 2 code</h2><ol><li>Create a new XDIME file called <span class="filepath">xforms_submit_multi.xdime</span></li><li>Modify <span class="filepath">xforms_submit_multi.xdime</span> by including the following code <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:ev="http://www.w3.org/2001/xml-events"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Form Submission&lt;/title&gt;
+    &lt;xf:model id="demoMultipleSubmission"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="firstName2"&gt;Joe&lt;/si:item&gt;
+          &lt;si:item name="lastName2"&gt;Smith&lt;/si:item&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission action="helloWorld2.jsp" id="submit2"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;
+      &lt;xf:input model="demoMultipleSubmission" ref="firstName2"&gt;
+        &lt;xf:label&gt;Enter Your Name:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;xf:input model="demoMultipleSubmission" ref="lastName2"&gt;
+        &lt;xf:label&gt;Enter Your Surname:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;xf:submit submission="submit2"&gt;
+        &lt;xf:label&gt;button1&lt;/xf:label&gt;
+        &lt;xf:setvalue ev:event="DOMActivate" ref="btype" value="bt1"/&gt;
+      &lt;/xf:submit&gt;
+      &lt;xf:submit submission="submit2"&gt;
+        &lt;xf:label&gt;button2&lt;/xf:label&gt;
+        &lt;xf:setvalue ev:event="DOMActivate" ref="btype" value="bt2"/&gt;
+      &lt;/xf:submit&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;xf:submit submission="submit2"&gt;
+        &lt;xf:label&gt;button3&lt;/xf:label&gt;
+        &lt;xf:setvalue ev:event="DOMActivate" ref="btype3" value="1"/&gt;
+      &lt;/xf:submit&gt;
+      &lt;xf:submit submission="submit2"&gt;
+        &lt;xf:label&gt;button4&lt;/xf:label&gt;
+        &lt;xf:setvalue ev:event="DOMActivate" ref="btype4" value="2"/&gt;
+      &lt;/xf:submit&gt;
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Example 1: Processing forms based on xf:setvalue</h2><ol><li>The <span class="code">xf:setvalue</span> element allows the form handler to determine which
+      button was used to submit the form<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:ev="http://www.w3.org/2001/xml-events"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Form Submission&lt;/title&gt;
+    &lt;xf:model id="demoMultipleSubmission"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="firstName2"&gt;Joe&lt;/si:item&gt;
+          &lt;si:item name="lastName2"&gt;Smith&lt;/si:item&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission action="form_processing.jsp" id="submit2"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;
+      &lt;xf:input model="demoMultipleSubmission" ref="firstName2"&gt;
+        &lt;xf:label&gt;Enter Your Name:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;xf:input model="demoMultipleSubmission" ref="lastName2"&gt;
+        &lt;xf:label&gt;Enter Your Surname:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;xf:submit submission="submit2"&gt;
+        &lt;xf:label&gt;button1&lt;/xf:label&gt;
+        &lt;xf:setvalue ev:event="DOMActivate" ref="btype" value="button1"/&gt;
+      &lt;/xf:submit&gt;
+      &lt;xf:submit submission="submit2"&gt;
+        &lt;xf:label&gt;button2&lt;/xf:label&gt;
+        &lt;xf:setvalue ev:event="DOMActivate" ref="btype" value="button2"/&gt;
+      &lt;/xf:submit&gt;
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></li><li>JSP determines which button was used to submit the form based on the value of the
+      <span class="code">btype</span> attribute. Conditional markup is used to process the form. If the
+        <span class="command">button1</span> is used to submit the form, then the first name will be
+      displayed. If <span class="command">button2</span> is used, then the last name will be displayed. <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;%@ page import="com.volantis.mcs.servlet.*" %&gt;
+&lt;%
+response.setContentType("x-application/vnd.xdime+xml");
+String btype = MarinerServletRequestContext.findInstance(request).getParameter("btype");
+String firstName2 = MarinerServletRequestContext.findInstance(request).getParameter("firstName2");
+String lastName2 = MarinerServletRequestContext.findInstance(request).getParameter("lastName2");
+%&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Form Submission&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+    &lt;% if (btype.equals("button1")) { %&gt;
+      Processing first name: &lt;%=firstName2%&gt;
+    &lt;% } else { %&gt; 
+      Processing last name: &lt;%=lastName2%&gt;
+    &lt;% } %&gt; 
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/si_instance.html">si:instance</a></th><td><p>Container for data items used to supply initial values for forms controls, or to provide
+        additional data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/si_item.html">si:item</a></th><td><p>Defines an item of instance data that is required if a form control needs to be
+        initialized, or when data not associated with a form control needs to be provided during
+        form submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_input.html">xf:input</a></th><td><p>A form control for text input.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_instance.html">xf:instance</a></th><td><p>Optional element that contains instance data associated with the <span class="code">model</span>
+        element. It is used to supply initial values for forms controls, or to provide additional
+        data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_label.html">xf:label</a></th><td><p>Provides a descriptive label for forms controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_model.html">xf:model</a></th><td><p>Represents a form definition, used as a container for elements associated with its
+        submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_setvalue.html">xf:setvalue</a></th><td><p>Associates a specific <span class="code">xf:submit</span> control with the value to be submitted
+        when there are multiple submit buttons on a form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_submission.html">xf:submission</a></th><td><p>Defines the information to submit, where it should be sent, and how to send it.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_submit.html">xf:submit</a></th><td><p>A form control that initiates submission of the form data for processing.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_attr_cp.html">Form attributes</a></th><td><p>Binding expressions provide the mapping between the data associated with a particular
+        control and the data provided for processing when the form is submitted. The expression is
+        the name of the parameter associated with the control's data when the form is submitted.
+        These parameters appear on the submission URL if the form is submitted using the HTTP
+          <span class="code">GET</span> method, and are hidden if the <span class="code">POST</span> method is used. The
+        methods are specified as attributes on the <span class="code">xf:submission</span> element.</p></td></tr></tbody></table>
+  </body></html>

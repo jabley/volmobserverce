@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>xf:setvalue</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>xf:setvalue</h1><h2>Purpose</h2>
+      <p>Associates a specific <span class="code">xf:submit</span> control with the value to be submitted
+        when there are multiple submit buttons on a form.</p>
+    <h2>Contained by</h2><p><a href="../xdime_cp/xf_submit.html">xf:submit</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">ev:event</th><td>A global attribute defined within the XML Events namespace. The namespace
+          declaration http://www.w3.org/2001/xml-events must be declared. The only value supported
+          is 'DOMActivate'.</td><td>xs:string</td><td> </td><td>DOMAvtivate </td><td>required </td></tr><tr><th class="firstcell" scope="row">ref</th><td>Identifies the request parameter</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">value</th><td>For WML devices, the <span class="code">value</span> attribute may be used to differentiate the buttons.
+            It specifies the value to set in the submitted form. If it is not present, then the content
+            of the <span class="code">xf:setvalue</span> element is used as the value. If the content is empty,
+            then it is equivalent to specifying a value attribute as an empty string.  The content model for the <span class="code">xf:setvalue</span>
+            element is PCDATA. For devices other
+            than WML such as HTML, XHTML, XHTMLMobile, XHTMLBasic, etc., the content of the
+            <span class="code">xf:label</span> element is used as the value of the <span class="code">ref</span>
+            attribute.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Attribute groups</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a>, <a href="../xdime_cp/sel_attr_cp.html">Selection attributes</a>, <a href="../xdime_cp/xf_attr_cp.html">Form attributes</a></p><h2>Examples</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:ev="http://www.w3.org/2001/xml-events"&gt;
+  &lt;head&gt;
+    &lt;title&gt;xf:setvalue&lt;/title&gt;
+    &lt;xf:model id="form"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="hidden"&gt;123&lt;/si:item&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission action="response.jsp" id="submit"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;
+      &lt;xf:submit submission="submit"&gt;
+        &lt;xf:label&gt;button1&lt;/xf:label&gt;
+        &lt;xf:setvalue ev:event="DOMActivate" ref="btype" value="bt1"/&gt;
+      &lt;/xf:submit&gt;
+      &lt;xf:submit submission="submit"&gt;
+        &lt;xf:label&gt;button2&lt;/xf:label&gt;
+        &lt;xf:setvalue ev:event="DOMActivate" ref="btype" value="bt2"/&gt;
+      &lt;/xf:submit&gt;
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>For WML devices, if you press <span class="command">button1</span>, then the <span class="code">btype=bt1</span>
+        parameter will be added to the request, and the URL will have the following form:</p>
+      <pre class="code">
+http://localhost:8080/mcs/response.jsp?hidden=123&amp;amp;vform=s0&amp;amp;btype=bt1</pre>
+      <p>If you press <span class="command">button2</span>, then <span class="code">btype=bt2</span> will be added to the
+        request. In this case the URL will be similar to the one shown below:</p>
+      <pre class="code">
+http://localhost:8080/mcs/response.jsp?hidden=123&amp;amp;vform=s0&amp;amp;btype=bt2</pre>
+      <p>For devices other that WML, if you press <span class="command">button1</span>, then the
+        <span class="code">btype=button1</span> parameter will be added to the request, and the URL will have
+        the following form:</p>
+      <pre class="code">
+http://localhost:8080/mcs/response.jsp?hidden=123&amp;amp;vform=s0&amp;amp;btype=button1</pre>
+      <p>If you press <span class="command">button2</span>, then <span class="code">btype=button2</span> will be added to
+        the request, and the URL will look like this:</p>
+      <pre class="code">
+http://localhost:8080/mcs/response.jsp?hidden=123&amp;amp;vform=s0&amp;amp;btype=button2</pre>
+      <p>It is also possible to discriminate on the basis of the <span class="code">ref</span> attribute.</p>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+  xmlns:ev="http://www.w3.org/2001/xml-events"&gt;
+  &lt;head&gt;
+    &lt;title&gt;xf:setvalue&lt;/title&gt;
+    &lt;xf:model id="form"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="hidden"&gt;123&lt;/si:item&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission action="response.jsp" id="submit"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;
+      &lt;xf:submit submission="submit"&gt;
+        &lt;xf:label&gt;button3&lt;/xf:label&gt;
+        &lt;xf:setvalue ev:event="DOMActivate" ref="btype3" value="1"/&gt;
+      &lt;/xf:submit&gt;
+      &lt;xf:submit submission="submit"&gt;
+        &lt;xf:label&gt;button4&lt;/xf:label&gt;
+        &lt;xf:setvalue ev:event="DOMActivate" ref="btype4" value="2"/&gt;
+      &lt;/xf:submit&gt;
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>For WML devices, if you press <span class="command">button3</span>, then the <span class="code">btype3=1</span>
+        parameter will be appended to the request. If <span class="command">button4</span> is pressed, then
+        the <span class="code">btype4=2</span> parameter will be added to the request. For devices other than
+        WML, the content of the <span class="code">xf:label</span> element will be used as the value of the
+        <span class="code">ref</span> attribute. In other words, the <span class="code">btype3=button3</span> or
+        <span class="code">btype4=button4</span> parameter will be added to the request.</p>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../wag/xf_er.html">XForms elements</a><br/><a class="link" href="../wag/xdime_cp_formdata.html">Form instance data</a><br/></p>
+    </body></html>

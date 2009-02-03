@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:deck-page</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:deck-page</h1><h2>Purpose</h2>
+      <p>Defines a single page in a Deck widget.</p>
+    <h2>Contained by</h2><p><a href="../xdime_cp/response_deck.html">response:deck</a>, <a href="../xdime_cp/widget_deck.html">widget:deck</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;widget:deck-page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;widget:deck id="deck" style="mcs-deck-mode:switch"&gt;
+      &lt;widget:deck-page&gt;
+        &lt;h1 style="text-align:center"&gt;Deck Widget&lt;/h1&gt;
+      &lt;/widget:deck-page&gt;
+      &lt;widget:deck-page&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit.&lt;/p&gt;
+      &lt;/widget:deck-page&gt;
+      &lt;widget:deck-page&gt;
+        &lt;p&gt;Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+          himenaeos.&lt;/p&gt;
+      &lt;/widget:deck-page&gt;
+      &lt;widget:deck-page&gt;
+        &lt;p&gt;Aliquam turpis turpis, fermentum at, dapibus sed, scelerisque eget, elit. Etiam
+        augue.&lt;/p&gt;
+      &lt;/widget:deck-page&gt;
+    &lt;/widget:deck&gt;
+    &lt;table style="width:100%"&gt;
+      &lt;tr&gt;
+        &lt;td style="text-align:left"&gt;
+          &lt;widget:button action="deck#first-page"&gt;&amp;lt;&amp;lt;&lt;/widget:button&gt;
+          &lt;widget:button action="deck#previous-page"&gt;&amp;lt;&lt;/widget:button&gt;
+        &lt;/td&gt;
+        &lt;td style="text-align:center"&gt;
+          &lt;widget:display property="deck#displayed-page-number"/&gt; of &lt;widget:display
+            property="deck#pages-count"/&gt;
+        &lt;/td&gt;
+        &lt;td style="text-align:right"&gt;
+          &lt;widget:button action="deck#next-page"&gt;&amp;gt;&lt;/widget:button&gt;
+          &lt;widget:button action="deck#last-page"&gt;&amp;gt;&amp;gt;&lt;/widget:button&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../client/widget_er.html">Widget elements</a><br/></p>
+    </body></html>

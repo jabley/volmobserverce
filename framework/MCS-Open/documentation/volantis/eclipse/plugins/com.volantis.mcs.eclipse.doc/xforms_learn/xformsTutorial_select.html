@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Selection controls</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../xforms_learn/xformsTutorial_about_xforms.html" title="Working with XForms">Start</a></li><li><a href="../xforms_learn/xformsTutorial_input.html" title="Text input controls">Previous</a></li><li><a href="../xforms_learn/xformsTutorial_submit.html" title="Submitting forms">Next</a></li></ul></td></tr></table><h1>Selection controls</h1>
+    <p>The selection controls allow the user to choose one or more options from the pre-defined
+      list. The <span class="code">xf:select1</span> and <span class="code">xf:select</span> elements provide
+      single and multiple selection lists respectively.</p>
+  <h2>xf:select1 <a href="../xdime_cp/xf_select1.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">xf:select1</span> element specifies a single selection form control. The
+        <span class="code">xf:item</span> element defines a single item on the list of possible options.
+      Each item must contain a value and an optional label. The value is the string that will be
+      inserted into the element defined in the form model and referenced by the
+      <span class="code">ref</span> attribute. <pre class="code">
+&lt;xf:select1 model="demoSelect" ref="drop_down"
+  style="mcs-selection-list-style: menu"&gt;
+  &lt;xf:label&gt;Label&lt;/xf:label&gt;
+  &lt;xf:item&gt;
+    &lt;xf:label&gt;Item1&lt;/xf:label&gt;
+    &lt;xf:value&gt;Item1&lt;/xf:value&gt;
+  &lt;/xf:item&gt;
+  &lt;xf:item&gt;
+    &lt;xf:label&gt;Item2&lt;/xf:label&gt;
+    &lt;xf:value&gt;Item2&lt;/xf:value&gt;
+  &lt;/xf:item&gt;
+  &lt;xf:item&gt;
+    &lt;xf:label&gt;Item3&lt;/xf:label&gt;
+    &lt;xf:value&gt;Item3&lt;/xf:value&gt;
+  &lt;/xf:item&gt;
+&lt;/xf:select1&gt;</pre></li><li>You use the <span class="code">mcs-selection-list-style</span> theme property to control visual
+      appearance of the selection controls. For instance, <span class="code">mcs-selection-list-style</span> set to
+      'menu' will create a drop-down list. <p><img src="../graphics/xformsTutorial_img/xforms_select_1.png" alt="Selection elements" title="Selection elements"/></p></li><li>You may also present all the values at once as radio buttons by setting the
+        <span class="code">mcs-selection-list-style</span> property to 'controls' <pre class="code">
+&lt;xf:select1 model="demoSelect" ref="select1"
+  style="mcs-selection-list-style: controls;
+  mcs-selection-list-option-layout: control-first"&gt;</pre>
+      <p><img src="../graphics/xformsTutorial_img/xforms_select_2.png" alt="Selection elements" title="Selection elements"/></p>
+    </li><li>The <span class="code">mcs-selection-list-option-layout</span> property controls the order of the
+      captions and controls in the display if both occupy the same pane. The possible values are:
+      'caption-first' and 'control-first'.</li></ol><h2>xf:select <a href="../xdime_cp/xf_select.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">xf:select</span> element specifies a multiple selection form control. You
+      define the list of options in the same way as in the case of <span class="code">xf:select1</span>. <pre class="code">
+&lt;xf:select model="demoSelect" ref="list"
+  style="mcs-selection-list-style: menu;
+  mcs-rows: 2"&gt;
+  &lt;xf:label&gt;Label&lt;/xf:label&gt;
+  &lt;xf:item&gt;
+    &lt;xf:label&gt;Item1&lt;/xf:label&gt;
+    &lt;xf:value&gt;Item1&lt;/xf:value&gt;
+  &lt;/xf:item&gt;
+  &lt;xf:item&gt;
+    &lt;xf:label&gt;Item2&lt;/xf:label&gt;
+    &lt;xf:value&gt;Item2&lt;/xf:value&gt;
+  &lt;/xf:item&gt;
+  &lt;xf:item&gt;
+    &lt;xf:label&gt;Item3&lt;/xf:label&gt;
+    &lt;xf:value&gt;Item3&lt;/xf:value&gt;
+  &lt;/xf:item&gt;
+&lt;/xf:select&gt;</pre>
+    </li><li>You may specify the initial value of the <span class="code">xf:select</span> control using the
+      comma-separated list<pre class="code">
+&lt;xf:model id="demoSelect"&gt;
+  &lt;xf:instance&gt;
+    &lt;si:instance&gt;
+      &lt;si:item name="drop_down"/&gt;
+      &lt;si:item name="select1"/&gt;
+      &lt;si:item name="select"&gt;Item1,Item3&lt;/si:item&gt;
+      &lt;si:item name="list"/&gt;
+    &lt;/si:instance&gt;
+  &lt;/xf:instance&gt;
+&lt;/xf:model&gt;</pre></li><li>The <span class="code">mcs-selection-list-style</span> property set to 'menu' creates a selection list.
+      The <span class="code">mcs-rows</span> property controls the size of the list.<p><img src="../graphics/xformsTutorial_img/xforms_select_4.png" alt="Selection elements" title="Selection elements"/></p></li><li>If <span class="code">mcs-selection-list-style</span> is set to 'controls', then the list will be
+      displayed as checkboxes<p><img src="../graphics/xformsTutorial_img/xforms_select_3.png" alt="Selection elements" title="Selection elements"/></p></li></ol><h2>Complete XDIME 2 code</h2><p>The following example illustrates the use of the selection elements.</p><ol><li>Create a new XDIME file called <span class="filepath">xforms_select.xdime</span></li><li>Modify the file by including the following code <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Selection Controls&lt;/title&gt;
+    &lt;xf:model id="demoSelect"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="drop_down"/&gt;
+          &lt;si:item name="select1"/&gt;
+          &lt;si:item name="select"&gt;Item1,Item3&lt;/si:item&gt;
+          &lt;si:item name="list"/&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h4&gt;Drop Down List&lt;/h4&gt;
+    &lt;p&gt;
+      &lt;xf:select1 model="demoSelect" ref="drop_down"
+        style="mcs-selection-list-style: menu"&gt;
+        &lt;xf:label&gt;Label&lt;/xf:label&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item1&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item1&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item2&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item2&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item3&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item3&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+      &lt;/xf:select1&gt;
+    &lt;/p&gt;
+    &lt;h4&gt;Radio Controls&lt;/h4&gt;
+    &lt;p&gt;
+      &lt;xf:select1 model="demoSelect" ref="select1"
+        style="mcs-selection-list-style: controls;
+        mcs-selection-list-option-layout: control-first"&gt;
+        &lt;xf:label&gt;Label&lt;/xf:label&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item1&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item1&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item2&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item2&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item3&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item3&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+      &lt;/xf:select1&gt;
+    &lt;/p&gt;
+    &lt;h4&gt;List&lt;/h4&gt;
+    &lt;p&gt;
+      &lt;xf:select model="demoSelect" ref="list"
+        style="mcs-selection-list-style: menu;
+        mcs-rows: 2"&gt;
+        &lt;xf:label&gt;Label&lt;/xf:label&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item1&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item1&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item2&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item2&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item3&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item3&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+      &lt;/xf:select&gt;
+    &lt;/p&gt;
+    &lt;h4&gt;Checkboxes&lt;/h4&gt;
+    &lt;p&gt;
+      &lt;xf:select model="demoSelect" ref="select"
+        style="mcs-selection-list-style: controls;
+        mcs-selection-list-option-layout: caption-first"&gt;
+        &lt;xf:label&gt;Label&lt;/xf:label&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item1&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item1&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item2&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item2&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+        &lt;xf:item&gt;
+          &lt;xf:label&gt;Item3&lt;/xf:label&gt;
+          &lt;xf:value&gt;Item3&lt;/xf:value&gt;
+        &lt;/xf:item&gt;
+      &lt;/xf:select&gt;
+    &lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/si_instance.html">si:instance</a></th><td><p>Container for data items used to supply initial values for forms controls, or to provide
+        additional data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/si_item.html">si:item</a></th><td><p>Defines an item of instance data that is required if a form control needs to be
+        initialized, or when data not associated with a form control needs to be provided during
+        form submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_instance.html">xf:instance</a></th><td><p>Optional element that contains instance data associated with the <span class="code">model</span>
+        element. It is used to supply initial values for forms controls, or to provide additional
+        data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_label.html">xf:label</a></th><td><p>Provides a descriptive label for forms controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_model.html">xf:model</a></th><td><p>Represents a form definition, used as a container for elements associated with its
+        submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_select.html">xf:select</a></th><td><p>A form control that provides for selection of one or more choices from a list of options.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_select1.html">xf:select1</a></th><td><p>A form control that provides for selection of a single choice from an available list of
+        options; for example, a group of radio buttons.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_value.html">xf:value</a></th><td><p>Provides the option values associated with select controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_attr_cp.html">Form attributes</a></th><td><p>Binding expressions provide the mapping between the data associated with a particular
+        control and the data provided for processing when the form is submitted. The expression is
+        the name of the parameter associated with the control's data when the form is submitted.
+        These parameters appear on the submission URL if the form is submitted using the HTTP
+          <span class="code">GET</span> method, and are hidden if the <span class="code">POST</span> method is used. The
+        methods are specified as attributes on the <span class="code">xf:submission</span> element.</p></td></tr></tbody></table>
+  </body></html>

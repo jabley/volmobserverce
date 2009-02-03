@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>object-pool</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>object-pool</h1><h2>Purpose</h2>
+      <p>Specifies whether the protocols should pool objects.</p>
+      <div class="note"><strong>Note</strong>: The best setting for the <span class="code">enabled</span> attribute depends on the JVM
+        and how it is configured. It should be set to false only if the JVM has a generational
+        garbage collector, as they do not handle pooled objects properly.</div>
+    <h2>Contained by</h2><p><a href="../mcs_config/config_protocols.html">protocols</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">enabled</th><td>If true the protocols will pool objects. If false they will not. </td><td>xs:boolean</td><td>true </td><td> </td><td>optional </td></tr></table>
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../admin/mcs_config_er.html">MCS configuration elements</a><br/></p>
+    </body></html>

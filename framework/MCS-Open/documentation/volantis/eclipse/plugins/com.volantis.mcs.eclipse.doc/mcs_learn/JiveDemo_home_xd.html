@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Jive home page</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../mcs_learn/JiveDemo_about_jive.html" title="Next steps with MCS">Start</a></li><li><a href="../mcs_learn/JiveDemo_common_elements_xd.html" title="Common page elements">Previous</a></li><li><a href="../mcs_learn/JiveDemo_news_xd.html" title="Company news page">Next</a></li></ul></td></tr></table><h1>Jive home page</h1>
+    <p>In this module you will add to the body of the Jive Home Page. The PC page presents all of
+      the material as a single page. The Smartphone presents it as three linked fragments.</p>
+    <p><img src="../graphics/jive_home_pc.jpg" alt="Jive Home Page - PC" title="Jive Home Page - PC"/></p>
+    <p>Content of the left column of the PC page is reached on the Smartphone version with the
+      'Company Information' link. Material in the right is accessed from the 'News Feeds' link.</p>
+    <p><img src="../graphics/jive_home_phone.jpg" alt="Jive Home Page - Smartphone" title="Jive Home Page - Smartphone"/></p>
+  <h2>Home Page body</h2><ol><li>Open the file <span class="filepath">jivehome.xdime</span> in your XML editor</li><li>Start the company announcements section of the page. This section is targeted at the
+      second fragment in the Smartphone version. The style classes <span class="code">company_item</span> and
+        <span class="code">company_header</span> control the styling. Notice that the <span class="uicontrol">Background
+      Image</span> property of the selector <span class="code">company_header</span> is set to the image
+      component <span class="filepath">/images/orange_header.mimg</span> and the
+      <span class="uicontrol">Repeat</span> property is set to 'repeat-x'.<pre class="code">
+&lt;div class="company_item" id="announcements"&gt;
+  &lt;h3 class="company_header"&gt;Announcements&lt;/h3&gt;
+  &lt;dl class="sec_menu"&gt;
+    &lt;dt&gt;
+      &lt;a href="#" class="title"&gt;Jive New Products!!&lt;/a&gt;
+    &lt;/dt&gt;
+    &lt;dd&gt;Check out the latest line of Jive basketball shoes set to come out in November.&lt;/dd&gt;
+  &lt;/dl&gt;
+&lt;/div&gt;</pre>
+    </li><li>Continue with the Human Resources and Note From the CEO sections, referring to
+        <span class="filepath">jive.mthm</span> for information on the style properties <pre class="code">
+&lt;div class="company_item" id="human_resources"&gt;
+  &lt;h3 class="company_header"&gt;Jive Human Resources&lt;/h3&gt;
+  &lt;dl class="sec_menu"&gt;
+    &lt;dt&gt;
+      &lt;a href="#" class="title"&gt;Opportunities at Jive&lt;/a&gt;
+    &lt;/dt&gt;
+    &lt;dd class="preview"&gt;Jive Sports is seeking people to fill new&lt;/dd&gt;
+  &lt;/dl&gt;
+&lt;/div&gt;
+
+&lt;div class="company_item" id="from_CEO"&gt;
+  &lt;h3 class="company_header"&gt;Note From the CEO&lt;/h3&gt;
+  &lt;blockquote&gt; "Our success at Jive Sports depends entirely on the quality of our employees. We have
+    seen great success so far this year, as our sales are increasing and we continue to diversify
+    our product lines. So many have repeatedly gone above and beyond the call of duty to ensure
+    success of our company. I would like to thank everyone for playing a pivotal role in the success
+    of this great organization. Jive is a place where everyone has a voice. So I encourage everyone
+    to continue to take initiative and express your ideas. We have a very exciting year ahead of
+    us." &lt;/blockquote&gt;
+&lt;/div&gt;</pre>
+    </li><li>In the news section, the style class <span class="code">external_item</span>
+      <span class="code">external_header</span> control the appearance of the section<pre class="code">
+&lt;div class="external_item" id="global_news"&gt;
+  &lt;h3 class="external_header"&gt;CNN Around the Globe&lt;/h3&gt;
+  &lt;dl class="sec_menu"&gt;
+    &lt;dt&gt;
+      &lt;a href="#" class="title"&gt;Gunmen shoot at tourists in Jordan&lt;/a&gt;
+    &lt;/dt&gt;
+    &lt;dd class="preview"&gt;Two gunmen opened fire on tourists Monday near the Roman amphitheater in the
+      Jordanian capital Amman, police told CNN.&lt;/dd&gt;
+    &lt;dt&gt;
+      &lt;a href="#" class="title"&gt;Afghan opium production soars to new high&lt;/a&gt;
+    &lt;/dt&gt;
+    &lt;dd class="preview"&gt;Afghanistan's world-leading opium cultivation rose a "staggering" 60 percent
+      this year, the U.N. anti-drugs chief announced Saturday in urging the government to crack down
+      on big traffickers and remove corrupt officials and police. &lt;/dd&gt;
+  &lt;/dl&gt;
+&lt;/div&gt;</pre>
+    </li><li>Check that your file contains all the markup in the following example, and save it.</li></ol><h2>Complete XDIME 2 code</h2><p>The complete home page should contain the code shown below.</p><ol><li>Please create a <span class="filepath">jivehome.xdime</span> file </li><li>Modify the <span class="filepath">jivehome.xdime</span> file by including the following code <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Welcome to the Jive Intranet&lt;/title&gt;
+    &lt;!-- Links to the layout and theme for this page --&gt;
+    &lt;link rel="mcs:layout" href="/jivehome.mlyt"/&gt;
+    &lt;link rel="mcs:theme" href="/jive.mthm"/&gt;
+  &lt;/head&gt;
+  &lt;!-- Page body --&gt;
+  &lt;body&gt;
+    &lt;!-- The common material for the page header --&gt;
+    &lt;div&gt;
+      &lt;!-- The banner --&gt;
+      &lt;div id="logo"&gt;
+        &lt;a class="homelogo" href="jivehome.xdime"&gt;
+          &lt;object class="homelogo" src="/images/jive_logo.mimg"/&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div id="photos"&gt;
+        &lt;object src="/images/photos.mimg"/&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- The main menu --&gt;
+    &lt;div id="menu_company_news" class="main_menu"&gt;
+      &lt;a class="pnav" href="companyNews.xdime"&gt;
+        &lt;object src="/images/menu_company_news.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="menu_human_resources" class="main_menu"&gt;
+      &lt;a class="pnav" href="humanResources.xdime"&gt;
+        &lt;object src="/images/menu_human_resources.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="menu_employee_store" class="main_menu"&gt;
+      &lt;a class="pnav" href="employeeStore.xdime"&gt;
+        &lt;object src="/images/menu_employee_store.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;!--The current stock price--&gt;
+    &lt;div id="stockprice"&gt; Latest from NYSE for Jive (VBE): 21.50 (+ 2.25) &lt;/div&gt;
+    &lt;!-- Page title --&gt;
+    &lt;h2 id="title"&gt; Welcome to Jive Intranet&lt;/h2&gt;
+    &lt;!-- Company announcements --&gt;
+    &lt;div class="company_item" id="announcements"&gt;
+      &lt;h3 class="company_header"&gt;Announcements&lt;/h3&gt;
+      &lt;dl class="sec_menu"&gt;
+        &lt;dt&gt;
+          &lt;a href="#" class="title"&gt;Jive New Products!!&lt;/a&gt;
+        &lt;/dt&gt;
+        &lt;dd&gt;Check out the latest line of Jive basketball shoes set to come out in November.&lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/div&gt;
+    &lt;!-- Information from Human Resources --&gt;
+    &lt;div class="company_item" id="human_resources"&gt;
+      &lt;h3 class="company_header"&gt;Jive Human Resources&lt;/h3&gt;
+      &lt;dl class="sec_menu"&gt;
+        &lt;dt&gt;
+          &lt;a href="#" class="title"&gt;Opportunities at Jive&lt;/a&gt;
+        &lt;/dt&gt;
+        &lt;dd class="preview"&gt;Jive Sports is seeking people to fill new job openings.&lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/div&gt;
+    &lt;!-- From the office of the CEO --&gt;
+    &lt;div class="company_item" id="from_CEO"&gt;
+      &lt;h3 class="company_header"&gt;Note From the CEO&lt;/h3&gt;
+      &lt;blockquote&gt; "Our success at Jive Sports depends entirely on the quality of our employees. We
+        have seen great success so far this year, as our sales are increasing and we continue to
+        diversify our product lines. So many have repeatedly gone above and beyond the call of duty
+        to ensure success of our company. I would like to thank everyone for playing a pivotal role
+        in the success of this great organization. Jive is a place where everyone has a voice. So I
+        encourage everyone to continue to take initiative and express your ideas. We have a very
+        exciting year ahead of us."&lt;/blockquote&gt;
+    &lt;/div&gt;
+    &lt;!-- Global news feed --&gt;
+    &lt;div class="external_item" id="global_news"&gt;
+      &lt;h3 class="external_header"&gt;CNN Around the Globe&lt;/h3&gt;
+      &lt;dl class="sec_menu"&gt;
+        &lt;dt&gt;
+          &lt;a href="#" class="title"&gt;Gunmen shoot at tourists in Jordan&lt;/a&gt;
+        &lt;/dt&gt;
+        &lt;dd class="preview"&gt;Two gunmen opened fire on tourists Monday near the Roman amphitheater in
+          the Jordanian capital Amman, police told CNN.&lt;/dd&gt;
+        &lt;dt&gt;
+          &lt;a href="#" class="title"&gt;Afghan opium production soars to new high&lt;/a&gt;
+        &lt;/dt&gt;
+        &lt;dd class="preview"&gt;Afghanistan's world-leading opium cultivation rose a "staggering" 60
+          percent this year, the U.N. anti-drugs chief announced Saturday in urging the government
+          to crack down on big traffickers and remove corrupt officials and police. &lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/div&gt;
+    &lt;!-- US News feed --&gt;
+    &lt;div class="external_item" id="US_news"&gt;
+      &lt;h3 class="external_header"&gt;CNN Around the Nation&lt;/h3&gt;
+      &lt;dl class="sec_menu"&gt;
+        &lt;dt&gt;
+          &lt;a href="#" class="title"&gt;Trooper dies after being wounded in 'Bucky' hunt&lt;/a&gt;
+        &lt;/dt&gt;
+        &lt;dd class="preview"&gt;One of the New York state troopers shot last week during a search for
+          fugitive Ralph "Bucky" Phillips died Sunday, according to New York State police.&lt;/dd&gt;
+        &lt;dt&gt;
+          &lt;a href="#" class="title"&gt;Downgraded John could drench southwest U.S. &lt;/a&gt;
+        &lt;/dt&gt;
+        &lt;dd class="preview"&gt;Rains from the remnants of Hurricane John soaked the northern half of
+          Mexico's arid Baja California peninsula on Monday and threatened to cause flooding in the
+          southwestern United States.&lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/div&gt;
+    &lt;!-- The common material for the page footer --&gt;
+    &lt;div id="footer"&gt;
+      &lt;p&gt;Copyright &lt;a href="jivehome.xdime"&gt;Jive Sports&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_a.html">a</a></th><td><p>Used to create an explicit link to another place in the same document or to another
+        document. The current document is the source of the link and the value of the
+        <span class="code">href</span> attribute, defines the link target</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_blockquote.html">blockquote</a></th><td><p>Defines a block of text quoted in the current document.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_dd.html">dd</a></th><td><p>Contains the definition of a term in a definition list.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_dl.html">dl</a></th><td><p>A list containing individual terms and their definitions.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_dt.html">dt</a></th><td><p>The name of a term defined within a definition list.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_heading.html">h1, h2, h3, h4, h5, h6</a></th><td><p>Heading elements for sections within a document. The number associated with each element
+        indicates its relative position in the hierarchy of headings, with 1 indicating the top
+        level and 6 the lowest level.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/hypertext_attr_cp.html">Hypertext attributes</a></th><td><p>Attributes that define link targets.</p></td></tr></tbody></table>
+  </body></html>

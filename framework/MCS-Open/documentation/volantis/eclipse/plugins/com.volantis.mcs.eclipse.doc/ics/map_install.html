@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Installing MAP</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Installing MAP</h1>
+    <p>Media Access Proxy (MAP) has a separate installer. However, there is an option in the MCS
+      installer to set the URL of the MAP web application. After MAP is installed you should review
+      the features of the ICS servlet, and configure the parameter and log settings as required. </p>
+    
+      <h2>Required software</h2>
+      <p>MAP requires a JNDI datasource to be configured in your application server. To enable
+        caching of transcoded assets, you should install the Squid Internet Object Cache server. You
+        can obtain Squid from <span class="code">http://www.squid-cache.org/</span>.</p>
+    
+    
+      <h2>Install options</h2>
+      <p>The Image Conversion Service (ICS) can transcode images between various image formats. It
+        can also perform scaling and watermarking operations. Installation of this module will also
+        install a servlet that allows MAP to behave like earlier versions of ICS.</p>
+      <p>The Example Service is a simple plugin service that just returns the request URL.</p> 
+      <p>The Standard Transcoder Service (STI) plugin allows MAP to convert simple GET requests into
+        complex STI requests that can be directed to a specified STI provider.</p>
+    
+    
+      <h2>Running the installer</h2>
+      <p>The installation wizard steps you through a series of pages. Most of the installer values
+        have defaults. When you have completed a section, click <span class="command">Next</span> to move to
+        the next page, or click <span class="command">Previous</span> to review or modify any values.</p>
+      <p>The installer uses the entries to write to the related section of the configuration file.
+      You can edit this file at any time after installation if you need to change the settings.</p>
+      <p>When the installation is complete you can choose to save an automated installation file at a
+        convenient location. Then you can repeat the installation on another machine with the path to
+        the configuration file as a parameter.</p>
+      <p>The following steps assume that you have selected all the install options.</p>
+      <ol>
+        <li>Start the installer with the command <pre class="code">
+java -jar map_installer-5.1.jar</pre>
+        </li>
+        <li>Choose the <span class="uicontrol">Accept</span> option to accept the license agreement</li>
+        <li>Select the required install packs</li>
+        <li>On the next page, accept the default server <span class="uicontrol">URL</span> and
+            <span class="uicontrol">Port</span> values or enter new settings</li>
+        <li>Optionally add a <span class="uicontrol">Watermark URL</span></li>
+        <li>Accept the <span class="uicontrol">In memory IO buffering</span> and I<span class="uicontrol">CS native
+          mode</span> settings</li>
+        <li>Enter an <span class="uicontrol">Originator ID</span> and <span class="uicontrol">STI service URL</span></li>
+        <li>Accept the default installation directory or choose an alternate location</li>
+        <li>The installer displays a summary of all installation choices. Use the
+          <span class="command">Previous</span> button to go back and change any options. When you are
+          satisfied with all your choices, click <span class="command">Install</span> to start the
+          installation, and <span class="command">Quit</span> to close the installer.</li>
+        <li>Optionally save your installation settings by clicking <span class="command">Generate an automatic
+          installation script</span>, and naming the file. To repeat the installation run the
+          following command. <pre class="code">
+java -jar map_installer-5.1.jar [configuration_file]</pre></li>
+        <li>Copy the <span class="filepath">[install_directory]/webapps/map</span> directory to your web
+          application server.</li>
+        <li>Follow the instructions in <em>Configuring MAP</em></li>
+      </ol>
+    
+    
+      <h2>Testing your installation</h2>
+      <p>Now test that MAP has been properly installed by converting a <span class="filepath">.gif</span>
+        image.</p>
+      <pre class="code">http://localhost:8080/map/ics/images/cj24/volantis.gif</pre>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../ics/map_about.html">Media Access Proxy</a><br/><a class="link" href="../ics/map_config.html">Configuring MAP</a><br/></p>
+    
+  </body></html>

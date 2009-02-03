@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Load, refresh and fetch actions</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Load, refresh and fetch actions</h1>
+    <p>You can use the load and refresh actions to control the initial loading of the widget
+      content, and to refresh the content periodically.</p>
+    <p>The fetch action allows you to import XML data from the external source, transform it into
+      format acceptable by the XDIME application and present it on a device via AJAX.</p>
+    
+      <h2>Load action</h2>
+      <p>You can use the <span class="code">widget:load</span> element to load the data from an external
+        source. It also allows to defer the loading of the data, so that it is only loaded when the
+        user requests it. Normally you do this because the content may take a while to load, and
+        might cause an unacceptable delay in sending the content to the client.</p>
+      <p>You provide the relative URL from which the update can be retrieved in the <span class="code">src</span>
+        attribute, and use the <span class="code">when</span> attribute to specify the timing. The value 'onload'
+        means that as soon as the client has loaded the page, it starts loading in the content in
+        the background; this setting should be used for content that will almost certainly be needed
+        by the user. The 'defer' setting means that the client will defer loading the content until
+        it is actually requested; this should be used for content that is less likely to be needed
+        immediately.</p>
+      <pre class="code">
+&lt;widget:folding-item&gt;
+  &lt;widget:summary&gt;Vienna&lt;/widget:summary&gt;
+  &lt;widget:detail&gt;
+    &lt;widget:load src="service/folding-item?itemId=Vienna"/&gt;
+  &lt;/widget:detail&gt;
+&lt;/widget:folding-item&gt;</pre>
+    
+    
+      <h2>Refresh action</h2>
+      <p>You can use the <span class="code">widget:refresh</span> action to update content of the widget.
+        The <span class="code">src</span> attribute specifies the URL from which the update can be retrieved,
+        relative to the containing page, and the <span class="code">interval</span> attribute sets the minimum
+        interval between content refreshes, expressed as a number of seconds. Initially the timer
+        starts from the moment the widget is created, and subsequently it starts from after the
+        widget's content has been updated.</p>
+      <pre class="code">
+&lt;widget:ticker-tape id="myWeatherTicker"&gt;
+  &lt;widget:refresh src="service/ticker?id=myWeatherTicker" interval="15"/&gt;
+  &lt;span&gt;Ticker Tape can be configured to periodically refresh its content
+    by fetching data, such as weather conditions, from a web service...&lt;/span&gt;
+&lt;/widget:ticker-tape&gt;</pre>
+    
+    
+      <h2>Fetch action</h2>
+      <p>It allows to import an XML data from an external source, specified by the <span class="code">src</span>
+        attribute, and transform it into format acceptable by the XDIME application using XSL
+        transformation. Finally, it loads the content, in a form of the XDIME response, on a device
+        using AJAX.</p>
+      <p>The <span class="code">widget:fetch</span> element has the following additional attributes:
+          <span class="code">transformation</span> defines the URL address of the XSL stylesheet,
+          <span class="code">transform-cache</span> and <span class="code">transform-compile</span> specify if transformation
+        should be cached and compiled, respectively. The <span class="code">service</span> attribute sets URL to
+        the fetch service. It must be specified if the fetch service location is different than the
+        default one, defined in the <span class="filepath">web.xml</span> file.</p>
+      <pre class="code">
+&lt;widget:block&gt;	            
+  &lt;widget:fetch src="http://xml.weather.yahoo.com/forecastrss?p=HUXX0002&amp;amp;u=c"
+    when="onload" transformation="weather-presenter.xsl"
+    service="/projects/client-app/servicefetch"/&gt;
+&lt;/widget:block&gt;</pre>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../client/wag_widgets_about.html">About widgets</a><br/><a class="link" href="../xdime_cp/widget_fetch.html">widget:fetch</a><br/><a class="link" href="../xdime_cp/widget_load.html">widget:load</a><br/><a class="link" href="../xdime_cp/widget_refresh.html">widget:refresh</a><br/></p>
+    
+  </body></html>

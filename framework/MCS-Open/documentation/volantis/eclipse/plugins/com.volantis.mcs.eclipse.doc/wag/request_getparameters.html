@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>request:getParameters</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>request:getParameters</h1><h2>Purpose</h2>
+      <p>Used to access the set of values of a request parameter.</p>
+      <p>If the request parameter exists then the returned sequence contains an item for each of its
+        values. If the request parameter does not exist then the result depends on whether a
+          <span class="code">default</span> argument was provided. If it was then it is returned as the result of
+        this function, otherwise an empty sequence is returned.</p>
+    <h2>Signature</h2><p><span class="code">request:getParameters [name, default]</span></p><h2>Parameters</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Name</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">name</th><td>The name of the request parameter</td><td>xs:string</td><td>required </td></tr><tr><th class="firstcell" scope="row">default</th><td>The value to return if the request parameter is not present</td><td>xs:string</td><td>optional </td></tr></table>
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../wag/wag_function_expr.html">MCS function expressions</a><br/></p>
+    </body></html>

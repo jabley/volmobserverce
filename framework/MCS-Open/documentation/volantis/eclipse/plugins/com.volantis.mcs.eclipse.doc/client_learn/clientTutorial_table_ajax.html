@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Creating a dynamic table</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_deck_ajax.html" title="The Deck widget with AJAX">Previous</a></li><li><a href="../client_learn/clientTutorial_blocks_select.html" title="Select">Next</a></li></ul></td></tr></table><h1>Creating a dynamic table</h1>
+    <p>The AJAX Table widget extends the functionality of the standard XDIME 2 table. Loading of the
+      widget contents can be done via AJAX requests, and may be deferred, so that it is only loaded
+      when the user requests it. In addition, body of the table can be divided into pages with fixed
+      number of rows.</p>
+    <p><img src="../graphics/cfTutorial/table-ajax.png" alt="Table widget" title="Table widget"/></p>
+  <h2>Creating a dynamic table <a href="../client/wag_widgets_ajax_table.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">widget:table</span> element defines a table. It may contain regular table
+      elements, like <span class="code">thead</span> and <span class="code">tr</span>. The body of the table is
+      specified by <span class="code">widget:tbody</span>.<pre class="code">
+&lt;widget:table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Code&lt;/th&gt;
+      &lt;th&gt;Country name&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;widget:tbody id="tbody" cached-pages-count="10" style="mcs-table-rows-per-page:10"&gt;
+    &lt;widget:load src="service/table" when="onload"/&gt;
+    &lt;tr&gt;
+      &lt;td&gt;--&lt;/td&gt;
+      &lt;td&gt;Loading, please wait...&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/widget:tbody&gt;
+&lt;/widget:table&gt;</pre></li><li>The <span class="uicontrol">mcs-table-rows-per-page</span> property specifies the number of rows
+      displayed on a single page of the table. Only rows from the table body are taken into account,
+      header and footer are omitted.</li></ol><h2>Load, refresh and fetch actions <a href="../client/wag_widgets_actions.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">widget:load</span> element allows to download content of the table from an
+      external source via AJAX<pre class="code">
+&lt;widget:load src="service/table" when="onload"/&gt;</pre></li><li>The <span class="code">src</span> attribute defines the URL from which content of the table can be
+      retrieved</li><li>The <span class="code">when</span> attribute specifies when the content should be downloaded, when the
+      widget is loaded, or when the user requests it</li><li>The requesting URL may have some optional query parameters. <span class="code">mcs-start</span> defines
+      an initial row. If it is not set, loading will start from the first row.
+      <span class="code">mcs-count</span> specifies the total number of rows to download. All the available rows are
+      loaded by default. Both parameters range from 1 to 2^31-1. The following request will download
+      content of 20 rows, starting from the row number 5. <pre class="code">
+service/table?mcs-start=5&amp;mcs-count=20</pre></li></ol><h2>Widget response structure <a href="../client/wag_widgets_structure.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The service response must have the following form<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+  &lt;response:head&gt;
+    &lt;response:link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+  &lt;/response:head&gt;
+  &lt;response:body&gt;
+    &lt;response:tbody total-rows-count="202"&gt;
+      &lt;tr style="background-color:#000"&gt;
+        &lt;td style="border: 1px solid #442"&gt;AD&lt;/td&gt;
+        &lt;td style="border: 1px solid #442"&gt;ANDORRA&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr style="background-color:#111"&gt;
+        &lt;td style="border: 1px solid #442"&gt;AE&lt;/td&gt;
+        &lt;td style="border: 1px solid #442"&gt;UNITED ARAB EMIRATES&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/response:tbody&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;</pre></li><li>The <span class="code">total-rows-count</span> attribute specifies the total number of rows in the
+      table</li><li>You may specify an error message, that will be displayed if there is no content to
+      download <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+  &lt;response:head&gt;
+    &lt;response:link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+  &lt;/response:head&gt;
+  &lt;response:body&gt;
+    &lt;response:error&gt;Information could not be retrieved.&lt;/response:error&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;</pre></li></ol><h2>Actions, properties and events <a href="../client/wag_widgets_ape.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The APE actions associated with the <span class="code">widget:button</span> elements allow the
+      user to navigate within and across the table. The user can display a new set of data by a
+      single row, or by pages. Each page contains predefined number of rows, specified by the
+        <span class="uicontrol">mcs-table-rows-per-page</span> property.<pre class="code">
+&lt;widget:button action="tbody#first-page"&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/widget:button&gt;
+&lt;widget:button action="tbody#previous-page"&gt;&amp;lt;&amp;lt;&lt;/widget:button&gt;
+&lt;widget:button action="tbody#previous-row"&gt;&amp;lt;&lt;/widget:button&gt;
+&lt;widget:button action="tbody#next-row"&gt;&amp;gt;&lt;/widget:button&gt;
+&lt;widget:button action="tbody#next-page"&gt;&amp;gt;&amp;gt;&lt;/widget:button&gt;
+&lt;widget:button action="tbody#last-page"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/widget:button&gt;</pre></li><li>The <span class="code">widget:display</span> element can be used to display information about the
+      current state of the widget. The <span class="code">start-row-number</span> property returns the number of
+      the first row, while <span class="code">end-row-number</span> returns the number of the last row being
+      displayed in the table. <span class="code">rows-count</span> returns the total number of rows in the table.<pre class="code">
+From &lt;widget:display property="tbody#start-row-number"/&gt;
+to &lt;widget:display property="tbody#end-row-number"/&gt;
+of &lt;widget:display property="tbody#rows-count"/&gt;</pre></li></ol><h2>JavaScript support <a href="../client/wag_widgets_javascript.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The JavaScript methods may provide a table with a simple search capabilities. In the
+      following example, when a country name is entered into the specified input filed, the script
+      defined within the <span class="code">head</span> section of the XDIME page sends the request to the
+      external service. The table will display the results matching the user's query.<pre class="code">
+&lt;widget:input id="query"/&gt;</pre>
+      <pre class="code">
+&lt;widget:script id="load-script"&gt;
+  $W('tbody').getLoad().setSrc('service/table?mcs-query='+$W('query').getPartialValue())
+  $W('tbody').getLoad().execute()
+&lt;/widget:script&gt;</pre></li><li><span class="code">widget:handler</span> invokes the script when the value in the input field is changed<pre class="code">
+&lt;widget:handler event="query#partial-value#value-changed"
+  action="load-script#invoke"/&gt; </pre></li><li>The <span class="code">partial-value</span> property allows to handle incremental value changes of
+        <span class="code">widget:input</span>. It contains partially entered value, i.e. before the user
+      accepts it by pressing 'Enter' or moving focus out of the input field.</li></ol><h2>Complete XDIME 2 code</h2><ol><li>Please create a <span class="filepath">ajax-table.xdime</span> file</li><li>Modify the <span class="filepath">ajax-table.xdime</span> file by including the following code<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Table widget&lt;/title&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+    &lt;widget:handler event="query#partial-value#value-changed"
+      action="load-script#invoke"/&gt; 
+    &lt;style type="text/css"&gt;
+      table {
+        border: 2px solid #553;
+        border-collapse: collapse;
+      }
+      th {
+        border: 1px solid #553;
+      }
+    &lt;/style&gt;
+    &lt;widget:script id="load-script"&gt;
+      $W('tbody').getLoad().setSrc('service/table?mcs-query='+$W('query')
+        .getPartialValue())
+      $W('tbody').getLoad().execute()
+    &lt;/widget:script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Table widget"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+        &lt;div&gt;
+          &lt;p&gt;Country search: &lt;widget:input id="query"/&gt;&lt;/p&gt;
+          &lt;widget:display style="color:red; font-weight:bold"
+            property="tbody#load-error-message"/&gt;
+          &lt;widget:table style="width:32em"&gt;
+            &lt;thead&gt;
+              &lt;tr style="background-color:#030"&gt;
+                &lt;th style="width:4em"&gt;Code&lt;/th&gt;
+                &lt;th&gt;Country name&lt;/th&gt;
+              &lt;/tr&gt;
+              &lt;/thead&gt;
+              &lt;widget:tbody id="tbody" cached-pages-count="10"
+                style="mcs-table-rows-per-page:10"&gt;
+                &lt;widget:load src="service/table" when="onload"/&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;--&lt;/td&gt;
+                  &lt;td&gt;Loading, please wait...&lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/widget:tbody&gt;
+            &lt;/widget:table&gt;
+            &lt;p&gt;
+              &lt;widget:button action="tbody#first-page"&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/widget:button&gt;
+              &lt;widget:button action="tbody#previous-page"&gt;&amp;lt;&amp;lt;&lt;/widget:button&gt;
+              &lt;widget:button action="tbody#previous-row"&gt;&amp;lt;&lt;/widget:button&gt;
+              From &lt;widget:display property="tbody#start-row-number"/&gt;
+              to &lt;widget:display property="tbody#end-row-number"/&gt;
+              of &lt;widget:display property="tbody#rows-count"/&gt;
+              &lt;widget:button action="tbody#next-row"&gt;&amp;gt;&lt;/widget:button&gt;
+              &lt;widget:button action="tbody#next-page"&gt;&amp;gt;&amp;gt;&lt;/widget:button&gt;
+              &lt;widget:button action="tbody#last-page"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/widget:button&gt;
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_p.html">p</a></th><td><p>Block element that defines a paragraph.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/response_tbody.html">response:tbody</a></th><td><p>Response element for a Table widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_td.html">td</a></th><td><p>A cell in a table containing data.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_thead.html">thead</a></th><td><p>Container for a table header.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_tr.html">tr</a></th><td><p>Denotes a row within a table.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_button.html">widget:button</a></th><td><p>A general purpose element, used by widgets which need a button-like control.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_display.html">widget:display</a></th><td><p>An inline widget element used to display some text content. It may be associated with a
+        widget property. In such cases, the displayed content represents the value of the selected
+        property.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_handler.html">widget:handler</a></th><td><p>Associates an event with an action; that is when a widget sends the event, the associated
+        action is invoked.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_input.html">widget:input</a></th><td><p>A general purpose element, used by widgets which need a text input control which is not
+        associated with a form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_load.html">widget:load</a></th><td><p>Controls the loading of a widget's contents in relation to the containing page.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_script.html">widget:script</a></th><td><p>Contains a script that can be executed by the <span class="code">invoke</span> action.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_table.html">widget:table</a></th><td><p>Defines a Table widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_tbody.html">widget:tbody</a></th><td><p>Defines body of the AJAX Table widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr></tbody></table>
+  </body></html>

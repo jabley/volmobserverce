@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Pseudo-class selectors</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Pseudo-class selectors</h1>
+    <p>In the New Style Rule wizard you can click the <span class="command">Browse</span> button next to the
+        <span class="uicontrol">Pseudo-class</span> control, and choose one or more selectors and add a
+      parameter where appropriate. You can also order the selectors and remove them.</p>
+    <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">Pseudo-class  </th><th scope="col">Description  </th><th scope="col">Example  </th></tr></thead><tbody><tr><th class="firstcell" scope="row">first-child  </th><td>The first <span class="code">p</span> that is a child of <span class="code">div</span>  </td><td>
+            <span class="code">div &gt; p:first-child {border-width: thin;}</span>
+            </td></tr><tr><th class="firstcell" scope="row">nth-child  </th><td>Alternate <span class="code">tr</span> elements in a <span class="code">table</span>  </td><td>
+            <span class="code">tr:nth-child (odd){color: black;}</span><span class="code">tr:nth-child (even){color:
+              silver;}</span>
+            </td></tr><tr><th class="firstcell" scope="row">link  </th><td>An <span class="code">a</span> element that is a link  </td><td>
+            <span class="code">a:link {color: red;}</span>
+            </td></tr><tr><th class="firstcell" scope="row">visited  </th><td>A <span class="code">defn</span> element that is a visited link  </td><td>
+            <span class="code">defn:visited {color:blue;}</span>
+            </td></tr><tr><th class="firstcell" scope="row">active  </th><td>An <span class="code">a</span> element when the user holds the pointer down over it  </td><td>
+            <span class="code">a:active {font-weight: bold;}</span>
+            </td></tr><tr><th class="firstcell" scope="row">focus  </th><td>An <span class="code">xf:input</span> where the user is entering data  </td><td>
+            <span class="code">xf|input:focus {background: yellow;}</span>
+            </td></tr><tr><th class="firstcell" scope="row">hover  </th><td>An <span class="code">a</span> element when the user holds the pointer over it but does not
+            activate the link  </td><td>
+            <span class="code">a:hover {color: black;}</span>
+            </td></tr><tr><th class="firstcell">mcs-concealed  </th><td>The concealed state is the state that an element is in when it is not displayed, i.e.
+            has display: none  </td><td>
+            <span class="code">mcs-concealed:mcs-effect-style: puff;</span>
+            </td></tr><tr><th class="firstcell">mcs-unfolded  </th><td>Controls the unfolded state. It is set for label of submenu.  </td><td>
+            <span class="code">nl.special &gt; label:mcs-unfolded {color: red}</span><span class="code">nl.special &gt;
+              label:mcs-unfolded::marker {content: url('unfolded.gif')}</span>
+            </td></tr><tr><th class="firstcell">mcs-invalid  </th><td>Specifies all style changes that are applied after validation has failed  </td><td>
+            <span class="code">xf|*:mcs-invalid {color:red}</span>
+            </td></tr><tr><th class="firstcell">mcs-busy  </th><td>Defines a busy state of the Status Update widget   </td><td>
+            <span class="code">ticker:update-status:mcs-busy {content: "Busy..."}</span>
+            </td></tr><tr><th class="firstcell">mcs-failed  </th><td>Specifies a failed state of the Status Update widget  </td><td>
+            <span class="code">ticker:update-status:mcs-failed {content: "The last update did not succeed: ";
+              font: red}</span>
+            </td></tr><tr><th class="firstcell">mcs-normal  </th><td>The normal state of the Status Update widget  </td><td>
+            <span class="code">ticker:update-status:mcs-normal {content: "The last poll updated OK"}</span>
+            </td></tr><tr><th class="firstcell">mcs-suspended  </th><td>The suspended state of the Status Update widget   </td><td>
+            <span class="code">ticker:update-status:mcs-suspended {content: "Updates are suspended"}</span>
+            </td></tr><tr><th class="firstcell">mcs-disabled  </th><td>Allows styling on the elements in the disable state, such as
+            <span class="code">widget:next</span>, <span class="code">widget:play</span>, etc. For example,
+              <span class="code">widget:next</span> is disabled if the end of the gallery was reached.  </td><td>
+            <span class="code">widget:play:mcs-disabled {display:none;}</span>
+            </td></tr></tbody></table>
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../themes/theme_selector_add.html">Adding a selector</a><br/><a class="link" href="../themes/theme_styles.html">Style rules</a><br/></p>
+    
+  </body></html>

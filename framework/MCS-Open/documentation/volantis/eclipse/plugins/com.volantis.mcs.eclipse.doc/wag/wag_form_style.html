@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Styling forms</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Styling forms</h1>
+    <p>You can use the Theme editor to apply styles to forms. Apart from more general properties
+      that you can use for styling, MCS provides some form-specific properties. Some properties
+      apply to the form as a whole; others apply to individual controls on the form.</p>
+    <p>The properties allow you to specify how action type and list type input controls are
+      displayed, and the names of the image components to be used when an action element has an
+      image. You can define the size and row count of text input controls, and style selection
+      lists.</p>
+    
+      <h2>Form fragment link styles</h2>
+      <p>If your form is designed to use fragments, you can style the text on links between
+        fragments. First you set up a class style, for example a font and a color. Then, in the form
+        fragment layout Attribute view, you can assign the style using the
+        <span class="uicontrol">Styleclass</span> control for the next and previous <span class="uicontrol">Link
+        Text</span>.</p>
+    
+    
+      <h2>Selection styles</h2>
+      <p>The <span class="uicontrol">Selection List Style</span> options for 'default', 'controls',
+        'circular-list', and 'menu' allow you to define display properties for selection elements in
+        your form. A value of 'default' results in the device default behavior.</p>
+      <p>When you specify 'controls', the controls will behave either like radio buttons, or
+        checkboxes depending on whether the selection list allows only a single value, or multiple
+        values to be selected at once. So for a single select element, each of the options on the
+        screen is rendered as radio button.</p>
+      <p>Defining the 'circular-list' on a single element renders a single option at a time. If the
+        browser supports it, the user can navigate up or down through a list, presented as a
+        continuous loop, equivalent to the Openwave 'spin' style. If the selection list is a
+        multiple select list then the selection list is displayed in the default way for the device
+        as if 'default' had been used.</p>
+      <p>When a 'menu' style is specified on either type of element, a popup menu is is displayed if
+        the device supports it.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../wag/xdime_cp_formdata.html">Form instance data</a><br/><a class="link" href="../themes/theme_form_prop.html">Form properties</a><br/></p>
+    
+  </body></html>

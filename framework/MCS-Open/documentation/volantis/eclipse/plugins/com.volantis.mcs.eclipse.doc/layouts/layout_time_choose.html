@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Setting iterator attributes</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Setting iterator attributes</h1>
+    <p>Spatial and temporal iterators have specific values that are not used in other format
+      attributes.</p>
+    
+      <h2>Spatial iterators</h2>
+      <p>Because spatial iterators can display data series in both rows and columns, you may need to
+        specify the way that MCS should index the generated cells. MCS can number cells either left
+        to right first, or top to bottom first. You may also want to set limits to the number of
+        data sets that a user can display.</p>
+      <ol>
+        <li>In the <span class="uicontrol">2D Indexing Direction</span> control choose Across Down to number
+          from left to right (columns first). Down Across numbers top to bottom (rows first)</li>
+        <li>In <span class="uicontrol">Row Iterations</span> or <span class="uicontrol">Column Iterations</span>,
+          specify either Up To or Exactly and enter a number</li>
+        <li>In <span class="uicontrol">Row styleclasses</span> and <span class="uicontrol">Column
+          styleclasses</span>, enter a space-separated list of class names.
+          <span class="command">Edit</span> opens the Styleclass Selection dialog where you can add to, order,
+          or remove names. If there are fewer names than rows or columns, the list is repeated.</li>
+      </ol>
+    
+    
+      <h2>Temporal iterators</h2>
+      <p>When you set the attributes of a temporal iterator, you can choose time values for the
+        iterator cells.</p>
+      <ol>
+        <li>In the Time Values control click <span class="command">Browse</span> to open the Time Selection
+          dialog</li>
+        <li>Set values for <span class="uicontrol">Hours</span>
+          <span class="uicontrol">Minutes</span> and <span class="uicontrol">Seconds</span> of a time value</li>
+        <li>Click <span class="command">Add</span> to add a time to the list</li>
+        <li>Select a value in the list and click <span class="command">Up</span> or <span class="command">Down</span> to
+          change the order to match the sequence of cells.</li>
+      </ol>
+      <p>The values are added to the control in the sequence you chose.</p>
+      <p><img src="../graphics/dialog_time.png" alt="Time selection dialog" title="Time selection dialog"/></p>
+      <p>To remove a value from the list, open the dialog, select a list item, and click
+          <span class="command">Remove</span>.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../layouts/layout_iterator_panes.html">Iterator panes</a><br/><a class="link" href="../layouts/layout_add_pane.html">Adding iterators</a><br/><a class="link" href="../layouts/layout_spatial_attr.html">Spatial iterator attributes</a><br/><a class="link" href="../layouts/layout_temporal_attr.html">Temporal iterator attributes</a><br/></p>
+    
+  </body></html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Importing and exporting repositories</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Importing and exporting repositories</h1>
+    <p>MCS uses a repository held either in a JDBC compliant database 
+      or in multiple XML files in the Eclipse workbench. At design
+      time, users will work with the policy editors to develop policies for Web projects. When a
+      project is complete and tested, you will import the repository to a JDBC database to get
+      optimum performance.</p>
+    <p>The information held in the database may need to be exported from time to time in order to
+      update a site.</p>
+    <p>You export and import a repository with the command line interface commands
+      <span class="code">mcsImport</span> and <span class="code">mcsExport</span>. <span class="code">mcsImport</span> takes multiple XML
+      files, and loads them into a JDBC repository. <span class="code">mcsExport</span> creates multiple XML
+      files from a JDBC repository.</p>
+    <p>Both executables are located in the <span class="filepath">mcs/bin</span>
+        directory.</p>
+    <p>It is good practice to take a fresh backup of your repository before an import is performed.
+      If you are using a JDBC repository, refer to the backup procedure recommended by your database
+      vendor.</p>
+    <div class="note"><strong>Note</strong>: Some backup procedures cannot backup database files while there are open
+      connections to the database.</div>
+    
+    
+      <h2>Common parameters</h2>
+      <p>The <span class="code">mcsImport</span> and <span class="code">mcsExport</span>commands have a number of common
+        parameters. Individual parameters are listed in the following sections.</p>
+      <p>In component, layout and theme lists, multiple values should be space separated. The
+        default is to include all items.</p>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr" scope="col">Parameter  </th><th scope="col">Description  </th></tr></thead><tbody><tr><th class="firstcell">
+              <span class="code">-vendor</span>
+              </th><td>Vendor of the database repository   </td></tr><tr><th class="firstcell">
+              <span class="code">-host</span>
+              </th><td>Host machine where the database is running  </td></tr><tr><th class="firstcell">
+              <span class="code">-port</span>
+              </th><td>Port that the database is using  </td></tr><tr><th class="firstcell">
+              <span class="code">-source</span>
+              </th><td class="firstcell">Source name of the database. For Oracle this is the Oracle
+            SID  </td></tr><tr><th class="firstcell">
+              <span class="code">-user</span>
+              </th><td>User ID to be used to access the database   </td></tr><tr><th class="firstcell">
+              <span class="code">-password</span>
+              </th><td>Password for the user accessing the database  </td></tr><tr><th class="firstcell">
+              <span class="code">-project</span>
+              </th><td>The project name  </td></tr><tr><th class="firstcell">
+              <span class="code">-all</span>
+              </th><td>Import or export all policies in the specified <span class="code">project</span>  </td></tr><tr><th class="firstcell">
+              <span class="code">-system</span>
+              </th><td>Import or export the system policies. This may be required if you are starting a new
+              repository with no components, devices, layouts or themes.  </td></tr><tr><th class="firstcell">
+              <span class="code">-allcomponents</span>
+              </th><td>Include all components  </td></tr><tr><th class="firstcell">
+              <span class="code">-assetgroup</span>
+              </th><td>One or more asset groups (default all)  </td></tr><tr><th class="firstcell">
+              <span class="code">-[component_type]</span>
+              </th><td>One or more components of [component-type] such as audio, image, and text  </td></tr><tr><th class="firstcell">
+              <span class="code">-theme</span>
+              </th><td>One or more themes  </td></tr><tr><th class="firstcell">
+              <span class="code">-layout</span>
+              </th><td>One or more layouts  </td></tr><tr><th class="firstcell">
+              <span class="code">-pluginattribute</span>
+              </th><td>Plugin attributes. Unlikely to be imported/exported without the other system
+              policies.  </td></tr><tr><th class="firstcell">
+              <span class="code">-plugindefinitions</span>
+              </th><td>Plugin definitions. Unlikely to be imported/exported without the other system
+              policies.  </td></tr><tr><th class="firstcell">
+              <span class="code">-useshortnames</span>
+              </th><td>This option allows you to specify short names in database tables and columns. If you
+              do so, the <span class="code">use-short-names</span> attribute on the
+              <span class="code">jdbc-repository</span> element must be set to 'true' in the
+                <span class="filepath">mcs-config.xml</span> file.  </td></tr></tbody></table>
+    
+    
+      <h2>Import parameters</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr" scope="col">Parameter  </th><th scope="col">Description  </th></tr></thead><tbody><tr><th class="firstcell">
+              <span class="code">-device</span>
+              </th><td>One or more devices  </td></tr><tr><th class="firstcell">
+              <span class="code">-devicerepository</span>
+              </th><td>Path to the device repository (<span class="code">.mdpr</span>) file  </td></tr><tr><th class="firstcell">
+              <span class="code">-enableundo</span>
+              </th><td>Should the import fail, this option will undo all the transfers that have taken
+              place up to the point of failure. In database terms this option will wait until all of
+              the transfers have taken place before issuing a commit of the transaction.  </td></tr><tr><th class="firstcell">
+              <span class="code">-srcdir</span>
+              </th><td><em>Required</em>. Gives the source directory for multiple XML files.  </td></tr><tr><th class="firstcell">
+              <span class="code">-updateall</span>
+              </th><td>Replaces individual policies if they are duplicates and the repository already
+              exists. Default behavior is to prompt agreement to all updates through the command
+              line, use of <span class="code">updateall</span> is similar to responding positively to all these
+              prompt destinations.  </td></tr></tbody></table>
+      <pre class="code">
+mcsImport [-vendor &lt;vendor&gt; -host &lt;host&gt; -port &lt;port&gt;
+           -source &lt;source&gt; -user &lt;user&gt;
+           -password &lt;password&gt; -project &lt;project&gt;]
+          [-all -devicerepository &lt;repository&gt;][-allcomponents |
+                 -assetgroup [&lt;asset-groups&gt;]
+                 -audio [&lt;audio-components&gt;]
+                 -chart [&lt;chart-components&gt;]
+                 -dynvis [&lt;dynvis-components&gt;]
+                 -image [&lt;image-components&gt;]
+                 -rollover [&lt;rollover-components&gt;]
+                 -script [&lt;script components&gt;]
+                 -text [&lt;text-components&gt;]
+                 -link [&lt;link-components&gt;]]
+          [-theme [&lt;themes&gt;]]srcfile
+          [-pluginattribute][-plugindefinition]
+          [-system]
+          [-device [&lt;devices&gt;] -devicerepository &lt;repository&gt;]
+          [-layout [&lt;layouts&gt;]]
+          [-srcdir &lt;name&gt;] [-updateall]
+          [-enableundo]
+          [-useshortnames] </pre>
+    
+    
+      <h2>Export parameters</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr" scope="col">Parameter  </th><th scope="col">Description  </th></tr></thead><tbody><tr><th class="firstcell">
+              <span class="code">-destdir</span>
+              </th><td><em>Required</em>. The destination directory for multiple XML files.  </td></tr><tr><th class="firstcell">
+              <span class="code">-replace</span>
+              </th><td>Replaces existing destination directory. <span class="code">replace</span> will not replace
+              polices within the existing destination directory, but will delete the existing
+              destination directory and all its contents, and replace it.  </td></tr></tbody></table>
+      <pre class="code">
+mcsExport [-vendor &lt;vendor&gt; -host &lt;host&gt; -port &lt;port&gt;
+           -source &lt;source&gt; -user &lt;user&gt;
+           -password &lt;password&gt; -project &lt;project&gt;]
+          [-all -system | -allcomponents |
+                  -assetgroup [&lt;asset groups&gt;]
+                  -audio [&lt;audio components&gt;]
+                  -chart [&lt;chart components&gt;]
+                  -dynvis [&lt;dynvis-components&gt;]
+                  -image [&lt;image components&gt;]
+                  -rollover [&lt;rollover components&gt;]
+                  -script [&lt;script components&gt;]
+                  -text  [&lt;text components&gt;]
+                  -link [&lt;link components&gt;]]
+          [-theme [&lt;themes&gt;]]
+          [-layout [&lt;layouts&gt;]]
+          [-applicationproperties [&lt;application properties&gt;]]
+          [-pluginattribute][-plugindefinition]
+          [-system]
+          [-destdir &lt;name&gt; [-replace]]
+          [-useshortnames]</pre>
+    
+    
+      <h2>Import/Export API</h2>
+      <p>A simple API is available for developers who wish to incorporate import or export functions
+        into custom code. The <span class="code">com.volantis.mcs.cli.UserInterface</span> interface provides for
+        passing identical parameters to the CLI. Refer to the JavaDoc for details.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../admin/mcs_admin.html">Administering MCS</a><br/></p>
+    
+  </body></html>

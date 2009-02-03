@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>About fallback</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>About fallback</h1>
+    <p>MCS supports fallback in applying policies and in locating variants that best match device
+      capabilities.</p>
+    
+      <h2>Policy fallback</h2>
+      <p>The fallback mechanism in MCS allows you to add policy information at the most convenient
+        point in the device hierarchy. You can share policies across devices, without limiting your
+        ability to specify values for particular cases.</p>
+      <p>MCS searches up the tree from child to parent, until it finds a suitable policy, right up
+        to the root, or Master, device.</p>
+      <p>For example, suppose that MCS needs to work out which styles to apply to a heading on a
+        page for a PocketPC with Pocket Internet Explorer. First, it looks for a theme policy for
+        PocketPC-PIE and uses the policy if there is one. However, if there is no entry, the
+        fallback is queried. In this case it is the parent entry for the PocketPC. If there is no
+        specific entry here, QVGA Tablet is queried next, and so on up the device tree.</p>
+      <p><img src="../graphics/device_fallback_ui.png" alt="Device fallbacks" title="Device fallbacks"/></p>
+    
+    
+      <h2>Locating variants</h2>
+      <p>Fallback also applies when MCS searches for variants in alternative components if a match
+        with a device is not found in a component you refer to in XDIME.</p>
+      <p>MCS attempts to locate variants in the following order where there is a variant defined for
+        a component.</p>
+      <ol>
+        <li>Locate a <strong>null</strong> variant or a <strong>targeted</strong> variant for the device</li>
+        <li>Convert a <strong>convertible</strong> image variant using the Media Access Proxy (MAP)</li>
+        <li>Use a <strong>generic variant</strong>
+        </li>
+        <li>Follow the <strong>fallback</strong> rules for the component</li>
+      </ol>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../wag/wag_develop_policies.html">Developing MCS policies</a><br/><a class="link" href="../wag/wag_ics.html">Using convertible images</a><br/><a class="link" href="../wag/wag_generic_asset.html">Generic assets</a><br/><a class="link" href="../wag/wag_component_fallback.html">Component fallback</a><br/></p>
+    
+  </body></html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:progress</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:progress</h1><h2>Purpose</h2>
+      <p>The main element for a Progress Bar widget.</p>
+    <h2>Contains</h2><p><a href="../xdime_cp/widget_refresh.html">widget:refresh</a></p><h2>Contained by</h2><p><a href="../xdime_cp/xdime_cp_body.html">body</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;widget:progress&lt;/title&gt;
+    &lt;style type="text/css" media="handheld,all"&gt;
+      widget|progress {
+        color: #23516a;
+        height: 1em;
+        padding: 2px;
+      }
+    &lt;/style&gt;
+    &lt;widget:script id="progress"&gt; $W('progressBar').progress(15); &lt;/widget:script&gt;
+    &lt;widget:script id="reset"&gt; $W('progressBar').reset() &lt;/widget:script&gt;
+  &lt;/head&gt;
+  &lt;body id="body"&gt;
+    &lt;widget:progress id="progressBar"/&gt;
+    &lt;div&gt;
+      &lt;widget:button action="progress#invoke"&gt;progress&lt;/widget:button&gt;
+      &lt;widget:button action="reset#invoke"&gt;reset&lt;/widget:button&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../client/widget_er.html">Widget elements</a><br/><a class="link" href="../xdime_cp/response_progress.html">response:progress</a><br/></p>
+    </body></html>

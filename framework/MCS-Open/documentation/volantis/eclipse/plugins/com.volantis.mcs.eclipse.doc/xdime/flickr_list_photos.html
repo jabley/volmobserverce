@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>flickr:list-photos</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>flickr:list-photos</h1><h2>Purpose</h2>
+      <p>Retrieves images from Flickr®.</p>
+      <div class="note"><strong>Note</strong>: If neither <span class="code">user-id</span>, nor <span class="code">photoset-id</span> is specified,
+        then <span class="code">tags</span> and/or <span class="code">query</span> must be specified, otherwise an error will
+        be thrown.</div>
+    <h2>Contained by</h2><p><a href="../xdime/pipeline_transform.html">pipeline:transform</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">api-key</th><td> The <span class="code">api-key</span> attribute identifies your application. It is your
+          responsibility to request and manage your own API key. Refer to <em>Flickr Services</em> for further information.</td><td>xs:integer</td><td> </td><td> </td><td>required </td></tr><tr><th class="firstcell" scope="row">page-index</th><td>An optional number of the page to return in the response. It is not an error if
+          the value of this attribute is greater than the actual number of pages, in that case an
+          empty response is returned.</td><td>xs:integer</td><td>1 </td><td>[1,∞] </td><td>optional </td></tr><tr><th class="firstcell" scope="row">page-size</th><td>An optional number of images returned in a single response page. It is an error
+          if the value is outside the range.</td><td>xs:integer</td><td>10 </td><td>[1,500] </td><td>optional </td></tr><tr><th class="firstcell" scope="row">photoset-id</th><td>Flickr photoset ID.</td><td>xs:string</td><td> </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">query</th><td>An optional query string. If specified, then only the photos that contain the
+          same string in either their title, or one of their tags will be returned. The matching is
+          case insensitive.</td><td>xs:string</td><td> </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">tags</th><td>Contains space separated set of tags. If specified, then only the images that
+          have all these tags associated with them will be returned.</td><td>xs:string</td><td> </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">user-id</th><td>Allows to display images that belong to the selected user.</td><td>xs:string</td><td> </td><td> </td><td>optional </td></tr></table><h2>Examples</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:flickr="http://www.volantis.com/xmlns/2008/08/flickr"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Flickr photos by user&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;pipeline:transform href="flickr2xdime.xsl"&gt;
+      &lt;flickr:list-photos api-key="to-be-provided-by-page-author" user-id="30193659@N08"/&gt;
+    &lt;/pipeline:transform&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>The <span class="filepath">flickr2xdime.xsl</span> transform converts the Flickr service response to
+        XDIME.</p>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xsl:stylesheet xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:flickr="urn:flickr:"&gt;
+  &lt;xsl:template match="/"&gt;
+    &lt;h1&gt;Flickr gallery&lt;/h1&gt;
+    &lt;xsl:for-each select="//photo"&gt;
+      &lt;div&gt;
+        &lt;p&gt;
+          &lt;xsl:value-of select="@title"/&gt;
+        &lt;/p&gt;
+        &lt;object srctype="image/jpeg"&gt;
+          &lt;xsl:attribute name="src"&gt;http://farm&lt;xsl:value-of select="@farm"
+              /&gt;.static.flickr.com/&lt;xsl:value-of select="@server"/&gt;/&lt;xsl:value-of select="@id"
+              /&gt;_&lt;xsl:value-of select="@secret"/&gt;.jpg&lt;/xsl:attribute&gt;
+          &lt;param name="mcs-external-label"&gt;
+            &lt;xsl:attribute name="value"&gt;
+              &lt;xsl:value-of select="@title"/&gt;
+            &lt;/xsl:attribute&gt;
+          &lt;/param&gt;
+        &lt;/object&gt;
+      &lt;/div&gt;
+    &lt;/xsl:for-each&gt;
+  &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../dci/flickr_er.html">Flickr connector elements</a><br/><a class="link" href="../dci/open_connector_gfx.html">Retrieving images from social services</a><br/><a class="external" href="http://www.flickr.com/services/api/" title="External link">Flickr Services</a><br/></p>
+    </body></html>

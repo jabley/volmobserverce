@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>XPath grammar</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>XPath grammar</h1>
+    <p>The table defines the subset of the XPath 2.0 expressions supported in the DCI pipeline. The
+      links in the first column are to the normative EBNF production in <em>XML Path (XPath) Language 2.0</em>. In the right hand side of the production, the links are to left hand
+      values in the table. The comments highlight difference where the pipeline subset differs from
+      XPath 2.0. The production sequence numbers from the XPath recommendation are also given, when
+      they are different.</p>
+    <table><tbody><tr><td class="noborder" id="pipe-expr-XPath"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-XPath">XPath</a></td><td class="noborder">=</td><td class="noborder">
+          <a href="#pipe-expr-Expr">Expr</a>
+         </td><td class="noborder"> </td></tr><tr><td class="noborder" id="pipe-expr-Expr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-Expr">Expr</a></td><td class="noborder">=</td><td class="noborder">
+          <a href="#pipe-expr-ExprSingle">ExprSingle</a>
+          
+         </td><td class="noborder">Comma separated sequence of expressions are not
+          supported.<br/></td></tr><tr><td class="noborder" id="pipe-expr-ExprSingle"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-ExprSingle">ExprSingle</a></td><td class="noborder">=</td><td class="noborder">
+          <a href="#pipe-expr-OrExpr">OrExpr</a>
+          
+         </td><td class="noborder">for, quantified and if expressions are not supported.<br/></td></tr><tr><td class="noborder" id="pipe-expr-OrExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-OrExpr">OrExpr</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-AndExpr">AndExpr</a> ("or" <a href="#pipe-expr-AndExpr">AndExpr</a>)* </td><td class="noborder">[8]<br/></td></tr><tr><td class="noborder" id="pipe-expr-AndExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-AndExpr">AndExpr</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-ComparisonExpr">ComparisonExpr</a> ("and"
+            <a href="#pipe-expr-ComparisonExpr">ComparisonExpr</a>)*
+             </td><td class="noborder">[9]<br/></td></tr><tr><td class="noborder" id="pipe-expr-ComparisonExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-ComparisonExpr">ComparisonExpr</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-AdditiveExpr">AdditiveExpr</a> ( (<a href="#pipe-expr-ValueComp">ValueComp</a>| <a href="#pipe-expr-GeneralComp">GeneralComp</a>) <a href="#pipe-expr-AdditiveExpr">AdditiveExpr</a>)? </td><td class="noborder">Range
+            expressions and node comparisons are not supported. [10]<br/></td></tr><tr><td class="noborder" id="pipe-expr-AdditiveExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-AdditiveExpr">AdditiveExpr</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-MultiplicativeExpr">MultiplicativeExpr</a> (
+          ("+" | "-") <a href="#pipe-expr-MultiplicativeExpr">MultiplicativeExpr</a>
+           </td><td class="noborder">[12]<br/></td></tr><tr><td class="noborder" id="pipe-expr-MultiplicativeExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-MultiplicativeExpr">MultiplicativeExpr</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-UnionExpr">UnionExpr</a> ( ("*" | "div" | "idiv"
+          | "mod") <a href="#pipe-expr-UnionExpr">UnionExpr</a>
+            )* </td><td class="noborder">Instance of, treat as, castable as, and cast expressions are not
+            supported. [13]<br/></td></tr><tr><td class="noborder" id="pipe-expr-UnionExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-UnionExpr">UnionExpr</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-IntersectExceptExpr">IntersectExceptExpr</a> (
+          ("union" | "|") <a href="#pipe-expr-IntersectExceptExpr">IntersectExceptExpr</a> )* </td><td class="noborder">[14]<br/></td></tr><tr><td class="noborder" id="pipe-expr-IntersectExceptExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-IntersectExceptExpr">IntersectExceptExpr</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-UnaryExpr">UnaryExpr</a> ( ("intersect" |
+          "except") <a href="#pipe-expr-UnaryExpr">UnaryExpr</a> )*
+             </td><td class="noborder">[15]<br/></td></tr><tr><td class="noborder" id="pipe-expr-UnaryExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-UnaryExpr">UnaryExpr</a></td><td class="noborder">=</td><td class="noborder">("-" | "+")* <a href="#pipe-expr-ValueExpr">ValueExpr</a> </td><td class="noborder">[20]<br/></td></tr><tr><td class="noborder" id="pipe-expr-ValueExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-ValueExpr">ValueExpr</a></td><td class="noborder">=</td><td class="noborder">
+          <a href="#pipe-expr-PathExpr">PathExpr</a>
+          
+         </td><td class="noborder">[21]<br/></td></tr><tr><td class="noborder" id="pipe-expr-GeneralComp"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-GeneralComp">GeneralComp</a></td><td class="noborder">=</td><td class="noborder">"=" | "!=" | "&lt;" | "&lt;=" | "&gt;" | "&gt;="
+           </td><td class="noborder">[22]<br/></td></tr><tr><td class="noborder" id="pipe-expr-ValueComp"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-ValueComp">ValueComp</a></td><td class="noborder">=</td><td class="noborder">"eq" | "ne" | "lt" | "le" | "gt" | "ge"  </td><td class="noborder">[23]<br/></td></tr><tr><td class="noborder" id="pipe-expr-PathExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-PathExpr">PathExpr</a></td><td class="noborder">=</td><td class="noborder">
+          <a href="#pipe-expr-RelativePathExpr">RelativePathExpr</a>
+          
+         </td><td class="noborder">Document relative paths, that is those starting with '/', are not
+            supported. [25]<br/></td></tr><tr><td class="noborder" id="pipe-expr-RelativePathExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-RelativePathExpr">RelativePathExpr</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-StepExpr">StepExpr</a> (("/" | "//")
+            <a href="#pipe-expr-StepExpr">StepExpr</a>)*
+           </td><td class="noborder">[26]<br/></td></tr><tr><td class="noborder" id="pipe-expr-StepExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-StepExpr">StepExpr</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-FilterExpr">FilterExpr</a> | <a href="#pipe-expr-AxisStep">AxisStep</a> </td><td class="noborder"> </td></tr><tr><td class="noborder" id="pipe-expr-AxisStep"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-AxisStep">AxisStep</a></td><td class="noborder">=</td><td class="noborder">
+          <a href="#pipe-expr-ForwardStep">ForwardStep</a>
+          <a href="#pipe-expr-PredicateList">PredicateList</a>
+          
+         </td><td class="noborder">Reverse steps (parent, ancestor, preceding-sibling, preceding and
+            ancestor-or-self axes) are not supported. [27]<br/></td></tr><tr><td class="noborder" id="pipe-expr-ForwardStep"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-ForwardStep">ForwardStep</a></td><td class="noborder">=</td><td class="noborder">(<a href="#pipe-expr-ForwardAxis">ForwardAxis</a>
+          <a href="#pipe-expr-NodeTest">NodeTest</a>) | <a href="#pipe-expr-AbbrevForwardStep">AbbrevForwardStep</a>
+           </td><td class="noborder">[29]<br/></td></tr><tr><td class="noborder" id="pipe-expr-ForwardAxis"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-ForwardAxis">ForwardAxis</a></td><td class="noborder">=</td><td class="noborder">("child" "::")| ("descendant" "::")|| ("attribute" "::")| ("self"
+          "::")| ("descendant-or-self" "::") </td><td class="noborder">following-sibling, following and
+            namespace axes are not supported. Namespace axis is deprecated in XPath 2.0 anyway.
+          [30]<br/></td></tr><tr><td class="noborder" id="pipe-expr-AbbrevForwardStep"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-AbbrevForwardStep">AbbrevForwardStep</a></td><td class="noborder">=</td><td class="noborder">"@"? <a href="#pipe-expr-NodeTest">NodeTest</a>
+           </td><td class="noborder">[31]<br/></td></tr><tr><td class="noborder" id="pipe-expr-NodeTest"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-NodeTest">NodeTest</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-KindTest">KindTest</a> | <a href="#pipe-expr-NameTest">NameTest</a>
+           </td><td class="noborder">[35]<br/></td></tr><tr><td class="noborder" id="pipe-expr-NameTest"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-NameTest">NameTest</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-QName">QName</a> | <a href="#pipe-expr-Wildcard">Wildcard</a>
+           </td><td class="noborder">[36]<br/></td></tr><tr><td class="noborder" id="pipe-expr-Wildcard"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-Wildcard">Wildcard</a></td><td class="noborder">=</td><td class="noborder">"*"| (<a href="#pipe-expr-NCName">NCName</a> ":" "*")|
+          ("*" ":" <a href="#pipe-expr-NCName">NCName</a>) </td><td class="noborder">ws:
+            explicit. [37]<br/></td></tr><tr><td class="noborder" id="pipe-expr-FilterExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-FilterExpr">FilterExpr</a></td><td class="noborder">=</td><td class="noborder">
+          <a href="#pipe-expr-PrimaryExpr">PrimaryExpr</a>
+          <a href="#pipe-expr-PredicateList">PredicateList</a>
+          
+         </td><td class="noborder">[38]<br/></td></tr><tr><td class="noborder" id="pipe-expr-PredicateList"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-PredicateList">PredicateList</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-Predicate">Predicate</a>*
+           </td><td class="noborder">[39]<br/></td></tr><tr><td class="noborder" id="pipe-expr-Predicate"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-Predicate">Predicate</a></td><td class="noborder">=</td><td class="noborder">"[" <a href="#pipe-expr-Expr">Expr</a> "]"
+           </td><td class="noborder">[40]<br/></td></tr><tr><td class="noborder" id="pipe-expr-PrimaryExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-PrimaryExpr">PrimaryExpr</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-Literal">Literal</a> | <a href="#pipe-expr-VarRef">VarRef</a> | <a href="#pipe-expr-ParenthesizedExpr">ParenthesizedExpr</a> | <a href="#pipe-expr-ContextItemExpr">ContextItemExpr</a> | <a href="#pipe-expr-FunctionCall">FunctionCall</a>
+           </td><td class="noborder">[41]<br/></td></tr><tr><td class="noborder" id="pipe-expr-Literal"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-Literal">Literal</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-NumericLiteral">NumericLiteral</a> |
+            <a href="#pipe-expr-StringLiteral">StringLiteral</a>
+           </td><td class="noborder">[42]<br/></td></tr><tr><td class="noborder" id="pipe-expr-NumericLiteral"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-NumericLiteral">NumericLiteral</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-IntegerLiteral">IntegerLiteral</a> |
+            <a href="#pipe-expr-DecimalLiteral">DecimalLiteral</a> | <a href="#pipe-expr-DoubleLiteral">DoubleLiteral</a>
+           </td><td class="noborder">[43]<br/></td></tr><tr><td class="noborder" id="pipe-expr-VarRef"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-VarRef">VarRef</a></td><td class="noborder">=</td><td class="noborder">"$" <a href="#pipe-expr-VarName">VarName</a>
+           </td><td class="noborder">[44]<br/></td></tr><tr><td class="noborder" id="pipe-expr-VarName"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-VarName">VarName</a></td><td class="noborder">=</td><td class="noborder">
+          <a href="#pipe-expr-QName">QName</a>
+          
+         </td><td class="noborder">[45]<br/></td></tr><tr><td class="noborder" id="pipe-expr-ParenthesizedExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-ParenthesizedExpr">ParenthesizedExpr</a></td><td class="noborder">=</td><td class="noborder">"(" <a href="#pipe-expr-Expr">Expr</a>? ")"
+           </td><td class="noborder">[46]<br/></td></tr><tr><td class="noborder" id="pipe-expr-ContextItemExpr"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-ContextItemExpr">ContextItemExpr</a></td><td class="noborder">=</td><td class="noborder">"." </td><td class="noborder"> </td></tr><tr><td class="noborder" id="pipe-expr-FunctionCall"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-FunctionCall">FunctionCall</a></td><td class="noborder">=</td><td class="noborder"><a href="#pipe-expr-QName">QName</a> "(" (<a href="#pipe-expr-ExprSingle">ExprSingle</a> ("," <a href="#pipe-expr-ExprSingle">ExprSingle</a>)*)? ")"
+           </td><td class="noborder">[47]<br/></td></tr><tr><td class="noborder" id="pipe-expr-KindTest"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-KindTest">KindTest</a></td><td class="noborder">=</td><td class="noborder">
+          <a href="#pipe-expr-TextTest">TextTest</a>
+          
+         </td><td class="noborder">Only the text() node test is supported, all the rest (document(),
+            element(), attribute(), schema-element(), schema-attribute(), processing-instruction(),
+            comment() and node()) are not supported. [54]<br/></td></tr><tr><td class="noborder" id="pipe-expr-TextTest"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-TextTest">TextTest</a></td><td class="noborder">=</td><td class="noborder">"text" "(" ")"  </td><td class="noborder">[57]<br/></td></tr><tr><td class="noborder" id="pipe-expr-IntegerLiteral"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-IntegerLiteral">IntegerLiteral</a></td><td class="noborder">=</td><td class="noborder">
+          <a href="#pipe-expr-Digits">Digits</a>
+         </td><td class="noborder"> </td></tr><tr><td class="noborder" id="pipe-expr-DecimalLiteral"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-DecimalLiteral">DecimalLiteral</a></td><td class="noborder">=</td><td class="noborder">("." <a href="#pipe-expr-Digits">Digits</a>) | (<a href="#pipe-expr-Digits">Digits</a> "." [0-9]*)
+           </td><td class="noborder">[71]<br/></td></tr><tr><td class="noborder" id="pipe-expr-DoubleLiteral"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-DoubleLiteral">DoubleLiteral</a></td><td class="noborder">=</td><td class="noborder">(("." <a href="#pipe-expr-Digits">Digits</a>) | (<a href="#pipe-expr-Digits">Digits</a> ("." [0-9]*)?)) [eE] [+-]? <a href="#pipe-expr-Digits">Digits</a>
+           </td><td class="noborder">[73]<br/></td></tr><tr><td class="noborder" id="pipe-expr-StringLiteral"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-StringLiteral">StringLiteral</a></td><td class="noborder">=</td><td class="noborder">('"' (<a href="#pipe-expr-EscapeQuot">EscapeQuot</a> | [^"])* '"') |
+          ("'" (<a href="#pipe-expr-EscapeApos">EscapeApos</a> | [^'])* "'")
+             </td><td class="noborder">[74]<br/></td></tr><tr><td class="noborder" id="pipe-expr-EscapeQuot"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-EscapeQuot">EscapeQuot</a></td><td class="noborder">=</td><td class="noborder">'""'  </td><td class="noborder">[75]<br/></td></tr><tr><td class="noborder" id="pipe-expr-EscapeApos"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-EscapeApos">EscapeApos</a></td><td class="noborder">=</td><td class="noborder">"''"  </td><td class="noborder">[77]<br/></td></tr><tr><td class="noborder" id="pipe-expr-QName"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-QName">QName</a></td><td class="noborder">=</td><td class="noborder">
+          
+         </td><td class="noborder">[78]<br/></td></tr><tr><td class="noborder" id="pipe-expr-NCName"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-NCName">NCName</a></td><td class="noborder">=</td><td class="noborder">
+          
+         </td><td class="noborder">[79]<br/></td></tr><tr><td class="noborder" id="pipe-expr-Char"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-Char">Char</a></td><td class="noborder">=</td><td class="noborder">
+          
+         </td><td class="noborder">[80]<br/></td></tr><tr><td class="noborder" id="pipe-expr-Digits"><a href="http://www.w3.org/TR/xpath20/#prod-xpath-Digits">Digits</a></td><td class="noborder">=</td><td class="noborder">[0-9]+  </td><td class="noborder">[81]<br/></td></tr></tbody></table>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../dci/dci_expr_module.html">DCI expressions</a><br/><a class="external" href="http://www.w3.org/TR/xpath20/" title="External link">XML Path (XPath) Language 2.0</a><br/></p>
+    
+  </body></html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Installing MPS</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Installing MPS</h1>
+    <p>The MPS installer collects the values required to configure channel adapters for several
+      protocols, the installation location, and the details for locating the files needed by the WAP
+      push channel adapter.</p>
+    
+      <h2>Before you install</h2>
+      <p>You will need to install the following supporting software and MCS policies before you can
+        use MPS.</p>
+      <ul>
+        <li>You need to <strong>install MCS</strong>. Refer to the topics on installing MCS for details.</li>
+        <li>You should have an <strong>MCS repository</strong> installed and working to be able to use MPS
+          with MCS. </li>
+        <li>The <strong>JavaMail</strong> package (javax.mail) and the <strong>JavaBeans Activation Framework</strong>
+          (javax.activation) used by the JavaMail API to manage MIME data. Both are available from
+          http://java.sun.com.</li>
+      </ul>
+      <p>Optionally, you can also install:</p>
+      <ul>
+        <li>The <strong>JavaMail SMTP</strong> protocol provider for the JavaMail API that provides access to
+          an SMTP server, available from http://java.sun.com</li>
+        <li>The <strong>Nokia MMSC</strong> protocol used for communication with Nokia MMSC. This is available
+          as the package com.nokia.mms from http://www.forum.nokia.com. The file is
+            <span class="filepath">nokia_mmsdriver_1.5.jar</span>. </li>
+      </ul>
+      <div class="note"><strong>Note</strong>: If one of the SMTP, MMSC or SMSC JAR files is not in the classpath, and/or
+        one of the channels is not configured correctly this will prevent messages from being
+        delivered and may cause internal problems for the application server. For this reason each
+          <span class="code">channel</span> element in the <span class="filepath">mcs-config.xml</span> file is
+        commented out until you specifically enable it.</div>
+    
+    
+      <h2>Running the installer</h2>
+      <p>The installation wizard steps you through a series of pages containing settings that
+        correspond to the <span class="code">channel</span> element attributes in the
+        <span class="filepath">mcs-config.xml</span> file. You can edit this file at any time after installation if you need to change the
+        settings.</p>
+      <p>All the installer values have defaults. When you have completed a section, click
+          <span class="command">Next</span> to move to the next page, or click <span class="command">Previous</span> to
+          review or modify any values.</p>
+      <p>When the installation is complete you can choose to save an automated installation file at a
+        convenient location. Then you can repeat the installation on another machine with the path to
+        the configuration file as a parameter.</p>
+      <ol>
+        <li>Start the installer with the command <pre class="code">
+java -jar mps_installer-5.1.jar</pre>
+        </li>
+        <li>Accept the license agreement</li>
+        <li>Choose the packs to install </li>
+        <li>Configure the SMTP channel adapter with the <span class="uicontrol">Host</span> name. If the
+            <span class="uicontrol">Server requires authorization</span>, check the option and add
+            <span class="uicontrol">Username</span> and <span class="uicontrol">Password</span> settings.</li>
+        <li>Configure SMSC, MMSC and WAP Push channel adapters in the same way</li>
+        <li>Click <span class="command">Browse</span> to choose the install location. MPS must be installed in
+          the same directory as MCS.</li>
+        <li>Verify the installation settings and click <span class="command">Next</span> to complete the
+          installation</li>
+        <li>Optionally save your installation settings by clicking <span class="command">Generate an automatic
+          installation script</span>, and naming the file. To repeat the installation run the
+          following command. <pre class="code">
+java -jar mps_installer-5.1.jar [configuration_file]</pre></li>
+        <li>Click <span class="command">Done</span> to complete the installation</li>
+      </ol>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../mps/mps_about.html">About MPS</a><br/></p>
+    
+  </body></html>

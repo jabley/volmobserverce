@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Defining a template</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../dci_learn/dciTutorial_about_dci.html" title="Adding dynamic content">Start</a></li><li><a href="../dci_learn/dciTutorial_tpl_about.html" title="Working with templates">Previous</a></li><li><a href="../dci_learn/dciTutorial_tpl_xdime.html" title="XDIME page with template">Next</a></li></ul></td></tr></table><h1>Defining a template</h1>
+    <p>In this module we will create a template file for the Jive web application. It will define
+      common elements to be used to render pages.</p>
+  <h2>Defining templates <a href="../dci/dci_template_define.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>An XDIME template starts with the <span class="code">template:definition</span> element. It must
+      contain the namespace declaration for the template prefix.<pre class="code">
+&lt;template:definition xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"&gt;</pre></li><li>The <span class="code">template:documentation</span> element should be used for user
+      documentation</li><li>The <span class="code">template:declarations</span> element contains template parameters. The
+      following example specifies two parameters. First one defines the name of a page. The 'simple'
+      type of that parameter allows character data only. Second parameter defines the page content.
+      The 'complex' type means it may contain character data and an XDIME markup. <pre class="code">
+&lt;template:declarations&gt;
+  &lt;template:parameter name="title" type="simple"/&gt;
+  &lt;template:parameter name="content" type="complex"/&gt;
+&lt;/template:declarations&gt;</pre>
+    </li><li>The <span class="code">template:body</span> element defines the structure of the page <pre class="code">
+&lt;template:body&gt;
+  &lt;div id="logo"&gt;
+    &lt;a class="homelogo" href="#"&gt;
+      &lt;object class="homelogo" src="/images/jive_logo.mimg"/&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div id="photos"&gt;
+    &lt;object src="/images/photos.mimg"/&gt;
+  &lt;/div&gt;
+  &lt;!-- The main menu --&gt;
+  &lt;div id="menu_company_news" class="main_menu"&gt;
+    &lt;a class="pnav" href="#"&gt;
+      &lt;object src="/images/menu_company_news.mimg"/&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div id="menu_human_resources" class="main_menu"&gt;
+    &lt;a class="pnav" href="#"&gt;
+      &lt;object src="/images/menu_human_resources.mimg"/&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div id="menu_employee_store" class="main_menu"&gt;
+    &lt;a class="pnav" href="#"&gt;
+      &lt;object src="/images/menu_employee_store.mimg"/&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;!-- The current stock price --&gt;
+  &lt;div id="stockprice"&gt; Latest from NYSE for Jive (VBE): 21.50 (+ 2.25) &lt;/div&gt;
+  &lt;h2 id="title"&gt;
+    &lt;template:value ref="title"/&gt;
+  &lt;/h2&gt;
+  &lt;div id="content"&gt;
+    &lt;template:value ref="content"/&gt;
+  &lt;/div&gt;
+  &lt;div id="footer"&gt;
+    &lt;p&gt;Copyright &lt;a href="#"&gt;Jive Sports&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template:body&gt;</pre>
+    </li><li>The <span class="code">&lt;div id="logo"&gt;</span> and <span class="code">&lt;div
+        id="photos&gt;</span> elements specify the Jive logo and sports-related imagery. The
+        <span class="code">src</span> attributes point to the corresponding image component policies.</li><li>The <span class="code">&lt;div class="main_menu"&gt;</span> elements define the menu bar</li><li>The <span class="code">&lt;div id="stockprice&gt;</span> element displays the stock price</li><li>The <span class="code">&lt;h2 id="title"&gt;</span> element specifies the title of the
+      page. The value of the <span class="code">&lt;template:value ref="title"&gt;</span> parameter
+      will be specified in an XDIME file using the <span class="code">template:binding</span> element.
+      Refer to <em>XDIME page with template</em> for further information.</li><li>The <span class="code">&lt;div id="content"&gt;</span> element defines the body of the
+      page. Markup from an XDIME page contained by <span class="code">&lt;template:binding
+        name="content"&gt;</span> will be placed here.<pre class="code">
+&lt;template:binding name="content"&gt;
+  &lt;template:complexValue&gt;
+    ...
+  &lt;/template:complexValue&gt;
+&lt;/template:binding&gt;</pre>
+    </li><li>The <span class="code">&lt;div id="footer"&gt;</span> element contains the footer</li></ol><h2>Complete XDIME</h2><ol><li>Create a <span class="filepath">template.xdtpl</span> file and save it in the
+        <span class="filepath">Volantis/MCS/webapps/mcs/tutorial/templates/</span> directory</li><li>Modify the <span class="filepath">template.xdtpl</span> file by including the following code <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;template:definition xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"&gt;
+  &lt;template:documentation&gt; &lt;/template:documentation&gt;
+  &lt;template:declarations&gt;
+    &lt;template:parameter name="title" type="simple"/&gt;
+    &lt;template:parameter name="content" type="complex"/&gt;
+  &lt;/template:declarations&gt;
+  &lt;template:body&gt;
+    &lt;div id="logo"&gt;
+      &lt;a class="homelogo" href="#"&gt;
+        &lt;object class="homelogo" src="/images/jive_logo.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="photos"&gt;
+      &lt;object src="/images/photos.mimg"/&gt;
+    &lt;/div&gt;
+    &lt;!-- The main menu --&gt;
+    &lt;div id="menu_company_news" class="main_menu"&gt;
+      &lt;a class="pnav" href="#"&gt;
+        &lt;object src="/images/menu_company_news.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="menu_human_resources" class="main_menu"&gt;
+      &lt;a class="pnav" href="#"&gt;
+        &lt;object src="/images/menu_human_resources.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="menu_employee_store" class="main_menu"&gt;
+      &lt;a class="pnav" href="#"&gt;
+        &lt;object src="/images/menu_employee_store.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;!-- The current stock price --&gt;
+    &lt;div id="stockprice"&gt; Latest from NYSE for Jive (VBE): 21.50 (+ 2.25) &lt;/div&gt;
+    &lt;h2 id="title"&gt;
+      &lt;template:value ref="title"/&gt;
+    &lt;/h2&gt;
+    &lt;div id="content"&gt;
+      &lt;template:value ref="content"/&gt;
+    &lt;/div&gt;
+    &lt;div id="footer"&gt;
+      &lt;p&gt;Copyright &lt;a href="#"&gt;Jive Sports&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/template:body&gt;
+&lt;/template:definition&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_a.html">a</a></th><td><p>Used to create an explicit link to another place in the same document or to another
+        document. The current document is the source of the link and the value of the
+        <span class="code">href</span> attribute, defines the link target</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_heading.html">h1, h2, h3, h4, h5, h6</a></th><td><p>Heading elements for sections within a document. The number associated with each element
+        indicates its relative position in the hierarchy of headings, with 1 indicating the top
+        level and 6 the lowest level.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_object.html">object</a></th><td><p>A reference to a media resource. <span class="code">Object</span> allows a variety of media
+        resources to be placed on the rendered page. The resource may be specified as an image
+        policy or a device depended mime type. <span class="code">Object</span> also allows the control of
+        media transcoding to ensure the resource will render on the requesting agent. See <em>References to media</em> for details.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_p.html">p</a></th><td><p>Block element that defines a paragraph.</p></td></tr><tr><th class="firstcell"><a href="../xdime/template_body.html">template:body</a></th><td><p>The container for the template body.</p></td></tr><tr><th class="firstcell"><a href="../xdime/template_binding.html">template:binding</a></th><td><p>Specifies a binding to a parameter value. If a value is fixed, then it should be set using
+        the <span class="code">value</span> attribute. If value is dynamic or larger than can be used as an
+        attribute, then it can be set using a nested element appropriate to the parameter type.</p></td></tr><tr><th class="firstcell"><a href="../xdime/template_complex_value.html">template:complexValue</a></th><td><p>Specifies a complex value for a parameter. The element has an open content model.</p></td></tr><tr><th class="firstcell"><a href="../xdime/template_declarations.html">template:declarations</a></th><td><p>Contains one or more parameter declarations.</p></td></tr><tr><th class="firstcell"><a href="../xdime/template_definition.html">template:definition</a></th><td><p>Container for template elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime/template_documentation.html">template:documentation</a></th><td><p>Container for user documentation. A vocabulary such as XHTML is recommended. A custom XSL
+        stylesheet may be used to extract the content for a user guide.</p></td></tr><tr><th class="firstcell"><a href="../xdime/template_parameter.html">template:parameter</a></th><td><p>Defines a parameter. If the default value of the parameter is fixed, it should be set using
+        the <span class="code">default</span> attribute. If it is dynamic, or larger than can be used as an
+        attribute, then it can be set using a nested element appropriate to the parameter type.</p></td></tr><tr><th class="firstcell"><a href="../xdime/template_value.html">template:value</a></th><td><p>Identifies the position to insert parameter content in the document. This may be used at
+        any point within the body of the template. If the parameter has not been declared, or is not
+        of simple type then an error is raised.</p></td></tr></tbody></table>
+  </body></html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>plugins</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>plugins</h1><h2>Purpose</h2>
+      <p>Defines the names of custom Java classes that implement plugin interfaces.</p>
+      
+    <h2>Contained by</h2><p><a href="../mcs_config/config_mcs_config.html">mcs-config</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">add-device-capability-parameter</th><td>Controls whether or not the asset-transcoder plugin passes device capability
+          information to ICS by adding a parameter to URLs for convertible images. If the setting is
+          'true' then it adds the v.dc parameter, otherwise it does not.</td><td>xs:boolean</td><td>false </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">asset-transcoder</th><td>The custom Java class name that implements the interface
+          com.volantis.mcs.integration.PluggableAssetTranscoder</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">asset-url-rewriter</th><td>The custom Java class name that implements the interface
+          com.volantis.mcs.integration.AssetURLRewriter</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">page-url-rewriter</th><td>The custom Java class name that implements the interface
+          com.volantis.mcs.integration.PageURLRewriter</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">url-rewriter</th><td>The custom Java class name that implements the interface
+          com.volantis.mcs.integration.URLRewriter</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Example</h2>
+      <pre class="code">
+&lt;plugins asset-transcoder="ASSET_TRANSCODER_CLASS"
+  asset-url-rewriter="ASSET_URL_REWRITER_CLASS"
+  page-url-rewriter="PAGE_URL_REWRITER_CLASS"
+  url-rewriter="URL_REWRITER_CLASS"/&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../admin/mcs_config_er.html">MCS configuration elements</a><br/></p>
+    </body></html>

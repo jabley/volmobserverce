@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>template:parameter</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>template:parameter</h1><h2>Purpose</h2>
+      <p>Defines a parameter. If the default value of the parameter is fixed, it should be set using
+        the <span class="code">default</span> attribute. If it is dynamic, or larger than can be used as an
+        attribute, then it can be set using a nested element appropriate to the parameter type.</p>
+    <h2>Contains</h2><p><a href="../xdime/template_complex_value.html">template:complexValue</a>, <a href="../xdime/template_documentation.html">template:documentation</a>, <a href="../xdime/template_simple_value.html">template:simpleValue</a></p><h2>Contained by</h2><p><a href="../xdime/template_declarations.html">template:declarations</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">default</th><td>The default value of the parameter for both simple or complex parameters</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">expressionVariable</th><td>The name of the expression variable to which a simple value should be bound.
+          This can only be specified for simple parameters.</td><td>xs:QName</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcellrequired" scope="row">name</th><td>Name of the parameter that must be unique within the template.</td><td>xs:NCName</td><td>none </td><td> </td><td>required </td></tr><tr><th class="firstcellrequired" scope="row">type</th><td>The simple type may be character data only. The complex type may contain
+          character data and pipeline markup.</td><td>xs:string</td><td>none </td><td>simple, complex </td><td>required </td></tr><tr><th class="firstcell" scope="row">use</th><td>If a parameter is required, it is invalid to also define a value in the default
+          attribute. If a parameter is optional it must have a default value.</td><td>xs:string</td><td>required </td><td>required, optional </td><td>optional </td></tr></table><h2>Examples</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Template elements&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="test.xdtpl"&gt;
+      &lt;template:binding name="title" value="Welcome to Jive Intranet"/&gt;
+      &lt;template:binding name="subtitle"&gt;
+        &lt;template:simpleValue&gt;Jive Human Resources&lt;/template:simpleValue&gt;
+      &lt;/template:binding&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+          &lt;div&gt;
+            &lt;p&gt;Jive Sports is seeking people to fill new job openings.&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>The <span class="filepath">test.xdtpl</span> template may look like this.</p>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;template:definition xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"&gt;
+  &lt;template:documentation&gt; &lt;/template:documentation&gt;
+  &lt;template:declarations&gt;
+    &lt;template:parameter name="title" type="simple"/&gt;
+    &lt;template:parameter name="subtitle" type="simple"/&gt;
+    &lt;template:parameter name="content" type="complex"/&gt;
+  &lt;/template:declarations&gt;
+  &lt;template:body&gt;
+    &lt;h2&gt;
+      &lt;template:value ref="title"/&gt;
+    &lt;/h2&gt;
+    &lt;h3&gt;
+      &lt;template:value ref="subtitle"/&gt;
+    &lt;/h3&gt;
+    &lt;div&gt;
+      &lt;template:value ref="content"/&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p&gt;Copyright &lt;a href="#"&gt;Jive Sports&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/template:body&gt;
+&lt;/template:definition&gt;
+</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../dci/template_er.html">Template elements</a><br/></p>
+    </body></html>

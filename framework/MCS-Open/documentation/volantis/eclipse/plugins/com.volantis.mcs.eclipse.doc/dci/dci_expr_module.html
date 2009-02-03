@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>DCI expressions</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>DCI expressions</h1>
+    <p>The DCI expression module parses, compiles and evaluates expressions for use within the
+      pipeline. The expressions are a subset of XPath 2.0, extended with some additional product
+      specific functions.</p>
+    
+      <h2>Grammar</h2>
+      <p>The grammar defined in <em>XPath grammar</em> is a subset of the full XPath 2.0
+        Grammar. The pipeline grammar retains the names of XPath rules to aid comparison, although
+        the numbering is different. Each grammar production that differs from the standard XPath 2.0
+        production is marked with a comment to explain how it differs. In addition to those
+        differences, pipeline expressions do not allow comments.</p>
+      <p>The XPath 2.0 grammar defines a number of additional semantic and tokenization constraints
+        on the grammar that cannot be expressed in EBNF format. Where applicable those constraints
+        also apply to this pipeline subset.</p>
+    
+    
+      <h2>Focus</h2>
+      <p>Pipeline expressions and XPath 2.0 are quite different in the way that they rely upon and
+        use the focus. For its primary use within XQuery 1.0, and XSLT 2.0, XPath 2.0 requires a
+        focus to provide context size, item and position. Pipeline expressions require a focus
+        mainly for filtering sequences using predicates. A focus is also needed for pipeline
+        operations that use paths in their expressions.</p>
+    
+    
+      <h2>Paths</h2>
+      <p>The path support in the pipeline subset is provided to query information from a document
+        fragment provided by an operation. It is not intended to provide access to a whole document,
+        including the page within which the pipeline operations are used. So document relative paths
+        starting with a '/' are not supported. Neither are reverse axes supported.</p>
+      <p>The only paths that can be used are those that are relative to an existing node sequence.
+        Where the node sequence could come from a <span class="code">PrimaryExpr</span>, for example a function,
+        or variable, or one that contains the context node. In the latter case, paths can only be
+        used within a pipeline expression if the context node against which the paths are resolved
+        has been set. Failure to do this will result in a runtime exception when the path expression
+        is evaluated.</p>
+    
+    
+      <h2>XPath functions</h2>
+      <p>The pipeline supports the use of a subset of XPath 2 functions. The following functions are
+        available. See <em>XQuery 1.0 and XPath 2.0 Functions and Operators</em> for further information</p>
+      <ul><li class="simple">
+          <span class="code">boolean</span>
+        </li><li class="simple">
+          <span class="code">concat</span>
+        </li><li class="simple">
+          <span class="code">empty</span>
+        </li><li class="simple">
+          <span class="code">exists</span>
+        </li><li class="simple">
+          <span class="code">false</span>
+        </li><li class="simple">
+          <span class="code">intersect</span>
+        </li><li class="simple">
+          <span class="code">not</span>
+        </li><li class="simple">
+          <span class="code">number</span>
+        </li><li class="simple">
+          <span class="code">position</span>
+        </li><li class="simple">
+          <span class="code">round</span>
+        </li><li class="simple">
+          <span class="code">sequence</span>
+        </li><li class="simple">
+          <span class="code">string</span>
+        </li><li class="simple">
+          <span class="code">tokenize</span>
+        </li><li class="simple">
+          <span class="code">true</span>
+        </li><li class="simple">
+          <span class="code">union</span>
+        </li></ul>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../dci/dci_about.html">About DCI</a><br/><a class="link" href="../dci/dci_xpath_grammar.html">XPath grammar</a><br/><a class="external" href="http://www.w3.org/TR/xpath-functions/" title="External link">XQuery 1.0 and XPath 2.0 Functions and Operators</a><br/></p>
+    
+  </body></html>

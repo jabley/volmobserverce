@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+  <?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Volantis Mobility Server" topic="mcs/mcs_help.html">
+  <topic label="About MCS" href="mcs/mcs_about.html">
+    <link toc="topics_mcs.xml"/>
+  </topic>
+  <topic label="Components &amp; variants" href="components/component_and_assets.html">
+    <link toc="topics_components.xml"/>
+  </topic>
+  <topic label="Layouts" href="layouts/layout_about.html">
+    <link toc="topics_layouts.xml"/>
+  </topic>
+  <topic label="Themes" href="themes/theme_about.html">
+    <link toc="topics_themes.xml"/>
+  </topic>
+  <topic label="Devices" href="devices/device_about.html">
+    <link toc="topics_devices.xml"/>
+  </topic>
+  <topic label="Web author's guide" href="wag/wag_about.html">
+    <link toc="topics_wag.xml"/>
+  </topic>
+  <topic label="Dynamic content integration" href="dci/dci_about.html">
+    <link toc="topics_dci.xml"/>
+  </topic>
+  <topic label="Client Framework" href="client/client_about.html">
+    <link toc="topics_client.xml"/>
+  </topic>
+  <topic label="BuzzCast Client" href="client/ticker_about.html">
+    <link toc="topics_ticker.xml"/>
+  </topic>
+  <topic label="XDIME 2 elements" href="wag/xdime2_elements.html">
+    <link toc="topics_xdime_cp.xml"/>
+  </topic>
+  <topic label="Installing MCS" href="install/mcs_install_oview.html">
+    <link toc="topics_install.xml"/>
+  </topic>
+  <topic label="Administering MCS" href="admin/mcs_admin.html">
+    <link toc="topics_admin.xml"/>
+  </topic>
+  <topic label="Media Access Proxy" href="ics/map_about.html">
+    <link toc="topics_ics.xml"/>
+  </topic>
+  <topic label="Message Preparation Server" href="mps/mps_about.html">
+    <link toc="topics_mps.xml"/>
+  </topic>
+  <topic label="Tutorials" href="mcs/mcs_tutorials.html">
+    <link toc="topics_tutorials.xml"/>
+  </topic>
+</toc>

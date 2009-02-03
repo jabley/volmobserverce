@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Creating a ticker tape</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Creating a ticker tape</h1>
+    <p>The Ticker Tape widget is a display area that may contain styled text, images and links in a
+      scrolling set of content that cycles continuously. Its purpose is to display information such
+      as news headlines, stock prices, and banner advertisements.</p>
+    
+      <h2>Visual appearance</h2>
+      <p>When content initially appears, it always does so by scrolling in from one side, usually
+        the right. It never appears in place at the same time as the widget itself. This would often
+        result in the user missing the start of the text since it would not draw attention to itself
+        by movement until it had already scrolled away the initial part of the content. The
+        scrolling is cyclical, so when all items have been displayed it starts again at the
+        beginning.</p>
+    
+    
+      <h2>User interactions</h2>
+      <p>When a user selects the Ticker Tape widget itself or a focusable item displayed inside it,
+        the scrolling stops, and then resumes again when the user selects something else outside of
+        the widget. If the user clicks on the focusable item, then the link is opened.</p>
+    
+    <div class="note"><strong>Note</strong>: The Ticker Tape widget must have a layout associated with it, to separate its
+      content from the container. If none is specified then it will behave the same as the body
+      element.</div>
+    
+      <h2>Xdime 2 elements</h2>
+      <p>The <span class="code">widget:ticker-tape</span> element is the containing element.</p>
+      <pre class="code">
+&lt;widget:ticker-tape id="myWeatherTicker"&gt;
+  &lt;span&gt;The Ticker Tape Widget is a sideways-scrolling display area.&lt;/span&gt;
+  &lt;span&gt;Its purpose is to display information such as news headlines,
+    stock prices, weather conditions etc&lt;/span&gt;
+&lt;/widget:ticker-tape&gt;</pre>
+      <p>The Ticker Tape widget is able to refresh its contents periodically, at intervals that can
+        be specified in the <span class="code">widget:refresh</span> action.</p>
+      <pre class="code">
+&lt;widget:ticker-tape id="myWeatherTicker" class="widget"&gt;
+  &lt;widget:refresh src="service/ticker?id=myWeatherTicker" interval="15"/&gt;
+  &lt;span&gt;Ticker Tape can be configured to periodically refresh its content...&lt;/span&gt;
+&lt;/widget:ticker-tape&gt;</pre>
+      <p> The <span class="code">response:ticker-tape</span> element provides a way for the Ticker Tape
+        widget to refresh its content.</p>
+      <pre class="code">
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+  &lt;response:head&gt;
+    &lt;response:link rel="mcs:theme" href="/main.mthm"/&gt;
+  &lt;/response:head&gt;
+  &lt;response:body&gt;
+    &lt;response:ticker-tape id="myWeatherTicker"&gt;
+      &lt;span&gt;Current weather conditions - last update 2007-02-23 12:27&lt;/span&gt;
+      &lt;span&gt;&lt;a href="http://www.berlin.de"&gt;Berlin&lt;/a&gt;: 25°C, partly cloudy&lt;/span&gt;
+    &lt;/response:ticker-tape&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;</pre>
+    
+    
+      <h2>Styling the widget</h2>
+      <p>You can use the <span class="uicontrol">Marquee direction</span>, <span class="uicontrol">Marquee
+        velocity</span>, and <span class="uicontrol">Marquee repetition</span> properties to style the
+        widget. Use the <span class="uicontrol">Frame rate</span> property to specify the frequency required
+        when displaying visual effects such as transitions, or scrolling.</p>
+      <p>A Ticker-Tape may take the focus, even it does not contain any focusable elements, if you
+        use the <span class="code">focus</span> pseudo-class on the element. The default value for this
+        pseudo-class is 'accept'. If you specify 'ignore', users will not be able to action
+        contained elements unless they can take the focus.</p>
+      <p class="note"><strong>Tip</strong>: You can add separators between items in the widget content using the
+          <span class="code">::before</span> and <span class="code">::after</span> pseudo-elements.</p>
+    
+    
+      <h2>Non-client fallback</h2>
+      <p>If the device does not support the Ticker Tape widget then it displays all the content at
+        once, and it cannot be updated from the server.</p>
+    
+    <div class="note"><strong>Note</strong>: This widget supports JavaScript. Refer to <em>JavaScript support</em> for details.</div>
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../client/widget_library.html">Widget library</a><br/><a class="link" href="../xdime_cp/widget_ticker_tape.html">widget:ticker-tape</a><br/><a class="link" href="../xdime_cp/response_ticker_tape.html">response:ticker-tape</a><br/><a class="link" href="../client/wag_widgets_actions.html">Load, refresh and fetch actions</a><br/><a class="link" href="../client/wag_widgets_structure.html">Widget response structure</a><br/><a class="link" href="../client/wag_widgets_style.html">Styling widgets</a><br/><a class="link" href="../client/wag_widgets_javascript.html">JavaScript support</a><br/></p>
+    
+  </body></html>

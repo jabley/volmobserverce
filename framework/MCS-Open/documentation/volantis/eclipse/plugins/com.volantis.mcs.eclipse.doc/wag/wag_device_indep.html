@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Device independence and MCS</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Device independence and MCS</h1>
+    <p>Over several years the number of different devices that can access the web has increased,
+      with a corresponding change in the range of their capabilities. Not only do devices differ in
+      physical characteristics, they can also differ in the protocols that they support. Bandwidth
+      has improved, the range of access paths has been extended, and user expectations have kept
+      pace with this change.</p>
+    <p>It no longer makes practical or business sense for publishers and content providers to
+      develop material for a single channel or technology. Rich content and applications now need to
+      be delivered to a range of devices with a minimum of effort.</p>
+    <p>A delivery context is a set of device properties that defines a delivery environment, and can
+      be used to provide information in a format and style that match the capabilities of the
+      device. MCS handles a range of delivery contexts by selecting or adapting the content to match
+      a particular device profile. As an author, you create content once, and then tailor it to
+      different devices using a combination of layout and style. This means making a clear
+      distinction between device dependent and device independent information by separating it into
+      several parts.</p>
+    <ul>
+      <li>
+        <strong>Content</strong> may be static information, or dynamic data retrieved from an external source
+        in response to a query. In MCS you use XDIME markup, an XML vocabulary that is in many ways
+        similar to HTML and WML. In addition, XDIME has a number of special elements to support
+        device independent content, and the inclusion of dynamic datasources.</li>
+      <li>MCS manages the relationship between device-independent content and device-dependent data
+        by using <strong>components</strong> and <strong>variants</strong>. For example, an image component can refer to
+        a set of image files, or variants, that individually fit the profiles of several different
+        devices. The attributes of each variant are contained in the component. In an XDIME 2 page,
+        the <span class="code">object</span> element's <span class="code">src</span> attribute value is set to the name
+        of the image component. When a device requests the page, MCS uses the image attributes to
+        select the best image variant to display on the device.</li>
+      <li>
+        <strong>Layouts</strong> contain the device dependent positioning for information rendered on a
+        variety of displays, where limitations of small devices may require that content be split or
+        even omitted</li>
+      <li>
+        <strong>Themes</strong> govern the style of a site across multiple devices. The thematic information
+        for a device is termed a style, and a style contains rules that are appropriate to the
+        delivery context.</li>
+    </ul>
+    <p>This separation of aspects of site development maps to the skills required to build it.
+      Layouts and themes provide the presentation layer of the site, allowing content to be
+      developed independently.</p>
+    <p>To learn more about standards development on device independence refer to the W3C <em>Ubiquitous Web Applications</em> web site.</p>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../wag/wag_develop_policies.html">Developing MCS policies</a><br/><a class="external" href="http://www.w3.org/2007/uwa/" title="External link">Ubiquitous Web Applications</a><br/></p>
+    
+  </body></html>

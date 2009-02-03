@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>pipeline:parameter</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>pipeline:parameter</h1><h2>Purpose</h2>
+      <p>A parameter passed to the XSL transformation referenced in the <span class="code">href</span> attribute
+        on the <span class="code">pipeline:transformation</span> element.</p>
+    <h2>Contained by</h2><p>pipeline:parameter</p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">name</th><td>The name of the parameter.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcell" scope="row">value</th><td>The parameter value.</td><td>xs:string</td><td>false </td><td> </td><td>optional </td></tr></table><h2>Examples</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:webd="http://www.volantis.com/xmlns/marlin-web-driver"&gt;
+  &lt;head&gt;
+    &lt;title&gt;pipeline:parameters&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;pipeline:transform&gt;
+        &lt;pipeline:parameters&gt;
+          &lt;pipeline:parameter name="header_param" value="Welcome to Seattle"/&gt;
+        &lt;/pipeline:parameters&gt;
+        &lt;pipeline:transformation href="test.xsl"/&gt;
+        &lt;webd:get url="http://weather.yahooapis.com/forecastrss"&gt;
+          &lt;webd:parameters&gt;
+            &lt;webd:parameter name="p" value="USWA0395"/&gt;
+            &lt;webd:parameter name="u" value="c"/&gt;
+          &lt;/webd:parameters&gt;
+        &lt;/webd:get&gt;
+      &lt;/pipeline:transform&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>The <span class="filepath">test.xsl</span> transform should have the following form.</p>
+      <pre class="code">
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+  xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0"
+  xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"&gt;
+  &lt;xsl:output method="xml"/&gt;
+  &lt;xsl:param name="header_param"/&gt;
+  &lt;xsl:template match="/"&gt;
+    &lt;div xmlns="http://www.w3.org/2002/06/xhtml2"&gt;
+      &lt;h3&gt;
+        &lt;xsl:value-of select="$header_param"/&gt;
+      &lt;/h3&gt;
+      &lt;p&gt;Current Conditions: &lt;xsl:value-of select="/rss/channel/item/yweather:condition/@text"/&gt;,
+        &lt;xsl:value-of select="/rss/channel/item/yweather:condition/@temp"/&gt;
+        &lt;xsl:value-of select="/rss/channel/yweather:units/@temperature"/&gt;.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../dci/pipeline_er.html">Pipeline elements and functions</a><br/><a class="link" href="../dci/dci_transform_params.html">Passing parameters in transforms</a><br/></p>
+    </body></html>

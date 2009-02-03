@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Enabling MIME packaging</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Enabling MIME packaging</h1>
+    <p>You can enable MIME packaging features in the <span class="code">page-packaging</span> section of
+      the <span class="filepath">mcs-config.xml</span>. Many WAP and XHTML devices support delivery of pages
+      and their variants using multipart MIME as a container. To improve performance, MCS can
+      package content in the form of multipart MIME documents, delivering the requested page along
+      with the variants that it references.</p>
+    
+    <p>To enable MIME packaging you should set the <span class="code">enabled</span> attribute of the
+        <span class="code">mime-packaging</span> to 'true'.</p>
+    <pre class="code">
+&lt;page-packaging&gt;
+  &lt;mime-packaging enabled="false"/&gt;
+&lt;/page-packaging&gt;</pre>
+    <p>When a request can be satisfied with a multi-part MIME package, the HTTP accept header will
+      indicate that the requester can accept a response with content type <span class="filepath">multipart/mixed
+      </span>or <span class="filepath">application/vnd.wap.multipart.mixed</span>.</p>
+    <p>The Protocol category in the MCS Device Repository editor contains a setting for MIME
+      packaging. The <em>Use MIME packaging</em> dropdown allows you to set three possible values:</p>
+    <ul><li class="simple"><strong>default</strong> - MCS will use packaging if the accept header supports multipart MIME</li><li class="simple"><strong>always</strong> - MCS will use packaging regardless of the header content</li><li class="simple"><strong>never</strong> - MCS will never use packaging even if the header indicates support</li></ul>
+    <div class="note"><strong>Note</strong>: 
+      To use multipart MIME you must install the JavaMail classes (JavaMail 1.3.2) and the
+        JavaBeans Activation Framework (JAF 1.0.2). Both packages are available from
+        http://java.sun.com/.
+    </div>
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../admin/mcs_configure.html">Configuring MCS</a><br/><a class="link" href="../mcs_config/config_mime_packaging.html">mime-packaging</a><br/></p>
+    
+  </body></html>

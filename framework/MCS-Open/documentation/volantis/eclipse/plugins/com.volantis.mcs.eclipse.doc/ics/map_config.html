@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Configuring MAP</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Configuring MAP</h1>
+    <p>The Media Access Proxy (MAP) is a web application that is used to perform transcoding and
+      transformation operations on media files referenced by XDIME 2. The contained ICS servlet
+      component handles XDIME content and ICS styled URLs in a backward compatible manner.</p>
+    
+      <h2>Configuring MCS</h2>
+      <p>The <span class="code">media-access-proxy</span> section contains the location in the
+          <span class="code">url-prefix</span> attribute.</p>
+      
+      <p>The location of the MAP web application is initially defined in the
+          <span class="filepath">mcs-config.xml</span> file, when you install MCS. If the location changes
+        you must edit the <span class="code">media-access-proxy</span> element.</p>
+      <pre class="code">&lt;media-access-proxy url-prefix="http://host:port/map/map"/&gt;</pre>
+      <div class="note"><strong>Note</strong>: The <span class="filepath">map</span> subdirectory is necessary because MAP consists
+        of a number of servlets in the same web application. The first <span class="filepath">map</span>
+        directory name may vary depending on your installation. The second directory contains the
+        map servlet, and its name is fixed unless modifications are made to the
+        <span class="filepath">web.xml</span> file in the MAP web application.</div>
+      <p>The ICS servlet is mapped to the <span class="filepath">/map/ics/</span> URL.</p>
+    
+    
+      <h2>STI plugin</h2>
+      <p>The Standard Transcoder Interface (STI) plugin allows transcoding requests to be forwarded
+        to sites providing STI compliant transcoding services. The plugin is configured in the file
+          <span class="filepath">com.volantis.map.sti.impl.STIOperation</span> located in the
+          <span class="filepath">WEB-INF/osgi/config</span> directory. An example follows.</p>
+      <p>In the words of the STI specification, the value associated with
+          <span class="code">com.volantis.map.sti.OriginatorID</span> is</p>
+      <p class="quote">' A unique ID which represents the Application Platform that the request originated from.
+        This parameter MAY be used for tracking, and it SHOULD NOT affect the Transcoding process. '</p>
+      <p>The value of <span class="code">com.volantis.map.sti.ServiceURL</span> is the URL to the STI compliant
+        transcoding platform.</p>
+      <pre class="code">
+com.volantis.map.sti.OriginatorID=id-from-sti-service
+com.volantis.map.sti.ServiceURL=http://localhost:8080/sti </pre>
+    
+    
+      <h2>Configuring a JNDI datasource</h2>
+      <p>MAP requires a JNDI datasource to be configured in your application server. The JNDI name
+        is 'jdbc/descriptorstore'. The database at this location will automatically be populated
+        with tables when MAP is started for the first time. Both MAP and MCS must have access to the
+        datasource with this name.</p>
+      <p>The configuration of JNDI bound datasources is application server specific; refer to your
+        web application server documentation for more information.</p>
+      <p> The following example shows the settings for Tomcat 5.5 and a Derby database configured on
+        the localhost at port 3333. The resource name is the JNDI name of the datasource. This
+        configuration assumes that MCS is installed under the <span class="filepath">/volantis</span> servlet
+        prefix and MAP is installed under the <span class="filepath">/map</span> servlet prefix. For this to
+        work the <span class="filepath">.jar</span> file containing the
+          <span class="code">org.apache.derby.jdbc.ClientDriver</span> class must be visible to both servlet
+        contexts. This can be achieved by placing a single copy in the
+        <span class="filepath">common/lib</span> directory of Tomcat or by placing one copy each into the
+          <span class="filepath">WEB-INF/lib</span> directory of each web application.</p>
+      <p>Add the following to the <span class="filepath">conf/server.xml</span> inside the appropriate
+          <span class="code">Host</span> element.</p>
+      <pre class="code">
+&lt;Context path="/map" debug="99"&gt;
+  &lt;Resource name="jdbc/descriptorstore" auth="Container" 
+    type="javax.sql.DataSource" username="sa" password="sa" maxIdle="20"
+    driverClassName="org.apache.derby.jdbc.ClientDriver" 
+    url="jdbc:derby://127.0.0.1:3333/MAP;create=true" maxActive="30"/&gt;
+&lt;/Context&gt;
+&lt;Context path="/volantis" debug="99"&gt;
+  &lt;Resource name="jdbc/descriptorstore" auth="Container"
+    type="javax.sql.DataSource" username="sa" password="sa" maxIdle="20"
+    driverClassName="org.apache.derby.jdbc.ClientDriver"
+    url="jdbc:derby://127.0.0.1:3333/MAP;create=true" maxActive="30"/&gt;
+&lt;/Context&gt;</pre>
+      <p class="note"><strong>Caution</strong>: Owing to an issue with PostgreSQL, MAP will not automatically create the
+        necessary tables for the descriptor store. First, extract the
+          <span class="filepath">synergetics.descriptor-store-impl-5.0.jar</span> to get the
+          <span class="filepath">package.jdo</span> file. You can then resolve the problem by using the
+        following script.</p>
+      <pre class="code">
+        
+[path_to_mcs]/webapps/mcs/WEB-INF/lib$ java -cp
+log4j-1.2.8.jar:jdo2-api-2.0.jar:jpox-1.1.7.jar
+:[path_to_postgres_driver]/postgresql-8.2-506.jdbc3.jar
+:synergetics.descriptor-store-impl-5.0.jar
+:synergetics.descriptor-store-api-5.0.jar
+:synergetics.metadata-impl-5.0.jar
+:synergetics.metadata-api-5.0.jar
+-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver
+-Djavax.jdo.option.ConnectionURL="jdbc:postgresql://localhost:5432/MAP"
+-Djavax.jdo.option.ConnectionUserName=MAP
+-Djavax.jdo.option.ConnectionPassword=MAP
+-Dlog4j.configuration=file:../mcs-log4j.xml org.jpox.SchemaTool
+-create [path_to_mcs]/webapps/mcs/WEB-INF/[path_to_jdo]/impl/package.jdo</pre>
+      <p>If you are using MCS with MAP on WebLogic or WebSphere, then you must add the following to
+        <span class="filepath">[path]/MAP/webapps/map/WEB-INF/web.xml</span> and
+        <span class="filepath">[path]/MCS/webapps/mcs/WEB-INF/web.xml</span> at the end of the
+        <span class="code">web-app</span> section. This is to properly configure a JNDI datasource.</p>
+      <pre class="code">
+&lt;resource-ref&gt;
+  &lt;description&gt;DB Connection&lt;/description&gt;
+  &lt;res-ref-name&gt;jdbc/descriptorstore&lt;/res-ref-name&gt;
+  &lt;res-type&gt;javax.sql.DataSource&lt;/res-type&gt;
+  &lt;res-auth&gt;Container&lt;/res-auth&gt;
+&lt;/resource-ref&gt;</pre>
+    
+    
+      <h2>Editing the ICS configuration file</h2>
+      <p>You set the ICS configuration options in the <span class="filepath">ics-config.xml</span> file. You
+        can specify defaults for the location of images, and how they should be transcoded. See
+          <em>ICS configuration parameters</em> for details of the parameters.</p>
+      <p>An <span class="code">init-param</span> element in the <span class="filepath">web-xml</span> file gives the
+        path to the ICS configuration file. The <span class="code">param-name</span> attribute names the file and
+        the <span class="code">param-value</span> attribute gives the path information.</p>
+      <pre class="code">
+&lt;servlet&gt; 
+  &lt;servlet-name&gt;ICS&lt;/servlet-name&gt; 
+  &lt;servlet-class&gt;com.volantis.transcoder.Server&lt;/servlet-class&gt; 
+  &lt;init-param&gt; 
+    &lt;param-name&gt;config.file&lt;/param-name&gt; 
+    &lt;param-value&gt;/WEB-INF/ics-config.xml&lt;/param-value&gt;
+  &lt;/init-param&gt; 
+&lt;/servlet&gt; </pre>
+      <p>The example shows the default entries in the <span class="filepath">ics-config.xml</span> file..</p>
+      <pre class="code">
+&lt;transcodingServer&gt;
+  &lt;image jpegFormat='baseline' gifSupport='true'&gt;
+    &lt;environment serverMode='native'           
+      maxRedirects="5"            
+      useInMemoryChache='true' /&gt;
+    &lt;scaling scaleMode='bilinear' scaleLarger='true'/&gt;
+    &lt;dithering&gt;
+      &lt;dither bitDepth='1' mode='floyd-steinberg'/&gt;
+      &lt;dither bitDepth='2' mode='ordered-dither'/&gt;
+      &lt;dither bitDepth='4' mode='stucki'/&gt;
+      &lt;dither bitDepth='8' mode='jarvis'/&gt;
+      &lt;dither bitDepth='16' mode='floyd-steinberg'/&gt;
+    &lt;/dithering&gt;
+    &lt;compression qualityMin='50' paletteMin='4'/&gt;
+    &lt;watermarking watermarkURL=''/&gt;      
+  &lt;/image&gt;
+&lt;/transcodingServer&gt;</pre>
+      <div class="note"><strong>Note</strong>: If you set the optional <span class="code">imgHost</span> and <span class="code">imgPort</span>
+        attributes, ICS assumes that there is an image server running on the same server as ICS. If
+        you set the <span class="code">proxyHost</span> and <span class="code">proxyPort</span> attributes, ICS assumes that
+        you have enabled image caching.</div>
+    
+    
+      <h2>Proxying</h2>
+      <p>ICS effectively acts as a proxy between the user agent and the server holding the original
+        image, and passes all headers from the user agent to the server containing the image, with
+        the exception of the accept header.</p>
+      <p>The accept header is built up of all the media types that ICS supports, which may be
+        affected by configuration options, for example the <span class="code">gifSupport</span> attribute.</p>
+    
+    
+      <h2>Caching</h2>
+      <p>ICS supports the caching of rendered images. The caching model obeys HTTP cache control
+        directives.</p>
+      <p>A large image cache is supported that allows memory and file-based caching, with migration
+        between levels based on usage. Both source and rendered images may be held in the same
+        cache, or separate ones may be used.</p>
+    
+    
+      <h2>Watermarking</h2>
+      <p>You can configure ICS to overlay a transparent watermark on images by setting the
+          <span class="code">watermarkURL</span> attribute on the <span class="code">watermark</span> element. The
+        setting defines a single system-wide URL that contains the watermark. The attribute is empty
+        by default. If the attribute is not set, the watermarking feature is turned off.</p>
+      <div class="note"><strong>Note</strong>: In some circumstances, watermarking will not be applied. If the device can
+        display the image without transcoding, no processing takes place and the image is sent
+        directly to the target device.</div>
+    
+    
+      <h2>Disabling host and port parameters</h2>
+      <p>If the ICS servlet must for some reason be configured with the <span class="code">imgHost</span> and
+          <span class="code">imgPort</span> attributes set to an internal server address, you can disable their
+        use in requests to avoid a potential security breach. To do so, you should set the
+          <span class="code">ignoreHostParameterInRequestUrl</span> attribute on the
+        <span class="code">environment</span> element to 'true'. If the attribute is not set or has a value
+        of 'false', ICS will accept the parameters.</p>
+    
+    
+      <h2>Logging and error handling</h2>
+      <p>Another <span class="code">context-param</span> element in the <span class="filepath">web-xml</span> file
+        gives the path to the log configuration file. The <span class="code">param-name</span> attribute names
+        the file and the <span class="code">param-value</span> attribute gives the path information.</p>
+      <pre class="code">
+&lt;context-param&gt; 
+  &lt;param-name&gt;map.log4j.config.file&lt;/param-name&gt; 
+  &lt;param-value&gt;/WEB-INF/map-log4j.xml&lt;/param-value&gt; 
+&lt;/context-param&gt; </pre>
+      <p>The <span class="filepath">ics-log4j.xml</span> file has a path for the log file added to it. You
+        may want to change this value to a more suitable location.</p>
+      <p>ICS logs any remote and local image server failures that can arise from a request. If a
+        remote server returns a standard HTTP status code, ICS passes it through to the client. If
+        the remote server can not be contacted, the 404 status is passed back. If the local server
+        encounters errors when processing the URL request, or performing the transcoding operation,
+        an HTTP status of 500 is returned.</p>
+      <p>If you are using JBoss, then make sure that your <span class="filepath">jboss-service.xml</span> file
+        contains the following settings. That is to ensure the environment is compatible with the Java
+        Servlet specification.</p>
+      <pre class="code">
+&lt;attribute name="Java2ClassLoadingCompliance"&gt;false&lt;/attribute&gt;
+&lt;attribute name="UseJBossWebLoader"&gt;false&lt;/attribute&gt;</pre>
+    
+    
+      <h2>Accelerated performance</h2>
+      <p>The MAP installer includes the Java Advanced Imaging (JAI) core libraries
+          <span class="filepath">jai_codec.jar</span> and <span class="filepath">jai_core.jar</span>, located under
+          <span class="filepath">webapps/map/WEB-INF/osgi/bundles</span>. These libraries provide all the
+        basic image transcoding functions, but are less performant than native language acceleration
+        libraries that are available for some platforms. If a native implementation is present, JAI
+        will choose it for any available function.</p>
+      <p>To improve transcoding you can download the native language libraries for your platform
+        from <em>Java Advance Imaging API</em>, provided that it can support these
+      libraries.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../ics/map_about.html">Media Access Proxy</a><br/><a class="external" href="http://www.openmobilealliance.org/release_program/sti_v10.html" title="External link">Standard Transcoding Interface Specification</a><br/><a class="link" href="../mcs_config/config_map.html">media-access-proxy</a><br/></p>
+    
+  </body></html>
