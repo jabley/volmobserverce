@@ -1,0 +1,5 @@
+org.grease.runtime-0.4.jar
+org.codehaus.groovy.all-1.5.7.jar
+org.apache.ivy-2.0.0-rc2.jar
+org.apache.ant-1.7.0.jar
+com.volantis.gbuild.plugins-0.8.jar
