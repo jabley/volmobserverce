@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<root>
+    <diselect:if
+        xmlns:diselect="http://www.w3.org/2004/06/diselect"
+        expr="true()">
+        <showme/>
+    </diselect:if>
+</root>

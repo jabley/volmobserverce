@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!--===========================================================================
+! (c) Volantis Systems Ltd 2003. 
+! ======================================================================== -->
+<root xmlns:integration="http://www.volantis.com/xmlns/marlin-integration"
+    xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+    xmlns:webd="http://www.volantis.com/xmlns/marlin-web-driver">
+    <pipeline:try>
+        <pipeline:preferred>
+            <webd:post id="id" url="http://mantis:8080/mantis/Mantis_Login.jsp">
+                <webd:parameters>
+                    <!-- simple parameter -->
+                    <webd:parameter name="simple1" value="value"/>
+
+                    <!-- override the name -->
+                    <webd:parameter name="simpleOverridName" value="value">
+                        <webd:name>newName1</webd:name>
+                        <!-- fail here -->
+                        <integration:generateError/>
+                    </webd:parameter>
+
+                    <!-- override both name and value -->
+                    <webd:parameter name="junk" value="JUNKvalue">
+                        <webd:name>pageName1</webd:name>
+                        <webd:value>volyourbus1</webd:value>
+                    </webd:parameter>
+                </webd:parameters>
+
+                <webd:cookies>
+                    <webd:cookie
+                        name="CookieName"
+                        value="Value"
+                        domain="volantis"
+                        path="."
+                        maxAge="10"
+                        secure="false">
+                    </webd:cookie>
+                </webd:cookies>
+
+                <!-- Content test: IGNORE -->
+                <webd:content type="TestContent1" action="ignore"/>
+
+                <!-- Content test: CONSUME -->
+                <webd:content type="TestContent2" action="consume"/>
+            </webd:post>
+        </pipeline:preferred>
+        <pipeline:alternative>
+            <pipeline:content>Alternative Content</pipeline:content>
+        </pipeline:alternative>
+    </pipeline:try>
+</root>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 20-Oct-04	5438/1	philws	VBM:2004082706 Transfer Pipeline source into MCS
+
+ 19-Dec-03	489/1	doug	VBM:2003120807 Ensured that our current xml processes are recoverable when inside a try op
+
+ ===========================================================================
+-->

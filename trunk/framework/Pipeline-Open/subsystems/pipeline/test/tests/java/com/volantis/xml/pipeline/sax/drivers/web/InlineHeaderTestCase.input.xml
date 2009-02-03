@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!--===========================================================================
+ ! (c) Volantis Systems Ltd 2002. 
+ ! =========================================================================-->
+<root xmlns:webd="http://www.volantis.com/xmlns/marlin-web-driver">
+    <webd:get id="id" url="http://localhost:8080/mantis/Mantis_Login.jsp">
+        <webd:headers>
+
+                       <!-- simple parameter -->
+            <webd:header name="simple1" value="value"/>
+
+            <!-- override the name -->
+            <!--
+             ! This uses an element that should have been
+             ! qualified by a namespace but wasn't to ensure
+             ! that the code behaves like it used to.
+             !-->
+            <webd:header name="simpleOverridName" value="value">
+                <name>simple2</name>
+            </webd:header>
+
+            <!-- override the value -->
+            <webd:header name="simple3" value="value">
+                <webd:value>overrideValue</webd:value>
+            </webd:header>
+
+            <!-- override both name and value -->
+            <webd:header name="tempName" value="tempValue">
+                <webd:name>simple4</webd:name>
+                <webd:value>overrideValue</webd:value>
+            </webd:header>
+
+            <!-- multiple simple parameters -->
+            <webd:header name="multi" value="value1"/>
+            <webd:header name="multi" value="value2"/>
+
+
+            <!-- Test copy with value as attribute -->
+            <webd:header from="name"/>
+
+            <!-- Test copy with rename -->
+            <webd:header from="request2" name="renamedRequest"/>
+                                 
+        </webd:headers>
+    </webd:get>
+</root>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 20-Oct-04	5438/1	philws	VBM:2004082706 Transfer Pipeline source into MCS
+
+ 09-Jul-04	769/1	doug	VBM:2004070502 Improved integration tests for the Web Driver
+
+ ===========================================================================
+-->

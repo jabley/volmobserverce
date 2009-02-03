@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<root xmlns:diselect="http://www.w3.org/2004/06/diselect" xml:id="xyz">
+    <abc>
+        <qrs xml:id="abc"/>
+    </abc>
+</root>
