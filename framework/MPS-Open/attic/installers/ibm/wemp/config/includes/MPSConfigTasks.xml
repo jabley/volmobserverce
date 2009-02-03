@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+
+<property name="MMSCLog" value="error"/>
+<property name="MMSCTimeout" value="unlimited"/>
+<property name="MMSCIdsize" value="12"/>
+<property name="MMSCValidate" value="false"/>
+
+<property name="SMSCBind" value="async"/>
+<property name="SMSCMulti" value="no"/>
+
+<target name="mps-complete-config" depends="mps-config-channels,mps-add-shared-library,mps-basic-web-config">
+    <echo message="=== Performed MCS Basic Config ==="/>
+</target>
+
+
+<target name="mps-basic-config" depends="mps-config-mss,mps-add-shared-library">
+    <echo message="=== Performed MCS Basic Config ==="/>
+</target>
+
+
+<!-- Add mps shared library -->
+<target name="mps-add-shared-library" depends="action-set-mps-conntype-to-none,action-set-mps-conntype-to-soap"
+    description="Add mps shared library to Portal JVM class library">
+    <echo message="=== Add mps shared library. ==="/>
+
+    <wsadmin
+        properties="${work.dir}/was/jacl.properties"
+        script="${WpsInstallLocation}/config/templates/mps/setMPSSharedLibrary.jacl"
+        conntype="${McsConnType}"
+        user="${WasUserid}"
+        password="${WasPassword}"
+        failonerror="yes">
+        <arg value="${NodeName}"/>
+        <arg value="${ServerName}"/>
+    </wsadmin>
+</target>
+
+
+<!-- Remove mps shared library -->
+<target name="mps-remove-shared-library" depends="action-set-mps-conntype-to-none,action-set-mps-conntype-to-soap"
+    description="Remove MPS shared library from Portal JVM class library">
+    <echo message="=== Remove MPS shared library. ==="/>
+
+    <wsadmin
+        properties="${work.dir}/was/jacl.properties"
+        script="${WpsInstallLocation}/config/templates/mps/removeMPSSharedLibrary.jacl"
+        conntype="${McsConnType}"
+        user="${WasUserid}"
+        password="${WasPassword}"
+        failonerror="yes">
+        <arg value="${NodeName}"/>
+        <arg value="${ServerName}"/>
+    </wsadmin>
+</target>
+
+
+<!-- deploy mps -->
+<target name="mps-deploy-mps" depends="mps-complete-config,mps-extract-wps-ear-file,mps-update-mcs-config">
+    <echo message="=== Deployed MPS to ${WpsAppName}.ear ==="/>
+</target>
+
+
+<!-- deploy mss -->
+<target name="mps-deploy-mss" depends="mps-basic-config,mps-extract-wps-ear-file,mps-update-mcs-config">
+    <echo message="=== Deployed MSS to ${WpsAppName}.ear ==="/>
+</target>
+
+
+<!-- uninstall mps -->
+<target name="mps-uninstall-mps" depends="mps-remove-basic-web-config,mps-remove-config,mps-remove-shared-library">
+    <delete dir="${WpsInstallLocation}/mps"/>
+    <delete dir="${WpsInstallLocation}/shared/mps"/>
+    <delete dir="${WpsInstallLocation}/config/templates/mps"/>
+    <delete file="${WpsInstallLocation}/config/includes/MPSConfigTasks.xml"/>
+    <delete file="${WpsInstallLocation}/version/mps.component"/>
+
+    <echo message="=== Uninstalled MPS from ${WpsAppName}.ear ==="/>
+</target>
+
+
+<!--remove MPS from web.xml -->
+<target name="mps-remove-basic-web-config" depends="mps-extract-wps-ear-file">
+
+    <echo message="=== Removing MPS updates from web.xml in ${WpsAppName}.ear ==="/>
+
+    <style style="${WpsInstallLocation}/config/templates/mps/cleanWebXML.xsl" 
+           in="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml" 
+           out="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml.new" processor="trax">
+      <xmlcatalog>
+        <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/dtd/web-app_2_3.dtd"/>
+      </xmlcatalog>
+    </style>
+
+    <move file="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml.new"
+        tofile="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml"/>
+
+</target>
+
+
+<target name="mps-extract-wps-ear-file">
+    <echo message="=== Extracting WPS Ear file ==="/>
+    <delete file="${WpsInstallLocation}/config/work/wps.ear"/>
+    <delete dir="${WpsInstallLocation}/config/work/wps_tmp_ear"/>
+    <mkdir dir="${WpsInstallLocation}/config/work/wps_tmp_ear"/>
+
+    <!-- Extract ear from DMgr or local system -->
+    <wpwsadmin action="EXTRACT" appName="${WpsAppName}" earFile="${WpsInstallLocation}/config/work/wps.ear" failOnError="true"/>
+
+    <!-- Expand ear from DMgr or local system-->
+    <echo message="=== Expanding WPS Ear file ==="/>
+
+    <exec executable="${WasUserHome}/bin/EARExpander${was.platform.script.ext}" failonerror="true">
+        <arg line="-ear &quot;${WpsInstallLocation}/config/work/wps.ear&quot; -operationDir &quot;${WpsInstallLocation}/config/work/wps_tmp_ear&quot; -operation expand"/>
+    </exec>
+</target>
+
+
+<target name="mps-update-mcs-config" depends="mps-extract-wps-ear-file">
+    <echo message="=== Updating Live MCS Configuration ==="/>
+
+    <copy todir="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF" overwrite="true">
+        <fileset dir="${WpsInstallLocation}/mcs">
+            <include name="mcs-config.xml"/>
+            <include name="mcs-config.xsd"/>
+        </fileset>
+    </copy>
+
+    <antcall target="mps-redeploy-wps-ear-file"/>
+</target>
+
+
+<!--remove MPS from mcs-config.xml -->
+<target name="mps-remove-config" depends="mps-extract-wps-ear-file">
+    <echo message="=== Removing MPS Configuration ==="/>
+
+    <echo message="=== Removing updates from mcs-config.xml in ${WpsAppName}.ear ==="/>
+
+    <editfile>
+        <fileset dir="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF" includes="mcs-config.xml"/>
+
+        <deletelines>
+            <startpos pattern="&lt;!-- Start SMTP channel definition --&gt;"/>
+            <endpos pattern="&lt;!-- End SMTP channel definition --&gt;"/>
+        </deletelines>
+
+        <deletelines>
+            <startpos pattern="&lt;!-- Start SMSC channel definition --&gt;"/>
+            <endpos pattern="&lt;!-- End SMSC channel definition --&gt;"/>
+        </deletelines>
+
+        <deletelines>
+            <startpos pattern="&lt;!-- Start MMSC channel definition --&gt;"/>
+            <endpos pattern="&lt;!-- End MMSC channel definition --&gt;"/>
+        </deletelines>
+
+        <deletelines>
+            <startpos pattern="&lt;!-- Start WAPP channel definition --&gt;"/>
+            <endpos pattern="&lt;!-- End WAPP channel definition --&gt;"/>
+        </deletelines>
+    </editfile>
+
+    <antcall target="mps-redeploy-wps-ear-file"/>
+</target>
+
+
+<target name="mps-redeploy-wps-ear-file">
+    <!-- Expand ear from DMgr or local system -->
+    <delete file="${WpsInstallLocation}/config/work/wps.ear"/>
+    <echo message="=== Packaging WPS Ear file ==="/>
+    <exec executable="${WasUserHome}/bin/EARExpander${was.platform.script.ext}" failonerror="true">
+        <arg line="-ear &quot;${WpsInstallLocation}/config/work/wps.ear&quot; -operationDir &quot;${WpsInstallLocation}/config/work/wps_tmp_ear&quot; -operation collapse"/>
+    </exec>
+
+    <echo message="=== Deploying WPS Ear file ==="/>
+
+    <!-- Redeploy ear to DMgr -->
+<!--
+		<wpwsadmin action="REDEPLOY" appName="${WpsAppName}" earFile="${WpsInstallLocation}/config/work/wps.ear" failOnError="true"/>
+-->
+    <antcall target="action-mps-update-ear-wps"/>
+    <antcall target="action-modify-attributes-ear-wps"/>
+</target>
+
+<!-- Update the wps application -->
+<target name="action-mps-update-ear-wps" unless="isSecondNode">
+   	<logmsg level="INFO" task="action-mps-update-ear-wps" message="Config.create.ear" param1="${WpsAppName}" />
+   	<wsadmin
+        properties="${work.dir}/was/jacl.properties"
+  		profile="${WpsInstallLocation}/config/templates/mps/mps_ProfileEarWps.jacl"
+   		script="${WpsInstallLocation}/config/templates/mps/mps_updateEar.jacl"
+   		conntype="${wsadminConnType}"
+   		user="${WasUserid}"
+   		password="${WasPassword}"
+   	    failonerror="yes">
+        <arg value="${WpsInstallLocation}"/>
+    </wsadmin>
+</target>
+
+
+<target name="mps-config-channels" depends="mps-extract-wps-ear-file,mps-determine-channels,mps-config-mss,mps-config-smtp,mps-config-smsc,mps-config-mmsc,mps-config-wapp">
+    <echo message="=== Configured channels ==="/>
+</target>
+
+    <target name="mps-determine-channels">
+        <condition property="using-smtp">
+            <and>
+                <isset property="SMTPHost"/>
+                <isset property="SMTPAuth"/>
+                <isset property="SMTPUser"/>
+                <isset property="SMTPPass"/>
+            </and>
+        </condition>
+                                                                                                                                     
+        <condition property="smtp-specified">
+            <or>
+                <isset property="SMTPHost"/>
+                <isset property="SMTPAuth"/>
+                <isset property="SMTPUser"/>
+                <isset property="SMTPPass"/>
+            </or>
+        </condition>
+                                                                                                                                     
+        <condition property="smtp-incorrect">
+            <and>
+                <isset property="smtp-specified"/>
+                <not>
+                    <isset property="using-smtp"/>
+                </not>
+            </and>
+        </condition>
+        <fail if="smtp-incorrect"
+            message="If configuring the SMTP channel, you must specify -DSMTPHost, -DSMTPAuth, -DSMTPUser and -DSMTPPass"/>
+                                                                                                                                     
+        <condition property="using-smsc">
+            <and>
+                <isset property="SMSCIp"/>
+                <isset property="SMSCPort"/>
+                <isset property="SMSCUser"/>
+                <isset property="SMSCPass"/>
+                <isset property="SMSCBind"/>
+                <isset property="SMSCMulti"/>
+            </and>
+        </condition>
+                                                                                                                                     
+        <condition property="smsc-specified">
+            <or>
+                <isset property="SMSCIp"/>
+                <isset property="SMSCPort"/>
+                <isset property="SMSCUser"/>
+                <isset property="SMSCPass"/>
+            </or>
+        </condition>
+        <condition property="smsc-incorrect">
+            <and>
+                <isset property="smsc-specified"/>
+                <not>
+                    <isset property="using-smsc"/>
+                </not>
+            </and>
+        </condition>
+        <fail if="smsc-incorrect"
+            message="If configuring the SMSC channel you must specify -DSMSCIp, -DSMSCPort, -DSMSCUser, -DSMSCPass, -DSMSCBind and -DSMSCMulti"/>
+
+        <condition property="using-mmsc">
+            <and>
+                <isset property="MMSCUrl"/>
+                <isset property="MMSCCode"/>
+            </and>
+        </condition>
+                                                                                                                                     
+        <condition property="mmsc-specified">
+            <or>
+                <isset property="MMSCUrl"/>
+                <isset property="MMSCCode"/>
+            </or>
+        </condition>
+        <condition property="mmsc-incorrect">
+            <and>
+                <isset property="mmsc-specified"/>
+                <not>
+                    <isset property="using-mmsc"/>
+                </not>
+            </and>
+        </condition>
+        <fail if="mmsc-incorrect"
+            message="If configuring the MMSC channel, you must specify -DMMSCUrl and -DMMSCCode"/>
+                                                                                                                                     
+        <condition property="using-wapp">
+            <and>
+                <isset property="WAPPUrl"/>
+                <isset property="WAPPCode"/>
+                <isset property="WAPPStoreUrl"/>
+            </and>
+        </condition>
+                                                                                                                                     
+        <condition property="wapp-specified">
+            <or>
+                <isset property="WAPPUrl"/>
+                <isset property="WAPPCode"/>
+                <isset property="WAPPStoreUrl"/>
+            </or>
+        </condition>
+        <condition property="wapp-incorrect">
+            <and>
+                <isset property="wapp-specified"/>
+                <not>
+                    <isset property="using-wapp"/>
+                </not>
+            </and>
+        </condition>
+        <fail if="wapp-incorrect"
+            message="If configuring the WAP Push channel you must specify -DWAPPUrl, -DWAPPCode and -DWAPPStoreUrl"/>
+    </target>
+                                                                                                                                     
+<!--
+ ! SMTP channel configuration.
+-->
+<target name="mps-config-smtp" if="using-smtp">
+    <echo message="=== Configuring SMTP ==="/>
+
+    <editfile>
+        <fileset dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml"/>
+
+        <deletelines>
+            <startpos pattern="&lt;!-- Start SMTP channel definition --&gt;"/>
+            <endpos pattern="&lt;!-- End SMTP channel definition --&gt;"/>
+        </deletelines>
+    </editfile>
+
+    <replace dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml">
+        <replacetoken><![CDATA[<channels>]]></replacetoken>
+        <replacevalue>&lt;channels>
+            &lt;!-- Start SMTP channel definition -->
+            &lt;channel name="smtp"
+            class="com.volantis.mps.channels.SMTPChannelAdapter">
+            &lt;argument name="host" value="__smtphost__"/>
+            &lt;argument name="auth" value="__smtpauth__"/>
+            &lt;argument name="user" value="__smtpuser__"/>
+            &lt;argument name="password" value="__smtppass__"/>
+            &lt;/channel>
+            &lt;!-- End SMTP channel definition -->
+        </replacevalue>
+    </replace>
+
+    <replace dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml">
+        <replacefilter token="__smtphost__" value="${SMTPHost}"/>
+        <replacefilter token="__smtpauth__" value="${SMTPAuth}"/>
+        <replacefilter token="__smtpuser__" value="${SMTPUser}"/>
+        <replacefilter token="__smtppass__" value="${SMTPPass}"/>
+    </replace>
+</target>
+
+<!--
+ ! SMSC channel configuration.
+-->
+<target name="mps-config-smsc" if="using-smsc">
+    <echo message="=== Configuring SMSC ==="/>
+
+    <editfile>
+        <fileset dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml"/>
+        <deletelines>
+            <startpos pattern="&lt;!-- Start SMSC channel definition --&gt;"/>
+            <endpos pattern="&lt;!-- End SMSC channel definition --&gt;"/>
+        </deletelines>
+    </editfile>
+
+    <replace dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml">
+        <replacetoken><![CDATA[<channels>]]></replacetoken>
+        <replacevalue>&lt;channels>
+            &lt;!-- Start SMSC channel definition -->
+            &lt;channel name="smsc"
+            class="com.volantis.mps.channels.LogicaSMSChannelAdapter">
+            &lt;argument name="smsc-ip" value="__smscip__"/>
+            &lt;argument name="smsc-port" value="__smscport__"/>
+            &lt;argument name="smsc-user" value="__smscuser__"/>
+            &lt;argument name="smsc-password" value="__smscpass__"/>
+            &lt;argument name="smsc-bindtype" value="__smscbind__"/>
+            &lt;argument name="smsc-supportsmulti" value="__smscmulti__"/>
+            &lt;/channel>
+            &lt;!-- End SMSC channel definition -->
+        </replacevalue>
+    </replace>
+
+    <replace dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml">
+        <replacefilter token="__smscip__" value="${SMSCIp}"/>
+        <replacefilter token="__smscport__" value="${SMSCPort}"/>
+        <replacefilter token="__smscuser__" value="${SMSCUser}"/>
+        <replacefilter token="__smscpass__" value="${SMSCPass}"/>
+        <replacefilter token="__smscbind__" value="${SMSCBind}"/>
+        <replacefilter token="__smscmulti__" value="${SMSCMulti}"/>
+    </replace>
+</target>
+
+
+<!--
+ ! MMSC channel configuration.
+-->
+<target name="mps-config-mmsc" if="using-mmsc">
+    <echo message="=== Configuring MMSC ==="/>
+
+    <editfile>
+        <fileset dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml"/>
+        <deletelines>
+            <startpos pattern="&lt;!-- Start MMSC channel definition --&gt;"/>
+            <endpos pattern="&lt;!-- End MMSC channel definition --&gt;"/>
+        </deletelines>
+    </editfile>
+
+    <replace dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml">
+        <replacetoken><![CDATA[<channels>]]></replacetoken>
+        <replacevalue>&lt;channels>
+            &lt;!-- Start MMSC channel definition -->
+            &lt;channel name="mmsc"
+            class="com.volantis.mps.channels.NokiaMMSChannelAdapter">
+            &lt;argument name="url" value="__mmscurl__"/>
+            &lt;argument name="default-country-code" value="__mmsccode__"/>
+            &lt;/channel>
+            &lt;!-- End MMSC channel definition -->
+        </replacevalue>
+    </replace>
+    <replace dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml">
+        <replacefilter token="__mmscurl__" value="${MMSCUrl}"/>
+        <replacefilter token="__mmsccode__" value="${MMSCCode}"/>
+    </replace>
+</target>
+
+
+<target name="mps-config-mss">
+    <mkdir dir="${WpsInstallLocation}/mps/mss/mss_store"/>
+                                                                                                                                                                                                    
+    <replace dir="${WpsInstallLocation}/mps/mss">
+        <replacefilter token="@mss.log4j.config.file@" value="${WpsInstallLocation}/mps/mss/mss-jlog.xml"/>
+        <replacefilter token="@mss.message.store.path@" value="${WpsInstallLocation}/mps/mss/mss_store"/>
+        <replacefilter token="@mss.message.store.log@" value="${WpsInstallLocation}/logs/${ServerName}/mss.log"/>
+        <replacefilter token="@mss.message.store.info.log@" value="${WpsInstallLocation}/logs/${ServerName}/mss-info.log"/>
+                                                                                                                                                                                                    
+        <!-- Defaults to error -->
+        <replacefilter token="@mss.log.level@" value="${MMSCLog}"/>
+        <!-- Defaults to unlimited -->
+        <replacefilter token="@mss.message.store.timeout@" value="${MMSCTimeout}"/>
+        <!-- Defaults to 12 -->
+        <replacefilter token="@mss.message.store.id.size@" value="${MMSCIdsize}"/>
+        <!-- Defaults to false -->
+        <replacefilter token="@mss.message.store.validate@" value="${MMSCValidate}"/>
+        <include name="mss-config.xml"/>
+        <include name="mss-jlog.xml"/>
+    </replace>
+
+    <!-- Insert the MSS servlet, if it is not already in the web.xml -->
+    <copy file="${WpsInstallLocation}/config/templates/mps/addToXML.xsl"
+        tofile="${WpsInstallLocation}/config/work/addToXML.xsl"
+        overwrite="true">
+        <filterset>
+            <filter token="markup-exists" value="servlet[servlet-name/text() = 'MSS']"/>
+            <filter token="insert-point" value="//servlet[position() = last()]"/>
+            <filter token="insert-before-markup" value=""/>
+            <filter token="insert-after-markup" value="&lt;servlet>
+            &lt;servlet-name>MSS&lt;/servlet-name>
+            &lt;servlet-class>com.volantis.mps.servlet.MessageStoreServlet&lt;/servlet-class>
+            &lt;init-param>
+            &lt;param-name>config.file&lt;/param-name>
+            &lt;param-value>${WpsInstallLocation}/mps/mss/mss-config.xml&lt;/param-value>
+            &lt;/init-param>
+            &lt;init-param>
+            &lt;param-name>mss.log4j.config.file&lt;/param-name>
+            &lt;param-value>${WpsInstallLocation}/mps/mss/mss-jlog.xml&lt;/param-value>
+            &lt;/init-param>
+            &lt;/servlet>"/>
+        </filterset>
+    </copy>
+
+    <style style="${WpsInstallLocation}/config/work/addToXML.xsl" 
+           in="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml" 
+           out="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml.new" processor="trax">
+      <xmlcatalog>
+        <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/dtd/web-app_2_3.dtd"/>
+      </xmlcatalog>
+    </style>
+
+    <move file="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml.new"
+        tofile="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml"/>
+
+    <!-- Insert the MSS servlet filter, if it is not already in the web.xml -->
+    <copy file="${WpsInstallLocation}/config/templates/mps/addToXML.xsl"
+        tofile="${WpsInstallLocation}/config/work/addToXML.xsl"
+        overwrite="true">
+        <filterset>
+            <filter token="markup-exists" value="servlet-mapping[servlet-name/text() = 'MSS']"/>
+            <filter token="insert-point" value="//servlet-mapping[position() = last()]"/>
+            <filter token="insert-before-markup" value=""/>
+            <filter token="insert-after-markup" value="&lt;servlet-mapping>
+            &lt;servlet-name>MSS&lt;/servlet-name>
+            &lt;url-pattern>/mss/*&lt;/url-pattern>
+            &lt;/servlet-mapping>"/>
+        </filterset>
+    </copy>
+
+    <style style="${WpsInstallLocation}/config/work/addToXML.xsl" 
+           in="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml" 
+           out="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml.new" processor="trax">
+      <xmlcatalog>
+        <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/dtd/web-app_2_3.dtd"/>
+      </xmlcatalog>
+    </style>
+
+    <move file="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml.new"
+        tofile="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml"/>
+
+</target>
+
+
+<!--
+ ! WAP-Push channel configuration.
+-->
+<target name="mps-config-wapp" if="using-wapp">
+    <echo message="=== Configuring WAP Push ==="/>
+
+    <editfile>
+        <fileset dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml"/>
+        <deletelines>
+            <startpos pattern="&lt;!-- Start WAPP channel definition --&gt;"/>
+            <endpos pattern="&lt;!-- End WAPP channel definition --&gt;"/>
+        </deletelines>
+    </editfile>
+
+    <replace dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml">
+        <replacetoken><![CDATA[<channels>]]></replacetoken>
+        <replacevalue>&lt;channels>
+            &lt;!-- Start WAPP channel definition -->
+            &lt;channel name="wappush"
+            class="com.volantis.mps.channels.NowSMSWAPPushChannelAdapter">
+            &lt;argument name="url" value="__wappurl__"/>
+            &lt;argument name="default-country-code" value="__wappcode__"/>
+            &lt;argument name="message-store-url" value="__wappstoreurl__"/>
+            &lt;/channel>
+            &lt;!-- End WAPP channel definition -->
+        </replacevalue>
+    </replace>
+    <replace dir="${WpsInstallLocation}/mcs" includes="mcs-config.xml">
+        <replacefilter token="__wappurl__" value="${WAPPUrl}"/>
+        <replacefilter token="__wappcode__" value="${WAPPCode}"/>
+        <replacefilter token="__wappstoreurl__" value="${WAPPStoreUrl}"/>
+    </replace>
+</target>
+
+
+<target name="mps-basic-web-config">
+    <echo message="=== Configuring RunMps servlet ==="/>
+
+    <!-- Insert the RunMPS servlet, if it is not already in the web.xml -->
+    <copy file="${WpsInstallLocation}/config/templates/mps/addToXML.xsl"
+        tofile="${WpsInstallLocation}/config/work/addToXML.xsl"
+        overwrite="true">
+        <filterset>
+            <filter token="markup-exists" value="servlet[servlet-name/text() = 'RunMps']"/>
+            <filter token="insert-point" value="//servlet[position() = last()]"/>
+            <filter token="insert-before-markup" value=""/>
+            <filter token="insert-after-markup" value="&lt;servlet>
+            &lt;servlet-name>RunMps&lt;/servlet-name>
+            &lt;servlet-class>com.volantis.mps.servlet.RunMps&lt;/servlet-class>
+            &lt;/servlet>"/>
+        </filterset>
+    </copy>
+
+    <style style="${WpsInstallLocation}/config/work/addToXML.xsl" 
+           in="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml" 
+           out="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml.new" processor="trax">
+      <xmlcatalog>
+        <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/dtd/web-app_2_3.dtd"/>
+      </xmlcatalog>
+    </style>
+
+    <move file="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml.new"
+        tofile="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml"/>
+
+    <!-- Insert the RunMPS servlet filter, if it is not already in the web.xml -->
+    <copy file="${WpsInstallLocation}/config/templates/mps/addToXML.xsl"
+        tofile="${WpsInstallLocation}/config/work/addToXML.xsl"
+        overwrite="true">
+        <filterset>
+            <filter token="markup-exists" value="servlet-mapping[servlet-name/text() = 'RunMps']"/>
+            <filter token="insert-point" value="//servlet-mapping[position() = last()]"/>
+            <filter token="insert-before-markup" value=""/>
+            <filter token="insert-after-markup" value="&lt;servlet-mapping>
+            &lt;servlet-name>RunMps&lt;/servlet-name>
+            &lt;url-pattern>/RunMps&lt;/url-pattern>
+            &lt;/servlet-mapping>"/>
+        </filterset>
+    </copy>
+
+    <style style="${WpsInstallLocation}/config/work/addToXML.xsl" 
+           in="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml" 
+           out="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml.new" processor="trax">
+      <xmlcatalog>
+        <dtd publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" location="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/dtd/web-app_2_3.dtd"/>
+      </xmlcatalog>
+    </style>
+
+    <move file="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml.new"
+        tofile="${WpsInstallLocation}/config/work/wps_tmp_ear/wps.war/WEB-INF/web.xml"/>
+
+</target>
+
+
+<!-- ###################################################### -->
+<!-- Set conntype property for wsadmin task                 -->
+<!-- ###################################################### -->
+<!-- McsConnType="NONE" for stand alone node -->
+<target name="action-set-mps-conntype-to-none" depends="action-set-managed-node-flag" unless="IsManagedNode">
+    <property name="McsConnType" value="NONE"/>
+    <echo message="=== McsConnType=${McsConnType} ==="/>
+</target>
+
+<!-- McsConnType="SOAP" for managed node -->
+<target name="action-set-mps-conntype-to-soap" depends="action-set-managed-node-flag" if="IsManagedNode">
+    <property name="McsConnType" value="SOAP"/>
+    <echo message="=== McsConnType=${McsConnType} ==="/>
+</target>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 20-Dec-04	270/1	pcameron	VBM:2004122004 New packagers for wemp
+
+ ===========================================================================
+-->

@@ -1,0 +1,8 @@
+<!DOCTYPE product SYSTEM "product.dtd">
+<product name="IBM WebSphere Everyplace Mobile Portal">
+  <id>WEMP</id>
+  <version>5.1.0.1</version>
+  <build-info
+    date="@build-date@"
+    level="@build-level@"/>
+</product>

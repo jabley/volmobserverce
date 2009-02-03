@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<!-- The English langpack -->
+
+<langpack>
+        <str id="UserInputPanel.file.nofile.message" txt="You must select a valid file."/>
+        <str id="UserInputPanel.file.nofile.caption" txt="No File Selected"/>
+        <str id="UserInputPanel.file.notfile.message" txt="The file you have chosen either does not exist or is not valid."/>
+        <str id="UserInputPanel.file.notfile.caption"   txt="Invalid File"/>
+
+        <str id="UserInputPanel.dir.nodirectory.message" txt="You must select a valid directory."/>
+        <str id="UserInputPanel.dir.nodirectory.caption" txt="No Directory Selected"/>
+        <str id="UserInputPanel.dir.notdirectory.message" txt="The directory you have chosen either does not exist or is not valid."/>
+        <str id="UserInputPanel.dir.notdirectory.caption" txt="Invalid Directory"/>
+
+	<str id="smtp.connection.title" txt="Configure SMTP Channel" />
+      	<str txt="SMTP Server Host:" id="smtp.host.label" />
+      	<str txt="Some SMTP servers require secure authorisation with a user name and password." id="smtp.auth.description" />
+      	<str txt="SMTP Server requires authorisation" id="smtp.auth.required" />
+      	<str txt="Username:" id="smtp.user.label" />
+      	<str txt="Password:" id="smtp.password.label" />
+
+    	<str txt="Configure SMSC Channel" id="smsc.connection.title"/>
+      	<str txt="SMSC Server IP Address:" id="smsc.host.label" />
+      	<str txt="SMSC Server Port Number:" id="smsc.port.label" />
+      	<str txt="Username:" id="smsc.user.label" />
+      	<str txt="Password:" id="smsc.password.label" />
+      	<str txt="Pool Size:" id="smsc.poolsize.label" />
+      	<str txt="Session pool blocking time (ms):" id="smsc.blocking.label" />
+      	<str txt="Session validation interval (ms):" id="smsc.session.label" />
+      	<str txt="Bind Type:" id="smsc.bindtype.label" />
+      	<str txt="Asynchronous" id="smsc.bindtype.async" />
+      	<str txt="Synchronous" id="smsc.bindtype.sync" />
+      	<str txt="Supports Multi:" id="smsc.multi.label" />
+      	<str txt="No" id="smsc.multi.no" />
+      	<str txt="Yes" id="smsc.multi.yes" />
+      	<str txt="Supports Pooling:" id="smsc.pooling.label" />
+      	<str txt="No" id="smsc.pooling.no" />
+      	<str txt="Yes" id="smsc.pooling.yes" />
+      	<str txt="Behaviour when session pool is exhausted:" id="smsc.exhaust.label" />
+      	<str txt="Fail" id="smsc.exhaust.fail" />
+      	<str txt="Block" id="smsc.exhaust.block" />
+      	<str txt="Grow" id="smsc.exhaust.grow" />
+      	<str txt="Validate sessions before use:" id="smsc.validate.label" />
+      	<str txt="No" id="smsc.validate.no" />
+      	<str txt="Yes" id="smsc.validate.yes" />
+
+    	<str txt="Configure MMSC Channel" id="mmsc.connection.title"/>
+      	<str txt="MMSC Server URL:" id="mmsc.host.label" />
+      	<str txt="Default Country Code:" id="mmsc.countrycode.label" />
+
+    	<str txt="Configure WAP Push Channel" id="wappush.connection.title"/>
+      	<str txt="SMS Gateway URL:" id="wappush.host.label" />
+    	<str txt="Message Store Configuration" id="wappush.mss.title"/>
+      	<str txt="Location:" id="wappush.location.label" />
+      	<str txt="Configuration Location:" id="wappush.config.label" />
+      	<str txt="Log4J Configuration:" id="wappush.log4j.label" />
+</langpack>

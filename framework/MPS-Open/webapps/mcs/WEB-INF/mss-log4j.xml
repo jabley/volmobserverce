@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ | Sample log4j configuration file for MPS MSS.
+ ! ======================================================================= -->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- ==================================================================
+     ! An appender which behaves similar to the default configuration of
+     ! the old volantis logger.
+     ! ================================================================ -->
+    <appender name="MSS-DEFAULT-LOG"
+        class="org.apache.log4j.FileAppender">
+        <param name="Append" value="${mss.log.fileappend}"/>
+        <param name="File" value="${mss.message.store.log}"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="${mss.log.conversionpattern}"/>
+        </layout>
+    </appender>
+
+    <!-- ==================================================================
+     ! An appender which writes the output to the console.
+     ! ================================================================ -->
+    <appender name="MSS-CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="${mss.log.conversionpattern}"/>
+        </layout>
+    </appender>
+
+    <!-- ==================================================================
+     ! An appender which does the logging on a background thread similar
+     ! to the old volantis logger.
+     ! ================================================================ -->
+    <appender name="MSS-ASYNC" class="org.apache.log4j.AsyncAppender">
+        <!--
+         ! The following statement makes sure that the location of
+         ! the logger is available for the layout.
+         !-->
+        <param name="LocationInfo" value="true"/>
+
+        <!-- Use the default appender. -->
+        <appender-ref ref="MSS-DEFAULT-LOG"/>
+
+    </appender>
+
+
+    <!-- ==================================================================
+     ! All of the appenders format the output similar to the way that the
+     ! old Volantis logger did. Replace the layout element with the
+     ! following to format the output as XML statements.
+     ! ================================================================ -->
+    <!--
+            <layout class="org.apache.log4j.xml.XMLLayout">
+                    <param name="LocationInfo" value="true"/>
+            </layout>
+     !-->
+
+    <!--
+     ! The following category enables logging for mps/mss
+     ! -->
+    <category name="com.volantis.mps">
+        <priority value="${mss.log.level}"/>
+        <appender-ref ref="MSS-ASYNC"/>
+    </category>
+</log4j:configuration>
+

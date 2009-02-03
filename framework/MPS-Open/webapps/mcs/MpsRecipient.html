@@ -1,0 +1,416 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html>
+    <head>
+        <title>MPS Sample Servlet</title>
+        <style type="text/css"><!--
+        body {
+                background-color: #FEFEFE;
+        }
+        h1 {
+                font-weight: bold;
+                font-size: 22pt;
+        }
+
+        .action {
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
+        }
+        .textmargin {
+                margin-left: 10px;
+                margin-right: 10px;
+        }
+        --></style>
+    </head>
+
+    <body>
+
+        <table>
+            <tr>
+                <td>
+                    <img src="images/volantis4.jpg" border="0" alt="Volantis MPS">
+                </td>
+                <td align="left">
+                    <h1>MPS Sample Servlet</h1>
+                </td>
+            </tr>
+        </table>
+
+        <form action="RunMps" method="get" name="recipientForm">
+
+            <table border="0" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td align="right">Subject</td>
+                    <td>
+                        <input class="textmargin" name="subject" size="60" type="text" value="A Test Message Sent Via Mariner MPS"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Message Source URL</td>
+                    <td>
+                        <input class="textmargin" name="url" size="60" type="text" value="http://localhost:8080/volantis/welcome.jsp"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">OR</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="right" valign="top">XML Source</td>
+                    <td>
+                        <textarea class="textmargin" cols="60" name="xml" rows="10"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" valign="top">Charset Encoding</td>
+                    <td>
+                        <!--
+                         !   Don't set a selected value so we can test output when
+                         !   no charset is specified 
+                         !-->
+                        <select class="textmargin" name="charset" size="5">
+                            <option value="null" selected>None</option>
+                            <option value="UTF-8">UTF-8</option>
+                            <option value="ASCII">ASCII</option>
+                            <option value="Big5">Big5</option>
+                            <option value="Big5_HKSCS">Big5_HKSCS</option>
+                            <option value="SJIS">SJIS</option>
+                            <option value="Cp1250">Cp1250</option>
+                            <option value="Cp1251">Cp1251</option>
+                            <option value="Cp1252">Cp1252</option>
+                            <option value="Cp1253">Cp1253</option>
+                            <option value="Cp1254">Cp1254</option>
+                            <option value="Cp1257">Cp1257</option>
+                            <option value="ISO8859_1">ISO8859_1</option>
+                            <option value="ISO8859_2">ISO8859_2</option>
+                            <option value="ISO8859_4">ISO8859_4</option>
+                            <option value="ISO8859_5">ISO8859_5</option>
+                            <option value="ISO8859_7">ISO8859_7</option>
+                            <option value="ISO8859_9">ISO8859_9</option>
+                            <option value="ISO8859_13">ISO8859_13</option>
+                            <option value="ISO8859_15">ISO8859_15</option>
+                            <option value="KOI8_R">KOI8_R</option>
+                            <option value="UTF-16">UTF-16</option>
+                            <option value="UnicodeBigUnmarked">UnicodeBigUnmarked</option>
+                            <option value="UnicodeLittleUnmarked">UnicodeLittleUnmarked</option>
+                            <option value="UnicodeBig">UnicodeBig</option>
+                            <option value="UnicodeLittle">UnicodeLittle</option>
+                            <option value="Cp1255">Cp1255</option>
+                            <option value="Cp1256">Cp1256</option>
+                            <option value="Cp1258">Cp1258</option>
+                            <option value="ISO8859_3">ISO8859_3</option>
+                            <option value="ISO8859_6">ISO8859_6</option>
+                            <option value="ISO8859_8">ISO8859_8</option>
+                            <option value="MS932">MS932</option>
+                            <option value="EUC_JP">EUC_JP</option>
+                            <option value="EUC_JP_LINUX">EUC_JP_LINUX</option>
+                            <option value="ISO2022JP">ISO2022JP</option>
+                            <option value="MS936">MS936</option>
+                            <option value="GB18030">GB18030</option>
+                            <option value="EUC_CN">EUC_CN</option>
+                            <option value="GBK">GBK</option>
+                            <option value="ISCII91">ISCII91</option>
+                            <option value="MS949">MS949</option>
+                            <option value="EUC_KR">EUC_KR</option>
+                            <option value="ISO2022KR">ISO2022KR</option>
+                            <option value="MS950">MS950</option>
+                            <option value="MS950_HKSCS">MS950_HKSCS</option>
+                            <option value="EUC_TW">EUC_TW</option>
+                            <option value="TIS620">TIS620</option>
+                            <option value="Big5_Solaris">Big5_Solaris</option>
+                            <option value="Cp037">Cp037</option>
+                            <option value="Cp273">Cp273</option>
+                            <option value="Cp277">Cp277</option>
+                            <option value="Cp278">Cp278</option>
+                            <option value="Cp280">Cp280</option>
+                            <option value="Cp284">Cp284</option>
+                            <option value="Cp285">Cp285</option>
+                            <option value="Cp297">Cp297</option>
+                            <option value="Cp420">Cp420</option>
+                            <option value="Cp424">Cp424</option>
+                            <option value="Cp437">Cp437</option>
+                            <option value="Cp500">Cp500</option>
+                            <option value="Cp737">Cp737</option>
+                            <option value="Cp775">Cp775</option>
+                            <option value="Cp838">Cp838</option>
+                            <option value="Cp850">Cp850</option>
+                            <option value="Cp852">Cp852</option>
+                            <option value="Cp855">Cp855</option>
+                            <option value="Cp856">Cp856</option>
+                            <option value="Cp857">Cp857</option>
+                            <option value="Cp858">Cp858</option>
+                            <option value="Cp860">Cp860</option>
+                            <option value="Cp861">Cp861</option>
+                            <option value="Cp862">Cp862</option>
+                            <option value="Cp863">Cp863</option>
+                            <option value="Cp864">Cp864</option>
+                            <option value="Cp865">Cp865</option>
+                            <option value="Cp866">Cp866</option>
+                            <option value="Cp868">Cp868</option>
+                            <option value="Cp869">Cp869</option>
+                            <option value="Cp870">Cp870</option>
+                            <option value="Cp871">Cp871</option>
+                            <option value="Cp874">Cp874</option>
+                            <option value="Cp875">Cp875</option>
+                            <option value="Cp918">Cp918</option>
+                            <option value="Cp921">Cp921</option>
+                            <option value="Cp922">Cp922</option>
+                            <option value="Cp930">Cp930</option>
+                            <option value="Cp933">Cp933</option>
+                            <option value="Cp935">Cp935</option>
+                            <option value="Cp937">Cp937</option>
+                            <option value="Cp939">Cp939</option>
+                            <option value="Cp942">Cp942</option>
+                            <option value="Cp942C">Cp942C</option>
+                            <option value="Cp943">Cp943</option>
+                            <option value="Cp943C">Cp943C</option>
+                            <option value="Cp948">Cp948</option>
+                            <option value="Cp949">Cp949</option>
+                            <option value="Cp949C">Cp949C</option>
+                            <option value="Cp950">Cp950</option>
+                            <option value="Cp964">Cp964</option>
+                            <option value="Cp970">Cp970</option>
+                            <option value="Cp1006">Cp1006</option>
+                            <option value="Cp1025">Cp1025</option>
+                            <option value="Cp1026">Cp1026</option>
+                            <option value="Cp1046">Cp1046</option>
+                            <option value="Cp1047">Cp1047</option>
+                            <option value="Cp1097">Cp1097</option>
+                            <option value="Cp1098">Cp1098</option>
+                            <option value="Cp1112">Cp1112</option>
+                            <option value="Cp1122">Cp1122</option>
+                            <option value="Cp1123">Cp1123</option>
+                            <option value="Cp1124">Cp1124</option>
+                            <option value="Cp1140">Cp1140</option>
+                            <option value="Cp1141">Cp1141</option>
+                            <option value="Cp1142">Cp1142</option>
+                            <option value="Cp1143">Cp1143</option>
+                            <option value="Cp1144">Cp1144</option>
+                            <option value="Cp1145">Cp1145</option>
+                            <option value="Cp1146">Cp1146</option>
+                            <option value="Cp1147">Cp1147</option>
+                            <option value="Cp1148">Cp1148</option>
+                            <option value="Cp1149">Cp1149</option>
+                            <option value="Cp1381">Cp1381</option>
+                            <option value="Cp1383">Cp1383</option>
+                            <option value="Cp33722">Cp33722</option>
+                            <option value="ISO2022_CN_CNS">ISO2022_CN_CNS</option>
+                            <option value="ISO2022_CN_GB">ISO2022_CN_GB</option>
+                            <option value="JISAutoDetect">JISAutoDetect</option>
+                            <option value="MS874">MS874</option>
+                            <option value="MacArabic">MacArabic</option>
+                            <option value="MacCentralEurope">MacCentralEurope</option>
+                            <option value="MacCroatian">MacCroatian</option>
+                            <option value="MacCyrillic">MacCyrillic</option>
+                            <option value="MacDingbat">MacDingbat</option>
+                            <option value="MacGreek">MacGreek</option>
+                            <option value="MacHebrew">MacHebrew</option>
+                            <option value="MacIceland">MacIceland</option>
+                            <option value="MacRoman">MacRoman</option>
+                            <option value="MacRomania">MacRomania</option>
+                            <option value="MacSymbol">MacSymbol</option>
+                            <option value="MacThai">MacThai</option>
+                            <option value="MacTurkish">MacTurkish</option>
+                            <option value="MacUkraine">MacUkraine</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" valign="top">Save generated message</td>
+                    <td>
+                        <input type="checkbox" name="genMsg"/>
+                    </td>
+                </tr>
+            </table>
+
+
+            <h2>Recipients</h2>
+            <table border="1" cellpadding="5" cellspacing="0">
+                <th>Type</th>
+                <th>Channel</th>
+                <th>Device</th>
+                <th>Recipient</th>
+                <tr>
+                    <td>
+                        <select class="textmargin" name="type">
+                            <option value="to">To:</option>
+                            <option value="cc">Cc:</option>
+                            <option value="bcc">Bcc:</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="textmargin" name="channel">
+                            <option value="smtp">smtp</option>
+                            <option value="mmsc">mmsc</option>
+                            <option value="smsc">smsc</option>
+                            <option value="wappush">wappush</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="device" size="20" type="text"/>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="recipients" size="60" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="textmargin" name="type">
+                            <option value="to">To:</option>
+                            <option value="cc">Cc:</option>
+                            <option value="bcc">Bcc:</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="textmargin" name="channel">
+                            <option value="smtp">smtp</option>
+                            <option value="mmsc">mmsc</option>
+                            <option value="smsc">smsc</option>
+                            <option value="wappush">wappush</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="device" size="20" type="text"/>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="recipients" size="60" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="textmargin" name="type">
+                            <option value="to">To:</option>
+                            <option value="cc">Cc:</option>
+                            <option value="bcc">Bcc:</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="textmargin" name="channel">
+                            <option value="smtp">smtp</option>
+                            <option value="mmsc">mmsc</option>
+                            <option value="smsc">smsc</option>
+                            <option value="wappush">wappush</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="device" size="20" type="text"/>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="recipients" size="60" type="text"/>
+                    </td>
+                </tr>
+            </table>
+
+            <h2>Attachments</h2>
+            <table border="1" cellpadding="5" cellspacing="0">
+                <th>Type</th>
+                <th>Location</th>
+                <th>Channel</th>
+                <th>Device</th>
+                <th>Mime type</th>
+                <tr>
+                    <td>
+                        <select class="textmargin" name="attachmentValueType">
+                            <option value="1">File</option>
+                            <option value="2">URL</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="attachment" size="60" type="text"/>
+                    </td>
+                    <td>
+                        <select class="textmargin" name="attachmentChannel">
+                            <option value="smtp">smtp</option>
+                            <option value="mmsc">mmsc</option>
+                            <option value="smsc">smsc</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="attachmentDevice" size="20" type="text"/>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="attachmentMimeType" size="20" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="textmargin" name="attachmentValueType">
+                            <option value="1">File</option>
+                            <option value="2">URL</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="attachment" size="60" type="text"/>
+                    </td>
+                    <td>
+                        <select class="textmargin" name="attachmentChannel">
+                            <option value="smtp">smtp</option>
+                            <option value="mmsc">mmsc</option>
+                            <option value="smsc">smsc</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="attachmentDevice" size="20" type="text"/>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="attachmentMimeType" size="20" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="textmargin" name="attachmentValueType">
+                            <option value="1">File</option>
+                            <option value="2">URL</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="attachment" size="60" type="text"/>
+                    </td>
+                    <td>
+                        <select class="textmargin" name="attachmentChannel">
+                            <option value="smtp">smtp</option>
+                            <option value="mmsc">mmsc</option>
+                            <option value="smsc">smsc</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="attachmentDevice" size="20" type="text"/>
+                    </td>
+                    <td>
+                        <input class="textmargin" name="attachmentMimeType" size="20" type="text"/>
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="action" type="submit" value="Send Message"/>
+                    </td>
+                    <td>
+                        <input class="action" type="reset" value="Reset Form"/>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+    </body>
+</html>
+
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 24-Nov-04	236/1	philws	VBM:2004111209 Re-worked MPS to use new build
+
+ ===========================================================================
+-->

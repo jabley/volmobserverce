@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Assumed that this is run from the bin directory and that there is
+# a ../lib directory with the required jar files in.
+
+TOOLS_LIB=../lib
+
+java -jar $TOOLS_LIB/mcs-device-update-client-cli.jar $@
+
+#
+# ===========================================================================
+# Change History
+# ===========================================================================
+# $Log$
+
+# 20-Dec-04	6522/1	pcameron	VBM:2004122004 New packagers for wemp
+
+# 20-Dec-04	6496/1	ianw	VBM:2004121502 interim commit for Peter
+
+# ===========================================================================
+#

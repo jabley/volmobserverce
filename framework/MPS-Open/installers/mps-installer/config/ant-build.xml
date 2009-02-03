@@ -1,0 +1,140 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<project name="Replacer merger" basedir="${install.path}" default="install">
+
+    <target name="insertmps">
+        
+	<replace dir="${install.path}/webapps/mcs/WEB-INF/" includes="mcs-config.xml">
+	    <replacetoken><![CDATA[<!-- _iid: location:/mcs-config/application-plugins/mps/channels -->]]></replacetoken>
+	    <replacevalue><![CDATA[ <channel name="smtp" class="com.volantis.mps.channels.SMTPChannelAdapter">
+                    <argument name="host" value="@smtpHost@"/>
+                    <argument name="auth" value="@smtpAuth@"/>
+                    <argument name="user" value="@smtpUser@"/>
+                    <argument name="password" value="@smtpPassword@"/>
+                </channel>
+             <!-- 
+                <channel name="smsc" class="com.volantis.mps.channels.LogicaSMSChannelAdapter">
+                    <argument name="smsc-ip" value="@smsHost@"/>
+                    <argument name="smsc-port" value="@smsPort@"/>
+                    <argument name="smsc-user" value="@smsUser@"/>
+                    <argument name="smsc-password" value="@smsPassword@"/>
+                    <argument name="smsc-bindtype" value="@smsBindType@"/>
+                    <argument name="smsc-supportsmulti" value="@smsMulti@"/>
+                    <argument name="smsc-pooling" value="@smsPooling@"/>
+                    <argument name="smsc-poolsize" value="@smsPoolsize@"/>
+                    <argument name="smsc-on-pool-exhausted" value="@smsExhaust@"/>
+                    <argument name="smsc-on-pool-exhausted-wait" value="@smsBlocking@"/>
+                    <argument name="smsc-validation-interval" value="@smsSession@"/>
+                    <argument name="smsc-validate-before-use" value="@smsSessionValidate@"/>
+                </channel>
+-->
+<!-- Note: NokiaMMSChannelAdapter is available in commercial versions only -->
+<!--
+                <channel name="mmsc" class="com.volantis.mps.channels.NokiaMMSChannelAdapter">
+                    <argument name="url" value="@mmsHost@"/>
+                    <argument name="default-country-code" value="@mmsCountry@"/>
+                </channel>
+                <channel name="wappush" class="com.volantis.mps.channels.NowSMSWAPPushChannelAdapter">
+                    <argument name="url" value="@wpGateway@"/>
+                    <argument name="default-country-code" value="@mmsCountry@"/>
+                    <argument name="message-store-url" value="http://localhost:8080/mcs/mss"/>
+                </channel>
+              -->]]>
+	    </replacevalue>
+        </replace>
+
+	<replace dir="${install.path}/webapps/mcs/WEB-INF/" includes="web.xml">
+	    <replacetoken><![CDATA[<!-- _iid: location:/web-app/servlet -->]]></replacetoken>
+	    <replacevalue><![CDATA[<servlet>
+        <servlet-name>MSS</servlet-name>
+        <servlet-class>com.volantis.mps.servlet.MessageStoreServlet</servlet-class>
+        <init-param>
+            <param-name>config.file</param-name>
+            <param-value>@wpMssConfig@/mss-config.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>mss.log4j.config.file</param-name>
+            <param-value>@wpMssLog@/mss-log4j.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>RunMps</servlet-name>
+        <servlet-class>com.volantis.mps.servlet.RunMps</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BMS</servlet-name>
+        <servlet-class>com.volantis.mps.bms.impl.servlet.BasicMessageServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+]]>
+            </replacevalue>
+        </replace>
+
+	<replace dir="${install.path}/webapps/mcs/WEB-INF/" includes="web.xml">
+	    <replacetoken><![CDATA[<!-- _iid: location:/web-app/servlet-mapping -->]]></replacetoken>
+	    <replacevalue><![CDATA[<servlet-mapping>
+    <servlet-name>MSS</servlet-name>
+        <url-pattern>/mss/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RunMps</servlet-name>
+        <url-pattern>/RunMps</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BMS</servlet-name>
+        <url-pattern>/bms/*</url-pattern>
+    </servlet-mapping>
+]]>
+            </replacevalue>
+        </replace>
+
+    </target>
+
+    <target name="fixupmps">
+        
+	<replace dir="${install.path}/webapps/mcs/WEB-INF/" includes="mcs-config.xml" value="defaultvalue">
+	    <replacefilter token="YOURHOST:YOURPORT/mcs" value="localhost:8080/mcs" />
+            <replacefilter token="@smtpHost@" value="${smtpHost}" />
+            <replacefilter token="@smtpAuth@" value="${smtpAuth}" />
+            <replacefilter token="@smtpUser@" value="${smtpUser}" />
+            <replacefilter token="@smtpPassword@" value="${smtpPassword}" />
+            <replacefilter token="@smsHost@" value="${smsHost}" />
+            <replacefilter token="@smsPort@" value="${smsPort}" />
+            <replacefilter token="@smsUser@" value="${smsUser}" />
+            <replacefilter token="@smsPassword@" value="${smsPassword}" />
+            <replacefilter token="@smsBindType@" value="${smsBindType}" />
+            <replacefilter token="@smsMulti@" value="${smsMulti}" />
+            <replacefilter token="@smsPooling@" value="${smsPooling}" />
+            <replacefilter token="@smsPoolsize@" value="${smsPoolsize}" />
+            <replacefilter token="@smsExhaust@" value="${smsExhaust}" />
+            <replacefilter token="@smsBlocking@" value="${smsBlocking}" />
+            <replacefilter token="@smsSession@" value="${smsSession}" />
+            <replacefilter token="@smsSessionValidate@" value="${smsSessionValidate}" />
+            <replacefilter token="@mmsHost@" value="${mmsHost}" />
+            <replacefilter token="@mmsCountry@" value="${mmsCountry}" />
+            <replacefilter token="@wpGateway@" value="${wpGateway}" />
+        </replace>
+
+	<replace dir="${install.path}/webapps/mcs/WEB-INF/" includes="web.xml" value="defaultvalue">
+            <replacefilter token="@wpMssConfig@" value="${wpMssConfig}" />
+            <replacefilter token="@wpMssLog@" value="${wpMssLog}" />
+        </replace>
+    </target>
+
+</project>

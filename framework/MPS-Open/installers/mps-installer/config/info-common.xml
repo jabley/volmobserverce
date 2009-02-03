@@ -1,0 +1,13 @@
+<xfragment>
+    <info>
+        <appname>Message Preparation Server</appname>
+        <appversion>${installer.product.revision}</appversion>
+        <appsubpath>MCS</appsubpath>
+        <authors>
+            <author name="Volantis Systems Ltd." email="info@volantis.com"/>
+        </authors>
+        <url>http://www.volantis.com/</url>
+        <summarylogfilepath>$INSTALL_PATH/Uninstaller/MPSInstallSummary.html</summarylogfilepath>
+        <uninstaller write="no" />
+    </info>
+</xfragment>

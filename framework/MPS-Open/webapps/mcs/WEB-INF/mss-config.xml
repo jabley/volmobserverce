@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<messageStoreServer
+    xmlns="http://www.volantis.com/xmlns/mss/config"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.volantis.com/xmlns/mss/config http://www.volantis.com/schema/config/v1.0/mss-config.xsd">
+    <environment log4jConfigurationFile="${mpsWapPushMSSLog}/mss-log4j.xml"/>
+
+    <!--
+     ! This specifies where to find the message store that the message store
+     ! server utilizes.
+     !
+     ! The location is a required attribute, as is the id-size (which has a
+     ! minimum of 10).  The timeout and validate attributes are not required
+     ! and this example file shows them with the value they default to if
+     ! not set.
+     !-->
+    <message-store
+        location="${mpsWapPushMSS}"
+        timeout="${mpsSMSCSession}"
+        id-size="12"
+        validate="${mpsSMSCSessionValidate}"/>
+</messageStoreServer>
+

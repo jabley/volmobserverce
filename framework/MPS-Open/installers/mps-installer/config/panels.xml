@@ -1,0 +1,21 @@
+<xfragment>
+<!-- 
+    The panels section.
+    We indicate here which panels we want to use. The order will be respected.
+-->
+    <panels>
+        <panel classname="HelloPanel"/>
+        <panel classname="HTMLInfoPanel"/>
+        <panel classname="HTMLLicencePanel"/>
+        <panel classname="PacksPanel"/> 
+        <panel classname="UserInputPanel"/>
+        <panel classname="UserInputPanel"/>
+        <panel classname="UserInputPanel"/>
+        <panel classname="TargetPanel"/> 
+        <panel classname="UserInputPanel"/>
+        <!-- <panel classname="DataCheckPanel" />  -->
+        <panel classname="SummaryPanel"/> 
+        <panel classname="InstallPanel"/>
+        <panel classname="FinishPanel"/> 
+    </panels>
+</xfragment>
