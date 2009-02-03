@@ -1,0 +1,2 @@
+Bundle-Name=Volantis Synergetics Configuration Monitor
+Service-Component=OSGI-INF/com.volantis.osgi.cm.monitor.ConfigurationMonitor.xml

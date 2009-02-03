@@ -1,0 +1,10 @@
+<product>
+    <name>Synergetics</name>
+    <organisation>com.volantis</organisation>
+    <version>5.1.0</version>
+    <!--<branch>5.1</branch>-->
+    <other>
+        <identifier>testtools</identifier>
+        <version>3.0</version>
+    </other>
+</product>

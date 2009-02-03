@@ -1,0 +1,3 @@
+Bundle-Activator=com.volantis.synergetics.impl.directory.monitor.Activator
+Bundle-Name=Volantis Synergetics Directory Monitor
+
