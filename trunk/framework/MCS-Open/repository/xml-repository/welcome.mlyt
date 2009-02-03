@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<variable-policy xmlns="http://www.volantis.com/xmlns/2006/02/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpdm="http://www.volantis.com/xmlns/2006/02/marlin-rpdm" xmlns:struct="http://www.volantis.com/xmlns/2005/10/ThemeStruct" xsi:schemaLocation="http://www.volantis.com/xmlns/2006/02/marlin-lpdm http://www.volantis.com/schema/2006/02/marlin-lpdm.xsd">
+    <type>layout</type>
+    <variants>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Mobile</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat rows="5" columns="1" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" horizontalAlignment="left" verticalAlignment="center" widthUnits="pixels" optimizationLevel="never">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <paneFormat name="logo" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat name="congratulations" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat name="background" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" verticalAlignment="bottom" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat name="links" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat name="copyright" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" horizontalAlignment="center" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+        <variant>
+            <type>layout</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Master</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <layout>
+                    <canvasLayout>
+                        <gridFormat rows="4" columns="1" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" widthUnits="percent" optimizationLevel="never">
+                            <gridFormatColumns>
+                                <gridFormatColumn widthUnits="percent"/>
+                            </gridFormatColumns>
+                            <gridFormatRow>
+                                <gridFormat rows="1" columns="2" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" horizontalAlignment="left" verticalAlignment="top" width="100" widthUnits="percent" optimizationLevel="never">
+                                    <gridFormatColumns>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                        <gridFormatColumn widthUnits="percent"/>
+                                    </gridFormatColumns>
+                                    <gridFormatRow>
+                                        <paneFormat name="logo" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" horizontalAlignment="left" verticalAlignment="top" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                                        <paneFormat name="links" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" horizontalAlignment="left" verticalAlignment="top" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                                    </gridFormatRow>
+                                </gridFormat>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat name="congratulations" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat name="background" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                            <gridFormatRow>
+                                <paneFormat name="copyright" backgroundComponentType="image" borderWidth="0" cellPadding="0" cellSpacing="0" horizontalAlignment="center" width="100" widthUnits="percent" filterOnKeyboardUsability="0" optimizationLevel="never"/>
+                            </gridFormatRow>
+                        </gridFormat>
+                    </canvasLayout>
+                </layout>
+            </content>
+        </variant>
+    </variants>
+</variable-policy>
