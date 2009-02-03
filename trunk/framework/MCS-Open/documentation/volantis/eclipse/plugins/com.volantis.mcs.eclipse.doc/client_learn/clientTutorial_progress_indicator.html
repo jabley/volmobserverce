@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Showing progress</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_popup.html" title="Creating a popup">Previous</a></li><li><a href="../client_learn/clientTutorial_ticker_tape.html" title="Creating a ticker tape">Next</a></li></ul></td></tr></table><h1>Showing progress</h1>
+    <p>A Progress Bar widget provides a visual indication of the amount of a process that has been
+      completed and the amount that remains. This prevents the user thinking that something has gone
+      wrong when the server or client-side widget is busy. It also provides the user with some
+      indication of how long they are likely to have to wait before the operation is completed.</p>
+    <p>A Progress Bar widget operates in one of two modes, active and passive. In active mode the
+      widget periodically queries the server to obtain the latest percentage complete state. In
+      passive mode the widget waits for one of its JavaScript methods or APE actions to be called.</p>
+    <p>We will demonstrate how to create a passive progress bar. Please see <em>Active progress bar</em> to learn about using AJAX with the Progress
+      Bar widget.</p>
+    <p><img src="../graphics/cfTutorial/progressbar.png" alt="Progress Bar widget" title="Progress Bar widget"/></p>
+  <h2>Showing progress <a href="../client/wag_widgets_progress_indicator.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">widget:progress</span> element defines a progress bar <pre class="code">
+&lt;widget:progress id="myProgressBar" class="widget"/&gt;</pre>
+    </li></ol><h2>JavaScript support <a href="../client/wag_widgets_javascript.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The JavaScript methods allow to control the widget. The <span class="code">widget:script</span>
+      elements contain scripts to be executed. <span class="code">$W(id)</span> identifies the widget by its
+        <span class="code">id</span>. <span class="code">hide()</span> and <span class="code">show()</span> allow to hide and display the
+      progress bar, respectively. The <span class="code">reset</span> method clears the progress bar.
+        <span class="code">progress(x)</span> sets the current progress. If <span class="code">x</span> is less or equal 0,
+      the progress is set to 0. If <span class="code">x</span> is more or equal 100, the progress is set to 100.
+      If <span class="code">x</span> is not a number, the progress is not changed.<pre class="code">
+&lt;widget:script id="hide"&gt;$W('progressBar').hide()&lt;/widget:script&gt;
+&lt;widget:script id="show"&gt;$W('progressBar').show()&lt;/widget:script&gt;
+&lt;widget:script id="progress"&gt; $W('progressBar').progress(15);
+  $W('progressValue').setContent(String($W('progressBar').get()) + "%");
+&lt;/widget:script&gt;
+&lt;widget:script id="reset"&gt; $W('progressBar').reset()
+  $W('progressValue').setContent(String($W('progressBar').get()) + "%");
+&lt;/widget:script&gt;</pre></li><li><span class="code">get()</span> returns the current progress, and the <span class="code">widget:display</span>
+      element shows its numerical value<pre class="code">
+&lt;widget:display id="progressValue"/&gt;</pre></li><li>The <span class="code">widget:button</span> elements are used to invoke the above described scripts<pre class="code">
+&lt;widget:button action="hide#invoke"&gt;hide&lt;/widget:button&gt;
+&lt;widget:button action="show#invoke"&gt;show&lt;/widget:button&gt;
+&lt;widget:button action="progress#invoke"&gt;progress&lt;/widget:button&gt;
+&lt;widget:button action="reset#invoke"&gt;reset&lt;/widget:button&gt;</pre></li><li>The <span class="code">event:listener</span> element invokes the script contained by
+        <span class="code">mcs:handler</span> that refreshes <span class="code">widget:display</span> when the
+      XDIME page is reloaded<pre class="code">
+&lt;mcs:handler id="onLoad" type="text/javascript"&gt;
+  $W('progressValue').setContent(String($W('progressBar').get()) + "%");
+&lt;/mcs:handler&gt;
+&lt;event:listener observer="body" handler="#onLoad" event="load"/&gt;</pre></li></ol><h2>Complete XDIME 2 code</h2><ol><li>Create a <span class="filepath">progressbar.xdime</span> file</li><li>Modify <span class="filepath">progressbar.xdime</span> by including the following code<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:event="http://www.w3.org/2001/xml-events"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Progress Indicator Widget&lt;/title&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:theme" href="/themes/progressbar.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+    &lt;widget:script id="hide"&gt;$W('progressBar').hide()&lt;/widget:script&gt;
+    &lt;widget:script id="show"&gt;$W('progressBar').show()&lt;/widget:script&gt;
+    &lt;widget:script id="progress"&gt; $W('progressBar').progress(15);
+      $W('progressValue').setContent(String($W('progressBar').get()) + "%");
+    &lt;/widget:script&gt;
+    &lt;widget:script id="reset"&gt; $W('progressBar').reset()
+      $W('progressValue').setContent(String($W('progressBar').get()) + "%");
+    &lt;/widget:script&gt;
+    &lt;mcs:handler id="onLoad" type="text/javascript"&gt;
+      $W('progressValue').setContent(String($W('progressBar').get()) + "%");
+    &lt;/mcs:handler&gt;
+    &lt;event:listener observer="body" handler="#onLoad" event="load"/&gt;
+  &lt;/head&gt;
+  &lt;body id="body"&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Progress Indicator"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+          &lt;widget:progress id="progressBar" class="widget"/&gt;
+          &lt;div id="progressValueDisplay"&gt;
+            &lt;widget:display id="progressValue"/&gt;
+          &lt;/div&gt;
+          &lt;div class="buttons"&gt;
+            &lt;widget:button action="hide#invoke"&gt;hide&lt;/widget:button&gt;
+            &lt;widget:button action="show#invoke"&gt;show&lt;/widget:button&gt;
+            &lt;widget:button action="progress#invoke"&gt;progress&lt;/widget:button&gt;
+            &lt;widget:button action="reset#invoke"&gt;reset&lt;/widget:button&gt;
+          &lt;/div&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/event_listener.html">event:listener</a></th><td><p>Declares an event listener and registers it with a specific element.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/mcs_handler.html">mcs:handler</a></th><td><p>Container for inline JavaScript content. It does not support nesting of handlers.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_button.html">widget:button</a></th><td><p>A general purpose element, used by widgets which need a button-like control.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_display.html">widget:display</a></th><td><p>An inline widget element used to display some text content. It may be associated with a
+        widget property. In such cases, the displayed content represents the value of the selected
+        property.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_progress.html">widget:progress</a></th><td><p>The main element for a Progress Bar widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_script.html">widget:script</a></th><td><p>Contains a script that can be executed by the <span class="code">invoke</span> action.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr></tbody></table>
+  </body></html>

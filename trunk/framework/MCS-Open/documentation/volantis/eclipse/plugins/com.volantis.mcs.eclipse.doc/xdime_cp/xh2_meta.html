@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>meta</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>meta</h1><h2>Purpose</h2>
+      <p>Defines one or more named properties associated with a document in the
+        <span class="code">head</span> element, for example the date of publication or keywords, or another
+        document element. The value of a property may be contained in the element body or in the
+          <span class="code">content</span> attribute.</p>
+      <p>The <span class="code">property</span> attribute defines the name of the property. The content of the
+        element or the <span class="code">content</span> attribute defines the value of the property. The
+          <span class="code">about</span> attribute and the property values can be used to refer to an element in
+        the same document, in which case <span class="code">meta</span> should precede it, or to an
+        external resource using a URI.</p>
+      <p>You can use specific <span class="code">property</span> attribute values to control external content
+        caching. See <em>Caching XDIME 2</em> for details of the caching
+        operation, and how you should use these settings.</p>
+      <p>The <span class="code">mcs:refresh</span>
+        <span class="code">property</span> attribute value can be used to set the timing and URL values for
+        refresh and redirect. See <em>Timed redirect and refresh</em> for details.</p>
+      <p>The <span class="code">description</span>, <span class="code">keywords</span> and <span class="code">dc:creator</span> properties
+        allow the page author to provide meta information about a web page, and control how the
+        document is described by search engines. Refer to <em>Meta information for search engines</em> for further details.</p>
+      <div class="note"><strong>Note</strong>: The <span class="code">dc:creator</span> property is taken from the Dublin Core meta property
+        set in the namespace <span class="filepath">http://purl.org/dc/elements/1.1/</span>.</div>
+    <h2>Contained by</h2><p><a href="../xdime_cp/xh2_head.html">head</a></p><h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">about</th><td>The resource with the specified property</td><td>xs:anyURI</td><td>none </td><td>  </td><td>optional </td></tr><tr><th class="firstcell" scope="row">content</th><td>The value of the property</td><td>xs:string</td><td>none </td><td>  </td><td>optional </td></tr><tr><th class="firstcellrequired" scope="row">property</th><td>The name of the property. The values given are specific to MCS.</td><td>xs:QName</td><td>none </td><td>mcs:fragment-link-label, mcs:enclosing-fragment-link-label, mcs:cache-auto,
+          mcs:cache-scope, mcs:cache-expires, mcs:max-age, mcs:no-cache, mcs:refresh, description,
+          keywords, dc:creator  </td><td>required </td></tr></table><h2>Attribute groups</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a>, <a href="../xdime_cp/sel_attr_cp.html">Selection attributes</a></p><h2>Example</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"&gt;
+  &lt;head&gt;
+    &lt;title&gt;html&lt;/title&gt;
+    &lt;meta property="mcs:cache-scope"&gt;optimistic&lt;/meta&gt;
+    &lt;meta property="mcs:max-age"&gt;180&lt;/meta&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h3&gt; Hello! &lt;/h3&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../wag/xdime_cp_er.html">XHTML elements</a><br/><a class="link" href="../wag/wag_meta_fragment.html">Fragment links in XDIME 2</a><br/><a class="link" href="../wag/wag_xdime2_cache.html">Caching XDIME 2</a><br/><a class="link" href="../wag/wag_redirect_refresh.html">Timed redirect and refresh</a><br/><a class="link" href="../wag/wag_meta_description.html">Meta information for search engines</a><br/></p>
+    </body></html>

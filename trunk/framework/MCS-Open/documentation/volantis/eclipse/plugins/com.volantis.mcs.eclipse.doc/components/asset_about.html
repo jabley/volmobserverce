@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Types of variant</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Types of variant</h1>
+    <p>MCS defines different variant types that are used in components in different combinations.</p>
+    <ul>
+      <li>Device specific</li>
+      <li>Convertible</li>
+      <li>Generic</li>
+      <li>Null</li>
+    </ul>
+    <p>MCS uses the variant type to locate variants that are the best match for the device in use.
+      The type also determines which of the values in the metadata of the Component editor section
+      are required, and therefore the error messages that you may see. </p>
+    
+      <h2>Device specific variants</h2>
+      <p>Most component variants are device specific. They can be targeted at a particular device or
+        device family. Text variants are an example of a targeted variant.</p>
+      <p>MCS searches the repository for a variant which is targeted at the device currently in use.
+        If there is no exact match, MCS searches for variants that match the parent of the current
+        device in the device tree. This search continues up the hierarchy until either a variant is
+        found, or MCS reaches the root of the device tree. </p>
+    
+    
+      <h2>Convertible variants</h2>
+      <p>Image variants may be treated as convertible variants. MCS routes the image through the
+        Media Access Proxy (MAP), changing the file format and scaling it to fit the device in use.
+      </p>
+    
+    
+      <h2>Generic variants</h2>
+      <p>Generic audio and image variants cater for variants that are not targeted, where the task
+        of identifying images for particular devices at design time is very time consuming. MCS
+        searches for a variant with properties that make it suitable. For audio variants, for
+        example, the decision is based on how the audio data is encoded. With images, encoding,
+        pixel depth, rendering and image size are all used. </p>
+    
+    
+      <h2>Null variants</h2>
+      <p>Using a null variant value means that MCS will not search for variants matching other
+        devices in the device hierarchy. It behaves as if no variant exists for this device </p>
+      <p>For example, setting an image variant for a PC device to 'Null' will prevent that image
+        being used as fallback for a specific browser. </p>
+      <div class="note"><strong>Note</strong>: If you define a device specific or null type for a device, no other variants
+        in the component may be targeted at that device. If another device specific or null variant
+        has the same target, you will see an error message. </div>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../components/component_and_assets.html">Components and variants</a><br/><a class="link" href="../components/asset_selection_criteria.html">Variant selection criteria</a><br/><a class="link" href="../components/asset_common_attr.html">Common variant attributes</a><br/></p>
+    
+  </body></html>

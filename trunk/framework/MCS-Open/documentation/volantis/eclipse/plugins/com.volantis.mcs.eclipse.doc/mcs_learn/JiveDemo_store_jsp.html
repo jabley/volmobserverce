@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>XDIME 2 and JavaScript</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../mcs_learn/JiveDemo_about_jive.html" title="Next steps with MCS">Start</a></li><li><a href="../mcs_learn/JiveDemo_store_xd.html" title="Employee store page">Previous</a></li></ul></td></tr></table><h1>XDIME 2 and JavaScript</h1>
+    <p>This page illustrates how to generate XDIME 2 from a Java Server Page, which is based on the
+      article layout.</p>
+    <p><img src="../graphics/jive_store_jsp.jpg" alt="Employee Store Page" title="Employee Store Page"/></p>
+  <h2>JavaScript</h2><p>As you have in previous modules, add the common sections to the page</p><ol><li>Create an XML file <span class="filepath">checkAvail.jsp</span> in the main
+      <span class="filepath">jive</span> folder</li><li>The script calculates a random stock quantity. We do not discuss the detail here, but you
+      can see that the 'item' and 'size' strings are the parameters passed by the form. Enter the
+      following code after the XML declaration, but before the <span class="code">html</span> element.<pre class="code">
+&lt;%@ page import="java.lang.Math.*"%&gt;
+&lt;%@ page import="com.volantis.mcs.servlet.*" %&gt;
+&lt;%
+  String result = null;
+  response.setContentType("x-application/vnd.xdime+xml");
+  String size = MarinerServletRequestContext.findInstance(request).getParameter("size");
+  String item = MarinerServletRequestContext.findInstance(request).getParameter("item");
+  double dstock = Math.random() * 100.0;
+  long stock = Math.round(dstock);
+%&gt;</pre>
+    </li><li>The calculated stock value is inserted it into the XDIME 2 markup in the article section
+      along with the request parameters<pre class="code">
+&lt;div id="article"&gt;
+  &lt;% if (stock &gt; 0) { %&gt;
+    We currently have &lt;%=stock%&gt; units
+    of the &lt;%=item%&gt; in &lt;%=size%&gt; size in stock.
+  &lt;% } else { %&gt; 
+    Unfortunately, the &lt;%=item%&gt; in &lt;%=size%&gt; size
+    is temporarily out of stock.
+  &lt;% } %&gt;            
+&lt;/div&gt;</pre>
+    </li></ol><h2>Complete XDIME 2 code</h2><p>The complete code should look like this.</p><pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;%@ page import="java.lang.Math.*"%&gt;
+&lt;%@ page import="com.volantis.mcs.servlet.*" %&gt;
+&lt;%
+  String result = null;
+  response.setContentType("x-application/vnd.xdime+xml");
+  String size = MarinerServletRequestContext.findInstance(request).getParameter("size");
+  String item = MarinerServletRequestContext.findInstance(request).getParameter("item");
+  double dstock = Math.random() * 100.0;
+  long stock = Math.round(dstock);
+%&gt;
+
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Availability&lt;/title&gt;
+    &lt;!--Links to the layout and theme for this page --&gt;
+    &lt;link rel="mcs:layout" href="/jivearticle.mlyt"/&gt;
+    &lt;link rel="mcs:theme" href="/jive.mthm"/&gt;
+  &lt;/head&gt;
+  &lt;!-- Page body --&gt;
+  &lt;body&gt;
+    &lt;!-- The common material for the page header --&gt;
+    &lt;div&gt;
+      &lt;!-- The banner --&gt;
+      &lt;div id="logo"&gt;
+        &lt;a class="homelogo" href="jivehome.xdime"&gt;
+          &lt;object class="homelogo" src="/images/jive_logo.mimg"/&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div id="photos"&gt;
+        &lt;object src="/images/photos.mimg"/&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- The main menu --&gt;
+    &lt;div id="menu_company_news" class="main_menu"&gt;
+      &lt;a class="pnav" href="companyNews.xdime"&gt;
+        &lt;object src="/images/menu_company_news.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="menu_human_resources" class="main_menu"&gt;
+      &lt;a class="pnav" href="humanResources.xdime"&gt;
+        &lt;object src="/images/menu_human_resources.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="menu_employee_store" class="main_menu"&gt;
+      &lt;a class="pnav" href="employeeStore.xdime"&gt;
+        &lt;object src="/images/menu_employee_store.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;!--The current stock price--&gt;
+    &lt;div id="stockprice"&gt; Latest from NYSE for Jive (VBE): 21.50 (+ 2.25) &lt;/div&gt;
+    &lt;!-- Page Title --&gt;
+    &lt;h2 id="title"&gt;Availability&lt;/h2&gt;
+    &lt;!-- The article --&gt;
+    &lt;div id="article"&gt;
+      &lt;% if (stock &gt; 0) { %&gt;
+      We currently have &lt;%=stock%&gt; units
+      of the &lt;%=item%&gt; in &lt;%=size%&gt; size in stock.
+      &lt;% } else { %&gt; 
+      Unfortunately, the &lt;%=item%&gt; in &lt;%=size%&gt; size
+      is temporarily out of stock.
+      &lt;% } %&gt;            
+    &lt;/div&gt;
+    &lt;!-- The common material for the page footer --&gt;
+    &lt;div id="footer"&gt;
+      &lt;p&gt;Copyright &lt;a href="jivehome.xdime"&gt;Jive Sports&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;&gt;</pre></body></html>

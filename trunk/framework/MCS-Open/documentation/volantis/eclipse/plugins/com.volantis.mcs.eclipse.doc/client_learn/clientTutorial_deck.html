@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>The Deck widget</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_stopwatch.html" title="Stopwatch">Previous</a></li><li><a href="../client_learn/clientTutorial_autocompleter_ajax.html" title="Autocompleter">Next</a></li></ul></td></tr></table><h1>The Deck widget</h1>
+    <p>The Deck widget presents data as a series of pages. The content of the widget may be
+      specified directly on an XDIME page, or can be downloaded from an external source using AJAX.
+      Refer to <em>The Deck widget with AJAX</em> for more information.</p>
+    <p><img src="../graphics/cfTutorial/deck.png" alt="Deck widget" title="Deck widget"/></p>
+  <h2>The Deck widget <a href="../client/wag_widgets_ajax_deck.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The widget is defined by <span class="code">widget:deck</span><pre class="code">
+&lt;widget:deck id="deck" style="mcs-deck-mode:switch"&gt;
+  &lt;widget:deck-page&gt;
+    &lt;h1&gt;Dorothy and the Wizard in Oz&lt;/h1&gt;
+    &lt;h2&gt;by L. Frank Baum&lt;/h2&gt;
+  &lt;/widget:deck-page&gt;
+  &lt;widget:deck-page&gt;
+    &lt;h4&gt;Chapter 1: The Earthquake&lt;/h4&gt;
+    &lt;p&gt;The train from &amp;apos;Frisco was very late. It should have arrived at
+      Hugson&amp;apos;s Siding at midnight, but it was already five
+      o&amp;apos;clock and the gray dawn was breaking in the east when the little
+      train slowly rumbled up to the open shed that served for the station-house.
+      As it came to a stop the conductor called out in a loud voice:&lt;/p&gt;
+    &lt;p&gt;&amp;quot;Hugson&amp;apos;s Siding!&amp;quot;&lt;/p&gt;
+  &lt;/widget:deck-page&gt;
+  ...
+&lt;/widget:deck&gt;</pre></li><li>The Deck widget may work in two modes. In unfold mode, the consecutive page is displayed
+      below the one already visible. In switch mode a new part of the content replaces the one being
+      displayed. The <span class="uicontrol">mcs-deck-mode</span> property allows to control the Deck widget
+      mode. When it is set to 'switch', deck will display a single page. When it is set to 'unfold',
+      the consecutive pages will be displayed below those already visible.</li><li>The <span class="code">widget:deck-page</span> element defines a single page within the deck
+      widget</li></ol><h2>Actions, properties and events <a href="../client/wag_widgets_ape.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>APE provides a way for the user to navigate within a deck. The user can go to the first or
+      last, and previous or next page.<pre class="code">
+&lt;widget:button action="deck#first-page"&gt;&amp;lt;&amp;lt;&lt;/widget:button&gt;
+&lt;widget:button action="deck#previous-page"&gt;&amp;lt;&lt;/widget:button&gt;
+&lt;widget:button action="deck#next-page"&gt;&amp;gt;&lt;/widget:button&gt;
+&lt;widget:button action="deck#last-page"&gt;&amp;gt;&amp;gt;&lt;/widget:button&gt;</pre></li><li><span class="code">widget:display</span> can be used to present information about the current
+      state of the widget. The <span class="code">displayed-page-number</span> property returns the number of the
+      page being displayed. The <span class="code">pages-count</span> property returns the total number of
+      available pages.<pre class="code">
+&lt;widget:display property="deck#displayed-page-number"/&gt; of
+&lt;widget:display property="deck#pages-count"/&gt;</pre></li></ol><h2>Complete XDIME 2 code</h2><ol><li>Create a <span class="filepath">deck.xdime</span> file</li><li>Modify the <span class="filepath">deck.xdime</span> file by including the following code<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:event="http://www.w3.org/2001/xml-events"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Deck (switch mode)&lt;/title&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Deck"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+          &lt;div&gt;
+            &lt;table style="width:100%"&gt;
+              &lt;tr&gt;
+                &lt;td style="text-align:left"&gt;
+                  &lt;widget:button action="deck#first-page"&gt;&amp;lt;&amp;lt;&lt;/widget:button&gt;
+                  &lt;widget:button action="deck#previous-page"&gt;&amp;lt;&lt;/widget:button&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align:center"&gt;
+                  &lt;widget:display property="deck#displayed-page-number"/&gt; of
+                  &lt;widget:display property="deck#pages-count"/&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align:right"&gt;
+                  &lt;widget:button action="deck#next-page"&gt;&amp;gt;&lt;/widget:button&gt;
+                  &lt;widget:button action="deck#last-page"&gt;&amp;gt;&amp;gt;&lt;/widget:button&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+          &lt;widget:deck id="deck" style="mcs-deck-mode:switch"&gt;
+            &lt;widget:deck-page&gt;
+              &lt;h1 style="text-align:center"&gt;Dorothy and the Wizard in Oz&lt;/h1&gt;
+              &lt;h2 style="text-align:center"&gt;by L. Frank Baum&lt;/h2&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;h4 style="text-align:center"&gt;Chapter 1: The Earthquake&lt;/h4&gt;
+              &lt;p&gt;The train from &amp;apos;Frisco was very late. It should have
+                arrived at Hugson&amp;apos;s Siding at midnight, but it was already
+                five o&amp;apos;clock and the gray dawn was breaking in the east
+                when the little train slowly rumbled up to the open shed that
+                served for the station-house. As it came to a stop the conductor
+                called out in a loud voice:&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Hugson&amp;apos;s Siding!&amp;quot;&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;At once a little girl rose from her seat and walked to the door of
+                the car, carrying a wicker suit-case in one hand and a round
+                bird-cage covered up with newspapers in the other, while a parasol
+                was tucked under her arm. The conductor helped her off the car and
+                then the engineer started his train again, so that it puffed and
+                groaned and moved slowly away up the track. The reason he was
+                so late was because all through the night there were times when
+                the solid earth shook and trembled under him, and the engineer was 
+                afraid that at any moment the rails might spread apart and an
+                accident happen to his passengers. So he moved the cars slowly
+                and with caution.&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;The little girl stood still to watch until the train had
+                disappeared around a curve; then she turned to see where
+                she was.&lt;/p&gt;
+              &lt;p&gt;The shed at Hugson&amp;apos;s Siding was bare save for an old 
+                wooden bench, and did not look very inviting. As she peered
+                through the soft gray light not a house of any sort was visible near
+                the station, nor was any person in sight; but after a while the child
+                discovered a horse and buggy standing near a group of trees
+                a short distance away. She walked toward it and found the horse
+                tied to a tree and standing motionless, with its head hanging down
+                almost to the ground. It was a big horse, tall and bony, with long
+                legs and large knees and feet. She could count his ribs easily where
+                they showed through the skin of his body, and his head was long
+                and seemed altogether too big for him, as if it did not fit. His tail
+                was short and scraggly, and his harness had been broken in many
+                places and fastened together again with cords and bits of wire.
+                The buggy seemed almost new, for it had a shiny top and side
+                curtains. Getting around in front, so that she could look inside,
+                the girl saw a boy curled up on the seat, fast asleep.&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;She set down the bird-cage and poked the boy with her parasol.
+                Presently he woke up, rose to a sitting position and rubbed his
+                eyes briskly.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Hello!&amp;quot; he said, seeing her, &amp;quot;are you Dorothy
+                Gale?&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Yes,&amp;quot; she answered, looking gravely at his tousled
+                hair and blinking gray eyes. &amp;quot;Have you come to take me to
+                Hugson&amp;apos;s Ranch?&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Of course,&amp;quot; he answered. &amp;quot;Train in?&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;I couldn&amp;apos;t be here if it wasn&amp;apos;t,&amp;quot; she
+                said.&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;He laughed at that, and his laugh was merry and frank. Jumping
+                out of the buggy he put Dorothy&amp;apos;s suit-case under the seat
+                and her bird-cage on the floor in front.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Canary-birds?&amp;quot; he asked.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Oh no; it&amp;apos;s just Eureka, my kitten. I thought that was
+                the best way to carry her.&amp;quot;&lt;/p&gt;
+              &lt;p&gt;The boy nodded.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Eureka&amp;apos;s a funny name for a cat,&amp;quot; he remarked.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;I named my kitten that because I found it,&amp;quot; she
+                explained. &amp;quot;Uncle Henry says &amp;apos;Eureka&amp;apos; means
+                &amp;apos;I have found it.&amp;apos;&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;All right; hop in.&amp;quot;&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;She climbed into the buggy and he followed her. Then the boy
+                picked up the reins, shook them, and said &amp;quot;Gid-dap!&amp;quot;&lt;/p&gt;
+              &lt;p&gt;The horse did not stir. Dorothy thought he just wiggled one of
+                his drooping ears, but that was all.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Gid-dap!&amp;quot; called the boy, again.&lt;/p&gt;
+              &lt;p&gt;The horse stood still.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Perhaps,&amp;quot; said Dorothy, &amp;quot;if you untied him,
+                he would go.&amp;quot;&lt;/p&gt;
+              &lt;p&gt;The boy laughed cheerfully and jumped out.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Guess I&amp;apos;m half asleep yet,&amp;quot; he said, untying the
+                horse. &amp;quot;But Jim knows his business all right - don&amp;apos;t you,
+                Jim?&amp;quot; patting the long nose of the animal.&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;Then he got into the buggy again and took the reins, and the horse
+                at once backed away from the tree, turned slowly around, and began
+                to trot down the sandy road which was just visible in the dim light.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Thought that train would never come,&amp;quot; observed the boy.
+                &amp;quot;I&amp;apos;ve waited at that station for five hours.&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;We had a lot of earthquakes,&amp;quot; said Dorothy.
+                &amp;quot;Didn&amp;apos;t you feel the ground shake?&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Yes; but we&amp;apos;re used to such things in
+                California,&amp;quot; he replied. &amp;quot;They don&amp;apos;t scare us
+                much.&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;The conductor said it was the worst quake he ever
+                knew.&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Did he? Then it must have happened while I was asleep,
+                he said thoughtfully.&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;&amp;quot;How is Uncle Henry?&amp;quot; she enquired, after a pause
+                during which the horse continued to trot with long, regular
+                strides.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;He&amp;apos;s pretty well. He and Uncle Hugson have been
+                having a fine visit.&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Is Mr. Hugson your uncle?&amp;quot; she asked.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Yes. Uncle Bill Hugson married your Uncle Henry&amp;apos;s
+                wife&amp;apos;s sister; so we must be second cousins,&amp;quot; said the
+                boy, in an amused tone. &amp;quot;I work for Uncle Bill on his ranch,
+                and he pays me six dollars a month and my board.&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Isn&amp;apos;t that a great deal?&amp;quot; she asked,
+                doubtfully.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Why, it&amp;apos;s a great deal for Uncle Hugson, but not for me.
+                I&amp;apos;m a splendid worker. I work as well as I sleep,&amp;quot; he
+                added, with a laugh.&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;&amp;quot;What is your name?&amp;quot; said Dorothy, thinking she liked the
+                boy&amp;apos;s manner and the cheery tone of his voice.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Not a very pretty one,&amp;quot; he answered, as if a little
+                ashamed. &amp;quot;My whole name is Zebediah; but folks just call me
+                &amp;apos;Zeb.&amp;apos; You&amp;apos;ve been to Australia, haven&amp;apos;t
+                you?&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Yes; with Uncle Henry,&amp;quot; she answered. &amp;quot;We got to
+                San Francisco a week ago, and Uncle Henry went right on to
+                Hugson&amp;apos;s Ranch for a visit while I stayed a few days in the city
+                with some friends we had met.&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;How long will you be with us?&amp;quot; he asked.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Only a day. Tomorrow Uncle Henry and I must start back
+                for Kansas. We&amp;apos;ve been away for a long time, you know,
+                and so we&amp;apos;re anxious to get home again.&amp;quot;&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;The boy flicked the big, boney horse with his whip and looked
+                thoughtful. Then he started to say something to his little companion,
+                but before he could speak the buggy began to sway dangerously
+                from side to side and the earth seemed to rise up before them.
+                Next minute there was a roar and a sharp crash, and at her side
+                Dorothy saw the ground open in a wide crack and then come
+                together again.&lt;/p&gt;
+              &lt;p&gt;&amp;quot;Goodness!&amp;quot; she cried, grasping the iron rail of
+                the seat. &amp;quot;What was that?&amp;quot;&lt;/p&gt;
+              &lt;p&gt;&amp;quot;That was an awful big quake,&amp;quot; replied Zeb,
+                with a white face. &amp;quot;It almost got us that time,
+                Dorothy.&amp;quot;&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;The horse had stopped short, and stood firm as a rock. Zeb shook
+                the reins and urged him to go, but Jim was stubborn. Then the boy
+                cracked his whip and touched the animal&amp;apos;s flanks with it, and
+                after a low moan of protest Jim stepped slowly along the road.&lt;/p&gt;
+              &lt;p&gt;Neither the boy nor the girl spoke again for some minutes. There
+                was a breath of danger in the very air, and every few moments the
+                earth would shake violently. Jim&amp;apos;s ears were standing erect
+                upon his head and every muscle of his big body was tense as he
+                trotted toward home. He was not going very fast, but on his flanks
+                specks of foam began to appear and at times he would tremble
+                like a leaf.&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;The sky had grown darker again and the wind made queer
+                sobbing sounds as it swept over the valley.&lt;/p&gt;
+              &lt;p&gt;Suddenly there was a rending, tearing sound, and the earth
+                split into another great crack just beneath the spot where the
+                horse was standing. With a wild neigh of terror the animal fell
+                bodily into the pit, drawing the buggy and its occupants after
+                him.&lt;/p&gt;
+              &lt;p&gt;Dorothy grabbed fast hold of the buggy top and the boy
+                did the same. The sudden rush into space confused them so
+                that they could not think.&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;Blackness engulfed them on every side, and in breathless silence
+                they waited for the fall to end and crush them against jagged rocks
+                or for the earth to close in on them again and bury them forever in
+                its dreadful depths.&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+            &lt;widget:deck-page&gt;
+              &lt;p&gt;The horrible sensation of falling, the darkness and the terrifying
+                noises, proved more than Dorothy could endure and for a few
+                moments the little girl lost consciousness. Zeb, being a boy, did not
+                faint, but he was badly frightened, and clung to the buggy seat with
+                a tight grip, expecting every moment would be his last.&lt;/p&gt;
+            &lt;/widget:deck-page&gt;
+          &lt;/widget:deck&gt;
+          &lt;div&gt;
+            &lt;table style="width:100%"&gt;
+              &lt;tr&gt;
+                &lt;td style="text-align:left"&gt;
+                  &lt;widget:button action="deck#first-page"&gt;&amp;lt;&amp;lt;&lt;/widget:button&gt;
+                  &lt;widget:button action="deck#previous-page"&gt;&amp;lt;&lt;/widget:button&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align:center"&gt;
+                  &lt;widget:display property="deck#displayed-page-number"/&gt; of
+                  &lt;widget:display property="deck#pages-count"/&gt;
+                &lt;/td&gt;
+                &lt;td style="text-align:right"&gt;
+                  &lt;widget:button action="deck#next-page"&gt;&amp;gt;&lt;/widget:button&gt;
+                  &lt;widget:button action="deck#last-page"&gt;&amp;gt;&amp;gt;&lt;/widget:button&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_table.html">table</a></th><td><p>Defines a table.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_td.html">td</a></th><td><p>A cell in a table containing data.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_tr.html">tr</a></th><td><p>Denotes a row within a table.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_button.html">widget:button</a></th><td><p>A general purpose element, used by widgets which need a button-like control.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_display.html">widget:display</a></th><td><p>An inline widget element used to display some text content. It may be associated with a
+        widget property. In such cases, the displayed content represents the value of the selected
+        property.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_deck.html">widget:deck</a></th><td><p>Defines a Deck widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_deck_page.html">widget:deck-page</a></th><td><p>Defines a single page in a Deck widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr></tbody></table>
+  </body></html>

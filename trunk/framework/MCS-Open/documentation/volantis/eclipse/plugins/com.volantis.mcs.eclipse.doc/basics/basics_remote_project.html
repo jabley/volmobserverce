@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Remote projects - PHP and Ruby</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../basics/basics_about.html" title="Getting started">Start</a></li><li><a href="../basics/basics_jsp.html" title="Response JSP">Previous</a></li><li><a href="../basics/basics_migrate_xd.html" title="Migrating to XDIME">Next</a></li></ul></td></tr></table><h1>Remote projects - PHP and Ruby</h1>
+    <p>If you want to render XDIME from a portal that is developed using another framework, for
+      example PHP or Ruby, you will need to host your content on a remote server, and direct MCS
+      accordingly.</p>
+    <p>All that is required to configure MCS is additional filters in the
+      <span class="filepath">web.xml</span> file for your chosen language, and a change to a single
+      properties file.</p>
+    <p>Then you can modify your server to render XDIME rather than XHTML. We will use some very
+      simple content to illustrate the approach.</p>
+    <div class="note"><strong>Note</strong>: Ensure that the content type for the remote server is set to
+        <span class="code">x-application/vnd.xdime+xml</span>, otherwise the page will not render
+    correctly.</div>
+  <h2>Render from PHP</h2><p>Suppose your existing site has been developed with PHP. Create a page with the following
+      content, and save it as <span class="filepath">test.php</span> on your remote server. By now you are
+      familiar with some of the XDIME namespaces. We have included all of those that you might need
+      on your site in this example.</p><p>We have used the built in layout <span class="filepath">error.mlyt</span> which MCS uses to render
+      error pages.</p><pre class="code">
+&lt;?php header("Content-type: x-application/vnd.xdime+xml"); ?&gt;
+&lt;?php print"&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;
+
+&lt;html xmlns=\"http://www.w3.org/2002/06/xhtml2\"
+  xmlns:xf=\"http://www.w3.org/2002/xforms\"
+  xmlns:si=\"http://www.volantis.com/xmlns/2006/01/xdime2/si\"
+  xmlns:sel=\"http://www.w3.org/2004/06/diselect\"
+  xmlns:pipeline=\"http://www.volantis.com/xmlns/marlin-pipeline\"
+  xmlns:template=\"http://www.volantis.com/xmlns/marlin-template\"
+  xmlns:urid=\"http://www.volantis.com/xmlns/marlin-uri-driver\"
+  xmlns:mcs=\"http://www.volantis.com/xmlns/2006/01/xdime/mcs\" &gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello&lt;/title&gt;
+    &lt;link rel=\"mcs:layout\" href=\"/error.mlyt\"/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div  style=\"mcs-container: 'error'\"&gt;Hello MCS, this is PHP.&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;"; ?&gt;</pre><h2>Configure MCS</h2><ol><li>You will recall how we added a filter to the <span class="filepath">web.xml</span> file for JSP
+      pages. A similar entry is needed for PHP.<pre class="code">
+&lt;filter-mapping&gt;
+  &lt;filter-name&gt;MCSFilter&lt;/filter-name&gt;
+  &lt;url-pattern&gt;*.php&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;</pre></li><li>An additional 'remapping' filter entry is needed to handle content from your remote site<pre class="code">
+&lt;filter-mapping&gt;
+  &lt;filter-name&gt;RemappingFilter&lt;/filter-name&gt;
+  &lt;url-pattern&gt;*.php&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;</pre></li><li>Open the <span class="filepath">mcs/projects.properties</span> file, which may refer to multiple
+      remote servers. By default it contains
+        <pre class="code">
+remote=http://myhost:8080/resource/</pre></li><li>Add a property prefix and the URL of your service. The prefix will be used in requests to
+      the remote server. <pre class="code">
+php_server=http://myphp:80/</pre></li><li>The URL of your file should take the form
+        <span class="code">http://[mcshost]:[mcsport]/mcs/[property_prefix]/[path_to_file]</span>. The prefix
+      must immediately follow the 'mcs' part. So to request the page you would use
+        <pre class="code">
+http://mcs_server:8080/mcs/php_server/test.php </pre></li></ol><h2>Render from Ruby</h2><p>Ruby pages can be set up in a similar fashion.</p><ol><li>
+      <pre class="code">
+#!/usr/bin/ruby
+require 'cgi'
+cgi = CGI.new()
+
+cgi.out("x-application/vnd.xdime+xml") { 
+"&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n\n" +
+"&lt;html xmlns=\"http://www.w3.org/2002/06/xhtml2\"\n" +
+"  xmlns:xf=\"http://www.w3.org/2002/xforms\"\n" +
+"  xmlns:si=\"http://www.volantis.com/xmlns/2006/01/xdime2/si\"n" +
+"  xmlns:sel=\"http://www.w3.org/2004/06/diselect\"\n" +
+"  xmlns:pipeline=\"http://www.volantis.com/xmlns/marlin-pipeline\"\n" +
+"  xmlns:template=\"http://www.volantis.com/xmlns/marlin-template\"\n" +
+"  xmlns:urid=\"http://www.volantis.com/xmlns/marlin-uri-driver\"\n" +
+"  xmlns:mcs=\"http://www.volantis.com/xmlns/2006/01/xdime/mcs\" &gt;\n" +
+"  &lt;head&gt;\n" +
+"    &lt;title&gt;Hello&lt;/title&gt;\n" +
+"    &lt;link rel=\"mcs:layout\" href=\"/error.mlyt\"/&gt;\n" +
+"  &lt;/head&gt;\n" +
+"  &lt;body&gt;\n" +
+"    &lt;div  style=\"mcs-container: 'error'\"&gt;Hello MCS, this is Ruby.&lt;/div&gt;\n" +
+"  &lt;/body&gt;\n" +
+"&lt;/html&gt;\n" 
+}</pre>
+    </li><li>Enter the filter content in the <span class="filepath">web.xml</span> file<pre class="code">
+&lt;filter-mapping&gt;
+  &lt;filter-name&gt;MCSFilter&lt;/filter-name&gt;
+  &lt;url-pattern&gt;*.rbx&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+&lt;filter-mapping&gt;
+  &lt;filter-name&gt;RemappingFilter&lt;/filter-name&gt;
+  &lt;url-pattern&gt;*.rbx&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;</pre></li><li>Enter a property like this<pre class="code">
+ruby_server=http://myruby:80/</pre></li><li>Ruby requires CGI processing, so you need to modify the path in your request to
+        <pre class="code">
+http://mcsserver:8080/mcs/ruby_server/cgi-bin/test.rbx</pre></li></ol></body></html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Defining HTTP resources</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Defining HTTP resources</h1>
+    <p>When you define HTTP resources for the pipeline, you use the <span class="code">url</span> attributes in
+      the <span class="code">webd:get</span> and <span class="code">webd:post</span> elements to specify a fully
+      qualified URL.</p>
+    <p>You can also register a proxy server definition in the MCS configuration file.</p>
+    <p>To filter binary content you can use the <span class="code">webd:content</span> element, and handle
+      any scripts in the source with <span class="code">webd:script</span>. See <em>Handling HTTP content</em> for more information.</p>
+    
+      <h2>Using an HTTP request</h2>
+      <p>The web driver supports the HTTP methods GET and POST to access a remote page, represented
+        by the <span class="code">webd:get</span> and <span class="code">webd:post</span> elements.</p>
+      <p>Then you use of the contained <span class="code">webd:parameter</span>,
+        <span class="code">webd:header</span> and <span class="code">webd:cookie</span> elements to tune the
+        request. Refer to <em>Request parameters, headers and cookies</em> for details.</p>
+      <pre class="code">
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:webd="http://www.volantis.com/xmlns/marlin-web-driver"&gt;
+  &lt;head&gt;
+    &lt;title&gt;DCI elements&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;pipeline:transform href="test.xsl"&gt;
+        &lt;webd:get url="http://weather.yahooapis.com/forecastrss"&gt;
+          &lt;webd:parameters&gt;
+            &lt;webd:parameter name="p" value="USWA0395"/&gt;
+            &lt;webd:parameter name="u" value="c"/&gt;
+          &lt;/webd:parameters&gt;
+        &lt;/webd:get&gt;
+      &lt;/pipeline:transform&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+    
+      <h2>Specifying a proxy server</h2>
+      <p>Sometimes you may want to connect to a remote web site using a proxy server for security
+        reasons, or to boost performance where the proxy is able to cache content. You can use the
+          <span class="code">ref</span> on the optional <span class="code">webd:proxy</span> element to point to an
+        entry in the <span class="filepath">mcs-config.xml </span> file.</p>
+      <p>The <span class="code">pipeline-configuration</span> section of the configuration file contains a
+          <span class="code">web-driver</span> element in which you can specify one or more
+        <span class="code">proxy</span> servers using the <span class="code">id</span>, <span class="code">host</span> and
+        <span class="code">port</span> attributes.</p>
+      <pre class="code">
+&lt;web-driver connection-timeout="10000"&gt;
+  &lt;proxy
+    id="myproxy"  
+    host="myhost"                  
+    port="8086"/&gt;         
+&lt;/web-driver&gt;</pre>
+      <p>Having defined the proxy sever in the pipeline configuration, you can then refer to it in
+        the web driver <span class="code">webd:proxy</span> element.</p>
+      <pre class="code">
+&lt;webd:get url="http://weather.yahooapis.com/forecastrss"&gt;
+  &lt;webd:proxy ref="myproxy"/&gt;
+  &lt;webd:parameters&gt;
+    &lt;webd:parameter name="p" value="USWA0395"/&gt;
+    &lt;webd:parameter name="u" value="c"/&gt;
+  &lt;/webd:parameters&gt;
+&lt;/webd:get&gt;</pre>
+    
+    
+      <h2>Specifying a timeout value</h2>
+      <p>You can also use the <span class="code">web-driver</span> element to set a default timeout value
+        for connections for <span class="code">webd:get</span> and <span class="code">webd:post</span> processes
+        using the <span class="code">connection-timeout</span> attribute. The value sets the default round trip
+        timeout for all web driver operations in milliseconds. A value of '-1' means that the
+        connection will never timeout.</p>
+      <p>To set a default value for a wider range of remote connections, use the
+        <span class="code">timeout</span> attribute on the <span class="code">connection</span> element in the
+          <span class="filepath">mcs-config.xml</span> file. See the element references for details.</p>
+      <pre class="code">
+&lt;pipeline-configuration&gt;
+  &lt;caching-operation&gt;
+    &lt;cache
+      name="xmlcache"
+      strategy="least-recently-used"
+      max-entries="10"/&gt;
+  &lt;/caching-operation&gt;
+  &lt;connection timeout="-1"
+    enable-caching="false"
+    max-cache-entries="1000"/&gt;
+&lt;/pipeline-configuration&gt;</pre>
+      <p>You can also set timeout values, which will override any defaults, in markup on the
+          <span class="code">webd:get</span> and <span class="code">webd:post</span> and
+        <span class="code">urid:fetch</span> elements, using the <span class="code">timeout</span> attribute.</p>
+      <p>If a remote server fails to complete the request within the timeout period defined in the
+        markup or configuration file, the request is aborted, regardless of how much data has been
+        returned. Any data returned so far is discarded, and an error is propagated down the
+        pipeline.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../dci/dci_drivers.html">DCI services and drivers</a><br/><a class="link" href="../dci/dci_webd_parameter.html">Request parameters, headers and cookies</a><br/><a class="link" href="../dci/dci_webd_content.html">Handling HTTP content</a><br/><a class="link" href="../mcs_config/config_connection.html">connection</a><br/><a class="link" href="../mcs_config/config_web_driver.html">web-driver</a><br/><a class="link" href="../xdime/webd_proxy.html">webd:proxy</a><br/></p>
+    
+  </body></html>

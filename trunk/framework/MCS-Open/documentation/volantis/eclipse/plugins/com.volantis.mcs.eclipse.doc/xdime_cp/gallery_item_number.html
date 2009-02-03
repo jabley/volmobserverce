@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>gallery:item-number</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>gallery:item-number</h1><h2>Purpose</h2>
+      <p>Returns the number of the item being displayed by Slideshow widget.</p>
+    <h2>Contained by</h2><p><a href="../xdime_cp/gallery_slideshow.html">gallery:slideshow</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:gallery="http://www.volantis.com/xmlns/2006/10/gallery-widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Gallery Widget with AJAX&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;gallery:items&gt;
+        &lt;widget:load src="http://localhost:8080/mcs/projects/client-app/service/itemgallery"
+          when="defer"/&gt;
+      &lt;/gallery:items&gt;
+    &lt;/div&gt;
+    &lt;table&gt;
+      &lt;tr&gt;
+        &lt;td&gt;
+          &lt;gallery:gallery class="widget" slideshow="slideshow" slideshow-popup="gallery-popup"&gt;
+            &lt;div&gt;
+              &lt;table&gt;
+                &lt;tr&gt;
+                  &lt;td&gt;
+                    &lt;widget:previous&gt;&amp;lt;&amp;lt;&lt;/widget:previous&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;gallery:item-display/&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;gallery:item-display/&gt;
+                  &lt;/td&gt;
+                  &lt;td&gt;
+                    &lt;widget:next&gt;&amp;gt;&amp;gt;&lt;/widget:next&gt;
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/table&gt;
+            &lt;/div&gt;
+            &lt;div&gt;Displaying items from &lt;gallery:start-item-number/&gt; to &lt;gallery:end-item-number/&gt; of
+              &lt;gallery:items-count/&gt;&lt;/div&gt;
+            &lt;div&gt;Page number: &lt;gallery:page-number/&gt; of &lt;gallery:pages-count/&gt;&lt;/div&gt;
+          &lt;/gallery:gallery&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;
+          &lt;widget:popup id="gallery-popup"&gt;
+            &lt;gallery:slideshow id="slideshow"&gt;
+              &lt;gallery:item-display/&gt;
+              &lt;widget:previous&gt;&amp;lt;&amp;lt;&lt;/widget:previous&gt;
+              &lt;widget:pause&gt;Pause&lt;/widget:pause&gt;
+              &lt;widget:play&gt;Play&lt;/widget:play&gt;
+              &lt;widget:next&gt;&amp;gt;&amp;gt;&lt;/widget:next&gt;
+              &lt;widget:dismiss&gt;Close&lt;/widget:dismiss&gt;
+              &lt;div&gt;Displaying item &lt;gallery:item-number/&gt; of &lt;gallery:items-count/&gt;&lt;/div&gt;
+            &lt;/gallery:slideshow&gt;
+          &lt;/widget:popup&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../client/gallery_er.html">Gallery elements</a><br/><a class="link" href="../client/widget_er.html">Widget elements</a><br/></p>
+    </body></html>

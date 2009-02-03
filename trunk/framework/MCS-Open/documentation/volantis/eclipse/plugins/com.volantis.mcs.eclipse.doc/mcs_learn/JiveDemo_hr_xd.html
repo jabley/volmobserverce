@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Human resources page</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../mcs_learn/JiveDemo_about_jive.html" title="Next steps with MCS">Start</a></li><li><a href="../mcs_learn/JiveDemo_news_xd.html" title="Company news page">Previous</a></li><li><a href="../mcs_learn/JiveDemo_store_xd.html" title="Employee store page">Next</a></li></ul></td></tr></table><h1>Human resources page</h1>
+    <p>The Human Resources page does not contain any new XDIME 2 elements. The styling is applied to
+      the page in the same way as described in the previous modules. So treat the completion of this
+      module as an opportunity to develop your MCS skills.</p>
+    <p>The article section in the example contains link stubs to other topics. You might want to
+      experiment with a few additions to your Jive intranet - for example a Travel Center gateway to
+      some tempting mobile sites.</p>
+    <p><img src="../graphics/jive_hr.jpg" alt="Human Resources Page" title="Human Resources Page"/></p>
+  <h2>Complete XDIME 2 code</h2><ol><li>Create a <span class="filepath">humanResources.xdime</span> file in the <span class="filepath">jive</span>
+      directory</li><li>Include the following code<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Human Resources&lt;/title&gt;
+    &lt;!--Links to the layout and theme for this page --&gt;
+    &lt;link rel="mcs:layout" href="/jivearticle.mlyt"/&gt;
+    &lt;link rel="mcs:theme" href="/jive.mthm"/&gt;
+  &lt;/head&gt;
+  &lt;!-- Page body --&gt;
+  &lt;body&gt;
+    &lt;!-- The common material for the page header --&gt;
+    &lt;div&gt;
+      &lt;!-- The banner --&gt;
+      &lt;div id="logo"&gt;
+        &lt;a class="homelogo" href="jivehome.xdime"&gt;
+          &lt;object class="homelogo" src="/images/jive_logo.mimg"/&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div id="photos"&gt;
+        &lt;object src="/images/photos.mimg"/&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- The main menu --&gt;
+    &lt;div id="menu_company_news" class="main_menu"&gt;
+      &lt;a class="pnav" href="companyNews.xdime"&gt;
+        &lt;object src="/images/menu_company_news.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="menu_human_resources" class="main_menu"&gt;
+      &lt;a class="pnav" href="humanResources.xdime"&gt;
+        &lt;object src="/images/menu_human_resources.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="menu_employee_store" class="main_menu"&gt;
+      &lt;a class="pnav" href="employeeStore.xdime"&gt;
+        &lt;object src="/images/menu_employee_store.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;!--The current stock price--&gt;
+    &lt;div id="stockprice"&gt; Latest from NYSE for Jive (VBE): 21.50 (+ 2.25) &lt;/div&gt;
+    &lt;!-- Page Title --&gt;
+    &lt;h2 id="title"&gt;Human Resources&lt;/h2&gt;
+    &lt;!-- The article --&gt;
+    &lt;div id="article"&gt;
+      &lt;p&gt; Jive sports prides itself on hiring and retaining the best and brightest people. Our Human
+        Resources group ensures that our personnel have the best working environment to allow them
+        to perform at their peak, delivering the best products and services to our customers. &lt;/p&gt;
+      &lt;div class="company_item"&gt;
+        &lt;h3 class="company_header"&gt;Benefits&lt;/h3&gt;
+        &lt;p&gt;
+          &lt;a href="#"&gt;Benefits Information Center&lt;/a&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;a href="#"&gt;Providers&lt;/a&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;a href="#"&gt;Group Programs&lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="company_item"&gt;
+        &lt;h3 class="company_header"&gt;Resources&lt;/h3&gt;
+        &lt;p&gt;
+          &lt;a href="#"&gt;Documents&lt;/a&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;a href="#"&gt;Personnel&lt;/a&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;a href="#"&gt;Workplace Information&lt;/a&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;a href="#"&gt;Training&lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="company_item"&gt;
+        &lt;h3 class="company_header"&gt;Job Opportunities&lt;/h3&gt;
+        &lt;p&gt;
+          &lt;a href="#"&gt;Current open positions&lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="company_item"&gt;
+        &lt;h3 class="company_header"&gt;Travel Center&lt;/h3&gt;
+        &lt;p&gt;
+          &lt;a href="#"&gt;Travel Center&lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- The common material for the page footer --&gt;
+    &lt;div id="footer"&gt;
+      &lt;p&gt;Copyright &lt;a href="jivehome.xdime"&gt;Jive Sports&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_a.html">a</a></th><td><p>Used to create an explicit link to another place in the same document or to another
+        document. The current document is the source of the link and the value of the
+        <span class="code">href</span> attribute, defines the link target</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_heading.html">h1, h2, h3, h4, h5, h6</a></th><td><p>Heading elements for sections within a document. The number associated with each element
+        indicates its relative position in the hierarchy of headings, with 1 indicating the top
+        level and 6 the lowest level.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_p.html">p</a></th><td><p>Block element that defines a paragraph.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/hypertext_attr_cp.html">Hypertext attributes</a></th><td><p>Attributes that define link targets.</p></td></tr></tbody></table>
+  </body></html>

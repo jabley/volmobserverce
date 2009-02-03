@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Configuring the project</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_blocks_block.html" title="Block">Previous</a></li></ul></td></tr></table><h1>Configuring the project</h1>
+    <p>The <span class="filepath">mcs-project.xml</span> file allows a remote MCS server to locate your
+      project policy files. There can only be one policy source directory for a project, and all
+      your MCS resources must be in this folder or one under it. The default path of the source
+      directory is <span class="filepath">WebContent/mcs-policies</span>, but you can use any name you wish.</p>
+    <p>The <span class="filepath">mcs-project.xml</span> file should contain the code described below and be
+      located in the main <span class="filepath">jive</span> directory</p>
+    <pre class="code">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;project xmlns="http://www.volantis.com/xmlns/mcs/project"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  name="Client Sample App"&gt;
+
+  &lt;xml-policies directory="WebContent/mcs-policies/"/&gt;
+  &lt;assets base-url="."/&gt;
+
+&lt;/project&gt;</pre>
+    <p>The table describes the <span class="filepath">mcs-project.xml</span> file elements.</p>
+    <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">Name  </th><th>Purpose  </th></tr></thead><tbody><tr><th class="firstcell">
+            <span class="code">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+            </th><td>XML declaration  </td></tr><tr><th class="firstcell">
+            <span class="code">&lt;project xmlns="http://www.volantis.com/xmlns/mcs/project"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Client Sample
+              App"/&gt;</span>
+            </th><td>Namespaces declaration. The <span class="code">name</span> attribute contains the project
+            name.  </td></tr><tr><th class="firstcell">
+            <span class="code">&lt;xml-policies directory="WebContent/mcs-policies/"/&gt;</span>
+            </th><td>Defines location of the policy files. In our case it is default location of the MCS
+            project.  </td></tr><tr><th class="firstcell">
+            <span class="code">&lt;assets base-url="."/&gt;</span>
+            </th><td>The assets element defines the URLs for component variants and asset groups, and can
+            be useful in specifying alternate locations for audio, image, and other files  </td></tr></tbody></table>
+  <h2>Create a mcs-project.xml file</h2><ol><li>Choose <span class="command">File</span> | <span class="command">New</span> | <span class="command">Other...</span> from
+      the Eclipse menu </li><li>Expand the <span class="uicontrol">Simple</span> category from the list of available wizards, pick
+        <span class="uicontrol">File</span> and click the <span class="command">Next</span> button<p><img src="../graphics/cfTutorial/mcs_new_file_ui.png" alt="Select a wizard" title="Select a wizard"/></p></li><li>Select <span class="filepath">client-app</span> as a parent folder and name a new file 'mcs-project.xml'<p><img src="../graphics/cfTutorial/mcs_mcs_project_xml_ui.png" alt="New file" title="New file"/></p></li><li>Click the <span class="command">Finish</span> button to complete</li><li>The new file should appear in the <span class="uicontrol">MCS Navigator</span> window and be
+      opened in the <span class="uicontrol">Eclipse Text Editor</span></li><li>Modify the <span class="filepath">mcs-project.xml</span> file by including the code discussed
+    above</li></ol></body></html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>uri-resource</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>uri-resource</h1><h2>Purpose</h2>
+      <p>Identifies a resource by a URI.</p>
+      <div class="note"><strong>Note</strong>: In order for this resource to be retrieved, the protocol must be supported
+        by the JVM.</div>
+      
+    <h2>Contained by</h2><p><a href="../mcs_config/config_wsdl_entry.html">wsdl-entry</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">uri</th><td>The URI of the resource </td><td>xs:anyURI</td><td>none </td><td> </td><td>required </td></tr></table><h2>Example</h2>
+      <pre class="code">
+&lt;web-services-driver&gt;
+  &lt;wsdl-catalog&gt;
+    &lt;wsdl-entry uri="uri/for/wsdl/entry"&gt;
+      &lt;class-resource path="/class/resource/path"/&gt;
+      &lt;servlet-resource path="/servlet/resource/path"/&gt;
+      &lt;uri-resource uri="uri/resource"/&gt;
+    &lt;/wsdl-entry&gt;
+  &lt;/wsdl-catalog&gt;
+&lt;/web-services-driver&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../admin/mcs_config_er.html">MCS configuration elements</a><br/></p>
+    </body></html>

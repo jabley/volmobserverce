@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>xf:group</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>xf:group</h1><h2>Purpose</h2>
+      <p>Combines a set of form controls into a user interface component. By applying theme
+        properties on this element, you can control where form fragmentation occurs, and define or
+        override at runtime the link texts specified on form fragment layouts.</p>
+    <h2>Contains</h2><p><a href="../xdime_cp/xf_input.html">xf:input</a>, <a href="../xdime_cp/xf_label.html">xf:label</a>, <a href="../xdime_cp/xf_secret.html">xf:secret</a>, <a href="../xdime_cp/xf_select.html">xf:select</a>, <a href="../xdime_cp/xf_select1.html">xf:select1</a>, <a href="../xdime_cp/xf_submit.html">xf:submit</a>, <a href="../xdime_cp/xf_textarea.html">xf:textarea</a></p><h2>Attribute groups</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a>, <a href="../xdime_cp/sel_attr_cp.html">Selection attributes</a>, <a href="../xdime_cp/xf_attr_cp.html">Form attributes</a></p><h2>Examples</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;xf:group&lt;/title&gt;
+    &lt;style type="text/css" media="handheld,all"&gt;
+      .fragment { mcs-break-after: always; }
+    &lt;/style&gt;
+    &lt;xf:model id="login"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="firstName"/&gt;
+          &lt;si:item name="lastName"/&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission action="test.jsp" id="submit"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h4&gt;Form Fragmentation&lt;/h4&gt;
+    &lt;xf:group class="fragment"&gt;
+      &lt;xf:input model="login" ref="firstName"&gt;
+        &lt;xf:label&gt;Enter Your Name:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+    &lt;/xf:group&gt;
+    &lt;xf:group class="fragment"&gt;
+      &lt;xf:input model="login" ref="lastName"&gt;
+        &lt;xf:label&gt;Enter Your Surname:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+      &lt;xf:submit submission="submit"&gt;
+        &lt;xf:label&gt;Send&lt;/xf:label&gt;
+      &lt;/xf:submit&gt;
+    &lt;/xf:group&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>The <span class="filepath">test.jsp</span> file should contain the following code.</p>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;%@ page import="com.volantis.mcs.servlet.*" %&gt;
+&lt;%
+response.setContentType("x-application/vnd.xdime+xml");
+String firstName = MarinerServletRequestContext.findInstance(request).getParameter("firstName");
+String lastName = MarinerServletRequestContext.findInstance(request).getParameter("lastName");
+%&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Form Fragmentation&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;h4&gt;Hello &lt;%=firstName%&gt; &lt;%=lastName%&gt;!&lt;/h4&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../wag/xf_er.html">XForms elements</a><br/><a class="link" href="../wag/wag_xf_fragment.html">Form fragments links in XDIME 2</a><br/><a class="link" href="../themes/theme_form_prop.html">Form properties</a><br/></p>
+    </body></html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title/><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../basics/basics_about.html" title="Getting started">Start</a></li><li><a href="../basics/basics_about.html" title="Getting started">Previous</a></li><li><a href="../basics/basics_preview.html" title="Mobile preview">Next</a></li></ul></td></tr></table><h1/>
+    <p> Design - Decide how you want to layout your content or application on small screen devices
+      by creating wireframe designs (sketches) of what the UI should look like. - Decide whether you
+      want to deliver the same design to all mobile devices, or if you want to have different
+      designs for different groups of devices base don screen size and aspect ratio. For example,
+      you may create a design for small portrait screens (less than 120 pixels wide), medium
+      portrait screens (over 120 pixels wide) and landscape screens. - Identify re-useable layouts
+      so that the overall design can be constructed by combining a few smaller layouts together.
+      Typically this involves a layout for headers, one for footers and one for the page body etc. -
+      Identify and create any graphical assets (images) that are to be used on the page such as
+      logos and icons.</p>
+    <p> Build - Use the Volantis design tools to create Layouts and Themes (existing CSS definitions
+      for colors and styles can be re-used through the tool) - Create multiple variants of the
+      images and load them into the Volantis design tool as image Components (you can also choose to
+      use automatic image conversion with MAP) </p>
+    <p> Integrate - Modify the output from your existing application page templates to produce
+      XDIME2 instead of HTML (or WML), referencing Layouts, Themes and Components from within the
+      XDIME2 markup. Note that XDIME2 is an implementation of the W3C DIAL device independent markup
+      standard and is very similar to XHTML. </p>
+    <p>Probably your existing site is written in either HTML or XHTML 1, or generates content in one
+      of those formats. This topic provides guidance on the steps you should follow when migrating
+      this content to XDIME.</p>
+    <p>There are not too many differences between the use of elements in XHTML 1 and XDIME, so on
+      the whole your content will need few changes.</p>
+  <h2>Preliminaries</h2><p>Note the namespace declarations. The default namespace for XHTML based elements does not
+      require a prefix. The mcs: prefix is used for several elements and attributes. The link
+      element, used for references to external sources takes two special rel attribute values.
+      'mcs:layout' and 'mcs:theme'. The href attributes point to the layout and theme device
+      independent policies that you will develop as part of your new site design.</p><p>The meta tag uses multiple property attributes for metadata in the head element and the
+      element content, rather than the XHTML name and content attributes.</p><p>The preferred way of working is to use device independent themes for all your style rules.
+      However you can if override the theme styles if required with the style element inside the
+      head, or on an individual element.</p><pre class="code">
+&lt;html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Welcome to XDIME XML&lt;/title&gt;
+    &lt;link rel="mcs:layout" href="/welcome.mlyt"/&gt;
+    &lt;link rel="mcs:theme" href="/welcome.mthm"/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    ...
+  &lt;/body&gt;
+&lt;/html&gt;</pre><p>The table lists all the XDIME namespaces that you may require.</p><table cellspacing="0"><thead><tr><th class="firsthdr">Prefix  </th><th>Namespace  </th><th>Comment  </th></tr></thead><tbody><tr><th class="firstcell">none  </th><td>http://www.w3.org/2002/06/xhtml2  </td><td>XHTML 2  </td></tr><tr><th class="firstcell">xf  </th><td>http://www.w3.org/2002/xforms  </td><td>XForms  </td></tr><tr><th class="firstcell">pipeline  </th><td>http://www.volantis.com/xmlns/marlin-pipeline  </td><td>Volantis pipeline  </td></tr><tr><th class="firstcell">template  </th><td>http://www.volantis.com/xmlns/marlin-template  </td><td>Volantis template  </td></tr><tr><th class="firstcell">urid  </th><td>http://www.volantis.com/xmlns/marlin-uri-driver  </td><td>Volantis uri driver  </td></tr><tr><th class="firstcell">mcs  </th><td>http://www.volantis.com/xmlns/2006/01/xdime/mcs  </td><td>Volantis mcs  </td></tr><tr><th class="firstcell">sel  </th><td>http://www.w3.org/2004/06/diselect  </td><td>DISelect  </td></tr></tbody></table><h2>Targeting content</h2><p>Layouts are used to define a grid for your XDIME pages, and typically each grid cell contains
+      a uniquely named pane. If you refer to the pane in XDIME, using the id or class attributes, it
+      has the effect of targeting the content at that pane. A matching style property, 'Target
+      Container', in the theme completes the binding. The example shows how a logo is targeted at a
+      specific pane.</p><pre class="code">
+&lt;body&gt;
+  &lt;div class="logo"&gt;
+    &lt;object src="images/vol_logo.mimg" srctype="image/gif"&gt;
+      &lt;span&gt;Volantis Systems Ltd&lt;/span&gt;
+    &lt;/object&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</pre><h2>Media references</h2><p>The last example also shows another notable difference from XHTML. XDIME uses the
+        <span class="code">object</span> element instead of <span class="code">img</span>. The src attribute has
+      the same purpose as the XHTML equivalent, except that here we point to a image policy,
+      containing variants for different devices, rather than an individual image. Note that the
+      fallback text is contained in the element content as distinct from an attribute.</p><p>You can also refer to audio policies in the same way. The contained param
+      element may be used to provide hints to a transcoder.</p><h2>Scripting</h2><p>You provide different variants for specific devices or device families in a script policy.
+      The <span class="code">mcs:script</span> element contains the binding to the policy. In addition, you
+      use the <span class="code">event:listener</span> and the <span class="code">mcs:handler</span> elements.</p><p>In the listener, you specify the identifier of the event in the <span class="code">observer</span>
+      attribute, the fragment identifier of a local event handler in the <span class="code">handler</span>
+      attribute, and the event type in the <span class="code">event</span> attribute. The handler contains an
+      inline script, that may also call functions in a script component. Currently the
+      'text/javascript' type is supported.</p><p>The example shows a call from the handler to an inline function in the
+      <span class="code">mcs:script</span> element.</p><pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"&gt;
+  &lt;head&gt;
+    &lt;title&gt;mcs:script&lt;/title&gt;
+    &lt;mcs:script type="text/javascript"&gt;alert('hello')&lt;/mcs:script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Welcome&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre></body></html>

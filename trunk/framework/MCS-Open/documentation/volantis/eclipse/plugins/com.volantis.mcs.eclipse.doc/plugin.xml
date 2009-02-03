@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<plugin id="com.volantis.mcs.eclipse.doc" name="%pluginName" version="${version.plugins.mcs}" provider-name="%providerName">
+  <runtime/>
+  <extension point="org.eclipse.help.toc">
+    <toc file="toc.xml" primary="true"/>
+    <toc file="topics_mcs.xml"/>
+    <toc file="topics_components.xml"/>
+    <toc file="topics_layouts.xml"/>
+    <toc file="topics_themes.xml"/>
+    <toc file="topics_devices.xml"/>
+    <toc file="topics_wag.xml"/>
+    <toc file="topics_dci.xml"/>
+    <toc file="topics_client.xml"/>
+    <toc file="topics_ticker.xml"/>
+    <toc file="topics_xdime_cp.xml"/>
+    <toc file="topics_install.xml"/>
+    <toc file="topics_admin.xml"/>
+    <toc file="topics_ics.xml"/>
+    <toc file="topics_mps.xml"/>
+    <toc file="topics_tutorials.xml"/>
+  </extension>
+</plugin>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Update status</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Update status</h1>
+    <p>The Update Status widget is used to visualize the current update status of the Feed Poller
+      widget. It provides a small (~16 x 16 pixel) status icons which change according to the
+      connectivity status of the client. It indicates one of the following states:</p>
+    <ul>
+      <li>normal - the last request has been successful</li>
+      <li>busy - the Feed Poller widget is performing the request</li>
+      <li>suspended - the requests are suspended (no items are updated)</li>
+      <li>failed - the last request failed</li>
+    </ul>
+    
+      <h2>XDIME 2 elements</h2>
+      <p>In the following example an Update Status widget is displayed in the top-left corner of the
+        screen. When user clicks on the widget, the popup appears displaying detailed status
+        information, including number of channels, and number of unread items.</p>
+      <pre class="code">
+&lt;head&gt;
+  &lt;mcs:handler id="click-handler" type="text/javascript"&gt;
+    Widget.getInstance('myPopup').show();&lt;/mcs:handler&gt;
+  &lt;event:listener observer="status-icon" handler="#click-handler" event="click"/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;ticker:update-status id="status-icon"/&gt;
+  &lt;widget:popup id="myPopup"&gt;
+    &lt;ticker:update-status id="status-description"/&gt;
+      Channels with unread messages: &lt;ticker:channels-count read="no"/&gt;
+      of &lt;ticker:channels-count/&gt;
+      Items unread: &lt;ticker:items-count read="no"/&gt; of &lt;ticker:items-count/&gt;
+    &lt;widget:dismiss&gt;OK&lt;/widget:dismiss&gt;
+  &lt;/widget:popup&gt;  
+&lt;/body&gt;</pre>
+      <p>where the styles are defined in the following way:</p>
+      <pre class="code">
+#status-icon {position: fixed; top: 0px; left: 0px}
+#status-description:mcs-busy {content: "Busy..."}
+#status-description:mcs-failed {content: "The last update did not succeed: "; font: red}
+#status-description:mcs-normal {content: "The last poll updated OK"}
+#status-description:mcs-suspended {content: "Updates are suspended"}</pre>
+      <p>It is possible to use the custom icons instead of default once. To use custom icons, define
+        styles as follows:</p>
+      <pre class="code">
+#status-icon:mcs-busy {content: mariner-component-url('busy.mimg')}
+#status-icon:mcs-failed {content: mariner-component-url('failed.mimg')}
+#status-icon:mcs-normal {content: mariner-component-url('normal.mimg')}
+#status-icon:mcs-suspended {content: mariner-component-url('suspended.mimg')}</pre>
+    
+    
+      <h2>Supported style properties</h2>
+      <p>Styles and content applied to the <span class="code">:mcs-busy</span>,
+        <span class="code">:mcs-failed</span>, <span class="code">:mcs-normal</span>, and
+        <span class="code">:mcs-suspended</span> pseudo-classes are used to denote related widget
+      states.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../xdime_cp/ticker_update_status.html">ticker:update-status</a><br/></p>
+    
+  </body></html>

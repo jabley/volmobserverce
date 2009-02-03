@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Configuring pipeline caches</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../dci_learn/dciTutorial_about_dci.html" title="Adding dynamic content">Start</a></li><li><a href="../dci_learn/dciTutorial_tpl_xdime.html" title="XDIME page with template">Previous</a></li></ul></td></tr></table><h1>Configuring pipeline caches</h1>
+    <p>Content and the XSL transforms used to process the content may be re-used frequently.
+      Therefore, DCI supports both content and XSLT caching. It also allows to compile transforms
+      and cache their templates. Templates are the internal structures, created from XSLT markup,
+      that actually do the transformation. Construction of a template from the XSLT markup is quite
+      a costly operation so caching them can improve performance significantly.</p>
+    <p>The following example is based on the XDIME page described in the <em>Defining HTTP
+      resources</em> section, and illustrates cache configuration for both content and the XSL
+      transforms.</p>
+  <h2>Pipeline caching <a href="../dci/dci_caching.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><p>You define a content cache in the <span class="filepath">mcs-config.xml</span> file. Then you
+      reference this configuration definition from the pipeline XML.</p><ol><li>You must modify the <span class="filepath">mcs-config.xml</span> file by adding the following code
+      to the <span class="code">pipeline-configuration</span> section<pre class="code">
+&lt;caching-operation&gt;
+  &lt;cache name="jiveCache"
+    max-entries="10"
+    strategy="least-recently-used"/&gt;
+&lt;/caching-operation&gt;</pre>
+    </li><li>You use the <span class="code">caching-operation</span> and <span class="code">cache</span> elements to
+      configure content caching. The <span class="code">name</span> attribute of the <span class="code">cache</span>
+      element defines the name of the cache. It will be used to reference the configuration from a
+      pipeline. The <span class="code">max-entries</span> attribute defines the maximum number of entries in the
+      cache.</li><li>On an XDIME page, you use the <span class="code">pipeline:cache</span> element to hold the
+      content and its cache settings.<pre class="code">
+&lt;pipeline:cache name="jiveCache"&gt;
+  &lt;pipeline:cacheInfo&gt;
+    &lt;pipeline:cacheKey value="employeeStore"/&gt;
+    &lt;pipeline:cacheControl timeToLive="600"/&gt;
+  &lt;/pipeline:cacheInfo&gt;
+  &lt;pipeline:cacheBody&gt;
+    &lt;pipeline:transform href="xsl/http2xdime" cache="true" compilable="false"&gt;
+      &lt;webd:get url="http://weather.yahooapis.com/forecastrss"&gt;
+        &lt;webd:parameters&gt;
+          &lt;webd:parameter name="p" value="USWA0395"/&gt;
+          &lt;webd:parameter name="u" value="c"/&gt;
+        &lt;/webd:parameters&gt;
+      &lt;/webd:get&gt;
+    &lt;/pipeline:transform&gt;
+  &lt;/pipeline:cacheBody&gt;
+&lt;/pipeline:cache&gt;</pre>
+    </li><li>The <span class="code">name</span> attribute of the <span class="code">pipeline:cache</span> element
+      identifies the cache configuration specified in <span class="filepath">mcs-config.xml</span></li><li>The <span class="code">pipeline:cacheControl</span> element has a <span class="code">timeToLive</span>
+      attribute containing the length of time in seconds that the entry is valid from the time it
+      enters the cache. The example shows it set to 600 seconds. </li><li>The cache stores objects based on the <span class="code">key</span> attribute, or in the case of
+      multiple keys the <span class="code">pipeline:cacheKey</span> element. The cache uses the
+      least-recently-used strategy for handling its content which is contained in the
+        <span class="code">pipeline:cacheBody</span> element.</li><li>The above defined cache will hold the content retrieved form the database</li></ol><h2>Caching transforms</h2><ol><li>You configure the transform cache with the <span class="code">pipeline:transform</span> element<pre class="code">
+&lt;pipeline:transform href="xsl/http2xdime" cache="true" compilable="false"&gt;</pre>
+    </li><li>The <span class="code">cache</span> attribute controls the caching. MCS caches transforms using a
+      composite key constructed from the fully resolved URL and the compilable attribute value. The
+      size of the cache is unlimited and cannot be configured. <div class="note"><strong>Note</strong>: Templates that are
+        created from XSLT markup inline within the page do not have an associated URL and hence are
+        not cacheable. </div>
+    </li><li>The <span class="code">compilable</span> attribute together with the setting of the
+      <span class="code">compile</span> attribute on the <span class="code">transform</span> element in the
+        <span class="code">pipeline-configuration</span> section of <span class="filepath">mcs-config.xml</span>
+      file, specifies whether the XSL transform should be compiled or not. If both values are
+      'true', the transform is compiled.</li></ol><h2>Complete XDIME 2 code</h2><ol><li>Create a <span class="filepath">dci_cache.xdime</span> file in the
+        <span class="filepath">Volantis/MCS/webapps/mcs/tutorial/</span> directory</li><li>Modify the <span class="filepath">dci_cache.xdime</span> file by including the code shown below</li><li>Open <span class="filepath">dci_cache.xdime</span> via MCS</li><li>Wait until the cache expires</li><li>Call <span class="filepath">dci_cache.xdime</span> from MCS again<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:webd="http://www.volantis.com/xmlns/marlin-web-driver"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Weather Forecast for Our Headquarters&lt;/title&gt;
+    &lt;!--Links to the layout and theme for this page --&gt;
+    &lt;link rel="mcs:layout" href="/jivearticle.mlyt"/&gt;
+    &lt;link rel="mcs:theme" href="/jive.mthm"/&gt;
+  &lt;/head&gt;
+  &lt;!-- Page body --&gt;
+  &lt;body&gt;
+    &lt;!-- The common material for the page header --&gt;
+    &lt;urid:fetch href="jiveheader.xdinc"/&gt;
+    &lt;!-- Page Title --&gt;
+    &lt;h2 id="title"&gt;Weather Forecast for Our Headquarters&lt;/h2&gt;
+    &lt;!-- The article --&gt;
+    &lt;div id="article"&gt;
+      &lt;pipeline:cache name="jiveCache"&gt;
+        &lt;pipeline:cacheInfo&gt;
+          &lt;pipeline:cacheKey value="employeeStore"/&gt;
+          &lt;pipeline:cacheControl timeToLive="600"/&gt;
+        &lt;/pipeline:cacheInfo&gt;
+        &lt;pipeline:cacheBody&gt;
+          &lt;pipeline:transform href="xsl/http2xdime" cache="true" compilable="false"&gt;
+            &lt;webd:get url="http://weather.yahooapis.com/forecastrss"&gt;
+              &lt;webd:parameters&gt;
+                &lt;webd:parameter name="p" value="USWA0395"/&gt;
+                &lt;webd:parameter name="u" value="c"/&gt;
+              &lt;/webd:parameters&gt;
+            &lt;/webd:get&gt;
+          &lt;/pipeline:transform&gt;
+        &lt;/pipeline:cacheBody&gt;
+      &lt;/pipeline:cache&gt;
+    &lt;/div&gt;
+    &lt;!-- The common material for the page footer --&gt;
+    &lt;urid:fetch href="jivefooter.xdinc"/&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_body.html">body</a></th><td><p>Contains the document's content.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_heading.html">h1, h2, h3, h4, h5, h6</a></th><td><p>Heading elements for sections within a document. The number associated with each element
+        indicates its relative position in the hierarchy of headings, with 1 indicating the top
+        level and 6 the lowest level.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xh2_head.html">head</a></th><td><p>Information such as the title and other metadata that is not document content. The
+        contained <span class="code">title</span> element is required.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_html.html">html</a></th><td><p>The container for the XDIME 2 document.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xh2_link.html">link</a></th><td><p>Defines a single link. Multiple links and relationships may be used in the
+        <span class="code">head</span> section of a document.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_cache.html">pipeline:cache</a></th><td><p>The root element for a pipeline cache process. Once executed, the named cache is held until
+        the application server is stopped or restarted, flushed manually, or until the expiry time
+        set by the contained <span class="code">cache-control</span> element is reached. The cache stores
+        objects based on the <span class="code">key</span> attribute. The key is then counted and used as a
+        reference against the cache size. The cache uses the least-recently-used strategy for
+        handling its content. Cache configuration parameters are contained in the
+          <span class="filepath">mcs-config.xml</span> file.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_cachebody.html">pipeline:cacheBody</a></th><td><p>An element used to wrap the content being passed to the cache.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_cachecontrol.html">pipeline:cacheControl</a></th><td><p>Controls the expiry of a named cache.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_cacheinfo.html">pipeline:cacheInfo</a></th><td><p>A wrapper for a set of cache information. It must only be present if the parent
+          <span class="code">pipeline:cache</span> element does not have a <span class="code">key</span> attribute,
+        otherwise it is an error.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_cachekey.html">pipeline:cacheKey</a></th><td><p>Specifies part of the composite key attribute, when there are multiple keys in use. The key
+        is added to the composite key maintained by the caching process. Values may be literal text
+        values, or more complex expressions. The order of the individual keys making up the
+        composite key is significant.</p></td></tr><tr><th class="firstcell"><a href="../xdime/pipeline_transform.html">pipeline:transform</a></th><td><p>The root element for a transform.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_title.html">title</a></th><td><p>The title element is used to identify the document. It can contain only text.</p></td></tr><tr><th class="firstcell"><a href="../xdime/urid_fetch.html">urid:fetch</a></th><td><p>Specifies a driver URI.</p></td></tr><tr><th class="firstcell"><a href="../xdime/webd_get.html">webd:get</a></th><td><p>Represents the HTTP GET method.</p></td></tr><tr><th class="firstcell"><a href="../xdime/webd_parameter.html">webd:parameter</a></th><td><p>Defines an HTTP parameter. There are also element forms for some attribute values.</p></td></tr><tr><th class="firstcell"><a href="../xdime/webd_parameters.html">webd:parameters</a></th><td><p>Container for multiple parameter elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr></tbody></table>
+    <h3>MCS configuration elements</h3><table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../mcs_config/config_cache.html">cache</a></th><td><p>Defines cache values.</p></td></tr><tr><th class="firstcell"><a href="../mcs_config/config_caching_operation.html">caching-operation</a></th><td><p>Container for pipeline cache definitions.</p></td></tr><tr><th class="firstcell"><a href="../mcs_config/config_pipeline_config.html">pipeline-configuration</a></th><td><p>Container for pipeline configuration elements.</p></td></tr></tbody></table>
+  </body></html>

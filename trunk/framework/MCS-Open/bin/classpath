@@ -1,0 +1,62 @@
+#!/bin/bash
+# -----------------------------------------------------------------------------
+# (c) Volantis Systems Ltd 2005. All Rights Reserved.
+# -----------------------------------------------------------------------------
+# Purpose:   Generates a classpath from the specified list of JAR file names,
+#            outputting the classpath to standard out.
+# Arguments: An arbirary number of JAR file names with no path specifications.
+# -----------------------------------------------------------------------------
+
+function get_root_dir()
+{
+  # Find the MCS root directory by first finding the location of this
+  # script file and then moving relative to that to find the root.
+  DIR=$(dirname $(type -path $0))
+
+  if [ "${DIR}" == "." ]; then
+    DIR=${PWD}
+  fi
+
+  echo $(dirname ${DIR})
+}
+
+ROOT_DIR=$(get_root_dir)
+CLI_LIB_DIR=${ROOT_DIR}/built/dist/cli
+INTERNAL_LIB_DIR=${ROOT_DIR}/built/internal
+
+CLASSPATH=""
+
+while [ "$1" != "" ]; do
+    FILE=${CLI_LIB_DIR}/$1
+
+    if [ ! -f ${FILE} ]; then
+        FILE=${INTERNAL_LIB_DIR}/$1
+
+        if [ -f ${FILE} ]; then
+            echo "WARNING: using an internal library ($1)" >&2
+        fi
+    fi
+
+    if [ ! -f ${FILE} ]; then
+        echo "WARNING: $1 cannot be located" >&2
+    elif [ "${#CLASSPATH}" == 0 ]; then
+        CLASSPATH="${FILE}"
+    else
+        CLASSPATH="${CLASSPATH}:${FILE}"
+    fi
+
+    shift
+done
+
+echo ${CLASSPATH}
+
+#
+# ===========================================================================
+# Change History
+# ===========================================================================
+# $Log$
+
+# 12-Jan-05	6648/1	philws	VBM:2005010605 Overhaul in-house scripts to correct classpath issues
+
+# ===========================================================================
+#

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Setting text direction</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Setting text direction</h1>
+    <p>In layouts you can specify the intended text direction for a format, and in themes you can
+      define the direction for individual elements. For example, you might want to define a block of
+      text in Arabic running right to left, but display some words in the block in a Latin font,
+      left to right.</p>
+    
+      <h2>Layout format</h2>
+      <p>In the format for a layout, you use the <span class="uicontrol">Horizontal alignment</span>
+        attribute with the <span class="uicontrol">Direction</span> theme property to show the intended
+        alignment of text. The 'Start' and 'End' values indicate edge alignment, for example 'Start'
+        used with 'rtl' aligns the text right, and 'End' aligns it left.</p>
+      <p>This has the effect of allowing MCS to determine alignment at runtime, depending on the
+        direction of the theme. If you use 'Right' or 'Left' with the
+        <span class="uicontrol">Direction</span> theme property, it fixes the alignment applied to this
+        format.</p>
+    
+    
+      <h2>Theme setting</h2>
+      <p>In the theme policy, you can use the position property <span class="uicontrol">Direction</span> on
+        any text element that should flow in a direction that differs from the layout
+      specification.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../wag/xdime2_about.html">Working with XDIME 2</a><br/></p>
+    
+  </body></html>

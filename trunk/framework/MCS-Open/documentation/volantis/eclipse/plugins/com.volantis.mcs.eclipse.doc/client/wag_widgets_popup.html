@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Creating a popup</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Creating a popup</h1>
+    <p>The Popup widget is used to inform the user of some event without disrupting the page that is
+      being viewed. It is initially hidden by default, and appears as a result of some external
+      trigger and displays some information to the user.</p>
+    
+      <h2>Visual appearance</h2>
+      <p>The appearance of the popup depends on its content. When it is visible it overlays part or
+        all of the visible area of the page. It has an optional dismiss button that the user can use
+        to hide the popup.</p>
+    
+    
+      <h2>User interactions</h2>
+      <p>The only user interaction supported by the Popup widget is the 'dismiss' action. If the
+        user clicks the dismiss button, the popup disappears.</p>
+    
+    <div class="note"><strong>Note</strong>: The Popup widget must have a layout associated with it, to separate content
+      from the container. If none is specified, then it will have an implicit layout containing a
+      single region.</div>
+    
+      <h2>XDIME 2 elements</h2>
+      <p>The <span class="code">widget:popup</span> is the containing element. The optional
+          <span class="code">widget:dismiss</span> element provides labels for dismissing the popup. If you
+        do not provide one, you should hide the popup with some external event.</p>
+      <pre class="code">
+&lt;widget:popup&gt;
+  &lt;div&gt;Hello world!&lt;/div&gt;
+  &lt;widget:dismiss&gt;close&lt;/widget:dismiss&gt;
+&lt;/widget:popup&gt;</pre>
+    
+    
+      <h2>Non-client fallback</h2>
+      <p>If the device does not support the Popup widget, and you specified that it should initially
+        be visible. then it is displayed in the position specified. Otherwise, it is completely
+        ignored and does not generate any output markup.</p>
+    
+    <div class="note"><strong>Note</strong>: This widget supports JavaScript. See <em>JavaScript support</em> for
+      details.</div>
+     
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../client/widget_library.html">Widget library</a><br/><a class="link" href="../xdime_cp/widget_popup.html">widget:popup</a><br/><a class="link" href="../client/wag_widgets_style.html">Styling widgets</a><br/><a class="link" href="../client/wag_widgets_javascript.html">JavaScript support</a><br/></p>
+    
+  </body></html>

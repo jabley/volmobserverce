@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Caching XDIME 2</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Caching XDIME 2</h1>
+    <p>In XDIME 2 you control internal content caching with the <span class="code">meta</span> element.</p>
+    <p>The default value for page caching is set in the <span class="code">default-scope</span> attribute on the
+        <span class="code">page-cache</span> element in the <span class="filepath">mcs-config.xml</span> file. The
+      default setting is 'none'. You can override this value, or any other value that has been set
+      as a <span class="code">property</span> attribute value of 'mcs:cache-scope' on a <span class="code">meta</span>
+      tag. The 'optimistic' and 'safe' values enable caching for the page, and affect the way that
+      MCS calculates a cache key on the content.</p>
+    
+      <h2>External cache properties</h2>
+      <p>You can use <span class="code">property</span> attribute values on the <span class="code">meta</span> element
+        to express further caching properties that may be used by services that are downstream of
+        MCS. As with 'mcs:cache-scope', you use the <span class="code">mcs:</span> namespace prefix on
+          <span class="code">property</span> attribute values.</p>
+      <pre class="code">&lt;meta property="mcs:cache-max-age"&gt;300&lt;/meta&gt;</pre>
+      <table cellspacing="0" summary=""><thead><tr><th>Value  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">mcs:no-cache  </th><td>No caching takes place (default). If the property has one of the other possible
+              values, caching is enabled and the cache will contain the entire content rendered for
+              the target device.  </td></tr><tr><th class="firstcell">mcs:cache-max-age  </th><td>Value in seconds before the cache expires. Only meaningful when the cache is
+              enabled.  </td></tr><tr><th class="firstcell">mcs:cache-expires  </th><td>Sets an explicit expiry HTTP-date on the cache headers returned  </td></tr><tr><th class="firstcell">mcs:cache-auto  </th><td>MCS takes into account the cache time determined by the pipeline in addition to
+              other factors  </td></tr></tbody></table>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../wag/xdime2_about.html">Working with XDIME 2</a><br/></p>
+    
+  </body></html>

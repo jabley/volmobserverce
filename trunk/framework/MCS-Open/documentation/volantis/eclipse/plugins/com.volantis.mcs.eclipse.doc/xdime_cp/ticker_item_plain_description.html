@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>ticker:item-plain-description</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>ticker:item-plain-description</h1><h2>Purpose</h2>
+      <p>Provides plain description of an item.</p>
+    <h2>Contained by</h2><p><a href="../xdime_cp/ticker_feed.html">ticker:feed</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:ticker="http://www.volantis.com/xmlns/2006/09/ticker"&gt;
+  &lt;head&gt;
+    &lt;title&gt;ticker:item-plain-description&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;ticker:feed-poller
+      url="http://localhost:8080/buzzcast/vmds/?uid=tickeruser&amp;amp;delivery-format=4"
+      style="min-polling-interval:120; max-polling-interval:120; "/&gt;
+    &lt;widget:ticker-tape style="height:30px; width:300px; border: solid 2px green; "&gt;
+      &lt;ticker:feed item-display="id"/&gt;
+    &lt;/widget:ticker-tape&gt;
+    &lt;div&gt;
+      &lt;ticker:item-display id="id" style="left:8px;top: 110px;height:260px; width:300px; border:
+        solid 2px red; "&gt;
+        &lt;div&gt;&lt;strong&gt;&lt;ticker:item-title /&gt;&lt;/strong&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;ticker:item-description /&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;ticker:item-channel /&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;ticker:item-plain-description/&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;widget:dismiss&gt;Close&lt;/widget:dismiss&gt;&lt;/div&gt;
+      &lt;/ticker:item-display&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../client/ticker_er.html">BuzzCast elements</a><br/></p>
+    </body></html>

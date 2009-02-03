@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Configuring the project</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../mcs_learn/JiveDemo_about_jive.html" title="Next steps with MCS">Start</a></li><li><a href="../mcs_learn/JiveDemo_store_jsp.html" title="XDIME 2 and JavaScript">Previous</a></li><li><a href="../mcs_learn/JiveDemo_preview.html" title="Previewing the site">Next</a></li></ul></td></tr></table><h1>Configuring the project</h1>
+    <p>The <span class="filepath">mcs-project.xml</span> file allows a remote MCS server to locate your
+      project policy files. There can only be one policy source directory for a project, and all
+      your MCS resources must be in this folder or one under it. The default path of the source
+      directory is <span class="filepath">WebContent/mcs-policies</span>, but you can use any name you wish.</p>
+    <p>The <span class="filepath">mcs-project.xml</span> file should contain the code described below and be
+      located in the main <span class="filepath">jive</span> directory</p>
+    <pre class="code">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;project xmlns="http://www.volantis.com/xmlns/mcs/project"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="jive"&gt;
+
+  &lt;xml-policies directory="WebContent/mcs-policies/"/&gt;
+  &lt;assets base-url="."/&gt;
+
+&lt;/project&gt;</pre>
+    <p>The table describes the <span class="filepath">mcs-project.xml</span> file elements.</p>
+    <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">Name  </th><th>Purpose  </th></tr></thead><tbody><tr><th class="firstcell">
+            <span class="code">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+            </th><td>XML declaration  </td></tr><tr><th class="firstcell">
+            <span class="code">&lt;project xmlns="http://www.volantis.com/xmlns/mcs/project"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="jive"/&gt;</span>
+            </th><td>Namespaces declaration. The <span class="code">name</span> attribute contains the project
+            name.  </td></tr><tr><th class="firstcell">
+            <span class="code">&lt;xml-policies directory="WebContent/mcs-policies/"/&gt;</span>
+            </th><td>Defines location of the policy files. In our case it is default location of the MCS
+            project.  </td></tr><tr><th class="firstcell">
+            <span class="code">&lt;assets base-url="."/&gt;</span>
+            </th><td>The assets element defines the URLs for component variants and asset groups, and can
+            be useful in specifying alternate locations for audio, image, and other files  </td></tr></tbody></table>
+  <h2>Create a mcs-project.xml file</h2><ol><li>Choose the <span class="command">File</span> | <span class="command">New</span> | <span class="command">Other</span></li><li>Expand the categories from a list of available wizards for your XML editor, select 'XML
+      file' and click the <span class="command">Next</span> button<p><img src="../graphics/jive_mcs_new_file_ui.png" alt="MCS Wizard" title="MCS Wizard"/></p></li><li>Select <span class="filepath">jive/WebContent</span> as a parent folder, name the new file
+      'mcs-project.xml', and click the <span class="command">Finish</span> button</li><li>The new file should appear in the MCS Navigator view and be opened in your XML editor</li><li>Edit the content of the <span class="filepath">mcs-project.xml</span> file to include the code
+      discussed above</li></ol></body></html>

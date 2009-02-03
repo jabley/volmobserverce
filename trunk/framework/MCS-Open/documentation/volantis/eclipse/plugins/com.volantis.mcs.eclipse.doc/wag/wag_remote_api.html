@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Managing the remote cache</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Managing the remote cache</h1>
+    <p>You can use an API to manage the remote policy cache. The
+      <span class="code">MarinerServletApplication</span> class provides methods for preloading the caches (or
+      loading them), and flushing the caches.</p>
+    
+      <h2>Preloading the cache</h2>
+      <p>The API takes as input the URL to which the preload request is to be made. It causes a
+        remote policy request to be sent to the URL with the <span class="code">Mariner-RequestType</span> header
+        set to 'policySet'. The response to this request from the remote policy server must be a set
+        of policies contained within a <span class="code">rpdm:policies</span> element. See <em>Encoding remote policy responses</em> for details of the response schema.</p>
+      <p>Where an entry is already present in the cache, it is replaced by the entry returned by the
+        preload request. So you can use a preload request to refresh cache if you wish.</p>
+      <p>When entries are added to the cache during this kind of operation, all of the rules
+        associated with cache size, cache control values, and quotas apply. However, retry does not
+        apply to preload operations that fail.</p>
+      <div class="note"><strong>Note</strong>: A request to preload the caches can specify any amount of information from a
+        single policy up to and including the entire contents of the remote policy server.
+        Implementations of remote policy servers must be capable of handling requests with this
+        breadth of scope.</div>
+    
+    
+      <h2>Flushing the caches</h2>
+      <p>MCS provides an API to allow part or all of any cache to be refreshed, including:</p>
+      <ul>
+        <li>a specified cache, for example the image component cache</li>
+        <li>all caches</li>
+        <li>a folder in a specified cache</li>
+        <li>a entry in a specified cache</li>
+        <li>a particular folder in all caches</li>
+      </ul>
+      <p>The result of the flush operation is that all the entries specified are removed from the
+        cache. The next time a reference is made to one of these policies, its value will be
+        retrieved from the remote policy server in the usual way.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../wag/wag_remote.html">Using remote policies</a><br/><a class="link" href="../wag/wag_remote_xml.html">Encoding remote policy responses</a><br/></p>
+    
+  </body></html>

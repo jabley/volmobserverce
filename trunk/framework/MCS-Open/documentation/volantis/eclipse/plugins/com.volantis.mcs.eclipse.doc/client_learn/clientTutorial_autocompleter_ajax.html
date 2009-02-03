@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Autocompleter</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_deck.html" title="The Deck widget">Previous</a></li><li><a href="../client_learn/clientTutorial_carousel_ajax.html" title="Carousel with AJAX">Next</a></li></ul></td></tr></table><h1>Autocompleter</h1>
+    <p>The Autocompleter widget provides a special type of the text input field in which you can
+      select from a list of matching items while typing.</p>
+    <p>We will create a Autocompleter widget that returns the list of country names.</p>
+    <p><img src="../graphics/cfTutorial/autocompleter-ajax.png" alt="Autocompleter widget" title="Autocompleter widget"/></p>
+  <h2>Autocompleter <a href="../client/wag_widgets_autocompleter.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>Autocompletion takes place, when the <span class="code">widget:autocomplete</span> element is
+      enclosed by the <span class="code">xf:input</span> XForms element. Its form model needs to be defined
+      within the <span class="code">head</span> section of the page.<pre class="code">
+&lt;xf:group&gt;
+  &lt;xf:input ref="f1"&gt;
+    &lt;xf:label&gt;country&lt;/xf:label&gt;
+    &lt;widget:autocomplete id="myAutocompleter" src="service/autocomplete"/&gt;
+  &lt;/xf:input&gt;
+&lt;/xf:group&gt;</pre></li><li>The <span class="code">src</span> attribute specifies the URL address of the autocompletion service
+      which will return matching results</li><li>The autocompletion HTTP request uses the GET method. The request consists of the value
+      specified by the <span class="code">src</span> attribute, and the <span class="code">mcs-value</span> query parameter
+      that holds the entered value.<pre class="code">
+service/autocomplete?mcs-value=U</pre></li></ol><h2>Widget response structure <a href="../client/wag_widgets_structure.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The autocompletion service should return the XDIME response in the following form<pre class="code">
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"&gt;
+  &lt;response:head&gt;
+    &lt;response:link rel="mcs:theme" href="/main.mthm"/&gt;
+  &lt;/response:head&gt;
+  &lt;response:body&gt;
+    &lt;response:autocomplete&gt;
+      &lt;li&gt;Uganda&lt;/li&gt;
+      &lt;li&gt;Ukraine&lt;/li&gt;
+      &lt;li&gt;United Arab Emirates&lt;/li&gt;
+      &lt;li&gt;United Kingdom&lt;/li&gt;
+      &lt;li&gt;United States&lt;/li&gt;
+    &lt;/response:autocomplete&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;</pre></li><li>The <span class="code">response:autocomplete</span> element contains the list of matching items.
+      Each item is enclosed by <span class="code">li</span>.</li></ol><h2>Autocompletion service</h2><p>Below we provide a JSP example of an autocompletion service. The details of JSP are outside
+      the scope of this tutorial, but you can see that the list of items is defined explicitly
+      within the file. The code selects the items that match the <span class="code">mcs-value</span> parameter.</p><p>To use provided JSP instead of the default service, you need to change the value of the
+        <span class="code">src</span> attribute to 'data.jsp', create a <span class="filepath">data.jsp</span> file, and
+      modify it by including the following code.</p><pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;%@ page import="com.volantis.mcs.servlet.*" %&gt;
+&lt;% response.setContentType("x-application/vnd.xdime+xml"); %&gt;
+&lt;%
+String paramValue = MarinerServletRequestContext.findInstance(request).getParameter("mcs-value");
+boolean showAll = false;
+if (paramValue == null) {
+  showAll = true;
+  paramValue = "";
+}
+String[] names = {"Afghanistan", "Aland Islands", "Albania", "American Samoa", "Andorra",
+  "Anguilla", "Antarctica", "Antigua And Barbuda", "Argentina", "Belgium"};
+int counter = 1;  
+%&gt;
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+  &lt;response:head&gt;
+  &lt;/response:head&gt;
+  &lt;response:body&gt;
+    &lt;response:autocomplete&gt;
+      &lt;%
+        for (int i=0; i&lt;names.length; i++) {  
+          if (showAll || names[i].startsWith(paramValue))  {
+      %&gt;			
+        &lt;li&gt;&lt;%=names[i]%&gt;&lt;/li&gt;
+      &lt;%
+          counter++;
+          }
+        }	
+      %&gt;
+    &lt;/response:autocomplete&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;</pre><h2>Complete XDIME 2 code</h2><ol><li>Create an <span class="filepath">ajax-autocomplete.xdime</span> file</li><li>Modify the <span class="filepath">ajax-autocomplete.xdime</span> file by including the following code<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Autocomplete Widget&lt;/title&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+    &lt;xf:model&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="f1"/&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Autocompleter"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt; Enter country name:
+          &lt;div style="mcs-layout: 'layouts/2x2.mlyt'"&gt;
+            &lt;xf:group&gt;
+              &lt;xf:input ref="f1" style="mcs-container: 'top-right'"&gt;
+                &lt;xf:label style="mcs-container: 'top-left'"&gt;country&lt;/xf:label&gt;
+                &lt;widget:autocomplete id="myAutocompleter"
+                  src="service/autocomplete" style="color: #000"/&gt;
+              &lt;/xf:input&gt;
+            &lt;/xf:group&gt;
+          &lt;/div&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/response_autocomplete.html">response:autocomplete</a></th><td><p>Response element for a Autocompleter widget. Each <span class="code">li</span> element contains a
+        single matching item.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/si_instance.html">si:instance</a></th><td><p>Container for data items used to supply initial values for forms controls, or to provide
+        additional data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/si_item.html">si:item</a></th><td><p>Defines an item of instance data that is required if a form control needs to be
+        initialized, or when data not associated with a form control needs to be provided during
+        form submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_autocomplete.html">widget:autocomplete</a></th><td><p>Defines an Autocompleter widget.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_group.html">xf:group</a></th><td><p>Combines a set of form controls into a user interface component. By applying theme
+        properties on this element, you can control where form fragmentation occurs, and define or
+        override at runtime the link texts specified on form fragment layouts.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_input.html">xf:input</a></th><td><p>A form control for text input.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_instance.html">xf:instance</a></th><td><p>Optional element that contains instance data associated with the <span class="code">model</span>
+        element. It is used to supply initial values for forms controls, or to provide additional
+        data to be submitted with the form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_label.html">xf:label</a></th><td><p>Provides a descriptive label for forms controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_model.html">xf:model</a></th><td><p>Represents a form definition, used as a container for elements associated with its
+        submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr><tr><th class="firstcell"><a href="../themes/theme_effect_prop.html">Effects properties</a></th><td><p>Defines style properties used by the Framework Client.</p></td></tr></tbody></table>
+  </body></html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Form fragments</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Form fragments</h1>
+    <p>You can use form fragments to manage the display of forms that are too large to present on
+      devices with small screens. MCS combines the results from each of the form fragments before
+      the form's data is processed.</p>
+    <p>You create form fragments by inserting form fragments into the content of a form, either in
+      rows or columns.</p>
+    <p><img src="../graphics/layout_form_fragment_design.png" alt="Design page for a form fragment layout" title="Design page for a form fragment layout"/></p>
+    <div class="note"><strong>Note</strong>: Form fragments should only be used inside forms and not inside other form
+      fragments.</div>
+    <p>Form fragmentation and link labeling is controlled by using theme properties on form
+      elements. See <em>Form fragments links in XDIME 2</em> for further details.</p>
+    <p>The example shows <span class="code">class</span> attributes on <span class="code">xf:group</span> elements, each
+      of which provides a potential point for fragmenting the form.</p>
+    <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;xf:group&lt;/title&gt;
+    &lt;style type="text/css" media="handheld,all"&gt;
+      .fragment { mcs-break-after: always; }
+    &lt;/style&gt;
+    &lt;xf:model id="login"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="firstName"/&gt;
+          &lt;si:item name="lastName"/&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission action="test.jsp" id="submit"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h4&gt;Form Fragmentation&lt;/h4&gt;
+    &lt;xf:group class="fragment"&gt;
+      &lt;xf:input model="login" ref="firstName"&gt;
+        &lt;xf:label&gt;Enter Your Name:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+    &lt;/xf:group&gt;
+    &lt;xf:group class="fragment"&gt;
+      &lt;xf:input model="login" ref="lastName"&gt;
+        &lt;xf:label&gt;Enter Your Surname:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+      &lt;xf:submit submission="submit"&gt;
+        &lt;xf:label&gt;Send&lt;/xf:label&gt;
+      &lt;/xf:submit&gt;
+    &lt;/xf:group&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../layouts/layout_canvas_panes.html">Canvas layouts and panes</a><br/><a class="link" href="../wag/wag_xf_fragment.html">Form fragments links in XDIME 2</a><br/></p>
+    
+  </body></html>

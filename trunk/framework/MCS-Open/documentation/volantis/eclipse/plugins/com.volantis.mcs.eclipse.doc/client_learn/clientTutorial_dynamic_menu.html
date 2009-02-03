@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Specifying a dynamic menu</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_carousel.html" title="Creating a carousel">Previous</a></li><li><a href="../client_learn/clientTutorial_folding_item.html" title="Hiding and showing content">Next</a></li></ul></td></tr></table><h1>Specifying a dynamic menu</h1>
+    <p>You can use the Dynamic Menu widget to include navigation on a page, without showing the
+      menuitems initially. Menuitems are displayed when the user selects a menu. Moreover, you can
+      use of transitions to show and hide the links in a visually appealing way.</p>
+    <p><img src="../graphics/cfTutorial/dynamicmenu.png" alt="Dynamic Menu widget" title="Dynamic Menu widget"/></p>
+  <h2>Specifying a dynamic menu <a href="../client/wag_widgets_dynamic_menu.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><p>This widget uses a standard XDIME 2 <span class="code">nl</span> element to define a navigation
+      list, and the <span class="uicontrol">Menu style</span> property to render it dynamically.</p><ol><li>Create a <span class="filepath">dynamicmenu.xdime</span> file in the
+      <span class="filepath">client-app</span> directory</li><li>Add a <span class="code">style</span> element with the <span class="uicontrol">Menu style</span> property
+      set to 'dynamic'. The following styles also set menu orientation and show/hide effects. The
+        <span class="uicontrol">Toggle event</span> property specifies the event on which hidden content
+      will be shown. Possible values are: 'focus' or 'click'.<pre class="code">
+&lt;style type="text/css" media="handheld,all"&gt;
+  .main-menu {
+    mcs-effect-style: slide-top;
+    mcs-effect-duration: 1s;
+    mcs-menu-style: dynamic;
+    mcs-menu-orientation: horizontal;
+    mcs-toggle-event: click;
+    background-color: #fff;
+    text-decoration: none;
+  }
+  .main-menu:mcs-concealed {
+    mcs-effect-style: slide-top;
+    mcs-effect-duration: 1s;
+  }
+  label {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #000;
+  }
+  .menu a {
+    color: #000;
+  }
+&lt;/style&gt;</pre></li><li>The <span class="code">nl</span> element defines your menu. It must include the
+      <span class="code">label</span> element. The <span class="code">class</span> attribute assigns style properties.<pre class="code">
+&lt;nl class="main-menu"&gt;
+  &lt;label/&gt;
+  &lt;li&gt;
+  ...
+    &lt;nl class="widget_menu"&gt;
+      &lt;label&gt;J - R&lt;/label&gt;
+      &lt;li&gt;&lt;a href="http://www.nicosia.org.cy"&gt;Nicosia&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="http://www.podgorica.cg.yu"&gt;Podgorica&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="http://www.prague-city.cz"&gt;Prague&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="http://www.rcc.lv"&gt;Riga&lt;/a&gt;&lt;/li&gt;
+    &lt;/nl&gt;
+  &lt;/li&gt;
+&lt;/nl&gt;</pre></li></ol><h2>Complete XDIME 2 code</h2><p>The complete code for <span class="filepath">dynamicmenu.xdime</span> follows.</p><pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Dynamic Menu Widget&lt;/title&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+    &lt;style type="text/css" media="handheld,all"&gt;
+      .main-menu {
+        mcs-effect-style: slide-top;
+        mcs-effect-duration: 1s;
+        mcs-menu-style: dynamic;
+        mcs-menu-orientation: horizontal;
+        mcs-toggle-event: click;
+        background-color: #fff;
+        text-decoration: none;
+      }
+      .main-menu:mcs-concealed {
+        mcs-effect-style: slide-top;
+        mcs-effect-duration: 1s;
+      }
+      label {
+        padding-left: 5px;
+        padding-right: 5px;
+        color: #000;
+      }
+      .menu a {
+        color: #000;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Dynamic Menu Widget"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+          &lt;nl class="main-menu"&gt;
+            &lt;label/&gt;
+            &lt;li&gt;
+              &lt;nl class="widget_menu"&gt;
+                &lt;label&gt;A - I&lt;/label&gt;
+                &lt;li&gt;&lt;a href="http://www.ankara-bel.gov.tr"&gt;Ankara&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.beograd.org.yu"&gt;Beograd&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.berlin.de"&gt;Berlin&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.bratislava.sk"&gt;Bratislava&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.budapest.hu"&gt;Budapest&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.pmb.ro"&gt;Bucharest&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.krakow.pl"&gt;Cracow&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.ljubljana.si"&gt;Ljubljana&lt;/a&gt;&lt;/li&gt;
+              &lt;/nl&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;nl class="widget_menu"&gt;
+                &lt;label&gt;J - R&lt;/label&gt;
+                &lt;li&gt;&lt;a href="http://www.nicosia.org.cy"&gt;Nicosia&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.podgorica.cg.yu"&gt;Podgorica&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.prague-city.cz"&gt;Prague&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.rcc.lv"&gt;Riga&lt;/a&gt;&lt;/li&gt;
+              &lt;/nl&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;nl class="widget_menu"&gt;
+                &lt;label&gt;S - Z&lt;/label&gt;
+                &lt;li&gt;&lt;a href="http://www.sofia.bg"&gt;Sofia&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.tallinn.ee"&gt;Tallinn&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.tirana.gov.al"&gt;Tirana&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.magnet.mt"&gt;Valletta&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.wien.gv.at/"&gt;Vienna&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.vilnius.lt"&gt;Vilnius&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="http://www.zagreb.hr"&gt;Zagreb&lt;/a&gt;&lt;/li&gt;
+              &lt;/nl&gt;
+            &lt;/li&gt;
+          &lt;/nl&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_a.html">a</a></th><td><p>Used to create an explicit link to another place in the same document or to another
+        document. The current document is the source of the link and the value of the
+        <span class="code">href</span> attribute, defines the link target</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_label.html">label</a></th><td><p>Defines a label for a navigation list.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_li.html">li</a></th><td><p>A list item in an ordered, unordered or navigation list.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_nl.html">nl</a></th><td><p>Defines a navigation list. The <span class="code">label</span> element is required.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/hypertext_attr_cp.html">Hypertext attributes</a></th><td><p>Attributes that define link targets.</p></td></tr></tbody></table>
+  </body></html>

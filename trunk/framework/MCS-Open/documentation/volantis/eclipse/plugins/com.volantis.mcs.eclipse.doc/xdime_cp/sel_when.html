@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>sel:when</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>sel:when</h1><h2>Purpose</h2>
+      <p>One of a number of possible matches that could be selected. The content is selected for
+        processing if the <span class="code">expr</span> value is matched and the <span class="code">precept</span> on the
+        containing <span class="code">sel:select</span> element places the <span class="code">sel:when</span>
+        element in scope.</p>
+    <h2>Contains</h2><p><a href="../xdime_cp/sel_if.html">sel:if</a>, <a href="../xdime_cp/sel_select.html">sel:select</a></p><h2>Contained by</h2><p><a href="../xdime_cp/sel_select.html">sel:select</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">expr</th><td>Determines whether or not the content is selected for processing. If the
+          expression evaluates to 'true', the content is selected, otherwise it is not processed. If
+          you omit the attribute the content is selected for processing by default.</td><td>xs:string</td><td> </td><td> </td><td>required </td></tr></table><h2>Example</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:sel="http://www.w3.org/2004/06/diselect"&gt;
+  &lt;head&gt;
+    &lt;title&gt;sel:select&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;sel:select&gt;
+      &lt;sel:when expr="device:getPolicyValue('supports.client.framework')='true'"&gt;
+        &lt;p&gt;This device supports Client Framework.&lt;/p&gt;
+      &lt;/sel:when&gt;
+      &lt;sel:otherwise&gt;
+        &lt;p&gt;This device does not support Client Framework.&lt;/p&gt;
+      &lt;/sel:otherwise&gt;
+    &lt;/sel:select&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../wag/sel_er.html">Select elements</a><br/><a class="link" href="../xdime_cp/sel_attr_cp.html">Selection attributes</a><br/></p>
+    </body></html>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>JavaScript support</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>JavaScript support</h1>
+    <p>Many of the widgets provide a JavaScript API to allow them to be used from other scripts. The
+      following methods are considered the public interface of the widget and can be called by
+      JavaScript code:</p>
+    <p class="note"><strong>Tip</strong>: You can also use the <em>Actions, properties and events</em> architecture to define
+      simple interactions between widgets.</p>
+    
+      <h2>General</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">getInstance(id) or $W(id)  </th><td>Returns a widget registered under the specified id  </td></tr><tr><th class="firstcell">setPollingEnabled(enabled)  </th><td>Enables/disabled AJAX updates for all widgets  </td></tr><tr><th class="firstcell">isPollingEnabled()  </th><td>Checks if AJAX updates are enabled  </td></tr><tr><th class="firstcell">observe(widget, notificationName, methodName)  </th><td>Starts observing selected widget for a specified notification. A defined method will
+              be invoked when the notification is sent.  </td></tr><tr><th class="firstcell">stopObserving(widget, notificationName, methodName)  </th><td>Stops observing selected widget for a specified notification  </td></tr></tbody></table>
+    
+    
+      <h2>Carousel widget</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">stop()  </th><td>Stops widget transitions so no new slice of information will be displayed  </td></tr><tr><th class="firstcell">start()  </th><td>Resumes widget transitions  </td></tr><tr><th class="firstcell">nextPage()  </th><td>Moves forward displayed feed items obtained by the Feed Poller  </td></tr><tr><th class="firstcell">previousPage()  </th><td>Moves backwards displayed feed items obtained by the Feed Poller  </td></tr><tr><th class="firstcell">setContent(htmlText)  </th><td>Replaces whole carousel content with new from <span class="code">htmlText</span> parameter. The
+              content should be a string with a HTML fragment, including a sequence of
+              <span class="code">li</span> elements, each one representing content of the single carousel
+              item.  </td></tr><tr><th class="firstcell">forceUpdate()  </th><td>Forces an AJAX update if the refresh action is used with Carousel widget  </td></tr></tbody></table>
+    
+    
+      <h2>Date Picker widget</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">show()  </th><td>Opens a calendar window  </td></tr><tr><th class="firstcell">hide()  </th><td>Closes a calendar window  </td></tr><tr><th class="firstcell">getSelectedDate()  </th><td>Returns selected date  </td></tr><tr><th class="firstcell" colspan="2">Setting calendar display  </th></tr><tr><th class="firstcell">setStartRange(1,3,2005)  </th><td>Defines a starting date  </td></tr><tr><th class="firstcell">setEndRange(1,4,2008)  </th><td>Defines an ending date  </td></tr><tr><th class="firstcell">setStartDate(1,11,2006)  </th><td>Sets initially focused date, with its month displayed. If method is not called,
+              current date will be used. If a current date is out of the specified range, first date
+              within the range will be used.  </td></tr><tr><th class="firstcell">setDayNames('1','tuesday','3','4','5','sat','sunday')  </th><td>Overrides the default day names returned to the referenced form field   </td></tr><tr><th class="firstcell">setDayHeaders('1','tuesday','3','4','5','sat','sunday')  </th><td>Overrides the default calendar day column headers with specified names  </td></tr><tr><th class="firstcell">setMonthNames('Jan','February','March','IV','MAY','6','7','8','9','10','11','12')   </th><td>Defines month names  </td></tr><tr><th class="firstcell">setDisabledDate(day,month,year)   </th><td>Disables specified date. If the first field is set to 'null', the whole month will
+              be disabled. If the first and second fields are set to 'null', the whole year will be
+              disabled.  </td></tr><tr><th class="firstcell">setDisabledWeekDays(6,7)   </th><td>Disables week days. The example disables Saturdays and Sundays.  </td></tr><tr><th class="firstcell">setDisabledStyle(style)   </th><td>Sets style for disabled dates. The <span class="code">{color:gray}</span> style is used by
+              default.  </td></tr><tr><th class="firstcell">setWeekStartDay(7)   </th><td>Sets a first day of the week. The example sets Sunday.  </td></tr><tr><th class="firstcell" colspan="2">Setting date format  </th></tr><tr><th class="firstcell">setDateFormat("DD/MM/YYYY")  </th><td>Sets the format of the date returned to the referenced form field. Each
+              <span class="code">D</span> will be transformed into one day number, <span class="code">M</span> into month
+              number and <span class="code">Y</span> into year number. The <span class="code">N</span> letter will be
+              transformed into string representation of month. An array of month names can be set
+              using the <span class="code">setMonthNames()</span> method. Other characters will be left as
+              separators. Format is ignored when dividing a date into the multiple fields.  </td></tr><tr><th class="firstcell" colspan="2">Setting style for specific date  </th></tr><tr><th class="firstcell"> setDateStyle(day-of-month,month,year,style-object)  </th><td>Sets a style for a selected day  </td></tr><tr><th class="firstcell">setDayOfWeekStyle(day-of-week,style)  </th><td>Sets a style for a specified day of week across the whole calendar range  </td></tr></tbody></table>
+    
+    
+      <h2>Folding Item widget</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">fold()  </th><td>Folds a Folding Item widget using the effect configured by the author. If widget is
+              already folded it has no effect.  </td></tr><tr><th class="firstcell">unfold()  </th><td>Unfolds a Folding Item widget with the effect configured by the appropriate style.
+              If a widget is already unfolded it has no effect.  </td></tr></tbody></table>
+    
+    
+      <h2>Simple and Multiple Forms Validator widgets</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">validate()  </th><td>Causes validation on element  </td></tr><tr><th class="firstcell">addSuccessCallback()  </th><td>Callback function invoked when validation passes successfully  </td></tr><tr><th class="firstcell">addFailureCallback()  </th><td>Callback function invoked when validation fails  </td></tr><tr><th class="firstcell">addFallbackCallback()  </th><td>Callback function invoked when validation could not be performed due to some
+              unexpected reason (no field, AJAX error)  </td></tr></tbody></table>
+    
+    
+      <h2>Forms Wizard widget</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">launch()  </th><td>Launches a forms wizard  </td></tr><tr><th class="firstcell">show()  </th><td>Displays a Wizard widget, if the widget is already displayed it has no effect  </td></tr><tr><th class="firstcell">addCancelCallback(callback)   </th><td>Sets a callback function to be called when wizard is canceled. Callback will be
+              invoked with no parameters.  </td></tr></tbody></table>
+    
+    
+      <h2>Gallery</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">next()  </th><td>Displays the next page of a gallery, unless gallery is displaying the last
+            page.  </td></tr><tr><th class="firstcell">previous()  </th><td>Returns to the previous page, unless gallery is displaying the first page.  </td></tr><tr><th class="firstcell">sendToSlideshow(n)  </th><td>Sends the <span class="code">n</span>'th item being displayed on the current gallery page to the
+              associated Slideshow widget.  </td></tr></tbody></table>
+    
+    
+      <h2>Popup widget</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">show()  </th><td>Causes the popup to be displayed. If the popup is already displayed it has no
+              effect.  </td></tr><tr><th class="firstcell">dismiss(type)  </th><td>Causes the popup to be hidden. If the popup is already hidden it has no effect.
+                <span class="code">type</span> is passed as an argument to methods registered as observers of the
+              <span class="code">dismissed</span> event.  </td></tr><tr><th class="firstcell">hide()  </th><td>Causes the popup to be hidden. If the popup is already hidden it has no effect.  </td></tr></tbody></table>
+    
+    
+      <h2>Progress Bar widget</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">show()  </th><td>Shows previously invisible Progress Bar widget, using specified appear effect. It
+              has no effect on already visible Progress Bar widget.  </td></tr><tr><th class="firstcell">hide()  </th><td>Hides previously visible Progress Bar widget, using the disappear effect specified
+              by author. It has no effect on already hidden Progress Bar widget.  </td></tr><tr><th class="firstcell">set(x)  </th><td>Sets the current progress. If <span class="code">x</span> is less or equal 0, the progress is set
+              to 0. If <span class="code">x</span> is more or equal 100, the progress is set to 100. If
+              <span class="code">x</span> is not a number, the progress is not changed.  </td></tr><tr><th class="firstcell">get()  </th><td>Returns the current progress  </td></tr><tr><th class="firstcell">reset()  </th><td>Equivalent to <span class="code">set(0)</span>  </td></tr><tr><th class="firstcell">finish()  </th><td>Equivalent to <span class="code">set(100)</span>  </td></tr><tr><th class="firstcell">progress(d)  </th><td>Increments the progress by <span class="code">d</span>, equivalent to <span class="code">set(get() +
+            d)</span>  </td></tr></tbody></table>
+    
+    
+      <h2>Slideshow widget</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">next()  </th><td>Displays the next item from the defined set of items  </td></tr><tr><th class="firstcell">previous()  </th><td>Returns to the previous item  </td></tr><tr><th class="firstcell">play()  </th><td>Starts or resumes the slideshow  </td></tr><tr><th class="firstcell">pause()  </th><td>Pauses the slideshow  </td></tr><tr><th class="firstcell">stop()  </th><td>Stops the slideshow  </td></tr><tr><th class="firstcell">gotoItem(n)  </th><td>Goes to the <span class="code">n</span>'th item. If <span class="code">n</span> is out of range, it does
+              nothing.  </td></tr></tbody></table>
+    
+    
+      <h2>Tabs widget</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">select(tabId)  </th><td>Changes active tab to the tab specified by <span class="code">tabId</span>  </td></tr><tr><th class="firstcell">load(tabId)  </th><td>Loads the content of a tab in the background, if a tab with id <span class="code">tabId</span>
+              uses deferred AJAX loading. Active tab is not changed.  </td></tr><tr><th class="firstcell">reload(tabId)  </th><td> If a tab with id <span class="code">tabId</span> uses deferred AJAX loading, its content is
+              (re)loaded in background. Active tab is not changed.  </td></tr></tbody></table>
+    
+    
+      <h2>Ticker Tape widget</h2>
+      <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">JavaScript method  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">setContents(htmlText)  </th><td>Replaces the contents of the Ticker Tape with the specified HTML text. Note, that if
+                <span class="uicontrol">mcs-marquee-effect</span> style property is set to 'scroll', the
+              contents will be replaced after the current one scrolls out of the page.  </td></tr><tr><th class="firstcell">forceUpdate()  </th><td>Forces an AJAX update if a Ticker Tape uses the refresh action. Otherwise it has no
+              effect.  </td></tr></tbody></table>
+    
+    
+      <h2>Example</h2>
+      <p>Progress Bar widget controlled by the JavaScript.</p>
+      <pre class="code">
+&lt;head&gt;
+  &lt;mcs:handler id="hProgress" type="text/javascript"&gt;
+    Widget.getInstance('myProgressBar').progress(15);
+  &lt;/mcs:handler&gt;
+  &lt;mcs:handler id="hReset" type="text/javascript"&gt;
+    Widget.getInstance('myProgressBar').reset();
+  &lt;/mcs:handler&gt;
+  &lt;event:listener observer="btnProgress" handler="#hProgress" event="click"/&gt;
+  &lt;event:listener observer="btnReset" handler="#hReset" event="click"/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;widget:progress id="myProgressBar"/&gt;
+  &lt;span class="button" id="btnProgress"&gt;progress&lt;/span&gt;
+  &lt;span class="button" id="btnReset"&gt;reset&lt;/span&gt;
+&lt;/body&gt;</pre>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../client/wag_widgets_ape.html">Actions, properties and events</a><br/></p>
+    
+  </body></html>

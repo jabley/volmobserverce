@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Integrating web services</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Integrating web services</h1>
+    <p>The web services driver allows you to define web service datasources and handle service
+      requests and responses.</p>
+    
+      <h2>Defining web services</h2>
+      <p>In the <span class="code">pipeline-configuration</span> section of the
+        <span class="filepath">mcs-config.xml</span> file, you can specify one or more web services in the
+          <span class="code">web-services-driver</span> element.</p>
+      <p>The <span class="code">wsdl-catalog</span> element lists references to web services. The
+          <span class="code">wsdl-entry</span> element specifies the location for a WSDL document
+        identified by the <span class="code">uri</span> attribute. The <span class="code">class-resource</span>,
+          <span class="code">servlet-resource</span> and <span class="code">uri-resource</span> elements identify
+        alternative resource locations by either a class path, servlet context or URI value.</p>
+      <pre class="code">
+&lt;web-services-driver&gt;
+  &lt;wsdl-catalog&gt;
+    &lt;wsdl-entry uri="uri/for/wsdl/entry"&gt;
+      &lt;class-resource path="/class/resource/path"/&gt;
+      &lt;servlet-resource path="/servlet/resource/path"/&gt;
+      &lt;uri-resource uri="uri/resource"/&gt;
+    &lt;/wsdl-entry&gt;
+  &lt;/wsdl-catalog&gt;
+&lt;/web-services-driver&gt;</pre>
+    
+    
+      <h2>Making a service request</h2>
+      <p>When you request a web service connection you refer to the service definition using the
+          <span class="code">uri</span> attribute on the <span class="code">wsd:wsdl-operation</span>. The
+          <span class="code">wsd:operation</span> attribute defines the service operation.</p>
+      <p>The <span class="code">wsd:message</span> element contains the message.</p>
+      <pre class="code">
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:wsd="http://www.volantis.com/xmlns/marlin-web-service-driver"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Web service driver&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Celsius2Fahrenheit&lt;/p&gt;
+    &lt;pipeline:transform href="test.xsl"&gt;
+      &lt;wsd:request&gt;
+        &lt;wsd:wsdl-operation wsdl="http://www.w3schools.com/webservices/tempconvert.asmx?WSDL"
+          portType="TempConvertSoap" operation="CelsiusToFahrenheit"/&gt;
+        &lt;wsd:message&gt;
+          &lt;parameters&gt;
+            &lt;tem:Celsius xmlns:tem="http://tempuri.org/"&gt;20&lt;/tem:Celsius&gt;
+          &lt;/parameters&gt;
+        &lt;/wsd:message&gt;
+      &lt;/wsd:request&gt;
+    &lt;/pipeline:transform&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+    
+      <h2>Web service response</h2>
+      <p>The <span class="code">wsr:response</span> element contains the web service response.</p>
+      <pre class="code">
+&lt;wsr:response&gt;  
+  &lt;wsr:message&gt;
+    &lt;!-- message here--&gt;
+  &lt;/wsr:message&gt;
+&lt;/wsr:response&gt;</pre>
+     <p>You use XSLT to transform this response.</p>
+      <pre class="code">
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"&gt;
+  &lt;xsl:template match="/"&gt;
+    &lt;div xmlns="http://www.w3.org/2002/06/xhtml2"
+      xmlns:wsr="http://www.volantis.com/xmlns/marlin-web-service-response"&gt;
+      &lt;p&gt; 20 C = &lt;xsl:value-of select="wsr:response/wsr:message"/&gt; F &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</pre>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../dci/dci_drivers.html">DCI services and drivers</a><br/></p>
+    
+  </body></html>

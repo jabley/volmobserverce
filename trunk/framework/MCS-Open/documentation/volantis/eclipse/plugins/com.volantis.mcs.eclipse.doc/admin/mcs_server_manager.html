@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Clearing caches manually</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Clearing caches manually</h1>
+    <p><span class="code">mcsServerManager</span> is a command line utility that allows you to set logging levels
+      and flush caches, without stopping the application server.</p>
+    
+    <p>The <span class="code">AgentServlet</span> section of the <span class="filepath">web.xml</span> file
+      configures the MCS Server Manager. The servlet is automatically loaded on startup.</p>
+    <pre class="code">
+&lt;servlet&gt;
+  &lt;servlet-name&gt;AgentServlet&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;com.volantis.mcs.management.agent.servlet.AgentServlet&lt;/servlet-class&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;enabled&lt;/param-name&gt;
+    &lt;param-value&gt;false&lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;port&lt;/param-name&gt;
+    &lt;param-value&gt;8888&lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;password&lt;/param-name&gt;
+    &lt;param-value&gt;password&lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;init-param&gt;
+    &lt;param-name&gt;host&lt;/param-name&gt;
+    &lt;param-value&gt;localhost&lt;/param-value&gt;
+  &lt;/init-param&gt;
+  &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+&lt;/servlet&gt;</pre>
+    <p>The Server Manager is disabled by default. The <span class="code">port</span> and <span class="code">password</span>
+      and <span class="code">host</span> attributes in the <span class="code">mcs-agent</span> element must be matched
+      in the command line. If the <span class="code">host</span> attribute is absent, you do not need to specify
+      a host value on the command line.</p>
+    <pre class="code">mcsServerManager password:[string] host:[string] port:[int] [options]</pre>
+    <p>The following options are available.</p>
+    <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">Option  </th><th>Description  </th></tr></thead><tbody><tr><th class="firstcell">
+            <span class="code">-level</span>
+            </th><td>Logging level.  See <em>Configuring log files</em> for level
+            details. The logging levels on all log file <span class="code">category</span> elements with a
+              <span class="code">name</span> attribute beginning with 'com.volantis', 'com.volantis.' or 'our.'
+            are changed for MCS and <em>all</em> related applications running on the same JVM.  </td></tr><tr><th class="firstcell">
+            <span class="code">-props</span>
+            </th><td>Display remote host JVM system properties  </td></tr><tr><th class="firstcell">
+            <span class="code">-flush_all</span>
+            </th><td>Flush all cached content  </td></tr><tr><th class="firstcell">
+            <span class="code">-flush_components</span>
+            </th><td>Flush the components cached content  </td></tr><tr><th class="firstcell">
+            <span class="code">-flush_devices</span>
+            </th><td>Flush the devices cached content  </td></tr><tr><th class="firstcell">
+            <span class="code">-flush-generated-styles</span>
+            </th><td>Flush the cached stylesheets.  </td></tr><tr><th class="firstcell">
+            <span class="code">-flush_layouts</span>
+            </th><td>Flush the layouts cached content  </td></tr><tr><th class="firstcell">
+            <span class="code">-flush_policyPreferences</span>
+            </th><td>Flush the policyPreferences cached content  </td></tr><tr><th class="firstcell">
+            <span class="code">-flush_themes</span>
+            </th><td>Flush the themes cached content  </td></tr><tr><th class="firstcell">
+            <span class="code">-flush_externalPlugins</span>
+            </th><td>Flush the external repository plug-ins cached content  </td></tr><tr><th class="firstcell">
+            <span class="code">-flush_page_cache</span>
+            </th><td>Flush the XDIME page cache content  </td></tr></tbody></table>
+    <div class="note"><strong>Note</strong>: Flushing will only occur once a page has been generated in the server.</div>
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../admin/mcs_admin.html">Administering MCS</a><br/><a class="link" href="../admin/mcs_logging.html">Configuring log files</a><br/><a class="link" href="../admin/mcs_config_policy_cache.html">Configuring the policy caches</a><br/><a class="link" href="../mcs_config/config_mcs_agent.html">mcs-agent</a><br/></p>
+    
+  </body></html>

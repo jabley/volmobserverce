@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Using tabs</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Using tabs</h1>
+    <p>The Tabs widget provides a familiar tabbed interface.</p>
+    
+      <h2>Visual appearance</h2>
+      <p>The tab strip supports the display of a styled text label on each tab. The selected tab is
+        indicated by its label having no visible bottom border. Optionally, you can specify MCS
+        image components to be used for the tabs, and provide tab-like image components for
+        'selected' and 'unselected' states. Authors are responsible for providing correct tab-like
+        images. The title of the tab content must be used as the alternative text for each
+      image.</p>
+    
+    
+      <h2>User interactions</h2>
+      <p>A user can click on a tab label to select a different tab than the one currently
+      displayed.</p>
+    
+    
+      <h2>XDIME 2 elements</h2>
+      <p>The <span class="code">widget:tabs</span> element defines a container for one or more
+          <span class="code">widget:tab</span> elements.</p>
+      <pre class="code">
+&lt;widget:tabs&gt;
+  &lt;widget:tab&gt;
+    &lt;p&gt;Hello world&lt;/p&gt;
+  &lt;/widget:tab&gt;
+  &lt;widget:tab&gt;
+    &lt;widget:load src="ajax-tab-response.xdime"/&gt;
+    &lt;p&gt;This content will be changed by the AJAX request&lt;/p&gt;
+  &lt;/widget:tab&gt;
+&lt;/widget:tabs&gt;</pre>
+      <p>You can use the <span class="code">widget:load</span> action to load the content of a tab from a
+        specified URL.</p>
+      <div class="note"><strong>Note</strong>:  The <span class="code">when</span> attribute of a <span class="code">widget:load</span> element
+        is ignored and the content is loaded when requested by clicking on a tab label.</div>
+      <p>The following example shows widget update with content of the second tab. Refer to <em>Widget response structure</em> for further information.</p>
+      <pre class="code">
+&lt;response:response xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response"&gt;
+  &lt;response:head/&gt;
+  &lt;response:body&gt;
+    &lt;response:tab&gt;
+      &lt;p&gt;This content was updated by the Ajax request&lt;/p&gt;
+    &lt;/response:tab&gt;
+  &lt;/response:body&gt;
+&lt;/response:response&gt;</pre>
+    
+    
+      <h2>Supported style properties</h2>
+      <p>The <span class="uicontrol">Initial state</span> property can be use to specify whether a tab is
+        initially active.</p>
+      <p>The pseudo-element <span class="code">::mcs-label</span> represents the tab label. The label may
+        be text or an image. You can control the color of the line between the tab strip and tab
+        content area by using the <span class="uicontrol">Border Bottom</span> property of the tab area.</p>
+    
+    
+      <h2>Non-client fallback</h2>
+      <p>If a device does not support the tabs widget, all tabs that have their contents specified
+        in-line are rendered vertically, with the label rendered first, and the content of the tab
+        below. All tabs that use deferred AJAX loading are ignored. If the
+          <span class="code">widget:tab::mcs-label</span> pseudo-element uses image components as tab
+        labels, they are ignored as well.</p>
+    
+    <div class="note"><strong>Note</strong>: This widget supports JavaScript. Refer to <em>JavaScript support</em> for details.</div>
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../client/widget_library.html">Widget library</a><br/><a class="link" href="../xdime_cp/widget_tabs.html">widget:tabs</a><br/><a class="link" href="../xdime_cp/response_tab.html">response:tab</a><br/><a class="link" href="../client/wag_widgets_actions.html">Load, refresh and fetch actions</a><br/><a class="link" href="../client/wag_widgets_structure.html">Widget response structure</a><br/><a class="link" href="../client/wag_widgets_style.html">Styling widgets</a><br/><a class="link" href="../client/wag_widgets_javascript.html">JavaScript support</a><br/></p>
+    
+  </body></html>

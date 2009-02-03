@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:popup</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:popup</h1><h2>Purpose</h2>
+      <p>The main element for a Popup widget.</p>
+    <h2>Contains</h2><p><a href="../xdime_cp/gallery_slideshow.html">gallery:slideshow</a>, <a href="../xdime_cp/widget_dismiss.html">widget:dismiss</a></p><h2>Contained by</h2><p><a href="../xdime_cp/xdime_cp_body.html">body</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Actions</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Action</th><th scope="col">Description</th></tr><tr><th class="firstcell" scope="row">dismiss</th><td>Causes the popup to be hidden. If the popup is already hidden it has no
+        effect.</td></tr><tr><th class="firstcell" scope="row">show</th><td>Causes the popup to be displayed. If the popup is already displayed it has no
+          effect.</td></tr></table><h2>Event</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Event</th><th scope="col">Description</th></tr><tr><th class="firstcell" scope="row">dismissed</th><td>Raised when a popup is dismissed.</td></tr></table><h2>Example</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;widget:popup&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;widget:popup id="popup"&gt;
+      &lt;p&gt;Hello world! &lt;widget:dismiss&gt;X&lt;/widget:dismiss&gt;&lt;/p&gt;
+      &lt;p&gt;
+        &lt;a href="javascript:Widget.getInstance('popup').dismiss('yes')"&gt;Dismiss 'yes'&lt;/a&gt; | &lt;a
+          href="javascript:Widget.getInstance('popup').dismiss('no')"&gt;Dismiss 'no'&lt;/a&gt;
+      &lt;/p&gt;
+      &lt;widget:button action="popup#dismiss"&gt;dismiss button&lt;/widget:button&gt;
+    &lt;/widget:popup&gt;
+    &lt;div&gt;
+      &lt;a href="javascript:Widget.getInstance('popup').show()"&gt;click me&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../client/widget_er.html">Widget elements</a><br/></p>
+    </body></html>

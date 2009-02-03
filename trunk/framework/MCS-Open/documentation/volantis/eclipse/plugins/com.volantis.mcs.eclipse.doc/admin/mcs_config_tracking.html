@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Enabling page tracking</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Enabling page tracking</h1>
+    <p>You can enable page tracking features in the <span class="code">management</span> section of the
+        <span class="filepath">mcs-config.xml</span>. Page tracking allows you to generate information for
+      transaction analysis and other reporting mechanisms, using JMX and the
+        <span class="code">com.volantis.mcs.management.tracking</span> API. The API allows you to retrieve basic
+      information such details of canvas type, device name, layout name and so on, but does not save
+      it or process it, so you need to integrate this feature with other JMX-based system management
+      applications. See the Javadoc for details.</p>
+    
+    <p>To enable the tracking feature, you need to set the <span class="code">enabled</span> attribute of the
+        <span class="code">page-tracking</span> to 'true'.</p>
+    <div class="note"><strong>Note</strong>: When page tracking is enabled, MCS caches all the transactions in memory. It
+      is essential that your processing application flushes the cache at regular intervals to avoid
+      an out of memory condition.</div>
+    <pre class="code">
+&lt;management&gt;
+  &lt;page-tracking enabled="false"/&gt;
+&lt;/management&gt;</pre>
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../admin/mcs_configure.html">Configuring MCS</a><br/><a class="link" href="../mcs_config/config_management.html">management</a><br/></p>
+    
+  </body></html>

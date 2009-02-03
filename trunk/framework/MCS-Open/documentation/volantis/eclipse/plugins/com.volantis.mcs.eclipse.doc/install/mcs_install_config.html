@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Running the installer</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Running the installer</h1>
+    <p>The installation wizard steps you through a series of pages containing settings that
+      correspond to the entries in the <span class="filepath">mcs-config.xml</span> file. You can edit this
+      file at any time after installation if you need to change the settings. </p>
+    <p>Most of the installer values have defaults. When you have completed a section, click
+        <span class="command">Next</span> to move to the next page, or click <span class="command">Previous</span> to
+      review or modify any values.</p>
+    <p>When installation is complete you can choose to save an automated installation file at a
+      convenient location. Then you can repeat the installation on another machine with the path to
+      the configuration file as a parameter.</p>
+    <ol>
+      <li>Start the installer with the command <pre class="code">
+java -jar mcs_installer-5.1.jar</pre>
+      </li>
+      <li>Accept the license agreement</li>
+      <li>Accept the default feature selection or clear the check boxes and select individual
+        components for installation</li>
+      <li>Choose a JDBC database vendor or specify an XML repository. If you choose 'XML' in the
+        dropdown list you will skip to step 6. </li>
+      <li>Enter the database connection details. If you are migrating a database repository you
+        should create a new user. Remember to include the default <span class="uicontrol">Project</span>
+        name to be used in the database.
+        
+      </li>
+      <li>Choose a web application server and set its configuration details</li>
+      <li>Accept the default Media Access Proxy (MAP) <span class="uicontrol">URL</span> or enter an
+        alternative <div class="note"><strong>Note</strong>: MAP must be installed separately. See <em>Installing MAP</em> for details.</div></li>
+      
+      <li>Click <span class="command">Browse</span> to choose the install location or accept the default</li>
+      <li>The installer displays a summary of some installation choices. Use the
+        <span class="command">Previous</span> button to go back and change any options. When you are satisfied
+        with all your choices, click <span class="command">Next</span> to start the installation.</li>
+      <li>Optionally save your installation settings by clicking <span class="command">Generate an automatic
+          installation script</span>, and naming the file. To repeat the installation run the
+        following command. <pre class="code">
+java -jar mcs_installer-5.1.jar [configuration_file]</pre></li>
+      <li>Click <span class="command">Done</span> to complete the installation</li>
+    </ol>
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../install/mcs_install_oview.html">Installing MCS</a><br/></p>
+    
+  </body></html>

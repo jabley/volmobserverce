@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Handling pipeline errors</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Handling pipeline errors</h1>
+    <p>Because of uncertainties with network connections and performance issues in working with
+      remote sites, it is good practice to provide for alternative content in case a service fails.</p>
+    <p>You can use the <span class="code">pipeline:try</span> element to define preferred content and a
+      series of alternatives. MCS attempts to serve the options you have specified in sequence.</p>
+    <p><img src="../graphics/pipeline_try_cm.png" alt="The pipeline:try element content model" title="The pipeline:try element content model"/></p>
+    <p>The <span class="code">pipeline:preferred</span> element is the first container processed. If it is
+      not available, MCS moves on to any <span class="code">pipeline:alternative</span> elements in the
+      order you list them.</p>
+    <pre class="code">
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:webd="http://www.volantis.com/xmlns/marlin-web-driver"&gt;
+  &lt;head&gt;
+    &lt;title&gt;DCI elements&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;pipeline:try&gt;
+        &lt;pipeline:preferred&gt;
+          &lt;pipeline:transform href="test.xsl"&gt;
+            &lt;webd:get url="http://weather.yahooapis.com/forecastrss"&gt;
+              &lt;webd:parameters&gt;
+                &lt;webd:parameter name="p" value="USWA0395"/&gt;
+                &lt;webd:parameter name="u" value="c"/&gt;
+              &lt;/webd:parameters&gt;
+            &lt;/webd:get&gt;
+          &lt;/pipeline:transform&gt;
+        &lt;/pipeline:preferred&gt;
+        &lt;pipeline:alternative&gt;
+          &lt;pipeline:content&gt;
+            &lt;p&gt;There was a problem retrieving the information requested.&lt;/p&gt;
+          &lt;/pipeline:content&gt;
+        &lt;/pipeline:alternative&gt;
+      &lt;/pipeline:try&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    <p>Please note, that if the web driver makes an HTTP request and receives the response, not
+      necessarily with the status code 200, the operation is considered successful. This, for
+      example, means that when <span class="code">webd:get</span> is used and its <span class="code">url</span>
+      attribute points to a non-existing resource, a valid response '404 Not Found' is returned.
+      The content of the <span class="code">pipeline:alternative</span> element will not be rendered in
+      such situation.</p>
+    
+      <h2>Pipeline error functions</h2>
+      <p>The pipeline error functions enable trapping and handling errors that occur during pipeline
+        processing. These functions provide information about the specific error that occurred, and
+        allow the page author to prepare an appropriate response. For instance, if an operation
+        failed with an authentication error, then the author could provide a login page allowing the
+        user to update the password.</p>
+      <p>The pipeline error functions are only allowed within the body of the
+        <span class="code">preferred</span> or <span class="code">alternative</span> elements. An empty string
+        will be returned, if the information required by these functions is not available.</p>
+      <p>The table below lists the pipeline error functions.</p>
+      <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../dci/pipeline_errormessage.html">pipeline:errorMessage</a></th><td><p>Returns the human readable message provided by the operation that caused an error.</p></td></tr><tr><th class="firstcell"><a href="../dci/pipeline_errorsourceid.html">pipeline:errorSourceID</a></th><td><p>Returns the value of the <span class="code">xml:id</span> attribute of the operation that caused an
+        error.</p></td></tr><tr><th class="firstcell"><a href="../dci/pipeline_errorcodeuri.html">pipeline:errorCodeURI</a></th><td><p>Returns the URI of an error code.</p></td></tr><tr><th class="firstcell"><a href="../dci/pipeline_errorcodename.html">pipeline:errorCodeName</a></th><td><p>Returns the name of an error code.</p></td></tr><tr><th class="firstcell"><a href="../dci/pipeline_errorinfo.html">pipeline:errorInfo</a></th><td><p>Returns the value of an error property.</p></td></tr></tbody></table>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:gdocs="http://www.volantis.com/xmlns/2008/08/gdocs"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Pipeline error functions&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;pipeline:try&gt;
+        &lt;pipeline:preferred&gt;
+          &lt;pipeline:transform href="fetch2xdime.xsl"&gt;
+            &lt;gdocs:fetch xml:id="first fetch" category="document"
+              href="http://docs.google.com/feeds/download/documents/RawDocContents?action=fetch&amp;amp;
+                justBody=false&amp;amp;revision=_latest&amp;amp;editMode=false&amp;amp;docID=dcg224t7_2d92rmb64"&gt;
+              &lt;gdocs:authenticate user-id="1testvolantis@gmail.com" password="1volantis1"/&gt;
+            &lt;/gdocs:fetch&gt;
+          &lt;/pipeline:transform&gt;
+        &lt;/pipeline:preferred&gt;
+        &lt;pipeline:alternative&gt;
+          &lt;pipeline:content&gt;
+            &lt;p&gt;There was a problem retrieving the information requested.&lt;/p&gt;
+            &lt;p&gt;Message: &lt;pipeline:value-of expr="pipeline:errorMessage()"/&gt;&lt;/p&gt;
+            &lt;p&gt;Source Id: &lt;pipeline:value-of expr="pipeline:errorSourceID()"/&gt;&lt;/p&gt;
+            &lt;p&gt;Code Name: &lt;pipeline:value-of expr="pipeline:errorCodeName()"/&gt;&lt;/p&gt;
+            &lt;p&gt;Code URI: &lt;pipeline:value-of expr="pipeline:errorCodeURI()"/&gt;&lt;/p&gt;
+            &lt;p&gt;Code info (Captcha Token): &lt;pipeline:value-of
+                expr="pipeline:errorInfo('captcha-key')"/&gt;&lt;/p&gt;
+            &lt;p&gt;Code info (Captcha URL): &lt;pipeline:value-of expr="pipeline:errorInfo('captcha-url')"/&gt;&lt;/p&gt;
+            &lt;p&gt;Code info (Login): &lt;pipeline:value-of expr="pipeline:errorInfo('login')"/&gt;&lt;/p&gt;
+          &lt;/pipeline:content&gt;
+        &lt;/pipeline:alternative&gt;
+      &lt;/pipeline:try&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../dci/dci_about.html">About DCI</a><br/><a class="link" href="../dci/pipeline_error_er.html">Pipeline error functions</a><br/><a class="link" href="../dci/open_connector_gdocs.html">Accessing Google Docs documents</a><br/></p>
+    
+  </body></html>

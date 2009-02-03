@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Using remote policies</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Using remote policies</h1>
+    <p>If you need to direct MCS to retrieve variants from a remote repository, you do not use
+      policy names. Rather you specify a URL to identify the remote policy. The remote policy
+      server, which is a custom application, responds to the request by returning the information in
+      a predefined XML format.</p>
+    <p>The exact structure of the remote policy URL depends on the operation of the remote policy
+      server. For example, it could be the path to a policy file, or it might be a unique identifier
+      that is resolved by the server. Your system administrator will have details of the correct
+      syntax to use.</p>
+    <p>The remote policies may be stored in any form that enables the remote policy server to
+      retrieve and serve them, such as an XML file or files, or a database.</p>
+    <p>One method of maintaining policies for a remote repository is to create them in the Eclipse workbench, and copy them to the remote repository when
+      required.</p>
+    
+      <h2>The remote policy process</h2>
+      <p>MCS requests policy values over HTTP, using headers from the original device request, with
+        additional information about the policy type, the response type and the device name.</p>
+      <p>The remote server must respond using an XML syntax. The XML schema provides for single
+        policy responses, or sets of responses that may be used to preload the remote policy caches.
+        Refer to <em>Encoding remote policy responses</em> and <em>Remote policy response elements</em> for further information.</p>
+      <p>You can use an API to preload or flush the remote policy caches. Refer to <em>Managing the remote cache</em> for more information. </p>
+      <p>Details of how to configure the MCS repository caches for use with remote policy responses
+        are given in <em>Configuring remote policy caches</em>.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../wag/wag_repositories.html">MCS repositories</a><br/><a class="link" href="../wag/wag_asset_url.html">Resolving variant URLs</a><br/><a class="link" href="../wag/wag_remote_request.html">Remote policy requests</a><br/><a class="link" href="../wag/wag_remote_xml.html">Encoding remote policy responses</a><br/><a class="link" href="../wag/wag_remote_api.html">Managing the remote cache</a><br/><a class="link" href="../admin/mcs_config_remote.html">Configuring remote policy caches</a><br/></p>
+    
+  </body></html>

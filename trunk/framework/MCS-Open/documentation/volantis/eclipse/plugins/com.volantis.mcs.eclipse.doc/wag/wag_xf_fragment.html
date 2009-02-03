@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Form fragments links in XDIME 2</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Form fragments links in XDIME 2</h1>
+    <p>You can use theme properties on the XDIME 2 <span class="code">xf:group</span> and
+        <span class="code">widget:wizard</span> elements to control where fragmentation occurs, and to
+      define or override the link texts on form fragments at runtime.</p>
+    
+    
+      <h2>Controlling fragmentation</h2>
+      <p>Fragmentation is managed separately for each <span class="code">xf:model</span>, so if there is
+        more than one model on a page you will need to apply distinct sets of style rules.</p>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;xf:group&lt;/title&gt;
+    &lt;style type="text/css" media="handheld,all"&gt;
+      .fragment { mcs-break-after: always; }
+    &lt;/style&gt;
+    &lt;xf:model id="login"&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="firstName"/&gt;
+          &lt;si:item name="lastName"/&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+      &lt;xf:submission action="test.jsp" id="submit"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h4&gt;Form Fragmentation&lt;/h4&gt;
+    &lt;xf:group class="fragment"&gt;
+      &lt;xf:input model="login" ref="firstName"&gt;
+        &lt;xf:label&gt;Enter Your Name:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+    &lt;/xf:group&gt;
+    &lt;xf:group class="fragment"&gt;
+      &lt;xf:input model="login" ref="lastName"&gt;
+        &lt;xf:label&gt;Enter Your Surname:&lt;/xf:label&gt;
+      &lt;/xf:input&gt;
+      &lt;xf:submit submission="submit"&gt;
+        &lt;xf:label&gt;Send&lt;/xf:label&gt;
+      &lt;/xf:submit&gt;
+    &lt;/xf:group&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+      <p>You use the <span class="uicontrol">Break after</span> theme property to control whether
+        fragmentation occurs or not, and where it occurs. This property can be set to 'always', or
+        'never' and applies only to the <span class="code">xf:group</span> and
+        <span class="code">widget:wizard</span> elements. The default value of 'never' means that the group
+        does not end a form fragment. If set to 'always' then the group ends a form fragment, and
+        another fragment begins immediately.</p>
+    
+    
+      <h2>Applying theme properties</h2>
+      <p>In a theme, you specify navigation buttons to the previous and next fragments and an
+        optional reset control, using the pseudo-element selectors <span class="code">::mcs-previous</span>,
+          <span class="code">::mcs-next</span> and <span class="code">::mcs-reset</span>. Any of these can appear before,
+        after or both before and after the main content of the fragment.</p>
+      <p>To position of the buttons you use the <span class="code">::before</span> and <span class="code">::after</span>
+        pseudo element. For example, the following rules would cause the previous button to be
+        displayed before the other controls in the fragment, while the next and reset buttons appear
+        afterwards. The rule order is significant.</p>
+      <pre class="code">xf|group::before::mcs-previous {content:normal}
+xf|group::after::mcs-next {content:normal}
+xf|group::after::mcs-reset {content:"Reset"} </pre>
+      <p>To label the buttons you use the <span class="uicontrol">Content</span> property in the theme
+        editor.</p>
+      <p>The next and previous buttons are required if the fragment is to be useful. If there are no
+        rules for them, MCS generates the buttons by default at the end of the fragment with next
+        before previous. If the content property contains text it will be used as a label. If it is
+        empty or 'none', the button will be displayed with the default text. In any case, the
+        buttons are only rendered if there is a fragment to link to.</p>
+      <p>The optional reset button will not be displayed unless you specify a label.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../wag/xdime2_about.html">Working with XDIME 2</a><br/><a class="link" href="../xdime_cp/xf_group.html">xf:group</a><br/><a class="link" href="../xdime_cp/widget_wizard.html">widget:wizard</a><br/><a class="link" href="../themes/theme_pseudo_element_selector.html">Pseudo-element selectors</a><br/></p>
+    
+  </body></html>

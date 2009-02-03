@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>web-driver</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>web-driver</h1><h2>Purpose</h2>
+      <p>Contains the proxy server and script reference definitions for the pipeline web driver.</p>
+    <h2>Contains</h2><p><a href="../mcs_config/config_proxy.html">proxy</a>, <a href="../mcs_config/config_script.html">script</a></p><h2>Contained by</h2><p><a href="../mcs_config/config_pipeline_config.html">pipeline-configuration</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">connection-timeout</th><td>Default round trip timeout for all web driver operations for an HTTP
+          connection, in milliseconds. If not specified, MCS falls back to the value in the timeout
+          attribute on the connection element. A value of -1 means that the connection will never
+          timeout. </td><td>xs:int</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Example</h2>
+      <pre class="code">
+&lt;web-driver connection-timeout="10000"&gt;
+  &lt;proxy
+    id="myproxy"  
+    host="myhost"                  
+    port="8086"/&gt;         
+&lt;/web-driver&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../admin/mcs_config_er.html">MCS configuration elements</a><br/></p>
+    </body></html>

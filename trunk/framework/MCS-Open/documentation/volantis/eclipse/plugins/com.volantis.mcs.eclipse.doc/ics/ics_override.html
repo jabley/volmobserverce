@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Overriding configuration settings</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Overriding configuration settings</h1>
+    <p>When the ICS servlet is running in native mode it supports features that allow you to
+      override several aspects of the transcoding. When the ICS runs in TransForce compatibility
+      mode it supports a limited subset of the facilities supported by TransForce.</p>
+    
+    
+      <h2>URL format</h2>
+      <p>The URL format is made up of the host and port of the server, the transcoding rule, the
+        relative path of the image and any additional transcoding parameters.</p>
+      <pre class="code">
+http://myserver.com/images/cp8/image.jpg?v.imgHost=www.somesite.com&amp;amp;v.imgPort=80</pre>
+      <p>This will result in ICS fetching the image from
+        http://www.somesite.com:80/images/image.jpg.</p>
+    
+    
+      <h2>Image format and color depth</h2>
+      <p>The output image is encoded in the format specified by <span class="code">[transcoding_rule]</span> from
+        the URL (see <em>ICS transcoding rules</em>).</p>
+      <p>All conversion of format and color depth occur after the image has been scaled. This
+        ensures optimal quantizing of colors as well as improvements in performance.</p>
+      <p>In native mode you have some control over the output of JPEG and PNG images. You can
+        specify the exact JPEG format, and the dithering algorithm that ICS should use with the
+          <span class="code">v.jpegFormat</span> and <span class="code">v.ditherMode</span> parameters.</p>
+      <p>There are no comparable overrides for TransForce mode.</p>
+    
+    
+      <h2>Image scaling</h2>
+      <p>You can specify the scaling of the output image. All scaling maintains the aspect ratio of
+        the source.</p>
+      
+      <p>The <span class="code">v.width</span> or <span class="code">tf.width</span> parameters specify the width in pixels
+        for the output image. If <span class="code">scaleLarger </span>or <span class="code">v.scaleLarger</span> is set to
+        "false" the width will not be allowed to exceed the width of the input image. If it does
+        then it will be set to the width of the input image. The width may be less than the given
+        value if the height parameter restricts the image size to a greater extent.</p>
+      <p>The <span class="code">v.height</span> or <span class="code">tf.height</span> parameters specify the height in pixels
+        for the output image. The effect is to set the height of the image to be no larger than the
+        parameter value. Height may be less than the given value if the width parameter restricts
+        the image size.</p>
+      <div class="note"><strong>Note</strong>: You can specify width alone, but if you define a height value, you must also
+        provide a width setting.</div>
+      <p>
+        <span class="code">v.scaleMode</span> is available to override the scaling algorithm.</p>
+      <p>Image cropping to avoid excessive width scaling can also be specified using the
+        <span class="code">v.p</span> parameter in the form <span class="code">v.p=[[m],n]</span>, where 'm' and 'n' are the
+        positions of the first and last pixel columns of the area that should be preserved. The
+        columns are counted from the left of the image and start at 0.</p>
+    
+    
+      <h2>File size restriction</h2>
+      <p>For mobile devices which may have limited memory, or restrictions on the size of image
+        files, you can control the size of the output image.</p>
+      <p>ICS will try to use lossy compression or palette reduction on an image for those output
+        formats that support it. If this fails to yield a small enough image, or the image format
+        does not support lossy reduction, ICS uses pixel reduction.</p>
+      <p>
+        <span class="code">v.maxSize</span> and <span class="code">tf.maxfilesize</span> specify the maximum allowable size of
+        the image in bytes. You can also use the overrides <span class="code">v.qualityMin</span> and
+          <span class="code">v.paletteMin</span>.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../ics/map_about.html">Media Access Proxy</a><br/><a class="link" href="../ics/map_config.html">Configuring MAP</a><br/></p>
+    
+  </body></html>

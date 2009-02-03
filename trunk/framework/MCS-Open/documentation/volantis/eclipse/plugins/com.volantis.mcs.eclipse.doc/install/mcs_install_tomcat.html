@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Installing on Apache Tomcat</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Installing on Apache Tomcat</h1>
+    <p>You need to create a directory that the machine running Tomcat can access, to contain the MCS
+      installation <span class="filepath">MCS/webapps/[context_root]</span> directory. It can be local to the
+      server machine or accessed via a drive mapping. For example it might be a directory under the
+        <span class="filepath">webapps</span> directory of the Tomcat installation.</p>
+    <ol>
+      <li>Create a directory named <span class="filepath">[context_root]</span> under the Tomcat
+          <span class="filepath">webapps</span> directory</li>
+      <li>Copy the entire contents of the <span class="filepath">MCS/webapps/[context_root]</span> directory
+        to the Tomcat webapps/[context_root] directory. For example,
+          <span class="command">$CATALINA_HOME/webapps/[context_root]</span>
+      </li>
+    </ol>
+    <div class="note"><strong>Note</strong>: If you are using Tomcat on a non-windows machine, copy the
+      <span class="filepath">xercesImpl-2.6.2.jar</span> and <span class="filepath">xmlParserAPIs-2.6.2.jar</span> files from
+        <span class="filepath">MCS/lib</span> directory to the <span class="filepath">$CATALINA_HOME/common/lib</span>
+      directory. Make sure that the generic <span class="filepath">xerces.jar</span> file is not in the
+        <span class="filepath">$CATALINA_HOME/common/lib</span> directory and is copied elsewhere. This is to
+      ensure that the correct version of Xerces parser is used.</div>
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../install/mcs_setup_webapp.html">Setting up your web server</a><br/></p>
+    
+  </body></html>

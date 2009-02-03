@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>NLS support</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>NLS support</h1>
+    <p>There are constraints in national language support (NLS) in MCS, which are determined largely
+      by file naming limitations, allowable content in URIs, and certain reserved words.</p>
+    <p>For example you cannot use NLS characters in the names of policies (components, layouts,
+      themes, and layout formats.</p>
+    
+      <h2>Entering NLS characters</h2>
+    
+    <p>The table lists MCS user interface controls where you <em>can</em> enter NLS characters.</p>
+    <table cellspacing="0" summary=""><thead><tr><th class="firsthdr">Policy  </th><th>Controls  </th></tr></thead><tbody><tr><th class="firstcell">Variants  </th><td>Literal text values (URIs must be US-ASCII)  </td></tr><tr><th class="firstcell">Layouts  </th><td>
+            <span class="uicontrol">Link Text</span> format attributes on dissecting panes,
+            fragments and form fragments  </td></tr><tr><th rowspan="3" class="firstcell">Devices  </th><td>Text type policy controls on the Policies page. The type can be viewed in the Type
+            control on the Structure page.  </td></tr><tr><td>
+            <span class="uicontrol">Name</span> on the Structure page. This is not the <span class="uicontrol">Short
+              Name</span> which cannot contain NLS characters.  </td></tr><tr><td>
+            <span class="uicontrol">Help Text</span> on the Structure page  </td></tr></tbody></table>
+    <div class="note"><strong>Note</strong>: MCS does not support the use of NLS characters <em>anywhere</em> in the theme
+    editor. </div>
+      
+    
+      <h2>Untranslated words </h2>
+
+    <p>In the policy editors, some words always appear in English rather than in the localized
+      language. These words are not translated because they have special meaning in the context of
+      the processing performed by MCS.</p>
+    <p>These reserved words include occurrences of or references to:</p>
+    <ul>
+      <li>XDIME or XHTML element names</li>
+      <li>Most theme style property names, selectors and their values</li>
+      <li>The names of types of MCS policies or policy objects.</li>
+      <li>IANA content types, or other names specified in Internet or related standards</li>
+      <li>The 'Short Name' of any device policy</li>
+      <li>The text value of any predefined device policy</li>
+    </ul>
+    
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../mcs/mcs_editors.html">MCS policy editors</a><br/></p>
+    
+  </body></html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>generated-resources</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>generated-resources</h1><h2>Purpose</h2>
+      <p>Defines a project-specific prefix for the <span class="code">chartimages</span> element entry. MCS
+        appends the <span class="code">base-dir</span> value to the <span class="code">web-application</span> element's
+          <span class="code">base-url</span> and <span class="code">page-base</span> attributes, and follows it with the
+        setting in <span class="code">chartimages</span> element's <span class="code">base</span> attribute.</p>
+      <div class="note"><strong>Note</strong>: This element is deprecated and will be removed from a later version of
+      MCS.</div>
+    <h2>Contained by</h2><p><a href="../mcs_config/config_default.html">default</a>, <a href="../mcs_config/config_project.html">project</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">base-dir</th><td>The project directory to append to the application server base directory for
+          storing generated resources</td><td>xs:string</td><td>none </td><td> </td><td>required </td></tr></table><h2>Example</h2>
+      <pre class="code">
+&lt;projects&gt;
+  &lt;default preload="true"&gt;
+    &lt;jdbc-policies name="myproject"/&gt;
+    &lt;assets base-url="/[context_root]/"&gt;
+      &lt;audio-assets prefix-url="/audio/"/&gt;
+      &lt;dynamic-visual-assets prefix-url="/dynvis/"/&gt;
+      &lt;image-assets prefix-url="/images/"/&gt;
+      &lt;script-assets prefix-url="/scripts/"/&gt;
+      &lt;text-assets prefix-url="/text/"/&gt;
+    &lt;/assets&gt;
+    &lt;generated-resources base-dir="myproject"/&gt;
+  &lt;/default&gt;
+&lt;/projects&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../admin/mcs_config_er.html">MCS configuration elements</a><br/></p>
+    </body></html>

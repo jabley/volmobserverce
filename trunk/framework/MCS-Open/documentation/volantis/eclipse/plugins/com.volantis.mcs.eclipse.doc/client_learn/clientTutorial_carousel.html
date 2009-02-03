@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Creating a carousel</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_transitions.html" title="Applying effects">Previous</a></li><li><a href="../client_learn/clientTutorial_dynamic_menu.html" title="Specifying a dynamic menu">Next</a></li></ul></td></tr></table><h1>Creating a carousel</h1>
+    <p>The Carousel widget allows users to select an item from a list that is longer than can be
+      displayed on a device. It presents a subset of a list of content items for a given period of
+      time. At the end of the time period the displayed subset changes.</p>
+    <p>The carousel contents can be updated with AJAX requests. Refer to <em>Carousel with AJAX</em> for more information.</p>
+    <p><img src="../graphics/cfTutorial/carousel.png" alt="Carousel widget" title="Carousel widget"/></p>
+  <h2>Creating a carousel <a href="../client/wag_widgets_carousel.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><p>You have already seen how to construct a template and apply it, so in this task and those
+      that follow, we can focus on the detail of providing the parameter values in the
+        <span class="code">template:binding</span> definitions, and providing additional styling. To
+      simplify the process, why not clone the code from the welcome page, and use it as the basis
+      for further work.</p><ol><li>Create a <span class="filepath">carousel.xdime</span> file in the <span class="filepath">client-app</span>
+      directory</li><li>In the <span class="code">head</span> element, set up the following style property values. The
+        <span class="uicontrol">Transition interval</span> property controls the duration of the content
+      replacement. The default value is one second. <pre class="code">
+&lt;style type="text/css" media="handheld,all"&gt;
+  widget|carousel {
+    height: 6em;
+    padding: 4px;
+    mcs-transition-interval: 8s;
+    mcs-effect-style: wipe-top;
+    mcs-effect-duration: 5s;
+  }
+  widget|carousel:mcs-concealed {
+    mcs-effect-style: wipe-top;
+    mcs-effect-duration: 5s;
+  }
+&lt;/style&gt;</pre></li><li>Set the 'title' <span class="code">template:binding</span>
+      <span class="code">value</span> attribute to 'Carousel Widget'</li><li>To supply the content to the template, add a <span class="code">widget:carousel</span> element to
+      define the widget. Inside the carousel, use <span class="code">li</span> elements to contain links to
+      the items to be displayed. This list does not need to be enclosed in the usual list
+      containers; <span class="code">nl</span>, <span class="code">ol</span>, or <span class="code">ul</span>. The
+        <span class="code">widget</span> class is defined in the main theme.<pre class="code">
+&lt;widget:carousel class="widget"&gt;
+  &lt;li&gt;&lt;a href="http://www.ankara-bel.gov.tr"&gt;Ankara&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.beograd.org.yu"&gt;Beograd&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.berlin.de"&gt;Berlin&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.bratislava.sk"&gt;Bratislava&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.budapest.hu"&gt;Budapest&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.pmb.ro"&gt;Bucharest&lt;/a&gt;&lt;/li&gt;
+  ...
+&lt;/widget:carousel&gt;</pre></li></ol><h2>Complete XDIME 2 code</h2><p>Here is the complete code for <span class="filepath">carousel.xdime</span>.</p><pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Carousel Widget&lt;/title&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+    &lt;style type="text/css" media="handheld,all"&gt;
+      widget|carousel {
+        height: 6em;
+        padding: 4px;
+        mcs-transition-interval: 8s;
+        mcs-effect-style: wipe-top;
+        mcs-effect-duration: 5s;
+      }
+      widget|carousel:mcs-concealed {
+        mcs-effect-style: wipe-top;
+        mcs-effect-duration: 5s;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Carousel Widget"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+          &lt;widget:carousel class="widget"&gt;
+            &lt;li&gt;&lt;a href="http://www.ankara-bel.gov.tr"&gt;Ankara&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.beograd.org.yu"&gt;Beograd&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.berlin.de"&gt;Berlin&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.bratislava.sk"&gt;Bratislava&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.budapest.hu"&gt;Budapest&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.pmb.ro"&gt;Bucharest&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.krakow.pl"&gt;Cracow&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.ljubljana.si"&gt;Ljubljana&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.nicosia.org.cy"&gt;Nicosia&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.podgorica.cg.yu"&gt;Podgorica&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.prague-city.cz"&gt;Prague&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.rcc.lv"&gt;Riga&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.sofia.bg"&gt;Sofia&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.tallinn.ee"&gt;Tallinn&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.tirana.gov.al"&gt;Tirana&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.magnet.mt"&gt;Valletta&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.wien.gv.at/"&gt;Vienna&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.vilnius.lt"&gt;Vilnius&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="http://www.zagreb.hr"&gt;Zagreb&lt;/a&gt;&lt;/li&gt;
+          &lt;/widget:carousel&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_a.html">a</a></th><td><p>Used to create an explicit link to another place in the same document or to another
+        document. The current document is the source of the link and the value of the
+        <span class="code">href</span> attribute, defines the link target</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_li.html">li</a></th><td><p>A list item in an ordered, unordered or navigation list.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_carousel.html">widget:carousel</a></th><td><p>Defines a Carousel widget that displays a subset of a list of items. The contained
+          <span class="code">li</span> elements have a restricted content model, when used in a carousel.
+        The <span class="code">li</span> does not need to be enclosed in the <span class="code">nl</span>,
+          <span class="code">ol</span>, or <span class="code">ul</span> elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/hypertext_attr_cp.html">Hypertext attributes</a></th><td><p>Attributes that define link targets.</p></td></tr></tbody></table>
+  </body></html>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Migrating to XDIME</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../basics/basics_about.html" title="Getting started">Start</a></li><li><a href="../basics/basics_remote_project.html" title="Remote projects - PHP and Ruby">Previous</a></li><li><a href="../basics/basics_migrate_xsl.html" title="XSL transform">Next</a></li></ul></td></tr></table><h1>Migrating to XDIME</h1>
+    <p>This topic suggests some very basic ideas about how to migrate your existing site content to
+      XDIME 2 from XHTML. We illustrate the development a simple XSL transform, which focuses on two
+      notable differences between XHTML and XDIME 2 - handling media assets, and forms.</p>
+    <p>There are many possible variations in web portal design, and we encourage you to extend these
+      ideas to meet the needs of your mobile site, taking account of handling a wider range of
+      elements and attributes.</p>
+    <p>In the examples that follow, we have assumed that our welcome page is written in XHTML, and
+      that it uses the same structure and styles as the mobile version we have recently created. We
+      also assume that you are familiar with the essentials of XSLT processing.</p>
+    <p>You will need to generate the XDIME XML declarations, transform an <span class="code">img</span>
+      reference to an <span class="code">object</span> reference, and generate XForms markup from the
+        <span class="code">form</span> element source. Everything else uses elements that are familiar from
+      XHTML.</p>
+    <p>The source example is <span class="filepath">source_welcome.html</span>. Note that we have decided on
+      the name of the logo image component ahead of time, and used the <span class="filepath">.mimg</span>
+      file extension.</p>
+    <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Welcome to XDIME XML&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="logo"&gt;
+      &lt;img alt="Volantis Systems Ltd." 
+        src="images/vol_logo.mimg" height="89" width="300" /&gt;
+    &lt;/div&gt;
+    &lt;div class="congratulations"&gt;
+      &lt;h2&gt;Congratulations!&lt;/h2&gt;
+      &lt;p&gt;You have successfully installed and configured Volantis Mobility
+        Server&amp;#x2122;.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="background"&gt;
+      &lt;h3&gt;Volantis Mobility Server&lt;/h3&gt;
+      &lt;p&gt;Volantis Mobility Server provides a comprehensive, standards-based,
+        development and execution environment for delivering multi-channel
+        content, applications and services that are automatically optimized
+        for thousands of different consumer devices.&lt;/p&gt;
+      &lt;p&gt;Built around the principle of device-independent delivery, Volantis
+        Mobility Server uniquely separates content, design, and
+        device-issues into abstract device-independent policies. This
+        enables a 'create once, run anywhere' environment which reduces
+        complexity, cost and time to market for both development and
+        maintenance.&lt;/p&gt;
+      &lt;h3&gt;System components&lt;/h3&gt;
+      &lt;p&gt;Have a look at the key components in Volantis Mobility Server.&lt;/p&gt;
+      &lt;form action="component.jsp" method="get"&gt;
+        &lt;p&gt;
+          &lt;select name="item"&gt;
+            &lt;option value="mcs"&gt;Multi-Channel Server&lt;/option&gt;
+            &lt;option value="map"&gt;Media Access Proxy&lt;/option&gt;
+            &lt;option value="mps"&gt;Message Preparation Server&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;input type="submit" value="Go" /&gt;
+        &lt;/p&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;div class="links"&gt;
+      &lt;h3&gt;Useful links&lt;/h3&gt;
+      &lt;p&gt;
+        &lt;a href="http://www.volantis.com"&gt;Volantis home page&lt;/a&gt;
+        &lt;a href="http://support.volantis.com/"&gt;Support gateway&lt;/a&gt;
+        &lt;a href="http://community.volantis.com/"&gt;Community&lt;/a&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="copyright"&gt;
+      &lt;p class="copyr"&gt;Copyright &amp;#x00A9; 2000-2008 Volantis Systems Ltd. All
+        Rights Reserved.&lt;/p&gt;
+      &lt;p class="copyr"&gt;Volantis&amp;#x2122; is a trademark of Volantis Systems
+        Ltd.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+  <h2>XSL preliminaries</h2><p>In the stylesheet we will use three parameter values for the layout and theme names, and the
+      binding between the <span class="code">xf:model</span> and <span class="code">xf:submit</span> elements,
+      making the transform useful for a range of cases.</p><ol><li>Enter the XML declaration, the <span class="code">xsl:stylesheet</span> element, and other top
+      level elements. The stylesheet must declare the same namespaces as those in the XDIME target.<pre class="code">
+&lt;?xml version="1.0"?&gt;
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+
+  &lt;xsl:param name="layout"&gt;welcome.mlyt&lt;/xsl:param&gt;
+  &lt;xsl:param name="theme"&gt;welcome.mthm&lt;/xsl:param&gt;
+  &lt;xsl:param name="bind"&gt;part&lt;/xsl:param&gt;
+
+  &lt;xsl:output method="xml" encoding="UTF-8"/&gt;
+
+&lt;/xsl:stylesheet</pre>
+    </li><li>Next comes the main template, using the parameter values '$layout' and '$theme' to
+      populate the <span class="code">link</span> attribute values. Inside a test for the existence of a
+        <span class="code">form</span> element in the source, the '$bind' parameter value sets the
+      identifier of the form's <span class="code">xf:submission</span> element, and the <span class="code">action</span>
+      attribute is copied. <pre class="code">
+&lt;xsl:template match="/"&gt;
+  &lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+    xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+    &lt;head&gt;
+      &lt;title&gt;&lt;xsl:value-of select="//head/title"/&gt;&lt;/title&gt;
+      &lt;link rel="mcs:layout" href="{$layout}"/&gt;
+      &lt;link rel="mcs:theme" href="{$theme}"/&gt;
+      &lt;xsl:if test="//form"&gt;
+        &lt;xf:model&gt;
+          &lt;xf:submission  id="{$bind}"&gt;
+            &lt;xsl:attribute name="action"&gt;
+              &lt;xsl:value-of select="//form/@action"/&gt;
+            &lt;/xsl:attribute&gt;
+          &lt;/xf:submission&gt;
+        &lt;/xf:model&gt;
+      &lt;/xsl:if&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;xsl:apply-templates select="//body//div"/&gt;
+    &lt;/body&gt;      
+  &lt;/html&gt;
+&lt;/xsl:template&gt;</pre></li></ol><h2>Body content</h2><ol><li>The processing of the common elements is very straightforward, because of the similarities
+      between XDIME and XHTML.<pre class="code">
+&lt;xsl:template match="h2"&gt;
+  &lt;h2&gt;
+    &lt;xsl:value-of select="."/&gt;
+  &lt;/h2&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match="h3"&gt;
+  &lt;h3&gt;
+    &lt;xsl:value-of select="."/&gt;
+  &lt;/h3&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match="div"&gt;
+  &lt;div class="{@class}"&gt;
+    &lt;xsl:apply-templates/&gt;
+  &lt;/div&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match="p"&gt;
+  &lt;p&gt;
+    &lt;xsl:apply-templates/&gt;
+  &lt;/p&gt;
+&lt;/xsl:template&gt;
+
+&lt;xsl:template match="a"&gt;
+  &lt;a&gt;
+    &lt;xsl:copy-of select="@*"/&gt;
+    &lt;xsl:value-of select="."/&gt;
+  &lt;/a&gt;
+&lt;/xsl:template&gt;</pre>
+    </li><li>Enter the following code to use the XDIME 2 <span class="code">object</span> element instead of
+        <span class="code">img</span>. Note that the fallback text is contained in the element content as
+      distinct from an attribute. You need not copy the height and width values. MCS will get these
+      from the file system when you add the original image as a variant. <pre class="code">
+&lt;xsl:template match="img"&gt;
+  &lt;object src="{@src}"&gt;
+    &lt;span&gt;
+      &lt;xsl:value-of select="@alt"/&gt;
+    &lt;/span&gt;
+  &lt;/object&gt;
+&lt;/xsl:template&gt;</pre>
+    </li><li>We need to detect whether or not a <span class="code">select</span> element is a multiple select.
+      The original <span class="code">name</span> attribute is passed as the new <span class="code">ref</span> attribute on
+      the <span class="code">xf:select</span> element. In this case the required top level
+        <span class="code">xf:label</span> is empty. Each <span class="code">option</span> element is turned into
+        <span class="code">xf:label</span> and <span class="code">xf:value</span> pairs.<pre class="code">
+&lt;xsl:template match="//select"&gt;
+  &lt;xsl:choose&gt;
+    &lt;xsl:when test="@multiple"&gt;
+      &lt;!-- handle multiple select cases  --&gt;
+    &lt;/xsl:when&gt;
+  &lt;xsl:otherwise&gt;
+    &lt;xf:select1 ref="{@name}"&gt;
+      &lt;xf:label/&gt;
+        &lt;xsl:for-each select="option"&gt;
+          &lt;xf:item&gt;
+            &lt;xf:label&gt;
+              &lt;xsl:value-of select="."/&gt;
+            &lt;/xf:label&gt;
+            &lt;xf:value&gt;
+              &lt;xsl:value-of select="@value"/&gt;
+            &lt;/xf:value&gt;
+          &lt;/xf:item&gt;
+        &lt;/xsl:for-each&gt;
+      &lt;/xf:select1&gt;
+    &lt;/xsl:otherwise&gt;
+  &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;</pre>
+    </li><li>The XHTML <span class="code">input</span> type attribute allows several possible values for
+      different kinds of control. The example shows a test for the 'submit' value only. The '$bind'
+      parameter is used again to ensure that the <span class="code">xf:submit</span> button triggers
+      submission in the XForms model. <pre class="code">
+&lt;xsl:template match="//input"&gt;
+  &lt;xsl:choose&gt;
+    &lt;xsl:when test="@type='submit'"&gt;
+      &lt;xf:submit submission="{$bind}"&gt;
+        &lt;xf:label&gt;
+          &lt;xsl:value-of select="@value"/&gt;
+        &lt;/xf:label&gt;
+      &lt;/xf:submit&gt;
+    &lt;/xsl:when&gt;
+    &lt;!-- catch additional input types here --&gt;
+  &lt;/xsl:choose&gt;
+&lt;/xsl:template&gt;</pre>
+    </li><li>Run the transform, and save the output in the main welcome folder as
+        <span class="filepath">simple_welcome_test.xdime</span></li><li>Go to
+      <span class="filepath">http://localhost:8080/mcs/projects/welcome/simple_welcome_test.xdime</span> in
+      your browser. You should see an identical page to the one you constructed as XDIME
+    source.</li></ol><h2>Checklist</h2>
+  <p>Now you can extend this XSL transform to apply additional XHTML elements, and experiment with
+  some pages from your own site. The complete code is shown in the next topic.</p>
+    </body></html>

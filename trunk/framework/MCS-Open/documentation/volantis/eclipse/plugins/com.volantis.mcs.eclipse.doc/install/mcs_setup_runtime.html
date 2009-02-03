@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Setting up the MCS runtime</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Setting up the MCS runtime</h1>
+    <p>At design time MCS users develop policies in an XML repository. These XML policies can be
+      used for runtime deployment, or they can be implemented within a set of tables in a relational
+      database.</p>
+    <p>If you selected the XML repository type in the MCS installation wizard, MCS will be
+      automatically configured to use the XML repository.</p>
+    <p>If this is a new installation and you are creating a new repository, you will need to create
+      the tables holding the repository information under a specific user. This involves:</p>
+    <ul>
+      <li>Setting up appropriate JDBC driver jar files for database access</li>
+      <li>Creating a new database user and tables</li>
+    </ul>
+    <div class="note"><strong>Note</strong>: Throughout this section, you should also refer to relevant documentation for
+      your database. </div>
+    
+      <h2>Setting up JDBC driver jar files</h2>
+      <p>If you are using a database to hold your repository, you will need to make sure that MCS
+        can access any JDBC driver jar files correctly. You will need a <span class="code">CLASSPATH</span>
+        environment variable entry for your database client, and copy the corresponding jar files to
+        the <span class="filepath">MCS/[context_root]/WEB-INF/lib</span> directory. Check the database
+        documentation for details.</p>
+      <p>For example, if you are accessing Oracle from a Windows machine, modify or setup a system
+        environment variable called <span class="code">CLASSPATH</span> to reflect the location of the
+        corresponding jar file such as <span class="code">C:\jdbcdrivers\classes1x.jar</span>. From a Linux
+        machine , this might be <span class="code">/home/jdbcdrivers/classes1x.jar</span>.</p>
+      <div class="note"><strong>Note</strong>: The x in the filename will be another numerical digit. Refer to the valid
+        filename in the <span class="filepath">%ORACLE_HOME/jdbc/lib</span> directory.</div>
+      
+      <p>You will also need to copy any jar files to the
+          <span class="filepath">MCS/webapps/[context_root]/WEB-INF/lib</span> directory. This also makes
+        sure they are included correctly for the setup of your application server.</p>
+      
+      <div class="note"><strong>Note</strong>: If you are using Weblogic 7 and an Oracle database, there may be a
+          <span class="filepath">classes1x.zip</span> file under the <span class="filepath">weblogic/common/lib</span>
+        or <span class="filepath">weblogic/server/lib</span> directories. If so, then move this file
+        elsewhere so that the correct oracle JDBC driver file is picked up at runtime from the
+          <span class="filepath">MCS/webapps/[context_root]/WEB-INF/lib </span> directory which is deployed
+        as a WebLogic application.</div>
+    
+    
+      <h2>Creating a new database user</h2>
+      <p>You will need to create a user with administrator privileges that matches the user and
+        password you specified during installation. Both have default installation values of
+        "mariner". These user and password values are also automatically set in the
+          <span class="filepath">mcs-config.xml</span> file.</p>
+      <p>Refer to the appropriate documentation for your database and your database administrator to
+        create an appropriate new user.</p>
+      <div class="note"><strong>Note</strong>: If you create the tables under a different user to the name you specified
+        during installation then you will need to change entries in the
+        <span class="filepath">mcs-config.xml</span> file that refer to the database user name and password
+        (under your application server's <span class="filepath">MCS/webapps /[context_root]/WEB-INF</span>
+        directory ). </div>
+    
+    
+      <h2>Creating new database tables</h2>
+      <p>Specific example scripts to create or drop the repository tables are provided for 
+        Microsoft SQLServer along with generic SQL92 versions for use by Oracle and other databases.</p>
+      <p>Connect to the database as the user you have just created and run the appropriate version
+        of one of following SQL scripts:</p>
+      <ul>
+        <li>
+          <span class="filepath">create_vm_tables.sql</span> - sets up tables for use by a single database
+          user</li>
+        <li>For Oracle and other SQL92 databases, use the scripts under your installation in
+            <span class="filepath">MCS/repository/jdbc-repository/sql92</span>
+          <div class="note"><strong>Note</strong>: The directory <span class="filepath">MCS/repository/jdbc-repository/oracle</span>
+            contains an Oracle script for creating new user, and should not be used.</div></li>
+       
+        <li>For Microsoft SQLServer, use the scripts under your installation in
+            <span class="filepath">MCS/repository/jdbc-repository/mssql</span>
+        </li>
+      </ul>
+    
+    
+      <h2>Importing XML policies into the database tables</h2>
+      <p>You create the contents for the database tables by importing the XML policy files with the
+          <span class="command">mcsImport</span> command. These policies could be from a migrated repository,
+        or created with the policy editors that need to be deployed for database access at runtime.
+        See <em>Importing and exporting repositories</em> for details of the command parameters.</p>
+      <p>If you wish to import the policies and device repository to test the installation using the
+          <span class="filepath">welcome.jsp</span> page, you can access the associated XML policy files
+        created during the installation as follows.</p>
+      <p>The policy files are under the <span class="filepath">/MCS/repository/xml-repository</span>
+        directory. The <span class="filepath">devices.mdpr</span> file is under the
+          <span class="filepath">/MCS/repository/device-repository</span> directory. Refer to the <em>MCS
+          Administration Guide</em> for command line parameters.</p>
+      <div class="note"><strong>Note</strong>: This stage is not needed if you chose an XML runtime repository during
+        installation, as the MCS configuration file will be set up to automatically access the
+        policies and devices file under the <span class="filepath">xml-repository</span> and
+          <span class="filepath">device-repository </span>directories.</div>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../install/mcs_install_oview.html">Installing MCS</a><br/><a class="link" href="../admin/mcs_import_export.html">Importing and exporting repositories</a><br/></p>
+    
+  </body></html>

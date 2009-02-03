@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>urid:fetch</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>urid:fetch</h1><h2>Purpose</h2>
+      <p>Specifies a driver URI.</p>
+      <div class="note"><strong>Note</strong>: This element is primarily intended to include resources from the local file
+        system, though it may be used for remote resources. You should generally use the
+          <span class="code">webd:get</span> element to retrieve content from a web server. Query
+        parameters on relative URLs provided in the <span class="code">href</span> attribute will not
+      work.</div>
+    <h2>Attributes</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcell" scope="row">encoding</th><td>The character encoding of the content. Has no effect when the parse attribute
+          is set to 'xml'.</td><td>xs:string</td><td>none </td><td> </td><td>optional </td></tr><tr><th class="firstcellrequired" scope="row">href</th><td>The URI to retrieve</td><td>xs:anyURI</td><td>none </td><td> </td><td>required </td></tr><tr><th class="firstcell" scope="row">parse</th><td>The type of content to parse</td><td>xs:string</td><td>xml </td><td>text, xml </td><td>optional </td></tr><tr><th class="firstcell" scope="row">timeout</th><td>The round trip timeout to apply for HTTP/HTTPS requests in seconds. Overrides
+          any timeout settings in the <span class="filepath">mcs-config.xml</span> file.</td><td>xs:integer</td><td>none </td><td> </td><td>optional </td></tr></table><h2>Examples</h2>
+      <pre class="code">
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"&gt;
+  &lt;head&gt;
+    &lt;title&gt;urid:fetch&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Latest from NYSE for Jive Sports (VBE):&lt;/p&gt;
+    &lt;urid:fetch href="test.xdinc"/&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    <p>The <span class="filepath">test.xdinc</span> file may look like this.</p>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;div xmlns="http://www.w3.org/2002/06/xhtml2"&gt;
+  &lt;p&gt; 21.50 (+ 2.25) &lt;/p&gt;
+&lt;/div&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../dci/urid_er.html">URI driver elements</a><br/></p>
+    </body></html>

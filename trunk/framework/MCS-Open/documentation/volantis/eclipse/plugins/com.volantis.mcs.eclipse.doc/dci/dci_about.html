@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>About DCI</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>About DCI</h1>
+    <p>You can use MCS to access information from multiple data sources and integrate it with
+      content served from static XDIME pages. In MCS this is called Dynamic Content Integration
+      (DCI).</p>
+    <p>DCI enhances existing MCS support for dynamic content by reducing the reliance on Java
+      programming, and by support the integration of structured content directly.</p>
+    <p>With DCI you can incorporate material from</p>
+    <ul>
+      <li>Existing web sites</li>
+      <li>Web services</li>
+      <li>XML documents</li>
+    </ul>
+    <p>In DCI this is achieved by providing drivers for a range of data sources, along with tools to
+      transform the information to XDIME markup.</p>
+    
+      <h2>XML Pipeline</h2>
+      <p>MCS provides dynamic content integration by using instructions contained in an XML file
+        called a pipeline. The pipeline specifies a series of sequential operations, and the inputs
+        to and outputs from each operation. It allows pages to be generated dynamically from
+        external content without having to use either Java code or Java Server Pages.</p>
+      <p>MCS provides specific XML vocabularies that you can use to describe a sequence of content
+        integration operations. For example, there is an XML namespace for accessing web services.</p>
+    
+    
+      <h2>Transforms and templates</h2>
+      <p>In DCI you use XSL transforms to convert structured information to XDIME. You can also make
+        use of DCI's template markup to render pages. Templates can be reused in different contexts
+        with specific parameter values, and are generally easier to specify than equivalent XSL
+        transformations of data sources.</p>
+    
+    
+      <h2>Caching content and transforms</h2>
+      <p>Because both content and the XSL transforms used to process the content may be re-used
+        frequently, DCI supports two types of caching.</p>
+      <p>Content caching is a simple, general purpose caching method that supports both simple cache
+        keys, and multiple attribute keys that are matched with template parameter values.</p>
+      <p>Transform caching handles the caching of individual XSL transforms, and provides functions
+        for compiling the transform.</p>
+    
+    
+      <h2>Pipeline configuration</h2>
+      <p>The <span class="filepath">mcs-config.xml</span> file contains a
+        <span class="code">pipeline-configuration</span> section. It defines values for a pipeline caches,
+        and the drivers that access DCI services.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../dci/dci_drivers.html">DCI services and drivers</a><br/><a class="link" href="../dci/dci_caching.html">Pipeline caching</a><br/><a class="link" href="../dci/dci_transform.html">Using transforms</a><br/><a class="link" href="../dci/dci_template_about.html">About templates</a><br/><a class="link" href="../dci/dci_convert.html">Converting content</a><br/><a class="link" href="../dci/dci_expr_module.html">DCI expressions</a><br/><a class="link" href="../dci/dci_pipeline_error.html">Handling pipeline errors</a><br/></p>
+    
+  </body></html>

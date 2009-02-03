@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Required software</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Required software</h1>
+    <p>MCS requires a repository which stores MCS policies for device, digital asset and stylistic
+      information. This is implemented at design time as a set of XML files. If you wish to
+      implement a database repository for runtime deployment, you must have a JDBC or relational
+      database client installed, configured and working correctly before you can use the MCS
+      software.</p>
+    <p>A web application server needs to be installed and working before you can view any MCS
+      generated pages. You may generate the pages without the web application server being installed
+      but you will not be able to view them. You can also use the policy editors, to view and update
+      the repository, without a web application server being installed.</p>
+    <p>If you want to use MCS with a web application server, the web application server should be
+      installed and configured before you install the MCS software. This will allow the MCS
+      configuration file to be updated correctly by the installer, avoiding the need to set the
+      configuration for the web application server manually.</p>
+    <div class="note"><strong>Note</strong>: A full list of supported platforms for development and runtime environments is
+      contained in <em>Supported platforms</em> in <em>MCS Release notes</em> (PDF).</div>
+    
+      <h2>Eclipse framework</h2>
+      <p>The MCS policy editors operate within the open-source Eclipse Framework.</p>
+      <p>Download and install a supported version of Eclipse,
+        following the instructions from <em>Eclipse downloads</em>. Ensure that
+        you install the Release Build SDK for your chosen platform.</p>
+      <p>A set of plugins for the MCS policy editors are created during installation. These will
+        need to be copied to the appropriate Eclipse plugins
+        directory. See <em>Completing the installation</em> for details.</p>
+    
+    
+      <h2>Database server</h2>
+      <p>The database must be available to any computer on which the MCS server runtime is
+        installed. You can install a database on the same computer as the MCS components, or on a
+        different computer.</p>
+      <p>Your database server should be installed with the appropriate services started. Refer to
+        the appropriate database documentation for all products.</p>
+    
+    
+      <h2>Web application server</h2>
+      <p>A wide variety of web application servers can be used with MCS. <em>Setting up your web server</em> contains several examples.</p>
+      <p>Environment variables, as described in the installation guide for each web application
+        server, will need to be set before installation.</p>
+      <p>If you have the JDK or JRE already installed you can test your web application server using
+        the test instructions supplied with the server.</p>
+      <p>Refer to the appropriate application server documentation for all products.</p>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../install/mcs_install_oview.html">Installing MCS</a><br/><a class="external" href="http://www.eclipse.org/downloads/" title="External link">Eclipse downloads</a><br/><a class="link" href="../install/mcs_install_complete.html">Completing the installation</a><br/><a class="link" href="../install/mcs_setup_webapp.html">Setting up your web server</a><br/></p>
+    
+  </body></html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Using template parameters</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>Using template parameters</h1>
+    <p>You can use MCS expressions to access the values of simple template parameters through either
+      function expressions, or expression variables. The template body contains references to
+      template parameters. Both attributes and element content can be parameterized.</p>
+    
+      <h2>Function expressions</h2>
+      <p>Function expressions are identified by names that consists of namespace prefix and local
+        name, and have a structure and syntax similar to that used in XPath 2.0 functions, for
+        example <span class="code">request:getParameter('id')</span>. Refer to <em>MCS function expressions</em>
+        for further information.</p>
+    
+    
+      <h2>Expression variables</h2>
+      <p>In a parameter declaration you can use the <span class="code">expressionVariable</span> attribute to
+        bind a simple parameter to an expression variable. Expression variables can be accessed from
+        within a template expression using the XPath syntax <span class="code">%{$varName}</span> where
+        <span class="code">$</span> is a literal character, and <span class="code">varName</span> is the name of a variable.
+        For example, <span class="code">&lt;a href="%{$varName}"&gt;Link text here&lt;/a&gt;</span>.</p>
+    
+    
+      <h2>Controlling parameter evaluation</h2>
+      <p>In both the <span class="code">template:simpleValue</span> and the
+        <span class="code">template:complexValue</span> elements you can use the
+        <span class="code">expressionMode</span> attribute to control the way that MCS evaluates parameter
+        values.</p>
+      <ul>
+        <li>
+          <strong>immediate</strong>. MCS evaluates the parameter before the template definition is processed.
+          If it includes an XML document, the content of the document is passed.</li>
+        <li>
+          <strong>repeated</strong>. The value is not processed; instead the markup is passed to the template
+          definition. The template definition uses that value each time that it is evaluated. If the
+          value is the inclusion of an XML document, the inclusion markup is passed.</li>
+        <li>
+          <strong>deferred</strong>. Included markup is passed to the template definition, but in this case
+          the result becomes the value of the parameter so that if it is used again, it does not
+          evaluate the markup again. Thus the XML document would only be retrieved once. If it was
+          not used at all, then it would not be evaluated.</li>
+      </ul>
+    
+    
+      <p><span class="ri">Related topics</span><br/><a class="link" href="../dci/dci_template_about.html">About templates</a><br/><a class="link" href="../wag/wag_function_expr.html">MCS function expressions</a><br/></p>
+    
+  </body></html>

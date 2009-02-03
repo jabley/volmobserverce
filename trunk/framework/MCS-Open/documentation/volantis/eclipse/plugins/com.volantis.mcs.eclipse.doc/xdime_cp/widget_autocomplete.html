@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:autocomplete</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:autocomplete</h1><h2>Purpose</h2>
+      <p>Defines an Autocompleter widget.</p>
+    <h2>Contained by</h2><p><a href="../xdime_cp/xf_input.html">xf:input</a></p><h2>Attribute</h2><table cellspacing="0"><tr><th class="firsthdr" scope="col">Attribute</th><th scope="col">Description</th><th scope="col">Type</th><th scope="col">Default</th><th scope="col">Options</th><th scope="col">Use</th></tr><tr><th class="firstcellrequired" scope="row">src</th><td>Specifies the URL address of the autocompletion service responsible for
+          returning a list of matching items</td><td>xs:anyURI</td><td> </td><td> </td><td>required </td></tr></table><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;widget:autocomplete&lt;/title&gt;
+    &lt;xf:model&gt;
+      &lt;xf:instance&gt;
+        &lt;si:instance&gt;
+          &lt;si:item name="f1"/&gt;
+        &lt;/si:instance&gt;
+      &lt;/xf:instance&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;xf:group&gt;
+      &lt;xf:input ref="f1"&gt;
+        &lt;xf:label&gt;country&lt;/xf:label&gt;
+        &lt;widget:autocomplete src="http://localhost:8080/mcs/projects/client-app/service/autocomplete"/&gt;
+      &lt;/xf:input&gt;
+    &lt;/xf:group&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../client/widget_er.html">Widget elements</a><br/><a class="link" href="../xdime_cp/response_autocomplete.html">response:autocomplete</a><br/></p>
+    </body></html>

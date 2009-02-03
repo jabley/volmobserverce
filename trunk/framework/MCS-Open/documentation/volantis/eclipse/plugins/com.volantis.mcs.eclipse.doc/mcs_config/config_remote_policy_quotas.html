@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>remote-policy-quotas</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>remote-policy-quotas</h1><h2>Purpose</h2>
+      <p>Container for the policy quota elements for one or more remote servers.</p>
+      <div class="note"><strong>Note</strong>: In versions previous to MCS 3.5.1 several elements containing individual
+        remote policy quota values were defined in the <span class="code">remote-policies</span> section of
+        the <span class="filepath">mcs-config.xml</span> file. There is now a single cache quota for each
+        server and these elements are now obsolete.</div>
+    <h2>Contains</h2><p><a href="../mcs_config/config_remote_policy_quota.html">remote-policy-quota</a></p><h2>Contained by</h2><p><a href="../mcs_config/config_remote_policies.html">remote-policies</a></p><h2>Example</h2>
+      <pre class="code">
+&lt;remote-policies&gt;
+  &lt;remote-policy-quotas&gt;
+    &lt;remote-policy-quota
+      URL="http://myserver.com/remoteComponents/images/jpg
+      percentage="50"/&gt;
+    &lt;remote-policy-quota
+      URL="http://anotherserver.com/newImage
+      percentage="50"/&gt;
+  &lt;/remote-policy-quotas&gt;   
+&lt;/remote-policies&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../admin/mcs_config_er.html">MCS configuration elements</a><br/></p>
+    </body></html>

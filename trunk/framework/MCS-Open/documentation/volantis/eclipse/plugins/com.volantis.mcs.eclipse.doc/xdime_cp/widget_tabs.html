@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>widget:tabs</title><link rel="stylesheet" href="../volantis.css"/></head><body><h1>widget:tabs</h1><h2>Purpose</h2>
+      <p>Defines a container for one or more <span class="code">widget-tab</span> elements.</p>
+    <h2>Contains</h2><p><a href="../xdime_cp/widget_tab.html">widget:tab</a></p><h2>Contained by</h2><p><a href="../xdime_cp/xdime_cp_body.html">body</a></p><h2>Attribute group</h2><p><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></p><h2>Example</h2>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;widget:tabs&lt;/title&gt;
+    &lt;style type="text/css" media="handheld,all"&gt;
+      #firstTab::mcs-label {
+        content: 'Tab1';
+      }
+      #firstTab::mcs-label:active {
+        font-weight: bold;
+      }
+      #secondTab::mcs-label {
+        content: 'Tab2';
+      }
+      #secondTab::mcs-label:active {
+        font-weight: bold;
+      } 
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;widget:tabs&gt;
+      &lt;widget:tab id="firstTab"&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Vivamus non mi.&lt;/p&gt;
+      &lt;/widget:tab&gt;
+      &lt;widget:tab id="secondTab"&gt;
+        &lt;p&gt;Vivamus nisl pede, pellentesque sed, sagittis at, tincidunt vitae, ligula.&lt;/p&gt;
+      &lt;/widget:tab&gt;
+    &lt;/widget:tabs&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    
+      <p><span class="ri">Related topic</span><br/><a class="link" href="../client/widget_er.html">Widget elements</a><br/></p>
+    </body></html>

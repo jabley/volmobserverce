@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Input</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../client_learn/clientTutorial_about.html" title="Using the widget library">Start</a></li><li><a href="../client_learn/clientTutorial_blocks_select.html" title="Select">Previous</a></li><li><a href="../client_learn/clientTutorial_blocks_block.html" title="Block">Next</a></li></ul></td></tr></table><h1>Input</h1>
+    <p>It is a general purpose element, used by widgets which need a text input control which is not
+      associated with a form.</p>
+    <p><img src="../graphics/cfTutorial/input.png" alt="Input widget" title="Input widget"/></p>
+  <h2>widget:input <a href="../xdime_cp/widget_input.html"><img src="../icons/icon_help.png" border="0" alt="Learn More"/></a></h2><ol><li>The <span class="code">widget:input</span> element defines a text input control which is not
+      associated with a form<pre class="code">
+&lt;widget:input id="entry"/&gt;</pre></li></ol><h2>Complete XDIME 2 code</h2><ol><li>Create a <span class="filepath">bb-input.xdime</span> file and modify its content by including the
+      following code<pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Input widget&lt;/title&gt;
+    &lt;link rel="mcs:theme" href="/themes/main.mthm"/&gt;
+    &lt;link rel="mcs:layout" href="/layouts/main.mlyt"/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;template:apply href="templates/demo-main.xdtpl"&gt;
+      &lt;template:binding name="title" value="Select widget"/&gt;
+      &lt;template:binding name="content"&gt;
+        &lt;template:complexValue&gt;
+          &lt;div style="mcs-layout: 'layouts/2x2.mlyt'"&gt;
+            &lt;span style="mcs-container: 'top-left'"&gt;Enter value:&lt;/span&gt;
+            &lt;widget:input style="mcs-container: 'top-right'" id="entry"/&gt;
+            &lt;span style="mcs-container: 'bottom-left'"&gt;Entered:&lt;/span&gt;
+            &lt;widget:display style="mcs-container: 'bottom-right'"
+              property="entry#value"/&gt;
+          &lt;/div&gt;
+        &lt;/template:complexValue&gt;
+      &lt;/template:binding&gt;
+    &lt;/template:apply&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+    </li></ol><h2>Checklist</h2>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_span.html">span</a></th><td><p>Inline element used to set a style.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_display.html">widget:display</a></th><td><p>An inline widget element used to display some text content. It may be associated with a
+        widget property. In such cases, the displayed content represents the value of the selected
+        property.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/widget_input.html">widget:input</a></th><td><p>A general purpose element, used by widgets which need a text input control which is not
+        associated with a form.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr></tbody></table>
+  </body></html>

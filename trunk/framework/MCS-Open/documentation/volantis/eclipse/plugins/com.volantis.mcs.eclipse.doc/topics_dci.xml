@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Dynamic content integration">
+  <topic href="dci/dci_drivers.html" label="DCI services and drivers">
+    <topic href="dci/dci_web_driver.html" label="Defining HTTP resources">
+      <topic href="dci/dci_webd_parameter.html" label="Request parameters, headers and cookies"/>
+      <topic href="dci/dci_webd_content.html" label="Handling HTTP content"/>
+      <topic href="dci/dci_http_cache.html" label="HTTP caching"/>
+    </topic>
+    <topic href="dci/dci_web_serv_driver.html" label="Integrating web services"/>
+  </topic>
+  <topic href="dci/dci_transform.html" label="Using transforms">
+    <topic href="dci/dci_transform_params.html" label="Passing parameters in transforms"/>
+  </topic>
+  <topic href="dci/dci_template_about.html" label="About templates">
+    <topic href="dci/dci_template_define.html" label="Defining templates"/>
+    <topic href="dci/dci_template_apply.html" label="Applying templates"/>
+    <topic href="dci/dci_template_param.html" label="Using template parameters"/>
+  </topic>
+  <topic href="dci/dci_caching.html" label="Pipeline caching"/>
+  <topic href="dci/dci_convert.html" label="Converting content"/>
+  <topic href="dci/dci_expr_module.html" label="DCI expressions"/>
+  <topic href="dci/dci_xpath_grammar.html" label="XPath grammar"/>
+  <topic href="dci/dci_pipeline_error.html" label="Handling pipeline errors"/>
+  <topic href="dci/pipeline_error_er.html" label="Pipeline error functions">
+    <topic href="dci/pipeline_errormessage.html" label="pipeline:errorMessage"/>
+    <topic href="dci/pipeline_errorsourceid.html" label="pipeline:errorSourceID"/>
+    <topic href="dci/pipeline_errorcodeuri.html" label="pipeline:errorCodeURI"/>
+    <topic href="dci/pipeline_errorcodename.html" label="pipeline:errorCodeName"/>
+    <topic href="dci/pipeline_errorinfo.html" label="pipeline:errorInfo"/>
+  </topic>
+  <topic href="dci/open_connector_gfx.html" label="Displaying images from social services"/>
+  <topic href="dci/open_connector_gdocs.html" label="Accessing Google Docs documents"/>
+  <topic href="dci/dci_er.html" label="Content integration elements"/>
+</toc>

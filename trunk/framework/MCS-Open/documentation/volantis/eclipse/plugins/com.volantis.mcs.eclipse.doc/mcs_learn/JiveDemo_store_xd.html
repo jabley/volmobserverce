@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/xml;charset=UTF-8"/><title>Employee store page</title><link rel="stylesheet" href="../volantis.css"/></head><body><table class="header"><tr><td class="navcontainer"><ul class="navlist"><li><a href="../mcs_learn/JiveDemo_about_jive.html" title="Next steps with MCS">Start</a></li><li><a href="../mcs_learn/JiveDemo_hr_xd.html" title="Human resources page">Previous</a></li><li><a href="../mcs_learn/JiveDemo_store_jsp.html" title="XDIME 2 and JavaScript">Next</a></li></ul></td></tr></table><h1>Employee store page</h1>
+    <p>This page illustrates the use of a XForms elements. The namespace prefix used for elements
+      that originate in XForms is <span class="code">xf:</span> and the namespace declaration is
+        <span class="filepath">http://www.w3.org/2002/xforms</span>.</p>
+    <p>In our example, these elements create a form that allows employees to check the availability
+      of items for purchase.</p>
+    <p><img src="../graphics/jive_store.jpg" alt="Employee Store Page" title="Employee Store Page"/></p>
+  <h2>XForms model</h2><ol><li>Create a <span class="filepath">employeeStore.xdime</span> file in the main
+      <span class="filepath">jive</span> folder</li><li>Add the forms namespace declaration to the <span class="code">html</span>
+      <pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+    ...
+&lt;/html&gt;</pre></li><li>Within the <span class="code">head</span> element the required <span class="code">xf:model</span>
+      element defines the model for the form. In the <span class="code">action</span>, it contains the definition
+      of the URL to be used when the form is submitted. The form data is processed by the JSP
+        <span class="filepath">checkAvail.jsp</span>, described in the next module. Add the following markup. <pre class="code">
+&lt;head&gt;
+  &lt;link rel="mcs:layout" href="/jivearticle.mlyt"/&gt;
+  &lt;link rel="mcs:theme" href="/jive.mthm"/&gt;
+  &lt;xf:model&gt;
+    &lt;xf:submission id="avail" action="checkAvail.jsp"/&gt;
+  &lt;/xf:model&gt;
+&lt;/head&gt;</pre>
+    </li></ol><h2>XForms controls</h2><ol><li>The form controls appear within the body of the page. The <span class="code">xf:select1</span>
+      elements define two single selection dropdowns. One of these contains a list of products, the
+      other a list of sizes. The <span class="code">ref</span> attribute contains the value of the selection.
+        <span class="code">xf:item</span> elements define labels and values for the clothing types.
+      Complete the item section now. You can skip the content for sizes until later.<pre class="code">
+&lt;h3 class="company_header"&gt;Availability&lt;/h3&gt;
+&lt;p&gt;
+  &lt;xf:select1 ref="item"&gt;
+    &lt;xf:label&gt;Item&lt;/xf:label&gt;
+    &lt;xf:item&gt;
+      &lt;xf:label&gt;Storm Jacket&lt;/xf:label&gt;
+      &lt;xf:value&gt;storm jacket&lt;/xf:value&gt;
+    &lt;/xf:item&gt;
+    &lt;xf:item&gt;
+      &lt;xf:label&gt;Long Sleeve Sport&lt;/xf:label&gt;
+      &lt;xf:value&gt;long sleeve sports shirt&lt;/xf:value&gt;
+    &lt;/xf:item&gt;
+    &lt;xf:item&gt;
+      &lt;xf:label&gt;Twill Shirt&lt;/xf:label&gt;
+      &lt;xf:value&gt;twill shirt&lt;/xf:value&gt;
+    &lt;/xf:item&gt;
+    &lt;xf:item&gt;
+      &lt;xf:label&gt;Jersey Sport Shirt&lt;/xf:label&gt;
+      &lt;xf:value&gt;jersey sports shirt&lt;/xf:value&gt;
+    &lt;/xf:item&gt;
+    &lt;xf:item&gt;
+      &lt;xf:label&gt;Cotton Sport Shirt&lt;/xf:label&gt;
+      &lt;xf:value&gt;cotton sports shirt&lt;/xf:value&gt;
+    &lt;/xf:item&gt;
+  &lt;/xf:select1&gt;
+&lt;/p&gt;</pre></li><li>The <span class="code">xf:submit</span> element defines the <span class="command">Check</span> button. In
+      the <span class="code">submission</span> attribute, it references the <span class="code">xf:submission</span>
+      element identifier in the model you defined. <pre class="code">
+&lt;p&gt;
+  &lt;xf:submit submission="avail"&gt;
+    &lt;xf:label&gt;Check&lt;/xf:label&gt;
+  &lt;/xf:submit&gt;
+&lt;/p&gt;</pre>
+    </li></ol><h2>Complete the code</h2><p>Include the additional code for the standard parts of the page, the sizes section of the
+      form, the popular item descriptions, and the special offers.</p><pre class="code">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:xf="http://www.w3.org/2002/xforms"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Employee Store&lt;/title&gt;
+    &lt;!-- Links to the layout and theme for this page --&gt;
+    &lt;link rel="mcs:layout" href="/jivearticle.mlyt"/&gt;
+    &lt;link rel="mcs:theme" href="/jive.mthm"/&gt;
+    &lt;!-- Model for availability check form --&gt;
+    &lt;xf:model&gt;
+      &lt;xf:submission id="avail" action="checkAvail.jsp"/&gt;
+    &lt;/xf:model&gt;
+  &lt;/head&gt;
+  &lt;!-- Page body --&gt;
+  &lt;body&gt;
+    &lt;!-- The common material for the page header --&gt;
+    &lt;div&gt;
+      &lt;!-- The banner --&gt;
+      &lt;div id="logo"&gt;
+        &lt;a class="homelogo" href="jivehome.xdime"&gt;
+          &lt;object class="homelogo" src="/images/jive_logo.mimg"/&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div id="photos"&gt;
+        &lt;object src="/images/photos.mimg"/&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- The main menu --&gt;
+    &lt;div id="menu_company_news" class="main_menu"&gt;
+      &lt;a class="pnav" href="companyNews.xdime"&gt;
+        &lt;object src="/images/menu_company_news.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="menu_human_resources" class="main_menu"&gt;
+      &lt;a class="pnav" href="humanResources.xdime"&gt;
+        &lt;object src="/images/menu_human_resources.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div id="menu_employee_store" class="main_menu"&gt;
+      &lt;a class="pnav" href="employeeStore.xdime"&gt;
+        &lt;object src="/images/menu_employee_store.mimg"/&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;!--The current stock price--&gt;
+    &lt;div id="stockprice"&gt; Latest from NYSE for Jive (VBE): 21.50 (+ 2.25) &lt;/div&gt;
+    &lt;!-- Page Title --&gt;
+    &lt;h2 id="title"&gt;Employee Store&lt;/h2&gt;
+    &lt;!-- The article --&gt;
+    &lt;div id="article"&gt;
+      &lt;p&gt; Various items of Jive sportswear are available to employees at discounted prices. Style
+        has never been such good value! &lt;/p&gt;
+      &lt;p&gt; Get more information and purchase items by clicking on items in the lists. &lt;/p&gt;
+      &lt;div class="company_item"&gt;
+        &lt;h3 class="company_header"&gt;Availability&lt;/h3&gt;
+        &lt;p&gt;
+          &lt;xf:select1 ref="item"&gt;
+            &lt;xf:label&gt;Item&lt;/xf:label&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;Storm Jacket&lt;/xf:label&gt;
+              &lt;xf:value&gt;storm jacket&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;Long Sleeve Sport&lt;/xf:label&gt;
+              &lt;xf:value&gt;long sleeve sports shirt&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;Twill Shirt&lt;/xf:label&gt;
+              &lt;xf:value&gt;twill shirt&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;Jersey Sport Shirt&lt;/xf:label&gt;
+              &lt;xf:value&gt;jersey sports shirt&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;Cotton Sport Shirt&lt;/xf:label&gt;
+              &lt;xf:value&gt;cotton sports shirt&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+          &lt;/xf:select1&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;xf:select1 ref="size"&gt;
+            &lt;xf:label&gt;Size&lt;/xf:label&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;XS&lt;/xf:label&gt;
+              &lt;xf:value&gt;extra small&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;S&lt;/xf:label&gt;
+              &lt;xf:value&gt;small&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;R&lt;/xf:label&gt;
+              &lt;xf:value&gt;regular&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;L&lt;/xf:label&gt;
+              &lt;xf:value&gt;large&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;XL&lt;/xf:label&gt;
+              &lt;xf:value&gt;extra Large&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+            &lt;xf:item&gt;
+              &lt;xf:label&gt;XXL&lt;/xf:label&gt;
+              &lt;xf:value&gt;huge&lt;/xf:value&gt;
+            &lt;/xf:item&gt;
+          &lt;/xf:select1&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+          &lt;xf:submit submission="avail"&gt;
+            &lt;xf:label&gt;Check&lt;/xf:label&gt;
+          &lt;/xf:submit&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="company_item"&gt;
+        &lt;h3 class="company_header"&gt;Most Popular Items&lt;/h3&gt;
+        &lt;dl&gt;
+          &lt;dt&gt;
+            &lt;a href="#"&gt;Storm Jacket&lt;/a&gt;
+          &lt;/dt&gt;
+          &lt;dd&gt;Jive-Tek Nylon shell Storm Jacket is water repellent, wind resistant, has a front
+            zipper and elastic waistband. &lt;strong&gt;$19.98&lt;/strong&gt;&lt;/dd&gt;
+          &lt;dt&gt;
+            &lt;a href="#"&gt;Long Sleeve Sport Shirt&lt;/a&gt;
+          &lt;/dt&gt;
+          &lt;dd&gt;Cotton, long-sleeve pique knit sport shirt. Designed with a full cut and soft,
+            comfortable look to please anyone. &lt;strong&gt;$15.98&lt;/strong&gt;&lt;/dd&gt;
+          &lt;dt&gt;
+            &lt;a href="#"&gt;Short Sleeve Twill Shirt&lt;/a&gt;
+          &lt;/dt&gt;
+          &lt;dd&gt;This classic 100% cotton, twill short sleeve shirt has a patch pocket and a
+            button-down collar. &lt;strong&gt;$15.98&lt;/strong&gt;&lt;/dd&gt;
+          &lt;dt&gt;
+            &lt;a href="#"&gt;Jersey Knit Sport Shirt&lt;/a&gt;
+          &lt;/dt&gt;
+          &lt;dd&gt;This cotton jersey knit sport shirt is unique and upscale, perfect for the office or
+            out on the putting green. &lt;strong&gt;$14.98&lt;/strong&gt;&lt;/dd&gt;
+          &lt;dt&gt;
+            &lt;a href="#"&gt;Cotton Sport Shirt&lt;/a&gt;
+          &lt;/dt&gt;
+          &lt;dd class="article"&gt;This 100% cotton shirt pays has horn tone buttons, welt collar and
+            cuffs, side vents, and locker patch. &lt;strong&gt;$11.98&lt;/strong&gt;&lt;/dd&gt;
+        &lt;/dl&gt;
+      &lt;/div&gt;
+      &lt;div class="company_item"&gt;
+        &lt;h3 class="company_header"&gt;Special Offers&lt;/h3&gt;
+        &lt;dl&gt;
+          &lt;dt&gt;
+            &lt;a href="#"&gt;Long Sleeve Twill Shirt&lt;/a&gt;
+          &lt;/dt&gt;
+          &lt;dd&gt;This classic 100% cotton, twill long sleeve shirt has a patch pocket and a button-down
+            collar. &lt;strong&gt;$15.98&lt;/strong&gt;&lt;/dd&gt;
+          &lt;dt&gt;
+            &lt;a href="#"&gt;Short Sleeve Denim Shirt&lt;/a&gt;
+          &lt;/dt&gt;
+          &lt;dd&gt;This classic cotton, 6.5-ounce stonewashed denim shirt is perfect for a corporate or
+            casual situation. &lt;strong&gt;$15.98&lt;/strong&gt;&lt;/dd&gt;
+        &lt;/dl&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- The common material for the page footer --&gt;
+    &lt;div id="footer"&gt;
+      &lt;p&gt;Copyright &lt;a href="jivehome.xdime"&gt;Jive Sports&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre><h2>Checklist</h2>
+    <p>Take some time to review the structure of the XForms elements in detail by following the
+      links below.</p>
+    <table cellspacing="0"><thead><tr><th class="firsthdr">Name</th><th>Purpose</th></tr></thead><tbody><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_div.html">div</a></th><td><p>A section used to add extra structure to documents. Style sheets can be used to control the
+        presentation.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_heading.html">h1, h2, h3, h4, h5, h6</a></th><td><p>Heading elements for sections within a document. The number associated with each element
+        indicates its relative position in the hierarchy of headings, with 1 indicating the top
+        level and 6 the lowest level.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xdime_cp_p.html">p</a></th><td><p>Block element that defines a paragraph.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_item.html">xf:item</a></th><td><p>Container for the option values in <span class="code">xf:select</span> and
+        <span class="code">xf:select1</span> elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_label.html">xf:label</a></th><td><p>Provides a descriptive label for forms controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_model.html">xf:model</a></th><td><p>Represents a form definition, used as a container for elements associated with its
+        submission.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_select1.html">xf:select1</a></th><td><p>A form control that provides for selection of a single choice from an available list of
+        options; for example, a group of radio buttons.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_submission.html">xf:submission</a></th><td><p>Defines the information to submit, where it should be sent, and how to send it.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_submit.html">xf:submit</a></th><td><p>A form control that initiates submission of the form data for processing.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_value.html">xf:value</a></th><td><p>Provides the option values associated with select controls.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/core_attr_cp.html">Core attributes</a></th><td><p>Attributes that are common to XDIME 2 elements.</p></td></tr><tr><th class="firstcell"><a href="../xdime_cp/xf_attr_cp.html">Form attributes</a></th><td><p>Binding expressions provide the mapping between the data associated with a particular
+        control and the data provided for processing when the form is submitted. The expression is
+        the name of the parameter associated with the control's data when the form is submitted.
+        These parameters appear on the submission URL if the form is submitted using the HTTP
+          <span class="code">GET</span> method, and are hidden if the <span class="code">POST</span> method is used. The
+        methods are specified as attributes on the <span class="code">xf:submission</span> element.</p></td></tr></tbody></table>
+  </body></html>
