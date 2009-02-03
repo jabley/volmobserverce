@@ -1,0 +1,10 @@
+Hierarchy:
+Entry:Master
+  Entry:PC
+  Entry:Mobile
+    Entry:Handset
+      Entry:WAP-Handset
+        Entry:Nokia-WAP
+          Entry:Nokia-Series7110
+            Entry:Nokia-7110
+  Entry:Voice

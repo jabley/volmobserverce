@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Paul Duffin (Volantis Systems Ltd) -->
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/device-repository/device-identification" xmlns="http://www.volantis.com/xmlns/device-repository/device-identification" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:di="http://www.volantis.com/xmlns/device-repository/device-identification" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="device-core.xsd"/>
+    <xs:annotation>
+        <xs:documentation>Device Identification Section</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType name="RegularExpressionType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:element name="identification">
+        <xs:annotation>
+            <xs:documentation>Contains information needed to identify devices.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="device" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="UniqueDeviceName">
+            <xs:selector xpath="di:deviceIdentity/di:deviceName"/>
+            <xs:field xpath="."/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="device">
+        <xs:annotation>
+            <xs:documentation>Identifies a device.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="di:PatternContainer">
+                    <xs:sequence>
+                        <xs:element name="standard" minOccurs="0">
+                            <xs:complexType>
+                                <xs:choice>
+                                    <xs:element ref="device" minOccurs="0"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="name" type="DeviceNameType" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="regularExpression" type="RegularExpressionType">
+        <xs:annotation>
+            <xs:documentation>A regular expression.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="userAgentPattern">
+        <xs:annotation>
+            <xs:documentation>Contains a regular expression which is used to match against the user agent string.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="regularExpression"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="WildCardedHeaderNameType">
+        <xs:annotation>
+            <xs:documentation>The allowable syntax for a header name that includes wild cards (.*).</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([A-Za-z0-9\-_]|\.\*)+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="WildCardedDeviceNameType">
+        <xs:annotation>
+            <xs:documentation>The allowable syntax for a device name that includes wild cards (.*).</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([A-Za-z0-9\-_]|\.\*)+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="headerPattern">
+        <xs:annotation>
+            <xs:documentation>Contains a regular expression that is only used to match against a specific header.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="regularExpression"/>
+            </xs:sequence>
+            <xs:attribute name="name" type="WildCardedHeaderNameType" use="required">
+                <xs:annotation>
+                    <xs:documentation>The name (possibly containing wild cards) of the header that this pattern can be matched against.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="baseDevice" type="WildCardedDeviceNameType" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The base device that triggered the secondary device identification step that this pattern is used in.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="PatternContainer">
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="userAgentPattern"/>
+            <xs:element ref="headerPattern"/>
+        </xs:choice>
+    </xs:complexType>
+</xs:schema>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 13-May-04	4351/1	allan	VBM:2004051011 Fix NullPointerException in StandardElementHandler
+
+ ===========================================================================
+-->

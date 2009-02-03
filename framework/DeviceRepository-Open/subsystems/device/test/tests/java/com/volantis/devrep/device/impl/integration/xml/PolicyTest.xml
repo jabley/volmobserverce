@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<device xmlns="http://www.volantis.com/xmlns/device-repository/device" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/device-repository/device ../../../xml-schema/device.xsd" name="TestDevice">
+    <policies>
+        <policy name="basicDevice" value="true">
+            <standard>
+                <policy name="basicDevice" value="false"/>
+            </standard>
+        </policy>
+        <policy name="dateint" value="2000"/>
+        <policy name="entryType" value="real_device"/>
+        <policy name="firmversion" value="1.0"/>
+        <policy name="localsec" value="50"/>
+        <policy name="modelnum" value="7110"/>
+        <policy name="prodname" value="7110"/>
+        <policy name="protocol.wml.emulate.bigTag.enable" value="true"/>
+        <policy name="protocol.wml.emulate.bigTag.prefix" value="&lt;"/>
+        <policy name="protocol.wml.emulate.bigTag.suffix" value="&gt;"/>
+        <policy name="protocol.wml.emulate.bigTag.altTag" value="i"/>
+        <policy name="protocol.wml.emulate.bigTag">
+            <field name="enable" value="true"/>
+            <field name="prefix" value="&lt;"/>
+            <field name="suffix" value="&gt;"/>
+            <field name="altTag" value="i"/>
+            <field name="empty" value=""/>
+        </policy>
+        <policy name="rendermode" value="greyscale"/>
+        <policy name="revision" value="&gt;= 4.69"/>
+        <policy name="ssl" value="true"/>
+        <policy name="sslkeystrng" value="128"/>
+        <policy name="sslvers" value="WTLS"/>
+        <policy name="UAProf.AcceptDownloadableSoftware" value="false"/>
+        <policy name="UAProf.CcppAccept">
+            <value>text/html</value>
+            <value>text/plain</value>
+            <value>image/jpeg</value>
+        </policy>
+        <policy name="UAProf.TablesCapable" value="false"/>
+        <policy name="UAProf.WapPushMsgSize" value="2000"/>
+        <policy name="wtlsclass" value="false"/>
+        <policy name="testinherit"  value="128">
+            <inherit/>
+        </policy>
+        <policy name="wtlskeystrng" value="128"/>
+    </policies>
+</device>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 13-Nov-05	9896/1	geoff	VBM:2005101906 Avoid using JDOM in MCS at runtime: rewrite runtime XML device repository
+
+ ===========================================================================
+-->

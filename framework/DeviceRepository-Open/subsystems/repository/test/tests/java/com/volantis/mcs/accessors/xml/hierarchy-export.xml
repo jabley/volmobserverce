@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<hierarchy
+        xmlns="http://www.volantis.com/xmlns/device-repository/device-hierarchy"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.volantis.com/xmlns/device-repository/device-hierarchy http://www.volantis.com/schema/device-repository/v1.0/device-hierarchy.xsd">
+
+    <device name="Master">
+        <device name="TV">
+            <device name="Broadcast-STB">
+                <device name="Liberate">
+                    <device name="Liberate-1.1"/>
+                    <device name="Liberate-1.2"/>
+                    <device name="Liberate-1.3"/>
+                </device>
+                <device name="NDS-Browser"/>
+                <device name="Sky-waptv">
+                    <device name="waptv-4"/>
+                    <device name="waptv-5"/>
+                    <device name="waptv-6"/>
+                </device>
+            </device>
+            <device name="Web-Box">
+                <device name="Microsoft-WebTV"/>
+                <device name="Netgem-Netbox"/>
+            </device>
+            <device name="Games-Console">
+                <device name="Sega-Dreamcast"/>
+            </device>
+        </device>
+        <device name="Mobile">
+            <device name="Handset">
+                <device name="WAP-Handset">
+                    <device name="Alcatel-WAP">
+                        <device name="Alcatel-OT-512"/>
+                        <device name="Alcatel-OT-525">
+                            <device name="Alcatel-OT-526"/>
+                        </device>
+                        <device name="Alcatel-OT-531"/>
+                        <device name="Alcatel-OT-535">
+                            <device name="Alcatel-OT-735">
+                                <device name="Alcatel-OT-735_m"/>
+                            </device>
+                            <device name="Alcatel-OT535_m"/>
+                        </device>
+                        <device name="Alcatel-OT-715"/>
+                        <device name="Alcatel-OT-DB@"/>
+                    </device>
+                    <device name="Benefon-Q-WML"/>
+                    <device name="Ericsson-WAP">
+                        <device name="Ericsson-A2628"/>
+                        <device name="Ericsson-R280"/>
+                        <device name="Ericsson-R320"/>
+                        <device name="Ericsson-R380"/>
+                        <device name="Ericsson-R520"/>
+                        <device name="Ericsson-R600"/>
+                        <device name="Ericsson-T20"/>
+                        <device name="Ericsson-T29"/>
+                        <device name="Ericsson-T39"/>
+                        <device name="Ericsson-T60c">
+                            <device name="Ericsson-T60d"/>
+                        </device>
+                        <device name="Ericsson-T65"/>
+                        <device name="Ericsson-T66"/>
+                        <device name="Ericsson-T68">
+                            <device name="SonyEricsson-T68i">
+                                <device name="SonyEricsson-T68i-R2"/>
+                                <device name="SonyEricsson-T68i-R3"/>
+                                <device name="SonyEricsson-T68i-R4"/>
+                                <device name="SonyEricsson-T68i-R5"/>
+                                <device name="SonyEricsson-T68i-R6"/>
+                                <device name="SonyEricsson-T68i_m"/>
+                            </device>
+                        </device>
+                    </device>
+                    <device name="WAP-Emulators">
+                        <device name="Klondike-WAP"/>
+                        <device name="MMEF300-GenericLarge">
+                            <device name="MMEF300-GenericSmall"/>
+                            <device name="MMEF300-GenericXP"/>
+                        </device>
+                        <device name="Nokia-MIT-3-WML">
+                            <device name="Nokia-MIT-3-XHTML"/>
+                        </device>
+                        <device name="Nokia-MIT3_1-NMB"/>
+                        <device name="Nokia-WAP-Toolkit"/>
+                        <device name="Nokia-WAP-Toolkit-21"/>
+                        <device name="Openwave-SDK-5_0"/>
+                        <device name="Openwave-SDK-5_1">
+                            <device name="Openwave-SDK-5_1-UP6"/>
+                        </device>
+                        <device name="Openwave-SDK-6">
+                            <device name="Openwave-SDK-6_1"/>
+                            <device name="Openwave-SDK-6_2"/>
+                        </device>
+                        <device name="UP-Simulator-Generic"/>
+                        <device name="Wapalizer"/>
+                        <device name="WinWAP"/>
+                        <device name="WinWap-30-PRO"/>
+                        <device name="Yospace-WAP"/>
+                        <device name="ccWAP-Browser"/>
+                    </device>
+                    <device name="Kyocera-WAP">
+                        <device name="Kyocera-QCP-2255"/>
+                        <device name="Kyocera-QCP-3035"/>
+                    </device>
+                    <device name="LG-WAP">
+                        <device name="LG-DM110"/>
+                        <device name="LG-DM120"/>
+                        <device name="LG-DM160"/>
+                        <device name="LG-DM510"/>
+                        <device name="LG-DM515"/>
+                        <device name="LG-G5200"/>
+                        <device name="LG-G7000">
+                            <device name="LG-G7010"/>
+                        </device>
+                        <device name="LG-G8000">
+                            <device name="LG-G8000_m"/>
+                        </device>
+                        <device name="LG-Sprint-TP1100"/>
+                        <device name="LG-TP5250"/>
+                    </device>
+                    <device name="Mitsubishi-WAP"/>
+                    <device name="Motorola-WAP">
+                        <device name="Motorola-C200"/>
+                        <device name="Motorola-C330">
+                            <device name="Motorola-C333"/>
+                        </device>
+                        <device name="Motorola-C350"/>
+                        <device name="Motorola-E360"/>
+                        <device name="Motorola-P7389"/>
+                        <device name="Motorola-ST7860">
+                            <device name="Motorola-T8160"/>
+                        </device>
+                        <device name="Motorola-T191"/>
+                        <device name="Motorola-T192"/>
+                        <device name="Motorola-T192m"/>
+                        <device name="Motorola-V2260"/>
+                        <device name="Motorola-T280">
+                            <device name="Motorola-T280i"/>
+                        </device>
+                        <device name="Motorola-T720">
+                            <device name="Motorola-T720c"/>
+                            <device name="Motorola-T720i"/>
+                        </device>
+                        <device name="Motorola-Ti250"/>
+                        <device name="Motorola-Ti260"/>
+                        <device name="Motorola-V.100"/>
+                        <device name="Motorola-V.2288"/>
+                        <device name="Motorola-V.50"/>
+                        <device name="Motorola-V.60">
+                            <device name="Motorola-V.60c"/>
+                            <device name="Motorola-V.60i"/>
+                        </device>
+                        <device name="Motorola-V.66">
+                            <device name="Motorola-V.66i"/>
+                        </device>
+                        <device name="Motorola-V120c">
+                            <device name="Motorola-V120t"/>
+                        </device>
+                        <device name="Motorola-V70"/>
+                        <device name="Motorola-i30sx"/>
+                        <device name="Motorola-i85s"/>
+                        <device name="Motorola-i95cl"/>
+                    </device>
+                    <device name="NEC-WAP">
+                        <device name="NEC-e525">
+                            <device name="NEC-e525_m"/>
+                        </device>
+                    </device>
+                    <device name="Nokia-WAP">
+                        <device name="Nokia-Series40">
+                            <device name="Nokia-3300">
+                                <device name="Nokia-3300-1"/>
+                                <device name="Nokia-3300-2"/>
+                                <device name="Nokia-3300_m"/>
+                            </device>
+                            <device name="Nokia-5100"/>
+                            <device name="Nokia-6100"/>
+                            <device name="Nokia-6200">
+                                <device name="Nokia-6200_m"/>
+                            </device>
+                            <device name="Nokia-6220">
+                                <device name="Nokia-6220_m"/>
+                            </device>
+                            <device name="Nokia-6610">
+                                <device name="Nokia-6610_m"/>
+                            </device>
+                            <device name="Nokia-6800"/>
+                            <device name="Nokia-7210">
+                                <device name="Nokia-7210_m"/>
+                            </device>
+                            <device name="Nokia-7250">
+                                <device name="Nokia-7250_m"/>
+                            </device>
+                            <device name="Nokia-7250i">
+                                <device name="Nokia-7250i_m"/>
+                            </device>
+                        </device>
+                        <device name="Nokia-3280"/>
+                        <device name="Nokia-Series20">
+                            <device name="Nokia-3360"/>
+                            <device name="Nokia-5210"/>
+                            <device name="Nokia-5510"/>
+                            <device name="Nokia-8310">
+                                <device name="Nokia-8390"/>
+                            </device>
+                            <device name="Nokia-8910"/>
+                        </device>
+                        <device name="Nokia-Series30">
+                            <device name="Nokia-3410"/>
+                            <device name="Nokia-3510">
+                                <device name="Nokia-3510_m"/>
+                                <device name="Nokia-3510i">
+                                    <device name="Nokia-3510i_m"/>
+                                </device>
+                            </device>
+                            <device name="Nokia-3530">
+                                <device name="Nokia-3530_m"/>
+                            </device>
+                            <device name="Nokia-3585i"/>
+                            <device name="Nokia-3590">
+                                <device name="Nokia-3590_m"/>
+                            </device>
+                            <device name="Nokia-3595"/>
+                            <device name="Nokia-3610"/>
+                            <device name="Nokia-6310">
+                                <device name="Nokia-6310i"/>
+                            </device>
+                            <device name="Nokia-6340"/>
+                            <device name="Nokia-6510"/>
+                            <device name="Nokia-6590">
+                                <device name="Nokia-6590-Refresh"/>
+                                <device name="Nokia-6590_m"/>
+                            </device>
+                            <device name="Nokia-8910i"/>
+                        </device>
+                        <device name="Nokia-6180"/>
+                        <device name="Nokia-Series7110">
+                            <device name="Nokia-6250"/>
+                            <device name="Nokia-7110">
+                                <device name="Nokia-7110-no_WBMP"/>
+                            </device>
+                            <device name="Nokia-7160"/>
+                            <device name="Nokia-7190"/>
+                        </device>
+                        <device name="Nokia-6650"/>
+                        <device name="Nokia-8270"/>
+                    </device>
+                    <device name="Panasonic-WAP">
+                        <device name="Panasonic-GD55"/>
+                        <device name="Panasonic-GD67">
+                            <device name="Panasonic-GD68"/>
+                        </device>
+                        <device name="Panasonic-GD75">
+                            <device name="Panasonic-GD76"/>
+                        </device>
+                        <device name="Panasonic-GD93"/>
+                        <device name="Panasonic-GD95">
+                            <device name="Panasonic-GD96"/>
+                        </device>
+                    </device>
+                    <device name="Philips-WAP">
+                        <device name="Philips-Azalis-288"/>
+                        <device name="Philips-Fisio-311"/>
+                        <device name="Philips-Fisio-620"/>
+                        <device name="Philips-Fisio-820">
+                            <device name="Philips-Fisio-825"/>
+                        </device>
+                        <device name="Philips-Ozeo-8@8"/>
+                        <device name="Philips-Xenium9@9"/>
+                    </device>
+                    <device name="SAGEM-WAP">
+                        <device name="SAGEM-MY3052"/>
+                        <device name="SAGEM-WA3020"/>
+                        <device name="SAGEM-myX-3"/>
+                        <device name="SAGEM-myX-5">
+                            <device name="SAGEM-myX-5m">
+                                <device name="SAGEM-myX-5m_m"/>
+                            </device>
+                        </device>
+                        <device name="SAGEM-myX-6">
+                            <device name="SAGEM-myX-6_m"/>
+                        </device>
+                    </device>
+                    <device name="Samsung-WAP">
+                        <device name="Samsung-SGH-A300">
+                            <device name="Samsung-SGH-A310"/>
+                        </device>
+                        <device name="Samsung-SGH-A400"/>
+                        <device name="Samsung-SGH-A500"/>
+                        <device name="Samsung-SGH-A800"/>
+                        <device name="Samsung-SGH-C100"/>
+                        <device name="Samsung-SGH-N100">
+                            <device name="Samsung-SGH-N105"/>
+                        </device>
+                        <device name="Samsung-SGH-N300">
+                            <device name="Samsung-SGH-N350"/>
+                        </device>
+                        <device name="Samsung-SGH-N400"/>
+                        <device name="Samsung-SGH-N500"/>
+                        <device name="Samsung-SGH-N600">
+                            <device name="Samsung-SGH-N620"/>
+                        </device>
+                        <device name="Samsung-SGH-Q100"/>
+                        <device name="Samsung-SGH-Q200"/>
+                        <device name="Samsung-SGH-R200">
+                            <device name="Samsung-SGH-R200S"/>
+                        </device>
+                        <device name="Samsung-SGH-R210">
+                            <device name="Samsung-SGH-R210S"/>
+                        </device>
+                        <device name="Samsung-SGH-R220"/>
+                        <device name="Samsung-SGH-S100">
+                            <device name="Samsung-SGH-S105"/>
+                        </device>
+                        <device name="Samsung-SGH-S300">
+                            <device name="Samsung-SGH-S307"/>
+                        </device>
+                        <device name="Samsung-SGH-T100">
+                            <device name="Samsung-SGH-T100-v2"/>
+                            <device name="Samsung-SGH-T108"/>
+                        </device>
+                        <device name="Samsung-SGH-T400">
+                            <device name="Samsung-SGH-T410"/>
+                        </device>
+                        <device name="Samsung-SGH-T500"/>
+                        <device name="Samsung-SGH-V100"/>
+                        <device name="Samsung-SGH-V200">
+                            <device name="Samsung-SGH-V200_m"/>
+                            <device name="Samsung-SGH-V205">
+                                <device name="Samsung-SGH-V205_m"/>
+                            </device>
+                        </device>
+                        <device name="Samsung-SPH-A400"/>
+                        <device name="Samsung-SPH-A460"/>
+                        <device name="Samsung-SPH-I300"/>
+                        <device name="Samsung-SPH-N200"/>
+                        <device name="Samsung-SPH-N300"/>
+                    </device>
+                    <device name="Sanyo-WAP">
+                        <device name="Sanyo-SCP-5000">
+                            <device name="Sanyo-SCP-5150"/>
+                        </device>
+                        <device name="Sanyo-SCP-6000">
+                            <device name="Sanyo-SCP-6200"/>
+                        </device>
+                    </device>
+                    <device name="Sendo-WAP">
+                        <device name="Sendo-J530"/>
+                        <device name="Sendo-S230"/>
+                    </device>
+                    <device name="Siemens-WAP">
+                        <device name="Siemens-M50">
+                            <device name="Siemens-A50"/>
+                            <device name="Siemens-M50i"/>
+                            <device name="Siemens-MT50"/>
+                        </device>
+                        <device name="Siemens-55color">
+                            <device name="Siemens-M55">
+                                <device name="Siemens-M55_m"/>
+                            </device>
+                            <device name="Siemens-MC60">
+                                <device name="Siemens-MC60_m"/>
+                            </device>
+                            <device name="Siemens-S55">
+                                <device name="Siemens-S55_m"/>
+                            </device>
+                            <device name="Siemens-S56">
+                                <device name="Siemens-S56_m"/>
+                            </device>
+                            <device name="Siemens-SL55">
+                                <device name="Siemens-SL55_m"/>
+                            </device>
+                        </device>
+                        <device name="Siemens-55mono">
+                            <device name="Siemens-A55"/>
+                            <device name="Siemens-C55">
+                                <device name="Siemens-C56"/>
+                            </device>
+                        </device>
+                        <device name="Siemens-S45">
+                            <device name="Siemens-C45"/>
+                            <device name="Siemens-M46"/>
+                            <device name="Siemens-ME45"/>
+                            <device name="Siemens-S46"/>
+                        </device>
+                        <device name="Siemens-C35"/>
+                        <device name="Siemens-CL50"/>
+                        <device name="Siemens-S35"/>
+                        <device name="Siemens-S40"/>
+                        <device name="Siemens-SL45">
+                            <device name="Siemens-SL45i"/>
+                        </device>
+                    </device>
+                    <device name="Sony-WAP">
+                        <device name="Sony-CMD-J7X-WML">
+                            <device name="Sony-CMD-Z7-WML"/>
+                        </device>
+                        <device name="Sony-CMD-Z5-WML"/>
+                    </device>
+                    <device name="SonyEricsson-WAP">
+                        <device name="SonyEricsson-T200"/>
+                        <device name="SonyEricsson-T206"/>
+                        <device name="SonyEricsson-T300">
+                            <device name="SonyEricsson-T300_m"/>
+                        </device>
+                        <device name="SonyEricsson-T306"/>
+                        <device name="SonyEricsson-T310">
+                            <device name="SonyEricsson-T310_m"/>
+                        </device>
+                        <device name="SonyEricsson-T600"/>
+                        <device name="SonyEricsson-T62"/>
+                    </device>
+                    <device name="Telit-WAP">
+                        <device name="Telit-GM825"/>
+                        <device name="Telit-GM832"/>
+                        <device name="Telit-GM910i"/>
+                    </device>
+                    <device name="Trium-WAP">
+                        <device name="Trium-Eclipse">
+                            <device name="Trium-Eclipse_m"/>
+                        </device>
+                        <device name="Trium-Mars"/>
+                        <device name="Trium-Mondo-WML"/>
+                    </device>
+                </device>
+                <device name="i-mode-Handset">
+                    <device name="i-mode-FOMA">
+                        <device name="DoCoMo-F2051"/>
+                        <device name="DoCoMo-F2102V"/>
+                        <device name="DoCoMo-N2001"/>
+                        <device name="DoCoMo-N2002"/>
+                        <device name="DoCoMo-N2051"/>
+                        <device name="DoCoMo-N2102V"/>
+                        <device name="DoCoMo-N2701"/>
+                        <device name="DoCoMo-P2002"/>
+                        <device name="DoCoMo-P2101V"/>
+                        <device name="DoCoMo-P2102V"/>
+                        <device name="DoCoMo-SH2101V"/>
+                        <device name="DoCoMo-T2101V"/>
+                    </device>
+                    <device name="i-mode-V3">
+                        <device name="DoCoMo-D211i"/>
+                        <device name="DoCoMo-D503i">
+                            <device name="DoCoMo-D503iS"/>
+                        </device>
+                        <device name="DoCoMo-F211i"/>
+                        <device name="DoCoMo-F503i">
+                            <device name="DoCoMo-F503iS"/>
+                        </device>
+                        <device name="DoCoMo-N211i"/>
+                        <device name="DoCoMo-N503i">
+                            <device name="DoCoMo-N503iS"/>
+                        </device>
+                        <device name="DoCoMo-P211i"/>
+                        <device name="DoCoMo-P503i">
+                            <device name="DoCoMo-P503iS"/>
+                        </device>
+                        <device name="DoCoMo-R211i"/>
+                        <device name="DoCoMo-R692i"/>
+                        <device name="DoCoMo-SH251i">
+                            <device name="DoCoMo-SH251iS"/>
+                        </device>
+                        <device name="DoCoMo-SO210i"/>
+                        <device name="DoCoMo-SO211i"/>
+                        <device name="DoCoMo-SO503i">
+                            <device name="DoCoMo-SO503iS"/>
+                        </device>
+                    </device>
+                    <device name="i-mode-V4">
+                        <device name="DoCoMo-D251i"/>
+                        <device name="DoCoMo-D504i"/>
+                        <device name="DoCoMo-F212i"/>
+                        <device name="DoCoMo-F251i"/>
+                        <device name="DoCoMo-F504i">
+                            <device name="DoCoMo-F504iS"/>
+                        </device>
+                        <device name="DoCoMo-F661i"/>
+                        <device name="DoCoMo-F671iS"/>
+                        <device name="DoCoMo-N251i"/>
+                        <device name="DoCoMo-N504i">
+                            <device name="DoCoMo-N504iS"/>
+                        </device>
+                        <device name="DoCoMo-P251iS"/>
+                        <device name="DoCoMo-P504i">
+                            <device name="DoCoMo-P504iS"/>
+                        </device>
+                        <device name="DoCoMo-SO212i"/>
+                        <device name="DoCoMo-SO504i"/>
+                    </device>
+                    <device name="i-mode-V1">
+                        <device name="DoCoMo-F501i"/>
+                        <device name="DoCoMo-N501i"/>
+                        <device name="DoCoMo-P501i"/>
+                    </device>
+                    <device name="i-mode-V2">
+                        <device name="DoCoMo-ER209i"/>
+                        <device name="DoCoMo-F209i"/>
+                        <device name="DoCoMo-F210i"/>
+                        <device name="DoCoMo-F502i">
+                            <device name="DoCoMo-F502it"/>
+                        </device>
+                        <device name="DoCoMo-F671i"/>
+                        <device name="DoCoMo-KO209i"/>
+                        <device name="DoCoMo-KO210i"/>
+                        <device name="DoCoMo-N209i"/>
+                        <device name="DoCoMo-N210i"/>
+                        <device name="DoCoMo-N502i">
+                            <device name="DoCoMo-N502it"/>
+                        </device>
+                        <device name="DoCoMo-N821i"/>
+                        <device name="DoCoMo-NM502i"/>
+                        <device name="DoCoMo-P209i">
+                            <device name="DoCoMo-P209iS"/>
+                        </device>
+                        <device name="DoCoMo-P210i"/>
+                        <device name="DoCoMo-P502i"/>
+                        <device name="DoCoMo-P821i"/>
+                        <device name="DoCoMo-R209i"/>
+                        <device name="DoCoMo-R691i"/>
+                        <device name="DoCoMo-SH821i"/>
+                        <device name="DoCoMo-SO502i"/>
+                        <device name="DoCoMo-SO502iWM"/>
+                    </device>
+                    <device name="i-mode-V5">
+                        <device name="DoCoMo-F505i"/>
+                        <device name="DoCoMo-N505i"/>
+                        <device name="DoCoMo-SH505i"/>
+                        <device name="DoCoMo-SO505i"/>
+                    </device>
+                    <device name="GPRS-i-mode">
+                        <device name="Mitsubishi-m21i"/>
+                        <device name="NEC-GPRS-i-mode">
+                            <device name="NEC-N21i"/>
+                            <device name="NEC-N22i"/>
+                            <device name="NEC-N341i">
+                                <device name="NEC-N341i_m"/>
+                            </device>
+                        </device>
+                        <device name="Toshiba-TS21i"/>
+                    </device>
+                </device>
+                <device name="HDML-Handset">
+                    <device name="KDDI-HDML">
+                        <device name="TuKa-TD11"/>
+                        <device name="TuKa-TK01"/>
+                        <device name="TuKa-TK02"/>
+                        <device name="TuKa-TK03"/>
+                        <device name="TuKa-TK04"/>
+                        <device name="TuKa-TK05"/>
+                        <device name="TuKa-TK11"/>
+                        <device name="TuKa-TK12"/>
+                        <device name="TuKa-TK21"/>
+                        <device name="TuKa-TP01"/>
+                        <device name="TuKa-TP11"/>
+                        <device name="TuKa-TS01"/>
+                        <device name="TuKa-TS02"/>
+                        <device name="TuKa-TS11"/>
+                        <device name="TuKa-TT01"/>
+                        <device name="TuKa-TT02"/>
+                        <device name="TuKa-TT03"/>
+                        <device name="TuKa-TT11"/>
+                        <device name="TuKa-TT21"/>
+                        <device name="au-A1011ST"/>
+                        <device name="au-A1012K"/>
+                        <device name="au-A1013K"/>
+                        <device name="au-A1014ST"/>
+                        <device name="au-C1001SA"/>
+                        <device name="au-C1002S"/>
+                        <device name="au-C201H"/>
+                        <device name="au-C202DE"/>
+                        <device name="au-C301T"/>
+                        <device name="au-C302H"/>
+                        <device name="au-C303CA"/>
+                        <device name="au-C304SA"/>
+                        <device name="au-C305S"/>
+                        <device name="au-C307K"/>
+                        <device name="au-C308P"/>
+                        <device name="au-C309H"/>
+                        <device name="au-C310T"/>
+                        <device name="au-C311CA"/>
+                        <device name="au-C313K"/>
+                        <device name="au-C401SA"/>
+                        <device name="au-C402DE"/>
+                        <device name="au-C403ST"/>
+                        <device name="au-C404S"/>
+                        <device name="au-C405SA"/>
+                        <device name="au-C406S"/>
+                        <device name="au-C407H"/>
+                        <device name="au-C408P"/>
+                        <device name="au-C409CA"/>
+                        <device name="au-C410T"/>
+                        <device name="au-C411ST"/>
+                        <device name="au-C412SA"/>
+                        <device name="au-C413S"/>
+                        <device name="au-C414K"/>
+                        <device name="au-C415T"/>
+                        <device name="au-C451H"/>
+                        <device name="au-C452CA"/>
+                        <device name="au-D301SA"/>
+                        <device name="au-D302T"/>
+                        <device name="au-D303K"/>
+                        <device name="au-D304K"/>
+                        <device name="au-D305P"/>
+                        <device name="au-D306S"/>
+                    </device>
+                </device>
+                <device name="XHTML-Handset">
+                    <device name="Hitachi-XHTML"/>
+                    <device name="KDDI-XHTML">
+                        <device name="au-A1101S"/>
+                        <device name="au-A3011SA"/>
+                        <device name="au-A3012CA"/>
+                        <device name="au-A3013T"/>
+                        <device name="au-A3014S"/>
+                        <device name="au-A3015SA"/>
+                        <device name="au-A5301T"/>
+                        <device name="au-A5302CA"/>
+                        <device name="au-A5303H"/>
+                        <device name="au-A5304T"/>
+                        <device name="au-C3001H"/>
+                        <device name="au-C3002K"/>
+                        <device name="au-C3003P"/>
+                        <device name="au-C5001T"/>
+                    </device>
+                    <device name="LG-XHTML"/>
+                    <device name="Motorola-XHTML">
+                        <device name="Motorola-A830">
+                            <device name="Motorola-A830_m"/>
+                        </device>
+                        <device name="Motorola-E365"/>
+                    </device>
+                    <device name="NEC-XHTML">
+                        <device name="NEC-515"/>
+                    </device>
+                    <device name="Panasonic-XHTML">
+                        <device name="Panasonic-GD87">
+                            <device name="Panasonic-GD88">
+                                <device name="Panasonic-GD88_m"/>
+                            </device>
+                            <device name="Panasonic-GU87"/>
+                        </device>
+                    </device>
+                    <device name="Samsung-XHTML">
+                        <device name="Samsung-SprintPCS">
+                            <device name="Samsung-SPH-A600"/>
+                            <device name="Samsung-SPH-N400"/>
+                        </device>
+                    </device>
+                    <device name="Sanyo-XHTML">
+                        <device name="Sanyo-SCP-5300"/>
+                        <device name="Sanyo-SCP-6400"/>
+                        <device name="Sanyo-SCP-8100"/>
+                    </device>
+                    <device name="Sharp-XHTML">
+                        <device name="Sharp-GX10">
+                            <device name="Sharp-GX10_m"/>
+                        </device>
+                        <device name="Sharp-GX1"/>
+                        <device name="Sharp-GX20">
+                            <device name="Sharp-GX20_m"/>
+                        </device>
+                    </device>
+                    <device name="Siemens-XHTML">
+                        <device name="Siemens-U10"/>
+                    </device>
+                    <device name="SonyEricsson-XHTML">
+                        <device name="SonyEricsson-T610"/>
+                        <device name="SonyEricsson-T616">
+                            <device name="SonyEricsson-T616_m"/>
+                        </device>
+                        <device name="SonyEricsson-Z600">
+                            <device name="SonyEricsson-Z600_m"/>
+                        </device>
+                    </device>
+                </device>
+                <device name="MML-Handset">
+                    <device name="J-Phone-V3">
+                        <device name="J-Phone-D05"/>
+                        <device name="J-Phone-D06"/>
+                        <device name="J-Phone-D07"/>
+                        <device name="J-Phone-D31"/>
+                        <device name="J-Phone-DN03"/>
+                        <device name="J-Phone-K03"/>
+                        <device name="J-Phone-K04"/>
+                        <device name="J-Phone-K05"/>
+                        <device name="J-Phone-N03"/>
+                        <device name="J-Phone-N04"/>
+                        <device name="J-Phone-N05"/>
+                        <device name="J-Phone-NM01"/>
+                        <device name="J-Phone-NM02"/>
+                        <device name="J-Phone-PE03"/>
+                        <device name="J-Phone-SA03"/>
+                        <device name="J-Phone-SA04"/>
+                        <device name="J-Phone-SA05"/>
+                        <device name="J-Phone-SH010"/>
+                        <device name="J-Phone-SH04"/>
+                        <device name="J-Phone-SH05"/>
+                        <device name="J-Phone-SH06"/>
+                        <device name="J-Phone-SH07"/>
+                        <device name="J-Phone-SH08"/>
+                        <device name="J-Phone-SH09"/>
+                        <device name="J-Phone-T05"/>
+                        <device name="J-Phone-T06"/>
+                        <device name="J-Phone-T07"/>
+                        <device name="J-Phone-T08"/>
+                        <device name="J-Phone-T09"/>
+                    </device>
+                    <device name="J-Phone-V2">
+                        <device name="J-Phone-P02"/>
+                        <device name="J-Phone-P03"/>
+                        <device name="J-Phone-SA02"/>
+                        <device name="J-Phone-SH02"/>
+                        <device name="J-Phone-SH03"/>
+                        <device name="J-Phone-T04"/>
+                    </device>
+                    <device name="J-Phone-V4">
+                        <device name="J-Phone-N51"/>
+                        <device name="J-Phone-P51"/>
+                        <device name="J-Phone-SA51"/>
+                        <device name="J-Phone-SH51"/>
+                        <device name="J-Phone-SH52"/>
+                        <device name="J-Phone-T51"/>
+                    </device>
+                    <device name="J-Phone-V1"/>
+                </device>
+                <device name="Smartphone">
+                    <device name="Lexibook-TAB4000"/>
+                    <device name="MS-Smartphone-2002">
+                        <device name="MS-SP2002-PIE">
+                            <device name="Orange-SPV"/>
+                        </device>
+                    </device>
+                    <device name="Movistar-TSM-100"/>
+                    <device name="Series60">
+                        <device name="Nokia-Series60">
+                            <device name="Nokia-3650">
+                                <device name="Nokia-3650-Opera6"/>
+                                <device name="Nokia-3650_m"/>
+                            </device>
+                            <device name="Nokia-6600">
+                                <device name="Nokia-6600_m"/>
+                            </device>
+                            <device name="Nokia-7650">
+                                <device name="Nokia-7650_m"/>
+                            </device>
+                            <device name="Nokia-N-Gage">
+                                <device name="Nokia-N-Gage_m"/>
+                            </device>
+                        </device>
+                        <device name="Samsung-Series60">
+                            <device name="Samsung-SGH-D700"/>
+                        </device>
+                        <device name="Series60-NetFront3"/>
+                        <device name="Siemens-Series60">
+                            <device name="Siemens-SX1"/>
+                        </device>
+                    </device>
+                    <device name="SymbianOS-UIQ">
+                        <device name="SonyEricsson-P800">
+                            <device name="SonyEricsson-P800_m"/>
+                        </device>
+                    </device>
+                    <device name="Telme-T919">
+                        <device name="Telme-T919_m"/>
+                    </device>
+                </device>
+                <device name="ME-Emulator"/>
+                <device name="MIDP-Browser">
+                    <device name="ReqwirelessWeb"/>
+                </device>
+                <device name="MMS-Handset"/>
+                <device name="Pixo-Handset"/>
+                <device name="SMS-Handset"/>
+            </device>
+            <device name="Clamshell">
+                <device name="MS-HPC2000"/>
+                <device name="Motorola-A009"/>
+                <device name="Nokia-Communicator">
+                    <device name="Nokia-9110i">
+                        <device name="Nokia-9110i-WWW"/>
+                    </device>
+                    <device name="Nokia-9210">
+                        <device name="Nokia-9210-WAP">
+                            <device name="Nokia-9210i-WAP"/>
+                            <device name="Nokia-9290-WAP"/>
+                        </device>
+                        <device name="Nokia-9210-WWW"/>
+                        <device name="Nokia-9210i-WWW"/>
+                    </device>
+                </device>
+                <device name="Psion-EPOC5">
+                    <device name="Psion-Revo">
+                        <device name="Psion-Revo-Opera"/>
+                        <device name="Psion-Revo-WAP"/>
+                        <device name="Psion-Revo-Web"/>
+                    </device>
+                </device>
+                <device name="Siemens-IC35"/>
+            </device>
+            <device name="Tablet">
+                <device name="QVGA-Tablet">
+                    <device name="Motorola-A6188"/>
+                    <device name="PocketPC">
+                        <device name="PocketPC-AnnyWay"/>
+                        <device name="PocketPC-AvantGo"/>
+                        <device name="PocketPC-EZWAP">
+                            <device name="PocketPC-EZWAP-2.1"/>
+                        </device>
+                        <device name="PocketPC-Klondike"/>
+                        <device name="PocketPC-MTDS"/>
+                        <device name="PocketPC-Neomar"/>
+                        <device name="PocketPC-NetFront3"/>
+                        <device name="PocketPC-PIE">
+                            <device name="PocketPC-PIE-mono"/>
+                            <device name="PocketPC2002-PIE"/>
+                            <device name="PocketPC2003-PIE"/>
+                        </device>
+                        <device name="WinCE2-PDA"/>
+                    </device>
+                    <device name="Sharp-SL5000">
+                        <device name="Sharp-SL5000-Opera5"/>
+                        <device name="Sharp-SL5000-Opera6"/>
+                    </device>
+                </device>
+                <device name="Palm">
+                    <device name="Palm-AUS-WAP"/>
+                    <device name="Palm-AvantGo"/>
+                    <device name="Palm-Blazer"/>
+                    <device name="Palm-Eudora"/>
+                    <device name="Palm-Go.Web"/>
+                    <device name="Palm-Kbrowser"/>
+                    <device name="Palm-Neomar"/>
+                    <device name="Palm-OmniSky"/>
+                    <device name="Palm-PSWeb2"/>
+                    <device name="Palm-Palmscape"/>
+                    <device name="Palm-PocketLink"/>
+                    <device name="Palm-WCA"/>
+                    <device name="Palm-Wapman"/>
+                    <device name="Palm-WebPro"/>
+                </device>
+                <device name="Palm-HiRes">
+                    <device name="Palm-PSWeb2-HR"/>
+                    <device name="Sony-CLIE-NetFront3"/>
+                </device>
+                <device name="Pogo"/>
+                <device name="RIM">
+                    <device name="RIM-Blackberry">
+                        <device name="RIM-Blackberry-3_2">
+                            <device name="RIM-Blackberry-3_3"/>
+                            <device name="RIM-Blackberry-3_6"/>
+                        </device>
+                        <device name="RIM-Blackberry-6230">
+                            <device name="RIM-Blackberry-6510"/>
+                        </device>
+                        <device name="RIM-Blackberry-6750"/>
+                        <device name="RIM-Blackberry-7230"/>
+                    </device>
+                    <device name="RIM-X50">
+                        <device name="RIM-950-Blackberry"/>
+                        <device name="RIM-950-Go.Web"/>
+                    </device>
+                    <device name="RIM-X57">
+                        <device name="RIM-957-Blackberry"/>
+                        <device name="RIM-957-Go.Web"/>
+                        <device name="RIM-957-Neomar"/>
+                    </device>
+                </device>
+            </device>
+            <device name="Portable-AV-Device">
+                <device name="Digital-Video-Camera"/>
+                <device name="Digital-Still-Camera"/>
+            </device>
+        </device>
+        <device name="Kiosk"/>
+        <device name="Voice"/>
+        <device name="Internet-Appliance"/>
+        <device name="PC">
+            <device name="PC-MacOS">
+                <device name="PC-MacOS-IE">
+                    <device name="PC-MacOS-IE5"/>
+                </device>
+                <device name="PC-MacOS-Netscape">
+                    <device name="PC-MacOS-Netscape4"/>
+                </device>
+                <device name="PC-MacOS-Omniweb"/>
+                <device name="PC-MacOS-Safari"/>
+            </device>
+            <device name="PC-UNIX">
+                <device name="PC-UNIX-Galeon"/>
+                <device name="PC-UNIX-Konqueror"/>
+                <device name="PC-UNIX-Lynx"/>
+                <device name="PC-UNIX-Nautilus"/>
+                <device name="PC-UNIX-Netscape">
+                    <device name="PC-UNIX-Netscape4"/>
+                    <device name="PC-UNIX-Netscape6"/>
+                    <device name="PC-UNIX-Netscape7"/>
+                </device>
+                <device name="PC-UNIX-Opera">
+                    <device name="PC-UNIX-Opera4"/>
+                    <device name="PC-UNIX-Opera5"/>
+                    <device name="PC-UNIX-Opera6"/>
+                    <device name="PC-UNIX-Opera7"/>
+                </device>
+                <device name="PC-Unix-Mozilla"/>
+            </device>
+            <device name="PC-Win32">
+                <device name="PC-Win32-IE">
+                    <device name="PC-Win32-IE4"/>
+                    <device name="PC-Win32-IE5">
+                        <device name="PC-Win32-IE5.5"/>
+                    </device>
+                    <device name="PC-Win32-IE6"/>
+                </device>
+                <device name="PC-Win32-Mozilla"/>
+                <device name="PC-Win32-Netscape">
+                    <device name="PC-Win32-Netscape3"/>
+                    <device name="PC-Win32-Netscape4"/>
+                    <device name="PC-Win32-Netscape6"/>
+                    <device name="PC-Win32-Netscape7"/>
+                </device>
+                <device name="PC-Win32-Other"/>
+                <device name="PC-Win32-Opera">
+                    <device name="PC-Win32-Opera3"/>
+                    <device name="PC-Win32-Opera4"/>
+                    <device name="PC-Win32-Opera5"/>
+                    <device name="PC-Win32-Opera6"/>
+                    <device name="PC-Win32-Opera7"/>
+                </device>
+            </device>
+            <device name="WebCrawlers">
+                <device name="WC-Alexa"/>
+                <device name="WC-AltaVista"/>
+                <device name="WC-AskJeeves"/>
+                <device name="WC-BaiDu"/>
+                <device name="WC-CherryPicker"/>
+                <device name="WC-EuroFerret"/>
+                <device name="WC-Euroseek"/>
+                <device name="WC-Excite"/>
+                <device name="WC-FAST"/>
+                <device name="WC-Google"/>
+                <device name="WC-HotBot"/>
+                <device name="WC-Infoseek"/>
+                <device name="WC-Lycos"/>
+                <device name="WC-MSIECrawler"/>
+                <device name="WC-NationalDirectory"/>
+                <device name="WC-NetNames"/>
+                <device name="WC-PlanetSearch"/>
+                <device name="WC-SlySearch"/>
+                <device name="WC-Thunderstone"/>
+                <device name="WC-W3C_Validator"/>
+                <device name="WC-WebCollector"/>
+                <device name="WC-WebCrawler"/>
+                <device name="WC-WiseWire"/>
+            </device>
+        </device>
+    </device>
+
+</hierarchy>
+
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6416/1	ianw	VBM:2004120703 New Build
+
+ 29-Oct-03	1599/1	geoff	VBM:2003101501 Support Device access in the new XMLDeviceRepositoryAccessor
+
+ ===========================================================================
+-->
