@@ -1,0 +1,90 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<project name="Replacer merger" basedir="${install.path}" default="install">
+
+    <!-- Determines various configuration options for mcs-config handling -->
+    <target name="mcs-config-configure">
+        <!-- These conditions are used to interpret the local repository and
+             device repository types for use in the mcs-config handling
+             targets -->
+        <condition property="local.repository.xml">
+            <equals arg1="${testtest}"
+                    arg2="xml"/>
+        </condition>    
+	<condition property="local.repository.db">
+	    <not>
+		<isset property="local.repository.xml"/>
+	    </not>
+        </condition>
+    </target>
+
+    <target name="changetoxml" depends="mcs-config-configure" if="local.repository.xml">
+        
+  	<property name="xmlcommentopen1" value=""/>
+	<property name="xmlcommentclose1" value=""/>
+  	<property name="xmlcommentopen2" value="&lt;!--"/>
+	<property name="xmlcommentclose2" value="--&gt;"/>
+
+
+	<replace 
+	    dir="${install.path}/webapps/mcs/WEB-INF/"
+	    includes="mcs-config.xml"
+	        value="defaultvalue">
+	    <replacefilter 
+	        token="@xmlcommentopen1@" 
+	        value="${xmlcommentopen1}"/>
+	    <replacefilter 
+	        token="@xmlcommentclose1@" 
+	        value="${xmlcommentclose1}"/>
+	    <replacefilter 
+	        token="@xmlcommentopen2@" 
+	        value="${xmlcommentopen2}"/>
+	    <replacefilter 
+	        token="@xmlcommentclose2@" 
+	        value="${xmlcommentclose2}"/>
+
+        </replace>
+    </target>
+    <target name="changetodb" depends="mcs-config-configure" if="local.repository.db">
+
+  	<property name="xmlcommentopen1" value="&lt;!--"/>
+	<property name="xmlcommentclose1" value="--&gt;"/>
+  	<property name="xmlcommentopen2" value=""/>
+	<property name="xmlcommentclose2" value=""/>
+
+
+	<replace 
+	    dir="${install.path}/webapps/mcs/WEB-INF/"
+	    includes="mcs-config.xml"
+	        value="defaultvalue">
+	    <replacefilter 
+	        token="@xmlcommentopen1@" 
+	        value="${xmlcommentopen1}"/>
+	    <replacefilter 
+	        token="@xmlcommentclose1@" 
+	        value="${xmlcommentclose1}"/>
+	    <replacefilter 
+	        token="@xmlcommentopen2@" 
+	        value="${xmlcommentopen2}"/>
+	    <replacefilter 
+	        token="@xmlcommentclose2@" 
+	        value="${xmlcommentclose2}"/>
+
+        </replace>
+    </target>
+    
+</project>

@@ -1,0 +1,9 @@
+<xfragment>
+	<pack name="Samples" required="no" id="samples">                                                                                             
+	           <description>Code Samples</description>  
+		<fileset dir="packs/samples"
+			 targetdir="${INSTALL_PATH}">
+		  <include name="**"/>		
+		</fileset>
+	</pack>
+</xfragment>

@@ -1,0 +1,24 @@
+<xfragment>
+	<pack name="MCS" required="yes" id="base">
+		<description>MCS</description>
+		<file src="ant-build.xml" targetdir="$INSTALL_PATH"/>
+		<fileset dir="packs/main"
+			 targetdir="${INSTALL_PATH}">
+		  <include name="**"/>		
+		</fileset>
+
+		<parsable targetfile="${INSTALL_PATH}/webapps/mcs/WEB-INF/web.xml" type="xml"/>
+		<parsable targetfile="${INSTALL_PATH}/webapps/mcs/WEB-INF/mcs-log4j.xml" type="xml"/>
+		<parsable targetfile="${INSTALL_PATH}/webapps/mcs/WEB-INF/mcs-jlog.xml" type="xml"/>
+		<parsable targetfile="${INSTALL_PATH}/webapps/mcs/WEB-INF/mcs-config.xml" type="xml"/>
+		<parsable targetfile="${INSTALL_PATH}/webapps/mcs/WEB-INF/weblogic.xml" type="xml"/> 
+
+		<executable targetfile="${INSTALL_PATH}/bin/builder" stage="never"/>
+		<executable targetfile="${INSTALL_PATH}/bin/mcsExport" stage="never"/>
+		<executable targetfile="${INSTALL_PATH}/bin/mcsImport" stage="never"/>
+		<executable targetfile="${INSTALL_PATH}/bin/mcsServerManager" stage="never"/>
+		<executable targetfile="${INSTALL_PATH}/bin/mcsVersion" stage="never"/>
+		<executable targetfile="${INSTALL_PATH}/bin/prerenderer" stage="never"/>
+		
+	</pack>
+</xfragment>
