@@ -1,6 +1,0 @@
-// WebSphere Application Server Security Policy for the Portal Server Application
-
-grant codeBase "file:${application}" {
-  permission com.ibm.websphere.security.WebSphereRuntimePermission "accessRuntimeClasses";
-  permission java.io.FilePermission "<<ALL FILES>>", "read";
-};

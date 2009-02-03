@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE component PUBLIC "componentId" "component.dtd">
-<component build-date="@build-date@" build-version="@build-version@" name="Message_Preparation_Server" spec-version="@spec-version@"/>
