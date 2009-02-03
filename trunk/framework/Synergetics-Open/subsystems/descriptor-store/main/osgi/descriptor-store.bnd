@@ -1,0 +1,6 @@
+Bundle-Activator=com.volantis.synergetics.descriptorstore.impl.jdo.Activator
+Bundle-Name=Volantis Resource Descriptor Store
+
+Service-Component=\
+com.volantis.synergetics.descriptorstore.impl.jdo.JDOResourceDescriptorStore;\
+provide:=com.volantis.synergetics.descriptorstore.ResourceDescriptorStore

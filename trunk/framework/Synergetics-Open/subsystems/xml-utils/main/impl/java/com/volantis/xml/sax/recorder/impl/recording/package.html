@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+  (c) Volantis Systems Ltd 2005. 
+
+-->
+</head>
+<body bgcolor="white">
+
+Provides classes that represent a recording.
+
+<h3>Overview</h3>
+
+<p>A recording is created within the {@link SAXRecorderImpl} and when it has
+finished it creates an instance of {@link SAXRecordingImpl} that can then be
+played.</p>
+
+<h3>Efficient implementation of {@link SAXRecording}.</h3>
+
+<p>In this case efficiency means that it stores the events in a fixed number
+of arrays, rather than in lots of little objects. The reason for this is
+because it is much easier to GC a few large objects than lots of little
+objects.</p>
+
+<p>See {@link SAXRecorderImpl} for details as to how the events are
+recorded.</p>
+
+</body>
+</html>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 14-Apr-05	1262/1	pduffin	VBM:2005041105 Added support for preparsing the pipeline template
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6416/1	ianw	VBM:2004120703 New Build
+
+ 21-Jul-04	4930/1	geoff	VBM:2004072104 Public API for Device Repository: Basics
+
+ ===========================================================================
+-->

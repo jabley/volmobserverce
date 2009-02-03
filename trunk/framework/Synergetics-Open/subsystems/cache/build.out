@@ -1,0 +1,736 @@
+WORKDIR environment variable must be set, as it is to a location in which the build infrastructure can be stored, defaulting to /srv/workdir
+========================================
+  Bootstrapping Build (online)
+========================================
+
+Using local build at /srv/git/Bootstrap, ignoring build-env.properties
+
+========================================
+  Build Environment
+========================================
+
+Build Version: 
+
+java version "1.5.0_10"
+Java(TM) 2 Runtime Environment, Standard Edition (build 1.5.0_10-b03)
+Java HotSpot(TM) Client VM (build 1.5.0_10-b03, mixed mode)
+
+Loading plugins
+    Loaded plugin {com.volantis.build}:product
+    Loaded plugin {com.volantis.build}:javacc
+    Loaded plugin {com.volantis.build}:volantis-mock
+    Loaded plugin {com.volantis.build}:jpox
+    Loaded plugin {com.volantis.build}:jibx
+    Loaded plugin {com.volantis.build}:docbook
+    Loaded plugin {com.volantis.build}:subsystem
+
+Loading builtin plugins
+    Loaded plugin {org.grease.ide}:ide
+    Loaded plugin {org.grease.ide.idea}:idea
+
+Finding project directory
+  /srv/git/Synergetics
+
+Initializing plugins
+  {org.grease.ide}:ide
+  {com.volantis.build}:product
+  {com.volantis.build}:subsystem
+    Loaded additional plugins
+      {com.volantis.build}:subsystem-cache
+      {com.volantis.build}:subsystem-cm-monitor
+      {com.volantis.build}:subsystem-cornerstone
+      {com.volantis.build}:subsystem-descriptor-store
+      {com.volantis.build}:subsystem-directory-monitor
+      {com.volantis.build}:subsystem-domvisitor
+      {com.volantis.build}:subsystem-localization
+      {com.volantis.build}:subsystem-metadata
+      {com.volantis.build}:subsystem-mock
+      {com.volantis.build}:subsystem-net
+      {com.volantis.build}:subsystem-old-cache
+      {com.volantis.build}:subsystem-osgi-boot
+      {com.volantis.build}:subsystem-osgi-cm
+      {com.volantis.build}:subsystem-osgi-framework
+      {com.volantis.build}:subsystem-osgi-j2ee-bridge
+      {com.volantis.build}:subsystem-performance
+      {com.volantis.build}:subsystem-performance-arm
+      {com.volantis.build}:subsystem-reporting
+      {com.volantis.build}:subsystem-repository
+      {com.volantis.build}:subsystem-runtime
+      {com.volantis.build}:subsystem-testtools
+      {com.volantis.build}:subsystem-xml-utils
+  {com.volantis.build}:javacc
+  {com.volantis.build}:volantis-mock
+  {com.volantis.build}:jpox
+  {com.volantis.build}:jibx
+  {com.volantis.build}:docbook
+  {org.grease.ide.idea}:idea
+  {com.volantis.build}:subsystem-cache
+  {com.volantis.build}:subsystem-cm-monitor
+  {com.volantis.build}:subsystem-cornerstone
+  {com.volantis.build}:subsystem-descriptor-store
+  {com.volantis.build}:subsystem-directory-monitor
+  {com.volantis.build}:subsystem-domvisitor
+  {com.volantis.build}:subsystem-localization
+  {com.volantis.build}:subsystem-metadata
+  {com.volantis.build}:subsystem-mock
+  {com.volantis.build}:subsystem-net
+  {com.volantis.build}:subsystem-old-cache
+  {com.volantis.build}:subsystem-osgi-boot
+  {com.volantis.build}:subsystem-osgi-cm
+  {com.volantis.build}:subsystem-osgi-framework
+  {com.volantis.build}:subsystem-osgi-j2ee-bridge
+  {com.volantis.build}:subsystem-performance
+  {com.volantis.build}:subsystem-performance-arm
+  {com.volantis.build}:subsystem-reporting
+  {com.volantis.build}:subsystem-repository
+  {com.volantis.build}:subsystem-runtime
+  {com.volantis.build}:subsystem-testtools
+  {com.volantis.build}:subsystem-xml-utils
+
+Populating project
+  {org.grease.ide}:ide
+  {com.volantis.build}:product
+  {com.volantis.build}:subsystem
+Duplicate subsystem dependency runtime added at file:/srv/git/Synergetics/subsystems/cache/dependencies.groovy:87 previously added at file:/srv/git/Synergetics/subsystems/cache/cache.groovy:8
+Duplicate subsystem dependency runtime added at file:/srv/git/Synergetics/subsystems/cache/dependencies.groovy:87 previously added at file:/srv/git/Synergetics/subsystems/cache/directory_monitor.groovy:7
+Duplicate subsystem dependency runtime added at file:/srv/git/Synergetics/subsystems/cache/dependencies.groovy:87 previously added at file:/srv/git/Synergetics/subsystems/cache/metadata.groovy:7
+Duplicate subsystem dependency runtime added at file:/srv/git/Synergetics/subsystems/cache/dependencies.groovy:87 previously added at file:/srv/git/Synergetics/subsystems/cache/net.groovy:9
+Duplicate subsystem dependency runtime added at file:/srv/git/Synergetics/subsystems/cache/dependencies.groovy:87 previously added at file:/srv/git/Synergetics/subsystems/cache/reporting.groovy:8
+Duplicate subsystem dependency runtime added at file:/srv/git/Synergetics/subsystems/cache/dependencies.groovy:87 previously added at file:/srv/git/Synergetics/subsystems/cache/repository.groovy:8
+  {com.volantis.build}:javacc
+  {com.volantis.build}:volantis-mock
+  {com.volantis.build}:jpox
+  {com.volantis.build}:jibx
+  {com.volantis.build}:docbook
+  {org.grease.ide.idea}:idea
+  {com.volantis.build}:subsystem-cache
+  {com.volantis.build}:subsystem-cm-monitor
+  {com.volantis.build}:subsystem-cornerstone
+  {com.volantis.build}:subsystem-descriptor-store
+  {com.volantis.build}:subsystem-directory-monitor
+  {com.volantis.build}:subsystem-domvisitor
+  {com.volantis.build}:subsystem-localization
+  {com.volantis.build}:subsystem-metadata
+  {com.volantis.build}:subsystem-mock
+  {com.volantis.build}:subsystem-net
+  {com.volantis.build}:subsystem-old-cache
+  {com.volantis.build}:subsystem-osgi-boot
+  {com.volantis.build}:subsystem-osgi-cm
+  {com.volantis.build}:subsystem-osgi-framework
+  {com.volantis.build}:subsystem-osgi-j2ee-bridge
+  {com.volantis.build}:subsystem-performance
+  {com.volantis.build}:subsystem-performance-arm
+  {com.volantis.build}:subsystem-reporting
+  {com.volantis.build}:subsystem-repository
+  {com.volantis.build}:subsystem-runtime
+  {com.volantis.build}:subsystem-testtools
+  {com.volantis.build}:subsystem-xml-utils
+
+Completing project
+  {org.grease.ide}:ide
+  {com.volantis.build}:product
+  {com.volantis.build}:subsystem
+  {com.volantis.build}:javacc
+  {com.volantis.build}:volantis-mock
+  {com.volantis.build}:jpox
+  {com.volantis.build}:jibx
+  {com.volantis.build}:docbook
+  {org.grease.ide.idea}:idea
+  {com.volantis.build}:subsystem-cache
+  {com.volantis.build}:subsystem-cm-monitor
+  {com.volantis.build}:subsystem-cornerstone
+  {com.volantis.build}:subsystem-descriptor-store
+  {com.volantis.build}:subsystem-directory-monitor
+  {com.volantis.build}:subsystem-domvisitor
+  {com.volantis.build}:subsystem-localization
+  {com.volantis.build}:subsystem-metadata
+  {com.volantis.build}:subsystem-mock
+  {com.volantis.build}:subsystem-net
+  {com.volantis.build}:subsystem-old-cache
+  {com.volantis.build}:subsystem-osgi-boot
+  {com.volantis.build}:subsystem-osgi-cm
+  {com.volantis.build}:subsystem-osgi-framework
+  {com.volantis.build}:subsystem-osgi-j2ee-bridge
+  {com.volantis.build}:subsystem-performance
+  {com.volantis.build}:subsystem-performance-arm
+  {com.volantis.build}:subsystem-reporting
+  {com.volantis.build}:subsystem-repository
+  {com.volantis.build}:subsystem-runtime
+  {com.volantis.build}:subsystem-testtools
+  {com.volantis.build}:subsystem-xml-utils
+
+Checking project integrity
+  Done
+
+Selecting active module
+  {com.volantis.build}:cache
+
+Build preparation took 3.8s
+
+Calculating targets to take
+
+Switching to module: module {com.volantis.build}:product
+Configuring subsystem ivy settings
+module(organisation: com.volantis, name: testtools.*, branch: newbuild, matcher: "glob"), resolver: online-internals
+Switching to module: module {com.volantis.build}:localization
+Configuring ivy module for localization
+07-Jul-2008 05:59:19 org.apache.commons.vfs.VfsLog info
+INFO: Using "/tmp/vfs_cache" as temporary files store.
+Creating module file: module0
+[Error] :43:30: cos-nonambig: "":license and WC[##any] (or elements from their substitution group) violate "Unique Particle Attribution". During validation against this schema, ambiguity would be created for those two particles.
+internal target{com.volantis.build}:resolve-dependencies
+:: resolving dependencies :: com.volantis#synergetics.localization;working@v-pduffin.uk.volantis.com
+	confs: [api-compile-only, api-compile-execute, api-execute-only, impl-compile-only, impl-compile-execute, impl-execute-only, support-compile-only, support-compile-execute, support-execute-only, tests-compile-only, tests-compile-execute, tests-execute-only]
+	found org.apache#log4j;1.2.8 in local:ivy-sandbox
+	found javax.servlet#api;2.4 in local:ivy-sandbox
+	found com.volantis#testtools.mock#newbuild;newbuild in local:ivy-internals
+	found org.junit#framework;3.8.2 in local:ivy-externals
+	found net.sourceforge#junit-addons;1.4 in local:ivy-externals
+:: resolution report :: resolve 257ms :: artifacts dl 14ms
+	:: modules in use:
+	com.volantis#testtools.mock#newbuild;newbuild from local:ivy-internals in [support-compile-only, support-compile-execute, support-execute-only]
+	javax.servlet#api;2.4 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	net.sourceforge#junit-addons;1.4 from local:ivy-externals in [support-compile-only, support-compile-execute, support-execute-only]
+	org.apache#log4j;1.2.8 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	org.junit#framework;3.8.2 from local:ivy-externals in [support-compile-only, support-compile-execute, support-execute-only]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	| api-compile-only |   2   |   0   |   0   |   0   ||   0   |   0   |
+	|api-compile-execut|   2   |   0   |   0   |   0   ||   2   |   0   |
+	| api-execute-only |   2   |   0   |   0   |   0   ||   0   |   0   |
+	| impl-compile-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|impl-compile-execu|   0   |   0   |   0   |   0   ||   0   |   0   |
+	| impl-execute-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|support-compile-on|   3   |   1   |   0   |   0   ||   1   |   0   |
+	|support-compile-ex|   3   |   1   |   0   |   0   ||   3   |   0   |
+	|support-execute-on|   3   |   1   |   0   |   0   ||   1   |   0   |
+	|tests-compile-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|tests-compile-exec|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|tests-execute-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	---------------------------------------------------------------------
+Determining class path for api of localization
+Compiling API for localization
+Making directory /srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+Compile class path
+debug: /srv/git/Synergetics/built/ivy/cache/org.apache/log4j/1.2.8/jar/org.apache.log4j-1.2.8.jar
+debug: /srv/git/Synergetics/built/ivy/cache/javax.servlet/api/2.4/jar/javax.servlet.api-2.4.jar
+external target{com.volantis.build}:prepare-api
+Switching to module: module {com.volantis.build}:cornerstone
+Configuring ivy module for cornerstone
+Creating module file: module1
+[Error] :43:30: cos-nonambig: "":license and WC[##any] (or elements from their substitution group) violate "Unique Particle Attribution". During validation against this schema, ambiguity would be created for those two particles.
+internal target{com.volantis.build}:resolve-dependencies
+:: resolving dependencies :: com.volantis#synergetics.cornerstone;working@v-pduffin.uk.volantis.com
+	confs: [api-compile-only, api-compile-execute, api-execute-only, impl-compile-only, impl-compile-execute, impl-execute-only, support-compile-only, support-compile-execute, support-execute-only, tests-compile-only, tests-compile-execute, tests-execute-only]
+	found org.jibx#runtime;1.1.5 in local:ivy-sandbox
+	found com.volantis.apache#xalan;2.6.0 in local:ivy-sandbox
+	found com.volantis.apache#xerces;2.6.2 in local:ivy-sandbox
+	found org.codehaus#woodstox;3.2.1 in local:ivy-sandbox
+	found javax.xml.stream#api;1.0.1 in local:ivy-sandbox
+	found com.volantis#testtools.mock#newbuild;newbuild in local:ivy-internals
+	found org.junit#framework;3.8.2 in local:ivy-externals
+	found net.sourceforge#junit-addons;1.4 in local:ivy-externals
+	found com.volantis.jdom#runtime;0.9 in local:ivy-sandbox
+	found org.custommonkey#xmlunit;1.0 in local:ivy-sandbox
+	found org.apache#log4j;1.2.8 in local:ivy-sandbox
+	found javax.servlet#api;2.4 in local:ivy-sandbox
+	found com.meterware#httpunit;1.4.5 in local:ivy-sandbox
+:: resolution report :: resolve 324ms :: artifacts dl 11ms
+	:: modules in use:
+	com.meterware#httpunit;1.4.5 from local:ivy-sandbox in [tests-compile-execute, tests-execute-only]
+	com.volantis#testtools.mock#newbuild;newbuild from local:ivy-internals in [support-compile-only, support-compile-execute, support-execute-only]
+	com.volantis.apache#xalan;2.6.0 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	com.volantis.apache#xerces;2.6.2 from local:ivy-sandbox in [api-compile-execute, api-execute-only, support-compile-execute, support-execute-only]
+	com.volantis.jdom#runtime;0.9 from local:ivy-sandbox in [tests-compile-only, tests-compile-execute, tests-execute-only]
+	javax.servlet#api;2.4 from local:ivy-sandbox in [tests-compile-only, tests-compile-execute, tests-execute-only]
+	javax.xml.stream#api;1.0.1 from local:ivy-sandbox in [api-execute-only]
+	net.sourceforge#junit-addons;1.4 from local:ivy-externals in [support-compile-only, support-compile-execute, support-execute-only]
+	org.apache#log4j;1.2.8 from local:ivy-sandbox in [tests-compile-only, tests-compile-execute, tests-execute-only]
+	org.codehaus#woodstox;3.2.1 from local:ivy-sandbox in [api-execute-only]
+	org.custommonkey#xmlunit;1.0 from local:ivy-sandbox in [tests-compile-only, tests-compile-execute, tests-execute-only]
+	org.jibx#runtime;1.1.5 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	org.junit#framework;3.8.2 from local:ivy-externals in [support-compile-only, support-compile-execute, support-execute-only]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	| api-compile-only |   2   |   0   |   0   |   0   ||   0   |   0   |
+	|api-compile-execut|   3   |   0   |   0   |   0   ||   3   |   0   |
+	| api-execute-only |   5   |   0   |   0   |   0   ||   3   |   0   |
+	| impl-compile-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|impl-compile-execu|   0   |   0   |   0   |   0   ||   0   |   0   |
+	| impl-execute-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|support-compile-on|   3   |   1   |   0   |   0   ||   1   |   0   |
+	|support-compile-ex|   4   |   1   |   0   |   0   ||   4   |   0   |
+	|support-execute-on|   4   |   1   |   0   |   0   ||   2   |   0   |
+	|tests-compile-only|   4   |   0   |   0   |   0   ||   0   |   0   |
+	|tests-compile-exec|   5   |   0   |   0   |   0   ||   5   |   0   |
+	|tests-execute-only|   5   |   0   |   0   |   0   ||   1   |   0   |
+	---------------------------------------------------------------------
+Determining class path for api of cornerstone
+Compiling API for cornerstone
+Making directory /srv/git/Synergetics/built/subsystems/cornerstone/output/main/api/classes
+Compile class path
+debug: /srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+debug: /srv/git/Synergetics/built/ivy/cache/org.jibx/runtime/1.1.5/jar/org.jibx.runtime-1.1.5.jar
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis.apache/xerces/2.6.2/jar/com.volantis.apache.xerces-2.6.2.jar
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis.apache/xalan/2.6.0/jar/com.volantis.apache.xalan-2.6.0.jar
+external target{com.volantis.build}:prepare-api
+Switching to module: module {com.volantis.build}:runtime
+Configuring ivy module for runtime
+Creating module file: module2
+[Error] :43:30: cos-nonambig: "":license and WC[##any] (or elements from their substitution group) violate "Unique Particle Attribution". During validation against this schema, ambiguity would be created for those two particles.
+internal target{com.volantis.build}:resolve-dependencies
+:: resolving dependencies :: com.volantis#synergetics.runtime;working@v-pduffin.uk.volantis.com
+	confs: [api-compile-only, api-compile-execute, api-execute-only, impl-compile-only, impl-compile-execute, impl-execute-only, support-compile-only, support-compile-execute, support-execute-only, tests-compile-only, tests-compile-execute, tests-execute-only]
+	found com.volantis.jdom#runtime;0.9 in local:ivy-sandbox
+	found org.jibx#runtime;1.1.5 in local:ivy-sandbox
+	found javax.servlet#api;2.4 in local:ivy-sandbox
+	found javax.jdo#api;2.0 in local:ivy-sandbox
+	found org.codehaus#woodstox;3.2.1 in local:ivy-sandbox
+	found javax.xml.stream#api;1.0.1 in local:ivy-sandbox
+	found geronimo-spec#geronimo-spec-jta;1.0.1B-rc2 in local:ivy-sandbox
+	found com.volantis#testtools.mock#newbuild;newbuild in local:ivy-internals
+	found org.junit#framework;3.8.2 in local:ivy-externals
+	found net.sourceforge#junit-addons;1.4 in local:ivy-externals
+:: resolution report :: resolve 207ms :: artifacts dl 47ms
+	:: modules in use:
+	com.volantis#testtools.mock#newbuild;newbuild from local:ivy-internals in [support-compile-only, support-compile-execute, support-execute-only]
+	com.volantis.jdom#runtime;0.9 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	geronimo-spec#geronimo-spec-jta;1.0.1B-rc2 from local:ivy-sandbox in [api-execute-only]
+	javax.jdo#api;2.0 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	javax.servlet#api;2.4 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	javax.xml.stream#api;1.0.1 from local:ivy-sandbox in [api-execute-only]
+	net.sourceforge#junit-addons;1.4 from local:ivy-externals in [support-compile-only, support-compile-execute, support-execute-only]
+	org.codehaus#woodstox;3.2.1 from local:ivy-sandbox in [api-execute-only]
+	org.jibx#runtime;1.1.5 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	org.junit#framework;3.8.2 from local:ivy-externals in [support-compile-only, support-compile-execute, support-execute-only]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	| api-compile-only |   4   |   0   |   0   |   0   ||   0   |   0   |
+	|api-compile-execut|   4   |   0   |   0   |   0   ||   4   |   0   |
+	| api-execute-only |   7   |   0   |   0   |   0   ||   3   |   0   |
+	| impl-compile-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|impl-compile-execu|   0   |   0   |   0   |   0   ||   0   |   0   |
+	| impl-execute-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|support-compile-on|   3   |   1   |   0   |   0   ||   1   |   0   |
+	|support-compile-ex|   3   |   1   |   0   |   0   ||   3   |   0   |
+	|support-execute-on|   3   |   1   |   0   |   0   ||   1   |   0   |
+	|tests-compile-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|tests-compile-exec|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|tests-execute-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	---------------------------------------------------------------------
+Determining class path for api of runtime
+Compiling API for runtime
+Making directory /srv/git/Synergetics/built/subsystems/runtime/output/main/api/classes
+Compile class path
+debug: /srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis.jdom/runtime/0.9/jar/com.volantis.jdom.runtime-0.9.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.jibx/runtime/1.1.5/jar/org.jibx.runtime-1.1.5.jar
+debug: /srv/git/Synergetics/built/ivy/cache/javax.servlet/api/2.4/jar/javax.servlet.api-2.4.jar
+debug: /srv/git/Synergetics/built/ivy/cache/javax.jdo/api/2.0/jar/javax.jdo.api-2.0.jar
+external target{com.volantis.build}:prepare-api
+Switching to module: module {com.volantis.build}:cache
+Configuring ivy module for cache
+Creating module file: module3
+[Error] :43:30: cos-nonambig: "":license and WC[##any] (or elements from their substitution group) violate "Unique Particle Attribution". During validation against this schema, ambiguity would be created for those two particles.
+internal target{com.volantis.build}:resolve-dependencies
+:: resolving dependencies :: com.volantis#synergetics.cache;working@v-pduffin.uk.volantis.com
+	confs: [api-compile-only, api-compile-execute, api-execute-only, impl-compile-only, impl-compile-execute, impl-execute-only, support-compile-only, support-compile-execute, support-execute-only, tests-compile-only, tests-compile-execute, tests-execute-only]
+	found com.volantis#testtools.mock#newbuild;newbuild in local:ivy-internals
+	found org.junit#framework;3.8.2 in local:ivy-externals
+	found net.sourceforge#junit-addons;1.4 in local:ivy-externals
+	found com.volantis.jdom#runtime;0.9 in local:ivy-sandbox
+	found org.custommonkey#xmlunit;1.0 in local:ivy-sandbox
+	found org.apache#log4j;1.2.8 in local:ivy-sandbox
+	found javax.servlet#api;2.4 in local:ivy-sandbox
+	found com.meterware#httpunit;1.4.5 in local:ivy-sandbox
+:: resolution report :: resolve 176ms :: artifacts dl 5ms
+	:: modules in use:
+	com.meterware#httpunit;1.4.5 from local:ivy-sandbox in [tests-compile-execute, tests-execute-only]
+	com.volantis#testtools.mock#newbuild;newbuild from local:ivy-internals in [support-compile-only, support-compile-execute, support-execute-only]
+	com.volantis.jdom#runtime;0.9 from local:ivy-sandbox in [tests-compile-only, tests-compile-execute, tests-execute-only]
+	javax.servlet#api;2.4 from local:ivy-sandbox in [tests-compile-only, tests-compile-execute, tests-execute-only]
+	net.sourceforge#junit-addons;1.4 from local:ivy-externals in [support-compile-only, support-compile-execute, support-execute-only]
+	org.apache#log4j;1.2.8 from local:ivy-sandbox in [tests-compile-only, tests-compile-execute, tests-execute-only]
+	org.custommonkey#xmlunit;1.0 from local:ivy-sandbox in [tests-compile-only, tests-compile-execute, tests-execute-only]
+	org.junit#framework;3.8.2 from local:ivy-externals in [support-compile-only, support-compile-execute, support-execute-only]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	| api-compile-only |   0   |   0   |   0   |   0   ||   0   |   0   |
+	|api-compile-execut|   0   |   0   |   0   |   0   ||   0   |   0   |
+	| api-execute-only |   0   |   0   |   0   |   0   ||   0   |   0   |
+	| impl-compile-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|impl-compile-execu|   0   |   0   |   0   |   0   ||   0   |   0   |
+	| impl-execute-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|support-compile-on|   3   |   1   |   0   |   0   ||   1   |   0   |
+	|support-compile-ex|   3   |   1   |   0   |   0   ||   3   |   0   |
+	|support-execute-on|   3   |   1   |   0   |   0   ||   1   |   0   |
+	|tests-compile-only|   4   |   0   |   0   |   0   ||   0   |   0   |
+	|tests-compile-exec|   5   |   0   |   0   |   0   ||   5   |   0   |
+	|tests-execute-only|   5   |   0   |   0   |   0   ||   1   |   0   |
+	---------------------------------------------------------------------
+Determining class path for api of cache
+Compiling API for cache
+Making directory /srv/git/Synergetics/built/subsystems/cache/output/main/api/classes
+Compile class path
+debug: /srv/git/Synergetics/built/subsystems/cornerstone/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/runtime/output/main/api/classes
+external target{com.volantis.build}:prepare-api
+Switching to module: module {com.volantis.build}:testtools
+Configuring ivy module for testtools
+Creating module file: module4
+[Error] :43:30: cos-nonambig: "":license and WC[##any] (or elements from their substitution group) violate "Unique Particle Attribution". During validation against this schema, ambiguity would be created for those two particles.
+internal target{com.volantis.build}:resolve-dependencies
+:: resolving dependencies :: com.volantis#synergetics.testtools;working@v-pduffin.uk.volantis.com
+	confs: [api-compile-only, api-compile-execute, api-execute-only, impl-compile-only, impl-compile-execute, impl-execute-only, support-compile-only, support-compile-execute, support-execute-only, tests-compile-only, tests-compile-execute, tests-execute-only]
+	found com.volantis#testtools.mock#newbuild;newbuild in local:ivy-internals
+	found org.junit#framework;3.8.2 in local:ivy-externals
+	found com.volantis.jdom#runtime;0.9 in local:ivy-sandbox
+	found org.custommonkey#xmlunit;1.0 in local:ivy-sandbox
+	found net.sourceforge#junit-addons;1.4 in local:ivy-externals
+	found org.apache#log4j;1.2.8 in local:ivy-sandbox
+	found javax.servlet#api;2.4 in local:ivy-sandbox
+	found com.meterware#httpunit;1.4.5 in local:ivy-sandbox
+:: resolution report :: resolve 166ms :: artifacts dl 7ms
+	:: modules in use:
+	com.meterware#httpunit;1.4.5 from local:ivy-sandbox in [api-compile-execute, api-execute-only, support-compile-execute, support-execute-only]
+	com.volantis#testtools.mock#newbuild;newbuild from local:ivy-internals in [api-compile-only, api-compile-execute, api-execute-only, support-compile-only, support-compile-execute, support-execute-only]
+	com.volantis.jdom#runtime;0.9 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	javax.servlet#api;2.4 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	net.sourceforge#junit-addons;1.4 from local:ivy-externals in [api-compile-only, api-compile-execute, api-execute-only]
+	org.apache#log4j;1.2.8 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	org.custommonkey#xmlunit;1.0 from local:ivy-sandbox in [api-compile-only, api-compile-execute, api-execute-only]
+	org.junit#framework;3.8.2 from local:ivy-externals in [api-compile-only, api-compile-execute, api-execute-only]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	| api-compile-only |   7   |   1   |   0   |   0   ||   1   |   0   |
+	|api-compile-execut|   8   |   1   |   0   |   0   ||   7   |   0   |
+	| api-execute-only |   8   |   1   |   0   |   0   ||   2   |   0   |
+	| impl-compile-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|impl-compile-execu|   0   |   0   |   0   |   0   ||   0   |   0   |
+	| impl-execute-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|support-compile-on|   1   |   1   |   0   |   0   ||   0   |   0   |
+	|support-compile-ex|   2   |   1   |   0   |   0   ||   2   |   0   |
+	|support-execute-on|   2   |   1   |   0   |   0   ||   1   |   0   |
+	|tests-compile-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|tests-compile-exec|   0   |   0   |   0   |   0   ||   0   |   0   |
+	|tests-execute-only|   0   |   0   |   0   |   0   ||   0   |   0   |
+	---------------------------------------------------------------------
+Determining class path for api of testtools
+Compiling API for testtools
+Making directory /srv/git/Synergetics/built/subsystems/testtools/output/main/api/classes
+Compile class path
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/api/com.volantis.testtools.mock-newbuild.jar
+debug: /srv/git/Synergetics/built/subsystems/runtime/output/main/api/classes
+debug: /srv/git/Synergetics/built/ivy/cache/com.meterware/httpunit/1.4.5/jar/com.meterware.httpunit-1.4.5.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.junit/framework/3.8.2/jar/org.junit.framework-3.8.2.jar
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis.jdom/runtime/0.9/jar/com.volantis.jdom.runtime-0.9.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.custommonkey/xmlunit/1.0/jar/org.custommonkey.xmlunit-1.0.jar
+debug: /srv/git/Synergetics/built/ivy/cache/net.sourceforge/junit-addons/1.4/jar/net.sourceforge.junit-addons-1.4.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.apache/log4j/1.2.8/jar/org.apache.log4j-1.2.8.jar
+debug: /srv/git/Synergetics/built/ivy/cache/javax.servlet/api/2.4/jar/javax.servlet.api-2.4.jar
+external target{com.volantis.build}:prepare-api
+Switching to module: module {com.volantis.build}:cache
+Determining class path for impl of cache
+Compiling implementation for cache
+Making directory /srv/git/Synergetics/built/subsystems/cache/output/main/impl/classes
+Compile class path
+debug: /srv/git/Synergetics/built/subsystems/cornerstone/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/runtime/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/cache/output/main/api/classes
+external target{com.volantis.build}:prepare-impl
+Switching to module: module {com.volantis.build}:cornerstone
+Determining class path for impl of cornerstone
+Compiling implementation for cornerstone
+external target{com.volantis.build}:prepare-impl
+Switching to module: module {com.volantis.build}:localization
+Determining class path for impl of localization
+Compiling implementation for localization
+external target{com.volantis.build}:prepare-impl
+Generate source code for test support for localization
+internal target{com.volantis.build}:define-volantis-mock-task
+Switching to module: module {com.volantis.build}:product
+internal target{com.volantis.build}:resolve-volantis-mock-task
+Creating module file: module5
+[Error] :43:30: cos-nonambig: "":license and WC[##any] (or elements from their substitution group) violate "Unique Particle Attribution". During validation against this schema, ambiguity would be created for those two particles.
+:: resolving dependencies :: com.volantis.build#volantis-mock-task;working@v-pduffin.uk.volantis.com
+	confs: [default]
+	found com.volantis#testtools.mock-generator#newbuild;newbuild in local:ivy-internals
+	found org.apache#ant;1.7.0 in local:ivy-externals
+	found org.codehaus#plexus-utils;1.0.4 in local:ivy-externals
+	found com.thoughtworks#qdox;1.6.3 in local:ivy-externals
+	found org.apache#ant-launcher;1.7.0 in local:ivy-externals
+downloading /srv/repository/ivy/internals/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar ...
+	[SUCCESSFUL ] com.volantis#testtools.mock-generator#newbuild;newbuild!testtools.mock-generator.jar(api) (5ms)
+downloading /srv/repository/ivy/internals/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar ...
+	[SUCCESSFUL ] com.volantis#testtools.mock-generator#newbuild;newbuild!testtools.mock-generator.jar (9ms)
+downloading /srv/repository/ivy/externals/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar ...
+	[SUCCESSFUL ] org.apache#ant;1.7.0!ant.jar (66ms)
+downloading /srv/repository/ivy/externals/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar ...
+	[SUCCESSFUL ] org.codehaus#plexus-utils;1.0.4!plexus-utils.jar (4ms)
+downloading /srv/repository/ivy/externals/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar ...
+	[SUCCESSFUL ] com.thoughtworks#qdox;1.6.3!qdox.jar (3ms)
+downloading /srv/repository/ivy/externals/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar ...
+	[SUCCESSFUL ] org.apache#ant-launcher;1.7.0!ant-launcher.jar (1ms)
+:: resolution report :: resolve 481ms :: artifacts dl 93ms
+	:: modules in use:
+	com.thoughtworks#qdox;1.6.3 from local:ivy-externals in [default]
+	com.volantis#testtools.mock-generator#newbuild;newbuild from local:ivy-internals in [default]
+	org.apache#ant;1.7.0 from local:ivy-externals in [default]
+	org.apache#ant-launcher;1.7.0 from local:ivy-externals in [default]
+	org.codehaus#plexus-utils;1.0.4 from local:ivy-externals in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   5   |   5   |   5   |   0   ||   6   |   6   |
+	---------------------------------------------------------------------
+dependency:com.volantis.build:volantis-mock-task: [com.volantis.build:volantis-mock-task:inline: [/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar, /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar, /srv/git/Synergetics/built/ivy/cache/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar, /srv/git/Synergetics/built/ivy/cache/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar, /srv/git/Synergetics/built/ivy/cache/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar, /srv/git/Synergetics/built/ivy/cache/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar]]
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar
+/srv/git/Synergetics/built/ivy/cache/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar
+/srv/git/Synergetics/built/ivy/cache/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar
+[volantis-mock-task] Code took 0ms
+Switching to module: module {com.volantis.build}:localization
+Determining class path for support of localization
+Compiling test support for localization
+Making directory /srv/git/Synergetics/built/subsystems/localization/output/test/support/classes
+Compile class path
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/api/com.volantis.testtools.mock-newbuild.jar
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/support/com.volantis.testtools.mock-newbuild.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.junit/framework/3.8.2/jar/org.junit.framework-3.8.2.jar
+debug: /srv/git/Synergetics/built/ivy/cache/net.sourceforge/junit-addons/1.4/jar/net.sourceforge.junit-addons-1.4.jar
+debug: /srv/git/Synergetics/built/subsystems/localization/output/main/impl/classes
+debug: /srv/git/Synergetics/built/ivy/cache/org.apache/log4j/1.2.8/jar/org.apache.log4j-1.2.8.jar
+debug: /srv/git/Synergetics/built/ivy/cache/javax.servlet/api/2.4/jar/javax.servlet.api-2.4.jar
+debug: /srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+external target{com.volantis.build}:prepare-support
+Switching to module: module {com.volantis.build}:testtools
+Determining class path for impl of testtools
+Compiling implementation for testtools
+external target{com.volantis.build}:prepare-impl
+Switching to module: module {com.volantis.build}:runtime
+Determining class path for impl of runtime
+Compiling implementation for runtime
+Making directory /srv/git/Synergetics/built/subsystems/runtime/output/main/impl/classes
+Compile class path
+debug: /srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis.jdom/runtime/0.9/jar/com.volantis.jdom.runtime-0.9.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.jibx/runtime/1.1.5/jar/org.jibx.runtime-1.1.5.jar
+debug: /srv/git/Synergetics/built/ivy/cache/javax.servlet/api/2.4/jar/javax.servlet.api-2.4.jar
+debug: /srv/git/Synergetics/built/ivy/cache/javax.jdo/api/2.0/jar/javax.jdo.api-2.0.jar
+debug: /srv/git/Synergetics/built/subsystems/runtime/output/main/api/classes
+external target{com.volantis.build}:prepare-impl
+Generate source code for test support for runtime
+internal target{com.volantis.build}:define-volantis-mock-task
+dependency:com.volantis.build:volantis-mock-task: [com.volantis.build:volantis-mock-task:inline: [/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar, /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar, /srv/git/Synergetics/built/ivy/cache/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar, /srv/git/Synergetics/built/ivy/cache/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar, /srv/git/Synergetics/built/ivy/cache/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar, /srv/git/Synergetics/built/ivy/cache/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar]]
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar
+/srv/git/Synergetics/built/ivy/cache/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar
+/srv/git/Synergetics/built/ivy/cache/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar
+[volantis-mock-task] Code took 0ms
+Determining class path for support of runtime
+Compiling test support for runtime
+external target{com.volantis.build}:prepare-support
+Switching to module: module {com.volantis.build}:testtools
+Generate source code for test support for testtools
+internal target{com.volantis.build}:define-volantis-mock-task
+dependency:com.volantis.build:volantis-mock-task: [com.volantis.build:volantis-mock-task:inline: [/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar, /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar, /srv/git/Synergetics/built/ivy/cache/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar, /srv/git/Synergetics/built/ivy/cache/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar, /srv/git/Synergetics/built/ivy/cache/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar, /srv/git/Synergetics/built/ivy/cache/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar]]
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar
+/srv/git/Synergetics/built/ivy/cache/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar
+/srv/git/Synergetics/built/ivy/cache/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar
+[volantis-mock-task] Code took 0ms
+Determining class path for support of testtools
+Compiling test support for testtools
+external target{com.volantis.build}:prepare-support
+Switching to module: module {com.volantis.build}:cornerstone
+Generate source code for test support for cornerstone
+internal target{com.volantis.build}:define-volantis-mock-task
+dependency:com.volantis.build:volantis-mock-task: [com.volantis.build:volantis-mock-task:inline: [/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar, /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar, /srv/git/Synergetics/built/ivy/cache/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar, /srv/git/Synergetics/built/ivy/cache/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar, /srv/git/Synergetics/built/ivy/cache/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar, /srv/git/Synergetics/built/ivy/cache/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar]]
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar
+/srv/git/Synergetics/built/ivy/cache/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar
+/srv/git/Synergetics/built/ivy/cache/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar
+[volantis-mock-task]   Generating Mocks
+[volantis-mock-task]     com.volantis.shared.dependency.Dependency --> com.volantis.shared.dependency.DependencyMock
+[volantis-mock-task]     com.volantis.shared.dependency.DependencyContext --> com.volantis.shared.dependency.DependencyContextMock
+[volantis-mock-task]     com.volantis.shared.resource.ResourceLoader --> com.volantis.shared.resource.ResourceLoaderMock
+[volantis-mock-task]     com.volantis.shared.system.SystemClock --> com.volantis.shared.system.SystemClockMock
+[volantis-mock-task]     com.volantis.shared.system.SystemProperties --> com.volantis.shared.system.SystemPropertiesMock
+[volantis-mock-task] Code took 83ms
+Determining class path for support of cornerstone
+Compiling test support for cornerstone
+Making directory /srv/git/Synergetics/built/subsystems/cornerstone/output/test/support/classes
+Compile class path
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/api/com.volantis.testtools.mock-newbuild.jar
+debug: /srv/git/Synergetics/built/subsystems/localization/output/test/support/classes
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/support/com.volantis.testtools.mock-newbuild.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.junit/framework/3.8.2/jar/org.junit.framework-3.8.2.jar
+debug: /srv/git/Synergetics/built/ivy/cache/net.sourceforge/junit-addons/1.4/jar/net.sourceforge.junit-addons-1.4.jar
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis.apache/xerces/2.6.2/jar/com.volantis.apache.xerces-2.6.2.jar
+debug: /srv/git/Synergetics/built/subsystems/cornerstone/output/main/impl/classes
+debug: /srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+debug: /srv/git/Synergetics/built/ivy/cache/org.jibx/runtime/1.1.5/jar/org.jibx.runtime-1.1.5.jar
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis.apache/xalan/2.6.0/jar/com.volantis.apache.xalan-2.6.0.jar
+debug: /srv/git/Synergetics/built/subsystems/cornerstone/output/main/api/classes
+    [javac] Compiling 5 source files to /srv/git/Synergetics/built/subsystems/cornerstone/output/test/support/classes
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+external target{com.volantis.build}:prepare-support
+Switching to module: module {com.volantis.build}:cache
+Generate source code for test support for cache
+internal target{com.volantis.build}:define-volantis-mock-task
+dependency:com.volantis.build:volantis-mock-task: [com.volantis.build:volantis-mock-task:inline: [/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar, /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar, /srv/git/Synergetics/built/ivy/cache/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar, /srv/git/Synergetics/built/ivy/cache/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar, /srv/git/Synergetics/built/ivy/cache/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar, /srv/git/Synergetics/built/ivy/cache/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar]]
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/api/com.volantis.testtools.mock-generator-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock-generator/newbuild/jar/com.volantis.testtools.mock-generator-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/ant/1.7.0/jar/org.apache.ant-1.7.0.jar
+/srv/git/Synergetics/built/ivy/cache/org.codehaus/plexus-utils/1.0.4/jar/org.codehaus.plexus-utils-1.0.4.jar
+/srv/git/Synergetics/built/ivy/cache/com.thoughtworks/qdox/1.6.3/jar/com.thoughtworks.qdox-1.6.3.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/ant-launcher/1.7.0/jar/org.apache.ant-launcher-1.7.0.jar
+[volantis-mock-task]   Generating Mocks
+[volantis-mock-task]     com.volantis.cache.Cache --> com.volantis.cache.CacheMock
+[volantis-mock-task]     com.volantis.cache.CacheEntry --> com.volantis.cache.CacheEntryMock
+[volantis-mock-task]     com.volantis.cache.expiration.ExpirationChecker --> com.volantis.cache.expiration.ExpirationCheckerMock
+[volantis-mock-task]     com.volantis.cache.group.Group --> com.volantis.cache.group.GroupMock
+[volantis-mock-task]     com.volantis.cache.group.GroupBuilder --> com.volantis.cache.group.GroupBuilderMock
+[volantis-mock-task]     com.volantis.cache.impl.InternalCache --> com.volantis.cache.impl.InternalCacheMock
+[volantis-mock-task]     com.volantis.cache.impl.group.InternalGroup --> com.volantis.cache.impl.group.InternalGroupMock
+[volantis-mock-task]     com.volantis.cache.impl.group.InternalGroupBuilder --> com.volantis.cache.impl.group.InternalGroupBuilderMock
+[volantis-mock-task]     com.volantis.cache.notification.RemovalListener --> com.volantis.cache.notification.RemovalListenerMock
+[volantis-mock-task]     com.volantis.cache.provider.CacheableObjectProvider --> com.volantis.cache.provider.CacheableObjectProviderMock
+[volantis-mock-task] Code took 155ms
+Determining class path for support of cache
+Compiling test support for cache
+Making directory /srv/git/Synergetics/built/subsystems/cache/output/test/support/classes
+Compile class path
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/api/com.volantis.testtools.mock-newbuild.jar
+debug: /srv/git/Synergetics/built/subsystems/cornerstone/output/test/support/classes
+debug: /srv/git/Synergetics/built/subsystems/localization/output/test/support/classes
+debug: /srv/git/Synergetics/built/subsystems/runtime/output/test/support/classes
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/support/com.volantis.testtools.mock-newbuild.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.junit/framework/3.8.2/jar/org.junit.framework-3.8.2.jar
+debug: /srv/git/Synergetics/built/ivy/cache/net.sourceforge/junit-addons/1.4/jar/net.sourceforge.junit-addons-1.4.jar
+debug: /srv/git/Synergetics/built/subsystems/cache/output/main/impl/classes
+debug: /srv/git/Synergetics/built/subsystems/cornerstone/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/runtime/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/cache/output/main/api/classes
+    [javac] Compiling 10 source files to /srv/git/Synergetics/built/subsystems/cache/output/test/support/classes
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+external target{com.volantis.build}:prepare-support
+Generate source code for test tests for cache
+[volantis-mock-task] Code took 0ms
+Determining class path for tests of cache
+Compiling test tests for cache
+Making directory /srv/git/Synergetics/built/subsystems/cache/output/test/tests/classes
+Compile class path
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/api/com.volantis.testtools.mock-newbuild.jar
+debug: /srv/git/Synergetics/built/subsystems/testtools/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/testtools/output/test/support/classes
+debug: /srv/git/Synergetics/built/ivy/cache/com.meterware/httpunit/1.4.5/jar/com.meterware.httpunit-1.4.5.jar
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis.jdom/runtime/0.9/jar/com.volantis.jdom.runtime-0.9.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.custommonkey/xmlunit/1.0/jar/org.custommonkey.xmlunit-1.0.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.apache/log4j/1.2.8/jar/org.apache.log4j-1.2.8.jar
+debug: /srv/git/Synergetics/built/ivy/cache/javax.servlet/api/2.4/jar/javax.servlet.api-2.4.jar
+debug: /srv/git/Synergetics/built/subsystems/cornerstone/output/test/support/classes
+debug: /srv/git/Synergetics/built/subsystems/localization/output/test/support/classes
+debug: /srv/git/Synergetics/built/subsystems/runtime/output/test/support/classes
+debug: /srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/support/com.volantis.testtools.mock-newbuild.jar
+debug: /srv/git/Synergetics/built/ivy/cache/org.junit/framework/3.8.2/jar/org.junit.framework-3.8.2.jar
+debug: /srv/git/Synergetics/built/ivy/cache/net.sourceforge/junit-addons/1.4/jar/net.sourceforge.junit-addons-1.4.jar
+debug: /srv/git/Synergetics/built/subsystems/cache/output/test/support/classes
+debug: /srv/git/Synergetics/built/subsystems/cache/output/main/impl/classes
+debug: /srv/git/Synergetics/built/subsystems/cornerstone/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/runtime/output/main/api/classes
+debug: /srv/git/Synergetics/built/subsystems/cache/output/main/api/classes
+    [javac] Compiling 14 source files to /srv/git/Synergetics/built/subsystems/cache/output/test/tests/classes
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: /srv/git/Synergetics/subsystems/cache/test/tests/java/com/volantis/cache/CacheStressTestCase.java uses unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+external target{com.volantis.build}:prepare-tests
+Preparing subsystem cache
+Preparing subsystem cache
+Running tests for subsystem cache
+Creating module file: module6
+[Error] :43:30: cos-nonambig: "":license and WC[##any] (or elements from their substitution group) violate "Unique Particle Attribution". During validation against this schema, ambiguity would be created for those two particles.
+:: resolving dependencies :: com.volantis#junit;working@v-pduffin.uk.volantis.com
+	confs: [default]
+	found org.junit#framework;3.8.2 in local:ivy-externals
+	found net.sourceforge#junit-addons;1.4 in local:ivy-externals
+downloading /srv/repository/ivy/externals/org.junit/framework/3.8.2/sources/org.junit.framework-3.8.2.jar ...
+	[SUCCESSFUL ] org.junit#framework;3.8.2!framework.jar(sources) (49ms)
+:: resolution report :: resolve 52ms :: artifacts dl 51ms
+	:: modules in use:
+	net.sourceforge#junit-addons;1.4 from local:ivy-externals in [default]
+	org.junit#framework;3.8.2 from local:ivy-externals in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   3   |   1   |
+	---------------------------------------------------------------------
+Test execute path
+/srv/git/Synergetics/built/ivy/cache/org.junit/framework/3.8.2/jar/org.junit.framework-3.8.2.jar
+/srv/git/Synergetics/built/ivy/cache/org.junit/framework/3.8.2/sources/org.junit.framework-3.8.2.jar
+/srv/git/Synergetics/built/ivy/cache/net.sourceforge/junit-addons/1.4/jar/net.sourceforge.junit-addons-1.4.jar
+/srv/git/Synergetics/built/subsystems/cache/output/test/tests/classes
+/srv/git/Synergetics/built/subsystems/runtime/output/main/api/classes
+/srv/git/Synergetics/built/ivy/cache/com.meterware/httpunit/1.4.5/jar/com.meterware.httpunit-1.4.5.jar
+/srv/git/Synergetics/built/ivy/cache/org.junit/framework/3.8.2/jar/org.junit.framework-3.8.2.jar
+/srv/git/Synergetics/built/ivy/cache/com.volantis.jdom/runtime/0.9/jar/com.volantis.jdom.runtime-0.9.jar
+/srv/git/Synergetics/built/ivy/cache/org.custommonkey/xmlunit/1.0/jar/org.custommonkey.xmlunit-1.0.jar
+/srv/git/Synergetics/built/ivy/cache/net.sourceforge/junit-addons/1.4/jar/net.sourceforge.junit-addons-1.4.jar
+/srv/git/Synergetics/built/ivy/cache/org.apache/log4j/1.2.8/jar/org.apache.log4j-1.2.8.jar
+/srv/git/Synergetics/built/ivy/cache/javax.servlet/api/2.4/jar/javax.servlet.api-2.4.jar
+/srv/git/Synergetics/built/subsystems/localization/output/main/api/classes
+/srv/git/Synergetics/built/ivy/cache/org.jibx/runtime/1.1.5/jar/org.jibx.runtime-1.1.5.jar
+/srv/git/Synergetics/built/ivy/cache/javax.jdo/api/2.0/jar/javax.jdo.api-2.0.jar
+/srv/git/Synergetics/built/subsystems/localization/output/main/impl/classes
+/srv/git/Synergetics/built/subsystems/runtime/output/main/impl/classes
+/srv/git/Synergetics/built/subsystems/testtools/output/main/impl/classes
+/srv/git/Synergetics/built/subsystems/runtime/output/test/support/classes
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/support/com.volantis.testtools.mock-newbuild.jar
+/srv/git/Synergetics/built/subsystems/localization/output/test/support/classes
+/srv/git/Synergetics/built/ivy/cache/com.volantis.apache/xerces/2.6.2/jar/com.volantis.apache.xerces-2.6.2.jar
+/srv/git/Synergetics/built/ivy/cache/com.volantis/testtools.mock/newbuild/jar/com.volantis.testtools.mock-newbuild.jar
+/srv/git/Synergetics/built/ivy/cache/com.volantis.apache/xalan/2.6.0/jar/com.volantis.apache.xalan-2.6.0.jar
+/srv/git/Synergetics/built/subsystems/cornerstone/output/main/impl/classes
+/srv/git/Synergetics/built/subsystems/testtools/output/main/api/classes
+/srv/git/Synergetics/built/subsystems/testtools/output/test/support/classes
+/srv/git/Synergetics/built/subsystems/cornerstone/output/test/support/classes
+/srv/git/Synergetics/built/subsystems/cache/output/test/support/classes
+/srv/git/Synergetics/built/subsystems/cache/output/main/impl/classes
+/srv/git/Synergetics/built/subsystems/cornerstone/output/main/api/classes
+/srv/git/Synergetics/built/subsystems/cache/output/main/api/classes
+    [junit] Running com.volantis.cache.AsyncQueryTestCase
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.605 sec
+    [junit] Running com.volantis.cache.CacheBuilderTestCase
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.011 sec
+    [junit] Running com.volantis.cache.CacheStressTestCase

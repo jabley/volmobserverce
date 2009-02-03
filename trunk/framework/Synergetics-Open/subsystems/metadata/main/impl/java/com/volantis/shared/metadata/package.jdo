@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE jdo PUBLIC
+    "-//Sun Microsystems, Inc.//DTD Java Data Objects Metadata 2.0//EN"
+    "http://java.sun.com/dtd/jdo_2_0.dtd">
+<jdo>
+
+
+    <package name="com.volantis.shared.metadata.impl.persistence">
+
+        <class name="BundleDAO" detachable="true" table="Bundle">
+            <field name="entries"
+                   default-fetch-group="true"
+                   persistence-modifier="persistent">
+                <collection element-type="com.volantis.shared.metadata.impl.persistence.EntryDAO"
+                            dependent-element="true"/>
+                <!--
+                ! Name the foreign key used for this reference.
+                !-->
+                <foreign-key name="BUNDLE_FK"
+                             delete-action="cascade"/>
+            </field>
+        </class>
+
+        <class name="EntryDAO" detachable="true" table="EntryDAO">
+
+
+        </class>
+    </package>
+</jdo>

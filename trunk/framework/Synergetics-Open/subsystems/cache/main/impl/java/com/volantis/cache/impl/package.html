@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--===========================================================================
+ ! (c) Volantis Systems Ltd 2005. 
+ ! ======================================================================== -->
+</head>
+<body bgcolor="white">
+
+Implementation of a general caching infrastructure.
+
+<h2>Cache Infrastructure</h2>
+
+<h3>Synchronization</h3>
+
+<p>One of the most awkward parts of implementing a cache is ensuring that
+synchronizing of the different objects involved is done correctly, i.e.</p>
+
+<ul>
+<li>State that may be accessed from multiple threads is protected against
+corruption by synchronizing consistently on the same monitor.</li>
+<li>Nesting of synchronization blocks are avoided where possible.</li>
+<li>Where nesting is unavoidable they are always nested in the same order to
+avoid deadlocks.</li>
+</ul>
+
+<p>The following details the mutexes used within the cache and how they are
+nested.</p>
+
+<dl>
+<dt>CacheEntryImpl</dt>
+<dd>This is the primary mutex as it controls access to an entry which is the
+main synchronization object. This mutex must not be nested within ANY other
+mutex. While this is held the code obtains the following mutexes.
+<ul>
+<li>CacheImpl#map</li>
+<li>GroupImpl#entries</li>
+<li>GroupImpl#groupsMutex</li>
+<li>StatisticsGatherer</li>
+</ul>
+</dd>
+
+<dt>CacheImpl#map</dt>
+<dd>Protects the map from key to CacheEntry. While this is held the code
+must not obtain any other mutexes.</dd>
+
+<dt>GroupImpl#entries</dt>
+<dd>Protects the entry list and the total count. While this is held the code
+must not obtain any other mutexes.</dd>
+
+<dt>GroupImpl#groupsMutex</dt>
+<dd>Protects the group map, this is needed because the group map is lazily
+created but the mutex protecting it cannot be. While this is held the code
+must not obtain any other mutexes.</dd>
+
+<dt>StatisticsGatherer</dt>
+<dd>Protects the statistics. While this is held the code must not obtain any
+other mutexes.</dd>
+
+</dl>
+
+</body>
+</html>

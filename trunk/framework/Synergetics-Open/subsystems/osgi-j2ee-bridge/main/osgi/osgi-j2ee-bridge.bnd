@@ -1,0 +1,2 @@
+Bundle-Activator=com.volantis.osgi.j2ee.bridge.http.service.Activator
+Bundle-Name=Volantis J2EE / OSGi Bridge

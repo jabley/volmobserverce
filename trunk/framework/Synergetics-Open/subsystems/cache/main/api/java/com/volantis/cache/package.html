@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--===========================================================================
+ ! (c) Volantis Systems Ltd 2005. 
+ ! ======================================================================== -->
+</head>
+<body bgcolor="white">
+
+API for general caching infrastructure.
+
+<h2>Requirements</h2>
+
+<p>This caching infrastructure has the following requirements:</p>
+
+<dl>
+
+<dt>Atomic get and set.</dt>
+<dd>A query on the cache that fails to find a matching item will result in an
+item being created somehow and being stored in the cache. This whole process
+must be atomic so that other threads that attempt to access that item will wait
+until the item has been updated.</dd>
+
+<dt>Item level locking.</dt>
+<dd>Different items must be able to be queried and updated concurrently so that
+they do not cause the whole cache to be locked which would degrade
+performance.</dd>
+
+<dt>Grouping.</dt>
+<dd>An individual cache defines a single key space within which all keys are
+unique but it must also provide a mechanism for grouping information
+hierarchically within itself to ease management of a large number of items.</dd>
+
+<dt>Expiration / Validation.</dt>
+<dd>Individual items must be able to expire so that they can then be
+revalidated against the item source.</dd>
+
+<dt>Removal Notifications.</dt>
+<dd>It must be possible for the user of the cache to be notified when items are
+removed from the cache. This is useful to invalidate information that was
+generated from the now invalid item.</dd>
+
+<dt>Statistics Gathering.</dt>
+<dd>Caches must be tuned in order to be effective and the best way to do that
+is by providing statistics about how they are performing. Statistics will be
+provided on a per group basis.</dd>
+
+<dt>Easy to use.</dt>
+<dd>The user of the cache must not be exposed to any of the internal complexity
+of the cache, in particular how it is synchronized and whether their code will
+cause deadlocks..</dd>
+
+<dt>Robust.</dt>
+<dd>The cache must be robust, i.e. it must not deadlock, or allow its internal
+structures to be corrupted. The best way of achieving this is through simple
+design and rigorous testing.</dd>
+
+<dt>Performant.</dt>
+<dd>Although this is not the primary requirement the cache must be as
+performant as possible within the constraints set by the other
+requirements.</dd>
+
+</dl>
+
+<h2>Overview</h2>
+
+<p>Before it can be used the cache has to be built which is done using the
+{@link com.volantis.cache.CacheBuilder CacheBuilder}. The newly built
+cache has a root {@link com.volantis.cache.group.Group Group} to which other
+groups can be added at any time.</p>
+
+<p>If items in the cache can expire than an
+{@link com.volantis.cache.expiration.ExpirationChecker ExpirationChecker} must
+be set on the cache builder. It will be invoked every time that an entry is
+requested while holding the mutex on the entry and so must be written
+accordingly.</p>
+
+<p>If providing an item for the cache does not require any per retrieval
+information then a
+{@link com.volantis.cache.provider.CacheableObjectProvider provider} can be
+set on the builder, otherwise a provider must be supplied on every
+retrieval.</p>
+
+<p>The maximum count is the maximum number of entries allowed in the cache. This
+must be set to 1 or more. This becomes the maximum count on the root group.</p>
+
+<p>Groups can be added to a group by using a
+{@link com.volantis.cache.group.GroupBuilder GroupBuilder}. It must have a max
+count of 1 or more. The max count of a group may be larger or smaller than the
+sum of the max counts of its child groups. If it is smaller then the available
+space will be spread evenly between the group and its children so that no one
+group can monopolise the space.</p>
+
+<p>If the user of the cache needs to know when entries are removed from the
+cache, e.g. in order to invalidate derived information stored elsewhere then
+they can register a
+{@link com.volantis.cache.notification.RemovalListener RemovalListener} with
+a group and it will be invoked when any entries are removed from that group
+and any of its child groups.</p>
+
+</body>
+</html>

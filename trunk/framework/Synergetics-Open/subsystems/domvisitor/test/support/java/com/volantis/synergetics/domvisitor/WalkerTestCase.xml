@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- This is an example XML file containing many of the node types -->
+<universe>
+    <galaxy name="milkyway" type="spiral">
+        <star name="sol" location="western arm" class="m">
+            <planet name="terra">
+                <landmass name="europe">
+                    <country name="france">
+                        <city name="paris">
+                            <street name="rue nord">
+                                <building name="chateau rouge">
+                                    <floor number="2">
+                                        <room number="21">
+                                            A fictional address
+                                        </room>
+                                    </floor>
+                                </building>
+                            </street>
+                        </city>
+                    </country>
+                    <country name="britain">
+                        <city name="guildford">
+                            <street name="occam way">
+                                <building name="1 chancellor court">
+                                    <floor number="2">
+                                        <?process room_name?>
+                                        <room name="castor">
+                                            The Volantis Castor Meeting Room
+
+                                            <details><![CDATA[
+                                                This meeting room has seats for
+                                                approximately 12 people & has a
+                                                projector and screen]]>
+                                                <asset name="projector screen"/>
+                                                <asset name="white board"/>                                                
+                                            </details>
+                                        </room>
+                                    </floor>
+                                </building>
+                            </street>
+                        </city>
+                        <city name="camberley">
+                            <street name="st george's road">
+                                <building name="st george's court">
+                                    <floor number="3">
+                                        This floor is open-plan
+                                        <desks>
+                                            <desk number="3.01" extension="712"/>
+                                            <desk number="3.02" extension="721"/>
+                                            <desk number="3.03" extension="732"/>
+                                            <desk number="3.04" extension="752"/>
+                                            <desk number="3.05" extension="713"/>
+                                            <desk number="3.06" extension="763"/>
+                                            <desk number="3.07" extension="765"/>
+                                            <desk number="3.08" extension="774"/>
+                                        </desks>
+                                        Further desks may be added later
+                                    </floor>
+                                </building>
+                            </street>
+                        </city>
+                    </country>
+                </landmass>
+            </planet>
+        </star>
+    </galaxy>
+</universe>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 13-Apr-05	7572/2	geoff	VBM:2005040612 Device repository merge report: create event model and XML report listeners
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6416/1	ianw	VBM:2004120703 New Build
+
+ 17-Dec-03	2226/1	philws	VBM:2003121115 Provide JDOM traversal walker/visitor
+
+ ===========================================================================
+-->
