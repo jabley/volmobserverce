@@ -1,0 +1,3 @@
+Bundle-Name=Volantis Media Access Proxy: Operation Engine
+DynamicImport-Package=localization.map
+Service-Component=OSGI-INF/com.volantis.map.operation.impl.DefaultOperationEngine.xml

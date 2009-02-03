@@ -1,0 +1,3 @@
+Bundle-Name=Volantis Media Access Proxy: SVG Reader
+DynamicImport-Package=localization.map
+Service-Component=OSGI-INF/com.volantis.map.ics.imageio.SVGActivator.xml

@@ -1,0 +1,34 @@
+<xfragment>
+    <packs>
+        <!-- main pack -->
+        <xinclude href="pack-map.xml">
+            <xfallback>
+                <![CDATA[Error!]]>
+            </xfallback>
+        </xinclude>
+        
+        <xinclude href="pack-ics.xml">
+            <xfallback>
+                <![CDATA[Error!]]>
+            </xfallback>
+        </xinclude>
+        
+        <xinclude href="pack-example.xml">
+            <xfallback>
+                <![CDATA[Error!]]>
+            </xfallback>
+        </xinclude>
+        
+        <xinclude href="pack-sti.xml">
+            <xfallback>
+                <![CDATA[Error!]]>
+            </xfallback>
+        </xinclude>
+        
+        <xinclude href="pack-docs.xml">
+            <xfallback>
+                <![CDATA[Error!]]>
+            </xfallback>
+        </xinclude>
+    </packs>
+</xfragment>

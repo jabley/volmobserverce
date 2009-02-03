@@ -1,0 +1,2 @@
+Bundle-Name=Volantis Media Access Proxy: STI Configuration
+DynamicImport-Package=localization.map

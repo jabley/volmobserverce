@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<!-- The English langpack -->
+
+<langpack>
+        <str id="map" txt="Media Access Proxy" />
+        <str id="ics" txt="Image Conversion Service"/>
+        <str id="sti" txt="Standard Transcoder Interface"/>
+        <str id="example" txt="Example Service"/>
+        <str id="docs" txt="Documentation" />
+</langpack>

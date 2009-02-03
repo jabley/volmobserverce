@@ -1,0 +1,9 @@
+<xfragment>
+    <pack name="Image Conversion Service" required="no" id="ics">
+        <description>The Image Conversion Service (ICS) can transcode images between various image formats. It can also perform scaling and watermarking operations. It is recommended that this be installed. Installation of this module will also install a servlet that allows map to behave like earlier versions of ICS</description>
+        <fileset dir="packs/ics" targetdir="${INSTALL_PATH}">
+            <include name="**"/>
+        </fileset>
+        <parsable targetfile="${INSTALL_PATH}/webapps/map/WEB-INF/ics-config.xml" type="xml"/>
+    </pack>
+</xfragment>
