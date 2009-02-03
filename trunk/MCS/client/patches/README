@@ -1,9 +1,0 @@
-Patch should  be made with :
-diff -wu <originalfile> <yourfile>
-
-Original files are stored in the main built/internal directory
-
-Example:
- assuming you modifiied prototype.js in client/dist/project/assets, you may create a patch with your changes with:
-
-diff -wu built/internal/prototype/prototype.js client/dist/project/assets/prototype.js > client/patches/prototype.patch

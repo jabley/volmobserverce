@@ -1,9 +1,0 @@
-These helper modules need to be copied beside the other ruby form helper modules (action_view/helpers).
-To use them
-* Namespace declarations must be added for the XHTML2, XForms and SI namespaces. By default, the prefix for the XHTML2 namespace is the default namespace, and the XForms and SI namespaces have the "xf" and "si" prefixes. These can be changed by calling set_xhtml2_prefix, set_xf_prefix, set_si_prefix respectively. Namespace declarations can be generated with methods xmlns_xhtml2, xmlns_xf and xmlns_si.
-* <%= xf_model %> must be added to the <head> element. This will render the model definition and the necessary style values collected from the controls.
-
-The best place to do these is probably the layout.
-
-The helper methods in XformsHelper have a slightly different method signatures than their normal HTML counterparts. There are examples in the comments in front of all the public methods.
-Helper methods in XformsDateHelper have exactly the same signature, I only removed the possibility of disabling controls.
