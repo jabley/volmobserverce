@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--===========================================================================
+ ! (c) Volantis Systems Ltd 2005. 
+ ! ======================================================================== -->
+</head>
+<body bgcolor="white">
+
+Provides facilities to apply styles to a document.
+
+<h2>Background</h2>
+
+<p>The purpose of this package and its descendant packages is to provide the
+capability to apply CSS like styles to an input document. Initially this is
+needed as part of MCS's theme support but it is likely that it will be needed
+in other products, specifically the transcoder to support styling properly.</p>
+
+<h2>Design Overview</h2>
+
+<p>The design is split into two main parts, the style sheet and the styling
+engine. The style sheet contains all the information necessary to apply the
+style and the engine actually applies the style. As the engine contains all the
+state necessary to apply the style sheet to a document it means that the style
+sheet can be used by multiple engines simultaneously.</p>
+
+<p>Styling is a very intensive process and will be done for every element in
+the input document so must be designed to be efficient. As a style sheet will
+be applied many more times than it is built the internal structure of the style
+sheet must be geared towards making styling efficient, as opposed to making
+building, or even storage efficient. This means that where a trade off needs to
+be made it should be resolved in favour of styling performance.</p>
+
+<p>The style sheet is an opaque representation of a style sheet. It does not
+expose any methods to query its contents. It's sole purpose is to be used by
+a styling engine. A styling engine is constructed for a specific style sheet,
+once it has been finished with it is simply thrown away, along with all its
+internal state.</p>
+
+<p>Neither the style sheet, nor the styling engine know anything about
+any style property's characteristics, i.e. their initial values, whether they
+are inherited, etc. They have to be provided with this information through
+the {@link com.volantis.styling.properties.StyleProperty StyleProperty}.</p>
+
+<h2>Style Sheet Construction</h2>
+
+<p>A {@link com.volantis.styling.sheet.CompiledStyleSheet CompiledStyleSheet}
+is constructed from a {@link com.volantis.mcs.themes.StyleSheet StyleSheet} by
+a {@link com.volantis.styling.builder.StyleSheetCompiler StyleSheetCompiler}.
+See {@link com.volantis.styling.builder} for details as to how the
+CompiledStyleSheet is constructed.</p>
+
+<!--
+<ol>
+    <li>The input device theme is <a href="">normalized</a>.</li>
+    <li>The selectors are split into two parts, those that affect the matching
+        of styles and those that
+</ol>
+-->
+
+<h2>Deferred Styling</h2>
+
+<p>CSS assumes in its specification of the styling process that the document to
+which it is applying has already been built. However, this is not the case with
+the styling engine, it has to apply the styles as early as possible while the
+document is being built. This is because there are style properties that can
+cause the element and its contents to be ignored and the earlier that these are
+detected the better the performance will be.</p>
+
+<p>There is also an MCS specific reason for doing this. In XDIME the
+<code>pane</code> attribute targets the content of the element at a specific
+pane. If that pane does not exist in the current layout then that element and
+all its content is ignored. In XDIME-CP this pane targeting will be done using
+MCS extension properties and it is important that backwards compatability is
+maintained as much as possible.</p>
+
+<p>Unfortunately, there are selectors that cannot determine whether they match
+until they have seen information that appears in the document after the element
+to which the styles are supposed to apply. In this case the engine would have
+no choice but to defer the styling until that information has been seen.
+Fortunately at the moment there is no need to support these additional
+selectors, however they will be needed in the very near future so the design
+must be flexible enough to accommodate it without a major redesign, hence the
+reason why the approach is outlined here.</p>
+
+<p>The responsibility for determining whether matching is possible, or whether
+it has to be deferred is up to the selectors so they will need to indicate,
+possibly with a return value whether styling has to be deferred or not. As soon
+as a selector determines that styling has to be deferred the styling engine
+must stop and record the information necessary to resume the styling when more
+information is available.</p>
+
+// todo Finish this.
+
+</body>
+</html>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 18-Jul-05	9029/1	pduffin	VBM:2005071301 Adding ability for styling engine to support nested style sheets
+
+ 02-Jun-05	7997/1	pduffin	VBM:2005050324 Added styling API
+
+ ===========================================================================
+-->
