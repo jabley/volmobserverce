@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Zoe Jones (private) -->
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/mss/config" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.volantis.com/xmlns/mss/config" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="modules/common-module.xsd"/>
+	<xs:element name="messageStoreServer">
+		<xs:annotation>
+			<xs:documentation>Configuration Element for the Message Store Server</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="message-store"/>
+				<xs:element ref="environment"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="message-store">
+		<xs:annotation>
+			<xs:documentation>The message store that is required when using WAP Push</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="location" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>The absolute path to the location where the message store is located</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="timeout" type="CacheMaxAge" use="optional" default="unlimited">
+				<xs:annotation>
+					<xs:documentation>The page validity interval, which indicates how long a message should live in the message store.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="id-size" use="optional">
+				<xs:annotation>
+					<xs:documentation>The size of the generated ID.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:nonNegativeInteger">
+						<xs:minInclusive value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="validate" type="xs:boolean" use="optional" default="false">
+				<xs:annotation>
+					<xs:documentation>Whether the XML destined for the message cache should be validated before storage.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="environment">
+		<xs:annotation>
+			<xs:documentation>Environmental Configuration</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="log4jConfigurationFile" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

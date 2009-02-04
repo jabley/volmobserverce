@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Zoe Jones (Volantis) -->
+<xsd:schema targetNamespace="http://www.volantis.com/MarinerFull" xmlns="http://www.volantis.com/MarinerFull" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <!-- ******************************************************************************************************************
+                    Definitions of Attribute Groups
+                    ************************************************************************************************************** -->
+        <xsd:attributeGroup name="AssetAttrs">
+                <xsd:attribute name="name" type="xsd:string"/>
+                <?imdapi attributeGroupClass="AbstractAssetAttributes"?>
+        </xsd:attributeGroup>
+        <xsd:attributeGroup name="SubstantiveAssetAttrs">
+                <xsd:attributeGroup ref="AssetAttrs"/>
+                <xsd:attribute name="assetGroupName" type="xsd:string" use="optional"/>
+                <xsd:attribute name="value" type="xsd:string" use="required"/>
+                <?imdapi attributeGroupClass="SubstantiveAssetAttributes"?>
+        </xsd:attributeGroup>
+        <xsd:attributeGroup name="ComponentAttrs">
+                <xsd:attribute name="name" type="xsd:string" use="required"/>
+                <?imdapi attributeGroupClass="AbstractComponentAttributes"?>
+        </xsd:attributeGroup>
+        <xsd:attributeGroup name="ImageAssetAttrs">
+                <xsd:attributeGroup ref="SubstantiveAssetAttrs"/>
+                <xsd:attribute name="pixelsX" type="xsd:NMTOKEN" use="required">
+                        <?imdapiType attributeType="integer"?>
+                </xsd:attribute>
+                <xsd:attribute name="pixelsY" type="xsd:NMTOKEN" use="required">
+                        <?imdapiType attributeType="integer"?>
+                </xsd:attribute>
+                <xsd:attribute name="pixelDepth" type="xsd:NMTOKEN" use="required">
+                        <?imdapiType attributeType="integer"?>
+                </xsd:attribute>
+                <xsd:attribute name="rendering" use="required">
+                        <xsd:simpleType>
+                                <xsd:restriction base="xsd:NMTOKEN">
+                                        <xsd:enumeration value="color"/>
+                                        <xsd:enumeration value="monochrome"/>
+                                </xsd:restriction>
+                        </xsd:simpleType>
+                        <?imdapiType attributeType="integer"?>
+                </xsd:attribute>
+                <xsd:attribute name="encoding" use="required">
+                        <xsd:simpleType>
+                                <xsd:restriction base="xsd:NMTOKEN">
+                                        <xsd:enumeration value="BMP"/>
+                                        <xsd:enumeration value="GIF"/>
+                                        <xsd:enumeration value="JPEG"/>
+                                        <xsd:enumeration value="PJPEG"/>
+                                        <xsd:enumeration value="PNG"/>
+                                        <xsd:enumeration value="WBMP"/>
+                                </xsd:restriction>
+                        </xsd:simpleType>
+                        <?imdapiType attributeType="integer"?>
+                </xsd:attribute>
+                <?imdapi attributeGroupClass="ImageAssetAttributes"?>
+        </xsd:attributeGroup>
+        <!-- ******************************************************************************************************************
+                    Definitions of Elements Associated with Meta Data
+                    ************************************************************************************************************** -->
+        <xsd:element name="assetgroup">
+                <xsd:complexType>
+                        <xsd:attribute name="name" type="xsd:string" use="required"/>
+                        <xsd:attribute name="prefixURL" type="xsd:string"/>
+                        <xsd:attribute name="repositoryName" type="xsd:string"/>
+                        <xsd:attribute name="locationType" type="xsd:string" use="required"/>
+                </xsd:complexType>
+                <?imdapi elementClass="AssetGroup" attributesClass="AssetGroupAttributes" baseAttributeGroup="AssetAttrs" naturalName="asset group"?>
+        </xsd:element>
+        <xsd:element name="audioasset">
+                <xsd:complexType>
+                        <xsd:attributeGroup ref="SubstantiveAssetAttrs"/>
+                        <xsd:attribute name="encoding" use="required">
+                                <xsd:simpleType>
+                                        <xsd:restriction base="xsd:NMTOKEN">
+                                                <xsd:enumeration value="adcpm32"/>
+                                                <xsd:enumeration value="basic"/>
+                                                <xsd:enumeration value="gsm"/>
+                                                <xsd:enumeration value="midi"/>
+                                                <xsd:enumeration value="mp3"/>
+                                                <xsd:enumeration value="real"/>
+                                                <xsd:enumeration value="windowsMedia"/>
+                                        </xsd:restriction>
+                                </xsd:simpleType>
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                </xsd:complexType>
+                <?imdapi elementClass="AudioAssetElement" assetClass="AudioAsset" componentClassBase="AudioComponent" attributesClass="AudioAssetAttributes" naturalName="audio assets"?>
+        </xsd:element>
+        <xsd:element name="audiocomponent">
+                <xsd:complexType>
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element ref="audioasset"/>
+                        </xsd:choice>
+                        <xsd:attributeGroup ref="ComponentAttrs"/>
+                        <xsd:attribute name="fallbackAudioComponentName" type="xsd:string"/>
+                        <xsd:attribute name="fallbackTextComponentName" type="xsd:string"/>
+                </xsd:complexType>
+                <?imdapi elementClass="AudioComponentElement" componentClassBase="AudioComponent" attributesClass="AudioComponentAttributes" naturalName="audio component"?>
+        </xsd:element>
+        <xsd:element name="buttonimagecomponent">
+                <xsd:complexType>
+                        <xsd:attributeGroup ref="ComponentAttrs"/>
+                        <xsd:attribute name="fallbackTextComponentName" type="xsd:string"/>
+                        <xsd:attribute name="upImageComponentName" type="xsd:string"/>
+                        <xsd:attribute name="downImageComponentName" type="xsd:string"/>
+                        <xsd:attribute name="overImageComponentName" type="xsd:string"/>
+                </xsd:complexType>
+                <?imdapi elementClass="ButtonImageComponentElement" componentClassBase="ButtonImageComponent" attributesClass="ButtonImageComponentAttributes" naturalName="audio component"?>
+        </xsd:element>
+        <xsd:element name="chartasset">
+                <xsd:complexType>
+                        <xsd:attributeGroup ref="AssetAttrs"/>
+                        <xsd:attribute name="type" use="required">
+                                <xsd:simpleType>
+                                        <xsd:restriction base="xsd:NMTOKEN">
+                                                <xsd:enumeration value="bar"/>
+                                                <xsd:enumeration value="column"/>
+                                                <xsd:enumeration value="legend"/>
+                                                <xsd:enumeration value="line"/>
+                                                <xsd:enumeration value="pie"/>
+                                        </xsd:restriction>
+                                </xsd:simpleType>
+                        </xsd:attribute>
+                        <xsd:attribute name="XTitle" type="xsd:string"/>
+                        <xsd:attribute name="YTitle" type="xsd:string"/>
+                        <xsd:attribute name="XInterval" type="xsd:NMTOKEN">
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                        <xsd:attribute name="YInterval" type="xsd:NMTOKEN">
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                        <xsd:attribute name="widthHint" type="xsd:NMTOKEN" use="required">
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                        <xsd:attribute name="heightHint" type="xsd:NMTOKEN" use="required">
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                </xsd:complexType>
+                <?imdapi elementClass="ChartAssetElement" assetClass="ChartAsset" componentClassBase="ChartComponent" attributesClass="ChartAssetAttributes" naturalName="chart assets"?>
+        </xsd:element>
+        <xsd:element name="chartcomponent">
+                <xsd:complexType>
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element ref="chartasset"/>
+                        </xsd:choice>
+                        <xsd:attributeGroup ref="ComponentAttrs"/>
+                        <xsd:attribute name="fallbackTextComponentName" type="xsd:string"/>
+                        <xsd:attribute name="fallbackImageComponentName" type="xsd:string"/>
+                        <xsd:attribute name="fallbackChartComponentName" type="xsd:string"/>
+                </xsd:complexType>
+                <?imdapi elementClass="ChartComponentElement" componentClassBase="ChartComponent" attributesClass="ChartComponentAttributes" naturalName="chart component"?>
+        </xsd:element>
+        <xsd:element name="deviceimageasset">
+                <xsd:complexType>
+                        <xsd:attributeGroup ref="ImageAssetAttrs"/>
+                        <xsd:attribute name="deviceName" type="xsd:string" use="required"/>
+                </xsd:complexType>
+                <?imdapi elementClass="DeviceImageAssetElement" assetClass="DeviceImageAsset" componentClassBase="ImageComponent" attributesClass="DeviceImageAssetAttributes" naturalName="device image assets"?>
+        </xsd:element>
+        <xsd:element name="dynamicvisualasset">
+                <xsd:complexType>
+                        <xsd:attributeGroup ref="SubstantiveAssetAttrs"/>
+                        <xsd:attribute name="encoding" use="required">
+                                <xsd:simpleType>
+                                        <xsd:restriction base="xsd:NMTOKEN">
+                                                <xsd:enumeration value="flash"/>
+                                                <xsd:enumeration value="gif"/>
+                                                <xsd:enumeration value="mpeg1"/>
+                                                <xsd:enumeration value="mpeg4"/>
+                                                <xsd:enumeration value="quicktime"/>
+                                                <xsd:enumeration value="realvideo"/>
+                                                <xsd:enumeration value="shock"/>
+                                                <xsd:enumeration value="tv"/>
+                                                <xsd:enumeration value="winvideo"/>
+                                        </xsd:restriction>
+                                </xsd:simpleType>
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                        <xsd:attribute name="pixelsX" type="xsd:NMTOKEN" use="required">
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                        <xsd:attribute name="pixelsY" type="xsd:NMTOKEN" use="required">
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                </xsd:complexType>
+                <?imdapi elementClass="DynamicVisualAssetElement" assetClass="DynamicVisualAsset" componentClassBase="DynamicVisualComponent" attributesClass="DynamicVisualAssetAttributes" naturalName="dynamic visual assets"?>
+        </xsd:element>
+        <xsd:element name="dynamicvisualcomponent">
+                <xsd:complexType>
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element ref="dynamicvisualasset"/>
+                        </xsd:choice>
+                        <xsd:attributeGroup ref="ComponentAttrs"/>
+                        <xsd:attribute name="fallbackTextComponentName" type="xsd:string"/>
+                        <xsd:attribute name="fallbackAudioComponentName" type="xsd:string"/>
+                        <xsd:attribute name="fallbackImageComponentName" type="xsd:string"/>
+                        <xsd:attribute name="fallbackDynVisComponentName" type="xsd:string"/>
+                </xsd:complexType>
+                <?imdapi elementClass="DynamicVisualComponentElement" componentClassBase="DynamicVisualComponent" attributesClass="DynamicVisualComponentAttributes" naturalName="dynamic visual component"?>
+        </xsd:element>
+        <xsd:element name="genericimageasset">
+                <xsd:complexType>
+                        <xsd:attributeGroup ref="ImageAssetAttrs"/>
+                        <xsd:attribute name="widthHint" type="xsd:NMTOKEN" use="required">
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                </xsd:complexType>
+                <?imdapi elementClass="GenericImageAssetElement" assetClass="GenericImageAsset" componentClassBase="ImageComponent" attributesClass="GenericImageAssetAttributes" naturalName="generic image assets"?>
+        </xsd:element>
+        <xsd:element name="imagecomponent">
+                <xsd:complexType>
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element ref="deviceimageasset"/>
+                                <xsd:element ref="genericimageasset"/>
+                        </xsd:choice>
+                        <xsd:attributeGroup ref="ComponentAttrs"/>
+                        <xsd:attribute name="fallbackTextComponentName" type="xsd:string"/>
+                        <xsd:attribute name="fallbackImageComponentName" type="xsd:string"/>
+                </xsd:complexType>
+                <?imdapi elementClass="ImageComponentElement" componentClassBase="ImageComponent" attributesClass="ImageComponentAttributes" naturalName="image component"?>
+        </xsd:element>
+        <xsd:element name="linkasset">
+                <xsd:complexType>
+                        <xsd:attributeGroup ref="SubstantiveAssetAttrs"/>
+                        <xsd:attribute name="deviceName" type="xsd:string" use="required"/>
+                </xsd:complexType>
+                <?imdapi elementClass="LinkAssetElement" assetClass="LinkAsset" componentClassBase="LinkComponent" attributesClass="LinkAssetAttributes" naturalName="link assets"?>
+        </xsd:element>
+        <xsd:element name="linkcomponent">
+                <xsd:complexType>
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element ref="linkasset"/>
+                        </xsd:choice>
+                        <xsd:attributeGroup ref="ComponentAttrs"/>
+                        <xsd:attribute name="fallbackTextComponentName" type="xsd:string"/>
+                </xsd:complexType>
+                <?imdapi elementClass="LinkComponentElement" componentClassBase="LinkComponent" attributesClass="LinkComponentAttributes" naturalName="link component"?>
+        </xsd:element>
+        <xsd:element name="metadata">
+                <xsd:complexType>
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element ref="assetgroup"/>
+                                <xsd:element ref="audiocomponent"/>
+                                <xsd:element ref="buttonimagecomponent"/>
+                                <xsd:element ref="chartcomponent"/>
+                                <xsd:element ref="dynamicvisualcomponent"/>
+                                <xsd:element ref="imagecomponent"/>
+                                <xsd:element ref="linkcomponent"/>
+                                <xsd:element ref="rolloverimagecomponent"/>
+                                <xsd:element ref="scriptcomponent"/>
+                                <xsd:element ref="textcomponent"/>
+                        </xsd:choice>
+                        <xsd:attribute name="version" type="xsd:string" fixed="2.3"/>
+                </xsd:complexType>
+                <?imdapi elementClass="MetaData" attributesClass="MetaDataAttributes" naturalName="meta data"?>
+        </xsd:element>
+        <xsd:element name="rolloverimagecomponent">
+                <xsd:complexType>
+                        <xsd:attributeGroup ref="ComponentAttrs"/>
+                        <xsd:attribute name="fallbackTextComponentName" type="xsd:string"/>
+                        <xsd:attribute name="normalImageComponentName" type="xsd:string"/>
+                        <xsd:attribute name="overImageComponentName" type="xsd:string"/>
+                </xsd:complexType>
+                <?imdapi elementClass="RolloverImageComponentElement" componentClassBase="RolloverImageComponent" attributesClass="RolloverImageComponentAttributes" naturalName="rollover image component"?>
+        </xsd:element>
+        <xsd:element name="scriptasset">
+                <xsd:complexType>
+                        <xsd:attributeGroup ref="SubstantiveAssetAttrs"/>
+                        <xsd:attribute name="deviceName" type="xsd:string" use="required"/>
+                        <xsd:attribute name="programmingLanguage" type="xsd:string" use="required"/>
+                        <xsd:attribute name="mimeType" type="xsd:string" use="required"/>
+                        <xsd:attribute name="valueType" type="xsd:NMTOKEN" use="required">
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                        <xsd:attribute name="characterSet" type="xsd:string" use="optional"/>
+                </xsd:complexType>
+                <?imdapi elementClass="ScriptAssetElement" assetClass="ScriptAsset" componentClassBase="ScriptComponent" attributesClass="ScriptAssetAttributes" naturalName="script assets"?>
+        </xsd:element>
+        <xsd:element name="scriptcomponent">
+                <xsd:complexType>
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element ref="scriptasset"/>
+                        </xsd:choice>
+                        <xsd:attributeGroup ref="ComponentAttrs"/>
+                </xsd:complexType>
+                <?imdapi elementClass="ScriptComponentElement" componentClassBase="ScriptComponent" attributesClass="ScriptComponentAttributes" naturalName="script component"?>
+        </xsd:element>
+        <xsd:element name="textasset">
+                <xsd:complexType>
+                        <xsd:attributeGroup ref="SubstantiveAssetAttrs"/>
+                        <xsd:attribute name="deviceName" type="xsd:string" use="required"/>
+                        <xsd:attribute name="encoding" use="required">
+                                <xsd:simpleType>
+                                        <xsd:restriction base="xsd:NMTOKEN">
+                                                <xsd:enumeration value="formValidator"/>
+                                                <xsd:enumeration value="plain"/>
+                                                <xsd:enumeration value="voiceXMLError"/>
+                                                <xsd:enumeration value="voiceXMLHelp"/>
+                                                <xsd:enumeration value="voiceXMLNuanceGrammar"/>
+                                                <xsd:enumeration value="voiceXMLPrompt"/>
+                                                <xsd:enumeration value="volantisMarkup"/>
+                                                <xsd:enumeration value="xmlMarkup"/>
+                                        </xsd:restriction>
+                                </xsd:simpleType>
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                        <xsd:attribute name="language" type="xsd:string" use="required"/>
+                        <xsd:attribute name="valueType" use="required">
+                                <xsd:simpleType>
+                                        <xsd:restriction base="xsd:NMTOKEN">
+                                                <xsd:enumeration value="literal"/>
+                                                <xsd:enumeration value="url"/>
+                                        </xsd:restriction>
+                                </xsd:simpleType>
+                                <?imdapiType attributeType="integer"?>
+                        </xsd:attribute>
+                </xsd:complexType>
+                <?imdapi elementClass="TextAssetElement" assetClass="TextAsset" componentClassBase="TextComponent" attributesClass="TextAssetAttributes" naturalName="text assets"?>
+        </xsd:element>
+        <xsd:element name="textcomponent">
+                <xsd:complexType>
+                        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element ref="textasset"/>
+                        </xsd:choice>
+                        <xsd:attributeGroup ref="ComponentAttrs"/>
+                        <xsd:attribute name="fallbackTextComponentName" type="xsd:string"/>
+                </xsd:complexType>
+                <?imdapi elementClass="TextComponentElement" componentClassBase="TextComponent" attributesClass="TextComponentAttributes" naturalName="text component"?>
+        </xsd:element>
+</xsd:schema>

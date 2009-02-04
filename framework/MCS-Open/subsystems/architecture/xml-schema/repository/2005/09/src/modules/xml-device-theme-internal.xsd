@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Zoe Jones (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="core-module-internal.xsd"/>
+    <xs:include schemaLocation="common-layout-theme-types-internal.xsd"/>
+    <xs:complexType name="EmptyType" mixed="false"/>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Simple Types
+     ! ************************************************************************
+     !-->
+    <xs:simpleType name="RestrictedStringType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AttributeName">
+        <xs:annotation>
+            <xs:documentation>An enumeration of all the possible attribute names.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="ElementName">
+        <xs:annotation>
+            <xs:documentation>The type for element names.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:NCName"/>
+    </xs:simpleType>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Complex Types
+     ! ************************************************************************
+     !-->
+    <xs:complexType name="UnaryAttributeSelector">
+        <xs:attribute name="attribute" type="AttributeName" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="BinaryAttributeSelector">
+        <xs:complexContent>
+            <xs:extension base="UnaryAttributeSelector">
+                <xs:attribute name="value" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--
+     ! ************************************************************************
+     !         Definitions of Theme Elements
+     ! ************************************************************************
+     !-->
+    <xs:element name="deviceTheme">
+        <xs:annotation>
+            <xs:documentation>The element which relates to DeviceTheme.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="false">
+            <xs:sequence>
+                <xs:element ref="rule" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="deviceName" type="DeviceNameType" use="required"/>
+            <xs:attribute name="externalStyleSheet" type="ExternalURIType" use="optional"/>
+            <xs:attribute name="importParentTheme" type="xs:boolean" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:group name="Selector">
+        <xs:choice>
+            <xs:element ref="subjectSelectorSequence"/>
+            <xs:element ref="combinedSelector"/>
+            <xs:element ref="invalidSelector"/>
+        </xs:choice>
+    </xs:group>
+    <xs:element name="rule">
+        <xs:complexType mixed="false">
+            <xs:sequence>
+                <xs:group ref="Selector" maxOccurs="unbounded"/>
+                <xs:element ref="styleProperties"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="UniversalNamespacePrefix">
+        <xs:annotation>
+            <xs:documentation>Matches all namespaces.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NamespacePrefix">
+        <xs:union memberTypes="UniversalNamespacePrefix xs:NCName"/>
+    </xs:simpleType>
+    <xs:complexType name="BasicSelectorSequence">
+        <xs:sequence>
+            <xs:choice minOccurs="0">
+                <xs:element ref="typeSelector"/>
+                <xs:element ref="universalSelector"/>
+            </xs:choice>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="classSelector" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="idSelector"/>
+            </xs:sequence>
+            <xs:sequence minOccurs="0">
+                <xs:element ref="attributeSelectors"/>
+            </xs:sequence>
+            <xs:element ref="structuralPseudoClassSelectors" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="CombinatorType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="descendant"/>
+            <xs:enumeration value="child"/>
+            <xs:enumeration value="direct-adjacent"/>
+            <xs:enumeration value="indirect-adjacent"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="contextualSelectorSequence" type="BasicSelectorSequence">
+        <xs:annotation>
+            <xs:documentation>The selector that defines the context for a combined selector.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="subjectSelectorSequence">
+        <xs:annotation>
+            <xs:documentation>The selector that matches the subject of a selector.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BasicSelectorSequence">
+                    <xs:sequence>
+                        <xs:element ref="pseudoElementSelectors" minOccurs="0"/>
+                        <xs:element ref="statefulPseudoClassSelectors" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="combinedSelector">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="contextualSelectorSequence"/>
+                <xs:choice>
+                    <xs:element ref="subjectSelectorSequence"/>
+                    <xs:element ref="combinedSelector"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="combinator" type="CombinatorType" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="typeSelector">
+        <xs:complexType>
+            <xs:attribute name="type" type="ElementName" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="universalSelector">
+        <xs:complexType>
+            <xs:attribute name="namespace" type="NamespacePrefix" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="classSelector">
+        <xs:complexType>
+            <xs:attribute name="class" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="ThemeClassNameType">
+                        <xs:maxLength value="127"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="invalidSelector" type="xs:string"></xs:element>
+    <xs:element name="idSelector">
+        <xs:complexType>
+            <xs:attribute name="id" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="ThemeIDType">
+                        <xs:maxLength value="127"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="attributeSelectors">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="set" type="UnaryAttributeSelector">
+                    <xs:annotation>
+                        <xs:documentation>Matches if the attribute is set.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="equals" type="BinaryAttributeSelector">
+                    <xs:annotation>
+                        <xs:documentation>Matches if the attribute is set to the specified value.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="contains-word" type="BinaryAttributeSelector">
+                    <xs:annotation>
+                        <xs:documentation>Matches if when the attribute's value is split into a list of (space separated) words the resulting list contains the specified value.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="language-match" type="BinaryAttributeSelector">
+                    <xs:annotation>
+                        <xs:documentation>Matches if when the attribute's value is split into a list of (dash separated) words the resulting list starts with the specified value. This is intended primarily for language sub code matching.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="starts-with" type="BinaryAttributeSelector">
+                    <xs:annotation>
+                        <xs:documentation>Matches if the attribute value starts with the specified value.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="ends-with" type="BinaryAttributeSelector">
+                    <xs:annotation>
+                        <xs:documentation>Matches if the attribute value ends with the specified value.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="contains" type="BinaryAttributeSelector">
+                    <xs:annotation>
+                        <xs:documentation>Matches if the attribute value contains the specified value.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="structuralPseudoClassSelectors">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="first-child" type="EmptyType"/>
+                <xs:element name="nth-child">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <!--
+                             ! The value can be any one of the following
+                             !  an+b - where a and b can be any integer.
+                             !  an   - where a is a positive (non zero) integer.
+                             !  b    - where b is a positive (non zero) integer.
+                             !  odd  - which is equivalent to 2n+1
+                             !  even - which is equivalent to 2n
+                             !-->
+                            <xs:pattern value="(-?[0-9]+n[+\-][0-9]+)|([1-9][0-9]*n)|([1-9][0-9]*)|odd|even"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="pseudoElementSelectors">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="first-line" type="EmptyType"/>
+                <xs:element name="first-letter" type="EmptyType"/>
+                <xs:element name="mcs-shortcut" type="EmptyType"/>
+                <xs:element name="after" type="EmptyType"/>
+                <xs:element name="before" type="EmptyType"/>
+                <xs:element name="marker" type="EmptyType"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="statefulPseudoClassSelectors">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0">
+                    <xs:element name="link" type="EmptyType"/>
+                    <xs:element name="visited" type="EmptyType"/>
+                </xs:choice>
+                <xs:sequence>
+                    <xs:element name="active" type="EmptyType" minOccurs="0"/>
+                    <xs:element name="focus" type="EmptyType" minOccurs="0"/>
+                    <xs:element name="hover" type="EmptyType" minOccurs="0"/>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="styleProperties">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="standard-css-properties" minOccurs="0"/>
+                <xs:element ref="mcs-extension-properties" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <!-- ======================================================================
+     !           Attribute Groups
+     ! ==================================================================== -->
+    <xs:attributeGroup name="StyleValueAttributes">
+        <xs:attribute name="priority" use="optional">
+            <xs:annotation>
+                <xs:documentation>Default: normal</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="normal"/>
+                    <xs:enumeration value="important"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <!-- ======================================================================
+     !           Elements
+     ! ==================================================================== -->
+    <xs:element name="Expression" abstract="true">
+        <xs:annotation>
+            <xs:documentation>The base for all elements that are expressions.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="angle">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:double">
+                    <xs:attribute name="units" type="AngleUnitsEnumeration" use="optional"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="colorPercentages">
+        <xs:complexType>
+            <xs:attribute name="red" type="xs:double"/>
+            <xs:attribute name="green" type="xs:double"/>
+            <xs:attribute name="blue" type="xs:double"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="colorName" type="ColorNames"/>
+    <xs:element name="colorRGB" type="RGBColorType"/>
+    <xs:element name="functionCall" substitutionGroup="Expression">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="Expression"/>
+            </xs:sequence>
+            <xs:attribute name="name" type="CSSIdentToken"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="identifier" type="CSSIdentToken" substitutionGroup="Expression"/>
+    <xs:element name="inherit" type="EmptyType"/>
+    <xs:element name="integer" type="xs:integer" substitutionGroup="Expression"/>
+    <xs:element name="invalidStyle" type="xs:string"/>
+    <xs:element name="length">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:double">
+                    <xs:attribute name="units" type="LengthUnitsEnumeration" use="optional"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mcsComponentURI" type="PolicyReferenceType"/>
+    <xs:element name="number" type="xs:double"/>
+    <xs:element name="percentage" type="xs:double"/>
+    <xs:element name="string" type="xs:string" substitutionGroup="Expression"/>
+    <xs:element name="time">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:double">
+                    <xs:attribute name="units" type="TimeUnitsEnumeration" use="optional"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="uri" type="ExternalURIType"/>
+    <!-- ======================================================================
+     !           Types
+     ! ==================================================================== -->
+    <xs:complexType name="BorderColorType">
+        <xs:choice>
+            <xs:element ref="inherit" minOccurs="0"/>
+            <xs:element ref="colorPercentages" minOccurs="0"/>
+            <xs:element ref="colorName" minOccurs="0"/>
+            <xs:element ref="colorRGB" minOccurs="0"/>
+        </xs:choice>
+        <xs:attributeGroup ref="StyleValueAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="BorderStyleType">
+        <xs:choice>
+            <xs:element ref="inherit" minOccurs="0"/>
+            <xs:element name="keyword" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="none"/>
+                        <xs:enumeration value="hidden"/>
+                        <xs:enumeration value="dotted"/>
+                        <xs:enumeration value="dashed"/>
+                        <xs:enumeration value="solid"/>
+                        <xs:enumeration value="double"/>
+                        <xs:enumeration value="groove"/>
+                        <xs:enumeration value="ridge"/>
+                        <xs:enumeration value="inset"/>
+                        <xs:enumeration value="outset"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element ref="length" minOccurs="0"/>
+        </xs:choice>
+        <xs:attributeGroup ref="StyleValueAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="BorderWidthType">
+        <xs:choice>
+            <xs:element ref="inherit" minOccurs="0"/>
+            <xs:element name="keyword" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="thin"/>
+                        <xs:enumeration value="medium"/>
+                        <xs:enumeration value="thick"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element ref="length" minOccurs="0"/>
+        </xs:choice>
+        <xs:attributeGroup ref="StyleValueAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="MarginWidthType">
+        <xs:choice>
+            <xs:element ref="inherit" minOccurs="0"/>
+            <xs:element name="keyword" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="auto"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element ref="length" minOccurs="0"/>
+            <xs:element ref="percentage" minOccurs="0"/>
+        </xs:choice>
+        <xs:attributeGroup ref="StyleValueAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="PaddingWidthType">
+        <xs:choice>
+            <xs:element ref="inherit" minOccurs="0"/>
+            <xs:element ref="length" minOccurs="0"/>
+            <xs:element ref="percentage" minOccurs="0"/>
+        </xs:choice>
+        <xs:attributeGroup ref="StyleValueAttributes"/>
+    </xs:complexType>
+    <xs:complexType name="PositionType">
+        <xs:choice>
+            <xs:element ref="inherit" minOccurs="0"/>
+            <xs:element name="keyword" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="auto"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element ref="length" minOccurs="0"/>
+            <xs:element ref="percentage" minOccurs="0"/>
+        </xs:choice>
+        <xs:attributeGroup ref="StyleValueAttributes"/>
+    </xs:complexType>
+    <!-- ======================================================================
+     !           Properties
+     ! ==================================================================== -->
+    <xs:element name="standard-css-properties"/>
+    <!-- ======================================================================
+     !           MCS Properties
+     ! ==================================================================== -->
+    <xs:element name="mcs-extension-properties"/>
+</xs:schema>

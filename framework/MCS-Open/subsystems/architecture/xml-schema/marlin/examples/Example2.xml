@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ ! $Header: /cvs/architecture/architecture/xml-schema/marlin/examples/Example2.xml,v 1.1 2003/11/21 10:34:13 pduffin Exp $
+ ! ============================================================================
+ ! (c) Volantis Systems Ltd 2001. 
+ ! ============================================================================
+ ! Change History:
+ !
+ ! Date         Who             Description
+ ! =========    =============== ===============================================
+ ! 14-Apr-04    Paul            Updated namespace and schema attributes and
+ !                              added this change history.
+ ! ======================================================================== -->
+<!--
+ ! ****************************************************************************************************************************
+ ! Notice the namespace definitions in the canvas statement for this markup. The default (no prefix) namespace
+ ! is that for the cdm elements themselves. The prefix vtim (in this example, though it can be anything you like)
+ ! is used for the integration module statements, in this case the invoke element and its children
+ ! ****************************************************************************************************************************
+ !-->
+<remotePolicyResponse xmlns="http://www.volantis.com/xmlns/marlin-cdm"
+                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xmlns:vtim="http://www.volantis.com/xmlns/marlin-im"
+                      xsi:schemaLocation="http://www.volantis.com/xmlns/marlin-rpdm
+http://www.volantis.com/schema/latest/marlin-rpdm-internal.xsd"
+                      version="2.8"
+                      rootURL="http://thisserver.com/stuff/that"
+                      errorCode="0">
+    <marlinMarkup name="george">
+        <canvas layoutName="fred">
+            <pane name="a1">
+                <p>This is some stuff</p>
+                <p>This is some more <b>
+                    <vtim:invoke plugin-name="this" method-name="process">
+                        <vtim:arguments>
+                            <vtim:argument name="n" value="v"/>
+                        </vtim:arguments>
+                    </vtim:invoke>
+                   bold text, after invocation of a method.</b> We can add the
+                    <vtim:invoke plugin-name="this" method-name="process">
+                        <vtim:arguments>
+                            <vtim:argument name="elephant" value="trunk"/>
+                        </vtim:arguments>
+                    </vtim:invoke> wherever we like!
+                </p>
+            </pane>
+        </canvas>
+    </marlinMarkup>
+</remotePolicyResponse>

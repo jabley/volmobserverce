@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Paul Duffin (Volantis) -->
+<xs:schema targetNamespace="http://www.w3.org/2002/xforms" xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2002/xforms"
+    xmlns:xh2="http://www.w3.org/2002/06/xhtml2"
+    xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:import namespace="http://www.w3.org/2002/06/xhtml2" schemaLocation="xhtml2.xsd"/>
+    <xs:import namespace="http://www.w3.org/2001/xml-events" schemaLocation="../../xdime-common/src/xml-events.xsd"/>
+    <xs:include schemaLocation="../../xdime-common/src/modules/xforms-common-base.xsd"/>
+    <xs:include schemaLocation="modules/xforms-core-module.xsd"/>
+    <xs:include schemaLocation="../../xdime-common/src/modules/xforms-controls-module.xsd"/>
+    <xs:include schemaLocation="../../xdime-common/src/modules/xforms-group-module.xsd"/>
+</xs:schema>
