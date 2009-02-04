@@ -1,0 +1,19 @@
+<ivy-module version="2.0">
+  <info organisation="com.volantis" module="gbuild.doclet15" revision="0.8" status="integration" publication="20090122094712"/>
+  <configurations>
+    <conf name="main-compile-only" visibility="public" description="Dependencies required for compiling against the API only, these dependencies are not used at runtime"/>
+    <conf name="test-compile-only" visibility="public" description="Dependencies required for compiling against test support only, these dependencies are not used at runtime"/>
+    <conf name="main-compile-execute" visibility="public" description="Dependencies required for compiling against the API and for executing"/>
+    <conf name="test-compile-execute" visibility="public" description="Dependencies required for compiling against test support and for executing"/>
+    <conf name="main-execute-only" visibility="public" description="Dependencies required for executing the main artifact"/>
+    <conf name="test-execute-only" visibility="public" description="Dependencies required for executing the test support artifact"/>
+    <conf name="sources" visibility="public" description="Source for the API, implementation and support classes"/>
+    <conf name="info" visibility="public" description="contains information about the main artifact; license text, source site, etc."/>
+  </configurations>
+  <publications>
+    <artifact conf="main-execute-only" name="gbuild.doclet15" type="jar" ext="jar"/>
+  </publications>
+  <dependencies>
+    <dependency name="gbuild.doclet" org="com.volantis" rev="0.8" changing="true" conf="main-execute-only->main-compile-execute,main-execute-only;test-execute-only->test-compile-execute,test-execute-only;sources->sources;info->info"/>
+  </dependencies>
+</ivy-module>

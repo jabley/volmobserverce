@@ -1,0 +1,21 @@
+<ivy-module version="2.0">
+  <info organisation="com.volantis" module="gbuild.xslt" revision="0.8" status="integration" publication="20090122094712"/>
+  <configurations>
+    <conf name="main-compile-only" visibility="public" description="Dependencies required for compiling against the API only, these dependencies are not used at runtime"/>
+    <conf name="test-compile-only" visibility="public" description="Dependencies required for compiling against test support only, these dependencies are not used at runtime"/>
+    <conf name="main-compile-execute" visibility="public" description="Dependencies required for compiling against the API and for executing"/>
+    <conf name="test-compile-execute" visibility="public" description="Dependencies required for compiling against test support and for executing"/>
+    <conf name="main-execute-only" visibility="public" description="Dependencies required for executing the main artifact"/>
+    <conf name="test-execute-only" visibility="public" description="Dependencies required for executing the test support artifact"/>
+    <conf name="sources" visibility="public" description="Source for the API, implementation and support classes"/>
+    <conf name="info" visibility="public" description="contains information about the main artifact; license text, source site, etc."/>
+  </configurations>
+  <publications>
+    <artifact conf="main-execute-only" name="gbuild.xslt" type="jar" ext="jar"/>
+  </publications>
+  <dependencies>
+    <dependency name="ant" org="org.apache" rev="1.7.0" changing="false" conf="main-execute-only->master,compile,runtime;sources->sources;info->info"/>
+    <dependency name="api" org="nu.xom" rev="1.1" changing="false" conf="main-execute-only->master,compile,runtime;sources->sources;info->info"/>
+    <dependency name="saxon" org="net.sourceforge" rev="6.5.3" changing="false" conf="main-execute-only->master,compile,runtime;sources->sources;info->info"/>
+  </dependencies>
+</ivy-module>

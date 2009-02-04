@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/internal/sql" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="http://www.volantis.com/xmlns/internal/sql" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:element name="constraint">
+        <xs:annotation>
+            <xs:documentation>A database constraint</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="primary-key"/>
+                <xs:enumeration value="unique"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="schema">
+        <xs:annotation>
+            <xs:documentation>The container for the database schema</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="sql:table" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="table">
+        <xs:annotation>
+            <xs:documentation>A Database Table</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="sql:name"/>
+                <xs:element ref="sql:shortname" minOccurs="0"/>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="sql:field" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="sql:index" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="index">
+        <xs:annotation>
+            <xs:documentation>An index for a group of fields</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="sql:name" minOccurs="1"/>
+                <xs:element ref="sql:field" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="field">
+        <xs:annotation>
+            <xs:documentation>A Field in a table</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="sql:name"/>
+                <xs:element ref="sql:shortname" minOccurs="0"/>
+                <xs:element ref="sql:datatype"/>
+                <xs:element ref="sql:size"/>
+                <xs:element ref="sql:default" minOccurs="0"/>
+                <xs:element ref="sql:nullable" minOccurs="0"/>
+                <xs:element ref="sql:constraint" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="name" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>The name of the entity</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="datatype">
+        <xs:annotation>
+            <xs:documentation>The type of the field</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="NUMERIC"/>
+                <xs:enumeration value="VARCHAR"/>
+                <xs:enumeration value="DATE"/>
+                <xs:enumeration value="BOOLEAN"/>
+                <xs:enumeration value="TIMESTAMP"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="size">
+        <xs:annotation>
+            <xs:documentation>The size of the data type</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value=""/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="default" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>The default value for the field</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="shortname" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>The short name of the entity</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="nullable" type="xs:boolean">
+        <xs:annotation>
+            <xs:documentation>Is the field nullable</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+</xs:schema>

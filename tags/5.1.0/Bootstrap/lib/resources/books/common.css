@@ -1,0 +1,34 @@
+table {
+    border-width: 1px;
+    border-spacing: 2px;
+    border-color: gray;
+    border-style: inset;
+    background-color: #FFFFF0;
+    width: 100%;
+    empty-cells: show;
+}
+
+thead {
+    background-color: lightblue;
+}
+
+th {
+    border-width: 1px;
+    border-color: gray;
+    border-style: inset;
+}
+
+td {
+    border-width: 1px;
+    border-color: gray;
+    border-style: inset;
+}
+
+object {
+    width: 100%;
+    height: 100%;
+}
+
+.term {
+    font-weight: bold
+}
