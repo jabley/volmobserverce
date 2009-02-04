@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<canvas layoutName="layoutName" expected="http://penguin:8090/volantis/layout/layoutName">
+<a href="http://skate:8080/policy/file/link.html" expected="file/link.html"/>
+<a href="http://notthepolicyserver/policy/file/link.html" expected="http://notthepolicyserver/policy/file/link.html"/>
+<canvas theme="themeName" expected="http://penguin:8090/volantis/theme/themeName"/>
+<img src="image" expected="http://penguin:8090/volantis/component/image"/>
+<img src="http://server/image" expected="http://server/image"/>
+<menuitem href="http://skate:8080/policy/file/link.html" expected="file/link.html"/>
+<menuitem href="http://notthepolicyserver/policy/file/link.html" expected="http://notthepolicyserver/policy/file/link.html"/>
+<mmflash name="flash" expected="http://penguin:8090/volantis/component/flash"/>
+<mmflash name="http://server/flash" expected="http://server/flash"/>
+<montage theme="themeName" expected="http://penguin:8090/volantis/theme/themeName"/>
+<montage layoutName="layoutName" expected="http://penguin:8090/volantis/layout/layoutName"/>
+<quicktime name="quicktime" expected="http://penguin:8090/volantis/component/quicktime"/>
+<quicktime name="http://server/quicktime" expected="http://server/quicktime"/>
+<realaudio name="realaudio" expected="http://penguin:8090/volantis/component/realaudio"/>
+<realaudio name="http://server/realaudio" expected="http://server/realaudio"/>
+<realvideo name="realvideo" expected="http://penguin:8090/volantis/component/realvideo"/>
+<realvideo name="http://server/realvideo" expected="http://server/realvideo"/>
+<script src="script" expected="http://penguin:8090/volantis/component/script"/>
+<script src="http://server/script" expected="http://server/script"/>
+<segment src="segment" expected="http://penguin:8090/volantis/component/segment"/>
+<segment src="http://server/segment" expected="http://server/segment"/>
+<winaudio name="winaudio" expected="http://penguin:8090/volantis/component/winaudio"/>
+<winaudio name="http://server/winaudio" expected="http://server/winaudio"/>
+<winvideo name="winvideo" expected="http://penguin:8090/volantis/component/winvideo"/>
+<winvideo name="http://server/winvideo" expected="http://server/winvideo"/>
+<xfform action="http://skate:8080/policy/file/action.html" expected="file/action.html"/>
+<xfform action="http://notthepolicyserver/policy/file/action.html" expected="http://notthepolicyserver/policy/file/action.html"/>
+</canvas>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6416/1	ianw	VBM:2004120703 New Build
+
+ ===========================================================================
+-->

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<merge-report
+        xmlns="http://www.volantis.com/xmlns/device/merge-report"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.volantis.com/xmlns/device/merge-report http://www.volantis.com/schema/device-repository/v3.0/device-merge-report.xsd"
+        oldRevision="old revision" newRevision="new revision">
+    <policy-definitions>
+        <categories/>
+        <policies/>
+    </policy-definitions>
+    <devices>
+        <device name="PocketPC2002-PIE" status="updated">
+            <hierarchy>
+                <device name="Master"/>
+                <device name="PC"/>
+            </hierarchy>
+            <identification>
+                <header status="created">
+                    <new>
+                        <userAgentPattern>
+                            <regularExpression>Mozilla/2\.0 (compatible; MSIE 3\.02; Windows CE; PPC.*</regularExpression>
+                        </userAgentPattern>
+                        <userAgentPattern>
+                            <regularExpression>Mozilla/2\.0 (compatible; MSIE 3\.02; Windows CE; 240x320; PPC).*</regularExpression>
+                        </userAgentPattern>
+                    </new>
+                </header>
+            </identification>
+            <policies/>
+        </device>
+        <device name="PocketPC2002-Phone" status="updated">
+            <hierarchy>
+                <device name="Master"/>
+                <device name="PC"/>
+            </hierarchy>
+            <identification>
+                <header status="created">
+                    <new>
+                        <headerPattern name="ua-voice">
+                            <regularExpression>TRUE.*PocketPC2002-PIE</regularExpression>
+                        </headerPattern>
+                    </new>
+                </header>
+            </identification>
+            <policies/>
+        </device>
+    </devices>
+</merge-report>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 25-May-05	8527/1	amoore	VBM:2005052402 Modified location of device-merge-report.xsd in JDOMFactory and included actual file in volantis-mcs-common.jar
+
+ 25-May-05	8496/1	amoore	VBM:2005052402 Modified location of device-merge-report.xsd in JDOMFactory and included actual file in volantis-mcs-common.jar
+
+ 29-Apr-05	7361/3	geoff	VBM:2005031007 Provide device repository merge report
+
+ 29-Apr-05	7883/2	doug	VBM:2005041517 Added hierarchy reporting to the device merge reporter
+
+ 29-Apr-05	7361/1	geoff	VBM:2005031007 Provide device repository merge report
+
+ 28-Apr-05	7834/1	matthew	VBM:2005041518 Add support for policy and category definition events in the device repository merge
+
+ 27-Apr-05	7645/1	geoff	VBM:2005041309 Device repository merge report: mergeable document event generation
+
+ ===========================================================================
+-->
