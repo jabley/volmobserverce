@@ -1,3 +1,0 @@
-Bundle-Name=Volantis Media Access Proxy: Agent
-DynamicImport-Package=localization.map
-Service-Component=OSGI-INF/com.volantis.map.agent.MediaAgent.xml

@@ -1,6 +1,0 @@
-<xfragment>
-    <listeners>
-        <listener installer="SummaryLoggerInstallerListener"/>
-        <listener installer="AntActionInstallerListener"/>
-    </listeners>
-</xfragment>

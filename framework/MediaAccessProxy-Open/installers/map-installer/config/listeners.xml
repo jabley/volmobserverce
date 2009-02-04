@@ -1,5 +1,0 @@
-<xfragment>
-    <listeners>
-        <listener installer="SummaryLoggerInstallerListener"/>
-    </listeners>
-</xfragment>

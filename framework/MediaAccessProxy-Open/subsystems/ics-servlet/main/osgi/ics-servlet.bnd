@@ -1,3 +1,0 @@
-Bundle-Name=Volantis Media Access Proxy: ICS Web Service
-DynamicImport-Package=localization.map
-Service-Component=OSGI-INF/com.volantis.map.webservice.ICSActivator.xml

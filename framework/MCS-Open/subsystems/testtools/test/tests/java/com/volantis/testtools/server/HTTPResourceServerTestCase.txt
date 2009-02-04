@@ -1,4 +1,0 @@
-HTTPResourceServerTestCase (VBM:2003021303)
---------------------------
-
-Success

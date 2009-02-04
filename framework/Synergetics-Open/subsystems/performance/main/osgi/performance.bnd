@@ -1,5 +1,0 @@
-# List the packages that may be dynamically loaded.
-DynamicImport-Package=\
-com.volantis.synergetics.performance.arm;version=1.0
-
-Bundle-Name=Volantis Synergetics Performance

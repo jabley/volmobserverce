@@ -1,8 +1,0 @@
-<xfragment>
-    <pack name="Example Service" required="no" id="example">
-        <description>A simple plugin service that just returns the request url</description>
-        <fileset dir="packs/example" targetdir="${INSTALL_PATH}">
-            <include name="**"/>
-        </fileset>
-    </pack>
-</xfragment>

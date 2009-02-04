@@ -1,9 +1,0 @@
-<xfragment>
-    <pack name="Standard Transcoder Interface" preselected="no" required="no" id="sti">
-        <description>The Standard Transcoder Service (STI) plugin allows Media Access Proxy to convert simple get requests into complex STI requests that can be directed to a specified STI provider.</description>
-        <fileset dir="packs/sti" targetdir="${INSTALL_PATH}">
-            <include name="**"/>
-        </fileset>
-        <parsable targetfile="${INSTALL_PATH}/webapps/map/WEB-INF/osgi/config/com.volantis.map.sti.impl.STIOperation"/>
-    </pack>
-</xfragment>

@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<root xmlns:xyz="http://acme.com/" xmlns:diselect="http://www.w3.org/2004/06/diselect" diselect:selidname="xyz:myid">
-    <abc xmlns:xyz="http://other.com/" xmlns="http://acme.com/">
-        <qrs diselect:selid="qrs"/>
-    </abc>
-</root>

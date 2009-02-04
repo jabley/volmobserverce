@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<root>
-    <diselect:select
-        xmlns:diselect="http://www.w3.org/2004/06/diselect"
-        expr="false()">
-        <diselect:when expr="true()"><hideme/></diselect:when>
-    </diselect:select>
-</root>

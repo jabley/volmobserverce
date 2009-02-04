@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<imageComponent fallbackTextComponentName="txt.vtc"
-    xmlns="http://www.volantis.com/xmlns/2005/09/marlin-lpdm"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.volantis.com/xmlns/2005/09/marlin-lpdm
-    http://www.volantis.com/schema/2005/09/marlin-lpdm.xsd"/>
-

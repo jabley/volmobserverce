@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# Assumed that this is run from the bin directory and that there is
-# a ../lib directory with the required jar files in.
-
-TOOLS_LIB=../lib
-
-java -jar $TOOLS_LIB/mcs-device-repository-cli.jar $@
-

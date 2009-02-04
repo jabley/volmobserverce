@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
-
-<xfragment>
-     <variables>
-         <variable name="mcsMAPUseCache" value="off"/>
-         <variable name="InstallerFrame.cleanAllAtInterrupt" value="no"/>
-      </variables> 
-</xfragment>

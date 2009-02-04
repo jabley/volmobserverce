@@ -1,8 +1,0 @@
-<xfragment>
-        <authors>
-            <author name="Volantis Systems Ltd." email="info@volantis.com"/>
-        </authors>
-        <url>http://www.volantis.com/</url>
-        <summarylogfilepath>$INSTALL_PATH/Uninstaller/MCSInstallSummary.html</summarylogfilepath>
-</xfragment>
-

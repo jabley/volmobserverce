@@ -1,5 +1,0 @@
-<xfragment>
-    <variables>
-        <variable name="InstallerFrame.cleanAllAtInterrupt" value="no"/>
-    </variables>
-</xfragment>

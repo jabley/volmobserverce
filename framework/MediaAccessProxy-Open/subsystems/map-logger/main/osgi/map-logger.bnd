@@ -1,3 +1,0 @@
-Bundle-Name=Volantis Media Access Proxy: Logging
-DynamicImport-Package=localization.map
-Service-Component=OSGI-INF/com.volantis.map.logging.impl.LoggingActivator.xml

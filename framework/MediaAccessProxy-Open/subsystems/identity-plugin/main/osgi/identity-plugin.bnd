@@ -1,3 +1,0 @@
-Bundle-Name=Volantis Media Access Proxy: Identity Operation Engine Plugin
-DynamicImport-Package=localization.map
-Service-Component=OSGI-INF/com.volantis.map.idenity.impl.IdentityOperation.xml

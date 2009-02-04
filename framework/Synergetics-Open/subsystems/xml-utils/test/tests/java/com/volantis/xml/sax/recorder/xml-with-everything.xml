@@ -1,5 +1,0 @@
-<root xmlns="hello" xmlns:abc="goodbye" abc:a="1234">
-    <element b="9876" c="fred">some content</element>
-    <abc:element>another element</abc:element>
-    <?processing-instruction data?>
-</root>

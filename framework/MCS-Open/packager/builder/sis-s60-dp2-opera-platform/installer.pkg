@@ -1,5 +1,0 @@
-&EN
-#{"${application.name}"},(${application.UID}),${version.major},${version.minor},${version.revision}, TYPE=SISAPP
-(${platformUID}), 0, 0, 0, {"${productUID}"}
-${sis.files.list}
-"home.html"-"!:\System\Apps\op\data\home.html"

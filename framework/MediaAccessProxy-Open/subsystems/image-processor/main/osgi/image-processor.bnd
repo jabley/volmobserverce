@@ -1,3 +1,0 @@
-Bundle-Name=Volantis Media Access Proxy: Image Processing Engine
-DynamicImport-Package=localization.map
-Service-Component=OSGI-INF/com.volantis.map.ics.imageprocessor.impl.ICSOperation.xml

@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<root xmlns:diselect="http://www.w3.org/2004/06/diselect">
-    <abc xmlns="http://acme.com/">
-        <qrs myid="abc"/>
-    </abc>
-</root>

@@ -1,8 +1,0 @@
-Bundle-Name=Volantis Synergetics: Runtime
-
-# Synergetics can be used outside web container (for example in CLI scripts)
-# so javax.servlet packages are optional
-Import-Package=\
-javax.servlet.*;resolution:=optional,\
-*
-

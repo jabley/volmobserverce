@@ -1,8 +1,0 @@
-<xfragment>
-	<pack name="Documentation" required="no" id="docs">
-		<description>Documentation</description>
-		<fileset dir="packs/docs" targetdir="${INSTALL_PATH}">
-			<include name="**"/>
-		</fileset>
-	</pack>
-</xfragment>

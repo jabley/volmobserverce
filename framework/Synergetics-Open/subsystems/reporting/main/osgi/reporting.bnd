@@ -1,2 +1,0 @@
-Bundle-Activator=com.volantis.synergetics.reporting.impl.osgi.ReportServiceActivator
-Bundle-Name=Volantis Synergetics Reporting Service
