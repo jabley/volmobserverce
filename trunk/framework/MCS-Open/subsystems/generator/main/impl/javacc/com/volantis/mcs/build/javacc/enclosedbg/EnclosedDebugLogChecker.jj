@@ -1,0 +1,196 @@
+/**
+ * ----------------------------------------------------------------------------
+ * $Header: /src/voyager/com/volantis/mcs/build/javacc/enclosedbg/EnclosedDebugLogChecker.jj,v 1.2 2003/04/25 08:51:27 sumit Exp $
+ * ----------------------------------------------------------------------------
+ * (c) Volantis Systems Ltd 2003.
+ * ----------------------------------------------------------------------------
+ * Change History:
+ *
+ * Date         Who             Description
+ * -----------  --------------- -----------------------------------------------
+ * 18-Mar-2003  sumit           VBM:2003022826 - JavaCC compiler spec to check  
+ *								for lonely logger.debug statements outside if{}
+ * 24-Apr-2003  Sumit           VBM:2003042211 - Fixed issue with logger.debug
+ *                              within a nested {} block
+ * ----------------------------------------------------------------------------
+ */
+ 
+
+/**
+ * If you modify this file make sure you do not change the order of definition
+ * of the tokens as it will affect parsing. Some tokens can be matched by other
+ * wider pattern matching tokens and threefore get swallowed up mesing up
+ * the parsing of the file
+ */
+ 
+PARSER_BEGIN(EnclosedDebugLogChecker)
+
+package com.volantis.mcs.build.javacc.enclosedbg;
+
+import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class EnclosedDebugLogChecker {
+
+  public static void main(String args[]) throws ParseException {
+    EnclosedDebugLogChecker parser = null;
+    InputStream toParse = System.in;
+    int returnVal=0;
+    try {
+      if(args.length> 0) {
+        System.err.println("Parsing "+args[0]);
+        toParse = new FileInputStream(args[0]);
+      }
+	    parser = new EnclosedDebugLogChecker(toParse);
+	  } catch (IOException ie) {
+      System.out.println(ie.toString());
+      System.exit(1);
+	  }
+    while(true) {
+      try {
+        parser.Input();
+        break;
+      } catch (ParseException e) {
+      	returnVal=1;
+        System.err.println(e.getMessage());
+        parser.getNextToken();
+        continue;
+      }
+    }
+    System.exit(returnVal);
+  }
+}
+
+PARSER_END(EnclosedDebugLogChecker)
+
+TOKEN_MGR_DECLS :
+{
+  static StringBuffer currentColumn = new StringBuffer();
+  static int braceCount = 0;
+}
+
+/* COMMENTS - plagiarised from the JavaCC java specification file*/
+
+MORE :
+{
+  "//" : IN_SINGLE_LINE_COMMENT
+|
+  <"/**" ~["/"]> { input_stream.backup(1); } : IN_FORMAL_COMMENT
+|
+  "/*" : IN_MULTI_LINE_COMMENT
+}
+
+<IN_SINGLE_LINE_COMMENT>
+SPECIAL_TOKEN :
+{
+  <SINGLE_LINE_COMMENT: "\n" | "\r" | "\r\n" > : DEFAULT
+}
+
+<IN_FORMAL_COMMENT>
+SPECIAL_TOKEN :
+{
+  <FORMAL_COMMENT: "*/" > : DEFAULT
+}
+
+<IN_MULTI_LINE_COMMENT>
+SPECIAL_TOKEN :
+{
+  <MULTI_LINE_COMMENT: "*/" > : DEFAULT
+}
+
+<IN_SINGLE_LINE_COMMENT,IN_FORMAL_COMMENT,IN_MULTI_LINE_COMMENT>
+MORE :
+{
+  < ~[] > 
+}
+
+/* We want access to all the java code in the file but we aren't interested in parsing it */
+TOKEN :
+{
+	<NORMAL_SOURCE: ~[] > 
+}
+
+TOKEN:
+{
+  <logger_debug : "logger.debug" >
+}
+
+
+/* We need a token to test for an enclosed block. If we find it
+pop into the ENCLOSED_BLOCK state */
+
+TOKEN:
+{
+	<ENCLOSED_BLOCK_OPEN: "logger.isDebugEnabled">
+	: ENCLOSED_BLOCK
+}
+
+/* In ENCLOSED_BLOCK state grab everything except the trailing } 
+ If we find that then pop into the ENCLOSED_BLOCK_END state */
+
+/* If we find a { then we increment the counter. NOTE: the order of the
+ definitions of this grammer is VERY important. This is before all other
+ ENCLOSED_BLOCK state tokens so it will be matched before PRE_RBRACE_BODY.
+ If it was after it would get swalllowed up and the parser would never see it
+ */
+ 
+<ENCLOSED_BLOCK>
+SPECIAL_TOKEN:
+{
+	<PRE_LBRACE: (["{"]) > { 
+		braceCount++;
+	} : ENCLOSED_BLOCK
+}
+
+<ENCLOSED_BLOCK>
+MORE:
+{
+	<PRE_RBRACE_BODY: (~["}"] ) > 
+}
+	
+/* We have now reached the end of the ENCLOSED_BLOCK so pop back into DEFAULT
+after creating a token of the code we have so far */
+<ENCLOSED_BLOCK>
+TOKEN:
+{
+	<ENCLOSED_LOGGER_DEBUG: (["}"])> {
+   		if(--braceCount==0) {
+   			SwitchTo(DEFAULT);
+   		} else {
+   			SwitchTo(ENCLOSED_BLOCK);
+   		}
+	}
+}
+
+void Input() :
+{}
+{
+    ( Process() )* <EOF>
+}
+
+/* We are looking for normal source or enclosed logger.debugs. We should
+not find lonely logger.debugs */
+
+void Process() :
+{ 
+}
+
+{
+    (<NORMAL_SOURCE> | <ENCLOSED_BLOCK_OPEN> | <ENCLOSED_LOGGER_DEBUG> ) 
+}
+
+/*
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 19-May-05	8320/4	allan	VBM:2005051805 Return a 304 when there are no changes to a bundle
+
+ 18-May-05	8262/3	allan	VBM:2005051610 Fixes for ResourceSetBuilderProcess
+
+ 09-Dec-04	6417/1	philws	VBM:2004120703 Committing tidy up
+
+ ===========================================================================
+*/
