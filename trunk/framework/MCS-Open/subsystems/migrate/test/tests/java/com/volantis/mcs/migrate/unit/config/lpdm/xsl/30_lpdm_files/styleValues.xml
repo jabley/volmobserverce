@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<lpdm:theme xmlns:lpdm="http://www.volantis.com/xmlns/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/marlin-lpdm http://www.volantis.com/schema/v3.0/marlin-lpdm.xsd">
+    <lpdm:deviceTheme deviceName="Master">
+        <lpdm:rule>
+            <lpdm:simpleSelectorSequence>
+                <lpdm:classSelector class="none"/>
+            </lpdm:simpleSelectorSequence>
+            <lpdm:styleProperties>
+                <!-- Angle with and without units -->
+                <lpdm:mcs-chart-x-axis-angle angle="5" angleUnits="grad"/>
+                <lpdm:mcs-chart-y-axis-angle angle="10"/>
+
+                <!-- Color of all types -->
+                <lpdm:border-top-color rgb="#123456"/>
+                <lpdm:border-left-color color="green"/>
+                <lpdm:border-bottom-color red="5.0" green="6.0" blue="7.0"/>
+                <lpdm:border-right-color red="4.0"/>
+
+                <!-- Inherit -->
+                <lpdm:color priority="important" inherit="true"/>
+
+                <!-- Integer -->
+                <lpdm:mcs-columns integer="5"/>
+
+                <!-- Invalid -->
+                <lpdm:display invalid="Some invalid style value"/>
+
+                <!-- Keywords -->
+                <lpdm:background-color keyword="transparent"/>
+
+                <!-- Length with and without units -->
+                <lpdm:width length="10.0" lengthUnits="cm"/>
+                <lpdm:height length="5.0"/>
+
+                <!-- List -->
+                <lpdm:mcs-chart-foreground-colors>
+                    <lpdm:item color="green"/>
+                    <lpdm:item color="blue"/>
+                    <lpdm:item color="red"/>
+                </lpdm:mcs-chart-foreground-colors>
+
+                <!-- MCS Component URI -->
+                <lpdm:background-image mcsComponentURI="/image.mimg"/>
+
+                <!-- Number -->
+                <lpdm:font-size-adjust number="10.5"/>
+
+                <!-- Ordered Set -->
+                <lpdm:font-family>
+                    <lpdm:item string="Arial"/>
+                    <lpdm:item keyword="sans-serif"/>
+                </lpdm:font-family>
+
+                <!-- Pair -->
+                <lpdm:background-position>
+                    <lpdm:first keyword="left"/>
+                    <lpdm:second percentage="10.5"/>
+                </lpdm:background-position>
+
+                <!-- Percentage -->
+                <lpdm:font-size percentage="50.1"/>
+
+                <!-- String -->
+                <lpdm:text-align string="string"/>
+
+                <!-- URI -->
+                <lpdm:mcs-image uri="/image.png"/>
+
+                <!-- Time -->
+                <lpdm:mcs-image-frame-interval time="10" timeUnits="s"/>
+
+            </lpdm:styleProperties>
+        </lpdm:rule>
+    </lpdm:deviceTheme>
+</lpdm:theme>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 29-Sep-05	9654/1	pduffin	VBM:2005092817 Added support for expressions and functions in styles
+
+ 16-Sep-05	9512/3	pduffin	VBM:2005091408 Added support for invalid style values
+
+ 15-Sep-05	9512/1	pduffin	VBM:2005091408 Committing changes to JIBX to use new schema
+
+ 13-Sep-05	9496/1	pduffin	VBM:2005091211 Replaced text-decoration with individual properties
+
+ 13-May-05	8181/1	adrianj	VBM:2005050505 XSL for theme migration
+
+ ===========================================================================
+-->
