@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+	xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver">
+
+<head>
+  <title>Wizard Widget</title>
+  <link rel="mcs:theme" href="/themes/main.mthm"/>
+  <link rel="mcs:theme" href="/themes/wizard.mthm"/>	
+  <link rel="mcs:layout" href="/layouts/main.mlyt"/>	
+	
+  <urid:fetch href="wizard-model.inc"/>
+</head>
+
+<body>
+  <template:apply href="templates/demo-main.xdtpl">
+    <template:binding name="title" value="Wizard"/>
+    <template:binding name="content">
+      <template:complexValue>
+			
+			<widget:wizard class="widget" id="myWizard">
+      	<urid:fetch href="wizard-form-step1.inc"/>
+      	<urid:fetch href="wizard-form-step2.inc"/>
+			</widget:wizard>	
+	
+      <widget:button id="start-button" action="myWizard#launch">Start the wizard</widget:button>			
+
+		 </template:complexValue>
+    </template:binding>
+  </template:apply>
+</body>
+</html>

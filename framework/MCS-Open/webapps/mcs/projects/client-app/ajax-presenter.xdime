@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:gallery="http://www.volantis.com/xmlns/2006/10/gallery-widget"
+  xmlns:event="http://www.w3.org/2001/xml-events"
+	xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms">
+
+<head>
+  <title>Weather Presenter Widget with AJAX</title>
+
+  <link rel="mcs:theme" href="/themes/main.mthm"/>
+  <link rel="mcs:layout" href="/layouts/main.mlyt"/>
+
+  <widget:script id="checkWeather" type="text/javascript">
+    var d = $W("display");
+    var location = $W('city').getValue();
+    var url = 'http://xml.weather.yahoo.com/forecastrss?' + location;
+    d.getFetch().setSrc(url)
+    d.getFetch().execute();
+  </widget:script>
+
+</head>
+
+<body>
+  <template:apply href="templates/demo-main.xdtpl">
+    <template:binding name="title" value="Weather Presenter w/AJAX"/>
+    <template:binding name="content">
+      <template:complexValue>
+
+        <p>Yahoo! Weather service for cities: </p>
+
+        <widget:select id="city">
+          <widget:option value="p=TUXX0002&amp;u=c" selected="selected">Ankara</widget:option>
+          <widget:option value="p=YIXX0005&amp;u=c">Beograd</widget:option>
+          <widget:option value="p=GMXX0007&amp;u=c">Berlin</widget:option>
+          <widget:option value="p=LOXX0001&amp;u=c">Bratislava</widget:option>
+          <widget:option value="p=HUXX0002&amp;u=c">Budapest</widget:option>
+          <widget:option value="p=ROXX0003&amp;u=c">Bucharest</widget:option>
+          <widget:option value="p=PLXX0012&amp;u=c">Cracow</widget:option>
+          <widget:option value="p=SIXX0002&amp;u=c">Ljubljana</widget:option>
+          <widget:option value="p=CYXX0005&amp;u=c">Nicosia</widget:option>
+          <widget:option value="p=YIXX0001&amp;u=c">Podgorica</widget:option>
+          <widget:option value="p=EZXX0012&amp;u=c">Prague</widget:option>
+          <widget:option value="p=LGXX0004&amp;u=c">Riga</widget:option>
+          <widget:option value="p=BUXX0005&amp;u=c">Sofia</widget:option>
+          <widget:option value="p=ENXX0004&amp;u=c">Tallinn</widget:option>
+          <widget:option value="p=ALXX0002&amp;u=c">Tirana</widget:option>
+          <widget:option value="p=MTXX0001&amp;u=c">Valletta</widget:option>
+          <widget:option value="p=AUXX0025&amp;u=c">Vienna</widget:option>
+          <widget:option value="p=LHXX0005&amp;u=c">Vilnius</widget:option>
+          <widget:option value="p=HRXX0005&amp;u=c">Zagreb</widget:option>
+        </widget:select>
+        <widget:button action="checkWeather#invoke">Get weather</widget:button>
+
+        <widget:block id="display" class="myWeatherPresenter" style="margin-top: 5px;">
+          <widget:fetch src="http://xml.weather.yahoo.com/forecastrss?p=TUXX0002&amp;u=c" when="onload" transformation="weather-presenter.xsl" service="/projects/client-app/servicefetch"/>
+        </widget:block>
+
+      </template:complexValue>
+    </template:binding>
+  </template:apply>
+</body>
+
+</html>

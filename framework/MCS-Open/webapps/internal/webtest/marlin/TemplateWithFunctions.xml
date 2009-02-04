@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<canvas layoutName="error" >
+        <template:apply xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+               xmlns:template="http://www.volantis.com/xmlns/marlin-template">
+            <template:bindings>
+                <template:binding name="name" 
+                		value="%{request:getParameter('name','phil')}"/>
+                <template:binding name="company">
+                    <template:complexValue evaluationMode="deferred">
+                        <pipeline:content>
+                            <b>Volantis</b>
+                        </pipeline:content>
+                    </template:complexValue>
+                </template:binding>
+            </template:bindings>
+            <template:definition>
+                <template:declarations>
+                    <template:parameter name="name"
+                                        use="required"
+                                        type="simple"
+                                        runtimeVariable="developer"/>
+                    <template:parameter name="company"
+                                        use="required"
+                                        type="complex"/>
+                </template:declarations>
+                <template:body>
+                    <pipeline:content>
+                        <pane name="error">
+                            <h1>Template Pipeline Example 1</h1>
+                            <p>Welcome, <template:value ref="name"/>!</p>
+                            <p/>
+                            <p>Your name, <template:value ref="name"/>, was inserted&#32;
+                               using a function that got it from the request in the welcome&#32;
+                               message, but was inserted using the template value&#32;
+                               tag in this paragraph.</p>
+                            <p>Don&apos;t you just love <template:value ref="company"/>?</p>
+                        </pane>
+                    </pipeline:content>
+                </template:body>
+            </template:definition>
+        </template:apply>
+</canvas>

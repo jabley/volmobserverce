@@ -1,0 +1,1412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variable-policy xmlns="http://www.volantis.com/xmlns/2006/02/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rpdm="http://www.volantis.com/xmlns/2006/02/marlin-rpdm" xmlns:struct="http://www.volantis.com/xmlns/2005/10/ThemeStruct">
+    <type>theme</type>
+    <variants>
+        <variant>
+            <type>theme</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>PC</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <theme>
+                    <style-sheet>
+                        <rules>
+                            <rule>
+                                <selector-sequence>
+                                    <type>div</type>
+                                    <class>external_item</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="background-color">
+                                        <colorRGB>#f2f5f7</colorRGB>
+                                    </property>
+                                    <property name="border-bottom-color">
+                                        <colorRGB>#818181</colorRGB>
+                                    </property>
+                                    <property name="border-bottom-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-bottom-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-left-color">
+                                        <colorRGB>#818181</colorRGB>
+                                    </property>
+                                    <property name="border-left-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-left-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-right-color">
+                                        <colorRGB>#818181</colorRGB>
+                                    </property>
+                                    <property name="border-right-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-right-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-top-color">
+                                        <colorRGB>#818181</colorRGB>
+                                    </property>
+                                    <property name="border-top-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-top-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">0</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>div</type>
+                                    <class>company_item</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="border-bottom-color">
+                                        <colorRGB>#ff9900</colorRGB>
+                                    </property>
+                                    <property name="border-bottom-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-bottom-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-left-color">
+                                        <colorRGB>#ff9900</colorRGB>
+                                    </property>
+                                    <property name="border-left-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-left-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-right-color">
+                                        <colorRGB>#ff9900</colorRGB>
+                                    </property>
+                                    <property name="border-right-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-right-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-top-color">
+                                        <colorRGB>#ff9900</colorRGB>
+                                    </property>
+                                    <property name="border-top-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-top-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="pt">0</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>company_header</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="background-image">
+                                        <mcs-policy-reference>
+                                            <expression>/images/orange_header.mimg</expression>
+                                        </mcs-policy-reference>
+                                    </property>
+                                    <property name="background-repeat">
+                                        <keyword>repeat-x</keyword>
+                                    </property>
+                                    <property name="color">
+                                        <colorRGB>#ffffff</colorRGB>
+                                    </property>
+                                    <property name="font-family">
+                                        <list unique="true">
+                                            <string>Arial</string>
+                                            <keyword>sans-serif</keyword>
+                                        </list>
+                                    </property>
+                                    <property name="font-size">
+                                        <keyword>small</keyword>
+                                    </property>
+                                    <property name="font-weight">
+                                        <keyword>bold</keyword>
+                                    </property>
+                                    <property name="height">
+                                        <length units="px">23</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-bottom">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-left">
+                                        <length units="px">5</length>
+                                    </property>
+                                    <property name="padding-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-top">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="vertical-align">
+                                        <keyword>middle</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>external_header</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="background-image">
+                                        <mcs-policy-reference>
+                                            <expression>/images/greyHeader.mimg</expression>
+                                        </mcs-policy-reference>
+                                    </property>
+                                    <property name="background-repeat">
+                                        <keyword>repeat-x</keyword>
+                                    </property>
+                                    <property name="color">
+                                        <colorRGB>#ffffff</colorRGB>
+                                    </property>
+                                    <property name="font-family">
+                                        <list unique="true">
+                                            <string>Arial</string>
+                                            <keyword>sans-serif</keyword>
+                                        </list>
+                                    </property>
+                                    <property name="font-size">
+                                        <keyword>small</keyword>
+                                    </property>
+                                    <property name="font-weight">
+                                        <keyword>bold</keyword>
+                                    </property>
+                                    <property name="height">
+                                        <length units="px">23</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="padding-bottom">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-left">
+                                        <length units="px">5</length>
+                                    </property>
+                                    <property name="padding-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-top">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="vertical-align">
+                                        <keyword>middle</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>sec_menu</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="margin-bottom">
+                                        <length units="pt">8</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="pt">8</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="pt">8</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="pt">8</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>body</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-family">
+                                        <list unique="true">
+                                            <string>Arial</string>
+                                            <keyword>sans-serif</keyword>
+                                        </list>
+                                    </property>
+                                    <property name="font-size">
+                                        <keyword>small</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>pnav</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#ffffff</colorRGB>
+                                    </property>
+                                    <property name="font-family">
+                                        <list unique="true">
+                                            <string>Arial</string>
+                                            <keyword>sans-serif</keyword>
+                                        </list>
+                                    </property>
+                                    <property name="font-size">
+                                        <length units="pt">8</length>
+                                    </property>
+                                    <property name="font-style">
+                                        <keyword>normal</keyword>
+                                    </property>
+                                    <property name="font-weight">
+                                        <keyword>normal</keyword>
+                                    </property>
+                                    <property name="height">
+                                        <length units="px">32</length>
+                                    </property>
+                                    <property name="line-height">
+                                        <length units="px">32</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="mcs-text-blink">
+                                        <keyword>none</keyword>
+                                    </property>
+                                    <property name="mcs-text-line-through-style">
+                                        <keyword>none</keyword>
+                                    </property>
+                                    <property name="mcs-text-overline-style">
+                                        <keyword>none</keyword>
+                                    </property>
+                                    <property name="mcs-text-underline-style">
+                                        <keyword>none</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>main_menu</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#ffffff</colorRGB>
+                                    </property>
+                                    <property name="font-weight">
+                                        <keyword>bolder</keyword>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="width">
+                                        <percentage>100</percentage>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>stockprice</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#818181</colorRGB>
+                                    </property>
+                                    <property name="font-size">
+                                        <length units="pt">9</length>
+                                    </property>
+                                    <property name="mcs-container">
+                                        <string>stockprice</string>
+                                    </property>
+                                    <property name="padding-top">
+                                        <length units="px">5</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>title</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>title</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>logo</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>logo</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>photos</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>photos</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>menu_company_news</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>menu_company_news</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>menu_human_resources</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>menu_human_resources</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>menu_employee_store</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>menu_employee_store</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>announcements</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>announcements</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>human_resources</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>human_resources</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>from_CEO</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>from_CEO</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>global_news</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>global_news</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>US_news</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>US_news</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>footer</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="border-top-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-top-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="font-size">
+                                        <keyword>x-small</keyword>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">10</length>
+                                    </property>
+                                    <property name="mcs-container">
+                                        <string>footer</string>
+                                    </property>
+                                    <property name="text-align">
+                                        <keyword>center</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>blockquote</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-style">
+                                        <keyword>italic</keyword>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="px">8</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">16</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">16</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">8</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>article</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>article</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>h2</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-size">
+                                        <keyword>large</keyword>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="px">10</length>
+                                    </property>
+                                    <property name="text-indent">
+                                        <length units="px">0</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>p</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="border-bottom-color">
+                                        <colorRGB>#000000</colorRGB>
+                                    </property>
+                                    <property name="border-bottom-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-bottom-width">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="border-left-color">
+                                        <colorRGB>#000000</colorRGB>
+                                    </property>
+                                    <property name="border-left-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-left-width">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="border-right-color">
+                                        <colorRGB>#000000</colorRGB>
+                                    </property>
+                                    <property name="border-right-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-right-width">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="border-top-color">
+                                        <colorRGB>#000000</colorRGB>
+                                    </property>
+                                    <property name="border-top-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-top-width">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="px">6</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="padding-bottom">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-left">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-top">
+                                        <length units="px">0</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>dt</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-weight">
+                                        <keyword>bold</keyword>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">4</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>h4</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-size">
+                                        <keyword>small</keyword>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="px">8</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">4</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type namespace="xforms">select1</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-size">
+                                        <keyword>x-small</keyword>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="mcs-selection-list-option-layout">
+                                        <keyword>control-first</keyword>
+                                    </property>
+                                    <property name="vertical-align">
+                                        <keyword>middle</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                        </rules>
+                    </style-sheet>
+                </theme>
+            </content>
+        </variant>
+        <variant>
+            <type>theme</type>
+            <selection>
+                <targeted>
+                    <devices>
+                        <device>Smartphone</device>
+                    </devices>
+                </targeted>
+            </selection>
+            <content>
+                <theme>
+                    <style-sheet>
+                        <rules>
+                            <rule>
+                                <selector-sequence>
+                                    <type>div</type>
+                                    <class>external_item</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="background-color">
+                                        <colorRGB>#f2f5f7</colorRGB>
+                                    </property>
+                                    <property name="border-bottom-color">
+                                        <colorRGB>#818181</colorRGB>
+                                    </property>
+                                    <property name="border-bottom-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-bottom-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-left-color">
+                                        <colorRGB>#818181</colorRGB>
+                                    </property>
+                                    <property name="border-left-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-left-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-right-color">
+                                        <colorRGB>#818181</colorRGB>
+                                    </property>
+                                    <property name="border-right-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-right-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-top-color">
+                                        <colorRGB>#818181</colorRGB>
+                                    </property>
+                                    <property name="border-top-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-top-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">0</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>div</type>
+                                    <class>company_item</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="border-bottom-color">
+                                        <colorRGB>#ff9900</colorRGB>
+                                    </property>
+                                    <property name="border-bottom-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-bottom-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-left-color">
+                                        <colorRGB>#ff9900</colorRGB>
+                                    </property>
+                                    <property name="border-left-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-left-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-right-color">
+                                        <colorRGB>#ff9900</colorRGB>
+                                    </property>
+                                    <property name="border-right-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-right-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="border-top-color">
+                                        <colorRGB>#ff9900</colorRGB>
+                                    </property>
+                                    <property name="border-top-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-top-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="pt">0</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>company_header</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="background-image">
+                                        <mcs-policy-reference>
+                                            <expression>/images/orange_header.mimg</expression>
+                                        </mcs-policy-reference>
+                                    </property>
+                                    <property name="background-repeat">
+                                        <keyword>repeat-x</keyword>
+                                    </property>
+                                    <property name="color">
+                                        <colorRGB>#ffffff</colorRGB>
+                                    </property>
+                                    <property name="font-family">
+                                        <list unique="true">
+                                            <string>Arial</string>
+                                            <keyword>sans-serif</keyword>
+                                        </list>
+                                    </property>
+                                    <property name="font-size">
+                                        <keyword>small</keyword>
+                                    </property>
+                                    <property name="font-weight">
+                                        <keyword>bold</keyword>
+                                    </property>
+                                    <property name="height">
+                                        <length units="px">23</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-bottom">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-left">
+                                        <length units="px">5</length>
+                                    </property>
+                                    <property name="padding-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-top">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="vertical-align">
+                                        <keyword>middle</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>external_header</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="background-image">
+                                        <mcs-policy-reference>
+                                            <expression>/images/greyHeader.mimg</expression>
+                                        </mcs-policy-reference>
+                                    </property>
+                                    <property name="background-repeat">
+                                        <keyword>repeat-x</keyword>
+                                    </property>
+                                    <property name="color">
+                                        <colorRGB>#ffffff</colorRGB>
+                                    </property>
+                                    <property name="font-family">
+                                        <list unique="true">
+                                            <string>Arial</string>
+                                            <keyword>sans-serif</keyword>
+                                        </list>
+                                    </property>
+                                    <property name="font-size">
+                                        <keyword>small</keyword>
+                                    </property>
+                                    <property name="font-weight">
+                                        <keyword>bold</keyword>
+                                    </property>
+                                    <property name="height">
+                                        <length units="px">23</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="padding-bottom">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-left">
+                                        <length units="px">5</length>
+                                    </property>
+                                    <property name="padding-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-top">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="vertical-align">
+                                        <keyword>middle</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>sec_menu</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="margin-bottom">
+                                        <length units="pt">8</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="pt">8</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="pt">8</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="pt">8</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>body</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-family">
+                                        <list unique="true">
+                                            <string>Arial</string>
+                                            <keyword>sans-serif</keyword>
+                                        </list>
+                                    </property>
+                                    <property name="font-size">
+                                        <keyword>x-small</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>pnav</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#ffffff</colorRGB>
+                                    </property>
+                                    <property name="font-family">
+                                        <list unique="true">
+                                            <string>Arial</string>
+                                            <keyword>sans-serif</keyword>
+                                        </list>
+                                    </property>
+                                    <property name="font-size">
+                                        <length units="pt">8</length>
+                                    </property>
+                                    <property name="font-style">
+                                        <keyword>normal</keyword>
+                                    </property>
+                                    <property name="font-weight">
+                                        <keyword>normal</keyword>
+                                    </property>
+                                    <property name="height">
+                                        <length units="px">32</length>
+                                    </property>
+                                    <property name="line-height">
+                                        <length units="px">32</length>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="mcs-text-blink">
+                                        <keyword>none</keyword>
+                                    </property>
+                                    <property name="mcs-text-line-through-style">
+                                        <keyword>none</keyword>
+                                    </property>
+                                    <property name="mcs-text-overline-style">
+                                        <keyword>none</keyword>
+                                    </property>
+                                    <property name="mcs-text-underline-style">
+                                        <keyword>none</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>main_menu</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#ffffff</colorRGB>
+                                    </property>
+                                    <property name="font-weight">
+                                        <keyword>bolder</keyword>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="pt">0</length>
+                                    </property>
+                                    <property name="width">
+                                        <percentage>100</percentage>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>stockprice</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="color">
+                                        <colorRGB>#818181</colorRGB>
+                                    </property>
+                                    <property name="font-size">
+                                        <length units="pt">9</length>
+                                    </property>
+                                    <property name="mcs-container">
+                                        <string>stockprice</string>
+                                    </property>
+                                    <property name="padding-top">
+                                        <length units="px">5</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>title</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>title</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>logo</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>logo</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>photos</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>photos</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>menu_company_news</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>menu_company_news</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>menu_human_resources</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>menu_human_resources</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>menu_employee_store</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>menu_employee_store</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>announcements</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>announcements</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>human_resources</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>human_resources</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>from_CEO</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>from_CEO</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>global_news</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>global_news</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>US_news</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>US_news</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>footer</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="border-top-style">
+                                        <keyword>solid</keyword>
+                                    </property>
+                                    <property name="border-top-width">
+                                        <length units="px">1</length>
+                                    </property>
+                                    <property name="font-size">
+                                        <keyword>x-small</keyword>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">10</length>
+                                    </property>
+                                    <property name="mcs-container">
+                                        <string>footer</string>
+                                    </property>
+                                    <property name="text-align">
+                                        <keyword>center</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>blockquote</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-style">
+                                        <keyword>italic</keyword>
+                                    </property>
+                                    <property name="margin-bottom">
+                                        <length units="px">8</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">16</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">16</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">8</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <class>homelogo</class>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="border-bottom-style">
+                                        <keyword>none</keyword>
+                                    </property>
+                                    <property name="border-bottom-width">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="border-left-style">
+                                        <keyword>none</keyword>
+                                    </property>
+                                    <property name="border-left-width">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="border-right-style">
+                                        <keyword>none</keyword>
+                                    </property>
+                                    <property name="border-right-width">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="border-top-style">
+                                        <keyword>none</keyword>
+                                    </property>
+                                    <property name="border-top-width">
+                                        <length units="px">0</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <id>article</id>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="mcs-container">
+                                        <string>article</string>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>h2</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="margin-bottom">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-bottom">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-left">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="padding-top">
+                                        <length units="px">0</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>p</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="margin-bottom">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">2</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>dt</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-weight">
+                                        <keyword>bold</keyword>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">2</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>dd</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="margin-left">
+                                        <length units="px">10</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type>h4</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="margin-bottom">
+                                        <length units="px">4</length>
+                                    </property>
+                                    <property name="margin-left">
+                                        <length units="px">2</length>
+                                    </property>
+                                    <property name="margin-right">
+                                        <length units="px">0</length>
+                                    </property>
+                                    <property name="margin-top">
+                                        <length units="px">2</length>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type namespace="xforms">select1</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-size">
+                                        <keyword>x-small</keyword>
+                                    </property>
+                                    <property name="vertical-align">
+                                        <keyword>middle</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                            <rule>
+                                <selector-sequence>
+                                    <type namespace="xforms">submit</type>
+                                </selector-sequence>
+                                <properties>
+                                    <property name="font-size">
+                                        <keyword>x-small</keyword>
+                                    </property>
+                                </properties>
+                            </rule>
+                        </rules>
+                    </style-sheet>
+                </theme>
+            </content>
+        </variant>
+    </variants>
+</variable-policy>

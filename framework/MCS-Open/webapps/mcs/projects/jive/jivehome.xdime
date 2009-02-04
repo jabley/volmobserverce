@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html xmlns="http://www.w3.org/2002/06/xhtml2" 
+  xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs">
+  <head>
+    <title>Welcome to the Jive Intranet</title>
+    
+    <!-- Links to the layout and theme for this page -->
+    <link rel="mcs:layout" href="/jivehome.mlyt"/>
+    <link rel="mcs:theme" href="/jive.mthm"/>
+  </head>
+  
+  <!-- Page body -->
+  <body>
+    
+    <!-- The common material for the page header -->
+    <urid:fetch href="jiveheader.xdinc"/>
+    
+    <!-- Page heading -->
+    <h2 id="title"> Welcome to Jive Intranet</h2>
+    
+    <!-- Company announcements -->
+    <div class="company_item" id="announcements">
+      <h3 class="company_header">Announcements</h3>
+      <dl class="sec_menu">
+        <dt>
+          <a href="awardsAnnouncement.xdime" class="title">Jive Employees Given 5-Star Excellence
+            Awards</a>
+        </dt>
+        <dd>Jive awards four employees for maintaining superb performance.</dd>
+        <dt>
+          <a href="newProductsAnnouncement.xdime" class="title">Jive New Products!!</a>
+        </dt>
+        <dd>Check out the latest line of Jive basketball shoes set to come out in November.</dd>
+        <dt>
+          <a href="quarterReviewAnnouncement.xdime" class="title">Q1 in Review</a>
+        </dt>
+        <dd>Jive proudly announces results from Q1 of 2005 and a preview of Q2..</dd>
+      </dl>
+    </div>
+    
+    <!-- Information from Human Resources -->
+    <div class="company_item" id="human_resources">
+      <h3 class="company_header">Jive Human Resources</h3>
+      <dl class="sec_menu">
+        <dt>
+          <a href="jobPostings.xdime" class="title">Opportunities at Jive</a>
+        </dt>
+        <dd class="preview">Jive Sports is seeking people to fill new job openings.</dd>
+      </dl>
+    </div>
+    
+    <!-- From the office of the CEO -->
+    <div class="company_item" id="from_CEO">
+      <h3 class="company_header">Note From the CEO</h3>
+      <blockquote> "Our success at Jive Sports depends entirely on the quality of our employees. We
+        have seen great success so far this year, as our sales are increasing and we continue to
+        diversify our product lines. So many have repeatedly gone above and beyond the call of duty
+        to ensure success of our company. I would like to thank everyone for playing a pivotal role
+        in the success of this great organization. Jive is a place where everyone has a voice. So I
+        encourage everyone to continue to take initiative and express your ideas. We have a very
+        exciting year ahead of us."</blockquote>
+    </div>
+    
+    <!-- Global news feed -->
+    <div class="external_item" id="global_news">
+      <h3 class="external_header">CNN Around the Globe</h3>
+      <dl class="sec_menu">
+        <dt>
+          <a href="#" class="title">Gunmen shoot at tourists in Jordan</a>
+        </dt>
+        <dd class="preview">Two gunmen opened fire on tourists Monday near the Roman amphitheater in
+          the Jordanian capital Amman, police told CNN.</dd>
+        <dt>
+          <a href="#" class="title">Afghan opium production soars to new high</a>
+        </dt>
+        <dd class="preview">Afghanistan's world-leading opium cultivation rose a "staggering" 60
+          percent this year, the U.N. anti-drugs chief announced Saturday in urging the government
+          to crack down on big traffickers and remove corrupt officials and police. </dd>
+      </dl>
+    </div>
+    
+    <!-- US News feed -->
+    <div class="external_item" id="US_news">
+      <h3 class="external_header">CNN Around the Nation</h3>
+      <dl class="sec_menu">
+        <dt>
+          <a href="#" class="title">Trooper dies after being wounded in 'Bucky' hunt</a>
+        </dt>
+        <dd class="preview">One of the New York state troopers shot last week during a search for
+          fugitive Ralph "Bucky" Phillips died Sunday, according to New York State police.</dd>
+        <dt>
+          <a href="#" class="title">Downgraded John could drench southwest U.S. </a>
+        </dt>
+        <dd class="preview">Rains from the remnants of Hurricane John soaked the northern half of
+          Mexico's arid Baja California peninsula on Monday and threatened to cause flooding in the
+          southwestern United States.</dd>
+      </dl>
+    </div>
+    
+    <!-- The common material for the page footer -->
+    <urid:fetch href="jivefooter.xdinc"/>
+  </body>
+</html>

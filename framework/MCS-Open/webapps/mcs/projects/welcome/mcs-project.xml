@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.volantis.com/xmlns/mcs/project"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  name="WelcomeProject">
+  <xml-policies directory="WebContent/mcs-policies/"/>
+  <assets base-url="."/>
+  <policy-cache-partition size="100">
+    <constraints>
+      <cache allow="false" default="false"/>
+    </constraints>
+  </policy-cache-partition>
+</project>

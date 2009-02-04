@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variable-policy xmlns="http://www.volantis.com/xmlns/2006/02/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/2006/02/marlin-lpdm http://www.volantis.com/schema/2006/02/marlin-lpdm.xsd">
+    <type>image</type>
+    <variants>
+        <variant>
+            <type>image</type>
+            <selection>
+              <generic-image>
+                  <width-hint>0</width-hint>
+              </generic-image>
+            </selection>
+            <meta-data>
+                <image>
+                    <encoding>png</encoding>
+                    <pixel-depth>32</pixel-depth>
+                    <width>13</width>
+                    <height>13</height>
+                    <rendering>color</rendering>
+                </image>
+            </meta-data>
+            <content>
+                <url>
+                  <relative>folded.png</relative>
+                </url>
+            </content>
+        </variant>
+    </variants>
+</variable-policy>

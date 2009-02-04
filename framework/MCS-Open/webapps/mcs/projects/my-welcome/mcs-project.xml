@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<project xmlns="http://www.volantis.com/xmlns/mcs/project"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     name="MyWelcomeProject" extends="../welcome/mcs-project.xml">
+    <assets base-url="."/>
+
+    <!-- Configure a partition that can contain 100 policies. -->
+    <policy-cache-partition size="100">
+
+        <!--
+         ! All policies can only live for at most 1000s and by default
+         ! they will only live for 50s. Retry failed retrieval is 
+         ! allowed but is not on by default.
+         !-->
+        <constraints>
+            <cache allow="true" default="true">
+                <time-to-live maximum="1000" default="50"/>
+                <retry allow="true" default="false"/>
+            </cache>
+        </constraints>
+
+        <!--
+         ! Images and layouts by default will live for 50os. Retry failed
+         ! retrieval is  on by default and by default will retry every 50s
+         ! up to 5 times but can retry as often as 10s apart and for as many
+         ! as 10 times.
+         !-->
+        <type-partition size="200">
+            <type>image</type>
+            <type>layout</type>
+            <constraints>
+                <cache allow="true" default="true">
+                    <time-to-live maximum="1000" default="500"/>
+                    <retry default="true">
+                        <interval minimum="10" default="50"/>
+                        <max-count maximum="10" default="5"/>
+                    </retry>
+                </cache>
+            </constraints>
+        </type-partition>
+
+    </policy-cache-partition>
+</project>

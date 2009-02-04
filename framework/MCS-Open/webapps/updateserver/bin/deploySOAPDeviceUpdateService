@@ -1,0 +1,52 @@
+#!/bin/bash
+# -----------------------------------------------------------------------------
+# (c) Volantis Systems Ltd 2004. All Rights Reserved.
+# -----------------------------------------------------------------------------
+#
+# Used to manually deploy the SOAPDeviceUpdateServer webservice
+#
+# -----------------------------------------------------------------------------
+
+unset AXIS_HOME
+unset CLASSPATH
+
+AXIS_HOME=../WEB-INF/lib
+
+CLASSPATH=.
+CLASSPATH=$AXIS_HOME/axis.jar:$CLASSPATH
+CLASSPATH=$AXIS_HOME/commons-discovery.jar:$CLASSPATH
+CLASSPATH=$AXIS_HOME/commons-logging.jar:$CLASSPATH
+CLASSPATH=$AXIS_HOME/jaxrpc-api.jar:$CLASSPATH
+CLASSPATH=$AXIS_HOME/jax-qname.jar:$CLASSPATH
+CLASSPATH=$AXIS_HOME/saaj.jar:$CLASSPATH
+CLASSPATH=$AXIS_HOME/log4j.jar:$CLASSPATH
+CLASSPATH=$AXIS_HOME/wsdl4j.jar:$CLASSPATH
+CLASSPATH=$AXIS_HOME/xercesImpl.jar:$CLASSPATH
+CLASSPATH=$AXIS_HOME/xml-apis.jar:$CLASSPATH
+
+BASE_URL=http://localhost:8080/updateserver3/services
+ADMIN_LOCATION=$BASE_URL/AdminService
+DEPLOY_LOCATION=../deployment/deploySOAPDeviceUpdateService.wsdd
+SERVICE_LOCATION=$BASE_URL/SOAPDeviceUpdateService
+
+$JAVA_HOME/bin/java -cp $CLASSPATH org.apache.axis.client.AdminClient -l$ADMIN_LOCATION $DEPLOY_LOCATION
+
+echo "Verify a successful deployment by visiting:"
+echo "    $SERVICE_LOCATION"
+
+#
+# ===========================================================================
+# Change History
+# ===========================================================================
+# $Log$
+
+# 15-Apr-04	3740/1	allan	VBM:2004040508 UpdateClient/Server enhancements & fixes.
+
+# 02-Mar-04	3199/1	adrian	VBM:2004022410 Updated server deploy files
+
+# 26-Feb-04	3211/3	claire	VBM:2004022410 Removed old output statements
+
+# 26-Feb-04	3211/1	claire	VBM:2004022410 Update service build process
+
+# ===========================================================================
+#

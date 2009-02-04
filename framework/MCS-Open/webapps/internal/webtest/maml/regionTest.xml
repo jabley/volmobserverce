@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!DOCTYPE canvas >
+<canvas layoutName="BEAPortal" type="portal">
+
+<pane name="header" styleClass="headerBgColor" >
+    <h1>Region Test</h1>
+</pane>
+
+<region name="content">
+    <canvas type="portlet" layoutName="BEASpanThree" >
+		<region name="topleft" >
+			<canvas layoutName="portlet" type="portlet" theme="BEAPortal">
+				<p pane="banner">About</p>
+				<p pane="header" styleClass="portletheader" >Welcome to an example portlet</p>
+				<p pane="content" styleClass="portletcontent">
+					Use this simple portal as your sandbox for getting aquainted with portals and portlets.</p>
+			</canvas>
+		</region>
+		<region name="topcenter" >
+			<canvas layoutName="portletForm" type="portlet" theme="portlet">
+  				<p pane="banner">Word Dictionary</p>
+  				<xfform name="Form" method="post" action="http://www.m-w.com/cgi-bin/dictionary?">
+    					<xftextinput captionPane="caption" caption="Enter a word to search for."
+				 			entryPane="entry" name="word" />
+    					<xfaction type="submit" name="wordSearchButton" caption="Search"
+				 			captionPane="submit" entryPane="submit" />
+  				</xfform>
+			</canvas>
+		</region>
+		<region name="topright" >
+			<canvas layoutName="portletForm" type="portlet" theme="portlet">
+  				<p pane="banner">Search the internet</p>
+  				<xfform name="Form" method="post" action="http://www.m-w.com/cgi-bin/dictionary?">
+    					<xftextinput captionPane="caption" caption="Search AskYahooGoogle for..."
+				 			entryPane="entry" name="word" />
+    					<xfaction type="submit" name="wordSearchButton" caption="Search"
+				 			captionPane="submit" entryPane="submit" />
+  				</xfform>
+			</canvas>
+		</region>
+		<region name="bottom" >
+			<canvas layoutName="portlet" type="portlet" theme="BEAPortal">
+				<p pane="banner">Portal Tour</p>
+ 				<pane name="content">
+					<p styleClass="portletcontent" >
+						<a href="http://edocs.bea.com/wlp/docs40/portal/portour.htm">Portal Tour</a>
+						<br />
+						Follow along step-by-step, and create a user, user groups, assign privileges, add portlets, apply skins, 
+						and more.  
+						<br />
+						Only kidding....  This is a BEA Link for their portal server.
+					</p>
+				</pane>
+			</canvas>
+		</region>
+	</canvas>
+</region>
+
+<pane name="footer">
+	<p>Powered by Volantis</p>
+</pane>
+
+</canvas>

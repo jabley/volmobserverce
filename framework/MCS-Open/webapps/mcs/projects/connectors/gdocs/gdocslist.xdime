@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html
+    xmlns="http://www.w3.org/2002/06/xhtml2"   
+    xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"   
+    xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+    xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+    xmlns:gdocs="http://www.volantis.com/xmlns/2008/08/gdocs">
+    
+    <head>
+        <title>Google Documents: Document List example</title>
+        <link
+            rel="mcs:layout"
+            href="test.mlyt"/>
+        <link
+            rel="mcs:theme"
+            href="test.mthm"/>
+
+    </head>
+    <body>
+        <div
+            class="Main">
+            <pipeline:try>
+                <pipeline:preferred>
+                    <pipeline:transform
+                        href="list2xdime.xsl">
+                        <gdocs:list-docs xml:id="first list"
+                            category="document" query="">
+                            <gdocs:authenticate
+                                user-id="testvolantis@gmail.com" password="1volantis1"/>
+                        </gdocs:list-docs>
+                    </pipeline:transform> 
+                </pipeline:preferred>
+                <pipeline:alternative>
+                    <pipeline:content>
+                        <p>There was a problem retrieving the information requested.</p>
+                    </pipeline:content>
+                </pipeline:alternative>
+            </pipeline:try>
+
+            <pipeline:try>
+                <pipeline:preferred>
+                    <pipeline:transform
+                        href="list2xdime.xsl">
+                        <gdocs:list-docs xml:id="second list"
+                            category="document" page-index="1">
+                            <gdocs:authenticate
+                                user-id="testvolantis@gmail.com" password="1volantis1"/>
+                        </gdocs:list-docs>
+                    </pipeline:transform> 
+                </pipeline:preferred>
+                <pipeline:alternative>
+                    <pipeline:content>
+                        <p>There was a problem retrieving the information requested.</p>
+                    </pipeline:content>
+                </pipeline:alternative>
+            </pipeline:try>
+
+            <pipeline:try>
+                <pipeline:preferred>
+                    <pipeline:transform
+                        href="list2xdime.xsl">
+                        <gdocs:list-docs xml:id="third list"
+                            category="document" page-size="3" page-index="2" query="ble">
+                            <gdocs:authenticate
+                                user-id="testvolantis@gmail.com" password="1volantis1"/>
+                        </gdocs:list-docs>
+                    </pipeline:transform> 
+                </pipeline:preferred>
+                <pipeline:alternative>
+                    <pipeline:content>
+                        <p>There was a problem retrieving the information requested.</p>
+                    </pipeline:content>
+                </pipeline:alternative>
+            </pipeline:try>            
+
+            <pipeline:try>
+                <pipeline:preferred>
+                    <pipeline:transform
+                        href="list2xdime.xsl">
+                        <gdocs:list-docs xml:id="fourth list"
+                            category="document" page-index="2">
+                            <gdocs:authenticate
+                                user-id="testvolantis@gmail.com" password="1volantis1"/>
+                        </gdocs:list-docs>
+                    </pipeline:transform> 
+                </pipeline:preferred>
+                <pipeline:alternative>
+                    <pipeline:content>
+                        <p>There was a problem retrieving the information requested.</p>
+                    </pipeline:content>
+                </pipeline:alternative>
+            </pipeline:try>
+            
+            <pipeline:try>
+                <pipeline:preferred>
+                    <pipeline:transform
+                        href="list2xdime.xsl">
+                        <gdocs:list-docs xml:id="fifth list"
+                            category="document" page-size="2" page-index="2" query="ble">
+                            <gdocs:authenticate
+                                user-id="testvolantis@gmail.com" password="1volantis1"/>
+                        </gdocs:list-docs>
+                    </pipeline:transform> 
+                </pipeline:preferred>
+                <pipeline:alternative>
+                    <pipeline:content>
+                        <p>There was a problem retrieving the information requested.</p>
+                    </pipeline:content>
+                </pipeline:alternative>
+            </pipeline:try>
+        </div>
+    </body>
+</html>
