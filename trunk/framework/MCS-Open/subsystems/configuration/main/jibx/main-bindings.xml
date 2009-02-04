@@ -1,0 +1,153 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<binding track-source="true">
+    <namespace uri="http://www.volantis.com/xmlns/mcs/project" default="elements"/>
+
+    <!--
+     ! Set the default format for PolicyType.
+     !-->
+    <format type="com.volantis.mcs.policies.PolicyType"
+        serializer="com.volantis.mcs.policies.io.DeSerializer.policyTypeToString"
+        deserializer="com.volantis.mcs.policies.io.DeSerializer.stringToPolicyType"/>
+
+    <format label="UnlimitedNonNegativeFormat" type="java.lang.Integer"
+        serializer="com.volantis.mcs.runtime.configuration.project.DeSerializer.unlimitedNonNegativeToString"
+        deserializer="com.volantis.mcs.runtime.configuration.project.DeSerializer.stringToUnlimitedNonNegative"/>
+
+    <!--
+      - MCS-Project-Config files
+      -
+      -->
+    <mapping name="project"
+        class="com.volantis.mcs.runtime.configuration.project.RuntimeProjectConfiguration">
+
+        <value name="name" field="name" usage="optional" style="attribute"/>
+        <value name="extends" field="fallbackProjectName" usage="optional" style="attribute"/>
+
+        <structure field="policies"
+            type="com.volantis.mcs.runtime.configuration.project.AbstractPoliciesConfiguration" usage="optional"/>
+        <structure
+            field="assets" type="com.volantis.mcs.runtime.configuration.project.AssetsConfiguration" usage="optional"/>
+        <structure
+            field="defaultProjectLayoutLocator" type="com.volantis.mcs.runtime.configuration.project.DefaultProjectLayoutLocator" usage="optional" />
+        <structure
+            field="projectThemes" type="com.volantis.mcs.runtime.configuration.project.ProjectThemes" usage="optional" />
+
+        <structure field="policyCachePartition" usage="optional"/>
+
+    </mapping>
+
+    <mapping name="assets" class="com.volantis.mcs.runtime.configuration.project.AssetsConfiguration">
+        <value name="base-url" field="baseUrl" usage="optional" style="attribute"/>
+    </mapping>
+
+    <mapping name="default-layout" class="com.volantis.mcs.runtime.configuration.project.DefaultProjectLayoutLocator">
+        <value name="policy" field="projectLayoutLocation"
+            usage="optional" style="element" />
+    </mapping>
+
+    <mapping name="themes" class="com.volantis.mcs.runtime.configuration.project.ProjectThemes">
+        <collection field="themes" type="java.util.ArrayList">
+            <value name="policy" type="java.lang.String" style="element"/>
+        </collection>
+    </mapping>
+
+    <mapping class="com.volantis.mcs.runtime.configuration.project.AbstractPoliciesConfiguration" abstract="true"/>
+
+    <mapping name="xml-policies" class="com.volantis.mcs.runtime.configuration.project.XmlPoliciesConfiguration"
+        extends="com.volantis.mcs.runtime.configuration.project.AbstractPoliciesConfiguration">
+
+        <structure map-as="com.volantis.mcs.runtime.configuration.project.AbstractPoliciesConfiguration"/>
+
+        <value name="directory" field="directory" usage="optional" style="attribute"/>
+    </mapping>
+
+    <mapping name="jdbc-policies" class="com.volantis.mcs.runtime.configuration.project.JdbcPoliciesConfiguration"
+        extends="com.volantis.mcs.runtime.configuration.project.AbstractPoliciesConfiguration">
+
+        <structure map-as="com.volantis.mcs.runtime.configuration.project.AbstractPoliciesConfiguration"/>
+
+        <value name="name" field="name" usage="optional" style="attribute"/>
+    </mapping>
+
+    <mapping class="com.volantis.mcs.runtime.configuration.RemotePolicyCacheConfiguration" abstract="true">
+
+        <structure name="cache" usage="optional" ordered="false">
+            <value name="allow" field="allowCacheThisPolicy" usage="optional" style="attribute"/>
+            <value name="default" field="defaultCacheThisPolicy" usage="optional" style="attribute"/>
+            <structure name="retry" usage="optional" ordered="false">
+                <value name="allow" field="allowRetryFailedRetrieval" usage="optional" style="attribute"/>
+                <value name="default" field="defaultRetryFailedRetrieval" usage="optional" style="attribute"/>
+
+                <structure name="interval" usage="optional">
+                    <value name="minimum" field="minRetryInterval" usage="optional" style="attribute"/>
+                    <value name="default" field="defaultRetryInterval" usage="optional" style="attribute"/>
+                </structure>
+
+                <structure name="max-count" usage="optional">
+                    <value name="maximum" field="maxRetryMaxCount" format="UnlimitedNonNegativeFormat" usage="optional" style="attribute"/>
+                    <value name="default" field="defaultRetryMaxCount" format="UnlimitedNonNegativeFormat" usage="optional" style="attribute"/>
+                </structure>
+
+                <structure name="retain" usage="optional">
+                    <value name="allow" field="allowRetainDuringRetry" usage="optional" style="attribute"/>
+                    <value name="default" field="defaultRetainDuringRetry" usage="optional" style="attribute"/>
+                </structure>
+
+            </structure>
+
+            <structure name="time-to-live" usage="optional">
+                <value name="maximum" field="maxTimeToLive" format="UnlimitedNonNegativeFormat" usage="optional" style="attribute"/>
+                <value name="default" field="defaultTimeToLive" format="UnlimitedNonNegativeFormat" usage="optional" style="attribute"/>
+            </structure>
+
+        </structure>
+
+    </mapping>
+
+    <mapping name="policy-cache-partition" class="com.volantis.mcs.runtime.configuration.project.PolicyCachePartitionConfiguration">
+
+        <value name="size" field="size" usage="required" style="attribute"/>
+
+        <structure name="constraints" field="constraints" type="com.volantis.mcs.runtime.configuration.RemotePolicyCacheConfiguration"/>
+
+        <collection field="typeSpecificPartitions" type="java.util.ArrayList">
+            <structure name="type-partition" type="com.volantis.mcs.runtime.configuration.project.PolicyTypePartitionConfiguration">
+
+                <collection field="policyTypes" type="java.util.ArrayList" item-type="com.volantis.mcs.policies.PolicyType">
+                    <value name="type"/>
+                </collection>
+
+                <value name="size" field="size" usage="required" style="attribute"/>
+
+                <structure name="constraints" field="constraints" type="com.volantis.mcs.runtime.configuration.RemotePolicyCacheConfiguration"/>
+            </structure>
+        </collection>
+
+    </mapping>
+
+</binding>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 08-Nov-05	9990/1	ibush	VBM:2005102516 Enable Local and Remote Project Loading
+
+ ===========================================================================
+-->

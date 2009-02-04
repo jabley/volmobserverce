@@ -1,0 +1,333 @@
+/* ----------------------------------------------------------------------------
+ * $Header: /src/voyager/com/volantis/mcs/atg/dynamo561/Attic/VolantisInputTag.java,v 1.1.2.1 2002/08/15 13:40:15 chrisw Exp $
+ * ----------------------------------------------------------------------------
+ * (c) Volantis Systems Ltd 2001. 
+ * ----------------------------------------------------------------------------
+ * Change History:
+ *
+ * Date         Who             Description
+ * ---------    --------------- -----------------------------------------------
+ *		Steve           VBM 2001090306 - Initial Release
+ * 06-Dec-01    Mat             VBM:2001113002 - Removed call to
+ *                              MarinerPageContext.abort(), as
+ *                              it no longer exists.
+ * 02-Jan-02    Paul            VBM:2002010201 - Use log4j for logging.
+ * 31-Jan-02    Paul            VBM:2001122105 - Fixed compile error in
+ *                              logging.
+ * 13-Mar-02    Paul            VBM:2002030104 - Removed unnecessary and
+ *                              invalid import of the tags package.
+ * 15-Aug-02    Chris W         VBM:2002081511 - Copied existing class to
+ *                              separate package for Dynamo5.6.1 We want to be
+ *                              able to support the older Dynamo5.1.1 (?) version
+ *                              as well.
+ * ----------------------------------------------------------------------------
+ */
+
+package com.volantis.mcs.atg.dynamo;
+
+import com.volantis.mcs.papi.XFTextInputAttributes;
+import com.volantis.mcs.servlet.MarinerServletRequestContext;
+import com.volantis.synergetics.log.LogDispatcher;
+import com.volantis.mcs.localization.LocalizationFactory;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.jsp.PageContext;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Enumeration;
+import java.util.Properties;
+
+/**
+ *
+ * @author  mat
+ */
+public class VolantisInputTag extends atg.taglib.dspjsp.InputTag {
+
+    private static String mark = "(c) Volantis Systems Ltd 2000.";
+
+    /**
+     * Used for logging
+     */
+    private static final LogDispatcher logger =
+            LocalizationFactory.createLogger(VolantisInputTag.class);
+
+
+    private XFTextInputAttributes inputAttributes;
+    private String vname;
+    private MarinerServletRequestContext requestContext;
+
+    protected PageContext pageContext;
+
+    /** Creates new VolantisInputTag */
+    public VolantisInputTag() {
+        super();
+
+        // For version 7.0 of Dynamo, an error can arise when no additional
+        // attributes are set, causing a null pointer exception when an effort
+        // to retrieve an additional attribute is made. We work around this
+        // by explicitly setting and then resetting an attribute.
+        //
+        // Note that this workaround should be removed when the original bug
+        // in Dynamo is fixed, as it causes a GC overhead in some cases.
+        @DYNAMO-7.0-TEMPLATE-START@
+        setAccept(null);
+        resetAdditionalAttributes();
+        @DYNAMO-7.0-TEMPLATE-END@
+
+        inputAttributes = new XFTextInputAttributes();
+    }
+
+    public void setPageContext(PageContext context) {
+        super.setPageContext(context);
+        requestContext = null;
+
+        // Store Page Context in subclass as superclass version is private
+        pageContext = context;
+    }
+
+    public PageContext getPageContext() {
+        return pageContext;
+    }
+
+    private MarinerServletRequestContext getMarinerServletRequestContext() {
+        if( requestContext == null) {
+            ServletRequest request = getPageContext().getRequest();
+            requestContext = (MarinerServletRequestContext)
+                    MarinerServletRequestContext.getCurrent(request);
+        }
+        return requestContext;
+    }
+
+    public void callSetter(String attribute, String value) {
+        String method = "setInherited" + attribute.substring(0, 1).toUpperCase() +
+                attribute.substring(1, attribute.length());
+        if (logger.isDebugEnabled()) {
+            logger.debug("calling " + method + "( " + value + ")");
+        }
+
+        Class params[] = new Class[1];
+        params[0] = value.getClass();
+        try {
+            Method m = this.getClass().getMethod(method, params);
+            Object args[] = new Object[1];
+            args[0] = value;
+            m.invoke(this, args);
+        } catch (NoSuchMethodException nsm) {
+            logger.warn("method-not-found", method);
+        } catch (IllegalAccessException ia) {
+            logger.warn("unexpected-illegal-access-exception", ia);
+        } catch (InvocationTargetException it) {
+            logger.warn("unexpected-invocation-target-exception", it);
+        }
+    }
+
+
+    public void renderTag(java.lang.String pTagName, Properties pAttributes) throws IOException {
+        if (logger.isDebugEnabled()) {
+            logger.debug("VolantisInputTag.renderTag( " + pTagName + " )");
+        }
+
+        Enumeration en = pAttributes.propertyNames();
+        while (en.hasMoreElements()) {
+            String property = (String) en.nextElement();
+            String value = pAttributes.getProperty(property);
+            callSetter(property, value);
+        }
+
+        try {
+            VolantisInputTagRenderer.renderTag(getMarinerServletRequestContext(), getPageContext(),
+                    pTagName, vname, inputAttributes);
+        } catch (Exception e) {
+            abort(e);
+            throw new IOException("Error rendering input tag");
+        }
+
+        inputAttributes.reset();
+    }
+
+
+    /**
+     * This method is called by the server when the tag has been finished with.
+     * As some servers (e.g ATG) re-use the tags, the attributes need to be reset.
+     *
+     */
+    public void release() {
+        if (logger.isDebugEnabled()) {
+            logger.debug("Releasing VolantisInputTag");
+        }
+        inputAttributes.reset();
+        super.release();
+    }
+
+    private void abort(Exception e) {
+        logger.error("unexpected-exception", e);
+    }
+
+    public void setStyleClass(String s) {
+        inputAttributes.setStyleClass(s);
+    }
+
+    public String getStyleClass() {
+        return inputAttributes.getStyleClass();
+    }
+
+    public void setInheritedId(String id) {
+        inputAttributes.setId(id);
+    }
+
+    public void setVname(String vname) {
+        this.vname = vname;
+    }
+
+    public String getVname() {
+        return vname;
+    }
+
+    public void setCaptionPane(String pane) {
+        inputAttributes.setCaptionPane(pane);
+    }
+
+    public String getCaptionPane() {
+        return inputAttributes.getCaptionPane();
+    }
+
+    public void setEntryPane(String pane) {
+        inputAttributes.setEntryPane(pane);
+    }
+
+    public String getEntryPane() {
+        return inputAttributes.getEntryPane();
+    }
+
+    public void setCaption(String s) {
+        inputAttributes.setCaption(s);
+    }
+
+    public String getCaption() {
+        return inputAttributes.getCaption().toString();
+    }
+
+    public void setActive(String s) {
+        inputAttributes.setActive(s);
+    }
+
+    public String getActive() {
+        return inputAttributes.getActive();
+    }
+
+    public void setErrmsg(String s) {
+        inputAttributes.setErrmsg(s);
+    }
+
+    public String getErrmsg() {
+        return inputAttributes.getErrmsg().toString();
+    }
+
+    public void setHelp(String s) {
+        inputAttributes.setHelp(s);
+    }
+
+    public String getHelp() {
+        return inputAttributes.getHelp();
+    }
+
+    public void setInheritedMaxLength(String s) {
+        inputAttributes.setMaxLength(s);
+    }
+
+    public void setPrompt(String s) {
+        inputAttributes.setPrompt(s);
+    }
+
+    public String getPrompt() {
+        return inputAttributes.getPrompt();
+    }
+
+    public void setShortcut(String s) {
+        inputAttributes.setShortcut(s);
+    }
+
+    public String getShortcut() {
+        return inputAttributes.getShortcut();
+    }
+
+    public void setInheritedType(String s) {
+        inputAttributes.setType(s);
+    }
+
+    public void setValidate(String s) {
+        inputAttributes.setValidate(s);
+    }
+
+    public String getValidate() {
+        return inputAttributes.getValidate();
+    }
+
+    public void setInheritedName(String s) {
+        inputAttributes.setName(s);
+    }
+
+    public void setInheritedValue(String s) {
+        inputAttributes.setInitial(s);
+    }
+
+    public void setInheritedSize(String s) {
+    }
+
+    public void setCols(String s) {
+    }
+
+    public void setContenteditable(String s) {
+    }
+
+    public void setGrowable(String s) {
+    }
+
+    public void setNohardbreaks(String s) {
+    }
+
+    public void setNosoftbreaks(String s) {
+    }
+
+    public void setRows(String s) {
+    }
+
+    public void setShowkeyboard(String s) {
+    }
+
+    public void setWrap(String s) {
+    }
+
+    public void setOnbeforecopy(String s) {
+    }
+
+    public void setOnrowenter(String s) {
+    }
+
+    public void setOnrowexit(String s) {
+    }
+
+    public void setOnscroll(String s) {
+    }
+
+    public void setOnstart(String s) {
+    }
+}
+
+/*
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6416/1	ianw	VBM:2004120703 New Build
+
+ 29-Nov-04	6232/2	doug	VBM:2004111702 Refactored Logging framework
+
+ 27-Apr-04	3843/2	ianw	VBM:2004041408 Port forward ATG 5.6.1 integration
+
+ ===========================================================================
+*/
