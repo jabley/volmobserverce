@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<lpdm:theme xmlns:lpdm="http://www.volantis.com/xmlns/marlin-lpdm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/marlin-lpdm http://www.volantis.com/schema/v3.0/marlin-lpdm.xsd">
+    <lpdm:deviceTheme deviceName="Master">
+        <lpdm:rule>
+            <lpdm:simpleSelectorSequence>
+                <lpdm:typeSelector type="hr"/>
+            </lpdm:simpleSelectorSequence>
+            <lpdm:styleProperties>
+                <lpdm:background-color rgb="#666666"/>
+            </lpdm:styleProperties>
+        </lpdm:rule>
+        <lpdm:rule>
+            <lpdm:simpleSelectorSequence>
+                <lpdm:typeSelector type="hr"/>
+            </lpdm:simpleSelectorSequence>
+            <lpdm:styleProperties>
+                <lpdm:background-color rgb="#666666"/>
+                <lpdm:color rgb="#777777"/>
+            </lpdm:styleProperties>
+        </lpdm:rule>
+        <lpdm:rule>
+            <lpdm:simpleSelectorSequence>
+                <lpdm:typeSelector type="hr"/>
+            </lpdm:simpleSelectorSequence>
+            <lpdm:simpleSelectorSequence>
+                <lpdm:typeSelector type="p"/>
+            </lpdm:simpleSelectorSequence>
+            <lpdm:styleProperties>
+                <lpdm:background-color rgb="#666666"/>
+            </lpdm:styleProperties>
+        </lpdm:rule>
+        <lpdm:rule>
+            <lpdm:simpleSelectorSequence>
+                <lpdm:typeSelector type="hr"/>
+                <lpdm:classSelector class="bar"/>
+            </lpdm:simpleSelectorSequence>
+            <lpdm:simpleSelectorSequence>
+                <lpdm:typeSelector type="hr"/>
+                <lpdm:classSelector class="foo"/>
+            </lpdm:simpleSelectorSequence>
+            <lpdm:styleProperties>
+                <lpdm:background-color rgb="#666666"/>
+            </lpdm:styleProperties>
+        </lpdm:rule>
+    </lpdm:deviceTheme>
+</lpdm:theme>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 14-Dec-05	10830/2	geoff	VBM:2005121405 P900; superscript does not work with CssMobleProfile
+
+ 14-Dec-05	10830/1	pduffin	VBM:2005121405 Migrate rules containing only selector sequences for hr elements so that if they do not have a color property that it is set from the background-color property
+
+ 06-Dec-05	10606/1	ibush	VBM:2005113017 Fix xfoption typeSelectors
+
+ ===========================================================================
+-->
