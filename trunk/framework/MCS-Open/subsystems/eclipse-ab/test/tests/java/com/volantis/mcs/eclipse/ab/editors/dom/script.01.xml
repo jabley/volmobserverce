@@ -1,0 +1,90 @@
+<?xml version="1.0" standalone="no"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!DOCTYPE script SYSTEM "script.dtd">
+
+<script title="Apply empty selection and make initial proxy/ied checks">
+
+<applySelection
+  expected="empty selection">
+</applySelection>
+
+<checkProxieds name="topA" recurse="y"
+  expected="empty">
+</checkProxieds>
+
+<!-- Do this one both ways just to test the test harness -->
+<checkProxy name="topA" recurse="y"
+  expected="empty values">
+  <topA top1="" top2="">
+  <middleA middle1="" middle2="">
+    <bottomA bottom1="" bottom2="">
+    </bottomA>
+  </middleA>
+  </topA>
+</checkProxy>
+
+<!-- Do this one both ways just to test the test harness -->
+<checkProxy name="topA" recurse="n"
+  expected="empty values">
+  <topA top1="" top2="">
+  </topA>
+</checkProxy>
+
+<checkProxieds name="middleA" recurse="y"
+  expected="empty">
+</checkProxieds>
+
+<checkProxy name="middleA" recurse="n"
+  expected="empty values">
+  <middleA middle1="" middle2="">
+  </middleA>
+</checkProxy>
+
+<checkProxieds name="bottomA" recurse="y"
+  expected="empty">
+</checkProxieds>
+
+<checkProxy name="bottomA" recurse="n"
+  expected="empty values">
+  <bottomA bottom1="" bottom2="">
+  </bottomA>
+</checkProxy>
+
+
+<!-- End script -->
+</script>
+
+
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 08-Dec-04	6416/3	ianw	VBM:2004120703 New Build
+
+ 08-Dec-04	6416/1	ianw	VBM:2004120703 New Build
+
+ 18-Dec-03	2137/7	richardc	VBM:2003120402 Extra tests for event non-generation
+
+ 17-Dec-03	2137/5	richardc	VBM:2003120402 Version for initial review (code and test harness)
+
+ ===========================================================================
+-->

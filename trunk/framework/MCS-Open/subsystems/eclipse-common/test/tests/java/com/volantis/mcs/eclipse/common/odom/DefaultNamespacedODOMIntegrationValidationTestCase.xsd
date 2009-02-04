@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.volantis.com/xmlns/2006/02/marlin-lpdm"
+           xmlns="http://www.volantis.com/xmlns/2006/02/marlin-lpdm"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+<xs:simpleType name="stringtype">
+ <xs:restriction base="xs:string"/>
+</xs:simpleType>
+
+<xs:simpleType name="inttype">
+ <xs:restriction base="xs:positiveInteger"/>
+</xs:simpleType>
+
+<xs:simpleType name="dectype">
+ <xs:restriction base="xs:decimal"/>
+</xs:simpleType>
+
+<xs:simpleType name="orderidtype">
+ <xs:restriction base="xs:string">
+  <xs:pattern value="[0-9]{6}"/>
+ </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="shiptotype">
+ <xs:sequence>
+  <xs:element name="name" type="stringtype"/>
+  <xs:element name="address" type="stringtype"/>
+  <xs:element name="city" type="stringtype"/>
+  <xs:element name="country" type="stringtype"/>
+ </xs:sequence>
+</xs:complexType>
+
+<xs:element name="title" type="stringtype"/>
+<xs:element name="note" type="stringtype"/>
+<xs:element name="quantity" type="inttype"/>
+<xs:element name="price" type="dectype"/>
+
+<xs:complexType name="itemtype">
+ <xs:sequence>
+  <xs:element ref="title"/>
+  <xs:element ref="note" minOccurs="0"/>
+  <xs:element ref="quantity"/>
+  <xs:element ref="price"/>
+ </xs:sequence>
+</xs:complexType>
+
+<xs:element name="shipto" type="shiptotype"/>
+<xs:element name="orderperson" type="stringtype"/>
+<xs:element name="item" type="itemtype"/>
+
+<xs:complexType name="shipordertype">
+ <xs:sequence>
+  <xs:element ref="orderperson"/>
+  <xs:element ref="shipto"/>
+  <xs:element ref="item" maxOccurs="unbounded"/>
+ </xs:sequence>
+ <xs:attribute name="orderid" type="orderidtype" use="required"/>
+</xs:complexType>
+
+<xs:element name="shiporder" type="shipordertype"/>
+
+</xs:schema>
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 15-Dec-03	2160/1	doug	VBM:2003120702 Modified ODOMObservables so that they cab validate themesevles.
+
+ ===========================================================================
+-->
