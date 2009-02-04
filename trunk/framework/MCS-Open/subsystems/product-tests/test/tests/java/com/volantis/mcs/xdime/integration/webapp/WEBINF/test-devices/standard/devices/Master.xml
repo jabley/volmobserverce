@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<device xmlns="http://www.volantis.com/xmlns/device-repository/device" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.volantis.com/xmlns/device-repository/device http://www.volantis.com/schema/device-repository/v3.0/device.xsd">
+    <policies>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.padding-top" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.padding-bottom" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.margin-bottom.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.SupportedBluetoothVersion" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.margin-left.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="rmfinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.InputCharSet">
+            <device:value>utf-8</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cookies" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.Push-MsgSize" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.WMA.codec" value="wma9" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxwmldeck" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="microphone" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.media.supported" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.3GPP.codec" value="h263" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pixeldepth" value="8" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="realvidinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="localsec" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WapVersion" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="baudioinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.HtmlVersion" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.softkey.code.left" value="-6" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.XhtmlModules" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.css.properties.font-size.medium.size" value="10" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="postype" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.pixlesy" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pcvdcolsat" value="50" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wtls" value="FALSE" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="swinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WapPushMsgPriority" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.video.window.x" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.iMelody" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="flashlite.mms" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.SoftwareNumber" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.real.codec" value="rm" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.SP-MIDI" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.-wap-marquee.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="agifinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cpumfgr" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mmssupp" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.AAC.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.maxbitrate" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="posnproto" value="MPP" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.div.supports.css.border-top-style" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.AudioInputEncoder" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.border-bottom-style" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.WAV" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.client.runtime.parameters" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.WAV.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.AcceptDownloadableSoftware" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-top-style" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.mmapi.mime.types">
+            <device:value>mp3 audio/mp3</device:value>
+            <device:value>3gp video/3gpp</device:value>
+            <device:value>mp4 video/mp4</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.QCELP" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="output.charset.default" value="UTF-8" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.height" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WapPushMsgSize" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.MmsCcppAcceptEncoding" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.PixelAspectRatio" value="1x1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.css.properties.font-size.ex.scaling.factor" value="0" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.DownloadableSoftwareSupport" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="activesky" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.OSVersion" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-top-width.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.Push-Accept" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.preference.order" value="MP3, 3GPP, MP4, WAV, AAC, WMA, XMF, AMR-WB, RMF, AMR, SMAF, SP-MIDI, MIDI, QCELP, iMelody, NokiaRT" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.visual.maxframerate" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mapdatum" value="WGS-84" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.mime.urls.to.cache" value="0" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="brcdrdr" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="ctryorig" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="width" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.3GPP" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="speechtotxt" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="msvid" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.PointingResolution" value="pixel" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.SMAF" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WmlScriptLibraries" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="hscroll" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="onehanded" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.NumberOfSoftKeys" value="0" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.center.supported" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="bmpinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.margin-right" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maximagesize" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.MIDI.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.MP4.visual.codec" value="mpeg4" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxbookmarkurl" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pnginpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cachefileext" value="html" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="exclusivity" value="unknown" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="entrytype" value="abstract_device" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.default.rules" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.JavaProtocol" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.marquee.supports.attribute.bgcolor" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.3GPP2" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.margin-right.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.div.supports.css.margin-bottom" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.margin-top" value="defualt" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.AAC" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.3GPP2.codec" value="h264" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cookiesversion" value="Netscape" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wtlsclass" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.real.codec" value="rm" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-left-width.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.aac" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.MP4" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.NokiaRT.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.div.supports.css.border-bottom-width" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.XMF.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="javaapplets" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.stylesheet.location.layout" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-top-color" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.attribute.align" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.border-bottom.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.underline.supported" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.amr" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.xhtml.accesskey.numdisplay" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.Sagem2" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="bookmarks" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="viewindark" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.RealMedia.visual.codec" value="rm" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.MP3.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.border-top-style" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.div.supports.css.margin-top" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.border-color.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="revision" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.CurrentBearerService" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="chromableed" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="kbusability" value="50" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.MP4.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="ssl" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.3GPP2.codec" value="h264" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="dial.link.info" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gjpeg8rule" value="gj8" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.OSName" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.TextInputCapable" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.wallpaper.pixelsy" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.border-right.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.border-bottom-color" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="portability" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.display.keyword.-wap-marquee.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pcvdcontrast" value="50" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.3GPP.visual.codec" value="h263" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.margin-bottom" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.suspend.support" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.marquee.supports.attribute.direction" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="vscroll" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.content.type" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.screensaver.pixelsy" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supported" value="full" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-left-width" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.marquee.supports.attribute.loop" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.JavaPackage" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="network.alwayson" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.strike.supported" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-bottom-width.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="emssupp" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="sec.id.header" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.WMA.codec" value="wma9" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.XMF" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="J2MEprof" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-spacing.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.mime.fully.qualified.urls" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-client-frame.rate.max" value="10" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.scrollbar.support" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="qtimeinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.MIDI" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WmlScriptVersion" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.MexeClassmark" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.whitespace.anchor.open" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.TablesCapable" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="sslkeystrng" value="0" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.border-top.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-spacing.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cpumodel" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.margin-top" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-right-width" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mhtmlprotocol">
+            <device:value>MHTML</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WtaVersion" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxcharactersx" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="transparent" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.SecuritySupport" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="tvinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.vertical-align.keyword.bottom.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.use.MIME.packaging" value="never" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.vertical-align.keyword.super.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.color" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.marquee.supported" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.border-top-width" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pixelsy" value="480" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="tvChannelPrefix" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.OutputCharSet">
+            <device:value>UTF-8</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.font.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.maxsize" value="204800" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.ASF" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="memsize" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.softkey.code.right" value="-7" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.blink.supported" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="java" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.padding-left" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="kbdtype" value="keypad" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pwhidden" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="strongauth" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cpng8rule" value="cp8" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="msvidinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxmmsimagewidth" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.SoftKeysCapable" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.width.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="ggif4rule" value="gg4" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.3GPP2" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.padding-rght.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mpeg4inpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gwbmp1rule" value="gw1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.WMA" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.text-decoration.keyword.overline.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="rendermode" value="palette" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxmmsize" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="charactersy" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.tablecell.supports.height" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="preferredimagetype" value="GIF" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.3GPP.codec" value="h263" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cpuclock" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.mp4" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-bottom-color.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.MexeClassmarks" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.3GPP2" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.SupportedPictogramSet" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.BluetoothProfile" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxhomepageurl" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.CcppAccept-Encoding" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="hwrusability" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.style.content" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cgif8rule" value="cg8" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.border-left.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="jscriptversion" value="1.1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.SP-MIDI.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.css.properties.font-size.medium.size.units" value="pt" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.MexeSpec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.MP3" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="jpeginpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxmmsimageheight" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxrequrl" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="dial.link.supported" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gsmaudioinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mincharactersx" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="smsprotocol" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="ssversion">
+            <device:value>none</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WtaiLibraries" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.video.width" value="128" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.WMV" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.maxsize" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="adcpm32inpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.XhtmlVersion" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-bottom-color" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pagedown" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.text-decoration.keyword.line-through.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.3GPP" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="msma" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-bottom-style" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gifinpage" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="flashlite.ui" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.3GPP2.codec" value="h264" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.whitespace.inlinestyling.close" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="ggif8rule" value="gg8" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="fullpixelsy" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="brew.version" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-bottom-style.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="J2MEconf" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.-wap-marquee-style.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.hr.emulation.style" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.DrmClass" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.pixelsx" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.text-decoration.keyword.underline.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pjpeginpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="aggregation" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="ggif2rule" value="gg2" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-top-width.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.OmaDownload" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.DrmConstraints" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="brwsrname" value="  " />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-right-color" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.video.window.y" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-right-style" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.stylesheet.location.theme" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-right-width.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.padding.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="nokringinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.padding-bottom.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="flashlite.standby" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-protocols.wml.img.nosave" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.Push-MaxPushReq" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.3GPP.codec" value="h263" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.DownloadableBrowserApps" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="imelodyinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.padding-right" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.Sagem1" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxmidletdata" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.PreferenceForFrames" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="audio.synth.polyphony.level" value="4" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pixelsx" value="640" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.list-style.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="css.inline.import" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.MP4" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="network.gprsclass" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.mp3.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.vertical-align.keyword.sub.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="spmidiinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.ASF.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="dstillscamera" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.Sagem2.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxhtmlpage" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.3GPP" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.emulate.horizontal" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.real" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.CLIPlatform" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.MexeSecureDomains" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-left-style" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.border.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.SMAF.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gpng2rule" value="gp2" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="css.multiclass.support" value="attribute" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-right-style.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.VideoInputEncoder" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="flashlite.version" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wearable" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-right-width.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.CcppAccept">
+            <device:value>text/html</device:value>
+            <device:value>image/jpeg</device:value>
+            <device:value>image/gif</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="disptech" value="crt" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="beep" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="flashlite.wallpaper" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.ASF" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.WMV.codec" value="wmv9" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="network.latency" value="0" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.Email-URI-Schemes" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.StandardFontProportional" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="modelnum" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="viewstyle" value="lean forward" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.visual.maxbitrate" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="smrtcrdr" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="preferredmessageprotocol" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.RMF" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.AMR-WB.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.MmsVersion">
+            <device:value>1.0</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="network.bandwidth" value="50" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.background.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.border-style.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="amrinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supported" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.wallpaper.pixelsx" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.ASF.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.CcppAccept-Charset" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pageup" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wtlskeystrng" value="0" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.MmsCcppAcceptCharSet" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.NokiaRT" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.-wap-marquee-direction.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.Push-Accept-Encoding" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.supports.accesskey" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="sound" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.text-align.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.RealMedia.audio.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.MmsCcppAccept" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gpng4rule" value="gp4" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.div.supports.css.border-top-color" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.client.device" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="weight" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="download" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxcachedurl" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="videotexinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="colspan.tables.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WmlVersion">
+            <device:value>none</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.Sagem1.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cjpeg24rule" value="cj24" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gpng1rule" value="gp1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.screensaver.maxsize" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-left-width.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.SupportedBearers" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.aac.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.audio.maxbitrate" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wavinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-top-color.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.AMR" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="softlabelsize" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.real" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="dateintr" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="posacqutime" value="1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-protocol.doctype.public-id" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.supported" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-left-color.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.3GPP2.codec" value="h264" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gpng8rule" value="gp8" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="dial.link.info.type" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.RMF.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.whitespace.inlinestyling.open" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.3GPP2" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="viewinbright" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-left-style.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.mp3" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.p.honours.attribute.align.when.modenowrap" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="flashlite.screensaver" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="output.charset.forced" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.width" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="flashinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.-wap-marquee-repetition.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="gpng16rule" value="gp16" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wmlcsupport" value="headers" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wcss.validation.styles" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="brwsrvers" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.screensaver.pixelsx" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.3GPP" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.marquee.supports.attribute.behavior" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.mp4.codec" value="mpeg4" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="flashlite.browser" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.script.content" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.margin-bottom" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="supports.client.framework.installer" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.text-decoration.keyword.none.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.RealMedia" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.MmsCcppAcceptLanguage" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.wma" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="fullpixelsx" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.mp4" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="tiffinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.operatorlogo.supported" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.div.supports.css.border-top-width" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.preference.order" value="RealMedia, WMV, MP4, 3GPP, 3GPP2, ASF" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProfSourceURI" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.Push-Accept-Language" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxlinechars" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-bottom-width" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="sslvers" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="sttusability" value="1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.margin-left" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mmsprotocol">
+            <device:value>MMS_SMIL_2_0</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.linebreaks" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mfg" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.video.height" value="96" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="javascript" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.border-width.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.text-decoration.keyword.blink.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-top-width" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.CcppAccept-Language" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="hwrecognition" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.WMV" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.3GPP.audio.codec" value="amr_nb_vbr" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.QCELP.codec" value="QCELP8, QCELP13" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mpeg1inpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.OSVendor" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.ImageCapable" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="brew.supported" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.shorthands.margin.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WapDeviceClass" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.amr.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.vertical-align.keyword.top.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="prodname" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.accesskey.numdisplay" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.WapSupportedApplications" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mpegiframe" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-right-color.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.padding-left.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.video.MP4.audio.codec" value="amr_nb_vbr" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="ggif1rule" value="gg1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="cpng24rule" value="cp24" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midp.variant.id" value="generic" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.audio.mp4.codec" value="amr_nb_vbr" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.stylesheet.location.device" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="securid" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="mp3inpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.AMR-WB" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.JavaPlatform" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="wbmpinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="charactersx" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.html.fixedmetavalues" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.Push-Accept-AppID" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="txtspeech" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="realaudioinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.JVMVersion" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.div.supported" value="full" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="smafinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="UAProf.Push-Accept-Charset" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="dvidcamera" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="firmversion" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol">
+            <device:value>HTMLVersion3_2</device:value>
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="midiinpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pdevtype" value="scroller" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="steriovisuals" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.mime.preserve.urls" value="true" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.div.supports.css.border-bottom-style" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="numpalette" value="256" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="pdevusability" value="50" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="supports.client.framework" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.audio.iMelody.codec" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="maxmidletjar" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-protocol.doctype.dtd" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.whitespace.anchor.close" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.padding-top.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="height" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="nested.tables.support" value="default" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.div.supports.css.border-bottom-color" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="streaming.video.WMV.codec" value="wmv9" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.td.supports.css.border-left-color" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="msmainpage" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.border-top-color" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-element.hr.supports.css.border-bottom-width" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="stylesheets" value="false" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.css.emulate.width.percentage.table" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-top-style.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="downloadable.wallpaper.maxsize" value="10000" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="partno" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.border-bottom-width.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.css.emulate.width.table" value="none" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="viewdist" value="-1" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="x-css.properties.margin-top.initial-value" value="&lt;default&gt;" />
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.emulate.cardTitle">
+            <device:field name="enable" value="false" />
+            <device:field name="prefix" />
+            <device:field name="suffix" />
+            <device:field name="altTag" />
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.emulate.strongTag">
+            <device:field name="enable" value="false" />
+            <device:field name="prefix" />
+            <device:field name="suffix" />
+            <device:field name="altTag" />
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.emulate.emphasizeTag">
+            <device:field name="enable" value="false" />
+            <device:field name="prefix" />
+            <device:field name="suffix" />
+            <device:field name="altTag" />
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.emulate.italicTag">
+            <device:field name="enable" value="false" />
+            <device:field name="prefix" />
+            <device:field name="suffix" />
+            <device:field name="altTag" />
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.emulate.smallTag">
+            <device:field name="enable" value="false" />
+            <device:field name="prefix" />
+            <device:field name="suffix" />
+            <device:field name="altTag" />
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.emulate.linkHighlighting">
+            <device:field name="enable" value="false" />
+            <device:field name="prefix" />
+            <device:field name="suffix" />
+            <device:field name="altTag" />
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.emulate.boldTag">
+            <device:field name="enable" value="false" />
+            <device:field name="prefix" />
+            <device:field name="suffix" />
+            <device:field name="altTag" />
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.emulate.underlineTag">
+            <device:field name="enable" value="false" />
+            <device:field name="prefix" />
+            <device:field name="suffix" />
+            <device:field name="altTag" />
+        </device:policy>
+        <device:policy xmlns:device="http://www.volantis.com/xmlns/device-repository/device" name="protocol.wml.emulate.bigTag">
+            <device:field name="enable" value="true" />
+            <device:field name="prefix" />
+            <device:field name="suffix" />
+            <device:field name="altTag" value="small" />
+        </device:policy>
+    </policies>
+</device>
+
