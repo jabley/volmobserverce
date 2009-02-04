@@ -1,0 +1,142 @@
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<html xmlns="http://www.w3.org/2002/06/xhtml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+    xsi:schemaLocation="http://www.w3.org/2002/06/xhtml2 http://www.w3.org/2002/06/xhtml2">
+    <head>
+        <title>Welcome to XDIME XML</title>
+        <link rel="layout" href="/func-spec.mlyt"/>
+        <link rel="theme" href="/func-spec.mthm"/>
+        <meta about="#group" property="mcs:fragment-link-label" content="News From Bedrock"/>
+        <meta about="#group" property="mcs:enclosing-fragment-link-label" content="Back to News From Bedrock"/>
+        <meta about="#article1234" property="mcs:fragment-link-label">Meta Link to <em>Fred's Birthday Surprise</em></meta>
+        <meta about="#article1234" property="mcs:enclosing-fragment-link-label" content="Meta Link from Fred's Birthday Surprise"/>
+        <meta about="#article1457" property="mcs:fragment-link-label" content="Meta Link to Miss Bedrock Announced"/>
+        <meta about="#article1457" property="mcs:enclosing-fragment-link-label" content="Meta Link from Miss Bedrock Announced"/>
+        <meta about="#article9769" property="mcs:fragment-link-label" content="Meta Link to Bedrock Bank Hold Up"/>
+        <meta about="#article9769" property="mcs:enclosing-fragment-link-label" content="Meta Link from Bedrock Bank Hold Up"/>
+    </head>
+    <body>
+        <div class="articleGroup" id="group">
+            <h1>Bedrock news</h1>
+        </div>
+        
+        <div class="article1" id="article1234">
+            <h1 class="headline">Fred's Birthday Surprise</h1>
+            <div class="contents">
+                This is one of my favorite movies on NG! I remember watching this movie when it was on the front page months ago. I like the animation and drawings - it seemed like you spent a lot of time on that, it's just impressive. The voices are high quality and done very well. It's a nice, enjoyable movie you can sit back and relax to.
+            </div>
+        </div>
+        
+        <div class="article2" id="article1457">
+            <h1 class="headline">Miss Bedrock Announced</h1>
+            <div class="contents">
+                aaaa
+            </div>
+        </div>
+        
+        <div class="article3" id="article9769">
+            <h1 class="headline">Bedrock Bank Hold Up</h1>
+            <div class="contents">
+                aaaa
+            </div>
+        </div>
+        
+    </body>
+</html>
+<!-- <cdm:canvas layoutName="func-spec.mlyt" theme="func-spec.mthm"
+    xmlns="http://www.w3.org/2002/06/xhtml2" xmlns:cdm="http://www.volantis.com/xmlns/marlin-cdm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.volantis.com/xmlns/marlin-cdm
+    /opt/work/2006013004/MCS/architecture/built/src/api/com/volantis/schema/v3.0/marlin-cdm.xsd
+    http://www.w3.org/2002/06/xhtml2 http://www.w3.org/2002/06/xhtml2">
+    <cdm:region name="Main region">
+        <html>
+            <head>
+                <title>Welcome to XDIME XML</title>
+                <link rel="layout" href="func-spec.mlyt"/>
+                <link rel="theme" href="func-spec.mthm"/>
+                <meta about="#group" property="mcs:fragment-link-label" content="News From Bedrock"/>
+                <meta about="#group" property="mcs:enclosing-fragment-link-label" content="Back to
+                    News                 From Bedrock"/>
+            </head>
+            <body>
+                <div class="articleGroup" id="group">
+                    <h1>Bedrock news</h1>
+                    <!- -meta about="#article1234" property="mcs:fragment-link-label"><span class="red">Fred</span>'s Birthday Surprise</meta- ->
+                    <div class="article" id="article1234">
+                        <h1 class="headline">Fred's Birthday Surprise</h1>
+                        <div class="contents"> This is one of my favorite movies on NG! I remember
+                            watching this movie when it was on the front page months ago. I like the
+                            animation and drawings - it seemed like you spent a lot of time on that,
+                            it's just impressive. The voices are high quality and done very well.
+                            It's a nice, enjoyable movie you can sit back and relax to. </div>
+                    </div>
+                    <!- -meta about="#article1457" property="mcs:fragment-link-label" content="Miss Bedrock Announced"/- ->
+                    <div class="article" id="article1457">
+                        <h1 class="headline">Miss Bedrock Announced</h1>
+                        <div class="contents"> aaaa </div>
+                    </div>
+                    <!- -meta about="#article9769" property="mcs:fragment-link-label" content="Bedrock Bank Robbed"/- ->
+                    <div class="article2" id="article9769">
+                        <h1 class="headline">Bedrock Bank Hold Up</h1>
+                        <div class="contents"> aaaa </div>
+                    </div>
+                </div>
+            </body>
+        </html>
+    </cdm:region>
+</cdm:canvas>-->
+<!--<html xmlns="http://www.w3.org/2002/06/xhtml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.w3.org/2002/06/xhtml2 http://www.w3.org/2002/06/xhtml2">
+    <head>
+        <title>Welcome to XDIME XML</title>
+        <link rel="layout" href="func-spec.mlyt"/>
+        <link rel="theme" href="func-spec.mthm"/>
+        <meta about="#group" property="mcs:fragment-link-label" content="News From Bedrock"/>
+        <meta about="#group" property="mcs:enclosing-fragment-link-label" content="Back to News From Bedrock"/>
+    </head>
+    <body>
+        <div class="articleGroup" id="group">
+            <h1>Bedrock news</h1>
+            
+            <!- -meta about="#article1234" property="mcs:fragment-link-label"><span class="red">Fred</span>'s Birthday Surprise</meta- ->
+            <div class="article" id="article1234">
+                <h1 class="headline">Fred's Birthday Surprise</h1>
+                <div class="contents">
+                    This is one of my favorite movies on NG! I remember watching this movie when it was on the front page months ago. I like the animation and drawings - it seemed like you spent a lot of time on that, it's just impressive. The voices are high quality and done very well. It's a nice, enjoyable movie you can sit back and relax to.
+                </div>
+            </div>
+            
+            <!- -meta about="#article1457" property="mcs:fragment-link-label" content="Miss Bedrock Announced"/- ->
+            <div class="article" id="article1457">
+                <h1 class="headline">Miss Bedrock Announced</h1>
+                <div class="contents">
+                    aaaa
+                </div>
+            </div>
+            
+            <!- -meta about="#article9769" property="mcs:fragment-link-label" content="Bedrock Bank Robbed"/- ->
+            <div class="article2" id="article9769">
+                <h1 class="headline">Bedrock Bank Hold Up</h1>
+                <div class="contents">
+                    aaaa
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>-->

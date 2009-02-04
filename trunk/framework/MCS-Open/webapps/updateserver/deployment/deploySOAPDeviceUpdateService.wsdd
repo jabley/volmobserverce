@@ -1,0 +1,123 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from DeviceUpdateServices WSDL service -->
+
+  <service name="SOAPDeviceUpdateService" provider="java:RPC" style="rpc" use="encoded">
+      <parameter name="wsdlTargetNamespace" value="http://www.volantis.com/xmlns/device-update-service"/>
+      <parameter name="wsdlServiceElement" value="DeviceUpdateServices"/>
+      <parameter name="wsdlServicePort" value="SOAPDeviceUpdateService"/>
+      <parameter name="className" value="com.volantis.devrep.prof.repository.api.devices.update.wsdl.SOAPDeviceUpdateBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="DeviceUpdateService"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:CustomerPassword"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.CustomerPassword"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:CustomerAuthentication"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.CustomerAuthentication"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:CustomerIdentification"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.CustomerIdentification"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:ClientInfo"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.ClientInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:UpdateInfo"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.UpdateInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:RevisionIdentifier"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.RevisionIdentifier"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:CustomerIdentifier"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.CustomerIdentifier"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:UpdateInfoList"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.UpdateInfoList"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:VersionIdentifier"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.VersionIdentifier"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:DeviceRepositoryInfo"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.DeviceRepositoryInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://www.volantis.com/xmlns/device-update-service"
+        qname="ns:DeviceRepositoryUpdate"
+        type="java:com.volantis.devrep.prof.repository.api.devices.update.wsdl.DeviceRepositoryUpdate"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+  </service>
+</deployment>
+
+<!--
+ ===========================================================================
+ Change History
+ ===========================================================================
+ $Log$
+
+ 26-Feb-04	3211/1	claire	VBM:2004022410 Update service build process
+
+ ===========================================================================
+-->

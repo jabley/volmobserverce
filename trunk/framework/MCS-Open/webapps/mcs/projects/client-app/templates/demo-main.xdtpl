@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template:definition
+    xmlns="http://www.w3.org/2002/06/xhtml2"
+    xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+    xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+    xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver">
+
+    <template:documentation>
+    </template:documentation>
+
+    <template:declarations>
+        <template:parameter name="title" type="simple"/>
+        <template:parameter name="content" type="complex"/>
+    </template:declarations>
+
+    <template:body>
+
+        <div id="logo" style="mcs-container: 'logo'"/>
+
+        <div id="heading" style="mcs-container: 'heading'">
+          <object src="/images/heading.mimg"/>
+        </div>
+
+        <div id="title" style="mcs-container: 'title'">
+          <template:value ref="title"/>
+        </div>
+
+        <div id="content" style="mcs-container: 'content';">
+          <template:value ref="content"/>
+        </div>
+
+        <div id="footer" style="mcs-container: 'footer'">
+        	<ul>
+        		<li><a href="index.xdime">Site homepage</a></li>
+        		<li><a href="http://www.volantis.com">Volantis homepage</a></li>
+        	</ul>
+        </div>
+
+        <div id="copyright" style="mcs-container: 'copyright'">
+          Copyright Volantis 2007
+        </div>
+
+    </template:body>
+
+</template:definition>

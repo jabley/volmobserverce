@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This version of the welcome page is used to illustrate the 'Start here' tutorial. 
+     It does not make use of templates or includes, but contains a form which requires
+     the file component.jsp for a response.
+-->
+<html xmlns="http://www.w3.org/2002/06/xhtml2"
+   xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+   xmlns:xf="http://www.w3.org/2002/xforms">
+   <head>
+      <title>Welcome to XDIME XML</title>
+      <link rel="mcs:layout" href="welcome.mlyt"/>
+      <link rel="mcs:theme" href="welcome.mthm"/>
+      <xf:model>
+         <xf:submission id="part" action="component.jsp"/>
+      </xf:model>
+   </head>
+   <body>
+      <div class="logo">
+         <object src="images/vol_logo.mimg">
+            <span>Volantis Systems Ltd.</span>
+         </object>
+      </div>
+
+      <div class="congratulations">
+         <h2>Congratulations!</h2>
+         <p>You have successfully installed and configured Mobile Content Framework&#x2122;.</p>
+      </div>
+
+      <div class="background">
+         <h3>Volantis Mobile Content Framework</h3>
+         <p>Volantis Mobile Content Framework provides a comprehensive, standards-based,
+            development and execution environment for delivering multi-channel
+            content, applications and services that are automatically optimized
+            for thousands of different consumer devices.</p>
+         <p>Built around the principle of device-independent delivery, Volantis
+            Mobility Server uniquely separates content, design, and
+            device-issues into abstract device-independent policies. This
+            enables a 'create once, run anywhere' environment which reduces
+            complexity, cost and time to market for both development and
+            maintenance.</p>
+
+         <h3>System components</h3>
+         <p>Have a look at the key components in Volantis Mobile Content Framework.</p>
+         <p>
+
+            <xf:select1 ref="item">
+               <xf:label> </xf:label>
+               <xf:item>
+                  <xf:label>Multi-Channel Server</xf:label>
+                  <xf:value>mcs</xf:value>
+               </xf:item>
+               <xf:item>
+                  <xf:label>Media Access Proxy</xf:label>
+                  <xf:value>map</xf:value>
+               </xf:item>
+               <xf:item>
+                  <xf:label>Message Preparation Server</xf:label>
+                  <xf:value>mps</xf:value>
+               </xf:item>
+            </xf:select1>
+            <xf:submit submission="part">
+               <xf:label>Go</xf:label>
+            </xf:submit>
+         </p>
+      </div>
+
+      <div class="links">
+         <h3>Useful links</h3>
+         <p>
+            <a href="http://www.volantis.com">Volantis home page</a>
+            <a href="http://support.volantis.com/">Support gateway</a>
+            <a href="http://community.volantis.com/">Community</a>
+         </p>
+      </div>
+      <div class="copyright">
+         
+         <p class="copyr">Copyright &#x00A9; 2000-2008 Volantis Systems Ltd.
+            All Rights Reserved.</p>
+         <p class="copyr">Volantis&#x2122; is a trademark of Volantis
+            Systems Ltd.</p>
+      </div>
+
+   </body>
+</html>

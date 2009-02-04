@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<html
+  xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:template="http://www.volantis.com/xmlns/marlin-template"
+  xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+  xmlns:si="http://www.volantis.com/xmlns/2006/01/xdime2/si"
+  xmlns:xf="http://www.w3.org/2002/xforms"
+	xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver" >
+
+<head>
+  <title>Date Picker Widget</title>
+  <link rel="mcs:theme" href="/themes/main.mthm"/>
+  <link rel="mcs:layout" href="/layouts/main.mlyt"/>
+	<urid:fetch href="date-picker-model.inc"/>
+  <style type="text/css" media="handheld,all">
+    widget|calendar-display {
+        width: auto;
+        height: 100%;
+    }
+    widget|display {
+        color: #000;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <template:apply href="templates/demo-main.xdtpl">
+    <template:binding name="title" value="Date Picker"/>
+    <template:binding name="content">
+      <template:complexValue>
+        <div style="mcs-layout:'/layouts/date-picker.mlyt'">
+          <div style="mcs-container: 'title'">Click the "date" field to unfold Date Picker</div>
+
+          <xf:input id="date" ref="date" style="mcs-container: 'input'; color: black;">
+            <xf:label style="mcs-container: 'input-label'; color: white;">Date </xf:label>
+          </xf:input>
+
+          <widget:date-picker id="myDatePicker" class="widget" inputField="date" style="mcs-container: 'calendar'">
+              <widget:button action="myDatePicker#previous-year"> &lt;&lt; </widget:button>
+              <widget:button action="myDatePicker#previous-month"> &lt; </widget:button>
+              <widget:display property="myDatePicker#month"/>
+              <widget:display property="myDatePicker#year"/>
+              <widget:button action="myDatePicker#next-month"> &gt; </widget:button>
+              <widget:button action="myDatePicker#next-year"> &gt;&gt; </widget:button>
+              <widget:calendar-display style=""/>
+              <widget:button action="myDatePicker#set-today">today</widget:button>  
+              <widget:button action="myDatePicker#dismiss">close</widget:button>
+          </widget:date-picker>
+        </div>
+      </template:complexValue>
+    </template:binding>
+  </template:apply>
+</body>
+</html>

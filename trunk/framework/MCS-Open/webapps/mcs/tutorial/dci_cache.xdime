@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/2002/06/xhtml2"
+  xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"
+  xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+  xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+  xmlns:webd="http://www.volantis.com/xmlns/marlin-web-driver">
+  <head>
+    <title>Weather Forecast for Our Headquarters</title>
+    <!--Links to the layout and theme for this page -->
+    <link rel="mcs:layout" href="/jivearticle.mlyt"/>
+    <link rel="mcs:theme" href="/jive.mthm"/>
+  </head>
+  <!-- Page body -->
+  <body>
+    <!-- The common material for the page header -->
+    <urid:fetch href="jiveheader.xdinc"/>
+    <!-- Page Title -->
+    <h2 id="title">Weather Forecast for Our Headquarters</h2>
+    <!-- The article -->
+    <div id="article">
+      <pipeline:cache name="jiveCache">
+        <pipeline:cacheInfo>
+          <pipeline:cacheKey value="employeeStore"/>
+          <pipeline:cacheControl timeToLive="600"/>
+        </pipeline:cacheInfo>
+        <pipeline:cacheBody>
+          <pipeline:transform href="xsl/http2xdime.xsl" cache="true" compilable="false">
+            <webd:get url="http://weather.yahooapis.com/forecastrss">
+              <webd:parameters>
+                <webd:parameter name="p" value="USWA0395"/>
+                <webd:parameter name="u" value="c"/>
+              </webd:parameters>
+            </webd:get>
+          </pipeline:transform>
+        </pipeline:cacheBody>
+      </pipeline:cache>
+    </div>
+    <!-- The common material for the page footer -->
+    <urid:fetch href="jivefooter.xdinc"/>
+  </body>
+</html>

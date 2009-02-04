@@ -1,0 +1,141 @@
+<-- This is just a demo page to prove that IE and NN browsers can
+    display very similar output if we want them too!!
+--> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+
+<head>
+<title>Browser Test 2</title>
+
+<style type = "text/css">
+.redcolor  {color:red}
+.bluecolor {color:blue}
+.yellowbg  {background:yellow}
+.greenbg   {background:lime}
+.bluebg    {background:blue}
+.whitebg   {background:white}
+.body      {border-top-width:0px;border-left-width:0px;border-right-width:0px;
+border-bottom-width:0px;padding-top:0px;padding-left:0px;
+padding-right:0px;padding-bottom:0px;
+margin-top:0px;margin-left:0px;margin-right:0px;margin-bottom:0px;
+top:0px;left:0px;bottom:0px;right:0px}
+.centeralign {text-align:center}
+.italic    {font-style:italic}
+.bold      {font-weight:bold} 
+.underline {text-decoration:underline}
+.tablesolidborder  {border-style:solid}
+.tablebordersilverblack {border-bottom-color:silver;border-right-color:silver;
+border-top-color:black;border-left-color:black}
+.tablecell{border-width:10px;padding:0;cell-spacing:0;background-color:blue}
+.divposition1{position:absolute;background:yellow;left:0px;top:0px}
+.divwidth  {width:100%;background:lime}
+
+.monospace {font-family:"Courier New", Courier, System}
+</style>
+</head>
+<body class="body" border="0"  
+topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0">
+<table width=100% bgcolor=yellow border="0" cols=1 cellpadding=0 cellspacing=0>
+<tr>
+<td>
+<div>
+This page will test how closely tables can be matched cross browser.
+</div>
+<h1>Body Background</h1>
+<p>
+This page has a a body tag of:<br>
+&lt;body class="body"&gt;
+</p>
+
+<h1>Table Without Classes</h1>
+
+<p>IE5 will color cell borders the same colors as the table border, but NN will always 
+color cell borders black/silver. You cannot change these colors in NN.
+To make the table appear the same in IE I have therfore
+specified that (row) borders must be black/silver. 
+(Saves specifying border colors for each cell!)<p>
+<p>NB: Scrolling down beyond the table causes NN4 to lose the bottom border
+(although behavior is erratic.) Don't think we can do anything about this!</p>
+<p>The table below appears the same in NN4, NN6 and IE5.</P>
+
+<table width=100% bgcolor="white"  bordercolor="cyan" bordercolorlight="aqua" 
+bordercolordark="teal" border="10" cols=2 cellpadding=15 cellspacing=20>
+<tr width=100% bordercolorlight=silver bordercolordark=black>
+<td width=50%>table bgcolor=white</td>
+<td width=50%>table border=cyan, borderlight=aqua, borderdark=teal</td>
+</tr>
+<tr width=100% bordercolorlight=silver bordercolordark=black>
+<td width=50% bgcolor=red>cell bgcolor=red</td>
+<td width=50% bgcolor=blue>cell border=blue</td>
+</tr>
+<tr width=100% bordercolorlight=silver bordercolordark=black>
+<td width=50% align=center>cell align=center</td>
+<td width=50% align=right>cell align=right</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+<p>I have not found a method of making the whole table border a single solid color
+on NN4. This can be done on NN6 by using a class with a solid border style.</p><p>
+All versions of NN ignores bordercolorlight and bordercolordark attributes.</p>
+<p>The table below still has aqua/teal border when viewed in NN4. In NN6 and IE5 the table below has solid aqua border.</p>
+<table class="tablesolidborder" bordercolor="cyan" 
+border="10" cols=2 cellpadding=15 cellspacing=20 
+bgcolor=white width=75% align=center>
+<tr width=100% bordercolorlight=silver bordercolordark=black>
+<td width=50%>table width=75%</td>
+<td width=50%>table align=center</td>
+</tr>
+<tr width=100% bordercolorlight=silver bordercolordark=black>
+<td width=50%>table border solid aqua</td>
+<td width=50%>table border=10, cell spacing=20</td>
+</tr></table>
+
+<p>&nbsp;</p>
+<p>The table below appears the same in NN4, NN6 and IE5</p>
+<table width=75% align="center" border=0 cols=2 cellpadding=0 cellspacing=0 
+bgcolor=magenta>
+<tr width=100%>
+<td width=50%>table border=0</td>
+<td width=50%>table cellspacing=0, cellpadding=0</td>
+</tr>
+<tr width=100%>
+<td width=50% bgcolor=red>cell bgcolor=red</td>
+<td width=50% bgcolor=blue>cell bgcolor=blue</td>
+</tr></table>
+
+
+<p>&nbsp;</p>
+<p>The only way to color the cell spacing magenta in NN4 is to place the whole table on a
+magenta background. To do this the table is placed inside another table with a single
+cell that has a magenta background. Each cell is then given a white background where 
+necessary. See the source for this page if necessary.</p><p>
+The table below appears the same in NN4, NN6 and IE5. 
+</p>
+<table width=100% bgcolor="magenta" border="0" cols=1 cellpadding=0 cellspacing=0>
+<tr>
+<td>
+<table width=100% bgcolor="magenta"  bordercolor="cyan" bordercolorlight="aqua" 
+bordercolordark="teal" border="10" cols=2 cellpadding=15 cellspacing=20>
+<tr width=100% bordercolorlight=silver bordercolordark=black>
+<td width=50% bgcolor="white">table bgcolor=white</td>
+<td width=50% bgcolor="white">table border=cyan, borderlight=aqua, borderdark=teal</td>
+</tr>
+<tr width=100% bordercolorlight=silver bordercolordark=black>
+<td width=50% bgcolor=red>cell bgcolor=red</td>
+<td width=50% bgcolor=blue>cell border=blue</td>
+</tr>
+<tr width=100% bordercolorlight=silver bordercolordark=black>
+<td width=50% bgcolor="white" align=center>cell align=center</td>
+<td width=50% bgcolor="white" align=right>cell align=right</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</body>
+</html>
+

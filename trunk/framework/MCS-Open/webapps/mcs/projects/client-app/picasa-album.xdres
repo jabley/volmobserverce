@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+<response:response xmlns="http://www.w3.org/2002/06/xhtml2" xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline" xmlns:response="http://www.volantis.com/xmlns/2006/05/widget/response" xmlns:picasa="http://www.volantis.com/xmlns/2008/08/picasa"
+xmlns:sel="http://www.w3.org/2004/06/diselect">
+  <response:head>
+    <response:link rel="mcs:theme" href="/themes/main.mthm"/>
+  </response:head>
+  <response:body>
+    <pipeline:try> 
+      <pipeline:preferred>	
+        <pipeline:transform href="picasa2response.xsl">
+        <sel:select>
+            <sel:when expr="request:getParameter('mcs-start') != request:getParameter('mcs-end')">
+		<picasa:list-photos user-id="testvolantis" album="Norway" page-index="%{(number(request:getParameter('mcs-start')) + (number(request:getParameter('gallery-size')) - 1 )) div number(request:getParameter('gallery-size'))}" 
+		page-size="%{request:getParameter('gallery-size')}"/>
+            </sel:when>
+            <sel:otherwise>
+		<picasa:list-photos user-id="testvolantis" album="Norway" page-index="%{request:getParameter('mcs-start')}" page-size="1"/>
+            </sel:otherwise>
+        </sel:select>
+        </pipeline:transform>
+
+      </pipeline:preferred>
+      <pipeline:alternative> 
+        <pipeline:content>
+          <response:error>There was a problem retrieving the information requested.</response:error>
+        </pipeline:content> 
+      </pipeline:alternative> 
+    </pipeline:try>
+  </response:body>
+</response:response>
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html
+    xmlns="http://www.w3.org/2002/06/xhtml2"   
+    xmlns:mcs="http://www.volantis.com/xmlns/2006/01/xdime/mcs"   
+    xmlns:pipeline="http://www.volantis.com/xmlns/marlin-pipeline"
+    xmlns:urid="http://www.volantis.com/xmlns/marlin-uri-driver"
+    xmlns:gdocs="http://www.volantis.com/xmlns/2008/08/gdocs">
+    
+    <head>
+        <title>GDocs Fetch example</title>
+        <link rel="mcs:layout" href="test.mlyt"/>
+        <link rel="mcs:theme" href="test.mthm"/>        
+    </head>
+    
+    <body>
+        <div
+            class="Main">            
+            <pipeline:try>                
+                <pipeline:preferred>  
+                    Just before...<mcs:br/>
+                    <pipeline:transform
+                        href="fetch2xdime.xsl">
+                        <gdocs:fetch xml:id="first fetch" href="http://docs.google.com/feeds/download/documents/RawDocContents?action=fetch&amp;justBody=false&amp;revision=_latest&amp;editMode=false&amp;docID=dcg224t7_2d92rmb64">
+                            <gdocs:authenticate user-id="testvolantis@gmail.com" password="1volantis1"/>
+                        </gdocs:fetch> 
+                    </pipeline:transform>
+                    <mcs:br/>...Just after.
+                </pipeline:preferred>
+                <pipeline:alternative>
+                    <pipeline:content>
+                        <p>There was a problem retrieving the information requested.</p>
+                        <p>Message: <pipeline:value-of expr="pipeline:errorMessage()"/></p>
+                        <p>Source Id: <pipeline:value-of expr="pipeline:errorSourceID()"/></p>
+                        <p>Code Name: <pipeline:value-of expr="pipeline:errorCodeName()"/></p>
+                        <p>Code URI: <pipeline:value-of expr="pipeline:errorCodeURI()"/></p>
+                        <p>Code info (Captcha Token): <pipeline:value-of expr="pipeline:errorInfo('captcha-key')"/></p>
+                        <p>Code info (Captcha URL): <pipeline:value-of expr="pipeline:errorInfo('captcha-url')"/></p>
+                        <p>Code info (Login): <pipeline:value-of expr="pipeline:errorInfo('login')"/></p>
+                    </pipeline:content>
+                </pipeline:alternative>
+            </pipeline:try>
+            
+        </div>
+    </body>
+</html>

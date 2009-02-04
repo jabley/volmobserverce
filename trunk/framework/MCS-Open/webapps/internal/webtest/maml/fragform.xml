@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!DOCTYPE canvas >
+
+<canvas layoutName="FragForm" pageTitle="FragFormTest">
+
+<layout>
+    <fragment name="wrapfrag" backLinkText="Grandad" linkText="Grandad" />
+    <fragment name="Fragment" backLinkText="Not a form" linkText="Not a form" />
+    <fragment name="Fragment1" backLinkText="Daddy" linkText="Daddy" />
+    <formfragment name="Part1" backLinkText="List Section" linkText="List Section" />
+    <formfragment name="Part2" backLinkText="Text Section" linkText="Text Section" />
+    <formfragment name="Part3" backLinkText="Submit Section" linkText="Submit Section" />
+</layout>
+
+<xfform name="FragForm" method="get" 
+	action="FragFormSubmit.jsp" >
+
+<xfsiselect 
+	active="true" name="single1" caption="Select your drink"
+        captionPane="Part1" entryPane="Part1" >
+  <xfoption caption="Coffee" value="coffee"/>
+  <xfoption caption="Tea" value="tea"/>
+  <xfoption caption="Milk" value="milk"/>
+  <xfoption caption="Nothing" value="nothing"/>
+</xfsiselect>
+
+<xfboolean
+        name="boolean" caption="Sugar" captionPane="Part1"
+        entryPane="Part1" falseValue="no" trueValue="yes"/>
+
+<xftextinput
+        active="true" styleClass="singleRow"
+        name="text1" caption="Your name" 
+        captionPane="Part2" entryPane="Part2" />
+
+<xftextinput
+        active="true"
+        styleClass="multipleRows"
+        name="text2"
+        caption="Describe yourself"
+        captionPane="Part3" entryPane="Part3" />
+
+<xfaction type="submit"
+        caption="Order your drink"
+        captionPane="Part3" entryPane="Part3"
+        name="action1" />
+
+<xfimplicit name="name" value="Steve"/>
+
+</xfform>
+
+<p pane="Part4">This is another fragment outside the form.</p>
+</canvas>
+
+
