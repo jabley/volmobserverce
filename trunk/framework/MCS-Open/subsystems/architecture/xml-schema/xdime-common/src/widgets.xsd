@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<xs:schema
+    targetNamespace="http://www.volantis.com/xmlns/2006/05/widget"
+    xmlns="http://www.volantis.com/xmlns/2006/05/widget"
+    xmlns:widget="http://www.volantis.com/xmlns/2006/05/widget"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xh2="http://www.w3.org/2002/06/xhtml2"
+    xmlns:xf="http://www.w3.org/2002/xforms"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://www.w3.org/2002/06/xhtml2"
+        schemaLocation="xhtml2.xsd" />
+
+    <xs:attributeGroup name="CommonWidgetAttributes">
+        <xs:attribute name="id" type="xs:ID" use="optional" />
+        <xs:attribute name="class" type="xs:NMTOKEN" use="optional" />
+        <xs:attribute name="style" type="xs:string" use="optional" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="CommonActionAttributes">
+        <xs:attribute name="src" type="xs:anyURI" use="required" />
+    </xs:attributeGroup>
+
+    <xs:group name="WidgetCarouselContent">
+        <xs:sequence>
+            <xs:element ref="xh2:li" minOccurs="1"
+                maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:element name="WidgetRefresh">
+        <xs:annotation>
+            <xs:documentation>Widget refresh</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attributeGroup ref="CommonActionAttributes" />
+            <xs:attribute name="interval" type="xs:positiveInteger"
+                use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="refresh" substitutionGroup="WidgetRefresh" />
+
+    <xs:element name="carousel">
+        <xs:annotation>
+            <xs:documentation>Carousel widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="refresh" minOccurs="0" maxOccurs="1" />
+                <xs:group ref="WidgetCarouselContent" />
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="dismiss">
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:TextContentSet" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="popup">
+        <xs:annotation>
+            <xs:documentation>Popup widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:FlowContentSet" />
+                <xs:element ref="dismiss" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ticker-tape">
+        <xs:annotation>
+            <xs:documentation>Ticker Tape widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="refresh" minOccurs="0" maxOccurs="1" />
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:group ref="xh2:TextContentSet" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="progress">
+        <xs:annotation>
+            <xs:documentation>Progress widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="refresh" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="summary">
+        <xs:annotation>
+            <xs:documentation>
+                Folding item widget summary
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:group ref="xh2:FlowContentSet" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="detail">
+        <xs:annotation>
+            <xs:documentation>
+                Folding item widget detail
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="1">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:group ref="xh2:FlowContentSet" />
+                </xs:choice>
+                <xs:element ref="load" minOccurs="0" maxOccurs="1" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="WidgetLoad">
+        <xs:annotation>
+            <xs:documentation>Widget load</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attributeGroup ref="CommonActionAttributes" />
+            <xs:attribute name="when" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="onload" />
+                        <xs:enumeration value="defer" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="load" substitutionGroup="WidgetLoad" />
+
+    <xs:element name="WidgetFetch">
+        <xs:annotation>
+            <xs:documentation>Widget fetch</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attributeGroup ref="CommonActionAttributes" />
+            <xs:attribute name="when" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="onload" />
+                        <xs:enumeration value="defer" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="transformation" type="xs:anyURI" use="optional"/>
+ 	    <xs:attribute name="transform-cache" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="true" />
+                        <xs:enumeration value="false" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>            
+ 	    <xs:attribute name="transform-compile" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="true" />
+                        <xs:enumeration value="false" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="service" type="xs:string" use="optional"/>                        
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="fetch" substitutionGroup="WidgetFetch" />
+
+    <xs:element name="folding-item">
+        <xs:annotation>
+            <xs:documentation>Folding item widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="summary" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="detail" minOccurs="1" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="wizard">
+        <xs:annotation>
+            <xs:documentation>
+                The main element for the Wizard widget
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:FlowContentSet" />
+                <xs:element ref="launch" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="launch">
+        <xs:annotation>
+            <xs:documentation>
+                Represents the action link that launches the wizard.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:TextContentSet" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+	<xs:element name="field-expander">
+        <xs:annotation>
+            <xs:documentation>Field-expander widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:group ref="xh2:FlowContentSet" />
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="validate">
+        <xs:annotation>
+            <xs:documentation>Simple validator</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+<!--            <xs:sequence>-->
+<!--                <xs:element ref=" " minOccurs="0" maxOccurs="unbounded" />-->
+<!--            </xs:sequence>-->
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+            <xs:attribute name="message-area" type="xs:string" use="optional" />
+            <xs:attribute name="src" type="xs:string" use="optional" />
+            <xs:attribute name="auto" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="yes" />
+                        <xs:enumeration value="no" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="message">
+        <xs:annotation>
+            <xs:documentation>Message for use with simple validator</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+	            <xs:group ref="xh2:TextContentSet" />
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+            <xs:attribute name="type" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="empty" />
+                        <xs:enumeration value="invalid" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="WidgetAutocomplete">
+        <xs:annotation>
+            <xs:documentation>Widget autocomplete</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attributeGroup ref="CommonWidgetAttributes"/>
+            <xs:attributeGroup ref="CommonActionAttributes"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="autocomplete" substitutionGroup="WidgetAutocomplete" />
+
+    <xs:element name="tabs">
+        <xs:annotation>
+            <xs:documentation>Tabs widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tab" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="tab" >
+        <xs:annotation>
+            <xs:documentation>Single tab in Tabs widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="1" maxOccurs="1">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:group ref="xh2:FlowContentSet" />
+                </xs:choice>
+                <xs:element ref="load" minOccurs="0" maxOccurs="1" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="date-picker" >
+        <xs:annotation>
+            <xs:documentation>Date Picker widget </xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="load" minOccurs="0" maxOccurs="1" />
+                <xs:choice>
+                    <xs:element ref="previous-month" minOccurs="0" maxOccurs="1" />
+                    <xs:element ref="next-month" minOccurs="0" maxOccurs="1" />
+                    <xs:element ref="previous-year" minOccurs="0" maxOccurs="1" />
+                    <xs:element ref="next-year" minOccurs="0" maxOccurs="1" />
+                    <xs:element ref="set-today" minOccurs="0" maxOccurs="1" />
+                    <xs:element ref="month-display" minOccurs="0" maxOccurs="1" />                                                                                
+                    <xs:element ref="year-display" minOccurs="0" maxOccurs="1" />
+                    <xs:element ref="calendar-display" minOccurs="0" maxOccurs="1" />
+                    <xs:element ref="dismiss" minOccurs="0" maxOccurs="1" />
+                    <xs:group ref="xh2:FlowContentSet" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+            <xs:attribute name="inputField" type="xs:string" use="optional" />
+            <xs:attribute name="dayInputField" type="xs:string" use="optional" />
+            <xs:attribute name="monthInputField" type="xs:string" use="optional" />
+            <xs:attribute name="yearInputField" type="xs:string" use="optional" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="next-year" >
+        <xs:annotation>
+            <xs:documentation>next-year button </xs:documentation>
+        </xs:annotation>        
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:TextContentSet" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="previous-year" >
+        <xs:annotation>
+            <xs:documentation>previous-year button </xs:documentation>
+        </xs:annotation>        
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:TextContentSet" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="next-month" >
+        <xs:annotation>
+            <xs:documentation>next-month button </xs:documentation>
+        </xs:annotation>        
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:TextContentSet" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="previous-month" >
+        <xs:annotation>
+            <xs:documentation>previous-month button </xs:documentation>
+        </xs:annotation>        
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:TextContentSet" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="set-today" >
+        <xs:annotation>
+            <xs:documentation>set-today button </xs:documentation>
+        </xs:annotation>        
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:TextContentSet" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="month-display" >
+        <xs:annotation>
+            <xs:documentation>place holder for month display</xs:documentation>
+        </xs:annotation>        
+        <xs:complexType mixed="true">
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="year-display" >
+        <xs:annotation>
+            <xs:documentation>place holder for year display</xs:documentation>
+        </xs:annotation>        
+        <xs:complexType mixed="true">
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="calendar-display" >
+        <xs:annotation>
+            <xs:documentation>place holder for calendar display</xs:documentation>
+        </xs:annotation>        
+        <xs:complexType mixed="true">
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="select">
+        <xs:annotation>
+            <xs:documentation>Select widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="option" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes"/>
+ 	    <xs:attribute name="mode" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="single" />
+                        <xs:enumeration value="multiple" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+                       
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="option">
+        <xs:annotation>
+            <xs:documentation>Option widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:TextContentSet" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes"/>
+            <xs:attribute name="value" type="xs:string" use="optional"/>                        
+        </xs:complexType>        
+    </xs:element>
+
+    <xs:element name="map-view">
+        <xs:annotation>
+            <xs:documentation>Map View widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element> 
+	
+    <xs:element name="map">
+    	<xs:annotation>
+    		<xs:documentation>Google Map widget</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    		<xs:sequence>
+    		    <xs:group ref="xh2:FlowContentSet" />
+    		</xs:sequence>
+    		<xs:attributeGroup ref="CommonWidgetAttributes" />
+			<xs:attribute name="query" type="xs:string" use="optional"/>
+			<xs:attribute name="longitude" type="xs:string" use="optional"/>
+			<xs:attribute name="latitude" type="xs:string" use="optional"/>
+			<xs:attribute name="zoom" type="xs:string" use="optional"/>			
+    	</xs:complexType>
+    </xs:element>
+    
+    <xs:element name="map-location-marker">
+        <xs:annotation>
+            <xs:documentation>Map location marker widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="longitude" type="xs:string" use="required"/>
+            <xs:attribute name="latitude" type="xs:string" use="required"/>
+            <xs:attribute name="src" type="xs:string" use="required"/>
+            <xs:attribute name="min-zoom" type="xs:string" use="optional"/>
+            <xs:attribute name="max-zoom" type="xs:string" use="optional"/>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>    
+
+    <xs:element name="map-location-markers">
+        <xs:annotation>
+            <xs:documentation>Map location marker widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="map-location-marker" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element>   
+
+    <xs:element name="clock-content">
+	    <xs:annotation>
+		    <xs:documentation>Clock Content widget</xs:documentation>
+        </xs:annotation>
+	    <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="xh2:FlowContentSet" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+            <xs:attribute name="type" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="digit" />
+                        <xs:enumeration value="day" />
+                        <xs:enumeration value="month" />
+                        <xs:enumeration value="separator" />
+                        <xs:enumeration value="ampm" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="digital-clock">
+        <xs:annotation>
+            <xs:documentation>Digital Clock widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="refresh" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="clock-content" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element> 
+    
+     <xs:element name="stopwatch">
+        <xs:annotation>
+            <xs:documentation>Stopwatch widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="clock-content" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element> 
+    
+    <xs:element name="timer">
+        <xs:annotation>
+            <xs:documentation>Timer widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="load" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="clock-content" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="start-time" type="xs:string" use="optional"/>
+            <xs:attribute name="stop-time" type="xs:string" use="optional"/>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element> 
+   
+     <xs:element name="deck">
+        <xs:annotation>
+            <xs:documentation>Deck widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="load" />
+                <xs:element ref="deck-page" minOccurs="0" maxOccurs="unbounded" />
+            </xs:choice>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element> 
+   
+     <xs:element name="deck-page">
+        <xs:annotation>
+            <xs:documentation>Deck widget page</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="true">
+	        <xs:group ref="xh2:FlowContentSet" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+        </xs:complexType>
+    </xs:element> 
+   
+     <xs:element name="table">
+        <xs:annotation>
+            <xs:documentation>Table widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="xh2:caption" minOccurs="0"/>
+                <xs:choice>
+                    <xs:sequence>
+                        <xs:element ref="xh2:thead" minOccurs="0"/>
+                        <xs:element ref="xh2:tfoot" minOccurs="0"/>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element ref="xh2:tbody"/>
+                            <xs:element ref="tbody"/>
+                        </xs:choice>
+                    </xs:sequence>
+                    <xs:element ref="xh2:tr" maxOccurs="unbounded"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes"/>
+        </xs:complexType>
+    </xs:element> 
+   
+     <xs:element name="tbody">
+        <xs:annotation>
+            <xs:documentation>Table Body widget</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="load" minOccurs="0"/>
+                <xs:element ref="xh2:tr" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attributeGroup ref="CommonWidgetAttributes" />
+            <xs:attribute name="cached-pages-count" type="xs:int" use="optional"/>
+        </xs:complexType>
+    </xs:element> 
+   
+</xs:schema>

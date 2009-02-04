@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Zoe Jones (private) -->
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/mss/config" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.volantis.com/xmlns/mss/config" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="modules/common-module.xsd"/>
+	<xs:element name="scs-config">
+		<xs:annotation>
+			<xs:documentation>Configuration Element for the Secure Connection Server</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="proxy-configuration" minOccurs="0"/>
+				<xs:element ref="secure-connection-configuration" minOccurs="0"/>
+				<xs:element ref="authentication-provider"/>
+				<xs:element ref="log4j" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="proxy-configuration">
+		<xs:annotation>
+			<xs:documentation>The configuration of the proxy server</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="port" use="required">
+				<xs:annotation>
+					<xs:documentation>The port on which the proxy server listens</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:nonNegativeInteger">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="65535"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="gateway-timeout" use="optional" >
+				<xs:annotation>
+					<xs:documentation>Specifies the time limit in seconds at which point if a  response has not been received from the SPS it will be reported back to the requesting host as 504 error</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="-1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="secure-connection-configuration">
+		<xs:annotation>
+			<xs:documentation>Configiguration of the secure connection channel</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="port" use="required">
+				<xs:annotation>
+					<xs:documentation>The port on which the secure connector listens</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:nonNegativeInteger">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="65535"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="keep-alive">
+				<xs:annotation>
+					<xs:documentation>The amount of time in seconds between the sending of keep-alive packets. A value of 0 indicates no keep-alive.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:nonNegativeInteger">
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+				
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authentication-provider">
+		<xs:annotation>
+			<xs:documentation>Definition of the implementor of the AuthenticationProvider API</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="class" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The class implementing the AuthenticationProvder API</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="log4j">
+		<xs:annotation>
+			<xs:documentation>Definition which controls how log4j is configured.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="xml-configuration-file">
+				<xs:annotation>
+					<xs:documentation>The path to the file containing the configuration for Mariner's log4j based logging.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

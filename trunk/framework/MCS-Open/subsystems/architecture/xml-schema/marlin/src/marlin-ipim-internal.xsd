@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Rhys Lewis (Volantis Systems) -->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Zoe Jones (Volantis) -->
+<!-- ==========================================================================
+ ! $Header: /cvs/architecture/architecture/xml-schema/marlin/src/marlin-ipim-internal.xsd,v 1.1 2003/11/21 10:34:13 pduffin Exp $
+ ! ============================================================================
+ ! (c) Volantis Systems Ltd 2002. 
+ ! ============================================================================
+ ! Change History:
+ !
+ ! Date         Who             Description
+ ! =========    =============== ===============================================
+ ! 17-Dec-02    Rhys            R428 Created this schema.
+ ! 14-Apr-03    Paul            Removed duplicate name attributes, changed
+ !                              target namespace to provide more separation
+ !                              between the namespace and the schema.
+ ! 07-Jul-03    Rhys            Changed names of attributes to camel case from
+ !                              hyphenated
+ !======================================================================== -->
+<!--
+ !
+ ! ***************************************************************************************************
+ ! This file is owned by Architecture and can only be changed by a member of
+ ! that group.
+ !
+ ! This is the internal description of the Mariner markup language. It
+ ! includes the external definition of the language together with
+ ! embellishments used in generation of some of the classes that implement it.
+ ! This form of the schema is used to create the external form in addition to
+ ! a number of other definitions and source code used in creation and
+ ! documentation of the product.
+ !NOTE: Comments within the xs:schema element are preserved in the external version
+ ! ***************************************************************************************************
+ !
+ !-->
+<?xml-stylesheet type="text/xsl" href="CreateExternalSchema.xsl"?>
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/marlin-im" xmlns="http://www.volantis.com/xmlns/marlin-im" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <!--
+     ! **********************************************************************************************************************************
+     ! Schema Name:  Marlin In-line Plug-in Module
+     ! Purpose: Define the markup associated with invokation of in-line plug-ins 
+     ! **********************************************************************************************************************************
+     !-->
+    <!--
+     ! ******************************************************************************
+     !         Definitions of Elements Associated with invocation of plug-ins
+     ! ******************************************************************************
+     !-->
+    <xs:element name="invoke">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="arguments"/>
+            </xs:choice>
+            <xs:attribute name="pluginName" type="xs:string" use="required"/>
+            <xs:attribute name="methodName" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:NMTOKEN">
+                        <xs:enumeration value="initialise"/>
+                        <xs:enumeration value="process"/>
+                        <xs:enumeration value="release"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+        <?iapi elementClass="Invoke" attributesClass="InvokeAttributes" naturalName="invoke"?>
+    </xs:element>
+    <xs:element name="argument">
+        <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+        </xs:complexType>
+        <?iapi elementClass="Argument" attributesClass="ArgumentAttributes" naturalName="argument"?>
+    </xs:element>
+    <xs:element name="arguments">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element ref="argument"/>
+            </xs:choice>
+        </xs:complexType>
+        <?iapi elementClass="Arguments" naturalName="arguments"?>
+    </xs:element>
+</xs:schema>

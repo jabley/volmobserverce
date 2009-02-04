@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<!-- ==========================================================================
+ ! (c) Volantis Systems Ltd 2005. 
+ ! ======================================================================== -->
+<xs:schema targetNamespace="http://www.volantis.com/xmlns/2005/12/marlin-rpdm"
+    xmlns="http://www.volantis.com/xmlns/2005/12/marlin-rpdm" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:lpdm="http://www.volantis.com/xmlns/2005/12/marlin-lpdm" elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+    <!--
+     ! ****************************************************************************************************************************
+     ! Schema Name:  Marlin Remote Policy Definition Module
+     ! Purpose: Define the XML representation of replies received by a Mariner repository from remote repositories
+     ! ****************************************************************************************************************************
+     !-->
+    <!--
+     ! ************************************************************************
+     !         Imports and Inclusions
+     ! ************************************************************************
+     !-->
+    <xs:import namespace="http://www.volantis.com/xmlns/2005/12/marlin-lpdm"
+        schemaLocation="marlin-lpdm-internal.xsd"/>
+
+    <xs:element name="policies">
+        <xs:annotation>
+            <xs:documentation>A container for multiple LPDM policies.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="policyContainer"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="policyContainer">
+        <xs:annotation>
+            <xs:documentation> The container for an LPDM policy which names it in the situation
+                where multiple policies are returned. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="1">
+                <xs:element ref="lpdm:policy"/>
+            </xs:choice>
+            <xs:attribute name="url" type="xs:anyURI" use="required">
+                <xs:annotation>
+                    <xs:documentation> The actual URL that could be used to load the contained
+                        Policy </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

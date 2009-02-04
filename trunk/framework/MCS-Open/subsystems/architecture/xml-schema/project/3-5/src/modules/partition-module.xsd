@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of Volantis Mobility Server. 
+
+Volantis Mobility Server is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Volantis Mobility Server is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:include schemaLocation="../../../repository/2006/02/src/modules/policy-type-module.xsd"/>
+
+    <!-- ======================================================================
+     !         Cache Partition
+     ! ==================================================================== -->
+    <xs:simpleType name="Unlimited">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="unlimited"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="SizeType">
+        <xs:restriction base="xs:unsignedInt">
+            <xs:minInclusive value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TimeType">
+        <xs:restriction base="xs:unsignedInt"/>
+    </xs:simpleType>
+    <xs:simpleType name="CountType">
+        <xs:restriction base="xs:unsignedInt"/>
+    </xs:simpleType>
+    <xs:simpleType name="UnlimitedTimeType">
+        <xs:union memberTypes="TimeType Unlimited"/>
+    </xs:simpleType>
+    <xs:simpleType name="UnlimitedCountType">
+        <xs:union memberTypes="CountType Unlimited"/>
+    </xs:simpleType>
+    <xs:simpleType name="BooleanType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="false"/>
+            <xs:enumeration value="true"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:attributeGroup name="SizeAttribute">
+        <xs:attribute name="size" type="SizeType">
+            <xs:annotation>
+                <xs:documentation>
+                    Size must be a positive integer, i.e > 0.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:complexType name="PolicyCacheConstraints">
+        <xs:sequence>
+            <xs:element name="cache" minOccurs="0">
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="retry" minOccurs="0">
+                            <xs:complexType>
+                                <xs:all>
+                                    <xs:element name="interval" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:attribute name="minimum" type="TimeType" use="optional"/>
+                                            <xs:attribute name="default" type="TimeType" use="optional"/>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="max-count" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:attribute name="maximum" type="UnlimitedCountType" use="optional"/>
+                                            <xs:attribute name="default" type="UnlimitedCountType" use="optional"/>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="retain" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:attribute name="allow" type="BooleanType" use="optional"/>
+                                            <xs:attribute name="default" type="BooleanType" use="optional"/>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:all>
+                                <xs:attribute name="allow" type="BooleanType" use="optional"/>
+                                <xs:attribute name="default" type="BooleanType" use="optional"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="time-to-live" minOccurs="0">
+                            <xs:complexType>
+                                <xs:attribute name="maximum" type="UnlimitedTimeType" use="optional"/>
+                                <xs:attribute name="default" type="UnlimitedTimeType" use="optional"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:all>
+                    <xs:attribute name="allow" type="BooleanType" use="optional"/>
+                    <xs:attribute name="default" type="BooleanType" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="policy-cache-partition">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="constraints" type="PolicyCacheConstraints"/>
+                <xs:element name="type-partition" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="type" type="PolicyType" minOccurs="1" maxOccurs="unbounded"/>
+                            <xs:element name="constraints" type="PolicyCacheConstraints"/>
+                        </xs:sequence>
+                        <xs:attributeGroup ref="SizeAttribute"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attributeGroup ref="SizeAttribute"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
